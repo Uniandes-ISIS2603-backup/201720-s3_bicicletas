@@ -1,7 +1,7 @@
 # s3_bicicletas
 # Tabla de contenidos
 -[Introducción](#introducción)
--[API](#api-de-la-aplicación-préstamo-de-bicicletas)
+-[API](#api-de-la-aplicación-bicicletas)
  - [Recurso Usuario](#recurso-usuario)
   - [GET /usuarios](#GET-/usuarios)
   - [GET /usuarios/{id}](#GET-/usuarios/{id})
@@ -45,12 +45,12 @@
   - [PUT /estaciones{estacionesid}/accesorios/{id}](#PUT-/estaciones/{estacionesid}/accesorios/{id})
   - [DELETE /estaciones/{id}/accesorios/{id}](#DELETE-/estaciones/{id}/accesorios/{id})
  - [Recurso SistemaDePagos](#recurso-sistemaDePagos)
-  - [GET /SistemaDePagos/{id}](#GET-/SistemaDePagos/ {id})
+  - [GET /SistemaDePagos/{id}](#GET-/SistemaDePagos/{id})
  - [Recurso Pago](#recurso-pago)
-  - [GET /reservas/ {id} /pago](#GET-/reservas/ {id} /pago)
-  - [POST /reservas/ {id} /pago](#GET-/reservas/ {id} /pago)
-  - [PUT /reservas/ {id} /pago](#GET-/reservas/ {id} /pago)
-  - [DELETE /reservas/ {id} /pago](#GET-/reservas/ {id} /pago)
+  - [GET /reservas/{id}/pago](#GET-/reservas/{id}/pago)
+  - [POST /reservas/{id}/pago](#GET-/reservas/{id}/pago)
+  - [PUT /reservas/{id}/pago](#GET-/reservas/{id}/pago)
+  - [DELETE /reservas/{id}/pago](#GET-/reservas/ {id} /pago)
  - [Recurso Bicicleta](#recurso-bicicleta)
   - [GET /bicicletas](#GET-/bicicletas)
   - [GET /reservas/{id}/bicicletas](#GET-/bicicletas/{id})
@@ -70,12 +70,12 @@
   - [DELETE/bicicletas/bicisDañadas/AccesoriosBicicleta](#DELETE-/bicicletas/bicicsDañadas/AccesorioBicicleta)
   - [GET/reservas/bicicletas/bicisSinReserva/AccesorioBicicleta](#GET-/reservas/bicicletas/bicisSinReserva/AccesoriosBicicleta)
  -[Recurso Reserva](#recuso-reserva)
-  - [GET /estaciones/{idEstacion}/Reservas](#GET- /estaciones/{idEstacion}/Reservas)
-  - [GET /estaciones/{idEstacion}/Reserva/{idReserva}]( #GET- /estaciones/{idEstacion}/Reserva/{idReserva})
-  - [POST /estaciones/{idEstacion}/Reserva/{IdUsuario}](# POST- /estaciones/{idEstacion}/Reserva/{IdUsuario})
-  - [PUT /estaciones/{idEstacion}/Reserva/{idReserva}](# PUT- /estaciones/{idEstacion}/Reserva/{idReserva})
-  - [DELETE /estaciones/{idEstacion}/Reservas/](# DELETE- /estaciones/{idEstacion}/Reservas/)
-  - [DELETE /estaciones/{idEstacion}/Reservas/{idReserva}](# DELETE- /estaciones/{idEstacion}/Reservas/{idReserva})
+  - [GET /estaciones/{idEstacion}/Reservas](#GET-/estaciones/{idEstacion}/Reservas)
+  - [GET /estaciones/{idEstacion}/Reserva/{idReserva}](#GET-/estaciones/{idEstacion}/Reserva/{idReserva})
+  - [POST /estaciones/{idEstacion}/Reserva/{IdUsuario}](#POST-/estaciones/{idEstacion}/Reserva/{IdUsuario})
+  - [PUT /estaciones/{idEstacion}/Reserva/{idReserva}](#PUT-/estaciones/{idEstacion}/Reserva/{idReserva})
+  - [DELETE /estaciones/{idEstacion}/Reservas/](#DELETE-/estaciones/{idEstacion}/Reservas/)
+  - [DELETE /estaciones/{idEstacion}/Reservas/{idReserva}](#DELETE-/estaciones/{idEstacion}/Reservas/{idReserva})
 # API Rest
 ## Introducción
 La comunicación entre cliente y servidor se realiza intercambiando objetos JSON. Para cada entidad se hace un mapeo a JSON, donde cada uno de sus atributos se transforma en una propiedad de un objeto JSON. Todos los servicios se generan en la URL /prestamoBicicletas.api/api/. Por defecto, todas las entidades tienen un atributo `id`, con el cual se identifica cada registro:
@@ -99,7 +99,7 @@ La respuesta del servidor al solicitar una colección presenta el siguiente form
 [{}, {}, {}, {}, {}, {}]
 ```
 
-## API de la aplicación prestamo_de_bicicletas
+## API de la aplicación bicicletas
 ### Recurso Usuario
 El objeto Usuario tiene 2 representaciones JSON:	
 
