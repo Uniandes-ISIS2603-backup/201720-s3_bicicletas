@@ -76,6 +76,11 @@
   - [PUT /estaciones/{idEstacion}/Reserva/{idReserva}](#PUT-/estaciones/{idEstacion}/Reserva/{idReserva})
   - [DELETE /estaciones/{idEstacion}/Reservas/](#DELETE-/estaciones/{idEstacion}/Reservas/)
   - [DELETE /estaciones/{idEstacion}/Reservas/{idReserva}](#DELETE-/estaciones/{idEstacion}/Reservas/{idReserva})
+-[Recurso Información estación ](#recuso-reserva)
+-[GET /estaciones/{idEstacion}/informacion](#GET-/estaciones/{idEstacion}/Informacion)
+-[ POST /estaciones/{idEstacion}](#POST-/estaciones/{idEstacion})
+-[ PUT /estaciones/{idEstacion}](#PUT-/estaciones/{idEstacion}/Reserva/{idReserva})
+-[ DELETE /estaciones/{idEstacion}](#DELETE-/estaciones/{idEstacion}/Reservas)
 # API Rest
 ## Introducción
 La comunicación entre cliente y servidor se realiza intercambiando objetos JSON. Para cada entidad se hace un mapeo a JSON, donde cada uno de sus atributos se transforma en una propiedad de un objeto JSON. Todos los servicios se generan en la URL /prestamoBicicletas.api/api/. Por defecto, todas las entidades tienen un atributo `id`, con el cual se identifica cada registro:
