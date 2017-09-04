@@ -19,7 +19,7 @@
   - [GET /direcciones/{id}](#GET-direcciones/{id})
   - [POST /direcciones](#POST-/direcciones)
   - [PUT /direcciones/{id}](#PUT-/direcciones/{id})
-  - [DELETE /direcciones(#DELETE-/direcciones)
+  - [DELETE /direcciones](#DELETE-/direcciones)
   - [DELETE /direcciones/{id}(#DELETE-/direcciones/{id})
  - [Recurso Punto](#recurso-punto)
   - [POST /usuarios/{idUsuario}/puntos](#POST-/usuarios/{idUsuario}/puntos)
