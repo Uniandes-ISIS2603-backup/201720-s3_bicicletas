@@ -78,7 +78,7 @@
   - [DELETE /estaciones/{idEstacion}/Reservas/{idReserva}](#DELETE-/estaciones/{idEstacion}/Reservas/{idReserva})
 -[Recurso Información estación ](#recuso-reserva)
 -[GET /estaciones/{idEstacion}/informacion](#GET-/estaciones/{idEstacion}/Informacion)
--[ POST /estaciones/{idEstacion}](#POST-/estaciones/{idEstacion})
+-[POST /estaciones/{idEstacion}](#POST-/estaciones/{idEstacion})
 -[ PUT /estaciones/{idEstacion}](#PUT-/estaciones/{idEstacion}/Reserva/{idReserva})
 -[ DELETE /estaciones/{idEstacion}](#DELETE-/estaciones/{idEstacion}/Reservas)
 # API Rest
