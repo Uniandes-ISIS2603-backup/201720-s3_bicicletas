@@ -1387,9 +1387,198 @@ Nombre|Descripcion
 
 [Volver arriba](#tabla-de-contenidos)
 
+### Recurso Información Reservas
 
+El objeto Reserva tiene 1 representacion JSON:
+
+#### Representación Detail
+```javascript
+{
+    idInfoestacion: '' /*Tipo long*/
+    nombreLlegada: '' /*Tipo Long*/,
+    nombreOrigen: '' /*Tipo Long*/,
+}
+```
+
+#### GET /estaciones/{idEstacion}
+Retorna una colección de objetos Reservas en representación Detail.
+
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+idestacion|Path|ID del objeto Estación a consultar|Sí|Long
+
+#### Respuesta
+
+Código|Descripción|Cuerpo
+:--|:--|:--
+200|OK|Objeto Estacion en representación Detail
+404|No existe un objeto Estación con el ID solicitado|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|Error interno|Mensaje de error
+
+#### GET /estacionLlegada/{NombreLlegada}
+Retorna objeto Estacion en representación Detail.
+
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+NombreLlegada|Path|Nombre del objeto Estación a consultar|Sí|Long
+
+#### Respuesta
+
+Código|Descripción|Cuerpo
+:--|:--|:--
+200|OK|Objeto Estacion en representación Detail
+404|No existe un objeto Estación con el ID solicitado|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|Error interno|Mensaje de error
+
+#### GET /estacionOrigen/{NombreLlegada}
+Retorna objeto Estacion en representación Detail.
+
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+NombreOrigen|Path|Nombre del objeto Estación a consultar|Sí|Long
+
+#### Respuesta
+
+Código|Descripción|Cuerpo
+:--|:--|:--
+200|OK|Objeto Estacion en representación Detail
+404|No existe un objeto Estación con el ID solicitado|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|Error interno|Mensaje de error
 
 [Volver arriba](#tabla-de-contenidos)
+### Recurso Reserva
+
+El objeto Reserva tiene 1 representacion JSON:
+
+#### Representación Detail
+```javascript
+{
+    idReserva: '' /*Tipo long*/
+    idUsuario: '' /*Tipo Long*/,
+    DiaReserva: '' /*Tipo Date*/,
+    FechaInicio: '' /*Tipo Date*/,
+    FechaEntrega: '' /*Tipo Date*/,
+    Pago: '' /*Tipo Double*/,
+    Calificacion: '' /*Tipo Integer*/,
+    IdEstacionFin: '' /*Tipo Long*/,
+   IdEstacionInicio: '' /*Tipo Long*/,
+}
+```
+
+#### GET /estaciones/{idEstacion}/Reservas
+
+Retorna una colección de objetos Reservas en representación Detail.
+
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+idestacion|Path|ID del objeto Estación a consultar|Sí|Long
+
+#### Respuesta
+
+Código|Descripción|Cuerpo
+:--|:--|:--
+200|OK|Objeto Reserva en representación Detail
+404|No existe un objeto Estación con el ID solicitado|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|Error interno|Mensaje de error
+
+#### GET /estaciones/{idEstacion}/Reserva/{idReserva}
+
+Retorna un objeto Reserva en representación Detail.
+
+#### Parámetros
+
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+idestacion|Path|ID del objeto Estación a consultar|Sí|Long
+idReserva|Path|ID del objeto Reserva a consulta|Sí|Long
+
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+200|OK|	Objeto Reserva en representación Detail
+404|Noexiste un objeto Estación con el ID solicitado|Mensaje de error
+404|No existe un objeto Accesorio con el ID solicitado|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|Error interno|Mensaje de error
+#### POST /estaciones/{idEstacion}/Reserva/{IdUsuario}
+
+Es el encargado de crear objetos Reserva.
+
+#### Parámetros
+
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+idestacion|Path|ID del objeto Estación a consultar|Sí|Long
+idUsuario|Path|Objeto Reserva que será creado|Sí|Long
+Body|Body|Objeto Reserva nuevo|Si|Representación Detail
+
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+201|El objeto Reserva ha sido creado|Representacion Detail
+412|precondition failed, no se cumple la regla de negocio establecida|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|No se pudo crear el objeto Accesorio|Mensaje de error
+
+#### PUT /estaciones/{idEstacion}/Reserva/{idReserva}
+
+Es el encargado de actualizar objetos Reserva.
+
+#### Parámetros
+
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+idEstacion|Path|ID del objeto Estación a consultar|Sí|Long
+idReserva|Path|ID del objeto Usuario|Si|Long
+body|body|Objeto Bicicleta nuevo|Sí|Representación Detail
+
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+201|El objeto Reserva actualizado|Representacion Detail
+412|business exception, no se cumple con las reglas de negocio|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|No se pudo actualizar el objeto Accesorio|Mensaje de error
+#### DELETE /estaciones/{idEstacion}/Reservas/
+
+Elimina todos los objetos Reserva
+
+#### Parámetros
+
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+idEstacion|Path|ID del objeto Estacion a consultar|Sí|Integer
+
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+204|Objetos eliminados|N/A
+500|Error interno|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+#### DELETE /estaciones/{idEstacion}/Reservas/{idReserva}
+
+Elimina un objeto Reserva.
+
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+idReserva|Path|ID del objeto Accesorio a eliminar|Sí|Integer
+idEstacion|Path|ID del objeto Estacion a consultar|Sí|Integer
+
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+204|Objeto eliminado|N/A
+500|Error interno|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
 
 
 
