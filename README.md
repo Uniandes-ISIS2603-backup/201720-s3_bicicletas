@@ -1565,7 +1565,7 @@ Código|Descripción|Cuerpo
 405|method not allowed, no existe permiso para el recurso|Mensaje de error
 #### DELETE /estaciones/{idEstacion}/Reservas/{idReserva}
 
-Elimina un objeto Reserva.
+Elimina un objeto Reserva
 
 #### Parámetros
 Nombre|Ubicación|Descripción|Requerido|Esquema
