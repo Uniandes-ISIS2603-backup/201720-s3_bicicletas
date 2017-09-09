@@ -6,7 +6,7 @@
 package co.edu.uniandes.bicicletas.entities;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 import javax.persistence.GeneratedValue;
 
 /**
