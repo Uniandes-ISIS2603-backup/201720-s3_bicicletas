@@ -21,9 +21,9 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
-package co.edu.uniandes.baco.bicicletas.persistence;
+package co.edu.uniandes.bicicletas.persistence;
 
-import co.edu.uniandes.baco.bicicletas.entities.BicicletaEntity;
+import co.edu.uniandes.bicicletas.entities.BicicletaEntity;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
