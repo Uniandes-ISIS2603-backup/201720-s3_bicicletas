@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.bicicletas.entities;
-import co.edu.uniandes.baco.bicicletas.entities.BaseEntity;
+
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
