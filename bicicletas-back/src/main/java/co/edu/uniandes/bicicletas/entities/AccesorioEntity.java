@@ -6,11 +6,13 @@
 package co.edu.uniandes.bicicletas.entities;
 
 import java.io.Serializable;
+import javax.persistence.Entity;
 
 /**
  *
  * @author ka.babativa
  */
+@Entity
 public class AccesorioEntity extends BaseEntity implements Serializable {
     private final int CASCO = 1;
     private final int CHALECO = 2;
