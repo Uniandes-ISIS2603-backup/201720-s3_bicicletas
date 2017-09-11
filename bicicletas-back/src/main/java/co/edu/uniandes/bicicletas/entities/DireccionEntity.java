@@ -17,10 +17,7 @@ import javax.persistence.Id;
  */
 @Entity
 public class DireccionEntity extends BaseEntity implements Serializable {
-    
-   @Id
-   @GeneratedValue(strategy=GenerationType.IDENTITY)
-   private Long idDireccion;
+
    private String nombre; 
    private Integer codigoPostal; 
    private String descripcion; 
@@ -49,14 +46,4 @@ public class DireccionEntity extends BaseEntity implements Serializable {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-
-    public Long getIdDireccion() {
-        return idDireccion;
-    }
-
-    public void setIdDireccion(Long idDireccion) {
-        this.idDireccion = idDireccion;
-    }
-   
-    
 }

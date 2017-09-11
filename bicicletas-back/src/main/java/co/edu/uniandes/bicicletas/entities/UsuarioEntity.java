@@ -18,23 +18,12 @@ import javax.persistence.Id;
  */
 @Entity
 public class UsuarioEntity extends BaseEntity implements Serializable {
-   @Id
-   @GeneratedValue(strategy=GenerationType.IDENTITY)
-   private Long idUsuario; 
-   
+
    private Integer tipoId; 
    public final static Integer CEDULA=1; 
    public final static Integer TARJETA_IDENTIDAD=2; 
    public final static Integer PASAPORTE=3; 
    private Integer puntos;
-    
-    public Long getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(Long idUsuario) {
-        this.idUsuario = idUsuario;
-    }
 
     public Integer getTipoId() {
         return tipoId;
