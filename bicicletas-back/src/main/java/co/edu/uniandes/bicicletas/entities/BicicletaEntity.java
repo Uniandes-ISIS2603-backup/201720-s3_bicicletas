@@ -29,9 +29,62 @@ import javax.persistence.Entity;
 
 /**
  *
- * @author ISIS2603
+ * @author ISIS2603,js.torres1
  */
 @Entity
 public class BicicletaEntity extends BaseEntity implements Serializable {
-   
+   //Las contantes que indican el estado de la bicicleta
+    public final static int DANADO=3;
+    public final static int DISPONIBLE=2;
+    public final static int EN_USO=1;
+    public final static int RESERVADA=0;
+    //este atributo da el estado de la bicicleta
+    public int estado;
+    //este atributo da la marca de la bicicleta
+    public String marca;
+    //este atributo da modelo de la bicicleta
+    public String modelo;
+    /**
+     * Este metodo permite cambiar el estado del Entity bicicleta en su marca.
+     * @param pMarca 
+     */
+    public void setMarca(String pMarca){
+        marca=pMarca;
+    }
+    /**
+     * Este metodo modela del Entity bicicleta en su estado si esta disponible,
+     * en uso, dañada y reservada.
+     * @param rEstado 
+     */
+    public void setEstado(int rEstado){
+        estado=rEstado;
+    }
+    /**
+     * Este modelo moldea el estado del Entity bicicleta en su modelo.
+     * @param pModelo 
+     */
+    public void setModelo(String pModelo){
+        modelo=pModelo;
+    }
+    /**
+     * Retorna el estado de la bicicleta si es dañada, en uso, reservada o disponible
+     * @return int estado
+     */
+    public int darEstado(){
+        return estado;
+    }
+    /**
+     * Este metodo retorna el estado modelo del Entity bicicleta.
+     * @return String modelo
+     */
+    public String darModelo(){
+        return modelo;
+    }
+    /**
+     * Este metodo retorna la marca del Entity bicicleta
+     * @return String marca
+     */
+    public String darMarca(){
+        return marca;
+    }
 }
