@@ -7,12 +7,14 @@ package co.edu.uniandes.bicicletas.entities;
 
 import java.io.Serializable;
 import java.sql.Date;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 
 /**
  * El punto que gana un usuario por cada reserva realizada
  * @author gl.pinto10
  */
+@Entity
 public class PuntoEntity extends BaseEntity implements Serializable
 {
     /**

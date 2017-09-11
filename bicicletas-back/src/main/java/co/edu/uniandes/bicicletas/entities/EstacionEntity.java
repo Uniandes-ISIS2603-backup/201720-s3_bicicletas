@@ -6,11 +6,13 @@
 package co.edu.uniandes.bicicletas.entities;
 
 import java.io.Serializable;
+import javax.persistence.Entity;
 
 /**
  *
  * @author ka.babativa
  */
+@Entity
 public class EstacionEntity extends BaseEntity implements Serializable {
     
     private String nombre;

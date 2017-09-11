@@ -5,24 +5,23 @@
  */
 package co.edu.uniandes.bicicletas.persistence;
 
-import co.edu.uniandes.bicicletas.entities.AccesorioEntity;
-import co.edu.uniandes.bicicletas.persistence.AccesorioPersistence;
+import co.edu.uniandes.bicicletas.entities.EstacionEntity;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.core.api.annotation.Inject;
+import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.core.api.annotation.Inject;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
@@ -31,10 +30,11 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  *
  * @author ka.babativa
  */
-public class AccesorioEntityTest {
+@RunWith(Arquillian.class)
+public class EstacionPersistenceTest {
     
-    @Inject
-    private AccesorioPersistence persistence;
+   @Inject
+    private EstacionPersistence persistence;
     
     @PersistenceContext
     private EntityManager em;
@@ -42,18 +42,15 @@ public class AccesorioEntityTest {
     @Inject
     UserTransaction utx;
     
-    private List<AccesorioEntity> data = new ArrayList<AccesorioEntity>();
+    private List<EstacionEntity> data = new ArrayList<EstacionEntity>();
     
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(AccesorioEntity.class.getPackage())
-                .addPackage(AccesorioPersistence.class.getPackage())
+                .addPackage(EstacionEntity.class.getPackage())
+                .addPackage(EstacionPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
-    }
-    
-    public AccesorioEntityTest() {
     }
     
     @BeforeClass
@@ -83,35 +80,62 @@ public class AccesorioEntityTest {
     }
     
     private void clearData() {
-        em.createQuery("delete from AccesorioEntity").executeUpdate();
+        em.createQuery("delete from EstacionEntity").executeUpdate();
     }
 
 
  private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
-            AccesorioEntity entity = factory.manufacturePojo(AccesorioEntity.class);
+            EstacionEntity entity = factory.manufacturePojo(EstacionEntity.class);
 
             em.persist(entity);
             data.add(entity);
         }
     }
+    
     @After
     public void tearDown() {
     }
 
     /**
-     * Test of getTipo method, of class AccesorioEntity.
+     * Test of findAll method, of class EstacionPersistence.
      */
     @Test
-    public void testGetTipo() {
+    public void testFindAll() throws Exception {
+        fail("testFindAll");
     }
 
     /**
-     * Test of setTipo method, of class AccesorioEntity.
+     * Test of find method, of class EstacionPersistence.
      */
     @Test
-    public void testSetTipo() {
+    public void testFind() throws Exception {
+        fail("testFind");
+    }
+
+    /**
+     * Test of create method, of class EstacionPersistence.
+     */
+    @Test
+    public void testCreate() throws Exception {
+        fail("testCreate");
+    }
+
+    /**
+     * Test of update method, of class EstacionPersistence.
+     */
+    @Test
+    public void testUpdate() throws Exception {
+        fail("testUpdate");
+    }
+
+    /**
+     * Test of delete method, of class EstacionPersistence.
+     */
+    @Test
+    public void testDelete() throws Exception {
+        fail("testDelete");
     }
     
 }
