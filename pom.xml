@@ -8,10 +8,7 @@
     <packaging>pom</packaging>
     <name>bicicletas</name>
  
-    <modules>
-        <module>bicicletas-back</module>
-        <module>bicicletas-web</module>
-    </modules>
+    <modules></modules>
 	
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
