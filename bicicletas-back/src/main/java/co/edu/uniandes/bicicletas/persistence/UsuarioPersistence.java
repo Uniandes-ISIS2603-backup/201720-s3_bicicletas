@@ -49,14 +49,6 @@ public class UsuarioPersistence {
         return em.find(UsuarioEntity.class, id);
     }
     
-    //Dar las direcciones de un usuario
-    public UsuarioEntity findAddress(Long id) {
-      //Dar las direcciones de un usuario
-      //Dar las direcciones de un usuario
-      //Dar las direcciones de un usuario
-        return null;
-    }
-    
     /**
      * Persiste un nuevo usuario
      * @param entity: Objeto usuario que se creará en la base de datos
@@ -70,14 +62,6 @@ public class UsuarioPersistence {
         return entity;
     }
     
-    //Crear una direccion de un usuario
-    public UsuarioEntity createAddress(UsuarioEntity entity) {
-        //Crear una direccion de un usuario
-        //Crear una direccion de un usuario
-        //Crear una direccion de un usuario
-        return null;
-    }
-    
     /**
      * Actualiza un usuario
      * @param entity: El usuario que viene con los nuevos datos
@@ -88,14 +72,6 @@ public class UsuarioPersistence {
         return em.merge(entity);
     }
     
-    //Actualizar la informacion de la direccion un usuario
-    public UsuarioEntity updateAddress(UsuarioEntity entity) {
-       //Actualiza la informacion de la direccion un usuario
-       //Actualiza la informacion de la direccion un usuario
-       //Actualiza la informacion de la direccion un usuario
-        return null;
-    }
-    
     /**
      * Elimina un usuario
      * @param id: El id del usuario que se busca eliminar
@@ -104,14 +80,5 @@ public class UsuarioPersistence {
         LOGGER.log(Level.INFO, "Borrando usuario con id={0}", id);
         UsuarioEntity entity = em.find(UsuarioEntity.class, id);
         em.remove(entity);
-    }
-    
-    //Eliminar una direccion de un usuario
-    public void deleteAddress(Long id) {
-        
-        //Eliminar una direccion de un usuario
-        //Eliminar una direccion de un usuario
-        //Eliminar una direccion de un usuario
-       
     }
 }

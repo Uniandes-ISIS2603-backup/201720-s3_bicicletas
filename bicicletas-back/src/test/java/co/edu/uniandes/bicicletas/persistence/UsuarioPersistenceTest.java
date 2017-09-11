@@ -155,14 +155,6 @@ public class UsuarioPersistenceTest {
     }
 
     /**
-     * Test of findAddress method, of class UsuarioPersistence.
-     */
-    @Test
-    public void testFindAddress() throws Exception {
-        assertNull(null);
-    }
-
-    /**
      * Test of create method, of class UsuarioPersistence.
      */
     @Test
@@ -176,15 +168,7 @@ public class UsuarioPersistenceTest {
         Assert.assertNotNull(entity);
         Assert.assertEquals(newEntity.getName(), entity.getName());
     }
-
-    /**
-     * Test of createAddress method, of class UsuarioPersistence.
-     */
-    @Test
-    public void testCreateAddress() throws Exception {
-        assertNull(null);
-    }
-
+    
     /**
      * Test of update method, of class UsuarioPersistence.
      */
@@ -203,13 +187,6 @@ public class UsuarioPersistenceTest {
         Assert.assertEquals(newEntity.getName(), resp.getName());
     }
 
-    /**
-     * Test of updateAddress method, of class UsuarioPersistence.
-     */
-    @Test
-    public void testUpdateAddress() throws Exception {
-        assertNull(null);
-    }
 
     /**
      * Test of delete method, of class UsuarioPersistence.
@@ -220,14 +197,6 @@ public class UsuarioPersistenceTest {
         persistence.delete(entity.getId());
         UsuarioEntity deleted = em.find(UsuarioEntity.class, entity.getId());
         Assert.assertNull(deleted);
-    }
-
-    /**
-     * Test of deleteAddress method, of class UsuarioPersistence.
-     */
-    @Test
-    public void testDeleteAddress() throws Exception {
-       assertNull(null);
     }
     
 }
