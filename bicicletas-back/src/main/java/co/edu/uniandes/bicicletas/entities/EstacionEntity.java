@@ -9,13 +9,15 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 
 /**
- *
+ * Clase que modela una estación
  * @author ka.babativa
  */
 @Entity
 public class EstacionEntity extends BaseEntity implements Serializable {
     
+    /**Variable que modela el nombre de una estacion */
     private String nombre;
+    /**Variable que modela la direccion de una estacion*/
     private String direccion;
 
     public String getNombre() {
