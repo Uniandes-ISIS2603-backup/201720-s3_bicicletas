@@ -9,6 +9,6 @@ package co.edu.uniandes.bicicletas.persistence;
  *
  * @author ds.chacon
  */
-public class InfoReservaPersistence {
+class InfoReservaEntity {
     
 }

@@ -16,9 +16,9 @@ import static org.junit.Assert.*;
  *
  * @author ds.chacon
  */
-public class InfoReservaPersistenceTest {
+public class InfoEstacionPersistenceTest {
     
-    public InfoReservaPersistenceTest() {
+    public InfoEstacionPersistenceTest() {
     }
     
     @BeforeClass

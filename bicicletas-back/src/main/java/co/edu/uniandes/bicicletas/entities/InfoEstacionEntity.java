@@ -5,10 +5,15 @@
  */
 package co.edu.uniandes.bicicletas.entities;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+
 /**
  *
  * @author ds.chacon
  */
-public class InfoReservaEntity {
-    
+@Entity
+
+public class InfoEstacionEntity extends BaseEntity implements Serializable{
+    private long idEstacion;
 }
