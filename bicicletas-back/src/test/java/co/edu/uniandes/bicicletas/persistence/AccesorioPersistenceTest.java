@@ -5,8 +5,8 @@
  */
 package co.edu.uniandes.bicicletas.persistence;
 
-import co.edu.uniandes.bicicletas.entities.EstacionEntity;
-import co.edu.uniandes.bicicletas.persistence.EstacionPersistence;
+import co.edu.uniandes.bicicletas.entities.AccesorioEntity;
+import co.edu.uniandes.bicicletas.persistence.AccesorioPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -32,10 +32,10 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author ka.babativa
  */
 @RunWith(Arquillian.class)
-public class EstacionEntityTest {
+public class AccesorioPersistenceTest {
     
-    @Inject
-    private EstacionPersistence persistence;
+   @Inject
+    private AccesorioPersistence persistence;
     
     @PersistenceContext
     private EntityManager em;
@@ -43,18 +43,15 @@ public class EstacionEntityTest {
     @Inject
     UserTransaction utx;
     
-    private List<EstacionEntity> data = new ArrayList<EstacionEntity>();
+    private List<AccesorioEntity> data = new ArrayList<AccesorioEntity>();
     
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(EstacionEntity.class.getPackage())
-                .addPackage(EstacionPersistence.class.getPackage())
+                .addPackage(AccesorioEntity.class.getPackage())
+                .addPackage(AccesorioPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
-    }
-    
-    public EstacionEntityTest() {
     }
     
     @BeforeClass
@@ -84,14 +81,14 @@ public class EstacionEntityTest {
     }
     
     private void clearData() {
-        em.createQuery("delete from EstacionEntity").executeUpdate();
+        em.createQuery("delete from AccesorioEntity").executeUpdate();
     }
 
 
  private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
-            EstacionEntity entity = factory.manufacturePojo(EstacionEntity.class);
+            AccesorioEntity entity = factory.manufacturePojo(AccesorioEntity.class);
 
             em.persist(entity);
             data.add(entity);
@@ -103,31 +100,43 @@ public class EstacionEntityTest {
     }
 
     /**
-     * Test of getNombre method, of class EstacionEntity.
+     * Test of findAll method, of class AccesorioPersistence.
      */
     @Test
-    public void testGetNombre() {
+    public void testFindAll() throws Exception {
+        fail("testFindAll");
     }
 
     /**
-     * Test of setNombre method, of class EstacionEntity.
+     * Test of find method, of class AccesorioPersistence.
      */
     @Test
-    public void testSetNombre() {
+    public void testFind() throws Exception {
+        fail("testFind");
     }
 
     /**
-     * Test of getDireccion method, of class EstacionEntity.
+     * Test of create method, of class AccesorioPersistence.
      */
     @Test
-    public void testGetDireccion() {
+    public void testCreate() throws Exception {
+        fail("testCreate");
     }
 
     /**
-     * Test of setDireccion method, of class EstacionEntity.
+     * Test of update method, of class AccesorioPersistence.
      */
     @Test
-    public void testSetDireccion() {
+    public void testUpdate() throws Exception {
+        fail("testUpdate");
+    }
+
+    /**
+     * Test of delete method, of class AccesorioPersistence.
+     */
+    @Test
+    public void testDelete() throws Exception {
+        fail("testDelete");
     }
     
 }
