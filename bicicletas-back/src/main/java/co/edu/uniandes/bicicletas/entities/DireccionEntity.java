@@ -17,10 +17,24 @@ import javax.persistence.Id;
  */
 @Entity
 public class DireccionEntity extends BaseEntity implements Serializable {
-
+    
+/**
+ *Atributos
+ */
    private String nombre; 
    private Integer codigoPostal; 
    private String descripcion; 
+   private String ciudad;
+ /**
+ *Metodos
+ */
+    public String getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
+    }
    
 
     public String getNombre() {
