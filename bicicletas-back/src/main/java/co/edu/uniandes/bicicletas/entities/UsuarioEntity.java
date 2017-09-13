@@ -20,6 +20,7 @@ import javax.persistence.Id;
 public class UsuarioEntity extends BaseEntity implements Serializable {
 
    private Integer tipoId; 
+   private Long documentoUsuario;
    public final static Integer CEDULA=1; 
    public final static Integer TARJETA_IDENTIDAD=2; 
    public final static Integer PASAPORTE=3; 

@@ -22,7 +22,7 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class UsuarioPersistence {
     
-    private static final Logger LOGGER = Logger.getLogger(DireccionPersistence.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(UsuarioPersistence.class.getName());
     
     @PersistenceContext(unitName="bicicletasPU")
     protected EntityManager em;
@@ -35,13 +35,13 @@ public class UsuarioPersistence {
         LOGGER.info("Consultando todas los usuarios");
        
         // Se crea un query para buscar todas los usuarios en la base de datos.
-        TypedQuery query = em.createQuery("select u from CalificacionEntity u", UsuarioEntity.class);
+        TypedQuery query = em.createQuery("select u from UsuarioEntity u", UsuarioEntity.class);
         return query.getResultList();
     }
 
     /**
      * Busca si hay algunan usuario con el id que se envía como argumento
-     * @param id: id correspondiente a la direccion buscadal usuario buscado
+     * @param id: id correspondiente al id del usuario buscado
      * @return el usuario buscado
      */
     public UsuarioEntity find(Long id) {
@@ -56,7 +56,7 @@ public class UsuarioPersistence {
      */
     public UsuarioEntity create(UsuarioEntity entity) {
       
-        LOGGER.info("Crendo un usuario nuev");
+        LOGGER.info("Crendo un usuario nuevo");
         em.persist(entity);
         LOGGER.info("Se ha creado un usuario nuevo");
         return entity;

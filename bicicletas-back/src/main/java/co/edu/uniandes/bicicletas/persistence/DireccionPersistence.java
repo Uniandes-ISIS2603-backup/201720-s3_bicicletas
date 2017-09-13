@@ -32,10 +32,10 @@ public class DireccionPersistence {
      * @return Una lista con todas las direcciones que se encuentran en el sistema
      */
     public List<DireccionEntity> findAll() {
-       LOGGER.info("Consultando todas las Calificaciones");
+       LOGGER.info("Consultando todas las Direcciones");
         
         // Se crea un query para buscar todas las direcciones en la base de datos.
-        TypedQuery query = em.createQuery("select u from CalificacionEntity u", DireccionEntity.class);
+        TypedQuery query = em.createQuery("select u from DireccionEntity u", DireccionEntity.class);
         return query.getResultList();
     }
     
@@ -46,7 +46,7 @@ public class DireccionPersistence {
      */
     public DireccionEntity find(Long id) {
         
-        LOGGER.log(Level.INFO, "Consultando Calificacion con id={0}", id);
+        LOGGER.log(Level.INFO, "Consultando Direccion con id={0}", id);
         return em.find(DireccionEntity.class, id);
     }
 
