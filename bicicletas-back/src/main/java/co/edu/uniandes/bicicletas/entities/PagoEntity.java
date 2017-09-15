@@ -27,6 +27,7 @@ package co.edu.uniandes.bicicletas.entities;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.Temporal;
 
 /**
  * Información de un pago asociado a una reserva
@@ -45,6 +46,7 @@ public class PagoEntity extends BaseEntity implements Serializable{
      * Atributo que modela la fecha en que fue realizado el pago
      */
     
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date fecha;
     
     /**
