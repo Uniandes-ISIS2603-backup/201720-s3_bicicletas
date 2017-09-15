@@ -50,6 +50,7 @@ public class DireccionPersistenceTest {
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
     
+    public DireccionPersistenceTest(){}
     /**
      * Inyección de la dependencia a la clase XYZPersistence cuyos métodos
      * se van a probar.
@@ -77,9 +78,6 @@ public class DireccionPersistenceTest {
     private List<DireccionEntity> data = new ArrayList<DireccionEntity>();
     
     
-    
-    public DireccionPersistenceTest() {
-    }
     
     @BeforeClass
     public static void setUpClass() {

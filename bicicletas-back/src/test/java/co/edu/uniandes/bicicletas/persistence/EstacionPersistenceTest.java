@@ -53,6 +53,9 @@ public class EstacionPersistenceTest {
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
     
+    
+    public EstacionPersistenceTest(){}
+    
     @BeforeClass
     public static void setUpClass() {
     }

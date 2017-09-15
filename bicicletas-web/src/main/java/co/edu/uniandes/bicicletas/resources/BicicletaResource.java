@@ -54,7 +54,7 @@ import javax.ws.rs.Produces;
  * @author ISIS2603
  *
  */
-@Path("bicicletas")
+@Path("/bicicletas")
 @Produces("application/json")
 @Consumes("application/json")
 @Stateless

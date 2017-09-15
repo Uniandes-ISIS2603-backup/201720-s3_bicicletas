@@ -50,6 +50,8 @@ public class PuntoPersistenceTest {
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
     
+    public PuntoPersistenceTest() {
+    }
      /** Inyección de la dependencia a la clase PuntoPersistence cuyos métodos
      * se van a probar.
      */
@@ -75,8 +77,7 @@ public class PuntoPersistenceTest {
      */
     private List<PuntoEntity> data = new ArrayList<PuntoEntity>();
     
-    public PuntoPersistenceTest() {
-    }
+    
     
     @BeforeClass
     public static void setUpClass() {

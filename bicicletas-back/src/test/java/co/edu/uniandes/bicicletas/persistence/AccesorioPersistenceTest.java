@@ -9,9 +9,11 @@ import co.edu.uniandes.bicicletas.entities.AccesorioEntity;
 import co.edu.uniandes.bicicletas.persistence.AccesorioPersistence;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -34,14 +36,16 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 @RunWith(Arquillian.class)
 public class AccesorioPersistenceTest {
     
-   @Inject
+  @Inject
     private AccesorioPersistence persistence;
     
     @PersistenceContext
     private EntityManager em;
     
-    @Inject
-    UserTransaction utx;
+   @Inject
+  UserTransaction utx;
+   
+ 
     
     private List<AccesorioEntity> data = new ArrayList<AccesorioEntity>();
     
@@ -53,16 +57,18 @@ public class AccesorioPersistenceTest {
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-    
+   public  AccesorioPersistenceTest(){}
+   
     @BeforeClass
     public static void setUpClass() {
+     
     }
     
     @AfterClass
     public static void tearDownClass() {
     }
     
-    @Before
+  @Before
     public void setUp() {
         try {
             utx.begin();

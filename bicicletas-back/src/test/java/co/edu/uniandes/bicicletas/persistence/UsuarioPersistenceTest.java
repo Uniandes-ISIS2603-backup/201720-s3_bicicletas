@@ -51,7 +51,7 @@ public class UsuarioPersistenceTest {
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-    
+    public UsuarioPersistenceTest(){}
     /**
      * Inyección de la dependencia a la clase XYZPersistence cuyos métodos
      * se van a probar.
@@ -77,9 +77,7 @@ public class UsuarioPersistenceTest {
      *
      */
     private List<UsuarioEntity> data = new ArrayList<UsuarioEntity>();
-    public UsuarioPersistenceTest() {
-    }
-    
+  
     @BeforeClass
     public static void setUpClass() {
     }
