@@ -1,7 +1,7 @@
 package co.edu.uniandes.bicicletas.dtos;
 
 
-import co.edu.uniandes.baco.bicicletas.entities.BicicletaEntity;
+import co.edu.uniandes.bicicletas.entities.BicicletaEntity;
 
 /*
 MIT License

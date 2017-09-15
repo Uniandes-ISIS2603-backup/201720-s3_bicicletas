@@ -24,7 +24,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
-import co.edu.uniandes.baco.bicicletas.entities.BicicletaEntity;
+import co.edu.uniandes.bicicletas.entities.BicicletaEntity;
 
 /**
  * BicicletaDTO Objeto de transferencia de datos de Bicicletaes. Los DTO

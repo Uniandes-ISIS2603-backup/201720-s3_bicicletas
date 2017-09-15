@@ -27,8 +27,8 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Assert;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
-/**
- *
+
+/*
  * @author cm.alba10
  */
 @RunWith(Arquillian.class)

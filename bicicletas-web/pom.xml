@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>co.edu.uniandes.baco</groupId>
+        <groupId>co.edu.uniandes</groupId>
         <artifactId>bicicletas</artifactId>
         <version>1.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
@@ -20,68 +20,35 @@
     
     <dependencies>
         <dependency>
+            <groupId>co.edu.uniandes</groupId>
+            <artifactId>bicicletas-back</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>co.edu.uniandes.baco</groupId>
-            <artifactId>bicicletas-back</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
     </dependencies>
 
     <build>
         <plugins>
-            <!-- Para la ejecución de las colecciones de Postman con Newman, verificar las ruta de 
-            acuerdo a su usuario. -->
-            <!--
             <plugin>
-                <artifactId>exec-maven-plugin</artifactId>
-                <groupId>org.codehaus.mojo</groupId>
-                <version>1.6.0</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>2.19.1</version>
                 <executions>
                     <execution>
-                        <goals>           
-                            <goal>exec</goal>          
-                        </goals>
-                        <id>exec-glassfish</id>
-                        <phase>package</phase>  
-                        <configuration> 
-                            <executable>/Users/Asistente/GlassFish_Server/glassfish/bin/asadmin.bat</executable>
-                            <arguments>
-                                <argument>start-domain</argument>            
-                            </arguments>
-                        </configuration>
-                    </execution> 
-                    <execution>
-                        <id>exec-shell-newman</id>
-                        <phase>package</phase>
-                        <configuration>
-                            <executable>/Users/Asistente/Documents/GitHub/Back/backstepbystep/bicicletas-web/collections/runners/backstepbystep-paso2CollectionRunner.bat
-                            </executable>
-                        </configuration>
                         <goals>
-                            <goal>exec</goal>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
                         </goals>
                     </execution>
-                    <execution>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <id>stop-glassfish</id>
-                        <phase>package</phase>
-                        <configuration>                    
-                            <executable>/Users/Asistente/GlassFish_Server/glassfish/bin/asadmin.bat</executable>
-                            <arguments>
-                                <argument>stop-domain</argument>
-                            </arguments>
-                        </configuration>
-                    </execution> 
                 </executions>
-            </plugin>   
-            -->
+            </plugin>
+           
             <!-- Use a Java 1.7+ compiler -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -133,5 +100,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

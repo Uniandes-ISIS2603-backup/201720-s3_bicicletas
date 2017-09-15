@@ -6,11 +6,12 @@
 package co.edu.uniandes.bicicletas.persistence;
 
 import co.edu.uniandes.bicicletas.entities.AccesorioBicicletaEntity;
-import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 import java.util.List;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 /**
@@ -19,7 +20,11 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class AccesorioBicicletaPersistence {
+
+    private static final Logger LOGGER = Logger.getLogger(AccesorioBicicletaPersistence.class.getName());
+    @PersistenceContext(unitName="bicicletasPU")
     protected EntityManager em;
+
     /**
      *
      * @param entity objeto Bicicleta que se creará en la base de datos
@@ -83,12 +88,12 @@ public class AccesorioBicicletaPersistence {
         return em.find(AccesorioBicicletaEntity.class, id);
     }
 
-  /**
+    /**
      * Devuelve todas las Bicicletaes de la base de datos.
      *
      * @return una lista con todas las Bicicletaes que encuentre en la base de
- datos, "select u from BicicletaEntity u" es como un "select * from
- BicicletaEntity;" - "SELECT * FROM table_codigo" en SQL.
+     * datos, "select u from BicicletaEntity u" es como un "select * from
+     * BicicletaEntity;" - "SELECT * FROM table_codigo" en SQL.
      */
     public List<AccesorioBicicletaEntity> findAll() {
         LOGGER.info("Consultando todas las Bicicletaes");

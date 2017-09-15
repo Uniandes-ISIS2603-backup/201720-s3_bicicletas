@@ -24,13 +24,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
-import co.edu.uniandes.baco.bicicletas.entities.BicicletaEntity;
 import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
-import co.edu.uniandes.baco.bicicletas.persistence.BicicletaPersistence;
+import co.edu.uniandes.bicicletas.entities.BicicletaEntity;
+
 import co.edu.uniandes.bicicletas.dtos.BicicletaDetailDTO;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
+
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 
@@ -43,7 +43,6 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.WebApplicationException;
 
 /**
  * Clase que implementa el recurso REST correspondiente a "Bicicletas".

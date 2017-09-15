@@ -24,11 +24,10 @@ SOFTWARE.
  */
 
 
-import co.edu.uniandes.baco.bicicletas.entities.BicicletaEntity;
 import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
-import co.edu.uniandes.baco.bicicletas.persistence.BicicletaPersistence;
+import co.edu.uniandes.bicicletas.entities.BicicletaEntity;
+import co.edu.uniandes.bicicletas.persistence.BicicletaPersistence;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
