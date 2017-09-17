@@ -22,7 +22,7 @@ import javax.persistence.TypedQuery;
 public class AccesorioBicicletaPersistence {
 
     private static final Logger LOGGER = Logger.getLogger(AccesorioBicicletaPersistence.class.getName());
-    @PersistenceContext(unitName="accesorioBicicletaPU")
+    @PersistenceContext(unitName="bicicletasPU")
     protected EntityManager em;
 
     /**

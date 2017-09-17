@@ -37,11 +37,11 @@ public class AccesorioPersistenceTest {
     @Inject
     private AccesorioPersistence persistence;
     
-    @PersistenceContext
+    @PersistenceContext(unitName="bicicletasPU")
     private EntityManager em;
     
     @Inject
-            UserTransaction utx;
+    UserTransaction utx;
     
     
     

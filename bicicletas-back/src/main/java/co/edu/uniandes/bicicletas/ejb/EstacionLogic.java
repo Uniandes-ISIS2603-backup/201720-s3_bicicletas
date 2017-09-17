@@ -23,25 +23,57 @@ SOFTWARE.
  */
 package co.edu.uniandes.bicicletas.ejb;
 
+import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.bicicletas.entities.EstacionEntity;
 import co.edu.uniandes.bicicletas.persistence.EstacionPersistence;
+import java.util.List;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.ws.rs.WebApplicationException;
 
 /**
  *
  * @author 
  */
-class EstacionLogic 
+@Stateless
+public class EstacionLogic 
 {
     @Inject
     private EstacionPersistence persistence;
     
-    public EstacionEntity getEstacion(Long id)
+    public EstacionEntity getEstacion(Long id) throws WebApplicationException
     {
         //Toca agregarle más cosas, solo lo hice provisional
          EstacionEntity estacion = persistence.find(id);
-         
+         if(estacion == null){
+             throw new WebApplicationException("No hay una estación con dicho ID", 402);
+         }
          return estacion;
+    }
+    
+    public void deleteEstacion(Long id) throws WebApplicationException
+    {
+         EstacionEntity estacion = persistence.find(id);
+         if(estacion == null){
+             throw new WebApplicationException("No hay una estación con dicho ID", 402);
+         }
+         persistence.delete(id);
+    }
+    
+    public List<EstacionEntity> getEstaciones(){
+        return persistence.findAll();
+    }
+    
+    public EstacionEntity crearEstacion(EstacionEntity entidad){
+        persistence.create(entidad);
+        return entidad;
+    }
+    
+    public EstacionEntity actualizarEstacion(EstacionEntity entidad) throws WebApplicationException{
+        if(persistence.find(entidad.getId())==null){
+            throw new WebApplicationException("No hay una estación con dicho id", 402);
+        }
+        return persistence.update(entidad);
     }
     
 }

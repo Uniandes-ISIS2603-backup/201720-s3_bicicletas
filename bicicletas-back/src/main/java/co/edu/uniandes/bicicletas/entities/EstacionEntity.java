@@ -11,6 +11,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamCollection;
 
 /**
  * Clase que modela una estación
@@ -23,9 +24,18 @@ public class EstacionEntity extends BaseEntity implements Serializable {
     private String nombre;
     /**Variable que modela la direccion de una estacion*/
     private String direccion;
+    
+    @PodamCollection(nbrElements = 2)
+    private ArrayList<CalificacionEntity> calificaciones;
 
-   
-    private List<CalificacionEntity> calificaciones = new ArrayList<CalificacionEntity>();
+    public ArrayList<CalificacionEntity> getCalificaciones() {
+        return calificaciones;
+    }
+
+    public void setCalificaciones(ArrayList<CalificacionEntity> calificaciones) {
+        this.calificaciones = calificaciones;
+    }
+    
     
     public String getNombre() {
         return nombre;
@@ -43,19 +53,7 @@ public class EstacionEntity extends BaseEntity implements Serializable {
         this.direccion = direccion;
     }
 
-    /**
-     * @return the calificaciones
-     */
-    public List<CalificacionEntity> getCalificaciones() {
-        return calificaciones;
-    }
-
-    /**
-     * @param calificaciones the calificaciones to set
-     */
-    public void setCalificaciones(List<CalificacionEntity> calificaciones) {
-        this.calificaciones = calificaciones;
-    }
+    
     
     
     

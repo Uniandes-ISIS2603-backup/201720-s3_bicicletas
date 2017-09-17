@@ -92,7 +92,7 @@ public class EstacionPersistenceTest {
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
-            EstacionEntity entity = factory.manufacturePojo(EstacionEntity.class);
+            EstacionEntity entity = factory.manufacturePojoWithFullData(EstacionEntity.class);
             
             em.persist(entity);
             data.add(entity);
