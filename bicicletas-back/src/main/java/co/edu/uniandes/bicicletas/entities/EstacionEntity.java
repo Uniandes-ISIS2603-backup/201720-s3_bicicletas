@@ -6,7 +6,11 @@
 package co.edu.uniandes.bicicletas.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 /**
  * Clase que modela una estación
@@ -20,6 +24,9 @@ public class EstacionEntity extends BaseEntity implements Serializable {
     /**Variable que modela la direccion de una estacion*/
     private String direccion;
 
+    @OneToMany(mappedBy = "estacion", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CalificacionEntity> calificaciones = new ArrayList<CalificacionEntity>();
+    
     public String getNombre() {
         return nombre;
     }
@@ -35,6 +42,22 @@ public class EstacionEntity extends BaseEntity implements Serializable {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
+
+    /**
+     * @return the calificaciones
+     */
+    public List<CalificacionEntity> getCalificaciones() {
+        return calificaciones;
+    }
+
+    /**
+     * @param calificaciones the calificaciones to set
+     */
+    public void setCalificaciones(List<CalificacionEntity> calificaciones) {
+        this.calificaciones = calificaciones;
+    }
     
     
+    
+   
 }
