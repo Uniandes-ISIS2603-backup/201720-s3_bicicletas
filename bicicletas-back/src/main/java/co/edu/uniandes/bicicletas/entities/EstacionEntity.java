@@ -24,7 +24,7 @@ public class EstacionEntity extends BaseEntity implements Serializable {
     /**Variable que modela la direccion de una estacion*/
     private String direccion;
 
-    @OneToMany(mappedBy = "estacion", cascade = CascadeType.ALL, orphanRemoval = true)
+   
     private List<CalificacionEntity> calificaciones = new ArrayList<CalificacionEntity>();
     
     public String getNombre() {

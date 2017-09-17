@@ -43,7 +43,7 @@ public class UsuarioEntity extends BaseEntity implements Serializable {
    private Integer puntos;
    public List<DireccionEntity> direcciones = new ArrayList<DireccionEntity>();
    
-   @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+   
    private List<PuntoEntity> puntosLis = new ArrayList<PuntoEntity>();
    
  /**
