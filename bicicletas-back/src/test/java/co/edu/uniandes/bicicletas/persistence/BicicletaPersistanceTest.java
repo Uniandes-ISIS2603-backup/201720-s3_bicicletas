@@ -89,7 +89,7 @@ public class BicicletaPersistanceTest {
     }
     
     private void clearData() {
-        em.createQuery("delete from AccesorioBicicletaEntity").executeUpdate();
+        em.createQuery("delete from BicicletaEntity").executeUpdate();
     }
     
     
@@ -108,7 +108,7 @@ public class BicicletaPersistanceTest {
     }
     
     /**
-     * Test of findAll method, of class AccesorioPersistence.
+     * Test of findAll method, of class BicicletaPersistence.
      */
     @Test
     public void testFindAll() throws Exception {
