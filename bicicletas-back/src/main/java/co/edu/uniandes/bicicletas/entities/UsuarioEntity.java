@@ -11,10 +11,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 /**
  *
@@ -40,6 +42,9 @@ public class UsuarioEntity extends BaseEntity implements Serializable {
    private Date fechaNacimiento;
    private Integer puntos;
    public List<DireccionEntity> direcciones = new ArrayList<DireccionEntity>();
+   
+   @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+   private List<PuntoEntity> puntosLis = new ArrayList<PuntoEntity>();
    
  /**
  *Metodos
@@ -90,5 +95,21 @@ public class UsuarioEntity extends BaseEntity implements Serializable {
     public void setDirecciones(List<DireccionEntity> direcciones) {
         this.direcciones = direcciones;
     }
+
+    /**
+     * @return the puntosLis
+     */
+    public List<PuntoEntity> getPuntosLis() {
+        return puntosLis;
+    }
+
+    /**
+     * @param puntosLis the puntosLis to set
+     */
+    public void setPuntosLis(List<PuntoEntity> puntosLis) {
+        this.puntosLis = puntosLis;
+    }
+    
+    
  
 }
