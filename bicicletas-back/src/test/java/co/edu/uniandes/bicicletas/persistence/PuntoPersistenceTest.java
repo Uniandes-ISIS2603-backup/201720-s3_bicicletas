@@ -34,24 +34,8 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 @RunWith(Arquillian.class)
 public class PuntoPersistenceTest {
     
-    /**
-     *
-     * @return Devuelve el jar que Arquillian va a desplegar en el Glassfish
-     * embebido. El jar contiene las clases de Punto, el descriptor de la
-     * base de datos y el archivo beans.xml para resolver la inyección de
-     * dependencias.
-     */
-    @Deployment
-    public static JavaArchive createDeployment() {
-        return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(PuntoEntity.class.getPackage())
-                .addPackage(PuntoPersistence.class.getPackage())
-                .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
-                .addAsManifestResource("META-INF/beans.xml", "beans.xml");
-    }
+    public PuntoPersistenceTest() {}
     
-    public PuntoPersistenceTest() {
-    }
      /** Inyección de la dependencia a la clase PuntoPersistence cuyos métodos
      * se van a probar.
      */
@@ -77,15 +61,27 @@ public class PuntoPersistenceTest {
      */
     private List<PuntoEntity> data = new ArrayList<PuntoEntity>();
     
-    
+    /**
+     *
+     * @return Devuelve el jar que Arquillian va a desplegar en el Glassfish
+     * embebido. El jar contiene las clases de Punto, el descriptor de la
+     * base de datos y el archivo beans.xml para resolver la inyección de
+     * dependencias.
+     */
+    @Deployment
+    public static JavaArchive createDeployment() {
+        return ShrinkWrap.create(JavaArchive.class)
+                .addPackage(PuntoEntity.class.getPackage())
+                .addPackage(PuntoPersistence.class.getPackage())
+                .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
+                .addAsManifestResource("META-INF/beans.xml", "beans.xml");
+    }
     
     @BeforeClass
-    public static void setUpClass() {
-    }
+    public static void setUpClass() {}
     
     @AfterClass
-    public static void tearDownClass() {
-    }
+    public static void tearDownClass() {}
     
      /**
      * Configuración inicial de la prueba.
@@ -94,7 +90,7 @@ public class PuntoPersistenceTest {
      */
     @Before
     public void setUp() {
-        try {
+         try {
             utx.begin();
             em.joinTransaction();
             clearData();
@@ -142,13 +138,17 @@ public class PuntoPersistenceTest {
     public void testCreate() throws Exception 
     {
         PodamFactory factory = new PodamFactoryImpl();
-        PuntoEntity newEntity = factory.manufacturePojo(PuntoEntity.class);
-        PuntoEntity result = persistence.create(newEntity);
+        
+        PuntoEntity nuevoPunto = factory.manufacturePojo(PuntoEntity.class);
+        PuntoEntity resultado = persistence.create(nuevoPunto);
 
-        Assert.assertNotNull(result);
-        PuntoEntity entity = em.find(PuntoEntity.class, result.getId());
-        Assert.assertNotNull(entity);
-        Assert.assertEquals(newEntity.getName(), entity.getName());
+        Assert.assertNotNull(resultado);
+        
+        PuntoEntity pCreado = em.find(PuntoEntity.class, resultado.getId());
+        
+        Assert.assertNotNull(pCreado);
+        
+        Assert.assertEquals(nuevoPunto.getFechaPunto(), pCreado.getFechaPunto());
     }
 
     /**
@@ -169,7 +169,7 @@ public class PuntoPersistenceTest {
     @Test
     public void testFindAll() throws Exception 
     {
-         List<PuntoEntity> list = persistence.findAll();
+        List<PuntoEntity> list = persistence.findAll();
         Assert.assertEquals(data.size(), list.size());
         for (PuntoEntity ent : list) {
             boolean found = false;

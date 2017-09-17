@@ -24,7 +24,7 @@ public class PuntoPersistence
 {
     private static final Logger LOGGER = Logger.getLogger(PuntoPersistence.class.getName());
     
-    @PersistenceContext(unitName = "bicicletasPU")
+    @PersistenceContext(unitName="bicicletasPU")
     protected EntityManager em;
     
     /**
