@@ -25,7 +25,7 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Assert;
 import uk.co.jemos.podam.api.PodamFactory;
-import uk.co.jemos.podam.api.PodamFactoryImpl;
+
 
 /**
  *
@@ -90,7 +90,7 @@ public class AccesorioPersistenceTest {
     
     
     private void insertData() {
-        PodamFactory factory = new PodamFactoryImpl();
+        PodamFactory factory = (PodamFactory) new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
             AccesorioEntity entity = factory.manufacturePojo(AccesorioEntity.class);
             
@@ -137,7 +137,7 @@ public class AccesorioPersistenceTest {
      */
     @Test
     public void testCreate() throws Exception {
-        PodamFactory factory = new PodamFactoryImpl();
+        PodamFactory factory = (PodamFactory) new PodamFactoryImpl();
         
         AccesorioEntity nuevoAccesorio = factory.manufacturePojo(AccesorioEntity.class);
         AccesorioEntity resultado = persistence.create(nuevoAccesorio);
@@ -155,7 +155,7 @@ public class AccesorioPersistenceTest {
     @Test
     public void testUpdate() throws Exception {
         AccesorioEntity entidad = data.get(0);
-        PodamFactory factory = new PodamFactoryImpl();
+        PodamFactory factory = (PodamFactory) new PodamFactoryImpl();
         AccesorioEntity nuevaEntidad = factory.manufacturePojo(AccesorioEntity.class);
         nuevaEntidad.setId(entidad.getId());
         persistence.update(nuevaEntidad);
