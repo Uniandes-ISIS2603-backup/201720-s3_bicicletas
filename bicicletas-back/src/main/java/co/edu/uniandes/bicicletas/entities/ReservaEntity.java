@@ -22,6 +22,10 @@ public class ReservaEntity {
     Date FechaInicio;
     long idReserva;
     double PrecioFinal;
+    
+    private CalificacionEntity calificacionEstacionLlegada;
+    
+    private CalificacionEntity calificacionEstacionOrigen;
 
     public int getEstado() {
         return estado;
@@ -70,5 +74,35 @@ public class ReservaEntity {
     public void setId(long id) {
         this.id = id;
     }
+
+    /**
+     * @return the calificacionEstacionLlegada
+     */
+    public CalificacionEntity getCalificacionEstacionLlegada() {
+        return calificacionEstacionLlegada;
+    }
+
+    /**
+     * @param calificacionEstacionLlegada the calificacionEstacionLlegada to set
+     */
+    public void setCalificacionEstacionLlegada(CalificacionEntity calificacionEstacionLlegada) {
+        this.calificacionEstacionLlegada = calificacionEstacionLlegada;
+    }
+
+    /**
+     * @return the calificacionEstacionOrigen
+     */
+    public CalificacionEntity getCalificacionEstacionOrigen() {
+        return calificacionEstacionOrigen;
+    }
+
+    /**
+     * @param calificacionEstacionOrigen the calificacionEstacionOrigen to set
+     */
+    public void setCalificacionEstacionOrigen(CalificacionEntity calificacionEstacionOrigen) {
+        this.calificacionEstacionOrigen = calificacionEstacionOrigen;
+    }
+    
+    
     
 }
