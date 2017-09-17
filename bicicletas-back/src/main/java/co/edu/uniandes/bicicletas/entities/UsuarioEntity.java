@@ -22,6 +22,14 @@ import javax.persistence.Temporal;
  */
 @Entity
 public class UsuarioEntity extends BaseEntity implements Serializable {
+    
+ /**
+ *Constantes
+ */
+   public final static Integer CEDULA=1; 
+   public final static Integer TARJETA_IDENTIDAD=2; 
+   public final static Integer PASAPORTE=3; 
+   
 /**
  *Atributos
  */
@@ -30,10 +38,8 @@ public class UsuarioEntity extends BaseEntity implements Serializable {
    private Long documentoUsuario;
    @Temporal(javax.persistence.TemporalType.DATE)
    private Date fechaNacimiento;
-   public final static Integer CEDULA=1; 
-   public final static Integer TARJETA_IDENTIDAD=2; 
-   public final static Integer PASAPORTE=3; 
    private Integer puntos;
+   public List<DireccionEntity> direcciones = new ArrayList<DireccionEntity>();
    
  /**
  *Metodos
@@ -46,6 +52,13 @@ public class UsuarioEntity extends BaseEntity implements Serializable {
         this.nombreUsuario = nombreUsuario;
     }
 
+    public Integer getTipoId() {
+        return tipoId;
+    }
+
+    public void setTipoId(Integer tipoId) {
+        this.tipoId = tipoId;
+    }
     public Long getDocumentoUsuario() {
         return documentoUsuario;
     }
@@ -62,25 +75,6 @@ public class UsuarioEntity extends BaseEntity implements Serializable {
         this.fechaNacimiento = fechaNacimiento;
     }
     
-    public List<DireccionEntity> getDirecciones() {
-        return direcciones;
-    }
-
-    public void setDirecciones(List<DireccionEntity> direcciones) {
-        this.direcciones = direcciones;
-    }
-   
-   public List<DireccionEntity> direcciones = new ArrayList<DireccionEntity>();
-   
-
-    public Integer getTipoId() {
-        return tipoId;
-    }
-
-    public void setTipoId(Integer tipoId) {
-        this.tipoId = tipoId;
-    }
-
     public Integer getPuntos() {
         return puntos;
     }
@@ -89,6 +83,12 @@ public class UsuarioEntity extends BaseEntity implements Serializable {
         this.puntos = puntos;
     }
     
-   
-   
+    public List<DireccionEntity> getDirecciones() {
+        return direcciones;
+    }
+
+    public void setDirecciones(List<DireccionEntity> direcciones) {
+        this.direcciones = direcciones;
+    }
+ 
 }
