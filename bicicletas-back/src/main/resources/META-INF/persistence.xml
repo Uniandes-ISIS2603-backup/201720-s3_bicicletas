@@ -3,10 +3,18 @@
   <persistence-unit name="bicicletasPU" transaction-type="JTA">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <jta-data-source>java:app/jdbc/bicicletas</jta-data-source>
-    <class>co.edu.uniandes.baco.bicicletas.entities.RestauranteEntity</class>
+    <class>co.edu.uniandes.bicicletas.entities.AccesorioBicicletaEntity</class>
+    <class>co.edu.uniandes.bicicletas.entities.AccesorioEntity</class>
+    <class>co.edu.uniandes.bicicletas.entities.BicicletaEntity</class>
+    <class>co.edu.uniandes.bicicletas.entities.CalificacionEntity</class>
+    <class>co.edu.uniandes.bicicletas.entities.DireccionEntity</class>
+    <class>co.edu.uniandes.bicicletas.entities.EstacionEntity</class>
+    <class>co.edu.uniandes.bicicletas.entities.InfoEstacionEntity</class>
+    <class>co.edu.uniandes.bicicletas.entities.PagoEntity</class>
+    <class>co.edu.uniandes.bicicletas.entities.PuntoEntity</class>
+    <class>co.edu.uniandes.bicicletas.entities.UsuarioEntity</class>
     <properties>
       <property name="eclipselink.logging.level" value="FINE"/>
-      <property name="eclipselink.ddl-generation" value="create-or-extend-tables"/>
       <property name="eclipselink.cache.type.default" value="NONE"/>
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
     </properties>
