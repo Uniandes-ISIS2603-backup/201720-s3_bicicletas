@@ -37,7 +37,7 @@ class ReservaLogic
     @Inject
     private ReservaPersistence persistence;
     
-    public ReservaEntity getEstacion(Long id)
+    public ReservaEntity getReserva(Long id)
     {
         //Toca agregarle más cosas, solo lo hice provisional
          ReservaEntity reserva = persistence.find(id);
