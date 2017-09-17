@@ -77,7 +77,7 @@ public class DireccionPersistence {
      * @param id: El id de la direccion que se busca eliminar
      */
     public void delete(Long id) {
-        LOGGER.log(Level.INFO, "Borrando usuario con id={0}", id);
+        LOGGER.log(Level.INFO, "Borrando direccion con id={0}", id);
         DireccionEntity entity = em.find(DireccionEntity.class, id);
         em.remove(entity);
     }

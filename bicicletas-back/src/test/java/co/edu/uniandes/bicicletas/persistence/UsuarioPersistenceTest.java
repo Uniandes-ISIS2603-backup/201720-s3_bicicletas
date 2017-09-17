@@ -2,7 +2,6 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
-
  */
 package co.edu.uniandes.bicicletas.persistence;
 
@@ -24,22 +23,22 @@ import org.junit.runner.RunWith;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-
+import org.junit.Assert;
+import uk.co.jemos.podam.api.PodamFactory;
+import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
  *
  * @author cm.alba10
  */
-import org.junit.Assert;
-import uk.co.jemos.podam.api.PodamFactory;
-import uk.co.jemos.podam.api.PodamFactoryImpl;
+
 @RunWith(Arquillian.class)
 public class UsuarioPersistenceTest {
     
     /**
      *
      * @return Devuelve el jar que Arquillian va a desplegar en el Glassfish
-     * embebido. El jar contiene las clases de XYZ, el descriptor de la
+     * embebido. El jar contiene las clases de Usuario, el descriptor de la
      * base de datos y el archivo beans.xml para resolver la inyección de
      * dependencias.
      */
@@ -51,9 +50,9 @@ public class UsuarioPersistenceTest {
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-    public UsuarioPersistenceTest(){}
+    
     /**
-     * Inyección de la dependencia a la clase XYZPersistence cuyos métodos
+     * Inyección de la dependencia a la clase UsuarioPersistence cuyos métodos
      * se van a probar.
      */
     @Inject
@@ -78,6 +77,9 @@ public class UsuarioPersistenceTest {
      */
     private List<UsuarioEntity> data = new ArrayList<UsuarioEntity>();
   
+    public UsuarioPersistenceTest(){}
+    
+    
     @BeforeClass
     public static void setUpClass() {
     }
@@ -85,7 +87,11 @@ public class UsuarioPersistenceTest {
     @AfterClass
     public static void tearDownClass() {
     }
-    
+    /**
+     * Configuración inicial de la prueba.
+     *
+     *
+     */
     @Before
     public void setUp() {
         try {
@@ -103,9 +109,11 @@ public class UsuarioPersistenceTest {
             }
         }
     }
-    
+    /**
+     * Borra los datos en la base de datos directamente utilizando el EntityManager y la UserTransaction
+     */
     private void clearData() {
-        em.createQuery("delete from XYZEntity").executeUpdate();
+        em.createQuery("delete from UsuarioEntity").executeUpdate();
     }
 
 

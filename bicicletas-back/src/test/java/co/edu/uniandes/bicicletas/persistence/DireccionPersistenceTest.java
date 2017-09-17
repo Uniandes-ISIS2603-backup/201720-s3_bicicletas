@@ -2,7 +2,6 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
-
  */
 package co.edu.uniandes.bicicletas.persistence;
 
@@ -37,7 +36,9 @@ public class DireccionPersistenceTest {
     /**
      *
      * @return Devuelve el jar que Arquillian va a desplegar en el Glassfish
-     * embebido. El jar contiene las clases de XYZ, el descriptor de la
+     * embebido. El jar contiene las clases de Direccion
+     *
+     *, el descriptor de la
      * base de datos y el archivo beans.xml para resolver la inyección de
      * dependencias.
      */
@@ -50,9 +51,9 @@ public class DireccionPersistenceTest {
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
     
-    public DireccionPersistenceTest(){}
+    
     /**
-     * Inyección de la dependencia a la clase XYZPersistence cuyos métodos
+     * Inyección de la dependencia a la clase DireccionPersistence cuyos métodos
      * se van a probar.
      */
     @Inject
@@ -77,7 +78,7 @@ public class DireccionPersistenceTest {
      */
     private List<DireccionEntity> data = new ArrayList<DireccionEntity>();
     
-    
+    public DireccionPersistenceTest(){}
     
     @BeforeClass
     public static void setUpClass() {
@@ -86,7 +87,11 @@ public class DireccionPersistenceTest {
     @AfterClass
     public static void tearDownClass() {
     }
-    
+    /**
+     * Configuración inicial de la prueba.
+     *
+     *
+     */
     @Before
     public void setUp() {
         try {
@@ -104,9 +109,11 @@ public class DireccionPersistenceTest {
             }
         }
     }
-    
+    /**
+     * Borra los datos en la base de datos directamente utilizando el EntityManager y la UserTransaction
+     */
     private void clearData() {
-        em.createQuery("delete from XYZEntity").executeUpdate();
+        em.createQuery("delete from DireccionEntity").executeUpdate();
     }
 
 
