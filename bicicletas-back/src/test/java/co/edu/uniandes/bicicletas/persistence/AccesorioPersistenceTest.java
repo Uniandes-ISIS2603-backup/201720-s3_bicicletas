@@ -106,7 +106,7 @@ public class AccesorioPersistenceTest {
     /**
      * Test of findAll method, of class AccesorioPersistence.
      */
-    //@Test
+    @Test
     public void testFindAll() throws Exception {
         List<AccesorioEntity> lista = persistence.findAll();
         Assert.assertEquals(lista.size(), data.size());
@@ -124,7 +124,7 @@ public class AccesorioPersistenceTest {
     /**
      * Test of find method, of class AccesorioPersistence.
      */
-    //@Test
+    @Test
     public void testFind() throws Exception {
         AccesorioEntity buscar = data.get(0);
         AccesorioEntity encontrada = persistence.find(buscar.getId());
@@ -152,7 +152,7 @@ public class AccesorioPersistenceTest {
     /**
      * Test of update method, of class AccesorioPersistence.
      */
-    //@Test
+    @Test
     public void testUpdate() throws Exception {
         AccesorioEntity entidad = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
@@ -166,7 +166,7 @@ public class AccesorioPersistenceTest {
     /**
      * Test of delete method, of class AccesorioPersistence.
      */
-    //@Test
+    @Test
     public void testDelete() throws Exception {
         AccesorioEntity entidad = data.get(0);
         persistence.delete(entidad.getId());
