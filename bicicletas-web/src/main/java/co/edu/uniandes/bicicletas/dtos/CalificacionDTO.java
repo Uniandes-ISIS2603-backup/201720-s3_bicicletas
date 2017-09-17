@@ -18,6 +18,7 @@ public class CalificacionDTO
     private Date fechaCali;
     private Integer nota;
     private String descripcion;
+    private Long idEstacion;
    
      /**
      * Constructor por defecto
@@ -35,6 +36,7 @@ public class CalificacionDTO
         this.fechaCali = caliEntity.getFechaCali();
         this.nota = caliEntity.getNota();
         this.descripcion = caliEntity.getDescripcion();
+        this.idEstacion = caliEntity.getIdEstacion();
     }
     
     /**
@@ -48,6 +50,7 @@ public class CalificacionDTO
         caliEntity.setFechaCali(this.getFechaCali());
         caliEntity.setNota(this.getNota());
         caliEntity.setDescripcion(this.getDescripcion());
+        caliEntity.setIdEstacion(this.getIdEstacion());
         
         return caliEntity;
     }
@@ -107,5 +110,20 @@ public class CalificacionDTO
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
+    /**
+     * @return the idEstacion
+     */
+    public Long getIdEstacion() {
+        return idEstacion;
+    }
+
+    /**
+     * @param idEstacion the idEstacion to set
+     */
+    public void setIdEstacion(Long idEstacion) {
+        this.idEstacion = idEstacion;
+    }
+    
     
 }
