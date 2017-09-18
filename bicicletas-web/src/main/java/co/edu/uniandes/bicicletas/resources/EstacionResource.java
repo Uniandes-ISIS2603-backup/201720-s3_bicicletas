@@ -75,6 +75,14 @@ public class EstacionResource {
         logica.deleteEstacion(id);
     }
     
+    @Path("{idEstacion: \\d+}/calificaciones")
+    public Class<CalificacionEstacionResource> getCalificacionEstacionResource(@PathParam("idEstacion") Long idEstacion) {
+        EstacionEntity entity = logica.getEstacion(idEstacion);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /estaciones/" + idEstacion + "/calificaciones no existe.", 404);
+        }
+        return CalificacionEstacionResource.class;
+    }
     
 
 }
