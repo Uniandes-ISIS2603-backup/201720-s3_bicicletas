@@ -149,7 +149,7 @@ public class PagoPersistenceTest {
         persistence.updatePago(updated);
         
         PagoEntity resp = persistence.find(updated.getId());
-        assertEquals(updated.getName(), resp.getId());
+        assertEquals(updated.getName(), resp.getName());
     }
 
     /**
