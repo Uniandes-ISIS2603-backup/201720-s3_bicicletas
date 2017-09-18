@@ -1,13 +1,13 @@
 ----------------------------------------------------------------
-Sun Sep 17 23:10:17 COT 2017:
- Iniciando instancia a816c00e-015e-932d-f896-000004cb2c88 de Derby, versión The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): 
-en el directorio de base de datos C:\Users\Gabriel Pinto\AppData\Local\Temp\gfembed1041052505445258880tmp\lib\databases\embedded_default con el cargador de clases sun.misc.Launcher$AppClassLoader@6bc7c054
-Cargado desde file:/C:/Users/Gabriel%20Pinto/.m2/repository/org/glassfish/main/extras/glassfish-embedded-all/4.1/glassfish-embedded-all-4.1.jar
+Mon Sep 18 10:39:53 COT 2017:
+ Iniciando instancia a816c00e-015e-95a5-5294-00000e187be8 de Derby, versión The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): 
+en el directorio de base de datos C:\Users\ka.babativa\AppData\Local\Temp\gfembed1126469073120254305tmp\lib\databases\embedded_default con el cargador de clases sun.misc.Launcher$AppClassLoader@6bc7c054
+Cargado desde file:/C:/Users/ka.babativa/.m2/repository/org/glassfish/main/extras/glassfish-embedded-all/4.1/glassfish-embedded-all-4.1.jar
 java.vendor=Oracle Corporation
 java.runtime.version=1.8.0_144-b01
-user.dir=C:\Users\Gabriel Pinto\Documents\NetBeansProjects\s3_bicicletas\bicicletas-back
-os.name=Windows 10
+user.dir=C:\Users\ka.babativa\Documents\SW\s3_bicicletas\bicicletas-back
+os.name=Windows 7
 os.arch=amd64
-os.version=10.0
+os.version=6.1
 derby.system.home=null
 Cargador de clases de base de datos iniciado - derby.database.classpath=''

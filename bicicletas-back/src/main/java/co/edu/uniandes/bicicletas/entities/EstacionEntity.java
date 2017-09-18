@@ -25,7 +25,6 @@ public class EstacionEntity extends BaseEntity implements Serializable {
     /**Variable que modela la direccion de una estacion*/
     private String direccion;
     
-    @PodamCollection(nbrElements = 2)
     private ArrayList<CalificacionEntity> calificaciones;
 
     public ArrayList<CalificacionEntity> getCalificaciones() {

@@ -25,6 +25,7 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Assert;
 import uk.co.jemos.podam.api.PodamFactory;
+import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 
 /**
@@ -90,7 +91,7 @@ public class AccesorioPersistenceTest {
     
     
     private void insertData() {
-        PodamFactory factory = (PodamFactory) new PodamFactoryImpl();
+        PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
             AccesorioEntity entity = factory.manufacturePojo(AccesorioEntity.class);
             
