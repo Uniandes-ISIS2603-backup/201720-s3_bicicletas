@@ -70,6 +70,7 @@ public class CalificacionLogic
         }
         caliEntity.setIdReserva(reserva.getId());
         
+        //Falta que se cree la relación entre Eeserva y Estacion
         EstacionEntity estacion = estacionLogic.getEstacion(caliEntity.getIdEstacion());
         if(estacion == null)
         {
@@ -93,9 +94,11 @@ public class CalificacionLogic
         {
             reserva.setCalificacionEstacionOrigen(califiEntity);
         }
+        else
+        {
+            reserva.setCalificacionEstacionLlegada(califiEntity);
+        }
         
-        reserva.setCalificacionEstacionLlegada(califiEntity);
-       
         return califiEntity;
     }
     
