@@ -25,7 +25,7 @@ import javax.ws.rs.WebApplicationException;
  * URI: /api/calificaciones
  * @author Gabriel Pinto
  */
-@Path("calificaciones")
+@Path("/calificaciones")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped

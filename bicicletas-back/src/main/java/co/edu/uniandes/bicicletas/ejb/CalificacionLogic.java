@@ -134,7 +134,7 @@ public class CalificacionLogic
         return null;
     }
     
-    public CalificacionEntity getCalificionReserva(Long idReserva, Long cali) throws BusinessLogicException
+    public CalificacionEntity getCalificionReserva(Long idReserva, Integer cali) throws BusinessLogicException
     {
         LOGGER.info("Inicia proceso de consultar una calificación de una reserva");
         
@@ -150,44 +150,25 @@ public class CalificacionLogic
         {
             caliEntity = reserva.getCalificacionEstacionLlegada();
         }
-        else
-        {
-            throw new BusinessLogicException("No está consultado de manera correcta las calificaciones para una reserva");
-        }
-        
-        if(caliEntity == null)
-        {
-           String excep = "No existe una calificación en el sistema para la estación de ";
-           if(cali == 0)
-           {
-               excep = excep + "origen";
-           }
-           else if(cali == 1)
-           {
-               excep = excep + "llegada";
-           }
-            throw new BusinessLogicException(excep);
-        }
         
         return caliEntity;
     }
     
-    public CalificacionEntity updateCalificacion(Long idReserva, Long cali, CalificacionEntity calEntity) throws BusinessLogicException {
+    public CalificacionEntity updateCalificacion(Long idReserva, Integer cali, CalificacionEntity calEntity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de actualizar una calificacion");
         ReservaEntity reserva = reservaLogic.getReserva(idReserva);
+        CalificacionEntity caliActualizada = caliPersistence.update(calEntity);
+        
         if(cali == 0)
         {
-            reserva.setCalificacionEstacionOrigen(calEntity);
+            reserva.setCalificacionEstacionOrigen(caliActualizada);
         }
         else if(cali == 1)
         {
-            reserva.setCalificacionEstacionLlegada(calEntity);
+            reserva.setCalificacionEstacionLlegada(caliActualizada);
         }
-        else
-        {
-            throw new BusinessLogicException("No está actualizando de manera correcta las calificaciones para una reserva");
-        }
-        return caliPersistence.update(calEntity);
+        
+        return caliActualizada;
     }
    
     public CalificacionEntity getCalificacion(Long idCali)
@@ -208,11 +189,5 @@ public class CalificacionLogic
         LOGGER.info("Termina proceso de consultar todos las califiaciones");
         return calificaciones;
     }
-     
-    
-    
-    
-    
-    
     
 }
