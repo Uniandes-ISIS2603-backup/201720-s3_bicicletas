@@ -87,6 +87,22 @@ public class UsuarioLogic {
      * ejemplo el nombre.
      * @return el usuario con los cambios actualizados en la base de datos.
      */
+    /**
+     *
+     * Actualizar un usuario.
+     *
+     * @param id: id del usuario para buscarla en la base de datos.
+     * @param entity: usuario con los cambios para ser actualizada, por
+     * ejemplo el nombre.
+     * @return el usuario con los cambios actualizados en la base de datos.
+     */
+    public UsuarioEntity updateUsuario(Long id, UsuarioEntity entity) {
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar usuario con id={0}", id);
+        // Note que, por medio de la inyección de dependencias se llama al método "update(entity)" que se encuentra en la persistencia.
+        UsuarioEntity newEntity = persistence.update(entity);
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar usuario con id={0}", entity.getId());
+        return newEntity;
+    }
    
 
     /** public UsuarioEntity updateUsuario(Long id, UsuarioEntity entity) {
