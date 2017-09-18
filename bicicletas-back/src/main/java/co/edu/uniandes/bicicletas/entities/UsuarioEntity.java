@@ -16,6 +16,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 /**
  *
  * @author cm.alba10
@@ -36,6 +37,7 @@ public class UsuarioEntity extends BaseEntity implements Serializable {
 
    private Integer tipoId; 
    private Long documentoUsuario;
+   @Temporal(TemporalType.DATE)
    private Date fechaNacimiento;
    private Integer puntos;
    

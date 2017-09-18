@@ -21,4 +21,6 @@ public class CalificacionReservaResource
 {
     @Inject
     private CalificacionLogic calificacionLogic;
+    
+    
 }

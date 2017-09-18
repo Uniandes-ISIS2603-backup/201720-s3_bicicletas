@@ -8,6 +8,8 @@ package co.edu.uniandes.bicicletas.entities;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * El punto que gana un usuario por cada reserva realizada
@@ -20,6 +22,7 @@ public class PuntoEntity extends BaseEntity implements Serializable
      * La fecha de creacion del punto
      */
     //@GeneratedValue 
+    @Temporal(TemporalType.DATE)
     private Date fechaPunto;
 
     /**

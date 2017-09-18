@@ -8,6 +8,8 @@ package co.edu.uniandes.bicicletas.entities;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * Nota dada por el usuario a cada reserva (estación llegada/Origen), también puede incluir un comentario
@@ -24,6 +26,7 @@ public class CalificacionEntity extends BaseEntity implements Serializable
     /**
      * La fecha en la que se realiza la calificación
      */
+    @Temporal(TemporalType.DATE)
     private Date fechaCali;
     
     /**
