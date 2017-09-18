@@ -144,10 +144,10 @@ public class PagoPersistenceTest {
         PagoEntity pago = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
         PagoEntity updated = factory.manufacturePojo(PagoEntity.class);
-        
+
         updated.setId(pago.getId());
         persistence.updatePago(updated);
-        
+
         PagoEntity resp = persistence.find(updated.getId());
         assertEquals(updated.getName(), resp.getName());
     }
@@ -174,6 +174,23 @@ public class PagoPersistenceTest {
 
         assertNotNull(pago);
         assertEquals(pago.getName(), pagoBaseDatos.getName());
+
+    }
+
+    @Test
+    public void testFindAll() {
+        List<PagoEntity> lista = persistence.findAll();
+        Assert.assertEquals(lista.size(), data.size());
+
+        for (PagoEntity pago : data) {
+            boolean find = false;
+            for (PagoEntity pago2 : lista) {
+                if (pago.getName().equals(pago2.getName())) {
+                    find = true;
+                }
+            }
+            Assert.assertTrue(find);
+        }
 
     }
 
