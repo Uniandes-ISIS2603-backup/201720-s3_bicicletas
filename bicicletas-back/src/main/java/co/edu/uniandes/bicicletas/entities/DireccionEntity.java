@@ -21,7 +21,7 @@ public class DireccionEntity extends BaseEntity implements Serializable {
 /**
  *Atributos
  */
-   private String nombre; 
+   
    private Integer codigoPostal; 
    private String descripcion; 
    private String ciudad;
@@ -34,15 +34,6 @@ public class DireccionEntity extends BaseEntity implements Serializable {
 
     public void setCiudad(String ciudad) {
         this.ciudad = ciudad;
-    }
-   
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
     }
 
     public Integer getCodigoPostal() {

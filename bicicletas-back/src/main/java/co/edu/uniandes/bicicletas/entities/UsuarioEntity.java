@@ -11,12 +11,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 /**
  *
@@ -35,28 +33,16 @@ public class UsuarioEntity extends BaseEntity implements Serializable {
 /**
  *Atributos
  */
-   private String nombreUsuario;
+
    private Integer tipoId; 
    private Long documentoUsuario;
-   @Temporal(javax.persistence.TemporalType.DATE)
    private Date fechaNacimiento;
    private Integer puntos;
-   public List<DireccionEntity> direcciones = new ArrayList<DireccionEntity>();
    
-   
-   private List<PuntoEntity> puntosLis = new ArrayList<PuntoEntity>();
    
  /**
  *Metodos
  */
-    public String getNombreUsuario() {
-        return nombreUsuario;
-    }
-
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
-    }
-
     public Integer getTipoId() {
         return tipoId;
     }
@@ -87,29 +73,6 @@ public class UsuarioEntity extends BaseEntity implements Serializable {
     public void setPuntos(Integer puntos) {
         this.puntos = puntos;
     }
-    
-    public List<DireccionEntity> getDirecciones() {
-        return direcciones;
-    }
-
-    public void setDirecciones(List<DireccionEntity> direcciones) {
-        this.direcciones = direcciones;
-    }
-
-    /**
-     * @return the puntosLis
-     */
-    public List<PuntoEntity> getPuntosLis() {
-        return puntosLis;
-    }
-
-    /**
-     * @param puntosLis the puntosLis to set
-     */
-    public void setPuntosLis(List<PuntoEntity> puntosLis) {
-        this.puntosLis = puntosLis;
-    }
-    
     
  
 }

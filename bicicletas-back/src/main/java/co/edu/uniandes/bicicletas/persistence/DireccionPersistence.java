@@ -81,4 +81,31 @@ public class DireccionPersistence {
         DireccionEntity entity = em.find(DireccionEntity.class, id);
         em.remove(entity);
     }
+    
+    /**
+     * Busca si hay alguna Direccion con el nombre que se envía de argumento
+     *
+     * @param name: Nombre de la Direccion que se está buscando
+     * @return null si no existe ninguna Direccion con el nombre del argumento.
+     * Si existe alguna devuelve la primera.
+     */
+     public DireccionEntity findByName(String name) {
+        LOGGER.log(Level.INFO, "Consultando direccion por nombre ", name);
+
+        // Se crea un query para buscar direcciones con el nombre que recibe el método como argumento. ":name" es un placeholder que debe ser remplazado
+        TypedQuery query = em.createQuery("Select e From DireccionEntity e where e.name = :name", DireccionEntity.class);
+        // Se remplaza el placeholder ":name" con el valor del argumento 
+        query = query.setParameter("name", name);
+        // Se invoca el query se obtiene la lista resultado
+        List<DireccionEntity> sameName = query.getResultList();
+        DireccionEntity result = null; 
+        if (sameName == null ) {
+            result = null;
+        } else if (sameName.isEmpty()) {
+             result = null;
+        } else {
+            result =  sameName.get(0);
+        }
+        return result;
+    }
 }

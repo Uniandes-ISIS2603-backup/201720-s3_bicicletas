@@ -81,4 +81,31 @@ public class UsuarioPersistence {
         UsuarioEntity entity = em.find(UsuarioEntity.class, id);
         em.remove(entity);
     }
+    
+    /**
+     * Busca si hay algunan usuario con el nombre que se envía de argumento
+     *
+     * @param name: Nombre del usuario que se está buscando
+     * @return null si no existe ningun usuario con el nombre del argumento.
+     * Si existe alguna devuelve la primera.
+     */
+     public UsuarioEntity findByName(String name) {
+        LOGGER.log(Level.INFO, "Consultando usuario por nombre ", name);
+
+        // Se crea un query para buscar usuarios con el nombre que recibe el método como argumento. ":name" es un placeholder que debe ser remplazado
+        TypedQuery query = em.createQuery("Select e From UsuarioEntity e where e.name = :name", UsuarioEntity.class);
+        // Se remplaza el placeholder ":name" con el valor del argumento 
+        query = query.setParameter("name", name);
+        // Se invoca el query se obtiene la lista resultado
+        List<UsuarioEntity> sameName = query.getResultList();
+        UsuarioEntity result = null; 
+        if (sameName == null ) {
+            result = null;
+        } else if (sameName.isEmpty()) {
+             result = null;
+        } else {
+            result =  sameName.get(0);
+        }
+        return result;
+    }
 }
