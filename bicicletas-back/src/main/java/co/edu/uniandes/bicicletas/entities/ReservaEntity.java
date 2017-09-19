@@ -5,13 +5,15 @@
  */
 package co.edu.uniandes.bicicletas.entities;
 
+import java.io.Serializable;
 import java.util.Date;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
  * @author ds.chacon
  */
-public class ReservaEntity extends BaseEntity {
+public class ReservaEntity extends BaseEntity implements Serializable {
     public static int CANCELADO=2; 
     public static int PAGO=1;
     public static int PAGADO=0; 
@@ -22,8 +24,10 @@ public class ReservaEntity extends BaseEntity {
     long idReserva;
     double PrecioFinal;
     
+    @PodamExclude
     private CalificacionEntity calificacionEstacionLlegada;
     
+    @PodamExclude
     private CalificacionEntity calificacionEstacionOrigen;
 
     public int getEstado() {

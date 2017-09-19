@@ -25,6 +25,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
+import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
  *
@@ -125,6 +126,10 @@ public class ReservaPersistenceTest {
      */
     @Test
     public void testFind() throws Exception {
+        ReservaEntity  buscar = data.get(0);
+        ReservaEntity  encontrada = persistence.find(buscar.getId());
+        Assert.assertNotNull(encontrada);
+        Assert.assertEquals(buscar.getName(), encontrada.getName());
     }
 
     /**
@@ -132,6 +137,16 @@ public class ReservaPersistenceTest {
      */
     @Test
     public void testCreate() throws Exception {
+        PodamFactory factory = new PodamFactoryImpl();
+        
+        ReservaEntity nuevaReserva = factory.manufacturePojo(ReservaEntity.class);
+        ReservaEntity resultado = persistence.create(nuevaReserva);
+        
+        Assert.assertNotNull(resultado);
+        
+        ReservaEntity creada = em.find(ReservaEntity.class, resultado.getId());
+        
+        Assert.assertEquals(nuevaReserva.getName(), creada.getName());
     }
 
     /**
@@ -139,6 +154,13 @@ public class ReservaPersistenceTest {
      */
     @Test
     public void testUpdate() throws Exception {
+        ReservaEntity entidad = data.get(0);
+        PodamFactory factory = new PodamFactoryImpl();
+        ReservaEntity nuevaEntidad = factory.manufacturePojo(ReservaEntity.class);
+        nuevaEntidad.setId(entidad.getId());
+        persistence.update(nuevaEntidad);
+        ReservaEntity resp = em.find(ReservaEntity.class, entidad.getId());
+        Assert.assertEquals(nuevaEntidad.getName(), resp.getName());
     }
 
     /**
@@ -146,6 +168,10 @@ public class ReservaPersistenceTest {
      */
     @Test
     public void testDelete() throws Exception {
+        ReservaEntity entidad = data.get(0);
+        persistence.delete(entidad.getId());
+        ReservaEntity eliminada = em.find(ReservaEntity.class, entidad.getId());
+        Assert.assertNull(eliminada);
     }
     
 }
