@@ -15,6 +15,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 /**
@@ -39,12 +40,31 @@ public class UsuarioEntity extends BaseEntity implements Serializable {
    private Long documentoUsuario;
    @Temporal(TemporalType.DATE)
    private Date fechaNacimiento;
-   private Integer puntos;
    
+   public List<DireccionEntity> direcciones = new  ArrayList<DireccionEntity>();
+   public List<PuntoEntity> puntos = new  ArrayList<PuntoEntity>();
+    
    
  /**
  *Metodos
  */
+   public List<DireccionEntity> getDirecciones() {   
+        return direcciones;
+    }
+    public void setDirecciones(List<DireccionEntity> direcciones) {
+        this.direcciones = direcciones;
+    }
+
+    public List<PuntoEntity> getPuntos() {
+        return puntos;
+    }
+
+    public void setPuntos(List<PuntoEntity> puntos) {
+        this.puntos = puntos;
+    }
+   
+    
+    
     public Integer getTipoId() {
         return tipoId;
     }
@@ -67,14 +87,5 @@ public class UsuarioEntity extends BaseEntity implements Serializable {
     public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
-    
-    public Integer getPuntos() {
-        return puntos;
-    }
-
-    public void setPuntos(Integer puntos) {
-        this.puntos = puntos;
-    }
-    
  
 }
