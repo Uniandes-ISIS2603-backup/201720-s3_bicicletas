@@ -4,8 +4,12 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.bicicletas.dtos;
+import co.edu.uniandes.bicicletas.entities.DireccionEntity;
+import co.edu.uniandes.bicicletas.entities.PuntoEntity;
 import co.edu.uniandes.bicicletas.entities.UsuarioEntity;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * UsuarioDTO Objeto de transferencia de datos de Usuarios. Los DTO
@@ -20,7 +24,8 @@ public class UsuarioDTO {
    private Integer tipoId; 
    private Long documentoUsuario;
    private Date fechaNacimiento;
-   private Integer puntos;
+   public List<DireccionEntity> direcciones = new  ArrayList<DireccionEntity>();
+   public List<PuntoEntity> puntos = new  ArrayList<PuntoEntity>();
    
     /**
      * Constructor por defecto
@@ -39,9 +44,26 @@ public class UsuarioDTO {
         this.tipoId= usuario.getTipoId();
         this.documentoUsuario= usuario.getDocumentoUsuario();
         this.fechaNacimiento= usuario.getFechaNacimiento();
+        this.direcciones= usuario.getDirecciones();
         this.puntos= usuario.getPuntos();
     }
 
+    public List<DireccionEntity> getDirecciones() {
+        return direcciones;
+    }
+
+    public void setDirecciones(List<DireccionEntity> direcciones) {
+        this.direcciones = direcciones;
+    }
+
+    public List<PuntoEntity> getPuntos() {
+        return puntos;
+    }
+
+    public void setPuntos(List<PuntoEntity> puntos) {
+        this.puntos = puntos;
+    }
+    
     public Long getId() {
         return id;
     }
@@ -80,14 +102,6 @@ public class UsuarioDTO {
 
     public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
-    }
-
-    public Integer getPuntos() {
-        return puntos;
-    }
-
-    public void setPuntos(Integer puntos) {
-        this.puntos = puntos;
     }
     
      /**
