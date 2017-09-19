@@ -26,13 +26,17 @@ package co.edu.uniandes.bicicletas.ejb;
 
 import co.edu.uniandes.bicicletas.entities.ReservaEntity;
 import co.edu.uniandes.bicicletas.persistence.ReservaPersistence;
+import java.util.List;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.ws.rs.WebApplicationException;
 
 /**
  *
- * @author gl.pinto10
+ * @author ds.chacon
  */
-class ReservaLogic 
+@Stateless
+public class ReservaLogic 
 {
     @Inject
     private ReservaPersistence persistence;
@@ -45,4 +49,27 @@ class ReservaLogic
          return reserva;
     }
     
+    public List<ReservaEntity> getReservas(){
+        return persistence.findAll();
+    }
+    
+     public void deleteReserva(Long id) throws WebApplicationException
+    {
+         ReservaEntity Reserva = persistence.find(id);
+         if(Reserva == null){
+             throw new WebApplicationException("No hay una estación con dicho ID", 402);
+         }
+         persistence.delete(id);
+    }
+    public ReservaEntity crearReserva(ReservaEntity entidad){
+        persistence.create(entidad);
+        return entidad;
+    }
+    
+    public ReservaEntity actualizarReserva(ReservaEntity entidad) throws WebApplicationException{
+        if(persistence.find(entidad.getId())==null){
+            throw new WebApplicationException("No hay una estación con dicho id", 402);
+        }
+        return persistence.update(entidad);
+    }
 }

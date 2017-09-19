@@ -11,13 +11,12 @@ import java.util.Date;
  *
  * @author ds.chacon
  */
-public class ReservaEntity {
+public class ReservaEntity extends BaseEntity {
     public static int CANCELADO=2; 
     public static int PAGO=1;
     public static int PAGADO=0; 
     
     int estado;
-    long id;
     Date FechaEntrega;
     Date FechaInicio;
     long idReserva;
@@ -67,13 +66,6 @@ public class ReservaEntity {
         this.PrecioFinal = PrecioFinal;
     }
     
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     /**
      * @return the calificacionEstacionLlegada
