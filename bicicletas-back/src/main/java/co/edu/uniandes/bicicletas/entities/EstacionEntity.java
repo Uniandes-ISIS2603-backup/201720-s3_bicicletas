@@ -12,6 +12,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamCollection;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  * Clase que modela una estación
@@ -25,6 +26,7 @@ public class EstacionEntity extends BaseEntity implements Serializable {
     /**Variable que modela la direccion de una estacion*/
     private String direccion;
     
+    @PodamExclude
     private ArrayList<CalificacionEntity> calificaciones;
 
     public ArrayList<CalificacionEntity> getCalificaciones() {

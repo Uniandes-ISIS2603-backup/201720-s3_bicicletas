@@ -8,6 +8,8 @@ package co.edu.uniandes.bicicletas.entities;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -22,8 +24,13 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     public static int PAGADO=0; 
     
     int estado;
+    
+    @Temporal(TemporalType.DATE)
     Date FechaEntrega;
+    
+    @Temporal(TemporalType.DATE)
     Date FechaInicio;
+    
     long idReserva;
     double PrecioFinal;
     
