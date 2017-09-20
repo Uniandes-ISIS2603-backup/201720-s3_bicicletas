@@ -7,12 +7,15 @@ package co.edu.uniandes.bicicletas.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Entity;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
  * @author ds.chacon
  */
+@Entity
+
 public class ReservaEntity extends BaseEntity implements Serializable {
     public static int CANCELADO=2; 
     public static int PAGO=1;
