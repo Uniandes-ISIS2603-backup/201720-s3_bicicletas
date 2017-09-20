@@ -18,6 +18,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import uk.co.jemos.podam.common.PodamExclude;
 /**
  *
  * @author cm.alba10
@@ -41,7 +42,9 @@ public class UsuarioEntity extends BaseEntity implements Serializable {
    @Temporal(TemporalType.DATE)
    private Date fechaNacimiento;
    
+   @PodamExclude
    public List<DireccionEntity> direcciones = new  ArrayList<DireccionEntity>();
+   @PodamExclude
    public List<PuntoEntity> puntos = new  ArrayList<PuntoEntity>();
     
    
