@@ -148,7 +148,7 @@ public class PuntoPersistenceTest {
         
         Assert.assertNotNull(pCreado);
         
-        Assert.assertEquals(nuevoPunto.getFechaPunto(), pCreado.getFechaPunto());
+        Assert.assertEquals(nuevoPunto.getId(), pCreado.getId());
     }
 
     /**
