@@ -181,6 +181,17 @@ public class PuntoPersistenceTest {
             Assert.assertTrue(found);
         }
     }
+    
+    /**
+     * Test of delete method, of class PuntoPersistence.
+     */
+    @Test
+    public void testDelete() throws Exception {
+        PuntoEntity entidad = data.get(0);
+        persistence.delete(entidad.getId());
+        PuntoEntity eliminada = em.find(PuntoEntity.class, entidad.getId());
+        Assert.assertNull(eliminada);
+    }
 }
     
 

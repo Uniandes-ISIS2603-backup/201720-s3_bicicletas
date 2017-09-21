@@ -8,8 +8,10 @@ package co.edu.uniandes.bicicletas.entities;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  * El punto que gana un usuario por cada reserva realizada
@@ -24,6 +26,11 @@ public class PuntoEntity extends BaseEntity implements Serializable
     //@GeneratedValue 
     @Temporal(TemporalType.DATE)
     private Date fechaPunto;
+    
+    @PodamExclude 
+    @ManyToOne
+    private UsuarioEntity usuarioPunto;
+    
 
     /**
      * @return the fechaPunto
@@ -38,5 +45,19 @@ public class PuntoEntity extends BaseEntity implements Serializable
     public void setFechaPunto(Date fechaPunto) {
         this.fechaPunto = fechaPunto;
     }   
+
+    /**
+     * @return the usuarioPunto
+     */
+    public UsuarioEntity getUsuarioPunto() {
+        return usuarioPunto;
+    }
+
+    /**
+     * @param usuarioPunto the usuarioPunto to set
+     */
+    public void setUsuarioPunto(UsuarioEntity usuarioPunto) {
+        this.usuarioPunto = usuarioPunto;
+    }
     
 }

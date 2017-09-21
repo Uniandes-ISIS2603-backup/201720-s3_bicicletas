@@ -66,5 +66,15 @@ public class PuntoPersistence
         
     }  
     
+    /**
+     * Elimina un punto
+     * @param id: El id del punto que se desea eliminar
+     */
+    public void delete(Long id) {
+        LOGGER.log(Level.INFO, "Se borrara el punto con id={0}", id);
+        PuntoEntity entity = em.find(PuntoEntity.class, id);
+        em.remove(entity);
+    }
+    
     
 }
