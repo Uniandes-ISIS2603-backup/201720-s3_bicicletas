@@ -68,7 +68,7 @@ public class CalificacionLogic
         {
              throw new BusinessLogicException("Ya existe una calificación tanto para la estación de origen como para la de llegada");
         }
-        caliEntity.setIdReserva(reserva.getId());
+        caliEntity.setReserva(reserva);
         
         //Falta que se cree la relación entre Eeserva y Estacion
         EstacionEntity estacion = estacionLogic.getEstacion(caliEntity.getIdEstacion());

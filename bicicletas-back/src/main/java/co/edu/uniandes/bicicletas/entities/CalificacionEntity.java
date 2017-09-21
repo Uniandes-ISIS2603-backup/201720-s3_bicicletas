@@ -8,8 +8,10 @@ package co.edu.uniandes.bicicletas.entities;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  * Nota dada por el usuario a cada reserva (estación llegada/Origen), también puede incluir un comentario
@@ -35,9 +37,11 @@ public class CalificacionEntity extends BaseEntity implements Serializable
     private Long idUsuario;
     
     /**
-     * El id de la reserva asociada a la calificación
+     * La reserva asociada a la calificación
      */
-    private Long idReserva;
+    @PodamExclude
+    @OneToOne
+    private ReservaEntity reserva;
     
     /**
      * El id de la estacion que es calificada
@@ -92,20 +96,6 @@ public class CalificacionEntity extends BaseEntity implements Serializable
     }
 
     /**
-     * @return the idReserva
-     */
-    public Long getIdReserva() {
-        return idReserva;
-    }
-
-    /**
-     * @param idReserva the idReserva to set
-     */
-    public void setIdReserva(Long idReserva) {
-        this.idReserva = idReserva;
-    }
-
-    /**
      * @return the idEstacion
      */
     public Long getIdEstacion() {
@@ -131,6 +121,20 @@ public class CalificacionEntity extends BaseEntity implements Serializable
      */
     public void setNota(Integer nota) {
         this.nota = nota;
+    }
+
+    /**
+     * @return the reserva
+     */
+    public ReservaEntity getReserva() {
+        return reserva;
+    }
+
+    /**
+     * @param reserva the reserva to set
+     */
+    public void setReserva(ReservaEntity reserva) {
+        this.reserva = reserva;
     }
     
 }
