@@ -96,7 +96,7 @@ public class PagoPersistence {
     public List<PagoEntity> findAll(){
         LOGGER.info("Consultando todos los Pagos del sistema");
         
-        TypedQuery query = em.createQuery("select u from CalificacionEntity u", PagoEntity.class);
+        TypedQuery query = em.createQuery("select u from PagoEntity u", PagoEntity.class);
         return query.getResultList();
     }
     
