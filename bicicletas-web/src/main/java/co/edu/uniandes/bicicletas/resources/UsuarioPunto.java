@@ -25,7 +25,7 @@ import javax.ws.rs.WebApplicationException;
  * @author Gabriel Pinto
  */
 @Produces("application/json")
-public class PuntoUsuario 
+public class UsuarioPunto 
 {
     @Inject
     private PuntoLogic puntoLogic;

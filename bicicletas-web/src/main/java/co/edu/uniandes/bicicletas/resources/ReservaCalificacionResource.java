@@ -26,7 +26,7 @@ import javax.ws.rs.WebApplicationException;
  */
 @Produces("application/json")
 @Consumes("application/json")
-public class CalificacionReservaResource 
+public class ReservaCalificacionResource 
 {
     @Inject
     private CalificacionLogic calificacionLogic;
