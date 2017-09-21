@@ -160,4 +160,14 @@ public class UsuarioResource {
 	        }
 	        return list;
 	    }
+            
+            @Path("{idUsuario: \\d+}/puntos")
+            public Class<UsuarioPuntoResource> getUsuarioPuntoResource(@PathParam("idUsuario") Long idUsuario) {
+            UsuarioEntity entity = usuarioLogic.getUsuario(idUsuario);
+            if (entity == null) {
+            throw new WebApplicationException("El recurso /usuarios/" + idUsuario + "/puntos no existe.", 404);
+            }
+            return UsuarioPuntoResource.class;
+    }
+            
 }
