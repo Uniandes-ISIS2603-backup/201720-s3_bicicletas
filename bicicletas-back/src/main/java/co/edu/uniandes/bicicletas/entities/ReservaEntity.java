@@ -8,6 +8,7 @@ package co.edu.uniandes.bicicletas.entities;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -22,9 +23,7 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     public static int CANCELADO=2; 
     public static int PAGO=1;
     public static int PAGADO=0; 
-    
-    int estado;
-    
+     
     @Temporal(TemporalType.DATE)
     Date FechaEntrega;
     
@@ -32,6 +31,29 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     Date FechaInicio;
     
     long idReserva;
+    
+    int Estado;
+    
+    @OneToOne
+    EstacionEntity EstacionLlegada;
+    @OneToOne
+    EstacionEntity EstacionSalida;
+
+    public EstacionEntity getEstacionLlegada() {
+        return EstacionLlegada;
+    }
+
+    public void setEstacionLlegada(EstacionEntity EstacionLlegada) {
+        this.EstacionLlegada = EstacionLlegada;
+    }
+
+    public EstacionEntity getEstacionSalida() {
+        return EstacionSalida;
+    }
+
+    public void setEstacionSalida(EstacionEntity EstacionSalida) {
+        this.EstacionSalida = EstacionSalida;
+    }
     double PrecioFinal;
     
     @PodamExclude
@@ -41,11 +63,11 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     private CalificacionEntity calificacionEstacionOrigen;
 
     public int getEstado() {
-        return estado;
+        return Estado;
     }
 
     public void setEstado(int estado) {
-        this.estado = estado;
+        this.Estado = estado;
     }
 
     public Date getFechaEntrega() {

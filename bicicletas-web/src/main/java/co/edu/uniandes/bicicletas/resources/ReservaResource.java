@@ -57,13 +57,13 @@ public class ReservaResource {
     }
     
     @POST
-    public ReservaDTO crearEstacion(ReservaDTO dto) throws BusinessLogicException {
+    public ReservaDTO crearReserva (ReservaDTO dto) throws BusinessLogicException {
         return new ReservaDTO(logica.crearReserva(dto.toEntity()));
     }
     
     @PUT
     @Path("{id: \\d+}")
-    public ReservaDTO actualizarEstacion(@PathParam("id") Long id, ReservaDTO dto) {
+    public ReservaDTO actualizarReserva (@PathParam("id") Long id, ReservaDTO dto) {
         ReservaEntity entity = dto.toEntity();
         entity.setId(id);
         return new ReservaDTO(logica.actualizarReserva(entity));
@@ -71,7 +71,16 @@ public class ReservaResource {
     
     @DELETE
     @Path("{id: \\d+}")
-    public void borrarEstacion(@PathParam("id") Long id) {
+    public void borrarReserva(@PathParam("id") Long id) {
         logica.deleteReserva(id);
+    }
+    
+    @Path("{idReserva: \\d+}/Estacion / { llegada: \\d+}")
+    public Class<ReservaEstacionResource> getReservaEstacionResource(@PathParam("idReserva") Long idReserva,@PathParam("llegada") int llegada){
+        ReservaEntity entity = logica.getReserva(idReserva);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /Reserva/" + idReserva + "/Estacion/"+ llegada +"no existe.", 404);
+        }
+        return ReservaEstacionResource.class;
     }
 }
