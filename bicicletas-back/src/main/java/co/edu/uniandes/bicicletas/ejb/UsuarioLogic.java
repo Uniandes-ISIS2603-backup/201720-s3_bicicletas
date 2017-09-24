@@ -6,6 +6,7 @@
 package co.edu.uniandes.bicicletas.ejb;
 
 import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
+import co.edu.uniandes.bicicletas.entities.DireccionEntity;
 import co.edu.uniandes.bicicletas.entities.UsuarioEntity;
 import co.edu.uniandes.bicicletas.persistence.UsuarioPersistence;
 import java.util.List;
@@ -27,6 +28,9 @@ public class UsuarioLogic {
     @Inject
     private UsuarioPersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
 
+    
+    @Inject
+    private DireccionLogic direccionLogic;
     /**
      *
      * @param entity
@@ -121,5 +125,93 @@ public class UsuarioLogic {
         // Note que, por medio de la inyección de dependencias se llama al método "delete(id)" que se encuentra en la persistencia.
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Termina proceso de borrar usuario con id={0}", id);
+    }
+    
+    //PARTE DE DIRECCION
+    
+   /**
+     * Obtiene una colección de instancias de DireccionEntity asociadas a una
+     * instancia de Usuario
+     *
+     * @param usuarioId Identificador de la instancia de Usuario
+     * @return Colección de instancias de DireccionEntity asociadas a la instancia de
+     * Usuario
+     * @generated
+     */
+    public List<DireccionEntity> listDirecciones(Long usuarioId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar todas las direcciones del usuario con id = {0}", usuarioId);
+        return getUsuario(usuarioId).getDirecciones();
+    }
+    
+    /**
+     * Obtiene una instancia de DireccionEntity asociada a una instancia de Usuario
+     *
+     * @param usuarioId Identificador de la instancia de Usuario
+     * @param direccionesId Identificador de la instancia de Direcciones
+     * @return
+     * @generated
+     */
+    public DireccionEntity getDirecciones(Long usuarioId, Long direccionesId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar un direccion con id = {0}", direccionesId);
+        List<DireccionEntity> list = getUsuario(usuarioId).getDirecciones();
+        DireccionEntity direccionesEntity = new DireccionEntity();
+        direccionesEntity.setId(direccionesId);
+        int index = list.indexOf(direccionesEntity);
+        if (index >= 0) {
+            return list.get(index);
+        }
+        return null;
+    }
+
+    /**
+     * Asocia una direccion existente a un Usuario
+     *
+     * @param usuarioId Identificador de la instancia de Usuario
+     * @param direccionesId Identificador de la instancia de Direcciones
+     * @return Instancia de DireccionEntity que fue asociada a Usuario
+     * @generated
+     */
+    public DireccionEntity addDireccion(Long usuarioId, Long direccionesId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de agregar un direccion al usuario con id = {0}", usuarioId);
+        direccionLogic.addUsuario(direccionesId, usuarioId);
+        return direccionLogic.getDireccion(direccionesId);
+    }
+
+    /**
+     * Remplaza las instancias de Direcciones asociadas a una instancia de Usuario
+     *
+     * @param usuarioId Identificador de la instancia de Usuario
+     * @param list Colección de instancias de DireccionEntity a asociar a instancia
+     * de Usuario
+     * @return Nueva colección de DireccionEntity asociada a la instancia de Usuario
+     * @generated
+     */
+    public List<DireccionEntity> replaceDirecciones(Long usuarioId, List<DireccionEntity> list) {
+        LOGGER.log(Level.INFO, "Inicia proceso de reemplazar los direcciones asocidos al usuario con id = {0}", usuarioId);
+        UsuarioEntity usuarioEntity = getUsuario(usuarioId);
+        List<DireccionEntity> direccionList = direccionLogic.getDirecciones();
+        for (DireccionEntity direccion : direccionList) {
+            if (list.contains(direccion)) {
+                if (!direccion.getUsuarios().contains(usuarioEntity)) {
+                    direccionLogic.addUsuario(direccion.getId(), usuarioId);
+                }
+            } else {
+                direccionLogic.removeUsuario(direccion.getId(), usuarioId);
+            }
+        }
+        usuarioEntity.setDirecciones(list);
+        return usuarioEntity.getDirecciones();
+    }
+
+    /**
+     * Desasocia un Direccion existente de un Usuario existente
+     *
+     * @param usuarioId Identificador de la instancia de Usuario
+     * @param direccionesId Identificador de la instancia de Direccion
+     * @generated
+     */
+    public void removeDireccion(Long usuarioId, Long direccionesId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar un direccion del usuario con id = {0}", usuarioId);
+        direccionLogic.removeUsuario(direccionesId, usuarioId);
     }
 }
