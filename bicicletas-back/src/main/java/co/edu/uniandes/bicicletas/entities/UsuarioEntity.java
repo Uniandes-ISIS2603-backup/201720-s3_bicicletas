@@ -43,10 +43,10 @@ public class UsuarioEntity extends BaseEntity implements Serializable {
    @Temporal(TemporalType.DATE)
    private Date fechaNacimiento;
    
-   @OneToMany(mappedBy = "usuario")
+   
    @PodamExclude
    public List<DireccionEntity> direcciones = new  ArrayList<DireccionEntity>();
-   @OneToMany(mappedBy = "usuario")
+   
    @PodamExclude
    public List<PuntoEntity> puntos = new  ArrayList<PuntoEntity>();
     

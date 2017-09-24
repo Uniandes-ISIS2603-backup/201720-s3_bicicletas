@@ -32,11 +32,11 @@ public class DireccionEntity extends BaseEntity implements Serializable {
    private String descripcion; 
    private String ciudad;
    
-   @ManyToOne
+   
    @PodamExclude
    private List<UsuarioEntity> usuarios = new ArrayList<UsuarioEntity>();
 
-   @ManyToOne
+   
    @PodamExclude
    private List<EstacionEntity> estaciones = new ArrayList<EstacionEntity>();
 
