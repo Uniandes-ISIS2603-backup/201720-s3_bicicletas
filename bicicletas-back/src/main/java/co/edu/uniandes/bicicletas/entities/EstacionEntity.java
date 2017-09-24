@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamCollection;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -23,11 +25,25 @@ public class EstacionEntity extends BaseEntity implements Serializable {
     
     /**Variable que modela el nombre de una estacion */
     private String nombre;
-    /**Variable que modela la direccion de una estacion*/
-    private String direccion;
+    @ManyToMany(mappedBy = "estaciones")
+    @PodamExclude
+    private List<DireccionEntity> direcciones = new ArrayList<DireccionEntity>();
     
     @PodamExclude
     private ArrayList<CalificacionEntity> calificaciones;
+    
+   
+
+    public List<DireccionEntity> getDirecciones() {
+        return direcciones;
+    }
+
+    public void setDirecciones(List<DireccionEntity> direcciones) {
+        this.direcciones = direcciones;
+    }
+    
+    
+    
 
     public ArrayList<CalificacionEntity> getCalificaciones() {
         return calificaciones;
@@ -44,14 +60,6 @@ public class EstacionEntity extends BaseEntity implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
     }
 
     
