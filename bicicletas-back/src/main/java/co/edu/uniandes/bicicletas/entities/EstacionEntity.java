@@ -25,12 +25,26 @@ public class EstacionEntity extends BaseEntity implements Serializable {
     
     /**Variable que modela el nombre de una estacion */
     private String nombre;
-    @ManyToMany(mappedBy = "estaciones")
+    
+    @ManyToMany
     @PodamExclude
     private List<DireccionEntity> direcciones = new ArrayList<DireccionEntity>();
     
     @PodamExclude
+    @OneToMany(mappedBy = "")
     private ArrayList<CalificacionEntity> calificaciones;
+    
+    @PodamExclude
+    @OneToMany(mappedBy = "estacion")
+    private List<AccesorioEntity> accesorios;
+
+    public List<AccesorioEntity> getAccesorios() {
+        return accesorios;
+    }
+
+    public void setAccesorios(List<AccesorioEntity> accesorios) {
+        this.accesorios = accesorios;
+    }
     
    
 

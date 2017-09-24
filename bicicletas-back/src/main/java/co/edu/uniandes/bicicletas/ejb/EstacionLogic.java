@@ -49,6 +49,9 @@ public class EstacionLogic
     @Inject
     private DireccionLogic direccionLogic;
     
+    @Inject
+    private BicicletaLogic bicicletaLogic;
+    
     public EstacionEntity getEstacion(Long id) throws WebApplicationException
     {
         //Toca agregarle más cosas, solo lo hice provisional

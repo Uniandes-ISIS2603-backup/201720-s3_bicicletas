@@ -67,7 +67,7 @@ public class AccesorioResource {
     public AccesorioDTO actualizarAccesorio(@PathParam("id") Long id, AccesorioDTO dto) {
         AccesorioEntity entity = dto.toEntity();
         entity.setId(id);
-        return new AccesorioDTO(logica.actualizarEstacion(entity));
+        return new AccesorioDTO(logica.actualizarAccesorio(entity));
     }
     
     @DELETE
