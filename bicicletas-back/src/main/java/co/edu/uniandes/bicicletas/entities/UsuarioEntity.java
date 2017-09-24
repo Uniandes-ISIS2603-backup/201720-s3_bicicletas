@@ -17,6 +17,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -44,10 +45,14 @@ public class UsuarioEntity extends BaseEntity implements Serializable {
    private Date fechaNacimiento;
    
    
+
+   @ManyToMany(mappedBy = "usuarios")
    @PodamExclude
    public List<DireccionEntity> direcciones = new  ArrayList<DireccionEntity>();
-   
+ 
+ 
    @PodamExclude
+  // @ManyToMany(mappedBy = "usuario")
    public List<PuntoEntity> puntos = new  ArrayList<PuntoEntity>();
     
    

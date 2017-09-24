@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 /**
  *
@@ -33,10 +34,12 @@ public class DireccionEntity extends BaseEntity implements Serializable {
    private String ciudad;
    
    
+   
+   @ManyToMany
    @PodamExclude
    private List<UsuarioEntity> usuarios = new ArrayList<UsuarioEntity>();
 
-   
+   @OneToOne
    @PodamExclude
    private List<EstacionEntity> estaciones = new ArrayList<EstacionEntity>();
 
