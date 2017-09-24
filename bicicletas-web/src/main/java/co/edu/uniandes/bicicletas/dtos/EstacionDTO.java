@@ -5,14 +5,16 @@
 */
 package co.edu.uniandes.bicicletas.dtos;
 
+import co.edu.uniandes.bicicletas.entities.DireccionEntity;
 import co.edu.uniandes.bicicletas.entities.EstacionEntity;
+import java.util.List;
 /**
  *
  * @author ka.babativa
  */
 public class EstacionDTO {
     private String nombre;
-    private String direccion;
+    private List<DireccionEntity> direccion;
     private Long id;
     
     public EstacionDTO(){
@@ -22,7 +24,7 @@ public class EstacionDTO {
     public EstacionDTO(EstacionEntity entidad) {
         if(entidad!=null){
             this.nombre = entidad.getNombre();
-            this.direccion = entidad.getDireccion();
+            this.direccion = entidad.getDirecciones();
             this.id = entidad.getId();
         }
     }
@@ -35,11 +37,11 @@ public class EstacionDTO {
         this.nombre = nombre;
     }
     
-    public String getDireccion() {
+    public List<DireccionEntity> getDireccion() {
         return direccion;
     }
     
-    public void setDireccion(String direccion) {
+    public void setDireccion(List<DireccionEntity> direccion) {
         this.direccion = direccion;
     }
     
@@ -55,7 +57,7 @@ public class EstacionDTO {
         EstacionEntity entity = new EstacionEntity();
         entity.setNombre(this.getNombre());
         entity.setId(this.getId());
-        entity.setDireccion(this.getDireccion());
+        entity.setDirecciones(this.getDireccion());
         return entity;
     }
 }
