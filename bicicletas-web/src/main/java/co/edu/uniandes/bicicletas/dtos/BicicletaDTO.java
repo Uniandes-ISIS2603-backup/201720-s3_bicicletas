@@ -31,11 +31,14 @@ import co.edu.uniandes.bicicletas.entities.BicicletaEntity;
  * contienen las represnetaciones de los JSON que se transfieren entre el
  * cliente y el servidor.
  *
- * @author ISIS2603
+ * @author ISIS2603,js.torres1
  */
 public class BicicletaDTO {
 
     private Long id;
+    private int estado;
+    private String modelo;
+    private String marca;
 
     /**
      * Constructor por defecto
@@ -51,6 +54,10 @@ public class BicicletaDTO {
      */
     public BicicletaDTO(BicicletaEntity Bicicleta) {
         this.id = Bicicleta.getId();
+        this.estado=Bicicleta.darEstado();
+        this.marca=Bicicleta.darMarca();
+        this.modelo=Bicicleta.darModelo();
+        
     }
 
     /**
@@ -59,6 +66,14 @@ public class BicicletaDTO {
     public Long getId() {
         return id;
     }
+    public int getEstado(){
+        return estado;
+    }public String getMarca(){
+        return marca;
+    }
+    public String garModelo(){
+        return modelo;
+    }
 
     /**
      * @param id the id to set
@@ -66,6 +81,16 @@ public class BicicletaDTO {
     public void setId(Long id) {
         this.id = id;
     }
+    public void setEstado(int pEstado){
+        this.estado=pEstado;
+    }
+    public void setMarca(String pMarca){
+        this.marca=pMarca;
+    }
+    public void setModelo(String pModelo){
+        this.modelo=pModelo;
+    }
+    
 
     /**
      * Convertir DTO a Entity
@@ -75,6 +100,9 @@ public class BicicletaDTO {
     public BicicletaEntity toEntity() {
         BicicletaEntity entity = new BicicletaEntity();
         entity.setId(this.id);
+        entity.setEstado(this.estado);
+        entity.setMarca(this.marca);
+        entity.setModelo(this.modelo);
         return entity;
     }
     

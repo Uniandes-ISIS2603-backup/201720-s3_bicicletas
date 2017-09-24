@@ -26,11 +26,13 @@ SOFTWARE.
 
 import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.bicicletas.entities.BicicletaEntity;
+import co.edu.uniandes.bicicletas.entities.AccesorioBicicletaEntity;
 import co.edu.uniandes.bicicletas.persistence.BicicletaPersistence;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.ws.rs.WebApplicationException;
 
 /**
  *
@@ -43,7 +45,8 @@ public class BicicletaLogic {
 
     @Inject
     private BicicletaPersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
-
+    @Inject
+    private AccesorioBicicletaLogic AccesorioBicicleta;
     /**
      *
      * @param entity
@@ -71,6 +74,76 @@ public class BicicletaLogic {
         LOGGER.info("Termina proceso de consultar todas las Bicicletaes");
         return Bicicletas;
     }
+    public BicicletaEntity actualizarBicicleta(BicicletaEntity entidad) throws WebApplicationException{
+        if(persistence.find(entidad.getId())==null){
+            throw new WebApplicationException("No hay una estación con dicho id", 402);
+        }
+        return persistence.update(entidad);
+    }
+    /**
+     * 
+     * Obtener una bicicleta Especifica
+     */
+    public BicicletaEntity getBIcicleta(Long id){
+        LOGGER.info("Inicica proceso de consulta a una bicicleta");
+        BicicletaEntity bicicleta = persistence.find(id);
+        LOGGER.info("Termina el proceso de consulta a una bicicleta");
+        return bicicleta;
+    }
+    public void deleteBicicleta(Long id) throws WebApplicationException
+    {
+         BicicletaEntity bicicleta = persistence.find(id);
+         if(bicicleta == null){
+             throw new WebApplicationException("No hay una estación con dicho ID", 402);
+         }
+         persistence.delete(id);
+    }
+    public AccesorioBicicletaEntity createAccesorioBici(Long idBici,AccesorioBicicletaEntity entity) throws BusinessLogicException {
+        BicicletaEntity bici = persistence.find(idBici);
+        if(bici== null){
+             throw new WebApplicationException("No hay una estación con dicho ID", 402);
+         }
+        List<AccesorioBicicletaEntity> rta = bici.getAccesorioBicicletas();
+        rta.add(entity);
+        return AccesorioBicicleta.createAccesorioBici(entity);
+    }
+
+    /**
+     * 
+     * Obtener todas las Bicicletaes existentes en la base de datos.
+     *
+     * @return una lista de Bicicletaes.
+     */
+    public List<AccesorioBicicletaEntity> getAccesoriosBici(Long idBici, Long id) {
+        BicicletaEntity bici = persistence.find(idBici);
+        if(bici== null){
+             throw new WebApplicationException("No hay una estación con dicho ID", 402);
+         }
+        return bici.getAccesorioBicicletas();
+    }
+    /**
+     * 
+     * Obtener una bicicleta Especifica
+     */
+    public AccesorioBicicletaEntity getAccesorioBici(Long idBici, Long id){
+        BicicletaEntity bici = persistence.find(idBici);
+        if(bici== null){
+             throw new WebApplicationException("No hay una estación con dicho ID", 402);
+         }
+        return AccesorioBicicleta.getAccesorioBici(id);
+    }
+    
+    public void deleteAccesorioBicicleta(Long id) throws WebApplicationException
+    {
+         AccesorioBicicleta.deleteAccesorioBicicleta(id);
+    }
+    public AccesorioBicicletaEntity actualizarAccesorioBici(AccesorioBicicletaEntity entidad) throws WebApplicationException{
+        return AccesorioBicicleta.actualizarAccesorioBici(entidad);
+    }
+    
+    
+    
+    
 
 
 }

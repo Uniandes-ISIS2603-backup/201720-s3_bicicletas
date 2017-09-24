@@ -7,6 +7,8 @@ package co.edu.uniandes.bicicletas.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -14,8 +16,12 @@ import javax.persistence.Entity;
  */
 @Entity
 public class AccesorioBicicletaEntity extends BaseEntity implements Serializable{
-    public int nombre;
-    public String descripcion;
+    private int nombre;
+    private String descripcion;
+    @ManyToOne 
+    @PodamExclude
+    private BicicletaEntity bici;
+    
     
     public void setNombre(int pNombre){
         nombre = pNombre;
@@ -28,5 +34,9 @@ public class AccesorioBicicletaEntity extends BaseEntity implements Serializable
     }
     public String darDescrip(){
         return descripcion;
+    }
+    public void setBici(BicicletaEntity temp){
+        bici= temp;
+        
     }
 }

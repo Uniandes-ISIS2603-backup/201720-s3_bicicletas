@@ -115,7 +115,8 @@ public class BicicletaResource {
     @PUT
     @Path("{id: \\d+}")
     public BicicletaDetailDTO updateBicicleta(@PathParam("id") Long id, BicicletaDetailDTO bicicletas) throws BusinessLogicException, UnsupportedOperationException {
-          throw new UnsupportedOperationException("Este servicio  no está implementado");
+          BicicletaEntity entity = bicicletas.toEntity();
+          return new BicicletaDetailDTO(bicicletasLogic.actualizarBicicleta(entity));
       
     }
 
@@ -132,7 +133,7 @@ public class BicicletaResource {
     @DELETE
     @Path("{id: \\d+}")
     public void deleteBicicleta(@PathParam("id") Long id) throws BusinessLogicException {
-         throw new UnsupportedOperationException("Este servicio no está implementado");
+        bicicletasLogic.deleteBicicleta(id);
     }
 
     /**
