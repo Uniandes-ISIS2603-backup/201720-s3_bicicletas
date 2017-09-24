@@ -19,41 +19,19 @@ import static javax.ws.rs.client.Entity.entity;
 public class DireccionDetailDTO extends DireccionDTO{
     
     
-    // relación  cero o muchos usuarios
-    private List<UsuarioDTO> usuario;
-    
-    // relación  estacion
-    private List<EstacionDTO> estacion;
-    /**
+       /**
      * Constructor por defecto
      */
     public DireccionDetailDTO() {
-        super();
     }
-    
-    
+
     /**
      * Constructor para transformar un Entity a un DTO
      *
      * @param entity
      */
     public DireccionDetailDTO(DireccionEntity entity) {
-        if (entity.getUsuarios()!= null) {
-            usuario = new ArrayList<>();
-            for (UsuarioEntity entityUsuario : entity.getUsuarios()) {
-                usuario.add(new UsuarioDTO(entityUsuario));
-            }
-
-        }
-        
-        if (entity.getEstaciones()!= null) {
-        estacion = new ArrayList<>();
-        for (EstacionEntity entityEstacion : entity.getEstaciones()) {
-            estacion.add(new EstacionDTO(entityEstacion));
-        }
-
-    }
-        
+        super(entity);
     }
 
     /**
@@ -64,40 +42,7 @@ public class DireccionDetailDTO extends DireccionDTO{
     @Override
     public DireccionEntity toEntity() {
         DireccionEntity direccionE = super.toEntity();
-    
-    if (usuario != null) {
-        List<UsuarioEntity> usuariosEntity = new ArrayList<>();
-        for (UsuarioDTO dtoUsuario : usuario) {
-            usuariosEntity.add(dtoUsuario.toEntity());
-        }
-        direccionE.setUsuarios(usuariosEntity);
-    }
-    
-    if (estacion != null) {
-        List<EstacionEntity> estacionsEntity = new ArrayList<>();
-        for (EstacionDTO dtoEstacion : estacion) {
-            estacionsEntity.add(dtoEstacion.toEntity());
-        }
-        direccionE.setEstaciones(estacionsEntity);
-    }
-    
-    return direccionE;
-    }
-
-    public List<UsuarioDTO> getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(List<UsuarioDTO> usuario) {
-        this.usuario = usuario;
-    }
-
-    public List<EstacionDTO> getEstacion() {
-        return estacion;
-    }
-
-    public void setEstacion(List<EstacionDTO> estacion) {
-        this.estacion = estacion;
+        return direccionE;
     }
     
     
