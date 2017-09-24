@@ -6,6 +6,7 @@
 package co.edu.uniandes.bicicletas.resources;
 
 import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
+import co.edu.uniandes.bicicletas.dtos.PagoDTO;
 import co.edu.uniandes.bicicletas.dtos.ReservaDTO;
 import co.edu.uniandes.bicicletas.ejb.ReservaLogic;
 import co.edu.uniandes.bicicletas.entities.ReservaEntity;
@@ -83,4 +84,13 @@ public class ReservaResource {
         }
         return ReservaEstacionResource.class;
     }
+    /**
+    @Path("{idReserva: \\d+}/Pago")
+    public PagoDTO getResource(@PathParam("idReserva") Long idReserva){
+        ReservaEntity entity = logica.getReserva(idReserva);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /Reserva/" + idReserva + "/Pago no existe.", 404);
+        }
+        return entity.get;
+    }*/
 }

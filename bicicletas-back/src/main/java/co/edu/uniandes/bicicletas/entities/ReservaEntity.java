@@ -33,6 +33,26 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     long idReserva;
     
     int Estado;
+    @OneToOne
+    CalificacionEntity calificacionSistema;
+    @OneToOne
+    CalificacionEntity calificacionUusario;
+
+    public  Integer getCalificacionSistema() {
+        return calificacionSistema.getNota();
+    }
+
+    public void setCalificacionSistema(Integer calificacionSistema) {
+        this.calificacionSistema.setNota(calificacionSistema);
+    }
+
+    public Integer getCalificacionUusario() {
+        return calificacionUusario.getNota();
+    }
+
+    public void setCalificacionUusario( Integer calificacionUusario) {
+        this.calificacionUusario.setNota(calificacionUusario);
+    }
     
     @OneToOne
     EstacionEntity EstacionLlegada;
@@ -54,7 +74,9 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     public void setEstacionSalida(EstacionEntity EstacionSalida) {
         this.EstacionSalida = EstacionSalida;
     }
-    double PrecioFinal;
+    
+    @OneToOne
+    PagoEntity PrecioFinal;
     
     @PodamExclude
     private CalificacionEntity calificacionEstacionLlegada;
@@ -95,11 +117,11 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     }
 
     public double getPrecioFinal() {
-        return PrecioFinal;
+        return PrecioFinal.getMonto();
     }
 
     public void setPrecioFinal(double PrecioFinal) {
-        this.PrecioFinal = PrecioFinal;
+        this.PrecioFinal.setMonto(PrecioFinal);
     }
     
 
