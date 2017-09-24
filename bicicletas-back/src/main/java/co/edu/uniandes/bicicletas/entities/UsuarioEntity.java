@@ -15,6 +15,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -42,8 +43,10 @@ public class UsuarioEntity extends BaseEntity implements Serializable {
    @Temporal(TemporalType.DATE)
    private Date fechaNacimiento;
    
+   @OneToMany(mappedBy = "usuario")
    @PodamExclude
    public List<DireccionEntity> direcciones = new  ArrayList<DireccionEntity>();
+   @OneToMany(mappedBy = "usuario")
    @PodamExclude
    public List<PuntoEntity> puntos = new  ArrayList<PuntoEntity>();
     
