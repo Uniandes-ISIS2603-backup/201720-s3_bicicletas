@@ -8,6 +8,7 @@ package co.edu.uniandes.bicicletas.entities;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -20,110 +21,110 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 
 public class ReservaEntity extends BaseEntity implements Serializable {
+    
     public static int CANCELADO=2; 
     public static int PAGO=1;
     public static int PAGADO=0; 
      
     @Temporal(TemporalType.DATE)
-    Date FechaEntrega;
+    private Date FechaEntrega;
     
     @Temporal(TemporalType.DATE)
-    Date FechaInicio;
+    private Date FechaInicio;
     
-    long idReserva;
+    private long idReserva;
     
-    int Estado;
-    @OneToOne
-    CalificacionEntity calificacionSistema;
-    @OneToOne
-    CalificacionEntity calificacionUusario;
-
-    public  Integer getCalificacionSistema() {
-        return calificacionSistema.getNota();
-    }
-
-    public void setCalificacionSistema(Integer calificacionSistema) {
-        this.calificacionSistema.setNota(calificacionSistema);
-    }
-
-    public Integer getCalificacionUusario() {
-        return calificacionUusario.getNota();
-    }
-
-    public void setCalificacionUusario( Integer calificacionUusario) {
-        this.calificacionUusario.setNota(calificacionUusario);
-    }
+    private int Estado;
     
     @OneToOne
-    EstacionEntity EstacionLlegada;
-    @OneToOne
-    EstacionEntity EstacionSalida;
-
-    public EstacionEntity getEstacionLlegada() {
-        return EstacionLlegada;
-    }
-
-    public void setEstacionLlegada(EstacionEntity EstacionLlegada) {
-        this.EstacionLlegada = EstacionLlegada;
-    }
-
-    public EstacionEntity getEstacionSalida() {
-        return EstacionSalida;
-    }
-
-    public void setEstacionSalida(EstacionEntity EstacionSalida) {
-        this.EstacionSalida = EstacionSalida;
-    }
+    private CalificacionEntity calificacionEstacionOrigen;
     
     @OneToOne
-    PagoEntity PrecioFinal;
-    
-    @PodamExclude
     private CalificacionEntity calificacionEstacionLlegada;
     
-    @PodamExclude
-    private CalificacionEntity calificacionEstacionOrigen;
+    @ManyToOne
+    private UsuarioEntity usuarioReserva;
+    
+    @OneToOne
+    private EstacionEntity EstacionLlegada;
+    
+    @OneToOne
+    private EstacionEntity EstacionSalida;
+    
+    @OneToOne 
+    private PagoEntity pago;
+    
+    private double precioFinal;
 
-    public int getEstado() {
-        return Estado;
-    }
-
-    public void setEstado(int estado) {
-        this.Estado = estado;
-    }
-
+    /**
+     * @return the FechaEntrega
+     */
     public Date getFechaEntrega() {
         return FechaEntrega;
     }
 
+    /**
+     * @param FechaEntrega the FechaEntrega to set
+     */
     public void setFechaEntrega(Date FechaEntrega) {
         this.FechaEntrega = FechaEntrega;
     }
 
+    /**
+     * @return the FechaInicio
+     */
     public Date getFechaInicio() {
         return FechaInicio;
     }
 
+    /**
+     * @param FechaInicio the FechaInicio to set
+     */
     public void setFechaInicio(Date FechaInicio) {
         this.FechaInicio = FechaInicio;
     }
 
+    /**
+     * @return the idReserva
+     */
     public long getIdReserva() {
         return idReserva;
     }
 
+    /**
+     * @param idReserva the idReserva to set
+     */
     public void setIdReserva(long idReserva) {
         this.idReserva = idReserva;
     }
 
-    public double getPrecioFinal() {
-        return PrecioFinal.getMonto();
+    /**
+     * @return the Estado
+     */
+    public int getEstado() {
+        return Estado;
     }
 
-    public void setPrecioFinal(double PrecioFinal) {
-        this.PrecioFinal.setMonto(PrecioFinal);
+    /**
+     * @param Estado the Estado to set
+     */
+    public void setEstado(int Estado) {
+        this.Estado = Estado;
     }
-    
+
+    /**
+     * @return the calificacionEstacionOrigen
+     */
+    public CalificacionEntity getCalificacionEstacionOrigen() {
+        return calificacionEstacionOrigen;
+    }
+
+    /**
+     * @param calificacionEstacionOrigen the calificacionEstacionOrigen to set
+     */
+    public void setCalificacionEstacionOrigen(CalificacionEntity calificacionEstacionOrigen) {
+        this.calificacionEstacionOrigen = calificacionEstacionOrigen;
+    }
 
     /**
      * @return the calificacionEstacionLlegada
@@ -140,19 +141,82 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     }
 
     /**
-     * @return the calificacionEstacionOrigen
+     * @return the usuarioReserva
      */
-    public CalificacionEntity getCalificacionEstacionOrigen() {
-        return calificacionEstacionOrigen;
+    public UsuarioEntity getUsuarioReserva() {
+        return usuarioReserva;
     }
 
     /**
-     * @param calificacionEstacionOrigen the calificacionEstacionOrigen to set
+     * @param usuarioReserva the usuarioReserva to set
      */
-    public void setCalificacionEstacionOrigen(CalificacionEntity calificacionEstacionOrigen) {
-        this.calificacionEstacionOrigen = calificacionEstacionOrigen;
+    public void setUsuarioReserva(UsuarioEntity usuarioReserva) {
+        this.usuarioReserva = usuarioReserva;
     }
+
+    /**
+     * @return the EstacionLlegada
+     */
+    public EstacionEntity getEstacionLlegada() {
+        return EstacionLlegada;
+    }
+
+    /**
+     * @param EstacionLlegada the EstacionLlegada to set
+     */
+    public void setEstacionLlegada(EstacionEntity EstacionLlegada) {
+        this.EstacionLlegada = EstacionLlegada;
+    }
+
+    /**
+     * @return the EstacionSalida
+     */
+    public EstacionEntity getEstacionSalida() {
+        return EstacionSalida;
+    }
+
+    /**
+     * @param EstacionSalida the EstacionSalida to set
+     */
+    public void setEstacionSalida(EstacionEntity EstacionSalida) {
+        this.EstacionSalida = EstacionSalida;
+    }
+
+    /**
+     * @return the pago
+     */
+    public PagoEntity getPago() {
+        return pago;
+    }
+
+    /**
+     * @param pago the pago to set
+     */
+    public void setPago(PagoEntity pago) {
+        this.pago = pago;
+    }
+
+    /**
+     * @return the PrecioFinal
+     */
+    public double getPrecioFinal() {
+        return precioFinal;
+    }
+
+    /**
+     * @param PrecioFinal the PrecioFinal to set
+     */
+    public void setPrecioFinal(double precioFinal) {
+        this.precioFinal = precioFinal;
+    }
+
+    
+
+  }
+
+
+
+
     
     
     
-}
