@@ -28,7 +28,7 @@ import javax.ws.rs.WebApplicationException;
  *
  * @author ds.chacon
  */
-@Path("reservas")
+@Path("/reservas")
 @Produces("application/json")
 @Consumes("application/json")
 @Stateless
