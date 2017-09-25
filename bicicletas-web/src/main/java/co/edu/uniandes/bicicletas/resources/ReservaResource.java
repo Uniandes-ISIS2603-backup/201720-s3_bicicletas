@@ -58,7 +58,7 @@ public class ReservaResource {
     
     @POST
     public ReservaDTO crearReserva (ReservaDTO dto) throws BusinessLogicException {
-        return new ReservaDTO(logica.crearReserva(dto.toEntity()));
+        return new ReservaDTO(logica.crearReserva(dto.getUsuarioReserva().getId()));
     }
     
     @PUT
