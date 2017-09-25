@@ -24,8 +24,8 @@ public class UsuarioDTO {
    private Integer tipoId; 
    private Long documentoUsuario;
    private Date fechaNacimiento;
-   public List<DireccionEntity> direcciones = new  ArrayList<DireccionEntity>();
-   public List<PuntoEntity> puntos = new  ArrayList<PuntoEntity>();
+ //public List<DireccionEntity> direcciones = new  ArrayList<DireccionEntity>();
+  // public List<PuntoEntity> puntos = new  ArrayList<PuntoEntity>();
    
     /**
      * Constructor por defecto
@@ -44,25 +44,25 @@ public class UsuarioDTO {
         this.tipoId= usuario.getTipoId();
         this.documentoUsuario= usuario.getDocumentoUsuario();
         this.fechaNacimiento= usuario.getFechaNacimiento();
-        this.direcciones= usuario.getDirecciones();
-        this.puntos= usuario.getPuntos();
+       // this.direcciones= usuario.getDirecciones();
+      //  this.puntos= usuario.getPuntos();
     }
 
-    public List<DireccionEntity> getDirecciones() {
-        return direcciones;
-    }
-
-    public void setDirecciones(List<DireccionEntity> direcciones) {
-        this.direcciones = direcciones;
-    }
-
-    public List<PuntoEntity> getPuntos() {
-        return puntos;
-    }
-
-    public void setPuntos(List<PuntoEntity> puntos) {
-        this.puntos = puntos;
-    }
+   //public List<DireccionEntity> getDirecciones() {
+//		    return direcciones;
+//		 }
+//
+//		public void setDirecciones(List<DireccionEntity> direcciones) {
+//		    this.direcciones = direcciones;
+//		}
+//
+//		 public List<PuntoEntity> getPuntos() {
+//		    return puntos;
+//		 }
+//
+//		public void setPuntos(List<PuntoEntity> puntos) {
+//		    this.puntos = puntos;
+//		}
     
     public Long getId() {
         return id;
@@ -115,7 +115,8 @@ public class UsuarioDTO {
         entity.setTipoId(this.tipoId);
         entity.setDocumentoUsuario(this.documentoUsuario);
         entity.setFechaNacimiento(this.fechaNacimiento);
-        entity.setPuntos(this.puntos);
+        //entity.setDirecciones(direcciones);
+       // entity.setPuntos(this.puntos);
         return entity;
     }
 }
