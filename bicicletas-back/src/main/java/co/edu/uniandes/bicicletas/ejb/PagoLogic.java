@@ -6,12 +6,14 @@
 package co.edu.uniandes.bicicletas.ejb;
 
 import co.edu.uniandes.bicicletas.entities.PagoEntity;
+import co.edu.uniandes.bicicletas.entities.ReservaEntity;
 import co.edu.uniandes.bicicletas.persistence.PagoPersistence;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.ws.rs.WebApplicationException;
 
 /**
  *
@@ -62,6 +64,30 @@ public class PagoLogic {
     
     public List<PagoEntity> findAll(){
         return persistence.findAll();
+    }
+    
+    
+    public ReservaEntity darReserva(Long idPago){
+        PagoEntity pago = find(idPago); 
+        if(pago == null)
+            throw new WebApplicationException("No se encontró un pago con el id"
+                    + "dado");
+    
+    return pago.getReserva();
+    }
+    
+    
+    public ReservaEntity actualizarEstadoReserva(Long idPago, Integer nuevoEstado){
+        ReservaEntity reserva = darReserva(idPago);
+        Integer estadoReserva = reserva.getEstado(); 
+        if(nuevoEstado == PagoEntity.PAGADO && estadoReserva  == ReservaEntity.PAGO) //Cambiar por esperando pago
+            reserva.setEstado(ReservaEntity.PAGADO);
+        
+        else if((nuevoEstado == PagoEntity.REEMBOLSO_TOTAL || 
+                nuevoEstado == PagoEntity.REEMBOLSO_PARCIAL) && estadoReserva == 10) //Cambiar reembolso solicitado
+            reserva.setEstado(10);
+        
+        return reserva;
     }
 
 }

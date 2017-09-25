@@ -38,6 +38,41 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class PagoEntity extends BaseEntity implements Serializable{
     
+    /**
+     * Constante que modela el estado de una reserva en pagado. 
+     */
+    public final static Integer PAGADO = 0;
+    
+    /**
+     * Constante que modela el estado de una reserva en espera del pago.
+     */
+    public final static Integer ESPERANDO_PAGO = 1;
+    
+    /**
+     * Constante que modela el estado de un pago que no fue efectuado. Por ejemplo,
+     * si la persona está dentro de la central de pagos y este es abortado o el
+     * tiempo limite se alcanza. 
+     */
+    public final static Integer NO_EFECTUADO = 2;
+    
+    /**
+     * Constante que modela el estado de un pago que fue reembolsado de forma
+     * total. 
+     */
+    public final static Integer REEMBOLSO_TOTAL = 4;
+    
+    
+    /**
+     * Constante que modela el estado de un pago que se reembolso parcialmente
+     * porque la reserva no se hizo efectiva. 
+     */
+    public final static Integer REEMBOLSO_PARCIAL = 5;
+    
+      /**
+     * Constante que modela el estado de un pago el cual se está procesando.
+     */
+    public final static Integer PROCESANDO_PAGO = 7;
+    
     
     /**
      * Relación que modela una reserva asociada a un pago 
@@ -50,7 +85,7 @@ public class PagoEntity extends BaseEntity implements Serializable{
      * Atributo que modela el estado de un pago
      */
     
-    private int estado;
+    private Integer estado;
     
     /**
      * Atributo que modela la fecha en que fue realizado el pago
@@ -78,11 +113,11 @@ public class PagoEntity extends BaseEntity implements Serializable{
     
     private double monto;
 
-    public int getEstado() {
+    public Integer getEstado() {
         return estado;
     }
 
-    public void setEstado(int estado) {
+    public void setEstado(Integer estado) {
         this.estado = estado;
     }
 
@@ -121,6 +156,11 @@ public class PagoEntity extends BaseEntity implements Serializable{
     
     public ReservaEntity getReserva(){
         return reserva;
+    }
+    
+    
+    public void setReserva(ReservaEntity reserva){
+        this.reserva = reserva;
     }
     
     

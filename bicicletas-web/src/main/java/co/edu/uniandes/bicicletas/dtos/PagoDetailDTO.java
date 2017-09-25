@@ -13,6 +13,14 @@ import co.edu.uniandes.bicicletas.entities.PagoEntity;
  */
 public class PagoDetailDTO extends PagoDTO{
 
+    
+    /**
+     * Constructor vacio
+     */
+    public PagoDetailDTO(){
+        
+    }
+    
     public PagoDetailDTO (PagoEntity entity){
         super(entity);
     }

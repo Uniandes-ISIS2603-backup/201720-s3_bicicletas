@@ -28,10 +28,10 @@ import javax.ws.rs.WebApplicationException;
  *
  * @author jd.trujillom
  */
-@Path("/pagos")
+@Path("pagos")
 @Produces("application/json")
 @Consumes("application/json")
-@Stateless
+@RequestScoped
 public class PagoResource {
 
     @Inject
@@ -90,6 +90,13 @@ public class PagoResource {
         logic.deleteUsuario(id);
 
     }
+    
+    
+    @GET
+    @Path("{idPago: \\d+} /reserva")
+    public Class<ReservaPagoResource> getReservaPago(@PathParam("idPago") Long idPago){
+        return ReservaPagoResource.class;
+}
 
     private List<PagoDetailDTO> listEntity2DetailDTO(List<PagoEntity> entityList) {
         List<PagoDetailDTO> lista = new ArrayList<>();

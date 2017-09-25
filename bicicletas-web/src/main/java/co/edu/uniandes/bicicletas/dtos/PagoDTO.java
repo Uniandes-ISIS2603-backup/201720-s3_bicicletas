@@ -20,7 +20,9 @@ public class PagoDTO {
     private Integer estado;
     private Long idTransaccion;
     private Long idUsuario;
-    
+    /**
+     * Constructor por defecto
+     */
     public PagoDTO(){
         
     }

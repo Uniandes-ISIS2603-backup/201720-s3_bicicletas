@@ -7,6 +7,7 @@ package co.edu.uniandes.bicicletas.resources;
 
 import co.edu.uniandes.bicicletas.dtos.ReservaDTO;
 import co.edu.uniandes.bicicletas.ejb.PagoLogic;
+import co.edu.uniandes.bicicletas.entities.ReservaEntity;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
@@ -25,13 +26,16 @@ public class ReservaPagoResource {
     PagoLogic pagoLogic;
     
     @GET
-    public ReservaDTO darReserva(){
-        return null;
+    public ReservaDTO darReserva(Long idPago){
+        return new ReservaDTO(pagoLogic.darReserva(idPago));
     }
     
     @PUT
-    public ReservaDTO actualizarReserva(){
-        return null;
+    public ReservaDTO actualizarReserva(Long idPago, ReservaDTO reserva){
+        
+        Integer nuevoEstado = reserva.getEstado();
+        ReservaEntity reservaActualizada = pagoLogic.actualizarEstadoReserva(idPago, nuevoEstado);
+        return new ReservaDTO(reservaActualizada);
     }
     
     
