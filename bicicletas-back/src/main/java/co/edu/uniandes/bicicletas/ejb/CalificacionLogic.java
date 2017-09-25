@@ -78,7 +78,7 @@ public class CalificacionLogic
         }
         caliEntity.setReserva(reserva);
         
-        EstacionEntity estacion = estacionLogic.getEstacion(caliEntity.getIdEstacion());
+        EstacionEntity estacion = estacionLogic.getEstacion(caliEntity.getEstacion().getId());
         if(estacion == null)
         {
             throw new BusinessLogicException("No se encontró la estación que se desea calificar");

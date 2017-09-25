@@ -24,6 +24,7 @@ SOFTWARE.
 package co.edu.uniandes.bicicletas.dtos;
 
 import co.edu.uniandes.bicicletas.entities.CalificacionEntity;
+import co.edu.uniandes.bicicletas.entities.EstacionEntity;
 import java.util.Date;
 
 /**
@@ -36,7 +37,7 @@ public class CalificacionDTO
     private Date fechaCali;
     private Integer nota;
     private String descripcion;
-    private Long idEstacion;
+    private EstacionEntity estacion;
     private Long idUsuario;
    
      /**
@@ -57,8 +58,8 @@ public class CalificacionDTO
         this.fechaCali = caliEntity.getFechaCali();
         this.nota = caliEntity.getNota();
         this.descripcion = caliEntity.getDescripcion();
-        this.idEstacion = caliEntity.getIdEstacion();
-        this.idUsuario = caliEntity.getIdUsuario();
+        this.estacion = caliEntity.getEstacion();
+        this.idUsuario = caliEntity.getReserva().getUsuarioReserva().getId();
     }
     
     /**
@@ -72,7 +73,7 @@ public class CalificacionDTO
         caliEntity.setFechaCali(this.getFechaCali());
         caliEntity.setNota(this.getNota());
         caliEntity.setDescripcion(this.getDescripcion());
-        caliEntity.setIdEstacion(this.getIdEstacion());
+        caliEntity.setEstacion(this.getEstacion());
         caliEntity.setIdUsuario(this.getIdUsuario());
         
         return caliEntity;
@@ -135,20 +136,6 @@ public class CalificacionDTO
     }
 
     /**
-     * @return the idEstacion
-     */
-    public Long getIdEstacion() {
-        return idEstacion;
-    }
-
-    /**
-     * @param idEstacion the idEstacion to set
-     */
-    public void setIdEstacion(Long idEstacion) {
-        this.idEstacion = idEstacion;
-    }
-
-    /**
      * @return the idUsuario
      */
     public Long getIdUsuario() {
@@ -160,6 +147,20 @@ public class CalificacionDTO
      */
     public void setIdUsuario(Long idUsuario) {
         this.idUsuario = idUsuario;
+    }
+
+    /**
+     * @return the estacion
+     */
+    public EstacionEntity getEstacion() {
+        return estacion;
+    }
+
+    /**
+     * @param estacion the estacion to set
+     */
+    public void setEstacion(EstacionEntity estacion) {
+        this.estacion = estacion;
     }
     
     
