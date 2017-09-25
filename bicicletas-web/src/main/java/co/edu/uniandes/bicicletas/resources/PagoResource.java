@@ -28,10 +28,10 @@ import javax.ws.rs.WebApplicationException;
  *
  * @author jd.trujillom
  */
-@Path("pagos")
+@Path("/pagos")
 @Produces("application/json")
-@Consumes("aplicattion/json")
-@RequestScoped
+@Consumes("application/json")
+@Stateless
 public class PagoResource {
 
     @Inject
@@ -92,7 +92,7 @@ public class PagoResource {
     }
 
     private List<PagoDetailDTO> listEntity2DetailDTO(List<PagoEntity> entityList) {
-        List<PagoDetailDTO> lista = new ArrayList<PagoDetailDTO>();
+        List<PagoDetailDTO> lista = new ArrayList<>();
         for (PagoEntity entity : entityList) {
             lista.add(new PagoDetailDTO(entity));
         }

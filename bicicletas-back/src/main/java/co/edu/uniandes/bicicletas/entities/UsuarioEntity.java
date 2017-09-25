@@ -44,15 +44,16 @@ public class UsuarioEntity extends BaseEntity implements Serializable {
    @Temporal(TemporalType.DATE)
    private Date fechaNacimiento;
    
-   
+   @OneToMany
+   @PodamExclude
+   private List<ReservaEntity> reservas = new ArrayList<ReservaEntity>();
 
    @ManyToMany(mappedBy = "usuarios")
    @PodamExclude
    public List<DireccionEntity> direcciones = new  ArrayList<DireccionEntity>();
  
- 
    @PodamExclude
-  // @ManyToMany(mappedBy = "usuario")
+   @OneToMany
    public List<PuntoEntity> puntos = new  ArrayList<PuntoEntity>();
     
    
@@ -97,6 +98,20 @@ public class UsuarioEntity extends BaseEntity implements Serializable {
 
     public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
+    }
+
+    /**
+     * @return the reservas
+     */
+    public List<ReservaEntity> getReservas() {
+        return reservas;
+    }
+
+    /**
+     * @param reservas the reservas to set
+     */
+    public void setReservas(List<ReservaEntity> reservas) {
+        this.reservas = reservas;
     }
  
 }

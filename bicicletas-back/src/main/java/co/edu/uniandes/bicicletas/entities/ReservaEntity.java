@@ -8,6 +8,8 @@ package co.edu.uniandes.bicicletas.entities;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -19,67 +21,116 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 
 public class ReservaEntity extends BaseEntity implements Serializable {
+    
     public static int CANCELADO=2; 
     public static int PAGO=1;
     public static int PAGADO=0; 
-    
-    int estado;
+     
+    @Temporal(TemporalType.DATE)
+    private Date FechaEntrega;
     
     @Temporal(TemporalType.DATE)
-    Date FechaEntrega;
+    private Date FechaInicio;
     
-    @Temporal(TemporalType.DATE)
-    Date FechaInicio;
+    private long idReserva;
     
-    long idReserva;
-    double PrecioFinal;
+    private int Estado;
     
+    @OneToOne
+    @PodamExclude
+    private CalificacionEntity calificacionEstacionOrigen;
+    
+    @OneToOne
     @PodamExclude
     private CalificacionEntity calificacionEstacionLlegada;
     
+    @ManyToOne
     @PodamExclude
-    private CalificacionEntity calificacionEstacionOrigen;
+    private UsuarioEntity usuarioReserva;
+    
+    @OneToOne
+    @PodamExclude
+    private EstacionEntity EstacionLlegada;
+    
+    @OneToOne
+    @PodamExclude
+    private EstacionEntity EstacionSalida;
+    
+    @OneToOne 
+    @PodamExclude
+    private PagoEntity pago;
+    
+    private double precioFinal;
 
-    public int getEstado() {
-        return estado;
-    }
-
-    public void setEstado(int estado) {
-        this.estado = estado;
-    }
-
+    /**
+     * @return the FechaEntrega
+     */
     public Date getFechaEntrega() {
         return FechaEntrega;
     }
 
+    /**
+     * @param FechaEntrega the FechaEntrega to set
+     */
     public void setFechaEntrega(Date FechaEntrega) {
         this.FechaEntrega = FechaEntrega;
     }
 
+    /**
+     * @return the FechaInicio
+     */
     public Date getFechaInicio() {
         return FechaInicio;
     }
 
+    /**
+     * @param FechaInicio the FechaInicio to set
+     */
     public void setFechaInicio(Date FechaInicio) {
         this.FechaInicio = FechaInicio;
     }
 
+    /**
+     * @return the idReserva
+     */
     public long getIdReserva() {
         return idReserva;
     }
 
+    /**
+     * @param idReserva the idReserva to set
+     */
     public void setIdReserva(long idReserva) {
         this.idReserva = idReserva;
     }
 
-    public double getPrecioFinal() {
-        return PrecioFinal;
+    /**
+     * @return the Estado
+     */
+    public int getEstado() {
+        return Estado;
     }
 
-    public void setPrecioFinal(double PrecioFinal) {
-        this.PrecioFinal = PrecioFinal;
+    /**
+     * @param Estado the Estado to set
+     */
+    public void setEstado(int Estado) {
+        this.Estado = Estado;
     }
-    
+
+    /**
+     * @return the calificacionEstacionOrigen
+     */
+    public CalificacionEntity getCalificacionEstacionOrigen() {
+        return calificacionEstacionOrigen;
+    }
+
+    /**
+     * @param calificacionEstacionOrigen the calificacionEstacionOrigen to set
+     */
+    public void setCalificacionEstacionOrigen(CalificacionEntity calificacionEstacionOrigen) {
+        this.calificacionEstacionOrigen = calificacionEstacionOrigen;
+    }
 
     /**
      * @return the calificacionEstacionLlegada
@@ -96,19 +147,82 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     }
 
     /**
-     * @return the calificacionEstacionOrigen
+     * @return the usuarioReserva
      */
-    public CalificacionEntity getCalificacionEstacionOrigen() {
-        return calificacionEstacionOrigen;
+    public UsuarioEntity getUsuarioReserva() {
+        return usuarioReserva;
     }
 
     /**
-     * @param calificacionEstacionOrigen the calificacionEstacionOrigen to set
+     * @param usuarioReserva the usuarioReserva to set
      */
-    public void setCalificacionEstacionOrigen(CalificacionEntity calificacionEstacionOrigen) {
-        this.calificacionEstacionOrigen = calificacionEstacionOrigen;
+    public void setUsuarioReserva(UsuarioEntity usuarioReserva) {
+        this.usuarioReserva = usuarioReserva;
     }
+
+    /**
+     * @return the EstacionLlegada
+     */
+    public EstacionEntity getEstacionLlegada() {
+        return EstacionLlegada;
+    }
+
+    /**
+     * @param EstacionLlegada the EstacionLlegada to set
+     */
+    public void setEstacionLlegada(EstacionEntity EstacionLlegada) {
+        this.EstacionLlegada = EstacionLlegada;
+    }
+
+    /**
+     * @return the EstacionSalida
+     */
+    public EstacionEntity getEstacionSalida() {
+        return EstacionSalida;
+    }
+
+    /**
+     * @param EstacionSalida the EstacionSalida to set
+     */
+    public void setEstacionSalida(EstacionEntity EstacionSalida) {
+        this.EstacionSalida = EstacionSalida;
+    }
+
+    /**
+     * @return the pago
+     */
+    public PagoEntity getPago() {
+        return pago;
+    }
+
+    /**
+     * @param pago the pago to set
+     */
+    public void setPago(PagoEntity pago) {
+        this.pago = pago;
+    }
+
+    /**
+     * @return the PrecioFinal
+     */
+    public double getPrecioFinal() {
+        return precioFinal;
+    }
+
+    /**
+     * @param PrecioFinal the PrecioFinal to set
+     */
+    public void setPrecioFinal(double precioFinal) {
+        this.precioFinal = precioFinal;
+    }
+
+    
+
+  }
+
+
+
+
     
     
     
-}

@@ -27,7 +27,9 @@ package co.edu.uniandes.bicicletas.entities;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  * Información de un pago asociado a una reserva
@@ -35,6 +37,14 @@ import javax.persistence.Temporal;
  */
 @Entity
 public class PagoEntity extends BaseEntity implements Serializable{
+    
+    
+    /**
+     * Relación que modela una reserva asociada a un pago 
+     */
+    @OneToOne
+    @PodamExclude
+    ReservaEntity reserva;
     
     /**
      * Atributo que modela el estado de un pago
@@ -107,6 +117,13 @@ public class PagoEntity extends BaseEntity implements Serializable{
     public void setMonto(double monto) {
         this.monto = monto;
     }
+    
+    
+    public ReservaEntity getReserva(){
+        return reserva;
+    }
+    
+    
 
    
     

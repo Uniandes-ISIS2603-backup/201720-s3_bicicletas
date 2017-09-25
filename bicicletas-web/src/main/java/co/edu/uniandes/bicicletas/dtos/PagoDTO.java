@@ -21,6 +21,11 @@ public class PagoDTO {
     private Long idTransaccion;
     private Long idUsuario;
     
+    public PagoDTO(){
+        
+    }
+    
+    
     public PagoDTO(PagoEntity pago){
         this.id = pago.getId();
         this.monto = pago.getMonto();
