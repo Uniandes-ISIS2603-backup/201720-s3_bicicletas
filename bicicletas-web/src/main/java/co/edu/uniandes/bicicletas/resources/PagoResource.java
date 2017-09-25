@@ -91,10 +91,11 @@ public class PagoResource {
 
     }
     
-    
-    @GET
-    @Path("{idPago: \\d+} /reserva")
+    @Path("{idPago: \\d+}/reserva")
     public Class<ReservaPagoResource> getReservaPago(@PathParam("idPago") Long idPago){
+        PagoEntity pago = logic.find(idPago);
+        if(pago == null)
+            throw new WebApplicationException("El recurso /pagos/" + idPago+ "no existe.", 404);
         return ReservaPagoResource.class;
 }
 
