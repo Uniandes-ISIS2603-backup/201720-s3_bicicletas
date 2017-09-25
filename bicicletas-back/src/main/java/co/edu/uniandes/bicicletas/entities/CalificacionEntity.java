@@ -8,6 +8,7 @@ package co.edu.uniandes.bicicletas.entities;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -30,6 +31,18 @@ public class CalificacionEntity extends BaseEntity implements Serializable
      */
     @Temporal(TemporalType.DATE)
     private Date fechaCali;
+    
+    @ManyToOne
+    @PodamExclude
+    private EstacionEntity estacion;
+
+    public EstacionEntity getEstacion() {
+        return estacion;
+    }
+
+    public void setEstacion(EstacionEntity estacion) {
+        this.estacion = estacion;
+    }
     
     /**
      * El id del usuario que realiza la calificación

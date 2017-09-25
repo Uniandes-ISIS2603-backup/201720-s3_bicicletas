@@ -28,16 +28,16 @@ public class EstacionEntity extends BaseEntity implements Serializable {
     private List<DireccionEntity> direcciones = new ArrayList<DireccionEntity>();
     
     @PodamExclude
-    @OneToMany(mappedBy = "")
-    private ArrayList<CalificacionEntity> calificaciones;
+    @OneToMany(mappedBy = "estacion")
+    private List<AccesorioEntity> accesorios = new ArrayList<AccesorioEntity>();
     
     @PodamExclude
     @OneToMany(mappedBy = "estacion")
-    private List<AccesorioEntity> accesorios;
+    private List<CalificacionEntity> calificacion = new ArrayList<CalificacionEntity>();
     
     @PodamExclude
     @ManyToMany
-    private List<ReservaEntity> reservas;
+    private List<ReservaEntity> reservas = new ArrayList<ReservaEntity>();
 
     public List<ReservaEntity> getReservas() {
         return reservas;
@@ -65,14 +65,11 @@ public class EstacionEntity extends BaseEntity implements Serializable {
         this.direcciones = direcciones;
     }
     
-    
-    
-
-    public ArrayList<CalificacionEntity> getCalificaciones() {
-        return calificaciones;
+   public List<CalificacionEntity> getCalificacion() {
+        return calificacion;
     }
 
-    public void setCalificaciones(ArrayList<CalificacionEntity> calificaciones) {
-        this.calificaciones = calificaciones;
+    public void setCalificacion(List<CalificacionEntity> calificaciones) {
+        this.calificacion = calificaciones;
     }  
 }

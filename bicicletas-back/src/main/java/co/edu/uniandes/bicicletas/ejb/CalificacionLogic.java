@@ -79,13 +79,13 @@ public class CalificacionLogic
         
         CalificacionEntity califiEntity = caliPersistence.create(caliEntity);
         
-        ArrayList<CalificacionEntity> listaCalis = estacion.getCalificaciones();
+        List<CalificacionEntity> listaCalis = estacion.getCalificacion();
         
         if(listaCalis == null)
         {
             listaCalis = new ArrayList<>();
             listaCalis.add(califiEntity);
-            estacion.setCalificaciones(listaCalis);
+            estacion.setCalificacion(listaCalis);
         }
         
         listaCalis.add(califiEntity);
@@ -106,20 +106,20 @@ public class CalificacionLogic
     {
         LOGGER.info("Inicia proceso de consultar todos las calificaciones de una estación");
         EstacionEntity estacion = estacionLogic.getEstacion(idEstacion);
-        if (estacion.getCalificaciones() == null) {
+        if (estacion.getCalificacion() == null) {
             throw new BusinessLogicException("La estación que consultó aún no tiene calificaciones");
         }
-        if (estacion.getCalificaciones().isEmpty()) {
+        if (estacion.getCalificacion().isEmpty()) {
             throw new BusinessLogicException("La estación que consultó aún no tiene calificaciones");
         }
         
-        return estacion.getCalificaciones();
+        return estacion.getCalificacion();
     }
     
     public CalificacionEntity getCalificacionEstacion(Long idEstacion, Long idCalificacion) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar una calificación de la estación con id = {0}", idEstacion);
-        List<CalificacionEntity> lista = estacionLogic.getEstacion(idEstacion).getCalificaciones();
+        List<CalificacionEntity> lista = estacionLogic.getEstacion(idEstacion).getCalificacion();
      
         if (lista == null) {
             throw new BusinessLogicException("La estación que consultó aún no tiene calificaciones");

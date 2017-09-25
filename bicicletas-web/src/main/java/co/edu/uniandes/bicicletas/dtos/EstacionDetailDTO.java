@@ -23,7 +23,7 @@ public class EstacionDetailDTO {
 
     
     private List<DireccionEntity> direccion;
-    private ArrayList<CalificacionEntity> calificaciones;
+    private List<CalificacionEntity> calificaciones;
     private List<AccesorioEntity> accesorios;
     private List<ReservaEntity> reservas;
     private Long id;
@@ -40,7 +40,7 @@ public class EstacionDetailDTO {
             this.direccion = entidad.getDirecciones();
             this.id = entidad.getId();
             this.accesorios = entidad.getAccesorios();
-            this.calificaciones = entidad.getCalificaciones();
+            this.calificaciones = entidad.getCalificacion();
             this.reservas = entidad.getReservas();
         }
     }
@@ -53,11 +53,11 @@ public class EstacionDetailDTO {
         this.reservas = reservas;
     }
     
-    public ArrayList<CalificacionEntity> getCalificaciones() {
+    public List<CalificacionEntity> getCalificaciones() {
         return calificaciones;
     }
 
-    public void setCalificaciones(ArrayList<CalificacionEntity> calificaciones) {
+    public void setCalificaciones(List<CalificacionEntity> calificaciones) {
         this.calificaciones = calificaciones;
     }
     
@@ -99,7 +99,7 @@ public class EstacionDetailDTO {
         entity.setId(this.getId());
         entity.setDirecciones(this.getDireccion());
         entity.setAccesorios(this.getAccesorios());
-        entity.setCalificaciones(this.getCalificaciones());
+        entity.setCalificacion(this.getCalificaciones());
         entity.setReservas(this.getReservas());
         return entity;
     }

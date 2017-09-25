@@ -87,9 +87,9 @@ public class EstacionLogic
             List <AccesorioEntity> lista = new ArrayList<>();
             entidad.setAccesorios(lista);
         }
-        else if(entidad.getCalificaciones()==null){
+        else if(entidad.getCalificacion()==null){
             ArrayList <CalificacionEntity> lista = new ArrayList<>();
-            entidad.setCalificaciones(lista);
+            entidad.setCalificacion(lista);
         }
         else if(entidad.getDirecciones()==null){
             List <DireccionEntity> lista = new ArrayList<>();
