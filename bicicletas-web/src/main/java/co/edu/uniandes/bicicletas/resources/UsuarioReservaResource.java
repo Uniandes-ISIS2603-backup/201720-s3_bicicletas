@@ -46,6 +46,13 @@ public class UsuarioReservaResource
         return listEntity2DTO(reservas);
     }
     
+    @GET
+    @Path("{id: \\d+}")
+    public ReservaDTO getReserva(@PathParam("id") Long id, @PathParam("idUsuario") Long idUsuario)
+    {
+        return new ReservaDTO(reservaLogic.getReserva(id));
+    }
+    
     @DELETE 
     public void deleteReserva(@PathParam("idUsuario") Long idUsuario) throws BusinessLogicException 
     {
@@ -66,5 +73,14 @@ public class UsuarioReservaResource
             lista.add(new ReservaDTO(puntoEntity));
         }
         return lista;
+    }
+    
+    @Path("{idReserva: \\d+}/calificaciones")
+    public Class<ReservaCalificacionResource> getCalificacionReservaResource(@PathParam("idReserva") Long idReserva) {
+        ReservaEntity entity = reservaLogic.getReserva(idReserva);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /reservas/" + idReserva + "/calificaciones no existe.", 404);
+        }
+        return ReservaCalificacionResource.class;
     }
 }
