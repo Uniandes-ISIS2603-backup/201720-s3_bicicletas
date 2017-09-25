@@ -84,5 +84,15 @@ public class EstacionResource {
         return EstacionCalificacionResource.class;
     }
     
+    //CODIGO AÑADIDO POR CM.ALBA10 PARA RELACIONAR CON DIRECCION
+    @Path("{estacionesId: \\d+}/direcciones")
+	    public Class<EstacionDireccionResource> getEstacionDireccionResource(@PathParam("estacionesID") Long estacionesId) {
+	        EstacionEntity entity = logica.getEstacion(estacionesId);
+	        if (entity == null) {
+	            throw new WebApplicationException("La estacion no existe", 404);
+	        }
+	        return EstacionDireccionResource.class;
+	    }
+    
 
 }
