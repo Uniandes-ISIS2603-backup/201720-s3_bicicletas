@@ -39,7 +39,7 @@ public class BicicletaDetailDTO extends BicicletaDTO {
     /**
      * Constructor por defecto
      */
-    public List<AccesorioBicicletaDTO> accesorios;
+    public List<AccesorioBicicletaDTO> accesorios=new ArrayList<AccesorioBicicletaDTO>();
     
     
     
@@ -53,7 +53,9 @@ public class BicicletaDetailDTO extends BicicletaDTO {
      */
     public BicicletaDetailDTO(BicicletaEntity entity) {
         super(entity);
-        accesorios = listEntity2DetailDTO(entity.getAccesorioBicicletas());
+        if(entity!=null){
+            accesorios = listEntity2DetailDTO(entity.getAccesorioBicicletas());
+        }
         
         
     }
@@ -81,6 +83,12 @@ public class BicicletaDetailDTO extends BicicletaDTO {
             list.add(x.toEntity());
         }
         return list;
+    }
+    private List<AccesorioBicicletaDTO> getAcc(){
+        return accesorios;
+    }
+    private void setAcc(List<AccesorioBicicletaDTO> temp){
+        accesorios=temp;
     }
 
 }
