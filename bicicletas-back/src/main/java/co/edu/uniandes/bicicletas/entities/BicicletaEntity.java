@@ -32,6 +32,7 @@ import static javax.persistence.CascadeType.REMOVE;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import static javax.persistence.FetchType.EAGER;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -55,6 +56,10 @@ public class BicicletaEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @OneToMany(cascade = CascadeType.REMOVE,fetch = FetchType.EAGER)
     private List<AccesorioBicicletaEntity> accesorios = new ArrayList<AccesorioBicicletaEntity>();
+    
+    @PodamExclude
+    @ManyToOne
+    private EstacionEntity estacion;
     /**
      * Este metodo permite cambiar el estado del Entity bicicleta en su marca.
      * @param pMarca 
@@ -103,5 +108,11 @@ public class BicicletaEntity extends BaseEntity implements Serializable {
     }
     public void setAccesoriosBicicleta(List<AccesorioBicicletaEntity> temp){
         accesorios=temp;
+    }
+    public void setEstacion(EstacionEntity temp){
+        estacion = temp;
+    }
+    public EstacionEntity getEstacion(){
+        return estacion;
     }
 }

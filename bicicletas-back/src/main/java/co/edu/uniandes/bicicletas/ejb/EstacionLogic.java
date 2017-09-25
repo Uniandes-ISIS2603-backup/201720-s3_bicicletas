@@ -25,6 +25,7 @@ package co.edu.uniandes.bicicletas.ejb;
 
 import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.bicicletas.entities.AccesorioEntity;
+import co.edu.uniandes.bicicletas.entities.BicicletaEntity;
 import co.edu.uniandes.bicicletas.entities.CalificacionEntity;
 import co.edu.uniandes.bicicletas.entities.DireccionEntity;
 import co.edu.uniandes.bicicletas.entities.EstacionEntity;
@@ -237,5 +238,35 @@ public class EstacionLogic
     }
     public void removeReserva(Long estacionId, Long reservaId) {
         reservaLogic.removeEstacion(reservaId, estacionId);
+    }
+    public BicicletaEntity getBiciEstacion(Long idEstacion,Long idBici){
+        EstacionEntity estacion = persistence.find(idEstacion);
+        if(estacion ==null){
+            throw new WebApplicationException("No hay una estación con dicho id", 402);
+        }
+        BicicletaEntity bici = bicicletaLogic.getBIcicleta(idBici);
+        boolean esta = false;
+        for(BicicletaEntity temp : estacion.getBicis()){
+            if(bici.equals(temp)){
+                esta = true;
+            }
+        }
+        if(esta=false){
+            throw new WebApplicationException("No hay una estación asociada a la bici", 402);
+        }
+        return bici;
+    }
+    public List<BicicletaEntity> getBicisEstacion(Long idEstacion){
+        EstacionEntity estacion = persistence.find(idEstacion);
+        if(estacion ==null){
+            throw new WebApplicationException("No hay una estación con dicho id", 402);
+        }
+        return estacion.getBicis();
+    }
+    public void upDateBici(EstacionEntity estacion,BicicletaEntity bici){
+        EstacionEntity aBorrar = bici.getEstacion();
+        aBorrar.getBicis().remove(bici);
+        bicicletaLogic.actualizarBicicleta(bici);
+        actualizarEstacion(estacion);
     }
 }

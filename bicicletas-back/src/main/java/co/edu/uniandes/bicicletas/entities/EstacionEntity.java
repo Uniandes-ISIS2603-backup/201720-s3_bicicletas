@@ -38,6 +38,7 @@ public class EstacionEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @ManyToMany
     private List<ReservaEntity> reservas = new ArrayList<ReservaEntity>();
+    
 
     public List<ReservaEntity> getReservas() {
         return reservas;
@@ -71,5 +72,16 @@ public class EstacionEntity extends BaseEntity implements Serializable {
 
     public void setCalificacion(List<CalificacionEntity> calificaciones) {
         this.calificacion = calificaciones;
-    }  
+    }
+    @PodamExclude
+    @OneToMany(cascade = CascadeType.REFRESH)
+    List<BicicletaEntity> bicicletas = new ArrayList<>();
+    
+    public void setBicics(List<BicicletaEntity> bici){
+        bicicletas = bici;
+    }
+    
+    public List<BicicletaEntity> getBicis(){
+        return bicicletas;
+    }
 }

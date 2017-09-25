@@ -28,7 +28,7 @@ import javax.ws.rs.Produces;
  *
  * @author js.torres1
  */
-@Path("bicicletas")
+@Path("/bicicletas")
 @Produces("application/json")
 @Consumes("application/json")
 @Stateless
@@ -107,7 +107,7 @@ public class AccesorioBicicletaBicicletaResource {
     @Path("{idBicicleta: \\d+AccesorioBicicleta/idAccesorioBici: \\d+}")
     public AccesorioBicicletaDTO getAccesorioBici(@PathParam("idBicicleta") Long idBici,@PathParam("idAccesorioBici") Long idAcc){
         AccesorioBicicletaEntity entity = superBiciLogic.getAccesorioBici(idBici, idAcc);
-        return null;
+        return new AccesorioBicicletaDTO(entity);
     }
 
     /**

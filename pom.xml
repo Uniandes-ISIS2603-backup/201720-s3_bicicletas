@@ -10,7 +10,6 @@
  
     <modules>
         <module>bicicletas-back</module>
-        <module>bicicletas-web</module>
     </modules>
 	
    <properties>

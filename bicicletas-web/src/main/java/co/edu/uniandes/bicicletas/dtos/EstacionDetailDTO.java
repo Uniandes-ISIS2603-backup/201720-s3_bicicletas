@@ -6,6 +6,7 @@
 package co.edu.uniandes.bicicletas.dtos;
 
 import co.edu.uniandes.bicicletas.entities.AccesorioEntity;
+import co.edu.uniandes.bicicletas.entities.BicicletaEntity;
 import co.edu.uniandes.bicicletas.entities.CalificacionEntity;
 import co.edu.uniandes.bicicletas.entities.DireccionEntity;
 import co.edu.uniandes.bicicletas.entities.EstacionEntity;
@@ -27,6 +28,7 @@ public class EstacionDetailDTO {
     private List<AccesorioEntity> accesorios;
     private List<ReservaEntity> reservas;
     private Long id;
+    private List<BicicletaDetailDTO> bicicletas = new ArrayList<>();
 
     
     
@@ -42,6 +44,7 @@ public class EstacionDetailDTO {
             this.accesorios = entidad.getAccesorios();
             this.calificaciones = entidad.getCalificacion();
             this.reservas = entidad.getReservas();
+            bicicletas = listEntity2DetailDTO(entidad.getBicis());
         }
     }
 
@@ -101,6 +104,27 @@ public class EstacionDetailDTO {
         entity.setAccesorios(this.getAccesorios());
         entity.setCalificacion(this.getCalificaciones());
         entity.setReservas(this.getReservas());
+        entity.setBicics(listDTO2Entity(bicicletas));
         return entity;
+    }
+    private List<BicicletaDetailDTO> listEntity2DetailDTO(List<BicicletaEntity> entityList) {
+        List<BicicletaDetailDTO> list = new ArrayList<>();
+        for (BicicletaEntity entity : entityList) {
+            list.add(new BicicletaDetailDTO(entity));
+        }
+        return list;
+    }
+    private List<BicicletaEntity> listDTO2Entity(List<BicicletaDetailDTO> entityList) {
+        List<BicicletaEntity> list = new ArrayList<>();
+        for (BicicletaDetailDTO x : entityList) {
+            list.add(x.toEntity());
+        }
+        return list;
+    }
+    public void setBicis(List<BicicletaDetailDTO> temp){
+        bicicletas = temp;
+    }
+    public List<BicicletaDetailDTO> getBicis(){
+        return bicicletas;
     }
 }

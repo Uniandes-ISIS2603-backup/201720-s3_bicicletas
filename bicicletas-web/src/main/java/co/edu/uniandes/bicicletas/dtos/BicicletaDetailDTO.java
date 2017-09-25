@@ -43,6 +43,7 @@ public class BicicletaDetailDTO extends BicicletaDTO {
     
     
     
+    
     public BicicletaDetailDTO() {
     }
 
