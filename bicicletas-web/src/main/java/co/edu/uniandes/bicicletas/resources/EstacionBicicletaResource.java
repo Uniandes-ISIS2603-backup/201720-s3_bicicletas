@@ -6,14 +6,18 @@
 package co.edu.uniandes.bicicletas.resources;
 
 import co.edu.uniandes.bicicletas.dtos.BicicletaDetailDTO;
+import co.edu.uniandes.bicicletas.dtos.EstacionDetailDTO;
 import co.edu.uniandes.bicicletas.ejb.BicicletaLogic;
 import co.edu.uniandes.bicicletas.ejb.EstacionLogic;
 import co.edu.uniandes.bicicletas.entities.BicicletaEntity;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -34,9 +38,28 @@ public class EstacionBicicletaResource {
      * 
      */
     @GET
-    @Path("{idBicicleta: \\d+AccesorioBicicleta/idAccesorioBici: \\d+}")
-    public BicicletaDetailDTO getBici(@PathParam("idBicicleta") Long idEstacion,@PathParam("idAccesorioBici") Long idBici){
+    @Path("{estacion: \\d+/bicicletas/idBicicleta: \\d+}")
+    public BicicletaDetailDTO getBici(@PathParam("idestacion") Long idEstacion,@PathParam("idBicicleta") Long idBici){
         BicicletaEntity entity = estacionLogic.getBiciEstacion(idEstacion, idBici);
         return new BicicletaDetailDTO(entity);
+    }
+    
+    @GET
+    @Path("{idEstacion: \\d+/bicicletas}")
+    public List<BicicletaDetailDTO> getBicicsEstacion(@PathParam("idEstacion") Long idEstacion) {
+        List<BicicletaEntity> listEntity = estacionLogic.getBicisEstacion(idEstacion);
+        return listEntity2DetailDTO(listEntity);
+    }
+    @PUT
+    @Path("{idEstacion: \\d+/bicicletas}")
+    public void updateBiciAso(@PathParam("idEstacion") Long idEstacion, BicicletaDetailDTO biciDTO){
+       estacionLogic.upDateBici(estacionLogic.getEstacion(idEstacion), biciDTO.toEntity());
+    }
+    private List<BicicletaDetailDTO> listEntity2DetailDTO(List<BicicletaEntity> entityList) {
+        List<BicicletaDetailDTO> list = new ArrayList<>();
+        for (BicicletaEntity entity : entityList) {
+            list.add(new BicicletaDetailDTO(entity));
+        }
+        return list;
     }
 }
