@@ -79,7 +79,7 @@ public class PagoLogic {
     
     public ReservaEntity actualizarEstadoReserva(Long idPago, Integer nuevoEstado){
         ReservaEntity reserva = darReserva(idPago);
-        Integer estadoReserva = reserva.getEstado(); 
+            Integer estadoReserva = reserva.getEstado(); 
         if(nuevoEstado == PagoEntity.PAGADO && estadoReserva  == ReservaEntity.PAGO) //Cambiar por esperando pago
             reserva.setEstado(ReservaEntity.PAGADO);
         

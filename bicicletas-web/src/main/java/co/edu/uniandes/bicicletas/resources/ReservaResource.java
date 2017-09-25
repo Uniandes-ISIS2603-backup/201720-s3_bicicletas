@@ -12,6 +12,7 @@ import co.edu.uniandes.bicicletas.entities.ReservaEntity;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -31,10 +32,9 @@ import javax.ws.rs.WebApplicationException;
 @Path("/reservas")
 @Produces("application/json")
 @Consumes("application/json")
-@Stateless
 public class ReservaResource {
     @Inject
-    ReservaLogic logica;
+    private ReservaLogic logica;
     
     private List<ReservaDTO> listEntity2DTO(List<ReservaEntity> entityList) {
         List<ReservaDTO> lista = new ArrayList<>();
@@ -85,12 +85,12 @@ public class ReservaResource {
     }
     
     @Path("{idReserva: \\d+}/Pago")
-    public Class<ReservaPagoResource> getResource(@PathParam("idReserva") Long idReserva){
+    public Class<PagoReservaResource> getResource(@PathParam("idReserva") Long idReserva){
         ReservaEntity entity = logica.getReserva(idReserva);
         if (entity == null) {
             throw new WebApplicationException("El recurso /Reserva/" + idReserva + "/Pago no existe.", 404);
         }
-        return ReservaPagoResource.class;
+        return PagoReservaResource.class;
     }
     
     @Path("{idReserva: \\d+}/usuario")
