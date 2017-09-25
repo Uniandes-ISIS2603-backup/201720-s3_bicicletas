@@ -17,7 +17,7 @@ insert into App.DireccionEntity(ID, CIUDAD, CODIGOPOSTAL, DESCRIPCION) values (2
 insert into App.USUARIOENTITY(ID, DOCUMENTOUSUARIO, FECHANACIMIENTO, NAME, TIPOID) values (1, 123456789, '09/14/1990', 'Usuario 1', 1);
 insert into App.USUARIOENTITY(ID, DOCUMENTOUSUARIO, FECHANACIMIENTO, NAME, TIPOID) values (2, 223456789, '10/14/1997', 'Usuario 2', 1);
 
-insert into App.ESTACIONENTITY(ID,NAME ) values (1, 'Estacion 1');
+insert into App.ESTACIONENTITY(ID, NAME) values (1, 'Estacion 1');
 insert into App.ESTACIONENTITY(ID, NAME) values (2, 'Estacion 2');
 
 insert into App.PUNTOENTITY(ID, FECHAPUNTO, USUARIOPUNTO_ID) values (1, '09/24/2017', 1);
