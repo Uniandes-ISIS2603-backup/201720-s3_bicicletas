@@ -26,6 +26,7 @@ package co.edu.uniandes.bicicletas.ejb;
 import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.bicicletas.entities.DireccionEntity;
 import co.edu.uniandes.bicicletas.entities.EstacionEntity;
+import co.edu.uniandes.bicicletas.entities.ReservaEntity;
 import co.edu.uniandes.bicicletas.persistence.EstacionPersistence;
 import java.util.List;
 import java.util.logging.Level;
@@ -51,6 +52,9 @@ public class EstacionLogic
     
     @Inject
     private BicicletaLogic bicicletaLogic;
+    
+    @Inject
+    private ReservaLogic reservaLogic;
     
     public EstacionEntity getEstacion(Long id) throws WebApplicationException
     {
@@ -175,4 +179,44 @@ public class EstacionLogic
         direccionLogic.removeEstacion(direccionesId, estacionId);
     }
     
+    public List<ReservaEntity> listReservas(Long estacionId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los libros del autor con id = {0}", estacionId);
+        return getEstacion(estacionId).getReservas();
+    }
+    
+    public ReservaEntity getReserva(Long estacionId, Long reservaId) {
+        List<ReservaEntity> list = getEstacion(estacionId).getReservas();
+        ReservaEntity rEntity = new ReservaEntity();
+        rEntity.setId(reservaId);
+        int index = list.indexOf(rEntity);
+        if (index >= 0) {
+            return list.get(index);
+        }
+        return null;
+    }
+
+    
+    public ReservaEntity addReserva(Long estacionId, Long reservasId) {
+        reservaLogic.addEstacion(reservasId, estacionId);
+        return reservaLogic.getReserva(reservasId);
+    }
+    
+    public List<ReservaEntity> replaceReservas(Long estacionId, List<ReservaEntity> list) {
+        EstacionEntity estacionEntity = getEstacion(estacionId);
+        List<ReservaEntity> rList = reservaLogic.getReservas();
+        for (ReservaEntity reserva : rList) {
+            if (list.contains(reserva)) {
+                if (!reserva.getEstaciones().contains(estacionEntity)) {
+                    reservaLogic.addEstacion(reserva.getId(), estacionId);
+                }
+            } else {
+                reservaLogic.removeEstacion(reserva.getId(), estacionId);
+            }
+        }
+        estacionEntity.setReservas(list);
+        return estacionEntity.getReservas();
+    }
+    public void removeReserva(Long estacionId, Long reservaId) {
+        reservaLogic.removeEstacion(reservaId, estacionId);
+    }
 }

@@ -7,7 +7,9 @@ package co.edu.uniandes.bicicletas.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -51,11 +53,25 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     @OneToOne
     private EstacionEntity EstacionSalida;
     
+    @ManyToMany
+    private List<EstacionEntity> estaciones;
+    
     @OneToOne 
     private PagoEntity pago;
     
     private double precioFinal;
 
+    
+    public List<EstacionEntity> getEstaciones() {
+        return estaciones;
+    }
+
+    public void setEstaciones(EstacionEntity salida, EstacionEntity llegada) {
+        this.estaciones.add(salida);
+        this.estaciones.add(llegada);
+    }
+    
+    
     /**
      * @return the FechaEntrega
      */

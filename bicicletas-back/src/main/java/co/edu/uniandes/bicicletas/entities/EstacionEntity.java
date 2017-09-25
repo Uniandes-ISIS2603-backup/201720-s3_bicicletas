@@ -23,9 +23,6 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class EstacionEntity extends BaseEntity implements Serializable {
     
-    /**Variable que modela el nombre de una estacion */
-    private String nombre;
-    
     @ManyToMany
     @PodamExclude
     private List<DireccionEntity> direcciones = new ArrayList<DireccionEntity>();
@@ -37,6 +34,18 @@ public class EstacionEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @OneToMany(mappedBy = "estacion")
     private List<AccesorioEntity> accesorios;
+    
+    @PodamExclude
+    @ManyToMany
+    private List<ReservaEntity> reservas;
+
+    public List<ReservaEntity> getReservas() {
+        return reservas;
+    }
+
+    public void setReservas(List<ReservaEntity> reservas) {
+        this.reservas = reservas;
+    }
 
     public List<AccesorioEntity> getAccesorios() {
         return accesorios;
@@ -65,20 +74,5 @@ public class EstacionEntity extends BaseEntity implements Serializable {
 
     public void setCalificaciones(ArrayList<CalificacionEntity> calificaciones) {
         this.calificaciones = calificaciones;
-    }
-    
-    
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    
-    
-    
-    
-   
+    }  
 }

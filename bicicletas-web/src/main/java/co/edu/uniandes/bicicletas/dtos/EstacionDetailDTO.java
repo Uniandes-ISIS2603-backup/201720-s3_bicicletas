@@ -1,43 +1,56 @@
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
-*/
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package co.edu.uniandes.bicicletas.dtos;
 
 import co.edu.uniandes.bicicletas.entities.AccesorioEntity;
 import co.edu.uniandes.bicicletas.entities.CalificacionEntity;
 import co.edu.uniandes.bicicletas.entities.DireccionEntity;
 import co.edu.uniandes.bicicletas.entities.EstacionEntity;
+import co.edu.uniandes.bicicletas.entities.ReservaEntity;
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  *
  * @author ka.babativa
  */
-public class EstacionDTO {
+public class EstacionDetailDTO {
+    
     private String nombre;
 
     
     private List<DireccionEntity> direccion;
     private ArrayList<CalificacionEntity> calificaciones;
     private List<AccesorioEntity> accesorios;
+    private List<ReservaEntity> reservas;
     private Long id;
 
     
     
-    public EstacionDTO(){
+    public EstacionDetailDTO(){
         
     }
     
-    public EstacionDTO(EstacionEntity entidad) {
+    public EstacionDetailDTO(EstacionEntity entidad) {
         if(entidad!=null){
             this.nombre = entidad.getName();
             this.direccion = entidad.getDirecciones();
             this.id = entidad.getId();
             this.accesorios = entidad.getAccesorios();
             this.calificaciones = entidad.getCalificaciones();
+            this.reservas = entidad.getReservas();
         }
+    }
+
+    public List<ReservaEntity> getReservas() {
+        return reservas;
+    }
+
+    public void setReservas(List<ReservaEntity> reservas) {
+        this.reservas = reservas;
     }
     
     public ArrayList<CalificacionEntity> getCalificaciones() {
@@ -87,6 +100,7 @@ public class EstacionDTO {
         entity.setDirecciones(this.getDireccion());
         entity.setAccesorios(this.getAccesorios());
         entity.setCalificaciones(this.getCalificaciones());
+        entity.setReservas(this.getReservas());
         return entity;
     }
 }

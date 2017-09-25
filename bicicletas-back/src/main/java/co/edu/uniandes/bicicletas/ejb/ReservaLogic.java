@@ -24,6 +24,7 @@ SOFTWARE.
 
 package co.edu.uniandes.bicicletas.ejb;
 
+import co.edu.uniandes.bicicletas.entities.EstacionEntity;
 import co.edu.uniandes.bicicletas.entities.ReservaEntity;
 import co.edu.uniandes.bicicletas.persistence.ReservaPersistence;
 import java.util.List;
@@ -71,5 +72,47 @@ public class ReservaLogic
             throw new WebApplicationException("No hay una estación con dicho id", 402);
         }
         return persistence.update(entidad);
+    }
+    
+    public List<EstacionEntity> listEstaciones(Long reservaId){
+        return getReserva(reservaId).getEstaciones();
+    }
+    
+    public EstacionEntity getEstacion(Long reservaId, Long estacionId){
+        List<EstacionEntity> lista = getReserva(reservaId).getEstaciones();
+        EstacionEntity estacion = new EstacionEntity();
+        estacion.setId(estacionId);
+        int index = lista.indexOf(estacion);
+        if(index >= 0){
+            return lista.get(index);
+        }
+        return null;
+    }
+    
+    public EstacionEntity addEstacion(Long reservaId, Long estacionesId){
+        ReservaEntity reserva = getReserva(reservaId);
+        EstacionEntity estacionEntity = new EstacionEntity();
+        estacionEntity.setId(estacionesId);
+        if(reserva.getEstaciones().size()<2){
+            reserva.getEstaciones().add(estacionEntity);
+            return getEstacion(reservaId, estacionesId);
+        }
+        else
+            return null;
+    }
+    
+    public List<EstacionEntity> replaceEstacion(Long reservaId, List<ReservaEntity> list) {
+        ReservaEntity rEntity = getReserva(reservaId);
+        EstacionEntity salida = rEntity.getEstacionSalida();
+         EstacionEntity llegada = rEntity.getEstacionLlegada();
+        rEntity.setEstaciones(salida, llegada);
+        return rEntity.getEstaciones();
+    }
+    
+    public void removeEstacion(Long reservaId, Long estacionId){
+        ReservaEntity entity = getReserva(reservaId);
+        EstacionEntity eEntity = new EstacionEntity();
+        eEntity.setId(estacionId);
+        entity.getEstaciones().remove(eEntity);
     }
 }
