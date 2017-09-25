@@ -24,10 +24,13 @@ SOFTWARE.
 package co.edu.uniandes.bicicletas.ejb;
 
 import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
+import co.edu.uniandes.bicicletas.entities.AccesorioEntity;
+import co.edu.uniandes.bicicletas.entities.CalificacionEntity;
 import co.edu.uniandes.bicicletas.entities.DireccionEntity;
 import co.edu.uniandes.bicicletas.entities.EstacionEntity;
 import co.edu.uniandes.bicicletas.entities.ReservaEntity;
 import co.edu.uniandes.bicicletas.persistence.EstacionPersistence;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import javax.ejb.Stateless;
@@ -80,6 +83,22 @@ public class EstacionLogic
     }
     
     public EstacionEntity crearEstacion(EstacionEntity entidad){
+        if(entidad.getAccesorios()==null){
+            List <AccesorioEntity> lista = new ArrayList<>();
+            entidad.setAccesorios(lista);
+        }
+        else if(entidad.getCalificaciones()==null){
+            ArrayList <CalificacionEntity> lista = new ArrayList<>();
+            entidad.setCalificaciones(lista);
+        }
+        else if(entidad.getDirecciones()==null){
+            List <DireccionEntity> lista = new ArrayList<>();
+            entidad.setDirecciones(lista);
+        }
+        else if(entidad.getReservas()==null){
+            List <ReservaEntity> lista = new ArrayList<>();
+            entidad.setReservas(lista);
+        }
         persistence.create(entidad);
         return entidad;
     }
