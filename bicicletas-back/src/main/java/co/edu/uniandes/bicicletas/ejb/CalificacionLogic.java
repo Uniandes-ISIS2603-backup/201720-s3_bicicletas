@@ -62,23 +62,22 @@ public class CalificacionLogic
      * @return El objero CalificacionEntity creado
      * @throws BusinessLogicException Se lanza si no se existe la estación que se desea calificar
      */
-    public CalificacionEntity createCalificacion(Long idReserva, CalificacionEntity caliEntity) throws BusinessLogicException
+    public CalificacionEntity createCalificacion(Long cali, Long idReserva, CalificacionEntity caliEntity) throws BusinessLogicException
     {
         LOGGER.info("Inicia proceso de crear una calificación");
         ReservaEntity reserva = reservaLogic.getReserva(idReserva);
-        
-        if(reserva == null)
-        {
-            throw new BusinessLogicException("No se puede agregar una calificación a una reserva que no existe en el sistema");
-        }
         
         if(reserva.getCalificacionEstacionLlegada() != null && reserva.getCalificacionEstacionOrigen() != null )
         {
              throw new BusinessLogicException("Ya existe una calificación tanto para la estación de origen como para la de llegada");
         }
+        
+        if(!(cali == 0 || cali == 1))
+        {
+             throw new BusinessLogicException("No se escoge bien a que estación pertenece la calificación");
+        }
         caliEntity.setReserva(reserva);
         
-        //Falta que se cree la relación entre Eeserva y Estacion
         EstacionEntity estacion = estacionLogic.getEstacion(caliEntity.getIdEstacion());
         if(estacion == null)
         {
@@ -98,11 +97,11 @@ public class CalificacionLogic
         
         listaCalis.add(califiEntity);
         
-        if(reserva.getCalificacionEstacionOrigen() == null)
+        if(cali == 0 && reserva.getCalificacionEstacionOrigen() == null)
         {
             reserva.setCalificacionEstacionOrigen(califiEntity);
         }
-        else
+        else if(cali == 1 && reserva.getCalificacionEstacionLlegada() == null)
         {
             reserva.setCalificacionEstacionLlegada(califiEntity);
         }
@@ -159,7 +158,7 @@ public class CalificacionLogic
      * @param cali 1 o 0 dependiendo de si se quiere ver la calificación de la estación de llegada u origen
      * @return Un objeto de CalificacionEntity 
      */
-    public CalificacionEntity getCalificionReserva(Long idReserva, Integer cali)
+    public CalificacionEntity getCalificionReserva(Long idReserva, Long cali)
     {
         LOGGER.info("Inicia proceso de consultar una calificación de una reserva");
         
@@ -186,7 +185,7 @@ public class CalificacionLogic
      * @param calEntity Objeto con los nuevos datos de la calificación
      * @return Objeto CalificacionEntity con los datos actualizado
      */
-    public CalificacionEntity updateCalificacion(Long idReserva, Integer cali, CalificacionEntity calEntity) {
+    public CalificacionEntity updateCalificacion(Long idReserva, Long cali, CalificacionEntity calEntity) {
         LOGGER.info("Inicia proceso de actualizar una calificacion");
         ReservaEntity reserva = reservaLogic.getReserva(idReserva);
         CalificacionEntity caliActualizada = caliPersistence.update(calEntity);

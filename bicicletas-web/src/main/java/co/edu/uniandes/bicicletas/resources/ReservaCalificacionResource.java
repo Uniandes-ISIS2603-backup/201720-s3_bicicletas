@@ -32,13 +32,15 @@ public class ReservaCalificacionResource
     private CalificacionLogic calificacionLogic;
     
     @POST
-    public CalificacionDTO createCalificacion(@PathParam("idReserva") Long idReserva, CalificacionDTO dto) throws BusinessLogicException
+    @Path("{id: \\d+}")
+    public CalificacionDTO createCalificacion(@PathParam("idReserva") Long idReserva, @PathParam("id") Long cali, CalificacionDTO dto) throws BusinessLogicException
     {
-         return new CalificacionDTO(calificacionLogic.createCalificacion(idReserva, dto.toEntity()));
+         return new CalificacionDTO(calificacionLogic.createCalificacion(cali,idReserva, dto.toEntity()));
     }
     
     @GET
-    public CalificacionDTO getCalificacionReserva(@PathParam("idReserva") Long idReserva, Integer cali) throws BusinessLogicException
+    @Path("{id: \\d+}")
+    public CalificacionDTO getCalificacionReserva(@PathParam("idReserva") Long idReserva, @PathParam("id") Long cali) throws BusinessLogicException
     {
         CalificacionEntity entity = calificacionLogic.getCalificionReserva(idReserva, cali);
         if (entity == null) 
@@ -52,7 +54,7 @@ public class ReservaCalificacionResource
     
     @PUT
     @Path("{id: \\d+}")
-    public CalificacionDTO updateCalificacion(@PathParam("idReserva") Long idReserva, @PathParam("id") Integer idCali, CalificacionDTO dto) throws BusinessLogicException 
+    public CalificacionDTO updateCalificacion(@PathParam("idReserva") Long idReserva, @PathParam("id") Long idCali, CalificacionDTO dto) throws BusinessLogicException 
     {
         CalificacionEntity entity = calificacionLogic.getCalificionReserva(idReserva, idCali);
         
@@ -72,7 +74,7 @@ public class ReservaCalificacionResource
 
     }
     
-    private String darNombreEstacion(Integer idCali)
+    private String darNombreEstacion(Long idCali)
     {
         String estacion = "estacionDe";
         if(idCali == 1 || idCali == 0)
