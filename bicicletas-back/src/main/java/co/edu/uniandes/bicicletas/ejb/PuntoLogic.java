@@ -66,12 +66,12 @@ public class PuntoLogic
         dateFormat.format(date); 
       
         List<PuntoEntity> puntos = usuario.getPuntos();
-        List<PuntoEntity> puntosNuevos = new ArrayList<PuntoEntity>(); ;
+        List<PuntoEntity> puntosNuevos = new ArrayList<>(); ;
         PuntoEntity punt;
         boolean crea = false;
         if(puntos == null)
         {
-            puntos = new ArrayList<PuntoEntity>();
+            puntos = new ArrayList<>();
             crea = true;
         }
         
@@ -125,7 +125,7 @@ public class PuntoLogic
         else
         {
             int size = puntos.size();
-            Long punt = null;
+            Long punt;
             for (int i = size-1; i >= size - 10; i--) 
             {
                 punt = puntos.get(i).getId();
