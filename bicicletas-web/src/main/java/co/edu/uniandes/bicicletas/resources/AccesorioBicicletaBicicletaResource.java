@@ -28,7 +28,7 @@ import javax.ws.rs.Produces;
  *
  * @author js.torres1
  */
-@Path("bicicletas/AccesorioBicicleta")
+@Path("bicicletas")
 @Produces("application/json")
 @Consumes("application/json")
 @Stateless
@@ -39,10 +39,11 @@ public class AccesorioBicicletaBicicletaResource {
     BicicletaLogic superBiciLogic;
     private static final Logger LOGGER = Logger.getLogger(AccesorioBicicletaBicicletaResource.class.getName());
 
-    /**
-     * POST http://localhost:8080/bicicletas-web/api/bicicletas/AccesorioBicicleta
+
+   /**
+     * POST http://localhost:8080/bicicletas-web/api/bicicletas
      *
-     * @param AccesorioBicicleta correponde a la representación java del objeto json
+     * @param Bicicleta correponde a la representación java del objeto json
      * enviado en el llamado.
      * @return Devuelve el objeto json de entrada que contiene el id creado por
      * la base de datos y el tipo del objeto java. Ejemplo: { "type":
@@ -50,33 +51,20 @@ public class AccesorioBicicletaBicicletaResource {
      * @throws BusinessLogicException
      */
     @POST
-    public AccesorioBicicletaDTO createAccesorioBici(AccesorioBicicletaDTO Bicicleta) throws BusinessLogicException {
+    @Path("{id: \\d+}/AccesorioBicicleta")
+    public AccesorioBicicletaDTO createAccesorioBici(@PathParam("idBicicleta")Long id,AccesorioBicicletaDTO accesorio) throws BusinessLogicException {
         // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
-        AccesorioBicicletaEntity BicicletaEntity = Bicicleta.toEntity();
+        AccesorioBicicletaEntity accBici = accesorio.toEntity();
         // Invoca la lógica para crear la Bicicleta nueva
-        AccesorioBicicletaEntity nuevoBicicleta = bicicletasLogic.createAccesorioBici(BicicletaEntity);
+        AccesorioBicicletaEntity nuevoBicicleta = superBiciLogic.createAccesorioBici(id, accBici);
         // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
         return new AccesorioBicicletaDTO(nuevoBicicleta);
     }
-
-    /**
-     * GET para todas las AccesorioBicicleta.
-     * http://localhost:8080/bicicletas-web/api/bicicletas/AccesorioBicicleta
-     *
-     * @return la lista de todas las Bicicletaes en objetos json DTO.
-     * @throws BusinessLogicException
-     */
-    @GET
-    public List<AccesorioBicicletaDTO> getAccesoriosBici() throws BusinessLogicException {
-        return listEntity2DetailDTO(bicicletasLogic.getAccesorioBici());
-    }
-
-   
     /**
      * PUT http://localhost:8080/bicicletas-web/api/bicicletas/1/AccesorioBicicleta/2 Ejemplo
      * json { "id": 2, "atirbuto1": "Valor nuevo" }
      *
-     * @param id corresponde a la Bicicleta a actualizar.
+     * @param idBici corresponde a la Bicicleta a actualizar.
      * @param bicicletas corresponde  al objeto con los cambios que se van a
      * realizar.
      * @return La Bicicleta actualizada.
@@ -86,19 +74,20 @@ public class AccesorioBicicletaBicicletaResource {
      * 404 con el mensaje.
      */
     @PUT
-    @Path("{id: \\d+}")
-    public AccesorioBicicletaDTO updateBicicleta(@PathParam("id") Long id, AccesorioBicicletaDTO bicicletas) throws BusinessLogicException, UnsupportedOperationException {
+    @Path("{idBicicleta: \\d+/AccesorioBicicleta}")
+    public AccesorioBicicletaDTO updateBicicleta(@PathParam("idBicicleta") Long idBici, AccesorioBicicletaDTO bicicletas) throws BusinessLogicException, UnsupportedOperationException {
           
           AccesorioBicicletaEntity entity =bicicletas.toEntity();
-          bicicletasLogic.actualizarAccesorioBici(entity);
+          superBiciLogic.updateAcc(idBici, entity);
           return new AccesorioBicicletaDTO(entity);
       
     }
 
     /**
-     * DELETE http://localhost:8080/bicicletas-web/api/bicicletass/{id}/AccesorioBicicleta/{idAccesorioBici}
+     * DELETE http://localhost:8080/bicicletas-web/api/bicicletas/{idBicicleta}/AccesorioBicicleta/{idAccesorioBici}
      *
-     * @param id corresponde a la Bicicleta a borrar.
+     * @param id corresponde a la Bicicleta a borrar el accesorio.
+     * @param idAcc corresponde al accesorio de la bicicleta a borrar.
      * @throws BusinessLogicException
      *
      * En caso de no existir el id de la Bicicleta a actualizar se retorna un
@@ -106,9 +95,19 @@ public class AccesorioBicicletaBicicletaResource {
      *
      */
     @DELETE
-    @Path("{id: \\d+}")
-    public void deleteAccesorioBici(@PathParam("id") Long id) throws BusinessLogicException {
-         bicicletasLogic.deleteAccesorioBicicleta(id);
+    @Path("{idBicicleta: \\d+/AccesorioBicicleta/idAccesorioBici: \\d+}")
+    public void deleteAccesorioBici(@PathParam("idBicicleta") Long id,@PathParam("idAccesorioBici") Long idAcc) throws BusinessLogicException {
+         superBiciLogic.deleteAccesorioBicicleta(id, idAcc);
+    }
+    
+    /**
+     * 
+     */
+    @GET
+    @Path("{idBicicleta: \\d+AccesorioBicicleta/idAccesorioBici: \\d+}")
+    public AccesorioBicicletaDTO getAccesorioBici(@PathParam("idBicicleta") Long idBici,@PathParam("idAccesorioBici") Long idAcc){
+        AccesorioBicicletaEntity entity = superBiciLogic.getAccesorioBici(idBici, idAcc);
+        return null;
     }
 
     /**
@@ -129,4 +128,5 @@ public class AccesorioBicicletaBicicletaResource {
         }
         return list;
     }
+    
 }

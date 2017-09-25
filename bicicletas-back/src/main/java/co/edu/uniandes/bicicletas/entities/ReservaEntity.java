@@ -39,24 +39,32 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     private int Estado;
     
     @OneToOne
+    @PodamExclude
     private CalificacionEntity calificacionEstacionOrigen;
     
     @OneToOne
+    @PodamExclude
     private CalificacionEntity calificacionEstacionLlegada;
     
     @ManyToOne
+    @PodamExclude
     private UsuarioEntity usuarioReserva;
     
     @OneToOne
+    @PodamExclude
     private EstacionEntity EstacionLlegada;
     
     @OneToOne
+    @PodamExclude
     private EstacionEntity EstacionSalida;
     
+    
     @ManyToMany
+    @PodamExclude
     private List<EstacionEntity> estaciones;
     
     @OneToOne 
+    @PodamExclude
     private PagoEntity pago;
     
     private double precioFinal;
