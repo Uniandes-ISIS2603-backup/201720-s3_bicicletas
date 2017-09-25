@@ -26,7 +26,11 @@ package co.edu.uniandes.bicicletas.entities;
 import co.edu.uniandes.bicicletas.entities.BaseEntity;
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
+import static javax.persistence.CascadeType.REMOVE;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import static javax.persistence.FetchType.EAGER;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -48,7 +52,7 @@ public class BicicletaEntity extends BaseEntity implements Serializable {
     //este atributo da modelo de la bicicleta
     private String modelo;
     @PodamExclude
-    @OneToMany 
+    @OneToMany(cascade = CascadeType.REMOVE,fetch = FetchType.EAGER)
     private List<AccesorioBicicletaEntity> accesiry;
     /**
      * Este metodo permite cambiar el estado del Entity bicicleta en su marca.

@@ -125,20 +125,29 @@ public class BicicletaLogic {
      * 
      * Obtener una bicicleta Especifica
      */
-    public AccesorioBicicletaEntity getAccesorioBici(Long idBici, Long id){
+    public AccesorioBicicletaEntity getAccesorioBici(Long idBici, Long idAcc){
         BicicletaEntity bici = persistence.find(idBici);
         if(bici== null){
              throw new WebApplicationException("No hay una estación con dicho ID", 402);
          }
-        return AccesorioBicicleta.getAccesorioBici(id);
+        return AccesorioBicicleta.getAccesorioBici(idAcc);
     }
     
-    public void deleteAccesorioBicicleta(Long id) throws WebApplicationException
+    public void deleteAccesorioBicicleta(Long idBici,Long id) throws WebApplicationException
     {
+        BicicletaEntity bici = persistence.find(idBici);
+        if(bici== null){
+             throw new WebApplicationException("No hay una estación con dicho ID", 402);
+         }
+        bici.getAccesorioBicicletas().remove(AccesorioBicicleta.getAccesorioBici(id));
          AccesorioBicicleta.deleteAccesorioBicicleta(id);
     }
-    public AccesorioBicicletaEntity actualizarAccesorioBici(AccesorioBicicletaEntity entidad) throws WebApplicationException{
-        return AccesorioBicicleta.actualizarAccesorioBici(entidad);
+    public AccesorioBicicletaEntity updateAcc(Long idBici,AccesorioBicicletaEntity entity){
+        BicicletaEntity bici = persistence.find(idBici);
+        if(bici== null){
+             throw new WebApplicationException("No hay una estación con dicho ID", 402);
+        }
+        return AccesorioBicicleta.actualizarAccesorioBici(entity);
     }
     
     

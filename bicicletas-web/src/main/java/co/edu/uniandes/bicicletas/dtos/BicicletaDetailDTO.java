@@ -1,7 +1,10 @@
 package co.edu.uniandes.bicicletas.dtos;
 
 
+import co.edu.uniandes.bicicletas.entities.AccesorioBicicletaEntity;
 import co.edu.uniandes.bicicletas.entities.BicicletaEntity;
+import java.util.ArrayList;
+import java.util.List;
 
 /*
 MIT License
@@ -36,6 +39,10 @@ public class BicicletaDetailDTO extends BicicletaDTO {
     /**
      * Constructor por defecto
      */
+    public List<AccesorioBicicletaDTO> accesorios;
+    
+    
+    
     public BicicletaDetailDTO() {
     }
 
@@ -46,6 +53,9 @@ public class BicicletaDetailDTO extends BicicletaDTO {
      */
     public BicicletaDetailDTO(BicicletaEntity entity) {
         super(entity);
+        accesorios = listEntity2DetailDTO(entity.getAccesorioBicicletas());
+        
+        
     }
 
     /**
@@ -55,7 +65,22 @@ public class BicicletaDetailDTO extends BicicletaDTO {
      */
     public BicicletaEntity toEntity() {
         BicicletaEntity bicicleta = super.toEntity();
+        bicicleta.setAccesoriosBicicleta(listDTO2Entity(accesorios));
         return bicicleta;
+    }
+    private List<AccesorioBicicletaDTO> listEntity2DetailDTO(List<AccesorioBicicletaEntity> entityList) {
+        List<AccesorioBicicletaDTO> list = new ArrayList<>();
+        for (AccesorioBicicletaEntity entity : entityList) {
+            list.add(new AccesorioBicicletaDTO(entity));
+        }
+        return list;
+    }
+    private List<AccesorioBicicletaEntity> listDTO2Entity(List<AccesorioBicicletaDTO> entityList) {
+        List<AccesorioBicicletaEntity> list = new ArrayList<>();
+        for (AccesorioBicicletaDTO x : entityList) {
+            list.add(x.toEntity());
+        }
+        return list;
     }
 
 }
