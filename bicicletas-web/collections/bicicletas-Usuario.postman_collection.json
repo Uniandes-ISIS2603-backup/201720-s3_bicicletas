@@ -1,0 +1,180 @@
+{
+	"variables": [],
+	"info": {
+		"name": "bicicletas/Usuario",
+		"_postman_id": "8e1d5a7a-9973-7d42-c713-e42f5d1cb766",
+		"description": "Colección de datos para los recursos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear un usuario por primera vez",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_e\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\":\"Alfonso oxigeno\",\n  \"tipoId\":\"1\",\n  \"documentoUsuario\":\"123456789\",\n  \"fechaNacimiento\":\"12-01-1995\"\n}"
+				},
+				"description": "POST para Usuarios"
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un usuario con el mismo nombre",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"No crea con el mismo nombre\"] = responseCode.code === 412;",
+							"",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"Ya existe una Editorial con el nombre\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\t\n  \"name\":\"Pedro neon\",\n  \"tipoId\":\"1\",\n  \"documentoUsuario\":\"123456789\",\n  \"fechaNacimiento\":\"12-01-1995\"\n}"
+				},
+				"description": "POST para Usuarios"
+			},
+			"response": []
+		},
+		{
+			"name": "Editar un usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/{{new_id_e}}",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\":\"Juan Tungsteno\",\n  \"tipoId\":\"3\",\n  \"documentoUsuario\":\"456789123\",\n  \"fechaNacimiento\":\"12/01/1995\"\n}"
+				},
+				"description": "PUT de Usuarios"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todos los usuarios",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"tests[\"editorials count\"] = data.length >= 0;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "GET Usuarios"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/{{new_id_e}}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Get para un solo usuario"
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 204\"] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/{{new_id_e}}",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": "DELETE Usuario\n"
+			},
+			"response": []
+		}
+	]
+}

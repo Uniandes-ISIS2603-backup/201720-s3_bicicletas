@@ -1,0 +1,180 @@
+{
+	"variables": [],
+	"info": {
+		"name": "bicicletas/Direccion",
+		"_postman_id": "1af267c6-f535-304f-d538-52e21ab69d01",
+		"description": "Colección de datos para los recursos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear una direccion por primera vez",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_e\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/direcciones",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\":\"Avenida Jimenez con calle 28\",\n  \"codigoPostal\":\"11111\",\n  \"descripcion\":\"Frente al parque\",\n  \"ciudad\":\"Bogota\"\n}"
+				},
+				"description": "POST para Direcciones"
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una direccion con el mismo nombre",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"No crea con el mismo nombre\"] = responseCode.code === 412;",
+							"",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"Ya existe una Editorial con el nombre\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/direcciones",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\":\"Avenida Jimenez con calle 28\",\n  \"codigoPostal\":\"11111\",\n  \"descripcion\":\"Frente al parque\",\n  \"ciudad\":\"Bogota\"\n}"
+				},
+				"description": "POST para Direcciones"
+			},
+			"response": []
+		},
+		{
+			"name": "Editar una direccion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/direcciones/{{new_id_e}}",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"Avenida Jimenez con calle 14\",\n  \"codigoPostal\":\"11111\",\n  \"descripcion\":\"Frente a la estacion\",\n  \"ciudad\":\"Bogota\"\n}"
+				},
+				"description": "PUT de direcciones"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todas las direcciones",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"tests[\"editorials count\"] = data.length >= 0;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/direcciones",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "GET direcciones"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una direccion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/direcciones/{{new_id_e}}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Get para una sola direccion"
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar una direccion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 204\"] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/direcciones/{{new_id_e}}",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": "DELETE direccion\n"
+			},
+			"response": []
+		}
+	]
+}
