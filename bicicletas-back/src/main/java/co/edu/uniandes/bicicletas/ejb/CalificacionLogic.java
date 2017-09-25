@@ -53,7 +53,7 @@ public class CalificacionLogic
     @Inject
     private EstacionLogic estacionLogic;
     
-    private final static String MENSAJE = "La estación que consultó aún no tiene calificaciones";
+    public static final String MENSAJE = "La estación que consultó aún no tiene calificaciones";
     
     /**
      * Crea una nueva calificación en la base de datos

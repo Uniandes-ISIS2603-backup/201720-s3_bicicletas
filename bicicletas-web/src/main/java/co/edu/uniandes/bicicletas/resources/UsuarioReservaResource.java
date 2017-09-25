@@ -21,6 +21,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.ext.Provider;
 
 /**
  *Clase que modela la relacion Reserva Usuario
@@ -28,6 +29,7 @@ import javax.ws.rs.WebApplicationException;
  */
 @Produces("application/json")
 @Consumes("application/json")
+@Provider
 public class UsuarioReservaResource 
 {
     @Inject
