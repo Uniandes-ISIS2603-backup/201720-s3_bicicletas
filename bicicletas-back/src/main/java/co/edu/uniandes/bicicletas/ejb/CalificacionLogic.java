@@ -36,7 +36,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
- *
+ *Clase lógica de una Calificacion
  * @author gl.pinto10
  */
 @Stateless
@@ -53,7 +53,13 @@ public class CalificacionLogic
     @Inject
     private EstacionLogic estacionLogic;
     
-    
+    /**
+     * Crea una nueva calificación en la base de datos
+     * @param idReserva Id de la reserva a la cual se le calificará una de las 2 estaciones
+     * @param caliEntity Objeto de CalificacionEntity con los datos nuevos
+     * @return El objero CalificacionEntity creado
+     * @throws BusinessLogicException Se lanza si no se existe la estación que se desea calificar
+     */
     public CalificacionEntity createCalificacion(Long idReserva, CalificacionEntity caliEntity) throws BusinessLogicException
     {
         LOGGER.info("Inicia proceso de crear una calificación");
@@ -102,6 +108,12 @@ public class CalificacionLogic
         return califiEntity;
     }
     
+    /**
+     * Obtiene la lista de calificaciones de una estacion
+     * @param idEstacion Id de la estación de la cual se desean obtener sus calificaciones
+     * @return Lista de CalificacionEntity
+     * @throws BusinessLogicException Se lanza si la estación no tiene calificaciones 
+     */
     public List<CalificacionEntity> getCalificacionesEstacion(Long idEstacion) throws BusinessLogicException
     {
         LOGGER.info("Inicia proceso de consultar todos las calificaciones de una estación");
@@ -116,17 +128,22 @@ public class CalificacionLogic
         return estacion.getCalificacion();
     }
     
+    /**
+     * Obtiene una calificación de una estación
+     * @param idEstacion El id de la estación de la cual se quiere ver la calificacion
+     * @param idCalificacion La calificación que se desea observar
+     * @return Un objeto CalificacionEntity
+     * @throws BusinessLogicException Se la si la estación no tiene calificaciones
+     */
     public CalificacionEntity getCalificacionEstacion(Long idEstacion, Long idCalificacion) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar una calificación de la estación con id = {0}", idEstacion);
         List<CalificacionEntity> lista = estacionLogic.getEstacion(idEstacion).getCalificacion();
      
-        if (lista == null) {
+        if (lista == null || lista.isEmpty()) {
             throw new BusinessLogicException("La estación que consultó aún no tiene calificaciones");
         }
-        if (lista.isEmpty()) {
-            throw new BusinessLogicException("La estación que consultó aún no tiene calificaciones");
-        }
+        
         CalificacionEntity caliEntity = new CalificacionEntity();
         caliEntity.setId(idCalificacion);
         int index = lista.indexOf(caliEntity);
@@ -137,7 +154,13 @@ public class CalificacionLogic
         return null;
     }
     
-    public CalificacionEntity getCalificionReserva(Long idReserva, Integer cali) throws BusinessLogicException
+    /**
+     * Obtiene la calificación de una estación con base a la reserva
+     * @param idReserva Id de la reserva de la cual se quieren observar las calificaciones
+     * @param cali 1 o 0 dependiendo de si se quiere ver la calificación de la estación de llegada u origen
+     * @return Un objeto de CalificacionEntity 
+     */
+    public CalificacionEntity getCalificionReserva(Long idReserva, Integer cali)
     {
         LOGGER.info("Inicia proceso de consultar una calificación de una reserva");
         
@@ -157,7 +180,14 @@ public class CalificacionLogic
         return caliEntity;
     }
     
-    public CalificacionEntity updateCalificacion(Long idReserva, Integer cali, CalificacionEntity calEntity) throws BusinessLogicException {
+    /**
+     * Actualiza los datos de una calificación 
+     * @param idReserva El id que tiene la información de la calificación a actuaalizar
+     * @param cali 1 o 0 dependiendo de si se quiere ver la calificación de la estación de llegada u origen
+     * @param calEntity Objeto con los nuevos datos de la calificación
+     * @return Objeto CalificacionEntity con los datos actualizado
+     */
+    public CalificacionEntity updateCalificacion(Long idReserva, Integer cali, CalificacionEntity calEntity) {
         LOGGER.info("Inicia proceso de actualizar una calificacion");
         ReservaEntity reserva = reservaLogic.getReserva(idReserva);
         CalificacionEntity caliActualizada = caliPersistence.update(calEntity);
@@ -174,6 +204,11 @@ public class CalificacionLogic
         return caliActualizada;
     }
    
+    /**
+     * Obtiene una calificación con base a su id
+     * @param idCali Id de la calificación que se desea consultar
+     * @return La calificacón consultado
+     */
     public CalificacionEntity getCalificacion(Long idCali)
     {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar una calificación con id={0}", idCali);
@@ -185,6 +220,10 @@ public class CalificacionLogic
         return calificacion;
     }
     
+    /**
+     * Obtiene todas las calificaciones almacenadas en el sistema
+     * @return Lista de CalificacionEntity
+     */
     public List<CalificacionEntity> getCalificaciones()
     {
         LOGGER.info("Inicia proceso de consultar todas las calificaciones");
@@ -193,4 +232,11 @@ public class CalificacionLogic
         return calificaciones;
     }
     
+    public CalificacionEntity nuevaCalificacion(CalificacionEntity caliEntity)
+    {
+        LOGGER.info("Inicia proceso de crear una calificación");
+        CalificacionEntity califiEntity = caliPersistence.create(caliEntity);
+        LOGGER.info("Termina proceso de crear una calificación");
+        return califiEntity;
+    }
 }
