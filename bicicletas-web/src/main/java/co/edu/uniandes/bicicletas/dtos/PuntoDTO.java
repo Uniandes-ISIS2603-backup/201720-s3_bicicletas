@@ -38,7 +38,9 @@ public class PuntoDTO {
     /**
      * Constructor por defecto
      */
-    public PuntoDTO(){}
+    public PuntoDTO(){
+    //No necesita cuerpo
+    }
     
     /**
      * Constructor del DTO de Punto

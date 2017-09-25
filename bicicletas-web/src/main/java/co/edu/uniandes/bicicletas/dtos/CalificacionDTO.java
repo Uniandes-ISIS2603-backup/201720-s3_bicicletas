@@ -42,7 +42,9 @@ public class CalificacionDTO
      /**
      * Constructor por defecto
      */
-    public CalificacionDTO() {}
+    public CalificacionDTO() {
+    //No necesita cuerpo
+    }
     
     /**
      * Constructor del DTO de Calificacion

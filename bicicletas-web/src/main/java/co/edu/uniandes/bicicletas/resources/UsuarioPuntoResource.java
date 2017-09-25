@@ -57,7 +57,7 @@ public class UsuarioPuntoResource
     
     private List<PuntoDTO> listEntity2DTO(List<PuntoEntity> listaEntiPunto)
     {
-        List<PuntoDTO> lista = new ArrayList<PuntoDTO>();
+        List<PuntoDTO> lista = new ArrayList<>();
         for(PuntoEntity puntoEntity : listaEntiPunto)
         {
             lista.add(new PuntoDTO(puntoEntity));

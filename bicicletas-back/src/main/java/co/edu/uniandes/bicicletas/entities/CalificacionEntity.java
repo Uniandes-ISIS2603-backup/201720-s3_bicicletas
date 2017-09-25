@@ -53,14 +53,6 @@ public class CalificacionEntity extends BaseEntity implements Serializable
     @ManyToOne
     @PodamExclude
     private EstacionEntity estacion;
-
-    public EstacionEntity getEstacion() {
-        return estacion;
-    }
-
-    public void setEstacion(EstacionEntity estacion) {
-        this.estacion = estacion;
-    }
     
     /**
      * El id del usuario que realiza la calificación
@@ -166,6 +158,14 @@ public class CalificacionEntity extends BaseEntity implements Serializable
      */
     public void setReserva(ReservaEntity reserva) {
         this.reserva = reserva;
+    }
+    
+    public EstacionEntity getEstacion() {
+        return estacion;
+    }
+
+    public void setEstacion(EstacionEntity estacion) {
+        this.estacion = estacion;
     }
     
 }
