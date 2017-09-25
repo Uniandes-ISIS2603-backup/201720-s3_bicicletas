@@ -18,12 +18,14 @@ import javax.ws.rs.POST;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.ext.Provider;
 
 /**
  * Clase que implementa el recurso REST correspondiente a "puntos"
  * URI: usuarios/{idUsuario: \\d+}/puntos
  * @author Gabriel Pinto
  */
+@Provider
 @Produces("application/json")
 public class UsuarioPuntoResource 
 {
@@ -44,6 +46,7 @@ public class UsuarioPuntoResource
     @DELETE 
     public void deletePuntos(@PathParam("idUsuario") Long idUsuario) throws BusinessLogicException 
     {
+        
         puntoLogic.deletePuntos(idUsuario);
     }
     

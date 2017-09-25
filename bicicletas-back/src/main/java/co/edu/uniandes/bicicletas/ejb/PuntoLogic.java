@@ -58,6 +58,7 @@ public class PuntoLogic
      */
     public List<PuntoEntity> createPuntos(Long idUsuario)
     {
+        LOGGER.info("Empieza el proceso de crear 10 puntos");
         UsuarioEntity usuario = usuarioLogic.getUsuario(idUsuario);
         
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -89,6 +90,8 @@ public class PuntoLogic
             usuario.setPuntos(puntos);   
         }
         
+        LOGGER.info("Terminar el proceso crear 10 puntos");
+        
         return puntosNuevos;
     }
     
@@ -99,7 +102,9 @@ public class PuntoLogic
      */
     public List<PuntoEntity> getPuntos(Long idUsuario)
     {
+        LOGGER.info("Inicia el proceso de consultar los puntos de un usuario");
         UsuarioEntity usuario = usuarioLogic.getUsuario(idUsuario);
+        LOGGER.info("Termina el proceso de consultar los puntos de un usuario");
         return usuario.getPuntos();
     }
     
@@ -110,6 +115,7 @@ public class PuntoLogic
      */
     public void deletePuntos(Long idUsuario) throws BusinessLogicException
     {
+        LOGGER.info("Inicia el proceso de borrar los puntos de un usuario");
         UsuarioEntity usuario = usuarioLogic.getUsuario(idUsuario);
         List<PuntoEntity> puntos = usuario.getPuntos();
         if(puntos == null || puntos.isEmpty() || puntos.size() < 10)
@@ -127,5 +133,6 @@ public class PuntoLogic
                 puntPersistence.delete(punt);
             }
         }
+        LOGGER.info("Termina el proceso de borrar 10 puntos de un usuario");
     }
 }
