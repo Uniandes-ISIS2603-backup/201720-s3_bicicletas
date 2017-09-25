@@ -53,6 +53,8 @@ public class CalificacionLogic
     @Inject
     private EstacionLogic estacionLogic;
     
+    public static final String MENSAJE = "La estación que consultó aún no tiene calificaciones";
+    
     /**
      * Crea una nueva calificación en la base de datos
      * @param idReserva Id de la reserva a la cual se le calificará una de las 2 estaciones
@@ -118,13 +120,10 @@ public class CalificacionLogic
     {
         LOGGER.info("Inicia proceso de consultar todos las calificaciones de una estación");
         EstacionEntity estacion = estacionLogic.getEstacion(idEstacion);
-        if (estacion.getCalificacion() == null) {
-            throw new BusinessLogicException("La estación que consultó aún no tiene calificaciones");
+        if (estacion.getCalificacion() == null || estacion.getCalificacion().isEmpty()) {
+            throw new BusinessLogicException(MENSAJE);
         }
-        if (estacion.getCalificacion().isEmpty()) {
-            throw new BusinessLogicException("La estación que consultó aún no tiene calificaciones");
-        }
-        
+               
         return estacion.getCalificacion();
     }
     
@@ -141,7 +140,7 @@ public class CalificacionLogic
         List<CalificacionEntity> lista = estacionLogic.getEstacion(idEstacion).getCalificacion();
      
         if (lista == null || lista.isEmpty()) {
-            throw new BusinessLogicException("La estación que consultó aún no tiene calificaciones");
+            throw new BusinessLogicException(MENSAJE);
         }
         
         CalificacionEntity caliEntity = new CalificacionEntity();

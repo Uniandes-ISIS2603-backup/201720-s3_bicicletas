@@ -5,15 +5,23 @@
  */
 package co.edu.uniandes.bicicletas.resources;
 
+import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
+import co.edu.uniandes.bicicletas.dtos.ReservaDTO;
 import co.edu.uniandes.bicicletas.dtos.UsuarioDTO;
 import co.edu.uniandes.bicicletas.ejb.ReservaLogic;
 import co.edu.uniandes.bicicletas.entities.ReservaEntity;
+import java.util.ArrayList;
+import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.ext.Provider;
 
 /**
  *Clase que modela la relacion Reserva Usuario
@@ -21,23 +29,58 @@ import javax.ws.rs.WebApplicationException;
  */
 @Produces("application/json")
 @Consumes("application/json")
+@Provider
 public class UsuarioReservaResource 
 {
     @Inject
     ReservaLogic reservaLogic;
     
-    /*
-    Devuelve el dto del ususuario asociado a la reserva 
-    */
-    @Path("{idReserva: \\d+}/usuario")
-    public UsuarioDTO getUsuarioReserva (@PathParam("idReserva") Long idReserva) 
+    @GET
+    public List<ReservaDTO> getReservas(@PathParam("idUsuario") Long idUsuario)
     {
-        ReservaEntity entity = reservaLogic.getReserva(idReserva);
-        if (entity == null) 
+        List<ReservaEntity> reservas = reservaLogic.getReservas();
+        if(reservas == null || reservas.isEmpty())
         {
-            throw new WebApplicationException("El recurso /usuarios/" + idReserva + "/calificaciones no existe.", 404);
+            throw new WebApplicationException("El usuario no tiene reservas en el sistema", 404); 
         }
-        return  new UsuarioDTO (entity.getUsuarioReserva());
+        return listEntity2DTO(reservas);
     }
     
+    @GET
+    @Path("{id: \\d+}")
+    public ReservaDTO getReserva(@PathParam("id") Long id, @PathParam("idUsuario") Long idUsuario)
+    {
+        return new ReservaDTO(reservaLogic.getReserva(id));
+    }
+    
+    @DELETE 
+    public void deleteReserva(@PathParam("idUsuario") Long idUsuario) throws BusinessLogicException 
+    {
+        reservaLogic.deleteReserva(idUsuario);
+    }
+    
+    @POST
+    public ReservaDTO createReserva(@PathParam("idUsuario") Long idUsuario) throws BusinessLogicException {
+        
+        return new ReservaDTO(reservaLogic.crearReserva(idUsuario));
+    } 
+    
+    private List<ReservaDTO> listEntity2DTO(List<ReservaEntity> listaEntiReserva)
+    {
+        List<ReservaDTO> lista = new ArrayList<ReservaDTO>();
+        for(ReservaEntity puntoEntity : listaEntiReserva)
+        {
+            lista.add(new ReservaDTO(puntoEntity));
+        }
+        return lista;
+    }
+    
+    @Path("{idReserva: \\d+}/calificaciones")
+    public Class<ReservaCalificacionResource> getCalificacionReservaResource(@PathParam("idReserva") Long idReserva) {
+        ReservaEntity entity = reservaLogic.getReserva(idReserva);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /reservas/" + idReserva + "/calificaciones no existe.", 404);
+        }
+        return ReservaCalificacionResource.class;
+    }
 }

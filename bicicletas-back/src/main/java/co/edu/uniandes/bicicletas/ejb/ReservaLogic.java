@@ -26,7 +26,9 @@ package co.edu.uniandes.bicicletas.ejb;
 
 import co.edu.uniandes.bicicletas.entities.EstacionEntity;
 import co.edu.uniandes.bicicletas.entities.ReservaEntity;
+import co.edu.uniandes.bicicletas.entities.UsuarioEntity;
 import co.edu.uniandes.bicicletas.persistence.ReservaPersistence;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -41,6 +43,9 @@ public class ReservaLogic
 {
     @Inject
     private ReservaPersistence persistence;
+    
+    @Inject
+    private UsuarioLogic usuarioLogic;
     
     public ReservaEntity getReserva(Long id)
     {
@@ -62,9 +67,24 @@ public class ReservaLogic
          }
          persistence.delete(id);
     }
-    public ReservaEntity crearReserva(ReservaEntity entidad){
-        persistence.create(entidad);
-        return entidad;
+    public ReservaEntity crearReserva(Long idUsuario){
+        UsuarioEntity usuario = usuarioLogic.getUsuario(idUsuario);
+        
+        List<ReservaEntity> reservas = usuario.getReservas();
+        List<ReservaEntity> reservaNuevo = new ArrayList<>();
+        ReservaEntity reserva;
+        boolean crea = false;
+        if(reservas == null){
+            reservas = new ArrayList<>();
+            crea = true;
+        }
+        reserva = new ReservaEntity();
+        reserva.setUsuarioReserva(usuario);
+        persistence.create(reserva);
+        if(crea)
+            usuario.setReservas(reservas);
+       
+        return reserva;
     }
     
     public ReservaEntity actualizarReserva(ReservaEntity entidad) throws WebApplicationException{

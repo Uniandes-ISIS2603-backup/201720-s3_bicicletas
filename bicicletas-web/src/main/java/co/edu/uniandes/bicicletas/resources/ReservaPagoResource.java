@@ -13,6 +13,9 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.ext.Provider;
 
 
 /**
@@ -21,17 +24,20 @@ import javax.ws.rs.PUT;
  */
 @Produces("application/json")
 @Consumes("application/json")
+@Provider
 public class ReservaPagoResource {
     @Inject
     PagoLogic pagoLogic;
     
     @GET
-    public ReservaDTO darReserva(Long idPago){
-        return new ReservaDTO(pagoLogic.darReserva(idPago));
+    public ReservaDTO darReserva(@PathParam("idPago")Long idPago){
+        ReservaEntity reserva = pagoLogic.darReserva(idPago);
+        
+        return new ReservaDTO(reserva);
     }
     
     @PUT
-    public ReservaDTO actualizarReserva(Long idPago, ReservaDTO reserva){
+    public ReservaDTO actualizarReserva(@PathParam("idPago")Long idPago, ReservaDTO reserva){
         
         Integer nuevoEstado = reserva.getEstado();
         ReservaEntity reservaActualizada = pagoLogic.actualizarEstadoReserva(idPago, nuevoEstado);

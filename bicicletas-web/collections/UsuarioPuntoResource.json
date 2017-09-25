@@ -1,0 +1,73 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Pruebas UsuarioPuntoResource",
+		"_postman_id": "88a0ac3b-db00-f039-f4a4-3afacc732cc3",
+		"description": "Pruebas iniciales para UsuarioPuntoResource",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/bicicletas-web/api/usuarios/1/puntos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/1/puntos",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"descripcion\": \"Regular\",\n        \"fechaCali\": \"2017-09-26T00:00:00-05:00\",\n        \"idEstacion\": \"3\",\n        \"idUsuario\": \"2\",\n        \"nota\": \"3\",\n        \"idCalificacion\":\"3\"\n        \n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/bicicletas-web/api/usuarios/1/puntos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/1/puntos",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

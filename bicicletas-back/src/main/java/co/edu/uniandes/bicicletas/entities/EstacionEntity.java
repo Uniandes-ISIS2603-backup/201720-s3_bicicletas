@@ -28,11 +28,11 @@ public class EstacionEntity extends BaseEntity implements Serializable {
     private List<DireccionEntity> direcciones = new ArrayList<DireccionEntity>();
     
     @PodamExclude
-    @OneToMany(mappedBy = "estacion")
+    @OneToMany(mappedBy = "estacion", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<AccesorioEntity> accesorios = new ArrayList<AccesorioEntity>();
     
     @PodamExclude
-    @OneToMany(mappedBy = "estacion")
+    @OneToMany(mappedBy = "estacion", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CalificacionEntity> calificacion = new ArrayList<CalificacionEntity>();
     
     @PodamExclude
