@@ -9,6 +9,7 @@ import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.bicicletas.dtos.CalificacionDTO;
 import co.edu.uniandes.bicicletas.ejb.CalificacionLogic;
 import co.edu.uniandes.bicicletas.entities.CalificacionEntity;
+import co.edu.uniandes.bicicletas.entities.EstacionEntity;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -35,7 +36,17 @@ public class ReservaCalificacionResource
     @Path("{id: \\d+}")
     public CalificacionDTO createCalificacion(@PathParam("idReserva") Long idReserva, @PathParam("id") Long cali, CalificacionDTO dto) throws BusinessLogicException
     {
-         return new CalificacionDTO(calificacionLogic.createCalificacion(cali,idReserva, dto.toEntity()));
+        boolean origen = false;
+        if(!(cali == 0 || cali == 1))
+        {
+             throw new BusinessLogicException("No se escoge bien a que estación pertenece la calificación");
+        }
+        else if(cali == 0)
+        {
+            origen = true;
+        }
+        
+        return new CalificacionDTO(calificacionLogic.createCalificacion(origen,idReserva, dto.toEntity()));
     }
     
     @GET

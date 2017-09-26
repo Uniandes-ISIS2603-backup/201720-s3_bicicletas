@@ -62,46 +62,39 @@ public class CalificacionLogic
      * @return El objero CalificacionEntity creado
      * @throws BusinessLogicException Se lanza si no se existe la estación que se desea calificar
      */
-    public CalificacionEntity createCalificacion(Long cali, Long idReserva, CalificacionEntity caliEntity) throws BusinessLogicException
+    public CalificacionEntity createCalificacion(Boolean origen, Long idReserva, CalificacionEntity caliEntity) throws BusinessLogicException
     {
         LOGGER.info("Inicia proceso de crear una calificación");
         ReservaEntity reserva = reservaLogic.getReserva(idReserva);
+        EstacionEntity estacion;
         
-        if(reserva.getCalificacionEstacionLlegada() != null && reserva.getCalificacionEstacionOrigen() != null )
+        if(origen && reserva.getCalificacionEstacionOrigen() != null)
         {
-             throw new BusinessLogicException("Ya existe una calificación tanto para la estación de origen como para la de llegada");
+            estacion = reserva.getEstacionSalida();
         }
-        
-        if(!(cali == 0 || cali == 1))
+        else if(!origen && reserva.getCalificacionEstacionLlegada() != null)
         {
-             throw new BusinessLogicException("No se escoge bien a que estación pertenece la calificación");
+            estacion = reserva.getEstacionLlegada();
         }
+        else
+        {
+             throw new BusinessLogicException("Ya existe una calificación para la estación definida");
+        }
+                
         caliEntity.setReserva(reserva);
-        
-        EstacionEntity estacion = estacionLogic.getEstacion(caliEntity.getEstacion().getId());
-        if(estacion == null)
-        {
-            throw new BusinessLogicException("No se encontró la estación que se desea calificar");
-        }
+        caliEntity.setEstacion(estacion);
         
         CalificacionEntity califiEntity = caliPersistence.create(caliEntity);
         
         List<CalificacionEntity> listaCalis = estacion.getCalificacion();
         
-        if(listaCalis == null)
-        {
-            listaCalis = new ArrayList<>();
-            listaCalis.add(califiEntity);
-            estacion.setCalificacion(listaCalis);
-        }
-        
         listaCalis.add(califiEntity);
         
-        if(cali == 0 && reserva.getCalificacionEstacionOrigen() == null)
+        if(origen)
         {
             reserva.setCalificacionEstacionOrigen(califiEntity);
         }
-        else if(cali == 1 && reserva.getCalificacionEstacionLlegada() == null)
+        else if(!origen)
         {
             reserva.setCalificacionEstacionLlegada(califiEntity);
         }
