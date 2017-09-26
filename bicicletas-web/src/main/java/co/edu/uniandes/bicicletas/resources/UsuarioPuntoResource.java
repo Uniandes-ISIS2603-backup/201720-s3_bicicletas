@@ -46,7 +46,6 @@ public class UsuarioPuntoResource
     @DELETE 
     public void deletePuntos(@PathParam("idUsuario") Long idUsuario) throws BusinessLogicException 
     {
-        
         puntoLogic.deletePuntos(idUsuario);
     }
     

@@ -67,12 +67,12 @@ public class CalificacionLogic
         LOGGER.info("Inicia proceso de crear una calificación");
         ReservaEntity reserva = reservaLogic.getReserva(idReserva);
         EstacionEntity estacion;
-        
-        if(origen && reserva.getCalificacionEstacionOrigen() != null)
+        LOGGER.info("Origen "+origen.toString());
+        if(origen && reserva.getCalificacionEstacionOrigen() == null)
         {
             estacion = reserva.getEstacionSalida();
         }
-        else if(!origen && reserva.getCalificacionEstacionLlegada() != null)
+        else if(!origen && reserva.getCalificacionEstacionLlegada() == null)
         {
             estacion = reserva.getEstacionLlegada();
         }
@@ -85,6 +85,8 @@ public class CalificacionLogic
         caliEntity.setEstacion(estacion);
         
         CalificacionEntity califiEntity = caliPersistence.create(caliEntity);
+        
+        
         
         List<CalificacionEntity> listaCalis = estacion.getCalificacion();
         

@@ -5,14 +5,11 @@
  */
 package co.edu.uniandes.bicicletas.tests.postman;
 
-import org.jboss.arquillian.junit.Arquillian;
-import org.junit.runner.RunWith;
 
 /**
  *
  * @author gl.pinto10
  */
-@RunWith(Arquillian.class)
 public class BicicletasIT 
 {
     
