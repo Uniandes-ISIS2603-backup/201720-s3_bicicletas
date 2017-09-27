@@ -55,7 +55,7 @@ public class ReservaLogic
          return reserva;
     }
     
-    public List<ReservaEntity> getReservas(){
+    public List<ReservaEntity> getReservas(  ){
         return persistence.findAll();
     }
     
@@ -63,38 +63,39 @@ public class ReservaLogic
     {
          ReservaEntity Reserva = persistence.find(id);
          if(Reserva == null){
-             throw new WebApplicationException("No hay una estación con dicho ID", 402);
+             throw new WebApplicationException("No hay una reserva con dicho ID", 402);
          }
          persistence.delete(id);
     }
     public ReservaEntity crearReserva(Long idUsuario){
         UsuarioEntity usuario = usuarioLogic.getUsuario(idUsuario);
-        
-        List<ReservaEntity> reservas = usuario.getReservas();
-        List<ReservaEntity> reservaNuevo = new ArrayList<>();
-        ReservaEntity reserva;
+        if (usuario==null){
+           throw new WebApplicationException("No hay una reserva con dicho ID", 402);
+        }
+        List<ReservaEntity> reservasUsuario = usuario.getReservas();
+        ReservaEntity reservaNueva;
         boolean crea = false;
-        if(reservas == null){
-            reservas = new ArrayList<>();
+        if(reservasUsuario == null){
+            reservasUsuario = new ArrayList<>();
             crea = true;
         }
-        reserva = new ReservaEntity();
-        reserva.setUsuarioReserva(usuario);
-        persistence.create(reserva);
-        if(crea)
-            usuario.setReservas(reservas);
-       
-        return reserva;
+        reservaNueva = new ReservaEntity();
+        reservaNueva.setUsuarioReserva(usuario);
+        persistence.create(reservaNueva);
+        reservasUsuario.add(reservaNueva);
+        usuario.setReservas(reservasUsuario);
+        return reservaNueva;
+        
     }
     
     public ReservaEntity actualizarReserva(ReservaEntity entidad) throws WebApplicationException{
         if(persistence.find(entidad.getId())==null){
-            throw new WebApplicationException("No hay una estación con dicho id", 402);
+            throw new WebApplicationException("No hay una reserva con dicho id", 402);
         }
         return persistence.update(entidad);
     }
     
-    public List<EstacionEntity> listEstaciones(Long reservaId){
+    public List<EstacionEntity> listEstaciones (Long reservaId){
         return getReserva(reservaId).getEstaciones();
     }
     
