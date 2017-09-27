@@ -33,7 +33,6 @@ public class ReservaDTO {
     EstacionEntity EstacionOrigen;
     List<EstacionEntity> estaciones;
     PagoEntity pago;
-    double precioFinal;
 
     public CalificacionEntity getCalificacionEstacionOrigen() {
         return calificacionEstacionOrigen;
