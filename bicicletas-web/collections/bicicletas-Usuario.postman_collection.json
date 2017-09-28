@@ -34,7 +34,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"name\":\"Alfonso oxigeno\",\n  \"tipoId\":\"1\",\n  \"documentoUsuario\":\"123456789\",\n  \"fechaNacimiento\":\"12-01-1995\"\n}"
+					"raw": "{\n  \"name\":\"Pedro neon\",\n  \"tipoId\":\"1\",\n  \"documentoUsuario\":\"123456789\",\n  \"fechaNacimiento\":\"12-01-1995\"\n}"
 				},
 				"description": "POST para Usuarios"
 			},
@@ -50,7 +50,7 @@
 						"exec": [
 							"tests[\"No crea con el mismo nombre\"] = responseCode.code === 412;",
 							"",
-							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"Ya existe una Editorial con el nombre\");"
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"Ya existe un Usuario con el nombre\");"
 						]
 					}
 				}
