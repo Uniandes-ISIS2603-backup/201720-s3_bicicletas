@@ -96,7 +96,7 @@ public class CalificacionLogic
         {
             reserva.setCalificacionEstacionOrigen(califiEntity);
         }
-        else if(!origen)
+        else
         {
             reserva.setCalificacionEstacionLlegada(califiEntity);
         }
