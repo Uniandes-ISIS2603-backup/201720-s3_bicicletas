@@ -24,7 +24,6 @@ public class ReservaDTO {
     long id;
     Date FechaEntrega;
     Date FechaInicio;
-    long idReserva;
     double PrecioFinal;
     CalificacionEntity calificacionEstacionOrigen;
     CalificacionEntity calificacionEstacionLlegada;
@@ -113,15 +112,6 @@ public class ReservaDTO {
     public void setFechaInicio(Date FechaInicio) {
         this.FechaInicio = FechaInicio;
     }
-
-    public long getIdReserva() {
-        return idReserva;
-    }
-
-    public void setIdReserva(long idReserva) {
-        this.idReserva = idReserva;
-    }
-
     public double getPrecioFinal() {
         return PrecioFinal;
     }
@@ -149,12 +139,9 @@ public class ReservaDTO {
             this.estado = entidad.getEstado();
             this.FechaEntrega = entidad.getFechaEntrega();
             this.FechaInicio = entidad.getFechaInicio();
-            this.idReserva = entidad.getIdReserva();
             this.PrecioFinal = entidad.getPrecioFinal();
+            this.EstacionOrigen= entidad.getEstacionSalida();
             this.EstacionLlegada = entidad.getEstacionLlegada();
-            this.FechaEntrega = entidad.getFechaEntrega();
-            this.FechaInicio = entidad.getFechaInicio();
-            this.PrecioFinal = entidad.getPrecioFinal();
             this.calificacionEstacionLlegada = entidad.getCalificacionEstacionLlegada();
             this.calificacionEstacionOrigen = entidad.getCalificacionEstacionOrigen();
             this.estaciones = entidad.getEstaciones();
@@ -170,11 +157,8 @@ public class ReservaDTO {
         entity.setFechaEntrega(this.getFechaEntrega());
         entity.setFechaInicio(this.getFechaInicio());
         entity.setPrecioFinal(this.getPrecioFinal());
-        entity.setIdReserva(this.getIdReserva());
-        entity.setPrecioFinal(this.getPrecioFinal());
+        entity.setEstacionSalida(this.getEstacionOrigen());
         entity.setEstacionLlegada(this.getEstacionLlegada());
-        entity.setFechaEntrega(this.getFechaEntrega());
-        entity.setFechaInicio(this.getFechaInicio());
         entity.setCalificacionEstacionLlegada(this.getCalificacionEstacionLlegada());
         entity.setCalificacionEstacionOrigen(this.getCalificacionEstacionOrigen());
         entity.setEstaciones(this.getEstacionLlegada(), this.getEstacionOrigen());

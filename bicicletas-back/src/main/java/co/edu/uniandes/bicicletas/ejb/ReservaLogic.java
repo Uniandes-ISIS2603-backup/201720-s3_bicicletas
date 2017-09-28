@@ -67,17 +67,15 @@ public class ReservaLogic
          }
          persistence.delete(id);
     }
-    public ReservaEntity crearReserva(Long idUsuario){
+    public ReservaEntity crearReserva(Long idUsuario, ReservaEntity entity){
         UsuarioEntity usuario = usuarioLogic.getUsuario(idUsuario);
         if (usuario==null){
-           throw new WebApplicationException("No hay una reserva con dicho ID", 402);
+           throw new WebApplicationException("No hay un usuario con dicho Id", 402);
         }
         List<ReservaEntity> reservasUsuario = usuario.getReservas();
         ReservaEntity reservaNueva;
-        boolean crea = false;
         if(reservasUsuario == null){
             reservasUsuario = new ArrayList<>();
-            crea = true;
         }
         reservaNueva = new ReservaEntity();
         reservaNueva.setUsuarioReserva(usuario);
@@ -85,7 +83,6 @@ public class ReservaLogic
         reservasUsuario.add(reservaNueva);
         usuario.setReservas(reservasUsuario);
         return reservaNueva;
-        
     }
     
     public ReservaEntity actualizarReserva(ReservaEntity entidad) throws WebApplicationException{
