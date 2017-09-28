@@ -50,7 +50,7 @@
 						"exec": [
 							"tests[\"No crea con el mismo nombre\"] = responseCode.code === 412;",
 							"",
-							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"Ya existe una Editorial con el nombre\");"
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"Ya existe una Direccion con el nombre\");"
 						]
 					}
 				}
