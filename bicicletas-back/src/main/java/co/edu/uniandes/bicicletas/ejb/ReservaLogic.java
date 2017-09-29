@@ -44,6 +44,9 @@ public class ReservaLogic
     @Inject
     private ReservaPersistence persistence;
     
+     @Inject
+    private UsuarioLogic logicaUsuario;
+    
     
     public ReservaEntity getReserva(Long id)
     {
@@ -65,18 +68,17 @@ public class ReservaLogic
          }
          persistence.delete(id);
     }
-    public ReservaEntity crearReserva( ReservaEntity entity ){
-        UsuarioEntity usuario = entity.getUsuarioReserva();
-        List<ReservaEntity> reservasUsuario = usuario.getReservas();
+    public ReservaEntity crearReserva(Long idUsuario, ReservaEntity entity ){
+        
+        UsuarioEntity lusuario = logicaUsuario.getUsuario(idUsuario);
+        entity.setUsuarioReserva(lusuario);
+        List<ReservaEntity> reservasUsuario = lusuario.getReservas();
         ReservaEntity reservaNueva;
         if(reservasUsuario == null){
             reservasUsuario = new ArrayList<>();
         }
-        reservaNueva = new ReservaEntity();
-        reservaNueva.setUsuarioReserva(usuario);
-        persistence.create(reservaNueva);
+        reservaNueva=persistence.create(entity);
         reservasUsuario.add(reservaNueva);
-        usuario.setReservas(reservasUsuario);
         return reservaNueva;
     }
     

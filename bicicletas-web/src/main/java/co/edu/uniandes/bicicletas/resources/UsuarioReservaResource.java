@@ -71,12 +71,7 @@ public class UsuarioReservaResource
     
     @POST
     public ReservaDTO createReserva(@PathParam("idUsuario") Long idUsuario , ReservaDTO nuevareserva) throws BusinessLogicException {
-        UsuarioEntity usuario = usuarioLogic.getUsuario(idUsuario);
-        if(usuario==null){
-            throw new WebApplicationException("El Usuario con id "+ idUsuario +" no existe", 404);
-        }
-        nuevareserva.setUsuarioReserva(usuario);
-        return new ReservaDTO(reservaLogic.crearReserva( nuevareserva.toEntity()));
+        return new ReservaDTO(reservaLogic.crearReserva( idUsuario ,nuevareserva.toEntity()));
     } 
     
     private List<ReservaDTO> listEntity2DTO(List<ReservaEntity> listaEntiReserva)
