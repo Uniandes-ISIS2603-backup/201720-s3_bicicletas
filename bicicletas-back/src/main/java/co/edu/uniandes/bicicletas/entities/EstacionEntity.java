@@ -36,7 +36,7 @@ public class EstacionEntity extends BaseEntity implements Serializable {
     private List<CalificacionEntity> calificacion = new ArrayList<CalificacionEntity>();
     
     @PodamExclude
-    @ManyToMany
+    @OneToMany(mappedBy="EstacionLlegada")
     private List<ReservaEntity> reservas = new ArrayList<ReservaEntity>();
     
 

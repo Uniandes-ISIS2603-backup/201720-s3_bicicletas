@@ -56,7 +56,7 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     @PodamExclude
     private UsuarioEntity usuarioReserva;
     
-    @OneToOne
+    @ManyToOne
     @PodamExclude
     private EstacionEntity EstacionLlegada;
     

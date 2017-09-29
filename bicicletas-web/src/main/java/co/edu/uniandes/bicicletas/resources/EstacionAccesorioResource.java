@@ -8,6 +8,7 @@ package co.edu.uniandes.bicicletas.resources;
 import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.bicicletas.dtos.AccesorioDTO;
 import co.edu.uniandes.bicicletas.ejb.AccesorioLogic;
+import co.edu.uniandes.bicicletas.ejb.EstacionLogic;
 import co.edu.uniandes.bicicletas.entities.AccesorioEntity;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 
 /**
- *
+ * Clase que implementa el recurso REST correspondiente a "direcciones"
+ * URI: estaciones/{estacionesId: \\d+}/accesorios
  * @author ka.babativa
  */
 @Produces("application/json")
@@ -30,22 +32,8 @@ public class EstacionAccesorioResource {
     @Inject
     private AccesorioLogic accesorioLogic;
     
-    @GET
-    public List<AccesorioDTO> getAccesorios(@PathParam("idEstacion") Long idEstacion) throws BusinessLogicException
-    {
-        return listEntity2DTO(accesorioLogic.getAccesoriosEstacion(idEstacion));
-    }
-    
-    @GET
-    @Path("{id: \\d+}")
-    public AccesorioDTO getAccesorio(@PathParam("idEstacion") Long idEstacion, @PathParam("id") Long idAccesorio) throws BusinessLogicException
-    {
-        AccesorioEntity accesorioEntity = accesorioLogic.getAccesorioEstacion(idEstacion, idAccesorio);
-        if(accesorioEntity == null) {
-            throw new WebApplicationException("El recurso /estaciones/" + idEstacion + "/Accesorios/" + idAccesorio + " no existe", 404);
-        }
-        return new AccesorioDTO(accesorioEntity);
-    }
+    @Inject
+    private EstacionLogic estacionLogic;
     
     private List<AccesorioDTO> listEntity2DTO(List<AccesorioEntity> listaEntiCali)
     {
@@ -57,6 +45,18 @@ public class EstacionAccesorioResource {
     }
     
     
+     private List<AccesorioEntity> accesoriosListDTO2Entity(List<AccesorioDTO> dtos){
+        List<AccesorioEntity> list = new ArrayList<>();
+        for (AccesorioDTO dto : dtos) {
+            list.add(dto.toEntity());
+        }
+        return list;
+    }
+    
+     @GET
+     public List<AccesorioDTO> listAccesorios(@PathParam("estacionesId") Long estacionesId){
+         return listEntity2DTO(estacionLogic.listAccesorios(estacionesId));
+     }
     
     
 }
