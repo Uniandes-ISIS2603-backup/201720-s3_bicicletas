@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -25,17 +26,18 @@ public class ReservaDTO {
     long id;
     Date FechaEntrega;
     Date FechaInicio;
-    double PrecioFinal=0;
-    long idEstacionOrigen;
-    long idusuarioReserva;
+    double PrecioFinal;
+    private Long idEstacionOrigen;
+    private Long idEstacionLlegada;
+    private Long idusuarioReserva;
     
 
     public long getUsuarioReserva() {
-        return idusuarioReserva;
+        return getIdusuarioReserva();
     }
 
     public void setUsuarioReserva(long pusuarioReserva) {
-        this.idusuarioReserva = pusuarioReserva;
+        this.setIdusuarioReserva((Long) pusuarioReserva);
     }
 
     public int getEstado() {
@@ -78,11 +80,11 @@ public class ReservaDTO {
     }
 
     public Long getEstacionOrigen() {
-        return idEstacionOrigen;
+        return getIdEstacionOrigen();
     }
 
     public void setEstacionOrigen(Long EstacionOrigen) {
-        this.idEstacionOrigen = EstacionOrigen;
+        this.setIdEstacionOrigen(EstacionOrigen);
     }
     
      
@@ -94,6 +96,8 @@ public class ReservaDTO {
         if(entidad!=null){
             this.id = entidad.getId();
             this.estado = entidad.getEstado();
+            this.idEstacionOrigen = entidad.getEstacionSalida().getId();
+            this.idEstacionLlegada = entidad.getEstacionLlegada().getId();
             this.FechaEntrega = entidad.getFechaEntrega();
             this.FechaInicio = entidad.getFechaInicio();
             this.PrecioFinal = entidad.getPrecioFinal();
@@ -103,19 +107,66 @@ public class ReservaDTO {
     
     public ReservaEntity toEntity() {
         ReservaEntity entity = new ReservaEntity();
+        
         entity.setId(this.getId());
         entity.setEstado(this.getEstado());
         entity.setFechaInicio(this.getFechaInicio());
+        
+        EstacionEntity lestacion2 = new EstacionEntity();
+        lestacion2.setId(this.getIdEstacionesLlegada());
+        entity.setEstacionLlegada(lestacion2);
         
         EstacionEntity lestacion = new EstacionEntity();
         lestacion.setId(this.getEstacionOrigen());
         entity.setEstacionSalida(lestacion);
         
         UsuarioEntity lusuario = new UsuarioEntity();
-        lusuario.setId(this.idusuarioReserva);
+        lusuario.setId(this.getIdusuarioReserva());
         entity.setUsuarioReserva(lusuario);
         
         return entity;
+    }
+
+    /**
+     * @return the idEstacionOrigen
+     */
+    public Long getIdEstacionOrigen() {
+        return idEstacionOrigen;
+    }
+
+    /**
+     * @param idEstacionOrigen the idEstacionOrigen to set
+     */
+    public void setIdEstacionOrigen(Long idEstacionOrigen) {
+        this.idEstacionOrigen = idEstacionOrigen;
+    }
+
+    /**
+     * @return the idEstacionesLlegada
+     */
+    public Long getIdEstacionesLlegada() {
+        return idEstacionLlegada;
+    }
+
+    /**
+     * @param idEstacionesLlegada the idEstacionesLlegada to set
+     */
+    public void setIdEstacionesLlegada(Long idEstacionesLlegada) {
+        this.idEstacionLlegada = idEstacionesLlegada;
+    }
+
+    /**
+     * @return the idusuarioReserva
+     */
+    public Long getIdusuarioReserva() {
+        return idusuarioReserva;
+    }
+
+    /**
+     * @param idusuarioReserva the idusuarioReserva to set
+     */
+    public void setIdusuarioReserva(Long idusuarioReserva) {
+        this.idusuarioReserva = idusuarioReserva;
     }
     
 }

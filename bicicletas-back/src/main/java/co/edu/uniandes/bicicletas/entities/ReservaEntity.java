@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -56,22 +57,17 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     @ManyToOne
     private UsuarioEntity usuarioReserva;
     
-    @ManyToOne
     @PodamExclude
     private EstacionEntity EstacionLlegada;
     
-    @OneToOne
+    @ManyToOne
     @PodamExclude
     private EstacionEntity EstacionSalida;
-    
-    
-    @ManyToMany
-    @PodamExclude
-    private List<EstacionEntity> estaciones;
     
     @OneToOne 
     @PodamExclude
     private PagoEntity pago;
+    
     @OneToMany
     @PodamExclude
     private List<BicicletaEntity> bicicletas = new ArrayList<>();
@@ -79,14 +75,7 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     private double precioFinal;
 
     
-    public List<EstacionEntity> getEstaciones() {
-        return estaciones;
-    }
-
-    public void setEstaciones(EstacionEntity salida, EstacionEntity llegada) {
-        this.estaciones.add(salida);
-        this.estaciones.add(llegada);
-    }
+    
     
     
     /**
@@ -228,17 +217,16 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     public void setPrecioFinal(double precioFinal) {
         this.precioFinal = precioFinal;
     }
-    public void setBicis(List<BicicletaEntity> temp){
-        bicicletas = temp;
-    }
-    public List<BicicletaEntity> getBicis(){
-        return bicicletas;
-    }
 
     
-
+       public void setBicis(List<BicicletaEntity> temp){
+         bicicletas = temp;
+     }
+     public List<BicicletaEntity> getBicis(){
+         return bicicletas;
+     }
+    
   }
-
 
 
 

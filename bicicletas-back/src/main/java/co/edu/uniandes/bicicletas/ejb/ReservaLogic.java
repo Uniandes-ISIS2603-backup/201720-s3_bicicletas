@@ -25,13 +25,17 @@ SOFTWARE.
 package co.edu.uniandes.bicicletas.ejb;
 
 import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
+import co.edu.uniandes.bicicletas.entities.BicicletaEntity;
 import co.edu.uniandes.bicicletas.entities.EstacionEntity;
 import co.edu.uniandes.bicicletas.entities.ReservaEntity;
-import co.edu.uniandes.bicicletas.entities.BicicletaEntity;
+import co.edu.uniandes.bicicletas.entities.ReservaEntity_;
 import co.edu.uniandes.bicicletas.entities.UsuarioEntity;
+import co.edu.uniandes.bicicletas.persistence.EstacionPersistence;
 import co.edu.uniandes.bicicletas.persistence.ReservaPersistence;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.WebApplicationException;
@@ -43,15 +47,19 @@ import javax.ws.rs.WebApplicationException;
 @Stateless
 public class ReservaLogic 
 {
+    private static final Logger LOGGER = Logger.getLogger(ReservaLogic.class.getName());
     @Inject
     private ReservaPersistence persistence;
     
-     @Inject
+    @Inject
     private UsuarioLogic logicaUsuario;
-    
+     
+    @Inject
+    private EstacionPersistence logicaEstacion;
     
     @Inject 
     private BicicletaLogic biciLogic;
+    
     
     public ReservaEntity getReserva(Long id)
     {
@@ -65,6 +73,22 @@ public class ReservaLogic
         return persistence.findAll();
     }
     
+    public ReservaEntity getReservaUsuario(Long idReserva  , Long idUsuario) throws BusinessLogicException{
+        UsuarioEntity usuario = logicaUsuario.getUsuario(idUsuario);
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar una reserva del usuario con id = {0}", idUsuario);
+        List<ReservaEntity> reservasUsuario = usuario.getReservas();
+        if(reservasUsuario==null || reservasUsuario.isEmpty()){
+            throw new BusinessLogicException("hola ");
+        }
+        ReservaEntity lreserva = persistence.find(idReserva);
+        int index = reservasUsuario.indexOf(lreserva);
+        if (index >= 0) 
+        {
+            return reservasUsuario.get(index);
+        }
+        return null;
+    }
+    
      public void deleteReserva(Long id) throws WebApplicationException
     {
          ReservaEntity Reserva = persistence.find(id);
@@ -73,16 +97,30 @@ public class ReservaLogic
          }
          persistence.delete(id);
     }
-    public ReservaEntity crearReserva(Long idUsuario, ReservaEntity entity ){
+    public ReservaEntity crearReserva(Long idUsuario, ReservaEntity entity ) throws BusinessLogicException{
         
         UsuarioEntity lusuario = logicaUsuario.getUsuario(idUsuario);
         entity.setUsuarioReserva(lusuario);
         List<ReservaEntity> reservasUsuario = lusuario.getReservas();
+        
+        EstacionEntity estacionOrigen ;
+        if(entity.getEstacionSalida().getId()!= null  ){
+            //LOGGER.info("ESTA MOSTRANDO ESTO  :::   "+entity.getEstacionSalida().getId());
+            //LOGGER.info("ESTA MOSTRANDO ESTO :::   "+ logicaEstacion);
+            estacionOrigen = logicaEstacion.find(entity.getEstacionSalida().getId());
+            LOGGER.info("ESTA MOSTRANDO ESTA HPTA MIERDAAAAAAAA  :::   "+estacionOrigen);
+            if(estacionOrigen==null){
+                throw new BusinessLogicException("La estacion de origen no existe");
+            }
+        }else{
+            throw new BusinessLogicException("Debe proporcial un id de estacion ");
+        }
         ReservaEntity reservaNueva;
         if(reservasUsuario == null){
             reservasUsuario = new ArrayList<>();
         }
         reservaNueva=persistence.create(entity);
+        reservaNueva.setEstacionSalida(estacionOrigen);
         reservasUsuario.add(reservaNueva);
         return reservaNueva;
     }
@@ -94,86 +132,47 @@ public class ReservaLogic
         return persistence.update(entidad);
     }
     
-    public List<EstacionEntity> listEstaciones (Long reservaId){
-        return getReserva(reservaId).getEstaciones();
-    }
     
-    public EstacionEntity getEstacion(Long reservaId, Long estacionId){
-        List<EstacionEntity> lista = getReserva(reservaId).getEstaciones();
-        EstacionEntity estacion = new EstacionEntity();
-        estacion.setId(estacionId);
-        int index = lista.indexOf(estacion);
-        if(index >= 0){
-            return lista.get(index);
+     public ReservaEntity asignarBicicleta(Long idReserva, Long  idBici) throws BusinessLogicException{
+         ReservaEntity reserva = getReserva(idReserva);
+         BicicletaEntity bici = biciLogic.getBIcicleta(idBici);
+         if(bici.darEstado()!=BicicletaEntity.DISPONIBLE){
+             throw new BusinessLogicException("No esta disponible la bici");
+         }
+         boolean a = false;
+         for (BicicletaEntity bicicletaR : reserva.getBicis()) {
+             if(bicicletaR.equals(bici)){
+                 a=true;
+          }
         }
-        return null;
-    }
+         if(a){
+             throw new BusinessLogicException("No esta disponible la bici");
+         }
+         reserva.getBicis().add(bici);
+         bici.setEstado(BicicletaEntity.RESERVADA);
+         return reserva;
+     }
+     public BicicletaEntity getBici(Long idReserva, Long  idBici) throws BusinessLogicException{
+         ReservaEntity reserva = getReserva(idReserva);
+         BicicletaEntity bici = biciLogic.getBIcicleta(idBici);
+         if(bici.darEstado()!=BicicletaEntity.DISPONIBLE){
+             throw new BusinessLogicException("No esta disponible la bici");
+         }
+         boolean a = false;
+         for (BicicletaEntity bicicletaR : reserva.getBicis()) {
+             if(bicicletaR.equals(bici)){
+                 a=true;
+             }
+         }
+         if(!a){
+             throw new BusinessLogicException("No esta disponible la bici");
+         }
+         return bici;
+     }
+     public List<BicicletaEntity> getBicis(Long idReserva)throws BusinessLogicException{
+         ReservaEntity reserva = getReserva(idReserva);
+         List<BicicletaEntity> bicis = reserva.getBicis();
+         return bicis;
+     }
     
-    public EstacionEntity addEstacion(Long reservaId, Long estacionesId){
-        ReservaEntity reserva = getReserva(reservaId);
-        EstacionEntity estacionEntity = new EstacionEntity();
-        estacionEntity.setId(estacionesId);
-        if(reserva.getEstaciones().size()<2){
-            reserva.getEstaciones().add(estacionEntity);
-            return getEstacion(reservaId, estacionesId);
-        }
-        else
-            return null;
-    }
-    
-    public List<EstacionEntity> replaceEstacion(Long reservaId, List<ReservaEntity> list) {
-        ReservaEntity rEntity = getReserva(reservaId);
-        EstacionEntity salida = rEntity.getEstacionSalida();
-         EstacionEntity llegada = rEntity.getEstacionLlegada();
-        rEntity.setEstaciones(salida, llegada);
-        return rEntity.getEstaciones();
-    }
-    
-    public void removeEstacion(Long reservaId, Long estacionId){
-        ReservaEntity entity = getReserva(reservaId);
-        EstacionEntity eEntity = new EstacionEntity();
-        eEntity.setId(estacionId);
-        entity.getEstaciones().remove(eEntity);
-    }
-    public ReservaEntity asignarBicicleta(Long idReserva, Long  idBici) throws BusinessLogicException{
-        ReservaEntity reserva = getReserva(idReserva);
-        BicicletaEntity bici = biciLogic.getBIcicleta(idBici);
-        if(bici.darEstado()!=BicicletaEntity.DISPONIBLE){
-            throw new BusinessLogicException("No esta disponible la bici");
-        }
-        boolean a = false;
-        for (BicicletaEntity bicicletaR : reserva.getBicis()) {
-            if(bicicletaR.equals(bici)){
-                a=true;
-            }
-        }
-        if(a){
-            throw new BusinessLogicException("No esta disponible la bici");
-        }
-        reserva.getBicis().add(bici);
-        bici.setEstado(BicicletaEntity.RESERVADA);
-        return reserva;
-    }
-    public BicicletaEntity getBici(Long idReserva, Long  idBici) throws BusinessLogicException{
-        ReservaEntity reserva = getReserva(idReserva);
-        BicicletaEntity bici = biciLogic.getBIcicleta(idBici);
-        if(bici.darEstado()!=BicicletaEntity.DISPONIBLE){
-            throw new BusinessLogicException("No esta disponible la bici");
-        }
-        boolean a = false;
-        for (BicicletaEntity bicicletaR : reserva.getBicis()) {
-            if(bicicletaR.equals(bici)){
-                a=true;
-            }
-        }
-        if(!a){
-            throw new BusinessLogicException("No esta disponible la bici");
-        }
-        return bici;
-    }
-    public List<BicicletaEntity> getBicis(Long idReserva)throws BusinessLogicException{
-        ReservaEntity reserva = getReserva(idReserva);
-        List<BicicletaEntity> bicis = reserva.getBicis();
-        return bicis;
-    }
 }

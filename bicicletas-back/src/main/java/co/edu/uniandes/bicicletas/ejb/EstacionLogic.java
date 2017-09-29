@@ -226,29 +226,7 @@ public class EstacionLogic
     }
 
     
-    public ReservaEntity addReserva(Long estacionId, Long reservasId) {
-        reservaLogic.addEstacion(reservasId, estacionId);
-        return reservaLogic.getReserva(reservasId);
-    }
     
-    public List<ReservaEntity> replaceReservas(Long estacionId, List<ReservaEntity> list) {
-        EstacionEntity estacionEntity = getEstacion(estacionId);
-        List<ReservaEntity> rList = reservaLogic.getReservas();
-        for (ReservaEntity reserva : rList) {
-            if (list.contains(reserva)) {
-                if (!reserva.getEstaciones().contains(estacionEntity)) {
-                    reservaLogic.addEstacion(reserva.getId(), estacionId);
-                }
-            } else {
-                reservaLogic.removeEstacion(reserva.getId(), estacionId);
-            }
-        }
-        estacionEntity.setReservas(list);
-        return estacionEntity.getReservas();
-    }
-    public void removeReserva(Long estacionId, Long reservaId) {
-        reservaLogic.removeEstacion(reservaId, estacionId);
-    }
     
     //------------------------------------------------------------------------------------------------------------------
     //------------------------------------------------------------------------------------------------------------------
@@ -347,3 +325,4 @@ public class EstacionLogic
     
     
 }
+

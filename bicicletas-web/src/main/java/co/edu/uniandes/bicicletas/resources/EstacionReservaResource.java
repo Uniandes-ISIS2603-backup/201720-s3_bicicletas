@@ -61,14 +61,4 @@ public class EstacionReservaResource {
         return new ReservaDTO(estacionLogic.getReserva(estacionesId, reservaId));
     }
     
-    @POST
-    @Path("{reservaId: \\d+}")
-    public ReservaDTO addReserva(@PathParam("estacionesId") Long estacionesId, @PathParam("reservaId") Long reservaId) {
-        return new ReservaDTO(estacionLogic.addReserva(estacionesId, reservaId));
-    }
-    
-    @PUT
-    public List<ReservaDTO> replaceReserva(@PathParam("estacionesId") Long estacionesId, List<ReservaDTO> reserva) {
-        return reservaListEntity2DTO(estacionLogic.replaceReservas(estacionesId, reservaListDTO2Entity(reserva)));
-    }
 }

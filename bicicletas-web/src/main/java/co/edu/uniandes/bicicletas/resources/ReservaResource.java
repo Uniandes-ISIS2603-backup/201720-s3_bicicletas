@@ -44,10 +44,7 @@ public class ReservaResource {
     private ReservaLogic logica;
     @Inject
     private UsuarioLogic logicaUsuario ;
-    @Inject
-    private  EstacionLogic logicaEstacion ;
-   
-    
+
     private List<ReservaDTO> listEntity2DTO(List<ReservaEntity> entityList) {
         List<ReservaDTO> lista = new ArrayList<>();
         for(ReservaEntity entidad : entityList){
