@@ -39,6 +39,7 @@ public class CalificacionDTO
     private String descripcion;
     private EstacionEntity estacion;
     private Long idUsuario;
+    private Long idReserva;
    
      /**
      * Constructor por defecto
@@ -60,6 +61,7 @@ public class CalificacionDTO
         this.descripcion = caliEntity.getDescripcion();
         this.estacion = caliEntity.getEstacion();
         this.idUsuario = caliEntity.getReserva().getUsuarioReserva().getId();
+        this.idReserva = caliEntity.getReserva().getId();
     }
     
     /**
@@ -161,6 +163,20 @@ public class CalificacionDTO
      */
     public void setEstacion(EstacionEntity estacion) {
         this.estacion = estacion;
+    }
+
+    /**
+     * @return the idReserva
+     */
+    public Long getIdReserva() {
+        return idReserva;
+    }
+
+    /**
+     * @param idReserva the idReserva to set
+     */
+    public void setIdReserva(Long idReserva) {
+        this.idReserva = idReserva;
     }
     
     
