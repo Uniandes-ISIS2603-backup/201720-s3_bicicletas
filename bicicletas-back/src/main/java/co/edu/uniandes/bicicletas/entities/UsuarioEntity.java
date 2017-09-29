@@ -49,7 +49,7 @@ public class UsuarioEntity extends BaseEntity implements Serializable {
    @Temporal(TemporalType.DATE)
    private Date fechaNacimiento;
    
-   @OneToMany(mappedBy = "usuarioReserva" , cascade = CascadeType.ALL)
+   @OneToMany(mappedBy = "usuarioReserva" )
    @PodamExclude
    private List<ReservaEntity> reservas = new ArrayList<ReservaEntity>();
 

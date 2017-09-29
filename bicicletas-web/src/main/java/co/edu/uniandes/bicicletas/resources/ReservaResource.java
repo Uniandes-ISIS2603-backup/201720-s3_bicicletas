@@ -13,7 +13,9 @@ import co.edu.uniandes.bicicletas.ejb.UsuarioLogic;
 import co.edu.uniandes.bicicletas.entities.EstacionEntity;
 import co.edu.uniandes.bicicletas.entities.ReservaEntity;
 import co.edu.uniandes.bicicletas.entities.UsuarioEntity;
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.enterprise.context.RequestScoped;
@@ -73,13 +75,10 @@ public class ReservaResource {
     @POST
     @Path("{id: \\d+}")
     public ReservaDTO crearReserva (@PathParam("id") Long id , ReservaDTO dto) throws BusinessLogicException {
-        UsuarioEntity usuario = logicaUsuario.getUsuario(id);
-        if(usuario==null){
-            throw new WebApplicationException("El Usuario con id "+ id +" no existe", 404);
+        if(logicaUsuario.getUsuario(id)==null){
+          throw new WebApplicationException("El usuario con id "+ id +" no existe", 404);
         }
-        dto.setUsuarioReserva(usuario);
-        ReservaEntity reservaLocal = logica.crearReserva( dto.toEntity());
-        return new ReservaDTO(reservaLocal);
+        return new ReservaDTO(logica.crearReserva( id ,dto.toEntity()));
     }
     
     @PUT

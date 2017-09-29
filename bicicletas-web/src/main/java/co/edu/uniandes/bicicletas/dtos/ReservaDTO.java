@@ -25,35 +25,17 @@ public class ReservaDTO {
     long id;
     Date FechaEntrega;
     Date FechaInicio;
-    double PrecioFinal;
-    Long idEstacionOrigen;
-    CalificacionEntity calificacionEstacionOrigen;
-    CalificacionEntity calificacionEstacionLlegada;
-    UsuarioEntity usuarioReserva;
+    double PrecioFinal=0;
+    long idEstacionOrigen;
+    long idusuarioReserva;
     
 
-    public CalificacionEntity getCalificacionEstacionOrigen() {
-        return calificacionEstacionOrigen;
+    public long getUsuarioReserva() {
+        return idusuarioReserva;
     }
 
-    public void setCalificacionEstacionOrigen(CalificacionEntity calificacionEstacionOrigen) {
-        this.calificacionEstacionOrigen = calificacionEstacionOrigen;
-    }
-
-    public CalificacionEntity getCalificacionEstacionLlegada() {
-        return calificacionEstacionLlegada;
-    }
-
-    public void setCalificacionEstacionLlegada(CalificacionEntity calificacionEstacionLlegada) {
-        this.calificacionEstacionLlegada = calificacionEstacionLlegada;
-    }
-
-    public UsuarioEntity getUsuarioReserva() {
-        return usuarioReserva;
-    }
-
-    public void setUsuarioReserva(UsuarioEntity usuarioReserva) {
-        this.usuarioReserva = usuarioReserva;
+    public void setUsuarioReserva(long pusuarioReserva) {
+        this.idusuarioReserva = pusuarioReserva;
     }
 
     public int getEstado() {
@@ -115,9 +97,7 @@ public class ReservaDTO {
             this.FechaEntrega = entidad.getFechaEntrega();
             this.FechaInicio = entidad.getFechaInicio();
             this.PrecioFinal = entidad.getPrecioFinal();
-            this.calificacionEstacionLlegada = entidad.getCalificacionEstacionLlegada();
-            this.calificacionEstacionOrigen = entidad.getCalificacionEstacionOrigen();
-            this.usuarioReserva = entidad.getUsuarioReserva();
+            this.idusuarioReserva = entidad.getUsuarioReserva().getId();
         }
     }
     
@@ -126,10 +106,15 @@ public class ReservaDTO {
         entity.setId(this.getId());
         entity.setEstado(this.getEstado());
         entity.setFechaInicio(this.getFechaInicio());
+        
         EstacionEntity lestacion = new EstacionEntity();
         lestacion.setId(this.getEstacionOrigen());
         entity.setEstacionSalida(lestacion);
-        entity.setUsuarioReserva(this.getUsuarioReserva());
+        
+        UsuarioEntity lusuario = new UsuarioEntity();
+        lusuario.setId(this.idusuarioReserva);
+        entity.setUsuarioReserva(lusuario);
+        
         return entity;
     }
     

@@ -39,9 +39,7 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     
     @Temporal(TemporalType.DATE)
     private Date FechaInicio;
-    
-    private long idReserva;
-    
+     
     private int Estado;
     
     @OneToOne
@@ -52,8 +50,8 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     @PodamExclude
     private CalificacionEntity calificacionEstacionLlegada;
     
-    @ManyToOne
     @PodamExclude
+    @ManyToOne
     private UsuarioEntity usuarioReserva;
     
     @ManyToOne
@@ -112,20 +110,6 @@ public class ReservaEntity extends BaseEntity implements Serializable {
      */
     public void setFechaInicio(Date FechaInicio) {
         this.FechaInicio = FechaInicio;
-    }
-
-    /**
-     * @return the idReserva
-     */
-    public long getIdReserva() {
-        return idReserva;
-    }
-
-    /**
-     * @param idReserva the idReserva to set
-     */
-    public void setIdReserva(long idReserva) {
-        this.idReserva = idReserva;
     }
 
     /**
