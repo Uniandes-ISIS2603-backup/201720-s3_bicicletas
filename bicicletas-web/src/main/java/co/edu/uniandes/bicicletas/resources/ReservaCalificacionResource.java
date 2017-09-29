@@ -32,11 +32,52 @@ public class ReservaCalificacionResource
     @Inject
     private CalificacionLogic calificacionLogic;
     
+    /**
+     * Crea una nueva calificación en el sistema
+     * @param idReserva Id de la reserva a la cual pertenece la calificación
+     * @param cali 0 equivale a la calificación de la estación de origen, y 1 equivale a la calificación de la estación de llegada
+     * @param dto Los datos de la calificación que va a ser creada  
+     * @return La calificación creada
+     * @throws BusinessLogicException 
+     */
     @POST
     @Path("{id: \\d+}")
     public CalificacionDTO createCalificacion(@PathParam("idReserva") Long idReserva, @PathParam("id") Long cali, CalificacionDTO dto) throws BusinessLogicException
     {
+        //Boolean que representa si la estación es de origen (true) o llegada (false)
         boolean origen = false;
+        
+        if( 0 > dto.getNota() || 6 <= dto.getNota() )
+        {
+            throw new BusinessLogicException("La nota seleccionada no es valida");
+        }
+        
+        if(!(cali == 0 || cali == 1))
+        {
+            throw new BusinessLogicException("No se escoge bien a que estación pertenece la calificación");
+        }
+        else if(cali == 0)
+        {
+            origen = true;
+        }
+        
+        return new CalificacionDTO(calificacionLogic.createCalificacion(origen, idReserva, dto.toEntity()));
+    }
+    
+    /**
+     * Obtiene una de las 2 calificaciones que hay en una reserva
+     * @param idReserva Id de la reserva de la cual se va a obtener la calificación
+     * @param cali 0 equivale a la calificación de la estación de origen, y 1 equivale a la calificación de la estación de llegada
+     * @return
+     * @throws BusinessLogicException 
+     */
+    @GET
+    @Path("{id: \\d+}")
+    public CalificacionDTO getCalificacionReserva(@PathParam("idReserva") Long idReserva, @PathParam("id") Long cali) throws BusinessLogicException
+    {
+        //Boolean que representa si la estación es de origen (true) o llegada (false)
+        boolean origen = false;
+        
         if(!(cali == 0 || cali == 1))
         {
              throw new BusinessLogicException("No se escoge bien a que estación pertenece la calificación");
@@ -46,17 +87,11 @@ public class ReservaCalificacionResource
             origen = true;
         }
         
-        return new CalificacionDTO(calificacionLogic.createCalificacion(origen,idReserva, dto.toEntity()));
-    }
-    
-    @GET
-    @Path("{id: \\d+}")
-    public CalificacionDTO getCalificacionReserva(@PathParam("idReserva") Long idReserva, @PathParam("id") Long cali) throws BusinessLogicException
-    {
-        CalificacionEntity entity = calificacionLogic.getCalificionReserva(idReserva, cali);
+        CalificacionEntity entity = calificacionLogic.getCalificionReserva(idReserva, origen);
+        
         if (entity == null) 
         {   
-            String esta = darNombreEstacion(cali);
+            String esta = darNombreEstacion(origen);
             throw new WebApplicationException("El recurso /reservas/" + idReserva + "/calificaciones/" + esta + " no existe", 404);
         }
        
@@ -67,11 +102,26 @@ public class ReservaCalificacionResource
     @Path("{id: \\d+}")
     public CalificacionDTO updateCalificacion(@PathParam("idReserva") Long idReserva, @PathParam("id") Long idCali, CalificacionDTO dto) throws BusinessLogicException 
     {
-        CalificacionEntity entity = calificacionLogic.getCalificionReserva(idReserva, idCali);
-        
-        if (entity == null ) 
+        if(dto.getIdCali() != null)
         {
-            String esta = darNombreEstacion(idCali);
+            throw new WebApplicationException("No es posible actualizar el id de una calificación", 404);
+        }
+        
+        boolean origen = false;
+        if(!(idCali == 0 || idCali == 1))
+        {
+             throw new BusinessLogicException("No se escoge bien a que estación pertenece la calificación");
+        }
+        else if(idCali == 0)
+        {
+            origen = true;
+        }
+        
+        CalificacionEntity entity = calificacionLogic.getCalificionReserva(idReserva, origen);
+        
+        if (entity == null) 
+        {
+            String esta = darNombreEstacion(origen);
             
             throw new WebApplicationException("El recurso /reservas/" + idReserva + "/calificaciones/" + esta + " no existe", 404);
         
@@ -79,32 +129,23 @@ public class ReservaCalificacionResource
        
         dto.setIdCali(entity.getId());
         
-        CalificacionEntity actualizada = calificacionLogic.updateCalificacion(idReserva, idCali, dto.toEntity());
+        CalificacionEntity actualizada = calificacionLogic.updateCalificacion(idReserva, origen, dto.toEntity());
         
         return new CalificacionDTO(actualizada);
 
     }
     
-    private String darNombreEstacion(Long idCali)
+    private String darNombreEstacion(boolean cali)
     {
         String estacion = "estacionDe";
-        if(idCali == 1 || idCali == 0)
-            {
-                if(idCali == 0)
-                {
-                   estacion = estacion + "Origen";
-                }
-                else if(idCali == 1)
-                {
-                    estacion = estacion + "Llegada";
-                }   
-            }
+        if(cali)
+        {
+            estacion = estacion + "Origen";
+        }
         else
         {
-            throw new WebApplicationException("Está consultando mal las calificaciones asociadas a una reserva", 404);
-        }
-       
-        
+           estacion = estacion + "Llegada"; 
+        }        
         return estacion;
         
     }

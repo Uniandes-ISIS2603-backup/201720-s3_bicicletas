@@ -67,26 +67,24 @@ public class CalificacionLogic
         LOGGER.info("Inicia proceso de crear una calificación");
         ReservaEntity reserva = reservaLogic.getReserva(idReserva);
         EstacionEntity estacion;
-        LOGGER.info("Origen "+origen.toString());
-        if(origen && reserva.getCalificacionEstacionOrigen() == null)
+        
+        if(origen && reserva.getCalificacionEstacionOrigen() == null && reserva.getEstacionSalida() != null)
         {
             estacion = reserva.getEstacionSalida();
         }
-        else if(!origen && reserva.getCalificacionEstacionLlegada() == null)
+        else if(!origen && reserva.getCalificacionEstacionLlegada() == null && reserva.getEstacionLlegada() != null )
         {
             estacion = reserva.getEstacionLlegada();
         }
         else
         {
-             throw new BusinessLogicException("Ya existe una calificación para la estación definida");
+             throw new BusinessLogicException("No es posible calificar la estación");
         }
-                
+                      
         caliEntity.setReserva(reserva);
         caliEntity.setEstacion(estacion);
         
         CalificacionEntity califiEntity = caliPersistence.create(caliEntity);
-        
-        
         
         List<CalificacionEntity> listaCalis = estacion.getCalificacion();
         
@@ -137,8 +135,7 @@ public class CalificacionLogic
             throw new BusinessLogicException(MENSAJE);
         }
         
-        CalificacionEntity caliEntity = new CalificacionEntity();
-        caliEntity.setId(idCalificacion);
+        CalificacionEntity caliEntity = caliPersistence.find(idCalificacion);
         int index = lista.indexOf(caliEntity);
         if (index >= 0) 
         {
@@ -150,10 +147,10 @@ public class CalificacionLogic
     /**
      * Obtiene la calificación de una estación con base a la reserva
      * @param idReserva Id de la reserva de la cual se quieren observar las calificaciones
-     * @param cali 1 o 0 dependiendo de si se quiere ver la calificación de la estación de llegada u origen
+     * @param cali false o true dependiendo de si se quiere ver la calificación de la estación de llegada u origen
      * @return Un objeto de CalificacionEntity 
      */
-    public CalificacionEntity getCalificionReserva(Long idReserva, Long cali)
+    public CalificacionEntity getCalificionReserva(Long idReserva, boolean cali)
     {
         LOGGER.info("Inicia proceso de consultar una calificación de una reserva");
         
@@ -161,11 +158,11 @@ public class CalificacionLogic
         
         CalificacionEntity caliEntity = null;
         
-        if(cali == 0)
+        if(cali)
         {
             caliEntity = reserva.getCalificacionEstacionOrigen();
         }
-        else if(cali == 1)
+        else
         {
             caliEntity = reserva.getCalificacionEstacionLlegada();
         }
@@ -176,25 +173,28 @@ public class CalificacionLogic
     /**
      * Actualiza los datos de una calificación 
      * @param idReserva El id que tiene la información de la calificación a actuaalizar
-     * @param cali 1 o 0 dependiendo de si se quiere ver la calificación de la estación de llegada u origen
+     * @param cali false o true dependiendo de si se quiere ver la calificación de la estación de llegada u origen
      * @param calEntity Objeto con los nuevos datos de la calificación
      * @return Objeto CalificacionEntity con los datos actualizado
      */
-    public CalificacionEntity updateCalificacion(Long idReserva, Long cali, CalificacionEntity calEntity) {
+    public CalificacionEntity updateCalificacion(Long idReserva, boolean cali, CalificacionEntity calEntity) {
         LOGGER.info("Inicia proceso de actualizar una calificacion");
+        
         ReservaEntity reserva = reservaLogic.getReserva(idReserva);
-        CalificacionEntity caliActualizada = caliPersistence.update(calEntity);
+        CalificacionEntity califi = null;
         
-        if(cali == 0)
+        if(cali && reserva.getCalificacionEstacionOrigen() != null)
         {
-            reserva.setCalificacionEstacionOrigen(caliActualizada);
+            calEntity.setId(reserva.getCalificacionEstacionOrigen().getId());
+            califi = caliPersistence.update(calEntity);
         }
-        else if(cali == 1)
+        else if(!cali && reserva.getEstacionLlegada() != null)
         {
-            reserva.setCalificacionEstacionLlegada(caliActualizada);
+            calEntity.setId(reserva.getCalificacionEstacionLlegada().getId());
+            califi = caliPersistence.update(calEntity);
         }
-        
-        return caliActualizada;
+                
+        return califi;
     }
    
     /**
@@ -224,12 +224,5 @@ public class CalificacionLogic
         LOGGER.info("Termina proceso de consultar todos las califiaciones");
         return calificaciones;
     }
-    
-    public CalificacionEntity nuevaCalificacion(CalificacionEntity caliEntity)
-    {
-        LOGGER.info("Inicia proceso de crear una calificación");
-        CalificacionEntity califiEntity = caliPersistence.create(caliEntity);
-        LOGGER.info("Termina proceso de crear una calificación");
-        return califiEntity;
-    }
+
 }
