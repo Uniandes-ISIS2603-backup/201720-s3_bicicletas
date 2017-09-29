@@ -28,7 +28,7 @@ public class EstacionEntity extends BaseEntity implements Serializable {
     private List<DireccionEntity> direcciones = new ArrayList<DireccionEntity>();
     
     @PodamExclude
-    @OneToMany(mappedBy = "estacion", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "estacion", cascade = CascadeType.ALL)
     private List<AccesorioEntity> accesorios = new ArrayList<AccesorioEntity>();
     
     @PodamExclude

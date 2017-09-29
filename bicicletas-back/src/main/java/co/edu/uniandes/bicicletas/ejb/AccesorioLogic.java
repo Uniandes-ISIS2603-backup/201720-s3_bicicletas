@@ -29,14 +29,8 @@ public class AccesorioLogic {
     
     private EstacionLogic estacionLogic;
     
-    @Inject
-    private ReservaLogic reservaLogic;
-    
     public AccesorioEntity getAccesorio(Long id) throws WebApplicationException{
         AccesorioEntity accesorio = persistence.find(id);
-        if(accesorio == null){
-            throw new WebApplicationException("No hay un accesorio con dicho ID", 402);
-        }
         return accesorio;
     }
     
@@ -55,22 +49,22 @@ public class AccesorioLogic {
     public AccesorioEntity crearAccesorio(AccesorioEntity entidadA)throws BusinessLogicException{
         
         //Falta que se cree la relación entre Eeserva y Estacion
-        EstacionEntity estacion = estacionLogic.getEstacion(entidadA.getEstacion().getId());
-        if(estacion == null){
-            throw new BusinessLogicException("No se encontró la estación que se desea agregar al sistema");
-        }
+        //EstacionEntity estacion = estacionLogic.getEstacion(entidadA.getEstacion().getId());
+       // if(estacion == null){
+        //    throw new BusinessLogicException("No se encontró la estación que se desea agregar al sistema");
+       // }
         
         AccesorioEntity accesorioEntity = persistence.create(entidadA);
         
-        List<AccesorioEntity> listaAccesorios = estacion.getAccesorios();
+        //List<AccesorioEntity> listaAccesorios = estacion.getAccesorios();
         
-        if(listaAccesorios == null){
-            listaAccesorios = new ArrayList<>();
-            listaAccesorios.add(accesorioEntity);
-            estacion.setAccesorios(listaAccesorios);
-        }
-        
-        listaAccesorios.add(accesorioEntity);
+        //if(listaAccesorios == null){
+        //    listaAccesorios = new ArrayList<>();
+       //     listaAccesorios.add(accesorioEntity);
+        //    estacion.setAccesorios(listaAccesorios);
+       // }
+       // 
+       // listaAccesorios.add(accesorioEntity);
         
         return accesorioEntity;
     }
