@@ -52,9 +52,13 @@ public class CalificacionResource
 {
     @Inject
     CalificacionLogic calLogic;
-    
+   
+    /**
+     * Obtiene todas las calificaciones existentes en la base de datos
+     * @return Una colección de CalificacionDTO
+     */
    @GET
-   public List<CalificacionDTO> getCalificaciones() throws BusinessLogicException
+   public List<CalificacionDTO> getCalificaciones()
    {
        return listCalificacionEntity2DTO(calLogic.getCalificaciones());
    }
@@ -88,9 +92,4 @@ public class CalificacionResource
        return new CalificacionDTO(entity);
    }
    
-   @POST
-    public CalificacionDTO createCalificacion(CalificacionDTO dto) throws BusinessLogicException
-    {
-         return new CalificacionDTO(calLogic.nuevaCalificacion(dto.toEntity()));
-    }
 }

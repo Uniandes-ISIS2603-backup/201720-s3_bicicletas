@@ -25,6 +25,7 @@ package co.edu.uniandes.bicicletas.ejb;
 
 import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.bicicletas.entities.PuntoEntity;
+import co.edu.uniandes.bicicletas.entities.ReservaEntity;
 import co.edu.uniandes.bicicletas.entities.UsuarioEntity;
 import co.edu.uniandes.bicicletas.persistence.PuntoPersistence;
 import java.text.DateFormat;
@@ -56,43 +57,39 @@ public class PuntoLogic
      * @param idUsuario Id del usuario al cual se le crearán los puntos
      * @return Lista de PuntoEntity creados
      */
-    public List<PuntoEntity> createPuntos(Long idUsuario)
+    public PuntoEntity createPunto(Long idUsuario) throws BusinessLogicException
     {
-        LOGGER.info("Empieza el proceso de crear 10 puntos");
+        LOGGER.info("Empieza el proceso de crear 1 punto");
+        //Se obtiene el usuario
         UsuarioEntity usuario = usuarioLogic.getUsuario(idUsuario);
+        
+        //Se obtiene la lista de reservas del usuario
+        List<ReservaEntity> reservas = usuario.getReservas();
+        
+        //Se obtiene la lista de puntos de un usuario
+         List<PuntoEntity> puntos = usuario.getPuntos();
+        
+        //Se verifica que la lista de reservas del usuario no este vacía y que los puntos que posee
+        //sean menores a la cantidad de reservas que ha realizado
+        if(reservas.isEmpty() || reservas.size() < (puntos.size() + 1)) 
+        {
+            throw new BusinessLogicException("No se puede agregar un punto al usuario");
+        }
         
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
         dateFormat.format(date); 
-      
-        List<PuntoEntity> puntos = usuario.getPuntos();
-        List<PuntoEntity> puntosNuevos = new ArrayList<>(); ;
+     
         PuntoEntity punt;
-        boolean crea = false;
-        if(puntos == null)
-        {
-            puntos = new ArrayList<>();
-            crea = true;
-        }
         
-        for(int i = 0; i < 10; i++)
-        {
-            punt = new PuntoEntity();
-            punt.setFechaPunto(date);
-            puntPersistence.create(punt);
-            
-            puntos.add(0, punt);
-            puntosNuevos.add(punt);    
-        }
+        punt = new PuntoEntity();
+        punt.setFechaPunto(date);
+        puntPersistence.create(punt);
+        puntos.add(0, punt);
         
-        if(crea)
-        {
-            usuario.setPuntos(puntos);   
-        }
+        LOGGER.info("Terminar el proceso crear 1 punto");
         
-        LOGGER.info("Terminar el proceso crear 10 puntos");
-        
-        return puntosNuevos;
+        return punt;
     }
     
     /**
@@ -125,12 +122,11 @@ public class PuntoLogic
         else
         {
             int size = puntos.size();
-            Long punt;
+            PuntoEntity punt;
             for (int i = size-1; i >= size - 10; i--) 
             {
-                punt = puntos.get(i).getId();
-                puntos.remove(i);
-                puntPersistence.delete(punt);
+                punt = puntos.remove(i);
+                puntPersistence.delete(punt.getId());
             }
         }
         LOGGER.info("Termina el proceso de borrar 10 puntos de un usuario");

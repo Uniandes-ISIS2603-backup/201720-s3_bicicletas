@@ -24,6 +24,7 @@ public class DireccionDTO {
      * Constructor por defecto
      */
     public DireccionDTO() {
+        //Do nothing because is not necessary
     }
     
     /**
@@ -39,42 +40,82 @@ public class DireccionDTO {
         this.ciudad= direccion.getCiudad();
     }
 
+    /**
+     *
+     * @return
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getCodigoPostal() {
         return codigoPostal;
     }
 
+    /**
+     *
+     * @param codigoPostal
+     */
     public void setCodigoPostal(Integer codigoPostal) {
         this.codigoPostal = codigoPostal;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getDescripcion() {
         return descripcion;
     }
 
+    /**
+     *
+     * @param descripcion
+     */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getCiudad() {
         return ciudad;
     }
 
+    /**
+     *
+     * @param ciudad
+     */
     public void setCiudad(String ciudad) {
         this.ciudad = ciudad;
     }

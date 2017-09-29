@@ -32,6 +32,11 @@ public class UsuarioPuntoResource
     @Inject
     private PuntoLogic puntoLogic;
     
+    /**
+     * Obtiene todos los puntos que posee un usuario en el sistema
+     * @param idUsuario Id del usuario del cual quieren ser consultados los puntos
+     * @return Colección de PuntoDTO
+     */
     @GET
     public List<PuntoDTO> getPuntos(@PathParam("idUsuario") Long idUsuario)
     {
@@ -43,15 +48,26 @@ public class UsuarioPuntoResource
         return listEntity2DTO(puntos);
     }
     
+    /**
+     * Borra/redime 10 de los puntos totales que posee el usuario
+     * @param idUsuario Id del usuario del cual quieren elinarse los puntos
+     * @throws BusinessLogicException Se lanza si el usuario no tiene al menos 10 puntos  
+     */
     @DELETE 
     public void deletePuntos(@PathParam("idUsuario") Long idUsuario) throws BusinessLogicException 
     {
         puntoLogic.deletePuntos(idUsuario);
     }
     
+    /**
+     * Se crean 10 puntos para el usuario 
+     * @param idUsuario Id del usuario al cual se le crearán 10 puntos nuevos en el sistema
+     * @return Colección de puntos creados
+     * @throws BusinessLogicException Se lanza si 
+     */
     @POST
-    public List<PuntoDTO> createPuntos(@PathParam("idUsuario") Long idUsuario) throws BusinessLogicException {
-        return listEntity2DTO(puntoLogic.createPuntos(idUsuario));
+    public PuntoDTO createPuntos(@PathParam("idUsuario") Long idUsuario) throws BusinessLogicException {
+        return new PuntoDTO(puntoLogic.createPunto(idUsuario));
     } 
     
     private List<PuntoDTO> listEntity2DTO(List<PuntoEntity> listaEntiPunto)
