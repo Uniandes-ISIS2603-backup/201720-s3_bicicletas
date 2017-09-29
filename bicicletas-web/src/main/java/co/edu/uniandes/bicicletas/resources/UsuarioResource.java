@@ -85,7 +85,7 @@ import javax.ws.rs.WebApplicationException;
 	     *
 	     * @param dto Objeto de UsuarioDetailDTO con los datos nuevos
 	     * @return Objeto de UsuarioDetailDTOcon los datos nuevos y su ID
-     * @throws co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException
+             * @throws co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException
 	     * 
 	     */
 	    @POST

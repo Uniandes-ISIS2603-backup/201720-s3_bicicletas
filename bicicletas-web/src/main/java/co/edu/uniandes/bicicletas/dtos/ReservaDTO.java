@@ -12,6 +12,7 @@ import java.util.Date;
 import co.edu.uniandes.bicicletas.entities.ReservaEntity;
 import co.edu.uniandes.bicicletas.entities.UsuarioEntity;
 import java.util.List;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -25,13 +26,14 @@ public class ReservaDTO {
     Date FechaEntrega;
     Date FechaInicio;
     double PrecioFinal;
+    Long idEstacionOrigen;
+    @OneToOne
     CalificacionEntity calificacionEstacionOrigen;
+    @OneToOne
     CalificacionEntity calificacionEstacionLlegada;
+    @OneToOne
     UsuarioEntity usuarioReserva;
-    EstacionEntity EstacionLlegada;
-    EstacionEntity EstacionOrigen;
-    List<EstacionEntity> estaciones;
-    PagoEntity pago;
+    
 
     public CalificacionEntity getCalificacionEstacionOrigen() {
         return calificacionEstacionOrigen;
@@ -55,30 +57,6 @@ public class ReservaDTO {
 
     public void setUsuarioReserva(UsuarioEntity usuarioReserva) {
         this.usuarioReserva = usuarioReserva;
-    }
-
-    public EstacionEntity getEstacionLlegada() {
-        return EstacionLlegada;
-    }
-
-    public void setEstacionLlegada(EstacionEntity EstacionLlegada) {
-        this.EstacionLlegada = EstacionLlegada;
-    }
-
-    public List<EstacionEntity> getEstaciones() {
-        return estaciones;
-    }
-
-    public void setEstaciones(List<EstacionEntity> estaciones) {
-        this.estaciones = estaciones;
-    }
-
-    public PagoEntity getPago() {
-        return pago;
-    }
-
-    public void setPago(PagoEntity pago) {
-        this.pago = pago;
     }
 
     public int getEstado() {
@@ -120,12 +98,12 @@ public class ReservaDTO {
         this.PrecioFinal = PrecioFinal;
     }
 
-    public EstacionEntity getEstacionOrigen() {
-        return EstacionOrigen;
+    public Long getEstacionOrigen() {
+        return idEstacionOrigen;
     }
 
-    public void setEstacionOrigen(EstacionEntity EstacionOrigen) {
-        this.EstacionOrigen = EstacionOrigen;
+    public void setEstacionOrigen(Long EstacionOrigen) {
+        this.idEstacionOrigen = EstacionOrigen;
     }
     
      
@@ -140,13 +118,9 @@ public class ReservaDTO {
             this.FechaEntrega = entidad.getFechaEntrega();
             this.FechaInicio = entidad.getFechaInicio();
             this.PrecioFinal = entidad.getPrecioFinal();
-            this.EstacionOrigen= entidad.getEstacionSalida();
-            this.EstacionLlegada = entidad.getEstacionLlegada();
             this.calificacionEstacionLlegada = entidad.getCalificacionEstacionLlegada();
             this.calificacionEstacionOrigen = entidad.getCalificacionEstacionOrigen();
-            this.estaciones = entidad.getEstaciones();
             this.usuarioReserva = entidad.getUsuarioReserva();
-            this.pago = entidad.getPago();
         }
     }
     
@@ -155,9 +129,10 @@ public class ReservaDTO {
         entity.setId(this.getId());
         entity.setEstado(this.getEstado());
         entity.setFechaInicio(this.getFechaInicio());
-        //entity.setEstacionSalida(this.getEstacionOrigen());
+        EstacionEntity lestacion = new EstacionEntity();
+        lestacion.setId(this.getEstacionOrigen());
+        entity.setEstacionSalida(lestacion);
         entity.setUsuarioReserva(this.getUsuarioReserva());
-        entity.setPago(this.getPago());
         return entity;
     }
     

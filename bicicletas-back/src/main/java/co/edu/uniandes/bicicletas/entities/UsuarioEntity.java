@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -48,21 +49,21 @@ public class UsuarioEntity extends BaseEntity implements Serializable {
    @Temporal(TemporalType.DATE)
    private Date fechaNacimiento;
    
-   @OneToMany
+   @OneToMany(mappedBy = "ReservaEntity" , cascade = CascadeType.ALL, orphanRemoval = true )
    @PodamExclude
    private List<ReservaEntity> reservas = new ArrayList<ReservaEntity>();
 
     /**
      *
      */
-    @ManyToMany(mappedBy = "usuarios")
+   @ManyToMany(mappedBy = "usuarios")
    @PodamExclude
    private List<DireccionEntity> direcciones = new  ArrayList<DireccionEntity>();
  
     /**
      *
      */
-    @PodamExclude
+   @PodamExclude
    @OneToMany
    private List<PuntoEntity> puntos = new  ArrayList<PuntoEntity>();
     
