@@ -251,7 +251,7 @@ public class EstacionLogic
                 esta = true;
             }
         }
-        if(esta=false){
+        if(esta==false){
             throw new WebApplicationException("No hay una estación asociada a la bici", 402);
         }
         return bici;
