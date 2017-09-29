@@ -52,26 +52,17 @@ public class CalificacionResource
 {
     @Inject
     CalificacionLogic calLogic;
-    
+   
+    /**
+     * Obtiene todas las calificaciones existentes en la base de datos
+     * @return Una colección de CalificacionDTO
+     */
    @GET
-   public List<CalificacionDTO> getCalificaciones() throws BusinessLogicException
+   public List<CalificacionDTO> getCalificaciones()
    {
        return listCalificacionEntity2DTO(calLogic.getCalificaciones());
    }
     
-   /**
-    * Convierte una lista de CalificacionEntity a una lista de CalificacionDTO.
-    * @param entityList Lista de CalificacionEntity
-    * @return Lista de CalificacionDTO
-    */
-   private List<CalificacionDTO> listCalificacionEntity2DTO(List<CalificacionEntity> entityList) {
-       List<CalificacionDTO> list = new ArrayList<>();
-       for (CalificacionEntity entity : entityList) {
-           list.add(new CalificacionDTO(entity));
-       }
-       return list;
-   }
-   
    /**
     * Obtiene una calificacion 
     * @param idCali Id de la calificación que se quiere obtener
@@ -88,9 +79,18 @@ public class CalificacionResource
        return new CalificacionDTO(entity);
    }
    
-   @POST
-    public CalificacionDTO createCalificacion(CalificacionDTO dto) throws BusinessLogicException
-    {
-         return new CalificacionDTO(calLogic.nuevaCalificacion(dto.toEntity()));
-    }
+    /**
+    * Convierte una lista de CalificacionEntity a una lista de CalificacionDTO.
+    * @param entityList Lista de CalificacionEntity
+    * @return Lista de CalificacionDTO
+    */
+   private List<CalificacionDTO> listCalificacionEntity2DTO(List<CalificacionEntity> entityList) {
+       List<CalificacionDTO> list = new ArrayList<>();
+       for (CalificacionEntity entity : entityList) {
+           list.add(new CalificacionDTO(entity));
+       }
+       return list;
+   }
+   
+   
 }

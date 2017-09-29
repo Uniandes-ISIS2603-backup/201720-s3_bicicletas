@@ -7,9 +7,15 @@ package co.edu.uniandes.bicicletas.resources;
 
 import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.bicicletas.dtos.ReservaDTO;
+import co.edu.uniandes.bicicletas.ejb.EstacionLogic;
 import co.edu.uniandes.bicicletas.ejb.ReservaLogic;
+import co.edu.uniandes.bicicletas.ejb.UsuarioLogic;
+import co.edu.uniandes.bicicletas.entities.EstacionEntity;
 import co.edu.uniandes.bicicletas.entities.ReservaEntity;
+import co.edu.uniandes.bicicletas.entities.UsuarioEntity;
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.enterprise.context.RequestScoped;
@@ -24,6 +30,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.WebApplicationException;
+import org.slf4j.Logger;
 
 /**
  *
@@ -35,6 +42,11 @@ import javax.ws.rs.WebApplicationException;
 public class ReservaResource {
     @Inject
     private ReservaLogic logica;
+    @Inject
+    private UsuarioLogic logicaUsuario ;
+    @Inject
+    private  EstacionLogic logicaEstacion ;
+   
     
     private List<ReservaDTO> listEntity2DTO(List<ReservaEntity> entityList) {
         List<ReservaDTO> lista = new ArrayList<>();
@@ -53,12 +65,20 @@ public class ReservaResource {
     @GET
     @Path("{id: \\d+}")
     public ReservaDTO getReserva(@PathParam("id") Long id) {
-        return new ReservaDTO(logica.getReserva(id));
+        ReservaEntity reservas = logica.getReserva(id);
+        if(reservas==null){
+          throw new WebApplicationException("La reserva con id "+ id +" no existe", 404);
+        }
+        return new ReservaDTO(reservas);
     }
     
     @POST
-    public ReservaDTO crearReserva (ReservaDTO dto) throws BusinessLogicException {
-        return new ReservaDTO(logica.crearReserva(dto.getUsuarioReserva().getId()));
+    @Path("{id: \\d+}")
+    public ReservaDTO crearReserva (@PathParam("id") Long id , ReservaDTO dto) throws BusinessLogicException {
+        if(logicaUsuario.getUsuario(id)==null){
+          throw new WebApplicationException("El usuario con id "+ id +" no existe", 404);
+        }
+        return new ReservaDTO(logica.crearReserva( id ,dto.toEntity()));
     }
     
     @PUT

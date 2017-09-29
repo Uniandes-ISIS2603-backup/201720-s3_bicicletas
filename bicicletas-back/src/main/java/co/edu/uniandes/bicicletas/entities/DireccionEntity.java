@@ -10,12 +10,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 /**
@@ -45,27 +40,48 @@ public class DireccionEntity extends BaseEntity implements Serializable {
 
  /**
  *Metodos
+     * @return 
  */
     public String getCiudad() {
         return ciudad;
     }
 
+    /**
+     *
+     * @param ciudad
+     */
     public void setCiudad(String ciudad) {
         this.ciudad = ciudad;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getCodigoPostal() {
         return codigoPostal;
     }
 
+    /**
+     *
+     * @param codigoPostal
+     */
     public void setCodigoPostal(Integer codigoPostal) {
         this.codigoPostal = codigoPostal;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getDescripcion() {
         return descripcion;
     }
 
+    /**
+     *
+     * @param descripcion
+     */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
@@ -73,10 +89,18 @@ public class DireccionEntity extends BaseEntity implements Serializable {
     //////////////////////////////////RELACION CON USUARIOS////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////
     
+    /**
+     *
+     * @return
+     */
     public List<UsuarioEntity> getUsuarios() {
         return usuarios;
     }
 
+    /**
+     *
+     * @param usuarios
+     */
     public void setUsuarios(List<UsuarioEntity> usuarios) {
         this.usuarios = usuarios;
     }
@@ -86,10 +110,19 @@ public class DireccionEntity extends BaseEntity implements Serializable {
     //////////////////////////////////RELACION CON ESTACIONES////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////
 
+    /**
+     *
+     * @return
+     */
+
     public List<EstacionEntity> getEstaciones() {
     return estaciones;
     }
 
+    /**
+     *
+     * @param estaciones
+     */
     public void setEstaciones(List<EstacionEntity> estaciones) {
     this.estaciones = estaciones;
     }

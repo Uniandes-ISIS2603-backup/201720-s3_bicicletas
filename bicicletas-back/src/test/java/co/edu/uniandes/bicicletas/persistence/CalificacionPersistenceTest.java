@@ -78,9 +78,6 @@ public class CalificacionPersistenceTest {
     public CalificacionPersistenceTest() {
     }
     
-   
-    
-    
     @BeforeClass
     public static void setUpClass() {
     }
@@ -201,6 +198,18 @@ public class CalificacionPersistenceTest {
             }
             Assert.assertTrue(found);
         }
-        }
+     }
+    
+    /**
+     * Test of delete method, of class CalificacionPersistence.
+     */
+    @Test
+    public void testDelete() throws Exception {
+        CalificacionEntity entidad = data.get(0);
+        persistence.delete(entidad.getId());
+        CalificacionEntity eliminada = em.find(CalificacionEntity.class, entidad.getId());
+        Assert.assertNull(eliminada);
+    }
+    
     
 }

@@ -73,6 +73,10 @@ public class PagoEntity extends BaseEntity implements Serializable{
      */
     public final static Integer PROCESANDO_PAGO = 7;
     
+      /**
+     * Constante que modela el estado de un pago el cual se está reembolsando.
+     */
+    public final static Integer PROCESANDO_REEMBOLSO = 8;
     
     /**
      * Relación que modela una reserva asociada a un pago 
@@ -111,7 +115,7 @@ public class PagoEntity extends BaseEntity implements Serializable{
      * Atributo que modela el pago hecho por un usuario al efectuar una reserva.
      */
     
-    private double monto;
+    private Double monto;
 
     public Integer getEstado() {
         return estado;
@@ -145,11 +149,11 @@ public class PagoEntity extends BaseEntity implements Serializable{
         this.idUsuario = idUsuario;
     }
 
-    public double getMonto() {
+    public Double getMonto() {
         return monto;
     }
 
-    public void setMonto(double monto) {
+    public void setMonto(Double monto) {
         this.monto = monto;
     }
     

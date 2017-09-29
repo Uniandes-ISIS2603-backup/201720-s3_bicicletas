@@ -47,7 +47,7 @@ public class PagoLogic {
         return estacion;
     }
 
-    public PagoEntity updateUsuario(PagoEntity pago) {
+    public PagoEntity updatePago(PagoEntity pago) {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar pago con id={0}", pago.getId());
         // Note que, por medio de la inyección de dependencias se llama al método "update(entity)" que se encuentra en la persistencia.
         PagoEntity newEntity = persistence.updatePago(pago);
@@ -55,7 +55,7 @@ public class PagoLogic {
         return newEntity;
     }
 
-    public void deleteUsuario(Long id) {
+    public void deletePago(Long id) {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar pago con id={0}", id);
         // Note que, por medio de la inyección de dependencias se llama al método "delete(id)" que se encuentra en la persistencia.
         persistence.delatePago(id);

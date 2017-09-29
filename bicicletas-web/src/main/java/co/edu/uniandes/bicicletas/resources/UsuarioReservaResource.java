@@ -9,7 +9,9 @@ import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.bicicletas.dtos.ReservaDTO;
 import co.edu.uniandes.bicicletas.dtos.UsuarioDTO;
 import co.edu.uniandes.bicicletas.ejb.ReservaLogic;
+import co.edu.uniandes.bicicletas.ejb.UsuarioLogic;
 import co.edu.uniandes.bicicletas.entities.ReservaEntity;
+import co.edu.uniandes.bicicletas.entities.UsuarioEntity;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -35,6 +37,9 @@ public class UsuarioReservaResource
     @Inject
     ReservaLogic reservaLogic;
     
+    @Inject
+    UsuarioLogic usuarioLogic;
+    
     @GET
     public List<ReservaDTO> getReservas(@PathParam("idUsuario") Long idUsuario)
     {
@@ -50,6 +55,11 @@ public class UsuarioReservaResource
     @Path("{id: \\d+}")
     public ReservaDTO getReserva(@PathParam("id") Long id, @PathParam("idUsuario") Long idUsuario)
     {
+        UsuarioEntity usuario = usuarioLogic.getUsuario(id);
+        List<ReservaEntity> reservas = usuario.getReservas();
+        if(reservas==null || reservas.isEmpty()){
+            throw new WebApplicationException("El usuario no tiene reservas en el sistema", 404); 
+        }
         return new ReservaDTO(reservaLogic.getReserva(id));
     }
     
@@ -60,9 +70,8 @@ public class UsuarioReservaResource
     }
     
     @POST
-    public ReservaDTO createReserva(@PathParam("idUsuario") Long idUsuario) throws BusinessLogicException {
-        
-        return new ReservaDTO(reservaLogic.crearReserva(idUsuario));
+    public ReservaDTO createReserva(@PathParam("idUsuario") Long idUsuario , ReservaDTO nuevareserva) throws BusinessLogicException {
+        return new ReservaDTO(reservaLogic.crearReserva( idUsuario ,nuevareserva.toEntity()));
     } 
     
     private List<ReservaDTO> listEntity2DTO(List<ReservaEntity> listaEntiReserva)

@@ -67,11 +67,6 @@ public class CalificacionEntity extends BaseEntity implements Serializable
     private ReservaEntity reserva;
     
     /**
-     * El id de la estacion que es calificada
-     */
-    private Long idEstacion;
-    
-    /**
      * La nota que le asigna el usuario a la estación
      */
     private Integer nota;
@@ -116,20 +111,6 @@ public class CalificacionEntity extends BaseEntity implements Serializable
      */
     public void setIdUsuario(Long idUsuario) {
         this.idUsuario = idUsuario;
-    }
-
-    /**
-     * @return the idEstacion
-     */
-    public Long getIdEstacion() {
-        return idEstacion;
-    }
-
-    /**
-     * @param idEstacion the idEstacion to set
-     */
-    public void setIdEstacion(Long idEstacion) {
-        this.idEstacion = idEstacion;
     }
 
     /**

@@ -79,6 +79,7 @@ public class UsuarioDireccionResource {
      *
      * @param usuariosId Identificador de la instancia de Usuario
      * @param direccionesId Identificador de la instancia de Direccion
+     * @return 
      * 
      */
     @GET

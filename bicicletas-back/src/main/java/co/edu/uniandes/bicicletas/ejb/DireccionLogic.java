@@ -130,6 +130,7 @@ public class DireccionLogic {
      *
      * @param direccionId Identificador de la instancia de Direccion
      * @param usuariosId Identificador de la instancia de Usuario
+     * @return 
      * 
      */
     public UsuarioEntity getUsuario(Long direccionId, Long usuariosId) {
@@ -215,6 +216,7 @@ return getDireccion(direccionId).getEstaciones();
 *
 * @param direccionId Identificador de la instancia de Direccion
 * @param estacionesId Identificador de la instancia de Estacion
+     * @return 
 * 
 */
 public EstacionEntity getEstacion(Long direccionId, Long estacionesId) {

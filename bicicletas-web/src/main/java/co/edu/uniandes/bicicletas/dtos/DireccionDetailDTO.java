@@ -6,11 +6,6 @@
 package co.edu.uniandes.bicicletas.dtos;
 
 import co.edu.uniandes.bicicletas.entities.DireccionEntity;
-import co.edu.uniandes.bicicletas.entities.EstacionEntity;
-import co.edu.uniandes.bicicletas.entities.UsuarioEntity;
-import java.util.ArrayList;
-import java.util.List;
-import static javax.ws.rs.client.Entity.entity;
 
 /**
  *
@@ -23,6 +18,7 @@ public class DireccionDetailDTO extends DireccionDTO{
      * Constructor por defecto
      */
     public DireccionDetailDTO() {
+        //Do nothing because is not necessary
     }
 
     /**
@@ -41,8 +37,7 @@ public class DireccionDetailDTO extends DireccionDTO{
      */
     @Override
     public DireccionEntity toEntity() {
-        DireccionEntity direccionE = super.toEntity();
-        return direccionE;
+        return super.toEntity();
     }
     
     

@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.bicicletas.resources;
 
+import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.bicicletas.dtos.PagoDetailDTO;
 import javax.ejb.Stateless;
 import javax.enterprise.context.RequestScoped;
@@ -66,7 +67,7 @@ public class PagoResource {
             throw new WebApplicationException("El recurso /pagos/" + id + "no existe.", 404);
         }
 
-        PagoEntity updated = logic.updateUsuario(pago.toEntity());
+        PagoEntity updated = logic.updatePago(pago.toEntity());
         return new PagoDetailDTO(updated);
     }
 
@@ -87,7 +88,7 @@ public class PagoResource {
             throw new WebApplicationException("El recurso /pagos/" + id + "no existe.", 404);
         }
 
-        logic.deleteUsuario(id);
+        logic.deletePago(id);
 
     }
     
@@ -107,4 +108,49 @@ public class PagoResource {
 
         return lista;
     }
+    
+    @PUT
+    @Path("{idPago: \\d+}/verificarPago")
+    public PagoDetailDTO solicitarReembolso(@PathParam("idPago")Long idPago)throws BusinessLogicException{
+        PagoEntity pago = logic.find(idPago);
+        
+        if(pago == null)
+           throw new BusinessLogicException("No existe una pago con ese id");
+ 
+        
+        if(pago.getEstado() != PagoEntity.PROCESANDO_PAGO){
+            throw new BusinessLogicException("No se puede realizar el pago en"
+                    + "el estado que se encuentra el pago");
+        }
+        
+        //Actualizar estado del pago 
+        pago.setEstado(PagoEntity.PAGADO);
+        logic.updatePago(pago);
+        
+        return new PagoDetailDTO(pago);
+        
+    } 
+    
+      
+    @PUT
+    @Path("{idPago: \\d+}/verificarReembolso")
+    public PagoDetailDTO verificarReembolso(@PathParam("idPago")Long idPago)throws BusinessLogicException{
+        PagoEntity pago = logic.find(idPago);
+        
+        if(pago == null)
+           throw new BusinessLogicException("No existe una pago con ese id");
+ 
+        
+        if(pago.getEstado() != PagoEntity.PROCESANDO_REEMBOLSO){
+            throw new BusinessLogicException("No se puede realizar el pago en"
+                    + "el estado que se encuentra el pago");
+        }
+        
+        //Actualizar estado del pago 
+        pago.setEstado(PagoEntity.REEMBOLSO_TOTAL);
+        logic.updatePago(pago);
+        
+        return new PagoDetailDTO(pago);
+        
+    } 
 }

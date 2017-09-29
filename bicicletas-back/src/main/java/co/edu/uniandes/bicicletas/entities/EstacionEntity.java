@@ -36,7 +36,7 @@ public class EstacionEntity extends BaseEntity implements Serializable {
     private List<CalificacionEntity> calificacion = new ArrayList<CalificacionEntity>();
     
     @PodamExclude
-    @ManyToMany
+    @OneToMany(mappedBy="EstacionLlegada")
     private List<ReservaEntity> reservas = new ArrayList<ReservaEntity>();
     
 
@@ -75,7 +75,7 @@ public class EstacionEntity extends BaseEntity implements Serializable {
     }
     @PodamExclude
     @OneToMany(cascade = CascadeType.REFRESH)
-    List<BicicletaEntity> bicicletas = new ArrayList<>();
+    private List<BicicletaEntity> bicicletas = new ArrayList<>();
     
     public void setBicics(List<BicicletaEntity> bici){
         bicicletas = bici;

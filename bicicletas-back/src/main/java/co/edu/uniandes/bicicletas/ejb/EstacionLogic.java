@@ -60,6 +60,9 @@ public class EstacionLogic
     @Inject
     private ReservaLogic reservaLogic;
     
+    @Inject
+    private AccesorioLogic accesorioLogic;
+    
     public EstacionEntity getEstacion(Long id) throws WebApplicationException
     {
         //Toca agregarle más cosas, solo lo hice provisional
@@ -199,6 +202,13 @@ public class EstacionLogic
         direccionLogic.removeEstacion(direccionesId, estacionId);
     }
     
+    //------------------------------------------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------
+    //-----------------------------------------RESERVAS-----------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------
+    
+    
     public List<ReservaEntity> listReservas(Long estacionId) {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los libros del autor con id = {0}", estacionId);
         return getEstacion(estacionId).getReservas();
@@ -239,6 +249,14 @@ public class EstacionLogic
     public void removeReserva(Long estacionId, Long reservaId) {
         reservaLogic.removeEstacion(reservaId, estacionId);
     }
+    
+    //------------------------------------------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------
+    //--------------------------------------------BICICLETAS------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------
+    
+    
     public BicicletaEntity getBiciEstacion(Long idEstacion,Long idBici){
         EstacionEntity estacion = persistence.find(idEstacion);
         if(estacion ==null){
@@ -251,7 +269,7 @@ public class EstacionLogic
                 esta = true;
             }
         }
-        if(esta=false){
+        if(esta==false){
             throw new WebApplicationException("No hay una estación asociada a la bici", 402);
         }
         return bici;
@@ -269,4 +287,63 @@ public class EstacionLogic
         bicicletaLogic.actualizarBicicleta(bici);
         actualizarEstacion(estacion);
     }
+    
+    //------------------------------------------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------
+    //----------------------------------ACCESORIOS----------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------
+    
+    public List<AccesorioEntity> listAccesorios(Long estacionId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los libros del autor con id = {0}", estacionId);
+        return getEstacion(estacionId).getAccesorios();
+    }
+    
+    public AccesorioEntity getAccesorio(Long estacionId, Long accesorioId) {
+        List<AccesorioEntity> list = getEstacion(estacionId).getAccesorios();
+        AccesorioEntity accesoriosEntity = new AccesorioEntity();
+        accesoriosEntity.setId(accesorioId);
+        int index = list.indexOf(accesoriosEntity);
+        if (index >= 0) {
+            return list.get(index);
+        }
+        return null;
+    }
+
+    public AccesorioEntity addAccesorio(Long estacionId, Long accesoriosId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de agregar un libro al estacion con id = {0}", estacionId);
+        direccionLogic.addEstacion(accesoriosId, estacionId);
+        return accesorioLogic.getAccesorio(accesoriosId);
+    }
+    
+    public List<AccesorioEntity> replaceAccesorios(Long estacionId, List<AccesorioEntity> list) {
+        LOGGER.log(Level.INFO, "Inicia proceso de reemplazar los libros asocidos al estacion con id = {0}", estacionId);
+        EstacionEntity entity = getEstacion(estacionId);
+        List<AccesorioEntity> accesorioList = accesorioLogic.getAccesorios();
+        for (AccesorioEntity direccion : accesorioList) {
+            if (list.contains(direccion)) {
+                if (!direccion.getEstacion().equals(entity)) {
+                    accesorioLogic.addEstacion(direccion.getId(), estacionId);
+                }
+            } else {
+                accesorioLogic.removeEstacion(direccion.getId(), estacionId);
+            }
+        }
+        entity.setAccesorios(list);
+        return entity.getAccesorios();
+    }
+
+    /**
+     * Desasocia un Direccion existente de un Estacion existente
+     *
+     * @param estacionId Identificador de la instancia de Estacion
+     * @param direccionesId Identificador de la instancia de Direccion
+     * @generated
+     */
+    public void removeEstacion(Long estacionId, Long direccionesId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar un libro del estacion con id = {0}", estacionId);
+        direccionLogic.removeEstacion(direccionesId, estacionId);
+    }
+    
+    
 }
