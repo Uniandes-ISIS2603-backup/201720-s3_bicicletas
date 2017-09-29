@@ -1,0 +1,44 @@
+{
+	"variables": [],
+	"info": {
+		"name": "EstacionCalificacionesResource",
+		"_postman_id": "36285fdd-5aa6-f8b1-2fc1-68b7320bf832",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtiene las calificaciones de la estación con ID=4",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"no genera error en el GET\"] = responseCode.code === 412;",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/estaciones/4/calificaciones/",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"estado\":\"0\",\n  \"idEstacionOrigen\":\"4\",\n  \"idEstacionLlegada\":\"5\"\n}"
+				},
+				"description": "La estación con ID=4 no tiene calificaciones"
+			},
+			"response": []
+		}
+	]
+}

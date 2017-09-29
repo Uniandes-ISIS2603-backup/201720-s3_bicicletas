@@ -1,0 +1,86 @@
+{
+	"variables": [],
+	"info": {
+		"name": "ReservaCalificacionResource",
+		"_postman_id": "e2b04e55-1348-713f-c43f-848836afda5e",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtener la calificación para la estación de salida de reserva ID=2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"no genera error en el GET\"] = responseCode.code === 404"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/1/reservas/2/calificaciones/1",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "No hay calificación para la estación de salida"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener la calificación para la estación de llegada de reserva ID=2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"no genera error en el GET\"] = responseCode.code === 404"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/1/reservas/2/calificaciones/1",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "No hay calificación para la estación de llegada"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una calificación de una reserva. No correctamente pedido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"no genera error en el GET\"] = responseCode.code === 412"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/1/reservas/2/calificaciones/2",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Se pide una calificación, pero no se pide de forma correcta"
+			},
+			"response": []
+		}
+	]
+}
