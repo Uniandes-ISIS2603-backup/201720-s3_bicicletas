@@ -64,19 +64,6 @@ public class CalificacionResource
    }
     
    /**
-    * Convierte una lista de CalificacionEntity a una lista de CalificacionDTO.
-    * @param entityList Lista de CalificacionEntity
-    * @return Lista de CalificacionDTO
-    */
-   private List<CalificacionDTO> listCalificacionEntity2DTO(List<CalificacionEntity> entityList) {
-       List<CalificacionDTO> list = new ArrayList<>();
-       for (CalificacionEntity entity : entityList) {
-           list.add(new CalificacionDTO(entity));
-       }
-       return list;
-   }
-   
-   /**
     * Obtiene una calificacion 
     * @param idCali Id de la calificación que se quiere obtener
     * @return Objeto CalificacionDTO
@@ -91,5 +78,19 @@ public class CalificacionResource
        }
        return new CalificacionDTO(entity);
    }
+   
+    /**
+    * Convierte una lista de CalificacionEntity a una lista de CalificacionDTO.
+    * @param entityList Lista de CalificacionEntity
+    * @return Lista de CalificacionDTO
+    */
+   private List<CalificacionDTO> listCalificacionEntity2DTO(List<CalificacionEntity> entityList) {
+       List<CalificacionDTO> list = new ArrayList<>();
+       for (CalificacionEntity entity : entityList) {
+           list.add(new CalificacionDTO(entity));
+       }
+       return list;
+   }
+   
    
 }
