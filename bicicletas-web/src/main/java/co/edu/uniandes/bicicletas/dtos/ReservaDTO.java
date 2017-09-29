@@ -27,11 +27,8 @@ public class ReservaDTO {
     Date FechaInicio;
     double PrecioFinal;
     Long idEstacionOrigen;
-    @OneToOne
     CalificacionEntity calificacionEstacionOrigen;
-    @OneToOne
     CalificacionEntity calificacionEstacionLlegada;
-    @OneToOne
     UsuarioEntity usuarioReserva;
     
 
