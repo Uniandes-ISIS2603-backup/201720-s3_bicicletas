@@ -28,6 +28,7 @@ import co.edu.uniandes.bicicletas.entities.CalificacionEntity;
 import co.edu.uniandes.bicicletas.entities.EstacionEntity;
 import co.edu.uniandes.bicicletas.entities.ReservaEntity;
 import co.edu.uniandes.bicicletas.persistence.CalificacionPersistence;
+import co.edu.uniandes.bicicletas.persistence.EstacionPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -51,7 +52,7 @@ public class CalificacionLogic
     private ReservaLogic reservaLogic;
     
     @Inject
-    private EstacionLogic estacionLogic;
+    private EstacionPersistence estacionPersistence;
     
     public static final String MENSAJE = "La estación que consultó aún no tiene calificaciones";
     
@@ -111,7 +112,7 @@ public class CalificacionLogic
     public List<CalificacionEntity> getCalificacionesEstacion(Long idEstacion) throws BusinessLogicException
     {
         LOGGER.info("Inicia proceso de consultar todos las calificaciones de una estación");
-        EstacionEntity estacion = estacionLogic.getEstacion(idEstacion);
+        EstacionEntity estacion = estacionPersistence.find(idEstacion);
         if (estacion.getCalificacion() == null || estacion.getCalificacion().isEmpty()) {
             throw new BusinessLogicException(MENSAJE);
         }
@@ -129,7 +130,7 @@ public class CalificacionLogic
     public CalificacionEntity getCalificacionEstacion(Long idEstacion, Long idCalificacion) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar una calificación de la estación con id = {0}", idEstacion);
-        List<CalificacionEntity> lista = estacionLogic.getEstacion(idEstacion).getCalificacion();
+        List<CalificacionEntity> lista = estacionPersistence.find(idEstacion).getCalificacion();
      
         if (lista == null || lista.isEmpty()) {
             throw new BusinessLogicException(MENSAJE);
