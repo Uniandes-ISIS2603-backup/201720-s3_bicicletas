@@ -4,12 +4,8 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.bicicletas.dtos;
-import co.edu.uniandes.bicicletas.entities.DireccionEntity;
-import co.edu.uniandes.bicicletas.entities.PuntoEntity;
 import co.edu.uniandes.bicicletas.entities.UsuarioEntity;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * UsuarioDTO Objeto de transferencia de datos de Usuarios. Los DTO
@@ -24,13 +20,12 @@ public class UsuarioDTO {
    private Integer tipoId; 
    private Long documentoUsuario;
    private Date fechaNacimiento;
- //public List<DireccionEntity> direcciones = new  ArrayList<DireccionEntity>();
-  // public List<PuntoEntity> puntos = new  ArrayList<PuntoEntity>();
    
     /**
      * Constructor por defecto
      */
     public UsuarioDTO() {
+        //Do nothing because is not necessary
     }
     
     /**
@@ -44,62 +39,85 @@ public class UsuarioDTO {
         this.tipoId= usuario.getTipoId();
         this.documentoUsuario= usuario.getDocumentoUsuario();
         this.fechaNacimiento= usuario.getFechaNacimiento();
-       // this.direcciones= usuario.getDirecciones();
-      //  this.puntos= usuario.getPuntos();
     }
 
-   //public List<DireccionEntity> getDirecciones() {
-//		    return direcciones;
-//		 }
-//
-//		public void setDirecciones(List<DireccionEntity> direcciones) {
-//		    this.direcciones = direcciones;
-//		}
-//
-//		 public List<PuntoEntity> getPuntos() {
-//		    return puntos;
-//		 }
-//
-//		public void setPuntos(List<PuntoEntity> puntos) {
-//		    this.puntos = puntos;
-//		}
+    /**
+     *
+     * @return
+     */
     
     public Long getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getTipoId() {
         return tipoId;
     }
 
+    /**
+     *
+     * @param tipoId
+     */
     public void setTipoId(Integer tipoId) {
         this.tipoId = tipoId;
     }
 
+    /**
+     *
+     * @return
+     */
     public Long getDocumentoUsuario() {
         return documentoUsuario;
     }
 
+    /**
+     *
+     * @param documentoUsuario
+     */
     public void setDocumentoUsuario(Long documentoUsuario) {
         this.documentoUsuario = documentoUsuario;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getFechaNacimiento() {
         return fechaNacimiento;
     }
 
+    /**
+     *
+     * @param fechaNacimiento
+     */
     public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
@@ -115,8 +133,6 @@ public class UsuarioDTO {
         entity.setTipoId(this.tipoId);
         entity.setDocumentoUsuario(this.documentoUsuario);
         entity.setFechaNacimiento(this.fechaNacimiento);
-        //entity.setDirecciones(direcciones);
-       // entity.setPuntos(this.puntos);
         return entity;
     }
 }

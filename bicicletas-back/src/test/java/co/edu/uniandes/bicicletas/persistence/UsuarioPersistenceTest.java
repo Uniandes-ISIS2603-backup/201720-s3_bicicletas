@@ -77,13 +77,21 @@ public class UsuarioPersistenceTest {
      */
     private List<UsuarioEntity> data = new ArrayList<UsuarioEntity>();
   
+    /**
+     *
+     */
     public UsuarioPersistenceTest(){}
     
-    
+    /**
+     *
+     */
     @BeforeClass
     public static void setUpClass() {
     }
     
+    /**
+     *
+     */
     @AfterClass
     public static void tearDownClass() {
     }
@@ -127,12 +135,16 @@ public class UsuarioPersistenceTest {
         }
     }
     
+    /**
+     *
+     */
     @After
     public void tearDown() {
     }
 
     /**
      * Test of findAll method, of class UsuarioPersistence.
+     * @throws java.lang.Exception
      */
     @Test
     public void testFindAll() throws Exception {
@@ -151,6 +163,7 @@ public class UsuarioPersistenceTest {
 
     /**
      * Test of find method, of class UsuarioPersistence.
+     * @throws java.lang.Exception
      */
     @Test
     public void testFind() throws Exception {
@@ -162,6 +175,7 @@ public class UsuarioPersistenceTest {
 
     /**
      * Test of create method, of class UsuarioPersistence.
+     * @throws java.lang.Exception
      */
     @Test
     public void testCreate() throws Exception {
@@ -177,6 +191,7 @@ public class UsuarioPersistenceTest {
     
     /**
      * Test of update method, of class UsuarioPersistence.
+     * @throws java.lang.Exception
      */
     @Test
     public void testUpdate() throws Exception {
@@ -196,6 +211,7 @@ public class UsuarioPersistenceTest {
 
     /**
      * Test of delete method, of class UsuarioPersistence.
+     * @throws java.lang.Exception
      */
     @Test
     public void testDelete() throws Exception {

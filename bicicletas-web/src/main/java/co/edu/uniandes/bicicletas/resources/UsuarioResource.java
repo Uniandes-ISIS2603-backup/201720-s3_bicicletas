@@ -9,11 +9,8 @@ import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.bicicletas.dtos.UsuarioDetailDTO;
 import co.edu.uniandes.bicicletas.ejb.UsuarioLogic;
 import co.edu.uniandes.bicicletas.entities.UsuarioEntity;
-import co.edu.uniandes.bicicletas.persistence.UsuarioPersistence;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -88,6 +85,7 @@ import javax.ws.rs.WebApplicationException;
 	     *
 	     * @param dto Objeto de UsuarioDetailDTO con los datos nuevos
 	     * @return Objeto de UsuarioDetailDTOcon los datos nuevos y su ID
+     * @throws co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException
 	     * 
 	     */
 	    @POST
@@ -132,7 +130,12 @@ import javax.ws.rs.WebApplicationException;
 	        usuarioLogic.deleteUsuario(id);
 	    }
 
-	    @Path("{usuariosId: \\d+}/direcciones")
+    /**
+     *
+     * @param usuariosId
+     * @return
+     */
+    @Path("{usuariosId: \\d+}/direcciones")
 	    public Class<UsuarioDireccionResource> getUsuarioDireccionesResource(@PathParam("usuariosId") Long usuariosId) {
 	        UsuarioEntity entity = usuarioLogic.getUsuario(usuariosId);
 	        if (entity == null) {
@@ -141,7 +144,12 @@ import javax.ws.rs.WebApplicationException;
 	        return UsuarioDireccionResource.class;
 	    }
 
-            @Path("{idUsuario: \\d+}/puntos/")
+    /**
+     *
+     * @param idUsuario
+     * @return
+     */
+    @Path("{idUsuario: \\d+}/puntos/")
             public Class<UsuarioPuntoResource> getUsuarioPuntoResource(@PathParam("idUsuario") Long idUsuario) {
             UsuarioEntity entity = usuarioLogic.getUsuario(idUsuario);
             if (entity == null) {
@@ -150,7 +158,12 @@ import javax.ws.rs.WebApplicationException;
             return UsuarioPuntoResource.class;
             }
             
-            @Path("{idUsuario: \\d+}/reservas/")
+    /**
+     *
+     * @param idUsuario
+     * @return
+     */
+    @Path("{idUsuario: \\d+}/reservas/")
             public Class<UsuarioReservaResource> getUsuarioReservaResource(@PathParam("idUsuario") Long idUsuario) {
             UsuarioEntity entity = usuarioLogic.getUsuario(idUsuario);
             if (entity == null) {

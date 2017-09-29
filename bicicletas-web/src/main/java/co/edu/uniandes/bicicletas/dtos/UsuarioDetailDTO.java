@@ -17,6 +17,7 @@ public class UsuarioDetailDTO extends UsuarioDTO {
      * Constructor por defecto
      */
     public UsuarioDetailDTO() {
+        //Do nothing because is not necessary
     }
 
     /**
@@ -35,7 +36,6 @@ public class UsuarioDetailDTO extends UsuarioDTO {
      */
     @Override
     public UsuarioEntity toEntity() {
-        UsuarioEntity usuarioE = super.toEntity();
-        return usuarioE;
+        return super.toEntity();
     }
 }
