@@ -9,11 +9,8 @@ import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.bicicletas.dtos.DireccionDetailDTO;
 import co.edu.uniandes.bicicletas.ejb.DireccionLogic;
 import co.edu.uniandes.bicicletas.entities.DireccionEntity;
-import co.edu.uniandes.bicicletas.persistence.DireccionPersistence;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -40,11 +37,22 @@ import javax.ws.rs.WebApplicationException;
     @Inject
     DireccionLogic direccionLogic;
 
+    /**
+     *
+     * @return
+     * @throws BusinessLogicException
+     */
     @GET
     public List<DireccionDetailDTO> getDirecciones() throws BusinessLogicException {
         return listDireccionEntity2DetailDTO(direccionLogic.getDirecciones());
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws BusinessLogicException
+     */
     @GET
     @Path("{id: \\d+}")
     public DireccionDetailDTO getDireccion(@PathParam("id") Long id) throws BusinessLogicException {
@@ -89,6 +97,11 @@ import javax.ws.rs.WebApplicationException;
         return new DireccionDetailDTO(direccionLogic.updateDireccion(id, direccion.toEntity()));
     }
 
+    /**
+     *
+     * @param id
+     * @throws BusinessLogicException
+     */
     @DELETE
     @Path("{direccionesId: \\d+}")
     public void deleteDireccion(@PathParam("direccionesId") Long id) throws BusinessLogicException {
