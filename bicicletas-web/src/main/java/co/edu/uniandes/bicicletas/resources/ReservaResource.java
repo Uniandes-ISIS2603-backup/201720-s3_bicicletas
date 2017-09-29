@@ -92,6 +92,7 @@ public class ReservaResource {
         logica.deleteReserva(id);
     }
     
+    
     @Path("{idReserva: \\d+}/Estacion / { llegada: \\d+}")
     public Class<ReservaEstacionResource> getReservaEstacionResource(@PathParam("idReserva") Long idReserva,@PathParam("llegada") int llegada){
         ReservaEntity entity = logica.getReserva(idReserva);

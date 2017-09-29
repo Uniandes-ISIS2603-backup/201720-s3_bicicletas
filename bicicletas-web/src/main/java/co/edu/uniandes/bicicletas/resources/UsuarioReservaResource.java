@@ -43,7 +43,7 @@ public class UsuarioReservaResource
     @GET
     public List<ReservaDTO> getReservas(@PathParam("idUsuario") Long idUsuario)
     {
-        List<ReservaEntity> reservas = reservaLogic.getReservas();
+        List<ReservaEntity> reservas = usuarioLogic.getUsuario(idUsuario).getReservas();
         if(reservas == null || reservas.isEmpty())
         {
             throw new WebApplicationException("El usuario no tiene reservas en el sistema", 404); 
@@ -55,10 +55,10 @@ public class UsuarioReservaResource
     @Path("{id: \\d+}")
     public ReservaDTO getReserva(@PathParam("id") Long id, @PathParam("idUsuario") Long idUsuario)
     {
-        UsuarioEntity usuario = usuarioLogic.getUsuario(id);
+        UsuarioEntity usuario = usuarioLogic.getUsuario(idUsuario);
         List<ReservaEntity> reservas = usuario.getReservas();
         if(reservas==null || reservas.isEmpty()){
-            throw new WebApplicationException("El usuario no tiene reservas en el sistema", 404); 
+            throw new WebApplicationException("La reserva con id"+id+"no existe", 404); 
         }
         return new ReservaDTO(reservaLogic.getReserva(id));
     }
