@@ -38,7 +38,7 @@ public class EstacionBicicletaResource {
      * 
      */
     @GET
-    @Path("{estacion: \\d+/bicicletas/idBicicleta: \\d+}")
+    @Path("{idestacion: \\d+/bicicletas/idBicicleta: \\d+}")
     public BicicletaDetailDTO getBici(@PathParam("idestacion") Long idEstacion,@PathParam("idBicicleta") Long idBici){
         BicicletaEntity entity = estacionLogic.getBiciEstacion(idEstacion, idBici);
         return new BicicletaDetailDTO(entity);

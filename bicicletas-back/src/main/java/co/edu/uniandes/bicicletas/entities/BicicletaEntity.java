@@ -60,6 +60,9 @@ public class BicicletaEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @ManyToOne
     private EstacionEntity estacion;
+    @PodamExclude
+    @ManyToOne
+    private ReservaEntity reserva;
     /**
      * Este metodo permite cambiar el estado del Entity bicicleta en su marca.
      * @param pMarca 
@@ -114,5 +117,11 @@ public class BicicletaEntity extends BaseEntity implements Serializable {
     }
     public EstacionEntity getEstacion(){
         return estacion;
+    }
+    public void setReserva(ReservaEntity temp){
+        reserva = temp;
+    }
+    public ReservaEntity getReserva(){
+        return reserva;
     }
 }

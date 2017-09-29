@@ -6,11 +6,13 @@
 package co.edu.uniandes.bicicletas.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -71,6 +73,9 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     @OneToOne 
     @PodamExclude
     private PagoEntity pago;
+    @OneToMany
+    @PodamExclude
+    private List<BicicletaEntity> bicicletas = new ArrayList<>();
     
     private double precioFinal;
 
@@ -237,6 +242,12 @@ public class ReservaEntity extends BaseEntity implements Serializable {
      */
     public void setPrecioFinal(double precioFinal) {
         this.precioFinal = precioFinal;
+    }
+    public void setBicis(List<BicicletaEntity> temp){
+        bicicletas = temp;
+    }
+    public List<BicicletaEntity> getBicis(){
+        return bicicletas;
     }
 
     
