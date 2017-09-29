@@ -44,8 +44,6 @@ public class ReservaLogic
     @Inject
     private ReservaPersistence persistence;
     
-    @Inject
-    private UsuarioLogic usuarioLogic;
     
     public ReservaEntity getReserva(Long id)
     {
@@ -67,11 +65,8 @@ public class ReservaLogic
          }
          persistence.delete(id);
     }
-    public ReservaEntity crearReserva(Long idUsuario, ReservaEntity entity){
-        UsuarioEntity usuario = usuarioLogic.getUsuario(idUsuario);
-        if (usuario==null){
-           throw new WebApplicationException("No hay un usuario con dicho Id", 402);
-        }
+    public ReservaEntity crearReserva( ReservaEntity entity ){
+        UsuarioEntity usuario = entity.getUsuarioReserva();
         List<ReservaEntity> reservasUsuario = usuario.getReservas();
         ReservaEntity reservaNueva;
         if(reservasUsuario == null){

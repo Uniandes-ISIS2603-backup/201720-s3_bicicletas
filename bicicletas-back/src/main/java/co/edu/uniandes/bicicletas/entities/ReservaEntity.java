@@ -26,11 +26,11 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     
   
   
-    public static int PAGADO=0;
-    public static int PAGO=1;
-    public static int CANCELADO=2;
-    public static int USO=3;
-    public static int REENBOLSADO=4;
+    public final static int PAGADO=0;
+    public final static int PAGO=1;
+    public final static int CANCELADO=2;
+    public final static int USO=3;
+    public final static int REENBOLSADO=4;
     
     
     @Temporal(TemporalType.DATE)

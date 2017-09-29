@@ -154,17 +154,10 @@ public class ReservaDTO {
         ReservaEntity entity = new ReservaEntity();
         entity.setId(this.getId());
         entity.setEstado(this.getEstado());
-        entity.setFechaEntrega(this.getFechaEntrega());
         entity.setFechaInicio(this.getFechaInicio());
-        entity.setPrecioFinal(this.getPrecioFinal());
-        entity.setEstacionSalida(this.getEstacionOrigen());
-        entity.setEstacionLlegada(this.getEstacionLlegada());
-        entity.setCalificacionEstacionLlegada(this.getCalificacionEstacionLlegada());
-        entity.setCalificacionEstacionOrigen(this.getCalificacionEstacionOrigen());
-        entity.setEstaciones(this.getEstacionLlegada(), this.getEstacionOrigen());
+        //entity.setEstacionSalida(this.getEstacionOrigen());
         entity.setUsuarioReserva(this.getUsuarioReserva());
         entity.setPago(this.getPago());
-        
         return entity;
     }
     

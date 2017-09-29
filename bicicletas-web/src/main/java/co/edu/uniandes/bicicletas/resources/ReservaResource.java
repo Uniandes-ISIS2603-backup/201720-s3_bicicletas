@@ -10,6 +10,7 @@ import co.edu.uniandes.bicicletas.dtos.ReservaDTO;
 import co.edu.uniandes.bicicletas.ejb.EstacionLogic;
 import co.edu.uniandes.bicicletas.ejb.ReservaLogic;
 import co.edu.uniandes.bicicletas.ejb.UsuarioLogic;
+import co.edu.uniandes.bicicletas.entities.EstacionEntity;
 import co.edu.uniandes.bicicletas.entities.ReservaEntity;
 import co.edu.uniandes.bicicletas.entities.UsuarioEntity;
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.WebApplicationException;
+import org.slf4j.Logger;
 
 /**
  *
@@ -75,8 +77,8 @@ public class ReservaResource {
         if(usuario==null){
             throw new WebApplicationException("El Usuario con id "+ id +" no existe", 404);
         }
-        ReservaEntity reservaLocal = logica.crearReserva(id , dto.toEntity());
-        //TODO falta
+        dto.setUsuarioReserva(usuario);
+        ReservaEntity reservaLocal = logica.crearReserva( dto.toEntity());
         return new ReservaDTO(reservaLocal);
     }
     
