@@ -192,6 +192,25 @@ public class PuntoPersistenceTest {
         PuntoEntity eliminada = em.find(PuntoEntity.class, entidad.getId());
         Assert.assertNull(eliminada);
     }
+    
+     /**
+     * Test of update method, of class PuntoPersistence.
+     */
+    @Test
+    public void testUpdate() throws Exception 
+    {
+        PuntoEntity entity = data.get(0);
+        PodamFactory factory = new PodamFactoryImpl();
+        PuntoEntity newEntity = factory.manufacturePojo(PuntoEntity.class);
+
+        newEntity.setId(entity.getId());
+
+        persistence.update(newEntity);
+
+        PuntoEntity resp = em.find(PuntoEntity.class, entity.getId());
+
+        Assert.assertEquals(newEntity.getName(), resp.getName());
+    }
 }
     
 

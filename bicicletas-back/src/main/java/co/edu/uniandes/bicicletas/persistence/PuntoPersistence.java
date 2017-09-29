@@ -55,8 +55,7 @@ public class PuntoPersistence
         LOGGER.info("Creando un nuevo Punto");
         em.persist(entity);
         LOGGER.info("Se ha creado un Punto nuevo");
-        return entity;
-                  
+        return entity;            
     }
     
     /**
@@ -80,8 +79,7 @@ public class PuntoPersistence
          
         // Se crea un query para buscar todas las calificaciones en la base de datos.
         TypedQuery query = em.createQuery("select u from PuntoEntity u", PuntoEntity.class);
-        return query.getResultList();
-        
+        return query.getResultList();   
     }  
     
     /**
@@ -93,6 +91,18 @@ public class PuntoPersistence
         PuntoEntity entity = em.find(PuntoEntity.class, id);
         em.remove(entity);
     }
+    
+    /**
+     * Actualiza un Punto
+     * @param entity: El punto que viene con los nuevos datos
+     * @return Un Punto que tiene los nuevo datos
+     */
+    public PuntoEntity update (PuntoEntity entity)
+    {
+        LOGGER.log(Level.INFO, "Actualizando Punto con id={0}", entity.getId());
+        return em.merge(entity);
+    }
+    
     
     
 }

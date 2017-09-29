@@ -94,4 +94,14 @@ public class CalificacionPersistence
         return query.getResultList();
     }  
     
+    /**
+     * Elimina una calificación
+     * @param id: El id de la calificación que se desea eliminar
+     */
+    public void delete(Long id) {
+        LOGGER.log(Level.INFO, "Se borrara la calificación con id={0}", id);
+        CalificacionEntity entity = em.find(CalificacionEntity.class, id);
+        em.remove(entity);
+    }
+    
 }
