@@ -8,7 +8,7 @@
 	},
 	"item": [
 		{
-			"name": "Obtener una calificación por ID que no existe",
+			"name": "Obtener una calificación por ID que no existe ID = 10",
 			"event": [
 				{
 					"listen": "test",
@@ -22,6 +22,72 @@
 			],
 			"request": {
 				"url": "http://localhost:8080/bicicletas-web/api/calificaciones/10",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una calificación por ID que no existe ID = 5",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"no genera error en el GET\"] = responseCode.code === 404"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/calificaciones/5",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una calificación por ID que no existe ID = 3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"no genera error en el GET\"] = responseCode.code === 404"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/calificaciones/3",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una calificación por ID que no existe ID = 100",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"no genera error en el GET\"] = responseCode.code === 404"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/calificaciones/100",
 				"method": "GET",
 				"header": [],
 				"body": {},
@@ -56,28 +122,6 @@
 					"mode": "raw",
 					"raw": "{\n\t\"nota\":\"1\",\n\t\"descripcion\":\"Cali 1\"\n\t\n}"
 				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Obtener la calificacion con ID = 2",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							"tests[\"no genera error en el GET\"] = responseCode.code === 200"
-						]
-					}
-				}
-			],
-			"request": {
-				"url": "http://localhost:8080/bicicletas-web/api/calificaciones/2",
-				"method": "GET",
-				"header": [],
-				"body": {},
 				"description": ""
 			},
 			"response": []

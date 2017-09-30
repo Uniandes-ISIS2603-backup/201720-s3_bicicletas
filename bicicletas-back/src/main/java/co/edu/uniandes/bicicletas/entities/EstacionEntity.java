@@ -32,7 +32,7 @@ public class EstacionEntity extends BaseEntity implements Serializable {
     private List<AccesorioEntity> accesorios = new ArrayList<AccesorioEntity>();
     
     @PodamExclude
-    @OneToMany(mappedBy = "estacion", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "estacion")
     private List<CalificacionEntity> calificacion = new ArrayList<CalificacionEntity>();
     
     @PodamExclude

@@ -81,6 +81,68 @@
 				"description": "Se pide una calificación, pero no se pide de forma correcta"
 			},
 			"response": []
+		},
+		{
+			"name": "Agregar una calificación con una nota mayor a 5",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"no genera error en el POST\"] = responseCode.code === 412"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/1/reservas/2/calificaciones/2",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nota\":\"7\",\n\t\"descripcion\":\"Excelente\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar una calificación con una nota menor a 0",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"no genera error en el POST\"] = responseCode.code === 412"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/1/reservas/2/calificaciones/2",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nota\":\"-2\",\n\t\"descripcion\":\"Excelente\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
 		}
 	]
 }

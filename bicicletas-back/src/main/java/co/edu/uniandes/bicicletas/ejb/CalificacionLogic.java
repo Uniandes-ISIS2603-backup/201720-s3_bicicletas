@@ -31,6 +31,7 @@ import co.edu.uniandes.bicicletas.persistence.CalificacionPersistence;
 import co.edu.uniandes.bicicletas.persistence.EstacionPersistence;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -63,34 +64,41 @@ public class CalificacionLogic
      * @return El objero CalificacionEntity creado
      * @throws BusinessLogicException Se lanza si no se existe la estación que se desea calificar
      */
-    public CalificacionEntity createCalificacion(Boolean origen, Long idReserva, CalificacionEntity caliEntity) throws BusinessLogicException
+    public CalificacionEntity createCalificacion(Long idEstacion, Long idReserva, CalificacionEntity caliEntity) throws BusinessLogicException
     {
         LOGGER.info("Inicia proceso de crear una calificación");
         ReservaEntity reserva = reservaLogic.getReserva(idReserva);
         EstacionEntity estacion;
+        boolean origen = false;
         
-        if(origen && reserva.getCalificacionEstacionOrigen() == null && reserva.getEstacionSalida() != null)
+        LOGGER.info("AAAA1 " + reserva.getId() + " AAA 2 " + reserva.getEstacionLlegada().getId() + " AAA 3 " + reserva.getEstacionSalida().getId());
+        if (Objects.equals(idEstacion, reserva.getEstacionSalida().getId ()) && reserva.getCalificacionEstacionOrigen () == null)
         {
+            origen = true; 
             estacion = reserva.getEstacionSalida();
-        }
-        else if(!origen && reserva.getCalificacionEstacionLlegada() == null && reserva.getEstacionLlegada() != null )
+        }       
+        else if ( reserva.getEstacionSalida() != null && Objects.equals(idEstacion, reserva.getEstacionLlegada().getId ()) && reserva.getCalificacionEstacionLlegada () == null)
         {
             estacion = reserva.getEstacionLlegada();
         }
         else
         {
-             throw new BusinessLogicException("No es posible calificar la estación");
+            return null;
         }
-                      
+                  
+        LOGGER.info("Pasa las condiciones");
         caliEntity.setReserva(reserva);
-        caliEntity.setEstacion(estacion);
+        caliEntity.setIdUsuario(reserva.getUsuarioReserva().getId());
         
         CalificacionEntity califiEntity = caliPersistence.create(caliEntity);
         
+        LOGGER.info("LA CREA");
         List<CalificacionEntity> listaCalis = estacion.getCalificacion();
         
+        LOGGER.info("LISTA BIEN");
         listaCalis.add(califiEntity);
         
+        LOGGER.info("Pasa los set");
         if(origen)
         {
             reserva.setCalificacionEstacionOrigen(califiEntity);
@@ -99,6 +107,7 @@ public class CalificacionLogic
         {
             reserva.setCalificacionEstacionLlegada(califiEntity);
         }
+        LOGGER.info("lA ASIGNA");
         
         return califiEntity;
     }

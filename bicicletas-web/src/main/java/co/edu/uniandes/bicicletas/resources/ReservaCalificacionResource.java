@@ -42,7 +42,7 @@ public class ReservaCalificacionResource
      */
     @POST
     @Path("{id: \\d+}")
-    public CalificacionDTO createCalificacion(@PathParam("idReserva") Long idReserva, @PathParam("id") Long cali, CalificacionDTO dto) throws BusinessLogicException
+    public CalificacionDTO createCalificacion(@PathParam("idReserva") Long idReserva, @PathParam("id") Long idEstacion, CalificacionDTO dto) throws BusinessLogicException
     {
         //Boolean que representa si la estación es de origen (true) o llegada (false)
         boolean origen = false;
@@ -52,16 +52,13 @@ public class ReservaCalificacionResource
             throw new BusinessLogicException("La nota seleccionada no es valida");
         }
         
-        if(!(cali == 0 || cali == 1))
+        CalificacionEntity caliEn = calificacionLogic.createCalificacion(idEstacion, idReserva, dto.toEntity());
+        if(caliEn == null )
         {
-            throw new BusinessLogicException("No se escoge bien a que estación pertenece la calificación");
-        }
-        else if(cali == 0)
-        {
-            origen = true;
+            throw new BusinessLogicException("No existe una estación asociada a dicho id en la calificación");
         }
         
-        return new CalificacionDTO(calificacionLogic.createCalificacion(origen, idReserva, dto.toEntity()));
+        return new CalificacionDTO(caliEn);
     }
     
     /**
