@@ -259,7 +259,8 @@ public class EstacionLogic
         }
         return estacion.getBicis();
     }
-    public void upDateBici(EstacionEntity estacion,BicicletaEntity bici){
+    public void upDateBici(EstacionEntity estacion,Long idBici){
+        BicicletaEntity bici = bicicletaLogic.getBIcicleta(idBici);
         EstacionEntity aBorrar = bici.getEstacion();
         aBorrar.getBicis().remove(bici);
         bicicletaLogic.actualizarBicicleta(bici);

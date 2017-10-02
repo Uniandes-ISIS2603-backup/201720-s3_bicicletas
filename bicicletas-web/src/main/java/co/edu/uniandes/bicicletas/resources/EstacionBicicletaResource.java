@@ -10,6 +10,7 @@ import co.edu.uniandes.bicicletas.dtos.EstacionDetailDTO;
 import co.edu.uniandes.bicicletas.ejb.BicicletaLogic;
 import co.edu.uniandes.bicicletas.ejb.EstacionLogic;
 import co.edu.uniandes.bicicletas.entities.BicicletaEntity;
+import co.edu.uniandes.bicicletas.entities.EstacionEntity;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -51,10 +52,12 @@ public class EstacionBicicletaResource {
         return listEntity2DetailDTO(listEntity);
     }
     @PUT
-    @Path("{idEstacion: \\d+/bicicletas}")
-    public void updateBiciAso(@PathParam("idEstacion") Long idEstacion, BicicletaDetailDTO biciDTO){
-       estacionLogic.upDateBici(estacionLogic.getEstacion(idEstacion), biciDTO.toEntity());
+    @Path("{idEstacion: \\d+/bicicletas/idBici: \\d+}")
+    public void updateBiciAso(@PathParam("idEstacion") Long idEstacion, @PathParam("idEstacion") Long idBici){
+        EstacionEntity estacion = estacionLogic.getEstacion(idEstacion);
+        estacionLogic.upDateBici(estacion, idBici);
     }
+    
     private List<BicicletaDetailDTO> listEntity2DetailDTO(List<BicicletaEntity> entityList) {
         List<BicicletaDetailDTO> list = new ArrayList<>();
         for (BicicletaEntity entity : entityList) {
