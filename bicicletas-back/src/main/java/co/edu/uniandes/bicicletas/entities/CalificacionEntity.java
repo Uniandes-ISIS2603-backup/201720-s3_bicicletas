@@ -25,11 +25,14 @@ package co.edu.uniandes.bicicletas.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.eclipse.persistence.oxm.annotations.XmlInverseReference;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -55,16 +58,11 @@ public class CalificacionEntity extends BaseEntity implements Serializable
     private EstacionEntity estacion;
     
     /**
-     * El id del usuario que realiza la calificación
-     */
-    private Long idUsuario;
-    
-    /**
      * La reserva asociada a la calificación
      */
     @PodamExclude
-    @OneToOne
-    private ReservaEntity reserva;
+    
+    private Long idReserva;
     
     /**
      * La nota que le asigna el usuario a la estación
@@ -100,20 +98,6 @@ public class CalificacionEntity extends BaseEntity implements Serializable
     }
 
     /**
-     * @return the idUsuario
-     */
-    public Long getIdUsuario() {
-        return idUsuario;
-    }
-
-    /**
-     * @param idUsuario the idUsuario to set
-     */
-    public void setIdUsuario(Long idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
-    /**
      * @return the nota
      */
     public Integer getNota() {
@@ -127,19 +111,7 @@ public class CalificacionEntity extends BaseEntity implements Serializable
         this.nota = nota;
     }
 
-    /**
-     * @return the reserva
-     */
-    public ReservaEntity getReserva() {
-        return reserva;
-    }
-
-    /**
-     * @param reserva the reserva to set
-     */
-    public void setReserva(ReservaEntity reserva) {
-        this.reserva = reserva;
-    }
+    
     
     public EstacionEntity getEstacion() {
         return estacion;
@@ -147,6 +119,20 @@ public class CalificacionEntity extends BaseEntity implements Serializable
 
     public void setEstacion(EstacionEntity estacion) {
         this.estacion = estacion;
+    }
+
+    /**
+     * @return the idReserva
+     */
+    public Long getIdReserva() {
+        return idReserva;
+    }
+
+    /**
+     * @param idReserva the idReserva to set
+     */
+    public void setIdReserva(Long idReserva) {
+        this.idReserva = idReserva;
     }
     
 }

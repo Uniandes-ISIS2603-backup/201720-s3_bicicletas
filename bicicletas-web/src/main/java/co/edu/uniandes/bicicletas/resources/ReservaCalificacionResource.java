@@ -35,7 +35,7 @@ public class ReservaCalificacionResource
     /**
      * Crea una nueva calificación en el sistema
      * @param idReserva Id de la reserva a la cual pertenece la calificación
-     * @param cali 0 equivale a la calificación de la estación de origen, y 1 equivale a la calificación de la estación de llegada
+     * @param idEstacion 0 equivale a la calificación de la estación de origen, y 1 equivale a la calificación de la estación de llegada
      * @param dto Los datos de la calificación que va a ser creada  
      * @return La calificación creada
      * @throws BusinessLogicException 
@@ -44,18 +44,20 @@ public class ReservaCalificacionResource
     @Path("{id: \\d+}")
     public CalificacionDTO createCalificacion(@PathParam("idReserva") Long idReserva, @PathParam("id") Long idEstacion, CalificacionDTO dto) throws BusinessLogicException
     {
-        //Boolean que representa si la estación es de origen (true) o llegada (false)
-        boolean origen = false;
-        
         if( 0 > dto.getNota() || 6 <= dto.getNota() )
         {
             throw new BusinessLogicException("La nota seleccionada no es valida");
         }
         
+        if(!(idEstacion == 0 || idEstacion == 1))
+        {
+            throw new BusinessLogicException("No se escoge correctamente la estación a calificar " + idEstacion + " " + idReserva);
+        }
+        
         CalificacionEntity caliEn = calificacionLogic.createCalificacion(idEstacion, idReserva, dto.toEntity());
         if(caliEn == null )
         {
-            throw new BusinessLogicException("No existe una estación asociada a dicho id en la calificación");
+            throw new BusinessLogicException("Ya existe una calificación para la estación indicada dentro de la reserva");
         }
         
         return new CalificacionDTO(caliEn);
@@ -137,7 +139,7 @@ public class ReservaCalificacionResource
         String estacion = "estacionDe";
         if(cali)
         {
-            estacion = estacion + "Origen";
+            estacion = estacion + "Salida";
         }
         else
         {

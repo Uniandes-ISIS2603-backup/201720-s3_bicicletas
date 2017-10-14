@@ -10,7 +10,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -44,11 +46,13 @@ public class ReservaEntity extends BaseEntity implements Serializable {
      
     private int estado;
     
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="CALIFICACIONESTACIONSALIDA_ID")
     @PodamExclude
-    private CalificacionEntity calificacionEstacionOrigen;
+    private CalificacionEntity calificacionEstacionSalida;
     
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="CALIFICACIONESTACIONLLEGADA_ID")
     @PodamExclude
     private CalificacionEntity calificacionEstacionLlegada;
     
@@ -124,19 +128,7 @@ public class ReservaEntity extends BaseEntity implements Serializable {
         this.estado = estado;
     }
 
-    /**
-     * @return the calificacionEstacionOrigen
-     */
-    public CalificacionEntity getCalificacionEstacionOrigen() {
-        return calificacionEstacionOrigen;
-    }
-
-    /**
-     * @param calificacionEstacionOrigen the calificacionEstacionOrigen to set
-     */
-    public void setCalificacionEstacionOrigen(CalificacionEntity calificacionEstacionOrigen) {
-        this.calificacionEstacionOrigen = calificacionEstacionOrigen;
-    }
+    
 
     /**
      * @return the calificacionEstacionLlegada
@@ -235,6 +227,23 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     public void setPrecioFinal(double precioFinal) {
         this.precioFinal = precioFinal;
     }
+
+    /**
+     * @return the calificacionEstacionSalida
+     */
+    public CalificacionEntity getCalificacionEstacionSalida() {
+        return calificacionEstacionSalida;
+    }
+
+    /**
+     * @param calificacionEstacionSalida the calificacionEstacionSalida to set
+     */
+    public void setCalificacionEstacionSalida(CalificacionEntity calificacionEstacionSalida) {
+        this.calificacionEstacionSalida = calificacionEstacionSalida;
+    }
+    
+    
+    
      
      
 

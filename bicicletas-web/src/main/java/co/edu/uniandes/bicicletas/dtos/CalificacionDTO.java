@@ -25,6 +25,7 @@ package co.edu.uniandes.bicicletas.dtos;
 
 import co.edu.uniandes.bicicletas.entities.CalificacionEntity;
 import co.edu.uniandes.bicicletas.entities.EstacionEntity;
+import co.edu.uniandes.bicicletas.entities.ReservaEntity;
 import java.util.Date;
 
 /**
@@ -34,11 +35,10 @@ import java.util.Date;
 public class CalificacionDTO 
 {
     private Long idCali;
-    private Date fechaCali;
+    private Date fechaCalificacion;
     private Integer nota;
     private String descripcion;
     private EstacionEntity estacion;
-    private Long idUsuario;
     private Long idReserva;
    
      /**
@@ -55,13 +55,16 @@ public class CalificacionDTO
      */
     public CalificacionDTO(CalificacionEntity caliEntity)
     {
-        this.idCali = caliEntity.getId();
-        this.fechaCali = caliEntity.getFechaCali();
-        this.nota = caliEntity.getNota();
-        this.descripcion = caliEntity.getDescripcion();
-        this.estacion = caliEntity.getEstacion();
-        this.idUsuario = caliEntity.getReserva().getUsuarioReserva().getId();
-        this.idReserva = caliEntity.getReserva().getId();
+        if(caliEntity != null)
+        {
+            this.idCali = caliEntity.getId();
+            this.fechaCalificacion = caliEntity.getFechaCali();
+            this.nota = caliEntity.getNota();
+            this.descripcion = caliEntity.getDescripcion();
+            this.estacion = caliEntity.getEstacion();  
+            this.idReserva = caliEntity.getIdReserva();
+        }
+        
     }
     
     /**
@@ -76,7 +79,7 @@ public class CalificacionDTO
         caliEntity.setNota(this.getNota());
         caliEntity.setDescripcion(this.getDescripcion());
         caliEntity.setEstacion(this.getEstacion());
-        caliEntity.setIdUsuario(this.getIdUsuario());
+        caliEntity.setIdReserva(this.getIdReserva());
         
         return caliEntity;
     }
@@ -99,14 +102,14 @@ public class CalificacionDTO
      * @return the fechaCali
      */
     public Date getFechaCali() {
-        return fechaCali;
+        return fechaCalificacion;
     }
 
     /**
      * @param fechaCali the fechaCali to set
      */
     public void setFechaCali(Date fechaCali) {
-        this.fechaCali = fechaCali;
+        this.fechaCalificacion = fechaCali;
     }
 
     /**
@@ -135,20 +138,6 @@ public class CalificacionDTO
      */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    /**
-     * @return the idUsuario
-     */
-    public Long getIdUsuario() {
-        return idUsuario;
-    }
-
-    /**
-     * @param idUsuario the idUsuario to set
-     */
-    public void setIdUsuario(Long idUsuario) {
-        this.idUsuario = idUsuario;
     }
 
     /**

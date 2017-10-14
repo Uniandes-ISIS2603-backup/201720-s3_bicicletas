@@ -76,7 +76,7 @@ public class PuntoLogic
             throw new BusinessLogicException("No se puede agregar un punto al usuario");
         }
         
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
         dateFormat.format(date); 
      
