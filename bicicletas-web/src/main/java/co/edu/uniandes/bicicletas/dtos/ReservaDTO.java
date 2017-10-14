@@ -5,168 +5,166 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.bicicletas.dtos;
-
-import co.edu.uniandes.bicicletas.entities.CalificacionEntity;
 import co.edu.uniandes.bicicletas.entities.EstacionEntity;
-import co.edu.uniandes.bicicletas.entities.PagoEntity;
 import java.util.Date;
 import co.edu.uniandes.bicicletas.entities.ReservaEntity;
 import co.edu.uniandes.bicicletas.entities.UsuarioEntity;
-import java.util.List;
-import javax.persistence.OneToOne;
 
 /**
  *
  * @author ds.chacon
  */
 public class ReservaDTO {
+    private Long idReserva;
+    private UsuarioEntity usuarioReserva;
+    private int estado;
+    private Date fechaInicio;
+    private EstacionEntity estacionSalida;
+    private Date fechaEntrega;
+    private EstacionEntity estacionLlegada;
+    private double precioFinal;
     
-    
-    int estado;
-    long id;
-    Date FechaEntrega;
-    Date FechaInicio;
-    double PrecioFinal;
-    private Long idEstacionOrigen;
-    private Long idEstacionLlegada;
-    private Long idusuarioReserva;
-    
-
-    public long getUsuarioReserva() {
-        return getIdusuarioReserva();
-    }
-
-    public void setUsuarioReserva(long pusuarioReserva) {
-        this.setIdusuarioReserva((Long) pusuarioReserva);
-    }
-
-    public int getEstado() {
-        return estado;
-    }
-
-    public void setEstado(int estado) {
-        this.estado = estado;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public Date getFechaEntrega() {
-        return FechaEntrega;
-    }
-
-    public void setFechaEntrega(Date FechaEntrega) {
-        this.FechaEntrega = FechaEntrega;
-    }
-
-    public Date getFechaInicio() {
-        return FechaInicio;
-    }
-
-    public void setFechaInicio(Date FechaInicio) {
-        this.FechaInicio = FechaInicio;
-    }
-    public double getPrecioFinal() {
-        return PrecioFinal;
-    }
-
-    public void setPrecioFinal(double PrecioFinal) {
-        this.PrecioFinal = PrecioFinal;
-    }
-
-    public Long getEstacionOrigen() {
-        return getIdEstacionOrigen();
-    }
-
-    public void setEstacionOrigen(Long EstacionOrigen) {
-        this.setIdEstacionOrigen(EstacionOrigen);
-    }
-    
-     
     public ReservaDTO(){
-        
     }
-    
+
     public ReservaDTO(ReservaEntity entidad) {
         if(entidad!=null){
-            this.id = entidad.getId();
+            this.idReserva = entidad.getId();
+            this.usuarioReserva = entidad.getUsuarioReserva();
             this.estado = entidad.getEstado();
-            this.idEstacionOrigen = entidad.getEstacionSalida().getId();
-            this.idEstacionLlegada = entidad.getEstacionLlegada().getId();
-            this.FechaEntrega = entidad.getFechaEntrega();
-            this.FechaInicio = entidad.getFechaInicio();
-            this.PrecioFinal = entidad.getPrecioFinal();
-            this.idusuarioReserva = entidad.getUsuarioReserva().getId();
+            this.fechaInicio = entidad.getFechaInicio();
+            this.estacionSalida = entidad.getEstacionSalida();
+            this.fechaEntrega = entidad.getFechaEntrega();
+            this.estacionLlegada = entidad.getEstacionLlegada();
+            this.precioFinal = entidad.getPrecioFinal();    
         }
     }
     
     public ReservaEntity toEntity() {
         ReservaEntity entity = new ReservaEntity();
-        
-        entity.setId(this.getId());
+        entity.setId(this.getIdReserva());
+        entity.setUsuarioReserva(this.getUsuarioReserva());
         entity.setEstado(this.getEstado());
         entity.setFechaInicio(this.getFechaInicio());
-        
-        EstacionEntity lestacion2 = new EstacionEntity();
-        lestacion2.setId(this.getIdEstacionesLlegada());
-        entity.setEstacionLlegada(lestacion2);
-        
-        EstacionEntity lestacion = new EstacionEntity();
-        lestacion.setId(this.getEstacionOrigen());
-        entity.setEstacionSalida(lestacion);
-        
-        UsuarioEntity lusuario = new UsuarioEntity();
-        lusuario.setId(this.getIdusuarioReserva());
-        entity.setUsuarioReserva(lusuario);
-        
+        entity.setEstacionSalida(this.getEstacionSalida());
+        entity.setFechaEntrega(this.getFechaEntrega());       
+        entity.setEstacionLlegada(this.getEstacionLlegada());
+        entity.setPrecioFinal(this.getPrecioFinal());
+
         return entity;
     }
 
     /**
-     * @return the idEstacionOrigen
+     * @return the idReserva
      */
-    public Long getIdEstacionOrigen() {
-        return idEstacionOrigen;
+    public Long getIdReserva() {
+        return idReserva;
     }
 
     /**
-     * @param idEstacionOrigen the idEstacionOrigen to set
+     * @param idReserva the idReserva to set
      */
-    public void setIdEstacionOrigen(Long idEstacionOrigen) {
-        this.idEstacionOrigen = idEstacionOrigen;
+    public void setIdReserva(Long idReserva) {
+        this.idReserva = idReserva;
     }
 
     /**
-     * @return the idEstacionesLlegada
+     * @return the usuarioReserva
      */
-    public Long getIdEstacionesLlegada() {
-        return idEstacionLlegada;
+    public UsuarioEntity getUsuarioReserva() {
+        return usuarioReserva;
     }
 
     /**
-     * @param idEstacionesLlegada the idEstacionesLlegada to set
+     * @param usuarioReserva the usuarioReserva to set
      */
-    public void setIdEstacionesLlegada(Long idEstacionesLlegada) {
-        this.idEstacionLlegada = idEstacionesLlegada;
+    public void setUsuarioReserva(UsuarioEntity usuarioReserva) {
+        this.usuarioReserva = usuarioReserva;
     }
 
     /**
-     * @return the idusuarioReserva
+     * @return the estado
      */
-    public Long getIdusuarioReserva() {
-        return idusuarioReserva;
+    public int getEstado() {
+        return estado;
     }
 
     /**
-     * @param idusuarioReserva the idusuarioReserva to set
+     * @param estado the estado to set
      */
-    public void setIdusuarioReserva(Long idusuarioReserva) {
-        this.idusuarioReserva = idusuarioReserva;
+    public void setEstado(int estado) {
+        this.estado = estado;
     }
+
+    /**
+     * @return the fechaInicio
+     */
+    public Date getFechaInicio() {
+        return fechaInicio;
+    }
+
+    /**
+     * @param fechaInicio the fechaInicio to set
+     */
+    public void setFechaInicio(Date fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    /**
+     * @return the estacionSalida
+     */
+    public EstacionEntity getEstacionSalida() {
+        return estacionSalida;
+    }
+
+    /**
+     * @param estacionSalida the estacionSalida to set
+     */
+    public void setEstacionSalida(EstacionEntity estacionSalida) {
+        this.estacionSalida = estacionSalida;
+    }
+
+    /**
+     * @return the fechaEntrega
+     */
+    public Date getFechaEntrega() {
+        return fechaEntrega;
+    }
+
+    /**
+     * @param fechaEntrega the fechaEntrega to set
+     */
+    public void setFechaEntrega(Date fechaEntrega) {
+        this.fechaEntrega = fechaEntrega;
+    }
+
+    /**
+     * @return the estacionLlegada
+     */
+    public EstacionEntity getEstacionLlegada() {
+        return estacionLlegada;
+    }
+
+    /**
+     * @param estacionLlegada the estacionLlegada to set
+     */
+    public void setEstacionLlegada(EstacionEntity estacionLlegada) {
+        this.estacionLlegada = estacionLlegada;
+    }
+
+    /**
+     * @return the precioFinal
+     */
+    public double getPrecioFinal() {
+        return precioFinal;
+    }
+
+    /**
+     * @param precioFinal the precioFinal to set
+     */
+    public void setPrecioFinal(double precioFinal) {
+        this.precioFinal = precioFinal;
+    }
+
     
 }

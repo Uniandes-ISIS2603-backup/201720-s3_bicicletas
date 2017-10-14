@@ -10,14 +10,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.eclipse.persistence.oxm.annotations.XmlInverseReference;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -28,8 +27,6 @@ import uk.co.jemos.podam.common.PodamExclude;
 
 public class ReservaEntity extends BaseEntity implements Serializable {
     
-  
-  
     public final static int PAGADO=0;
     public final static int PAGO=1;
     public final static int CANCELADO=2;
@@ -38,12 +35,14 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     
     
     @Temporal(TemporalType.DATE)
-    private Date FechaEntrega;
+    @PodamExclude
+    private Date fechaEntrega;
     
     @Temporal(TemporalType.DATE)
-    private Date FechaInicio;
+    @PodamExclude
+    private Date fechaInicio;
      
-    private int Estado;
+    private int estado;
     
     @OneToOne
     @PodamExclude
@@ -53,16 +52,17 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     @PodamExclude
     private CalificacionEntity calificacionEstacionLlegada;
     
-    @PodamExclude
     @ManyToOne
+    @PodamExclude
+    @XmlInverseReference(mappedBy="reservas")
     private UsuarioEntity usuarioReserva;
     
     @PodamExclude
-    private EstacionEntity EstacionLlegada;
+    private EstacionEntity estacionLlegada;
     
     @ManyToOne
     @PodamExclude
-    private EstacionEntity EstacionSalida;
+    private EstacionEntity estacionSalida;
     
     @OneToOne 
     @PodamExclude
@@ -74,50 +74,54 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     
     private double precioFinal;
 
-    
-    
-    
-    
+     
+    public void setBicis(List<BicicletaEntity> temp){
+        setBicicletas(temp);
+     }
+     public List<BicicletaEntity> getBicis(){
+         return getBicicletas();
+     }
+
     /**
-     * @return the FechaEntrega
+     * @return the fechaEntrega
      */
     public Date getFechaEntrega() {
-        return FechaEntrega;
+        return fechaEntrega;
     }
 
     /**
-     * @param FechaEntrega the FechaEntrega to set
+     * @param fechaEntrega the fechaEntrega to set
      */
-    public void setFechaEntrega(Date FechaEntrega) {
-        this.FechaEntrega = FechaEntrega;
+    public void setFechaEntrega(Date fechaEntrega) {
+        this.fechaEntrega = fechaEntrega;
     }
 
     /**
-     * @return the FechaInicio
+     * @return the fechaInicio
      */
     public Date getFechaInicio() {
-        return FechaInicio;
+        return fechaInicio;
     }
 
     /**
-     * @param FechaInicio the FechaInicio to set
+     * @param fechaInicio the fechaInicio to set
      */
-    public void setFechaInicio(Date FechaInicio) {
-        this.FechaInicio = FechaInicio;
+    public void setFechaInicio(Date fechaInicio) {
+        this.fechaInicio = fechaInicio;
     }
 
     /**
-     * @return the Estado
+     * @return the estado
      */
     public int getEstado() {
-        return Estado;
+        return estado;
     }
 
     /**
-     * @param Estado the Estado to set
+     * @param estado the estado to set
      */
-    public void setEstado(int Estado) {
-        this.Estado = Estado;
+    public void setEstado(int estado) {
+        this.estado = estado;
     }
 
     /**
@@ -163,31 +167,31 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     }
 
     /**
-     * @return the EstacionLlegada
+     * @return the estacionLlegada
      */
     public EstacionEntity getEstacionLlegada() {
-        return EstacionLlegada;
+        return estacionLlegada;
     }
 
     /**
-     * @param EstacionLlegada the EstacionLlegada to set
+     * @param estacionLlegada the estacionLlegada to set
      */
-    public void setEstacionLlegada(EstacionEntity EstacionLlegada) {
-        this.EstacionLlegada = EstacionLlegada;
+    public void setEstacionLlegada(EstacionEntity estacionLlegada) {
+        this.estacionLlegada = estacionLlegada;
     }
 
     /**
-     * @return the EstacionSalida
+     * @return the estacionSalida
      */
     public EstacionEntity getEstacionSalida() {
-        return EstacionSalida;
+        return estacionSalida;
     }
 
     /**
-     * @param EstacionSalida the EstacionSalida to set
+     * @param estacionSalida the estacionSalida to set
      */
-    public void setEstacionSalida(EstacionEntity EstacionSalida) {
-        this.EstacionSalida = EstacionSalida;
+    public void setEstacionSalida(EstacionEntity estacionSalida) {
+        this.estacionSalida = estacionSalida;
     }
 
     /**
@@ -205,31 +209,33 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     }
 
     /**
-     * @return the PrecioFinal
+     * @return the bicicletas
+     */
+    public List<BicicletaEntity> getBicicletas() {
+        return bicicletas;
+    }
+
+    /**
+     * @param bicicletas the bicicletas to set
+     */
+    public void setBicicletas(List<BicicletaEntity> bicicletas) {
+        this.bicicletas = bicicletas;
+    }
+
+    /**
+     * @return the precioFinal
      */
     public double getPrecioFinal() {
         return precioFinal;
     }
 
     /**
-     * @param PrecioFinal the PrecioFinal to set
+     * @param precioFinal the precioFinal to set
      */
     public void setPrecioFinal(double precioFinal) {
         this.precioFinal = precioFinal;
     }
+     
+     
 
-    
-       public void setBicis(List<BicicletaEntity> temp){
-         bicicletas = temp;
-     }
-     public List<BicicletaEntity> getBicis(){
-         return bicicletas;
-     }
-    
-  }
-
-
-
-    
-    
-    
+}

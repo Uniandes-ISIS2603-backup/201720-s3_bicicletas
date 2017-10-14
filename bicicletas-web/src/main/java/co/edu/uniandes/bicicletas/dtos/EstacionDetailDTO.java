@@ -42,7 +42,7 @@ public class EstacionDetailDTO {
             this.direccion = entidad.getDirecciones();
             this.id = entidad.getId();
             this.accesorios = entidad.getAccesorios();
-            this.calificaciones = entidad.getCalificacion();
+            this.calificaciones = entidad.getCalificaciones();
             this.reservas = entidad.getReservas();
             bicicletas = listEntity2DetailDTO(entidad.getBicis());
         }
@@ -102,7 +102,7 @@ public class EstacionDetailDTO {
         entity.setId(this.getId());
         entity.setDirecciones(this.getDireccion());
         entity.setAccesorios(this.getAccesorios());
-        entity.setCalificacion(this.getCalificaciones());
+        entity.setCalificaciones(this.getCalificaciones());
         entity.setReservas(this.getReservas());
         entity.setBicics(listDTO2Entity(bicicletas));
         return entity;

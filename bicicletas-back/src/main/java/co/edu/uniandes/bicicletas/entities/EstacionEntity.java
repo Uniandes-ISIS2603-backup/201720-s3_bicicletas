@@ -13,7 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import uk.co.jemos.podam.common.PodamCollection;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -33,11 +32,15 @@ public class EstacionEntity extends BaseEntity implements Serializable {
     
     @PodamExclude
     @OneToMany(mappedBy = "estacion")
-    private List<CalificacionEntity> calificacion = new ArrayList<CalificacionEntity>();
+    private List<CalificacionEntity> calificaciones = new ArrayList<CalificacionEntity>();
     
     @PodamExclude
-    @OneToMany(mappedBy="EstacionLlegada")
+    @OneToMany(mappedBy="estacionLlegada")
     private List<ReservaEntity> reservas = new ArrayList<ReservaEntity>();
+    
+    @PodamExclude
+    @OneToMany(cascade = CascadeType.REFRESH)
+    private List<BicicletaEntity> bicicletas = new ArrayList<>();
     
 
     public List<ReservaEntity> getReservas() {
@@ -66,16 +69,14 @@ public class EstacionEntity extends BaseEntity implements Serializable {
         this.direcciones = direcciones;
     }
     
-   public List<CalificacionEntity> getCalificacion() {
-        return calificacion;
+   public List<CalificacionEntity> getCalificaciones() {
+        return calificaciones;
     }
 
-    public void setCalificacion(List<CalificacionEntity> calificaciones) {
-        this.calificacion = calificaciones;
+    public void setCalificaciones(List<CalificacionEntity> calificaciones) {
+        this.calificaciones = calificaciones;
     }
-    @PodamExclude
-    @OneToMany(cascade = CascadeType.REFRESH)
-    private List<BicicletaEntity> bicicletas = new ArrayList<>();
+    
     
     public void setBicics(List<BicicletaEntity> bici){
         bicicletas = bici;

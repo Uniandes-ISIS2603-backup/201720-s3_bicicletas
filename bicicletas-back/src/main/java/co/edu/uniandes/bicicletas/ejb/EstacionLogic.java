@@ -58,9 +58,6 @@ public class EstacionLogic
     private BicicletaLogic bicicletaLogic;
     
     @Inject
-    private ReservaLogic reservaLogic;
-    
-    @Inject
     private AccesorioLogic accesorioLogic;
     
     public EstacionEntity getEstacion(Long id) throws WebApplicationException
@@ -91,9 +88,9 @@ public class EstacionLogic
             List <AccesorioEntity> lista = new ArrayList<>();
             entidad.setAccesorios(lista);
         }
-        else if(entidad.getCalificacion()==null){
+        else if(entidad.getCalificaciones()==null){
             ArrayList <CalificacionEntity> lista = new ArrayList<>();
-            entidad.setCalificacion(lista);
+            entidad.setCalificaciones(lista);
         }
         else if(entidad.getDirecciones()==null){
             List <DireccionEntity> lista = new ArrayList<>();
@@ -113,6 +110,8 @@ public class EstacionLogic
         }
         return persistence.update(entidad);
     }
+    
+    //-----------------------------------------------------------------------------------------------------------------
     
     //-----------------------------------------------------------------------------------------------------------------
     
@@ -326,4 +325,3 @@ public class EstacionLogic
     
     
 }
-

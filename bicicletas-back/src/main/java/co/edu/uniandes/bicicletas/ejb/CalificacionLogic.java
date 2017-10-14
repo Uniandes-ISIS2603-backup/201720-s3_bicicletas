@@ -93,7 +93,7 @@ public class CalificacionLogic
         CalificacionEntity califiEntity = caliPersistence.create(caliEntity);
         
         LOGGER.info("LA CREA");
-        List<CalificacionEntity> listaCalis = estacion.getCalificacion();
+        List<CalificacionEntity> listaCalis = estacion.getCalificaciones();
         
         LOGGER.info("LISTA BIEN");
         listaCalis.add(califiEntity);
@@ -122,11 +122,11 @@ public class CalificacionLogic
     {
         LOGGER.info("Inicia proceso de consultar todos las calificaciones de una estación");
         EstacionEntity estacion = estacionPersistence.find(idEstacion);
-        if (estacion.getCalificacion() == null || estacion.getCalificacion().isEmpty()) {
+        if (estacion.getCalificaciones() == null || estacion.getCalificaciones().isEmpty()) {
             throw new BusinessLogicException(MENSAJE);
         }
                
-        return estacion.getCalificacion();
+        return estacion.getCalificaciones();
     }
     
     /**
@@ -139,7 +139,7 @@ public class CalificacionLogic
     public CalificacionEntity getCalificacionEstacion(Long idEstacion, Long idCalificacion) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar una calificación de la estación con id = {0}", idEstacion);
-        List<CalificacionEntity> lista = estacionPersistence.find(idEstacion).getCalificacion();
+        List<CalificacionEntity> lista = estacionPersistence.find(idEstacion).getCalificaciones();
      
         if (lista == null || lista.isEmpty()) {
             throw new BusinessLogicException(MENSAJE);

@@ -104,16 +104,33 @@ public class ReservaPersistenceTest {
     }
 
     /**
+     * Test of create method, of class ReservaPersistence.
+     */
+    @Test
+    public void testCreate() throws Exception {
+        PodamFactory factory = new PodamFactoryImpl();
+        
+        ReservaEntity nuevaReserva = factory.manufacturePojo(ReservaEntity.class);
+        ReservaEntity resultado = persistence.create(nuevaReserva);
+        
+        Assert.assertNotNull(resultado);
+        
+        ReservaEntity creada = em.find(ReservaEntity.class, resultado.getId());
+        
+        Assert.assertEquals(nuevaReserva.getName(), creada.getName());
+    }
+    
+    /**
      * Test of findAll method, of class ReservaPersistence.
      */
     @Test
     public void testFindAll() throws Exception {
         List<ReservaEntity> Reserva = persistence.findAll();
-        Assert.assertEquals(Reserva.size(), data.size());
+        Assert.assertEquals(data.size(), Reserva.size());
         for (ReservaEntity ent : Reserva) {
             boolean found = false;
             for (ReservaEntity entity : data) {
-                if (ent.getId()== entity.getId()) {
+                if (ent.getId().equals(entity.getId())) {
                     found = true;
                 }
             }
@@ -130,23 +147,6 @@ public class ReservaPersistenceTest {
         ReservaEntity  encontrada = persistence.find(buscar.getId());
         Assert.assertNotNull(encontrada);
         Assert.assertEquals(buscar.getName(), encontrada.getName());
-    }
-
-    /**
-     * Test of create method, of class ReservaPersistence.
-     */
-    @Test
-    public void testCreate() throws Exception {
-        PodamFactory factory = new PodamFactoryImpl();
-        
-        ReservaEntity nuevaReserva = factory.manufacturePojo(ReservaEntity.class);
-        ReservaEntity resultado = persistence.create(nuevaReserva);
-        
-        Assert.assertNotNull(resultado);
-        
-        ReservaEntity creada = em.find(ReservaEntity.class, resultado.getId());
-        
-        Assert.assertEquals(nuevaReserva.getName(), creada.getName());
     }
 
     /**

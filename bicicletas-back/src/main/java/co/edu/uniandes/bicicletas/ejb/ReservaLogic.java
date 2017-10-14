@@ -28,11 +28,10 @@ import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.bicicletas.entities.BicicletaEntity;
 import co.edu.uniandes.bicicletas.entities.EstacionEntity;
 import co.edu.uniandes.bicicletas.entities.ReservaEntity;
-import co.edu.uniandes.bicicletas.entities.ReservaEntity_;
 import co.edu.uniandes.bicicletas.entities.UsuarioEntity;
 import co.edu.uniandes.bicicletas.persistence.EstacionPersistence;
 import co.edu.uniandes.bicicletas.persistence.ReservaPersistence;
-import java.util.ArrayList;
+import co.edu.uniandes.bicicletas.persistence.UsuarioPersistence;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.logging.Level;
@@ -52,10 +51,10 @@ public class ReservaLogic
     private ReservaPersistence persistence;
     
     @Inject
-    private UsuarioLogic logicaUsuario;
+    private UsuarioPersistence persistenceUsuario;
      
     @Inject
-    private EstacionPersistence logicaEstacion;
+    private EstacionPersistence persistenceEstacion;
     
     @Inject 
     private BicicletaLogic biciLogic;
@@ -74,7 +73,7 @@ public class ReservaLogic
     }
     
     public ReservaEntity getReservaUsuario(Long idReserva  , Long idUsuario) throws BusinessLogicException{
-        UsuarioEntity usuario = logicaUsuario.getUsuario(idUsuario);
+        UsuarioEntity usuario = persistenceUsuario.find(idUsuario);
         LOGGER.log(Level.INFO, "Inicia proceso de consultar una reserva del usuario con id = {0}", idUsuario);
         List<ReservaEntity> reservasUsuario = usuario.getReservas();
         if(reservasUsuario==null || reservasUsuario.isEmpty()){
@@ -99,29 +98,38 @@ public class ReservaLogic
     }
     public ReservaEntity crearReserva(Long idUsuario, ReservaEntity entity ) throws BusinessLogicException{
         
-        UsuarioEntity lusuario = logicaUsuario.getUsuario(idUsuario);
-        entity.setUsuarioReserva(lusuario);
-        List<ReservaEntity> reservasUsuario = lusuario.getReservas();
+        UsuarioEntity usuario = persistenceUsuario.find(idUsuario);
+        entity.setUsuarioReserva(usuario);
+        List<ReservaEntity> reservasUsuario = usuario.getReservas();
+        List<ReservaEntity> reservasEstacion;
         
-        EstacionEntity estacionOrigen ;
+        EstacionEntity estacionSalida;
+        
         if(entity.getEstacionSalida().getId()!= null  ){
-            //LOGGER.info("ESTA MOSTRANDO ESTO  :::   "+entity.getEstacionSalida().getId());
-            //LOGGER.info("ESTA MOSTRANDO ESTO :::   "+ logicaEstacion);
-            estacionOrigen = logicaEstacion.find(entity.getEstacionSalida().getId());
-            LOGGER.info("ESTA MOSTRANDO ESTA HPTA MIERDAAAAAAAA  :::   "+estacionOrigen);
-            if(estacionOrigen==null){
-                throw new BusinessLogicException("La estacion de origen no existe");
+            
+            estacionSalida = persistenceEstacion.find(entity.getEstacionSalida().getId());
+            
+            if(estacionSalida==null)
+            {
+                throw new BusinessLogicException("La estacion de salida asignada no existe");
             }
-        }else{
-            throw new BusinessLogicException("Debe proporcial un id de estacion ");
+            reservasEstacion = estacionSalida.getReservas();
         }
+        else
+        {
+            throw new BusinessLogicException("Debe proporciar la estacion de salida");
+        }
+        
         ReservaEntity reservaNueva;
-        if(reservasUsuario == null){
-            reservasUsuario = new ArrayList<>();
-        }
+
+        entity.setEstacionSalida(estacionSalida);
+        entity.setUsuarioReserva(usuario);
         reservaNueva=persistence.create(entity);
-        reservaNueva.setEstacionSalida(estacionOrigen);
+        
         reservasUsuario.add(reservaNueva);
+        
+        reservasEstacion.add(reservaNueva);
+        
         return reservaNueva;
     }
     
