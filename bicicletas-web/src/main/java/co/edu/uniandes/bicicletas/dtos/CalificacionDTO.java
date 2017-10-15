@@ -39,6 +39,7 @@ public class CalificacionDTO
     private Integer nota;
     private String descripcion;
     private EstacionEntity estacion;
+    private Long idEstacion;
     private Long idReserva;
    
      /**
@@ -61,7 +62,10 @@ public class CalificacionDTO
             this.fechaCalificacion = caliEntity.getFechaCali();
             this.nota = caliEntity.getNota();
             this.descripcion = caliEntity.getDescripcion();
-            this.estacion = caliEntity.getEstacion();  
+            if(caliEntity.getEstacion() != null)
+            {
+                this.idEstacion = caliEntity.getEstacion().getId();
+            } 
             this.idReserva = caliEntity.getIdReserva();
         }
         
@@ -167,6 +171,21 @@ public class CalificacionDTO
     public void setIdReserva(Long idReserva) {
         this.idReserva = idReserva;
     }
+
+    /**
+     * @return the idEstacion
+     */
+    public Long getIdEstacion() {
+        return idEstacion;
+    }
+
+    /**
+     * @param idEstacion the idEstacion to set
+     */
+    public void setIdEstacion(Long idEstacion) {
+        this.idEstacion = idEstacion;
+    }
+    
     
     
 }

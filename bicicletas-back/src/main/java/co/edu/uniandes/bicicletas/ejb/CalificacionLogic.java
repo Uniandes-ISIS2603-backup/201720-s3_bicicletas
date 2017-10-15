@@ -78,11 +78,11 @@ public class CalificacionLogic
         if (idEstacion == 0 && reserva.getCalificacionEstacionSalida() == null)
         {
             origen = true; 
-            estacion = reserva.getEstacionSalida();
+            estacion = estacionPersistence.find(reserva.getEstacionSalida().getId());
         }       
         else if (idEstacion == 1 && reserva.getEstacionSalida() != null && reserva.getCalificacionEstacionLlegada() == null)
         {
-            estacion = reserva.getEstacionLlegada();
+            estacion = estacionPersistence.find(reserva.getEstacionLlegada().getId());
         }
         else
         {
@@ -96,6 +96,7 @@ public class CalificacionLogic
         dateFormat.format(date); 
         
         caliEntity.setFechaCali(date);
+        caliEntity.setEstacion(estacion);
         CalificacionEntity califiEntity = caliPersistence.create(caliEntity);
         
         LOGGER.info("Termina proceso de crear una calificación");
@@ -128,8 +129,6 @@ public class CalificacionLogic
         {
             reserva.setCalificacionEstacionLlegada(califiEntity);
         }
-        
-        getCalificacionesEstacion(estacion.getId());
         
         return califiEntity;
     }
