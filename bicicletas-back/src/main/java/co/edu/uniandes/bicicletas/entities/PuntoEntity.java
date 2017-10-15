@@ -29,6 +29,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.eclipse.persistence.oxm.annotations.XmlInverseReference;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -50,6 +51,7 @@ public class PuntoEntity extends BaseEntity implements Serializable
      */
     @PodamExclude 
     @ManyToOne
+    @XmlInverseReference(mappedBy="puntos")
     private UsuarioEntity usuarioPunto;
     
 
