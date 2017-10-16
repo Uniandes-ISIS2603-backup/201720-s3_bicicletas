@@ -55,6 +55,7 @@ public class CalificacionEntity extends BaseEntity implements Serializable
     
     @ManyToOne
     @PodamExclude
+    @XmlInverseReference(mappedBy="calificaciones")
     private EstacionEntity estacion;
     
     /**

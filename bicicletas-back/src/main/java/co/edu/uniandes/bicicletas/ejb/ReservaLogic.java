@@ -25,10 +25,12 @@ SOFTWARE.
 package co.edu.uniandes.bicicletas.ejb;
 
 import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
+import co.edu.uniandes.bicicletas.entities.AccesorioEntity;
 import co.edu.uniandes.bicicletas.entities.BicicletaEntity;
 import co.edu.uniandes.bicicletas.entities.EstacionEntity;
 import co.edu.uniandes.bicicletas.entities.ReservaEntity;
 import co.edu.uniandes.bicicletas.entities.UsuarioEntity;
+import co.edu.uniandes.bicicletas.persistence.AccesorioPersistence;
 import co.edu.uniandes.bicicletas.persistence.EstacionPersistence;
 import co.edu.uniandes.bicicletas.persistence.ReservaPersistence;
 import co.edu.uniandes.bicicletas.persistence.UsuarioPersistence;
@@ -59,6 +61,9 @@ public class ReservaLogic
     
     @Inject 
     private BicicletaLogic biciLogic;
+    
+    @Inject
+    private AccesorioPersistence persistenceAccesorio;
     
     
     public ReservaEntity getReserva(Long id)
@@ -217,4 +222,28 @@ public class ReservaLogic
          return bicis;
      }
     
+     
+     public AccesorioEntity getAccesorio(Long idReserva, Long  idAccesorio) throws BusinessLogicException{
+         ReservaEntity reserva = getReserva(idReserva);
+         AccesorioEntity accesorio = persistenceAccesorio.find(idReserva);
+         if(accesorio.getReservado()!=1){
+             throw new BusinessLogicException("No esta disponible el accesorio");
+         }
+         boolean reservado = false;
+         for (AccesorioEntity accesorioR : reserva.getAccesorios()) {
+             if(accesorioR.equals(accesorio)){
+                 reservado=true;
+             }
+         }
+         if(!reservado){
+             throw new BusinessLogicException("No esta disponible la bici");
+         }
+         return accesorio;
+     }
+     
+     public List<AccesorioEntity> getAccesorios(Long idReserva)throws BusinessLogicException{
+         ReservaEntity reserva = getReserva(idReserva);
+         List<AccesorioEntity> accesorios = reserva.getAccesorios();
+         return accesorios;
+     }
 }

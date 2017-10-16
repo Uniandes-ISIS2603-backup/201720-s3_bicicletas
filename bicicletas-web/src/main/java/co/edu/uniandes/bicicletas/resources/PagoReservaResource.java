@@ -10,6 +10,7 @@ import co.edu.uniandes.bicicletas.dtos.PagoDTO;
 import co.edu.uniandes.bicicletas.dtos.PagoDetailDTO;
 import co.edu.uniandes.bicicletas.dtos.ReservaDTO;
 import co.edu.uniandes.bicicletas.ejb.PagoLogic;
+import co.edu.uniandes.bicicletas.ejb.PuntoLogic;
 import co.edu.uniandes.bicicletas.ejb.ReservaLogic;
 import co.edu.uniandes.bicicletas.entities.PagoEntity;
 import co.edu.uniandes.bicicletas.entities.ReservaEntity;
@@ -29,6 +30,12 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.ext.Provider;
 import co.edu.uniandes.bicicletas.ejb.SistemaDePagosLogic;
+import co.edu.uniandes.bicicletas.entities.PuntoEntity;
+import co.edu.uniandes.bicicletas.entities.UsuarioEntity;
+import co.edu.uniandes.bicicletas.persistence.ReservaPersistence;
+import co.edu.uniandes.bicicletas.persistence.UsuarioPersistence;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Clase que modela la relación que va desde Reserva hasta Pago.
@@ -37,52 +44,103 @@ import co.edu.uniandes.bicicletas.ejb.SistemaDePagosLogic;
  */
 @Produces("application/json")
 @Consumes("application/json")
-@Provider
 public class PagoReservaResource {
 
+    public final static int PUNTOS_MINIMOS = 10; 
+    
     @Inject
-    private ReservaLogic reservaLogic;
+    private ReservaPersistence reservaPersistence;
 
     @Inject
     private PagoLogic pagoLogic;
+    
+    @Inject
+    private PuntoLogic puntoLogic;
 
     private SistemaDePagosLogic sistemaDePagos;
 
     @GET
-    public PagoDetailDTO darPago(@PathParam("idReserva") Long idReserva) {
-        ReservaEntity reserva = reservaLogic.getReserva(idReserva);
+    public PagoDetailDTO darPago(@PathParam("idReserva") Long idReserva) 
+    {
+        ReservaEntity reserva = reservaPersistence.find(idReserva);
         PagoEntity pago = reserva.getPago();
 
+        //Si el pago no existe, lo crea
         if (pago == null) {
-            throw new WebApplicationException("El recurso /Reserva/" + idReserva
-                    + "/Pago no existe", 404);
+            pago = new PagoEntity();
+            
+            pago.setFecha(reserva.getFechaInicio());
+            pago.setMonto(reserva.getPrecioFinal());
+            pago.setIdUsuario(reserva.getUsuarioReserva().getId());
+            
+            crearPago(reserva, pago);
         }
 
         return new PagoDetailDTO(pago);
     }
 
-    @POST
-    public PagoDetailDTO crearPago(@PathParam("idReserva") Long idReserva, PagoEntity pago) throws BusinessLogicException {
+    private PagoDetailDTO crearPago(ReservaEntity reserva, PagoEntity pago) {
         //En este metodo es una buena idea usar a pagologic porque se puede
         //utilizar el método para crear un pago y asociarselo a una reserva
-        ReservaEntity reserva = reservaLogic.getReserva(idReserva);
         pago.setEstado(PagoEntity.ESPERANDO_PAGO);
 
-        if (reserva.getPago() != null) {
-            throw new BusinessLogicException("La reserva con id: " + idReserva
-                    + " ya tiene un pago asociado");
-        }
-
         reserva.setPago(pago);
-        ReservaEntity nuevoReservaEntity = reservaLogic.actualizarReserva(reserva);
+        ReservaEntity nuevoReservaEntity = reservaPersistence.update(reserva);
 
         return new PagoDetailDTO(pago);
     }
+    
+    @PUT
+    @Path("pagarConPuntos")
+    public PagoDetailDTO efectuarPagoConPuntos(@PathParam("idReserva") Long idReserva) throws BusinessLogicException{
+        ReservaEntity reserva = reservaPersistence.find(idReserva);
+        PagoEntity pago = reserva.getPago();
+
+        if (reserva.getPago() == null) {
+            throw new BusinessLogicException("La reserva con id: " + idReserva
+                    + " no tiene un pago asociado");
+        }
+
+        if (pago.getEstado() != PagoEntity.ESPERANDO_PAGO) {
+            throw new BusinessLogicException("No se puede realizar el pago en"
+                    + " el estado que se encuentra el pago");
+        }
+        //Verificar si es posible el pago con puntos
+        UsuarioEntity usuario = reserva.getUsuarioReserva();
+        try{
+            puntoLogic.deletePuntos(usuario.getId());
+        } catch(Exception e){
+            throw new BusinessLogicException("El usuario cuenta con " + 
+                    usuario.getPuntos().size()+ " puntos  y son necesario " + 
+                    PUNTOS_MINIMOS + " puntos para pagar la reserva");
+        }
+   
+        sistemaDePagos = new SistemaDePagosLogic();
+
+        //Actualizar estado del pago 
+        pago.setEstado(PagoEntity.PROCESANDO_PAGO);
+        Long idTransaccion = sistemaDePagos.realizarPago();
+        pago.setIdTransaccion(idTransaccion);
+        if (reserva.getUsuarioReserva() != null) {
+            pago.setIdUsuario(reserva.getUsuarioReserva().getId());
+        }
+        PagoEntity updatePago = pagoLogic.updatePago(pago);
+
+        //Actualizar estado de la reserva
+        reserva.setEstado(ReservaEntity.PAGO);
+        reservaPersistence.update(reserva);
+        
+
+        return new PagoDetailDTO(updatePago);
+        
+        
+    }
+    
 
     @PUT
     @Path("pagar")
     public PagoDetailDTO efectuarPago(@PathParam("idReserva") Long idReserva) throws BusinessLogicException {
-        ReservaEntity reserva = reservaLogic.getReserva(idReserva);
+        ReservaEntity reserva = reservaPersistence.find(idReserva);
         PagoEntity pago = reserva.getPago();
 
         if (reserva.getPago() == null) {
@@ -108,16 +166,18 @@ public class PagoReservaResource {
 
         //Actualizar estado de la reserva
         reserva.setEstado(ReservaEntity.PAGO);
-        reservaLogic.actualizarReserva(reserva);
+        reservaPersistence.update(reserva);
 
         return new PagoDetailDTO(updatePago);
 
     }
+    
+    
 
     @PUT
-    @Path(" ")
+    @Path("solicitarReembolso")
     public PagoDetailDTO solicitarReembolso(@PathParam("idReserva") Long idReserva) throws BusinessLogicException {
-        ReservaEntity reserva = reservaLogic.getReserva(idReserva);
+        ReservaEntity reserva = reservaPersistence.find(idReserva);
         PagoEntity pago = reserva.getPago();
 
         if (reserva.getPago() == null) {
@@ -138,7 +198,7 @@ public class PagoReservaResource {
 
         //Actualizar estado de la reserva
         reserva.setEstado(ReservaEntity.REENBOLSADO);
-        reservaLogic.actualizarReserva(reserva);
+        reservaPersistence.update(reserva);
 
         return new PagoDetailDTO(pago);
 

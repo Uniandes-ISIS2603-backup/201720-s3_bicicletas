@@ -84,6 +84,7 @@ public class PuntoLogic
         
         punt = new PuntoEntity();
         punt.setFechaPunto(date);
+        punt.setUsuarioPunto(usuario);
         puntPersistence.create(punt);
         puntos.add(0, punt);
         
