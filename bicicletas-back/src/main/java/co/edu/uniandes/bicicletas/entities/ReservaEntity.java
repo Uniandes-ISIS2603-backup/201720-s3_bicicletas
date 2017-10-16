@@ -61,6 +61,7 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     @XmlInverseReference(mappedBy="reservas")
     private UsuarioEntity usuarioReserva;
     
+    @ManyToOne
     @PodamExclude
     private EstacionEntity estacionLlegada;
     
@@ -254,9 +255,5 @@ public class ReservaEntity extends BaseEntity implements Serializable {
         this.accesorios = accesorios;
     }
     
-    
-    
-     
-     
 
 }

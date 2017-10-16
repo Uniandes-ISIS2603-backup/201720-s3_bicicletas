@@ -15,6 +15,7 @@ import co.edu.uniandes.bicicletas.entities.UsuarioEntity;
  * @author ds.chacon
  */
 public class ReservaDTO {
+    
     private Long idReserva;
     private UsuarioEntity usuarioReserva;
     private int estado;
@@ -23,7 +24,7 @@ public class ReservaDTO {
     private Date fechaEntrega;
     private EstacionEntity estacionLlegada;
     private double precioFinal;
-    
+        
     public ReservaDTO(){
     }
 
@@ -36,7 +37,16 @@ public class ReservaDTO {
             this.estacionSalida = entidad.getEstacionSalida();
             this.fechaEntrega = entidad.getFechaEntrega();
             this.estacionLlegada = entidad.getEstacionLlegada();
-            this.precioFinal = entidad.getPrecioFinal();    
+            this.precioFinal = entidad.getPrecioFinal();
+//            Date fecha = new Date(2000, 12, 1);
+//            this.idReserva = Long.parseLong("133");
+//            this.usuarioReserva =null ;
+//            this.estado = 12;
+//            this.fechaInicio = entidad.getFechaInicio();
+//            this.estacionSalida = null;
+//            this.fechaEntrega =null;
+//            this.estacionLlegada = null;
+//            this.precioFinal = 20;
         }
     }
     

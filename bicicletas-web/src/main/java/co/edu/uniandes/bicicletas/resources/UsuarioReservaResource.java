@@ -14,6 +14,7 @@ import co.edu.uniandes.bicicletas.ejb.UsuarioLogic;
 import co.edu.uniandes.bicicletas.entities.ReservaEntity;
 import co.edu.uniandes.bicicletas.entities.UsuarioEntity;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -42,7 +43,7 @@ public class UsuarioReservaResource
     UsuarioLogic usuarioLogic;
     
     @GET
-    public List<ReservaDTO> getReservas(@PathParam("idUsuario") Long idUsuario)
+    public List<ReservaDetailDTO> getReservas(@PathParam("idUsuario") Long idUsuario)
     {
         UsuarioEntity usuario=usuarioLogic.getUsuario(idUsuario);
         List<ReservaEntity> reservas = usuario.getReservas();
@@ -55,7 +56,7 @@ public class UsuarioReservaResource
     
     @GET
     @Path("{id: \\d+}")
-    public ReservaDTO getReserva(@PathParam("id") Long id, @PathParam("idUsuario") Long idUsuario)throws BusinessLogicException
+    public ReservaDetailDTO getReserva(@PathParam("id") Long id, @PathParam("idUsuario") Long idUsuario)throws BusinessLogicException
     {
         UsuarioEntity usuario = usuarioLogic.getUsuario(idUsuario);
         List<ReservaEntity> reservas = usuario.getReservas();
@@ -79,12 +80,13 @@ public class UsuarioReservaResource
     
     @POST
     public ReservaDTO createReserva(@PathParam("idUsuario") Long idUsuario , ReservaDTO nuevareserva) throws BusinessLogicException {
+        Date hola = nuevareserva.getFechaInicio();
         return new ReservaDTO(reservaLogic.crearReserva( idUsuario ,nuevareserva.toEntity()));
     } 
     
-    private List<ReservaDTO> listEntity2DTO(List<ReservaEntity> listaEntiReserva)
+    private List<ReservaDetailDTO> listEntity2DTO(List<ReservaEntity> listaEntiReserva)
     {
-        List<ReservaDTO> lista = new ArrayList<ReservaDTO>();
+        List<ReservaDetailDTO> lista = new ArrayList<ReservaDetailDTO>();
         for(ReservaEntity puntoEntity : listaEntiReserva)
         {
             lista.add(new ReservaDetailDTO(puntoEntity));

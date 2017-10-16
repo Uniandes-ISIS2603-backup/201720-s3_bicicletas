@@ -74,7 +74,7 @@ public class ReservaPersistence {
     }
     
     /**
-     * Elimina un accesorio
+     * Elimina una reserva
      * @param id: El id del accesorio que se desea eliminar
      */
     public void delete(Long id) {
