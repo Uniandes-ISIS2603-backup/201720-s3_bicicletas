@@ -76,6 +76,10 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     @PodamExclude
     private List<BicicletaEntity> bicicletas = new ArrayList<>();
     
+    @OneToMany
+    @PodamExclude
+    private List<AccesorioEntity> accesorios = new ArrayList<>();
+    
     private double precioFinal;
 
      
@@ -240,6 +244,14 @@ public class ReservaEntity extends BaseEntity implements Serializable {
      */
     public void setCalificacionEstacionSalida(CalificacionEntity calificacionEstacionSalida) {
         this.calificacionEstacionSalida = calificacionEstacionSalida;
+    }
+
+    public List<AccesorioEntity> getAccesorios() {
+        return accesorios;
+    }
+
+    public void setAccesorios(List<AccesorioEntity> accesorios) {
+        this.accesorios = accesorios;
     }
     
     
