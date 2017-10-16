@@ -7,6 +7,7 @@ package co.edu.uniandes.bicicletas.resources;
 
 import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.bicicletas.dtos.ReservaDTO;
+import co.edu.uniandes.bicicletas.dtos.ReservaDetailDTO;
 import co.edu.uniandes.bicicletas.dtos.UsuarioDTO;
 import co.edu.uniandes.bicicletas.ejb.ReservaLogic;
 import co.edu.uniandes.bicicletas.ejb.UsuarioLogic;
@@ -43,7 +44,8 @@ public class UsuarioReservaResource
     @GET
     public List<ReservaDTO> getReservas(@PathParam("idUsuario") Long idUsuario)
     {
-        List<ReservaEntity> reservas = usuarioLogic.getUsuario(idUsuario).getReservas();
+        UsuarioEntity usuario=usuarioLogic.getUsuario(idUsuario);
+        List<ReservaEntity> reservas = usuario.getReservas();
         if(reservas == null || reservas.isEmpty())
         {
             throw new WebApplicationException("El usuario no tiene reservas en el sistema", 404); 
@@ -53,14 +55,20 @@ public class UsuarioReservaResource
     
     @GET
     @Path("{id: \\d+}")
-    public ReservaDTO getReserva(@PathParam("id") Long id, @PathParam("idUsuario") Long idUsuario)
+    public ReservaDTO getReserva(@PathParam("id") Long id, @PathParam("idUsuario") Long idUsuario)throws BusinessLogicException
     {
         UsuarioEntity usuario = usuarioLogic.getUsuario(idUsuario);
         List<ReservaEntity> reservas = usuario.getReservas();
         if(reservas==null || reservas.isEmpty()){
-            throw new WebApplicationException("La reserva con id"+id+"no existe", 404); 
+            throw new WebApplicationException("El Usuario con id: "+idUsuario+" no tiene reservas", 404); 
         }
-        return new ReservaDTO(reservaLogic.getReserva(id));
+        ReservaEntity reserva = reservaLogic.getReserva(id);
+        if(reserva.getId()== idUsuario){
+           return new ReservaDetailDTO(reservaLogic.getReserva(id));
+        }else{
+            throw new WebApplicationException("La reserva con id: "+id+" no existe o no pertenece al usuario con id: "+idUsuario, 404);
+        }
+        
     }
     
     @DELETE 
@@ -79,7 +87,7 @@ public class UsuarioReservaResource
         List<ReservaDTO> lista = new ArrayList<ReservaDTO>();
         for(ReservaEntity puntoEntity : listaEntiReserva)
         {
-            lista.add(new ReservaDTO(puntoEntity));
+            lista.add(new ReservaDetailDTO(puntoEntity));
         }
         return lista;
     }

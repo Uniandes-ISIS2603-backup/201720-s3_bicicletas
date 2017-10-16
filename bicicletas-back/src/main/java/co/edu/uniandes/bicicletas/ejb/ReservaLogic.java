@@ -32,6 +32,7 @@ import co.edu.uniandes.bicicletas.entities.UsuarioEntity;
 import co.edu.uniandes.bicicletas.persistence.EstacionPersistence;
 import co.edu.uniandes.bicicletas.persistence.ReservaPersistence;
 import co.edu.uniandes.bicicletas.persistence.UsuarioPersistence;
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.logging.Level;
@@ -72,6 +73,35 @@ public class ReservaLogic
         return persistence.findAll();
     }
     
+//    public List<ReservaEntity> getReservasUsuario( Long id ) throws BusinessLogicException{
+//        UsuarioEntity usuario = persistenceUsuario.find(id);
+//        List<ReservaEntity> reservas = usuario.getReservas();
+//        if(reservas.isEmpty()){
+//            throw new BusinessLogicException("El usuario no tiene reservas");
+//        }
+//        return usuario.getReservas();
+//    }
+    
+//    public List<ReservaEntity> getReservasUsuarioId( Long idUsuario , Long id ) throws BusinessLogicException{
+//        UsuarioEntity usuario = persistenceUsuario.find(idUsuario);
+//        List<ReservaEntity> reservas = usuario.getReservas();
+//        
+//        if(reservas.isEmpty()){
+//            throw new BusinessLogicException("El usuario no tiene reservas");
+//        }
+//        
+//        Iterator<ReservaEntity> iter = reservas.iterator();
+//        ReservaEntity lreserva =null;
+//        boolean encontro = false;
+//         if(iter.hasNext()&& !encontro){
+//             lreserva = iter.next();
+//             if(lreserva.getId() == id){
+//                 encontro=true;
+//             } 
+//         }
+//        return usuario.getReservas();
+//    }
+    
     public ReservaEntity getReservaUsuario(Long idReserva  , Long idUsuario) throws BusinessLogicException{
         UsuarioEntity usuario = persistenceUsuario.find(idUsuario);
         LOGGER.log(Level.INFO, "Inicia proceso de consultar una reserva del usuario con id = {0}", idUsuario);
@@ -104,6 +134,10 @@ public class ReservaLogic
         List<ReservaEntity> reservasEstacion;
         
         EstacionEntity estacionSalida;
+        
+        if(entity.getEstado()<0||entity.getEstado()>4){
+            throw new BusinessLogicException("El estado indicado no existe");
+        }
         
         if(entity.getEstacionSalida().getId()!= null  ){
             
