@@ -63,9 +63,8 @@ public class PagoResource {
         pago.setId(id);
 
         PagoEntity buscado = logic.find(id);
-        if (buscado == null) {
+        if (buscado == null) 
             throw new WebApplicationException("El recurso /pagos/" + id + "no existe.", 404);
-        }
 
         PagoEntity updated = logic.updatePago(pago.toEntity());
         return new PagoDetailDTO(updated);
@@ -120,7 +119,7 @@ public class PagoResource {
         
         if(pago.getEstado() != PagoEntity.PROCESANDO_PAGO){
             throw new BusinessLogicException("No se puede realizar el pago en"
-                    + "el estado que se encuentra el pago");
+                    + " el estado que se encuentra el pago");
         }
         
         //Actualizar estado del pago 
@@ -143,7 +142,7 @@ public class PagoResource {
         
         if(pago.getEstado() != PagoEntity.PROCESANDO_REEMBOLSO){
             throw new BusinessLogicException("No se puede realizar el pago en"
-                    + "el estado que se encuentra el pago");
+                    + " el estado que se encuentra el pago");
         }
         
         //Actualizar estado del pago 

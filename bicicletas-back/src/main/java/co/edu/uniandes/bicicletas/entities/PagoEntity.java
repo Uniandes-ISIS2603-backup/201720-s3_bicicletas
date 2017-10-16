@@ -26,9 +26,12 @@ package co.edu.uniandes.bicicletas.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
+import org.eclipse.persistence.oxm.annotations.XmlInverseReference;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -81,8 +84,10 @@ public class PagoEntity extends BaseEntity implements Serializable{
     /**
      * Relación que modela una reserva asociada a un pago 
      */
-    @OneToOne
     @PodamExclude
+    @OneToOne
+    @JoinColumn(name="RESERVA_ID")
+    @XmlInverseReference(mappedBy="pago")
     ReservaEntity reserva;
     
     /**
@@ -166,9 +171,6 @@ public class PagoEntity extends BaseEntity implements Serializable{
     public void setReserva(ReservaEntity reserva){
         this.reserva = reserva;
     }
-    
-    
-
    
     
     

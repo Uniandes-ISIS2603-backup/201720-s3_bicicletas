@@ -60,7 +60,7 @@ public class PagoReservaResource {
     private SistemaDePagosLogic sistemaDePagos;
 
     @GET
-    public PagoDetailDTO darPago(@PathParam("idReserva") Long idReserva) 
+    public PagoDTO darPago(@PathParam("idReserva") Long idReserva) 
     {
         ReservaEntity reserva = reservaPersistence.find(idReserva);
         PagoEntity pago = reserva.getPago();
@@ -73,21 +73,27 @@ public class PagoReservaResource {
             pago.setMonto(reserva.getPrecioFinal());
             pago.setIdUsuario(reserva.getUsuarioReserva().getId());
             
-            crearPago(reserva, pago);
+            pago = crearPago(reserva, pago);
         }
 
-        return new PagoDetailDTO(pago);
+        return new PagoDTO(pago);
     }
 
-    private PagoDetailDTO crearPago(ReservaEntity reserva, PagoEntity pago) {
+    private PagoEntity crearPago(ReservaEntity reserva, PagoEntity pago) {
         //En este metodo es una buena idea usar a pagologic porque se puede
         //utilizar el método para crear un pago y asociarselo a una reserva
+        
         pago.setEstado(PagoEntity.ESPERANDO_PAGO);
-
+        pago.setReserva(reserva);
+        
+        pago = pagoLogic.crearPago(pago);
+        
+        
         reserva.setPago(pago);
-        ReservaEntity nuevoReservaEntity = reservaPersistence.update(reserva);
+        reservaPersistence.update(reserva);
 
-        return new PagoDetailDTO(pago);
+    
+        return pago;
     }
     
     @PUT
