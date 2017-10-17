@@ -80,7 +80,6 @@ public class UsuarioReservaResource
     
     @POST
     public ReservaDTO createReserva(@PathParam("idUsuario") Long idUsuario , ReservaDTO nuevareserva) throws BusinessLogicException {
-        Date hola = nuevareserva.getFechaInicio();
         return new ReservaDTO(reservaLogic.crearReserva( idUsuario ,nuevareserva.toEntity()));
     } 
     

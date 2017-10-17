@@ -84,6 +84,16 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     private List<AccesorioEntity> accesorios = new ArrayList<>();
     
     private double precioFinal;
+    
+    private String fechaString;
+
+    public String getFechaString() {
+        return fechaString;
+    }
+
+    public void setFechaString(String fechaString) {
+        this.fechaString = fechaString;
+    }
 
      
     public void setBicis(List<BicicletaEntity> temp){

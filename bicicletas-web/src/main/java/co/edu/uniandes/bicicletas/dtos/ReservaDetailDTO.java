@@ -22,7 +22,7 @@ public class ReservaDetailDTO extends ReservaDTO{
     }
     
     Long idReserva;
-    String estado;
+    int estado;
     String usuario;
     String fechaInicio;
     String estacionSalida;
@@ -35,16 +35,8 @@ public class ReservaDetailDTO extends ReservaDTO{
      * @param entity
      */
     public ReservaDetailDTO(ReservaEntity entidad) {
-       if(entidad!=null){
-            idReserva = entidad.getId();
-             usuario = ""+entidad.getUsuarioReserva().getName();
-             estado = ""+entidad.getEstado();
-             fechaInicio = entidad.getFechaInicio().toString();
-             estacionSalida = entidad.getEstacionSalida().getName();
-             fechaEntrega = entidad.getFechaEntrega().toString();
-             estacionLlegada = entidad.getEstacionLlegada().getName();
-             precioFinal = entidad.getPrecioFinal();    
-         }
+        idReserva=entidad.getUsuarioReserva().getId();
+        estado=entidad.getEstado();
     }
 
     /**
