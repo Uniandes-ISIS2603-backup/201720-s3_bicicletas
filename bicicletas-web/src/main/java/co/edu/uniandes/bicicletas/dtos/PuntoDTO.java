@@ -34,6 +34,7 @@ public class PuntoDTO {
     
     private Long idPunto;
     private Date fecha;
+    private Date fechaVencimiento;
     
     /**
      * Constructor por defecto
@@ -51,6 +52,7 @@ public class PuntoDTO {
     {
         this.idPunto = punEntity.getId();
         this.fecha = punEntity.getFechaPunto();
+        this.fechaVencimiento = punEntity.getFechaVencimiento();
         
     }
     
@@ -63,6 +65,8 @@ public class PuntoDTO {
         PuntoEntity punEntity = new PuntoEntity();
         punEntity.setId(this.getIdPunto());
         punEntity.setFechaPunto(this.getFecha());
+        punEntity.setFechaVencimiento(this.getFechaVencimiento());
+        
         
         return punEntity;
     }
@@ -94,5 +98,20 @@ public class PuntoDTO {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
+
+    /**
+     * @return the fechaVencimiento
+     */
+    public Date getFechaVencimiento() {
+        return fechaVencimiento;
+    }
+
+    /**
+     * @param fechaVencimiento the fechaVencimiento to set
+     */
+    public void setFechaVencimiento(Date fechaVencimiento) {
+        this.fechaVencimiento = fechaVencimiento;
+    }
+    
     
 }

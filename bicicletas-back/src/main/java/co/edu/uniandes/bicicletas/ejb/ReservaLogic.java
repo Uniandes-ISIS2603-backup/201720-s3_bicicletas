@@ -144,11 +144,11 @@ public class ReservaLogic
             throw new BusinessLogicException("El estado indicado no existe");
         }
         
-        if(entity.getEstacionSalida().getId()!= null  ){
-            
+        if(entity.getEstacionSalida() != null){
+           
             estacionSalida = persistenceEstacion.find(entity.getEstacionSalida().getId());
             
-            if(estacionSalida==null)
+            if(estacionSalida == null)
             {
                 throw new BusinessLogicException("La estacion de salida asignada no existe");
             }

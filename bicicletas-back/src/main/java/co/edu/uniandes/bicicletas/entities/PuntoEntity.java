@@ -46,6 +46,10 @@ public class PuntoEntity extends BaseEntity implements Serializable
     @Temporal(TemporalType.DATE)
     private Date fechaPunto;
     
+    @Temporal(TemporalType.DATE)
+    private Date fechaVencimiento;
+    
+    
     /**
      * Usuario al que pertenecen los puntos
      */
@@ -53,6 +57,7 @@ public class PuntoEntity extends BaseEntity implements Serializable
     @ManyToOne
     @XmlInverseReference(mappedBy="puntos")
     private UsuarioEntity usuarioPunto;
+    
     
 
     /**
@@ -82,5 +87,20 @@ public class PuntoEntity extends BaseEntity implements Serializable
     public void setUsuarioPunto(UsuarioEntity usuarioPunto) {
         this.usuarioPunto = usuarioPunto;
     }
+
+    /**
+     * @return the fechaVencimiento
+     */
+    public Date getFechaVencimiento() {
+        return fechaVencimiento;
+    }
+
+    /**
+     * @param fechaVencimiento the fechaVencimiento to set
+     */
+    public void setFechaVencimiento(Date fechaVencimiento) {
+        this.fechaVencimiento = fechaVencimiento;
+    }
+    
     
 }

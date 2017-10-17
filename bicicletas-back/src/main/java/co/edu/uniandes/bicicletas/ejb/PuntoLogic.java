@@ -31,6 +31,7 @@ import co.edu.uniandes.bicicletas.persistence.PuntoPersistence;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
@@ -77,13 +78,18 @@ public class PuntoLogic
         }
         
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-        Date date = new Date();
+        Calendar cal = Calendar.getInstance();
+        Date date = cal.getTime();
+        cal.add(Calendar.YEAR, 1);
+        Date vence = cal.getTime();
         dateFormat.format(date); 
+        dateFormat.format(vence);
      
         PuntoEntity punt;
         
         punt = new PuntoEntity();
         punt.setFechaPunto(date);
+        punt.setFechaVencimiento(vence);
         punt.setUsuarioPunto(usuario);
         puntPersistence.create(punt);
         puntos.add(0, punt);
