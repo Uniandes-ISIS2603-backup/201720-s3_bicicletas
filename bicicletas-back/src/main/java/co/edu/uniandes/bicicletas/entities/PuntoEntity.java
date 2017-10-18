@@ -42,13 +42,14 @@ public class PuntoEntity extends BaseEntity implements Serializable
     /**
      * La fecha de creacion del punto
      */
-    //@GeneratedValue 
     @Temporal(TemporalType.DATE)
     private Date fechaPunto;
     
+    /**
+     * La fecha en la que se vence
+     */
     @Temporal(TemporalType.DATE)
     private Date fechaVencimiento;
-    
     
     /**
      * Usuario al que pertenecen los puntos

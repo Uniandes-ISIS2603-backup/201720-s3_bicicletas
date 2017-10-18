@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -63,7 +64,7 @@ public class UsuarioEntity extends BaseEntity implements Serializable {
      *
      */
    @PodamExclude
-   @OneToMany(mappedBy = "usuarioPunto")
+   @OneToMany(mappedBy = "usuarioPunto", cascade=CascadeType.ALL)
    private List<PuntoEntity> puntos = new  ArrayList<PuntoEntity>();
     
    

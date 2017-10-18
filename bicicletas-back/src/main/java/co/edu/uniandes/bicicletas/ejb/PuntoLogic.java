@@ -30,7 +30,6 @@ import co.edu.uniandes.bicicletas.entities.UsuarioEntity;
 import co.edu.uniandes.bicicletas.persistence.PuntoPersistence;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -57,21 +56,16 @@ public class PuntoLogic
      * Se encarga de crear 10 puntos en la base de datos
      * @param idUsuario Id del usuario al cual se le crearán los puntos
      * @return Lista de PuntoEntity creados
+     * @throws co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException
      */
     public PuntoEntity createPunto(Long idUsuario) throws BusinessLogicException
     {
         LOGGER.info("Empieza el proceso de crear 1 punto");
-        //Se obtiene el usuario
+        
         UsuarioEntity usuario = usuarioLogic.getUsuario(idUsuario);
+        List<ReservaEntity> reservas = usuario.getReservas();        
+        List<PuntoEntity> puntos = usuario.getPuntos();
         
-        //Se obtiene la lista de reservas del usuario
-        List<ReservaEntity> reservas = usuario.getReservas();
-        
-        //Se obtiene la lista de puntos de un usuario
-         List<PuntoEntity> puntos = usuario.getPuntos();
-        
-        //Se verifica que la lista de reservas del usuario no este vacía y que los puntos que posee
-        //sean menores a la cantidad de reservas que ha realizado
         if(reservas.isEmpty() || reservas.size() < (puntos.size() + 1)) 
         {
             throw new BusinessLogicException("No se puede agregar un punto al usuario");
@@ -85,18 +79,17 @@ public class PuntoLogic
         dateFormat.format(date); 
         dateFormat.format(vence);
      
-        PuntoEntity punt;
+        PuntoEntity punt, punto;
         
         punt = new PuntoEntity();
         punt.setFechaPunto(date);
         punt.setFechaVencimiento(vence);
         punt.setUsuarioPunto(usuario);
-        puntPersistence.create(punt);
-        puntos.add(0, punt);
+        punto = puntPersistence.create(punt);
         
         LOGGER.info("Terminar el proceso crear 1 punto");
         
-        return punt;
+        return punto;
     }
     
     /**
@@ -108,7 +101,12 @@ public class PuntoLogic
     {
         LOGGER.info("Inicia el proceso de consultar los puntos de un usuario");
         UsuarioEntity usuario = usuarioLogic.getUsuario(idUsuario);
+        
+        Calendar cal = Calendar.getInstance();
+        Date date = cal.getTime();
+        verificarFechaVencimiento(usuario, date);
         LOGGER.info("Termina el proceso de consultar los puntos de un usuario");
+        usuario.getPuntos();
         return usuario.getPuntos();
     }
     
@@ -128,14 +126,30 @@ public class PuntoLogic
         }
         else
         {
-            int size = puntos.size();
             PuntoEntity punt;
-            for (int i = size-1; i >= size - 10; i--) 
+            for (int i = 0; i < 10; i++) 
             {
-                punt = puntos.remove(i);
+                punt = puntos.remove(0);
                 puntPersistence.delete(punt.getId());
             }
         }
         LOGGER.info("Termina el proceso de borrar 10 puntos de un usuario");
+    }
+    
+    public void verificarFechaVencimiento(UsuarioEntity usuario, Date fechaActual)
+    {
+        List<PuntoEntity> puntos = usuario.getPuntos();
+        int cantidad = puntos.size();
+        Long idPunto;
+        for(int i = cantidad - 1; i >= 0; i--)
+        {
+            idPunto = puntos.get(i).getId();
+            PuntoEntity punt = puntPersistence.find(idPunto);
+            if(punt.getFechaVencimiento().before(fechaActual))
+            {
+                puntos.remove(punt);
+                puntPersistence.delete(idPunto); 
+            }
+        }
     }
 }

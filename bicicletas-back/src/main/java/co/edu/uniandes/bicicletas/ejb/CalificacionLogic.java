@@ -31,10 +31,8 @@ import co.edu.uniandes.bicicletas.persistence.CalificacionPersistence;
 import co.edu.uniandes.bicicletas.persistence.EstacionPersistence;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -101,26 +99,6 @@ public class CalificacionLogic
         
         LOGGER.info("Termina proceso de crear una calificación");
         
-        List<CalificacionEntity> calificaciones = estacionPersistence.find(estacion.getId()).getCalificaciones();
-        
-        boolean creada = false;
-        if(calificaciones == null)
-        {
-            calificaciones = new ArrayList<CalificacionEntity>();
-            creada = true;
-        }
-        
-        calificaciones.add(califiEntity);
-        
-        LOGGER.info("Calis "+ calificaciones.size());
-       
-        if(creada)
-        {
-            estacion.setCalificaciones(calificaciones);
-        }
-        
-        LOGGER.info("CalisSS "+ calificaciones.size());
-      
         if(origen)
         {
             reserva.setCalificacionEstacionSalida(califiEntity);
@@ -143,7 +121,6 @@ public class CalificacionLogic
     {
         LOGGER.info("Inicia proceso de consultar todos las calificaciones de una estación");
         EstacionEntity estacion = estacionPersistence.find(idEstacion);
-        LOGGER.info("Calisismas " + estacion.getCalificaciones().size() );
         if (estacion.getCalificaciones() == null || estacion.getCalificaciones().isEmpty()) {
             throw new BusinessLogicException(MENSAJE);
         }
@@ -188,7 +165,7 @@ public class CalificacionLogic
         
         ReservaEntity reserva = reservaLogic.getReserva(idReserva);
         
-        CalificacionEntity caliEntity = null;
+        CalificacionEntity caliEntity;
         
         if(cali)
         {
