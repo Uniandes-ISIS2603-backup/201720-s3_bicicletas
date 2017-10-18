@@ -104,10 +104,8 @@ public class PuntoLogic
         
         Calendar cal = Calendar.getInstance();
         Date date = cal.getTime();
-        verificarFechaVencimiento(usuario, date);
         LOGGER.info("Termina el proceso de consultar los puntos de un usuario");
-        usuario.getPuntos();
-        return usuario.getPuntos();
+        return verificarFechaVencimiento(usuario, date);   
     }
     
     /**
@@ -118,8 +116,7 @@ public class PuntoLogic
     public void deletePuntos(Long idUsuario) throws BusinessLogicException
     {
         LOGGER.info("Inicia el proceso de borrar los puntos de un usuario");
-        UsuarioEntity usuario = usuarioLogic.getUsuario(idUsuario);
-        List<PuntoEntity> puntos = usuario.getPuntos();
+        List<PuntoEntity> puntos = getPuntos(idUsuario) ;
         if(puntos == null || puntos.isEmpty() || puntos.size() < 10)
         {
             throw new BusinessLogicException("El usuario no tiene al menos 10 puntos para pagar la reserva");
@@ -136,8 +133,9 @@ public class PuntoLogic
         LOGGER.info("Termina el proceso de borrar 10 puntos de un usuario");
     }
     
-    public void verificarFechaVencimiento(UsuarioEntity usuario, Date fechaActual)
+    public List<PuntoEntity> verificarFechaVencimiento(UsuarioEntity usuario, Date fechaActual)
     {
+        LOGGER.info("Inicia el proceso de verificar las fechas de vencimiento de los puntos");
         List<PuntoEntity> puntos = usuario.getPuntos();
         int cantidad = puntos.size();
         Long idPunto;
@@ -151,5 +149,7 @@ public class PuntoLogic
                 puntPersistence.delete(idPunto); 
             }
         }
+        LOGGER.info("Termina el proceso de verificar las fechas de vencimiento de los puntos");
+        return usuario.getPuntos();
     }
 }
