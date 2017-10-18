@@ -137,7 +137,7 @@ public class DireccionLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar un usuario del direccion con id = {0}", direccionId);
         List<UsuarioEntity> list = getDireccion(direccionId).getUsuarios();
         UsuarioEntity usuariosEntity = new UsuarioEntity();
-        usuariosEntity.setId(usuariosId);
+        usuariosEntity.setDocumentoUsuario(usuariosId);
         int index = list.indexOf(usuariosEntity);
         if (index >= 0) {
             return list.get(index);
@@ -157,7 +157,7 @@ public class DireccionLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de asociar un usuario al direccion con id = {0}", direccionId);
         DireccionEntity direccionEntity = getDireccion(direccionId);
         UsuarioEntity usuariosEntity = new UsuarioEntity();
-        usuariosEntity.setId(usuariosId);
+        usuariosEntity.setDocumentoUsuario(usuariosId);
         direccionEntity.getUsuarios().add(usuariosEntity);
         return getUsuario(direccionId, usuariosId);
     }
@@ -189,7 +189,7 @@ public class DireccionLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar un usuario del direccion con id = {0}", direccionId);
         DireccionEntity entity = getDireccion(direccionId);
         UsuarioEntity usuariosEntity = new UsuarioEntity();
-        usuariosEntity.setId(usuariosId);
+        usuariosEntity.setDocumentoUsuario(usuariosId);
         entity.getUsuarios().remove(usuariosEntity);
     }
     

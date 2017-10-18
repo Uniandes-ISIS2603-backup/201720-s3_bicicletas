@@ -71,7 +71,7 @@ public class PagoReservaResource {
             
             pago.setFecha(reserva.getFechaInicio());
             pago.setMonto(reserva.getPrecioFinal());
-            pago.setIdUsuario(reserva.getUsuarioReserva().getId());
+            pago.setIdUsuario(reserva.getUsuarioReserva().getDocumentoUsuario());
             
             pago = crearPago(reserva, pago);
         }
@@ -114,7 +114,7 @@ public class PagoReservaResource {
         //Verificar si es posible el pago con puntos
         UsuarioEntity usuario = reserva.getUsuarioReserva();
         try{
-            puntoLogic.deletePuntos(usuario.getId());
+            puntoLogic.deletePuntos(usuario.getDocumentoUsuario());
         } catch(Exception e){
             throw new BusinessLogicException("El usuario cuenta con " + 
                     usuario.getPuntos().size()+ " puntos  y son necesario " + 
@@ -128,7 +128,7 @@ public class PagoReservaResource {
         Long idTransaccion = sistemaDePagos.realizarPago();
         pago.setIdTransaccion(idTransaccion);
         if (reserva.getUsuarioReserva() != null) {
-            pago.setIdUsuario(reserva.getUsuarioReserva().getId());
+            pago.setIdUsuario(reserva.getUsuarioReserva().getDocumentoUsuario());
         }
         PagoEntity updatePago = pagoLogic.updatePago(pago);
 
@@ -166,7 +166,7 @@ public class PagoReservaResource {
         Long idTransaccion = sistemaDePagos.realizarPago();
         pago.setIdTransaccion(idTransaccion);
         if (reserva.getUsuarioReserva() != null) {
-            pago.setIdUsuario(reserva.getUsuarioReserva().getId());
+            pago.setIdUsuario(reserva.getUsuarioReserva().getDocumentoUsuario());
         }
         PagoEntity updatePago = pagoLogic.updatePago(pago);
 

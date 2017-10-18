@@ -40,8 +40,8 @@ public class UsuarioLogic {
     public UsuarioEntity createUsuario(UsuarioEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de usuario");
         // Verifica la regla de negocio que dice que no puede haber dos usuarios con el mismo nombre
-        if (persistence.findByName(entity.getName()) != null) {
-            throw new BusinessLogicException("Ya existe un Usuario con el nombre \"" + entity.getName() + "\"");
+        if (persistence.findByName(entity.getNombre()) != null) {
+            throw new BusinessLogicException("Ya existe un Usuario con el nombre \"" + entity.getNombre() + "\"");
         }
         // Invoca la persistencia para crear el usuario
         persistence.create(entity);
@@ -104,7 +104,7 @@ public class UsuarioLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar usuario con id={0}", id);
         // Note que, por medio de la inyección de dependencias se llama al método "update(entity)" que se encuentra en la persistencia.
         UsuarioEntity newEntity = persistence.update(entity);
-        LOGGER.log(Level.INFO, "Termina proceso de actualizar usuario con id={0}", entity.getId());
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar usuario con id={0}", entity.getDocumentoUsuario());
         return newEntity;
     }
    

@@ -153,7 +153,7 @@ public class UsuarioPersistenceTest {
         for (UsuarioEntity ent : list) {
         boolean found = false;
         for (UsuarioEntity entity : data) {
-            if (ent.getId().equals(entity.getId())) {
+            if (entity.getDocumentoUsuario().equals(entity.getDocumentoUsuario())) {
                 found = true;
             }
         }
@@ -168,9 +168,9 @@ public class UsuarioPersistenceTest {
     @Test
     public void testFind() throws Exception {
         UsuarioEntity entity = data.get(0);
-        UsuarioEntity newEntity = persistence.find(entity.getId());
+        UsuarioEntity newEntity = persistence.find(entity.getDocumentoUsuario());
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getName(), newEntity.getName());
+        Assert.assertEquals(entity.getNombre(), newEntity.getNombre());
     }
 
     /**
@@ -184,9 +184,9 @@ public class UsuarioPersistenceTest {
         UsuarioEntity result = persistence.create(newEntity);
 
         Assert.assertNotNull(result);
-        UsuarioEntity entity = em.find(UsuarioEntity.class, result.getId());
+        UsuarioEntity entity = em.find(UsuarioEntity.class, result.getDocumentoUsuario());
         Assert.assertNotNull(entity);
-        Assert.assertEquals(newEntity.getName(), entity.getName());
+        Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
     }
     
     /**
@@ -199,13 +199,13 @@ public class UsuarioPersistenceTest {
         PodamFactory factory = new PodamFactoryImpl();
         UsuarioEntity newEntity = factory.manufacturePojo(UsuarioEntity.class);
 
-        newEntity.setId(entity.getId());
+        newEntity.setDocumentoUsuario(entity.getDocumentoUsuario());
 
         persistence.update(newEntity);
 
-        UsuarioEntity resp = em.find(UsuarioEntity.class, entity.getId());
+        UsuarioEntity resp = em.find(UsuarioEntity.class, entity.getDocumentoUsuario());
 
-        Assert.assertEquals(newEntity.getName(), resp.getName());
+        Assert.assertEquals(newEntity.getNombre(), resp.getNombre());
     }
 
 
@@ -216,8 +216,8 @@ public class UsuarioPersistenceTest {
     @Test
     public void testDelete() throws Exception {
         UsuarioEntity entity = data.get(0);
-        persistence.delete(entity.getId());
-        UsuarioEntity deleted = em.find(UsuarioEntity.class, entity.getId());
+        persistence.delete(entity.getDocumentoUsuario());
+        UsuarioEntity deleted = em.find(UsuarioEntity.class, entity.getDocumentoUsuario());
         Assert.assertNull(deleted);
     }
     

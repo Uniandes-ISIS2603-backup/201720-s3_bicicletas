@@ -35,7 +35,7 @@ public class ReservaDetailDTO extends ReservaDTO{
      * @param entity
      */
     public ReservaDetailDTO(ReservaEntity entidad) {
-        idReserva=entidad.getUsuarioReserva().getId();
+        idReserva=entidad.getUsuarioReserva().getDocumentoUsuario();
         estado=entidad.getEstado();
     }
 

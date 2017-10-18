@@ -14,64 +14,47 @@ import java.util.Date;
  * @author cm.alba10
  */
 public class UsuarioDTO {
-    
-   private Long id;
-   private String name; 
+
+   private String nombre; 
    private Integer tipoId; 
    private Long documentoUsuario;
    private Date fechaNacimiento;
-   
+
     /**
      * Constructor por defecto
      */
     public UsuarioDTO() {
         //Do nothing because is not necessary
     }
-    
+
     /**
      * Conviertir Entity a DTO
      * (Crea un nuevo DTO con los valores que recibe en la entidad que viene de argumento.
      * @param usuario: Es la entidad que se va a convertir a DTO 
      */
     public UsuarioDTO(UsuarioEntity usuario) {
-        this.id = usuario.getId();
-        this.name = usuario.getName();
+        this.nombre = usuario.getNombre();
         this.tipoId= usuario.getTipoId();
         this.documentoUsuario= usuario.getDocumentoUsuario();
         this.fechaNacimiento= usuario.getFechaNacimiento();
     }
 
-    /**
-     *
-     * @return
-     */
-    
-    public Long getId() {
-        return id;
-    }
 
-    /**
-     *
-     * @param id
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     /**
      *
      * @return
      */
-    public String getName() {
-        return name;
+    public String getNombre() {
+        return nombre;
     }
 
     /**
      *
-     * @param name
+     * @param nombre
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     /**
@@ -121,15 +104,14 @@ public class UsuarioDTO {
     public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
-    
+
      /**
      * Convertir DTO a Entity
      * @return Un Entity con los valores del DTO 
      */
     public UsuarioEntity toEntity() {
         UsuarioEntity entity = new UsuarioEntity();
-        entity.setId(this.id);
-        entity.setName(this.name);
+        entity.setNombre(this.nombre);
         entity.setTipoId(this.tipoId);
         entity.setDocumentoUsuario(this.documentoUsuario);
         entity.setFechaNacimiento(this.fechaNacimiento);

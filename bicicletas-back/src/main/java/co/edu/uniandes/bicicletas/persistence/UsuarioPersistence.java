@@ -70,7 +70,7 @@ public class UsuarioPersistence {
      * @return Un usuario que tiene los nuevo datos
      */
     public UsuarioEntity update(UsuarioEntity entity) {
-       LOGGER.log(Level.INFO, "Actualizando usuario con id={0}", entity.getId());
+       LOGGER.log(Level.INFO, "Actualizando usuario con id={0}", entity.getDocumentoUsuario());
         return em.merge(entity);
     }
     

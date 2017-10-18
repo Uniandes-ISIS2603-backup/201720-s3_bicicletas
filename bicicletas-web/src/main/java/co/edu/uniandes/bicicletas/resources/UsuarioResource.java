@@ -105,7 +105,7 @@ import javax.ws.rs.WebApplicationException;
 	    @Path("{id: \\d+}")
 	    public UsuarioDetailDTO updateUsuario(@PathParam("id") Long id, UsuarioDetailDTO dto) {
 	        UsuarioEntity entity = dto.toEntity();
-	        entity.setId(id);
+	        entity.setDocumentoUsuario(id);
 	        UsuarioEntity oldEntity = usuarioLogic.getUsuario(id);
 	        if (oldEntity == null) {
 	            throw new WebApplicationException("El usuario no existe", 404);
