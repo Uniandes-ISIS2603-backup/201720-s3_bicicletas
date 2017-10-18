@@ -13,6 +13,9 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -23,7 +26,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author cm.alba10
  */
 @Entity
-public class UsuarioEntity extends BaseEntity implements Serializable {
+public class UsuarioEntity implements Serializable {
     
  /**
  *Constantes
@@ -44,8 +47,11 @@ public class UsuarioEntity extends BaseEntity implements Serializable {
  *Atributos
  */
 
-   private Integer tipoId; 
+   private Integer tipoId;
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long documentoUsuario;
+   private String nombre;
    @Temporal(TemporalType.DATE)
    private Date fechaNacimiento;
    
@@ -132,6 +138,24 @@ public class UsuarioEntity extends BaseEntity implements Serializable {
         this.documentoUsuario = documentoUsuario;
     }
 
+    /**
+     *
+     * @return
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     *
+     * @param nombre
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    
+    
     /**
      *
      * @return
