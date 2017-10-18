@@ -16,6 +16,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -24,7 +25,6 @@ import javax.ws.rs.Produces;
  *
  * @author ka.babativa
  */
-@Path("/reservas")
 @Produces("application/json")
 @Consumes("application/json")
 @Stateless
@@ -38,6 +38,12 @@ public class ReservaAccesorioResource {
     public AccesorioDTO getAccesorios(@PathParam("idReserva") Long idReserva,@PathParam("idAccesorio") Long idAccesorio) throws BusinessLogicException{
         AccesorioEntity entity = reservaLogic.getAccesorio(idReserva, idAccesorio);
         return new AccesorioDTO(entity);
+    }
+    
+    @PUT
+    @Path("{idReserva: \\d+/accesorios/idAccesorio: \\d+}")
+    public void asignarAccesorioReserva(@PathParam("idReserva") Long idReserva, @PathParam("idAccesorio") Long idAccesorio)throws BusinessLogicException{
+      reservaLogic.asignarAccesorio(idReserva, idAccesorio);
     }
     
     @GET

@@ -64,12 +64,16 @@ public class UsuarioReservaResource
             throw new WebApplicationException("El Usuario con id: "+idUsuario+" no tiene reservas", 404); 
         }
         ReservaEntity reserva = reservaLogic.getReserva(id);
-        if(reserva.getId()== idUsuario){
-           return new ReservaDetailDTO(reservaLogic.getReserva(id));
-        }else{
+        System.out.println("Documento de la reserva "+reserva.getUsuarioReserva().getDocumentoUsuario());
+        System.out.println("IdUsuario"+idUsuario);
+        System.out.println(reserva.getUsuarioReserva().getDocumentoUsuario()== idUsuario);
+        if(reserva.getUsuarioReserva().getDocumentoUsuario().compareTo(idUsuario)==0){
+           return new ReservaDetailDTO(reserva);
+        }else if(reserva.getUsuarioReserva().getDocumentoUsuario().compareTo(idUsuario)!=0){
             throw new WebApplicationException("La reserva con id: "+id+" no existe o no pertenece al usuario con id: "+idUsuario, 404);
         }
-        
+        else
+            return null;
     }
     
     @DELETE 
@@ -100,5 +104,14 @@ public class UsuarioReservaResource
             throw new WebApplicationException("El recurso /reservas/" + idReserva + "/calificaciones no existe.", 404);
         }
         return ReservaCalificacionResource.class;
+    }
+    
+    @Path("{idReserva: \\d+}/accesorios")
+    public Class<ReservaAccesorioResource> getAccesorioReservaResource(@PathParam("idReserva") Long idReserva) {
+        ReservaEntity entity = reservaLogic.getReserva(idReserva);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /reservas/" + idReserva + "/calificaciones no existe.", 404);
+        }
+        return ReservaAccesorioResource.class;
     }
 }

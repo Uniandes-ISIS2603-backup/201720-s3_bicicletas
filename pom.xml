@@ -8,10 +8,7 @@
     <packaging>pom</packaging>
     <version>1.0</version>
  
-    <modules>
-        <module>bicicletas-back</module>
-        <module>bicicletas-web</module>
-    </modules>
+    <modules></modules>
 	
    <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
