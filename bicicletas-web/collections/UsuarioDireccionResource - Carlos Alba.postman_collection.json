@@ -35,7 +35,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"name\":\"Alfonso oxigeno\",\n  \"tipoId\":\"1\",\n  \"documentoUsuario\":\"123456789\",\n  \"fechaNacimiento\":\"12-01-1995\"\n}"
+					"raw": "{\t\n  \"nombre\":\"nombreusuario uno\",\n  \"tipoId\":\"1\",\n  \"documentoUsuario\":\"1111111111\",\n  \"fechaNacimiento\":\"12-01-1995\"\n}"
 				},
 				"description": ""
 			},
@@ -90,7 +90,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/bicicletas-web/api/usuarios/{{new_id}}/direcciones/{{new_id_b}}",
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/1111111111/direcciones/{{new_id_b}}",
 				"method": "POST",
 				"header": [
 					{
@@ -147,7 +147,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/bicicletas-web/api/usuarios/{{new_id}}",
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/1111111111",
 				"method": "GET",
 				"header": [],
 				"body": {},
@@ -171,7 +171,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/bicicletas-web/api/usuarios/{{new_id}}/direcciones/",
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/1111111111/direcciones/",
 				"method": "GET",
 				"header": [],
 				"body": {},
@@ -195,7 +195,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/bicicletas-web/api/usuarios/{{new_id}}/direcciones/{{new_id_b}}",
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/1111111111/direcciones/{{new_id_b}}",
 				"method": "GET",
 				"header": [],
 				"body": {},
@@ -217,7 +217,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/bicicletas-web/api/usuarios/{{new_id}}/direcciones/{{new_id_b}}",
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/1111111111/direcciones/{{new_id_b}}",
 				"method": "DELETE",
 				"header": [],
 				"body": {},
@@ -239,7 +239,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/bicicletas-web/api/usuarios/{{new_id}}",
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/1111111111",
 				"method": "DELETE",
 				"header": [],
 				"body": {},

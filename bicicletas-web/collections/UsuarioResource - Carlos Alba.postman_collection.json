@@ -34,7 +34,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"name\":\"Pedro neon\",\n  \"tipoId\":\"1\",\n  \"documentoUsuario\":\"123456789\",\n  \"fechaNacimiento\":\"12-01-1995\"\n}"
+					"raw": "{\t\n  \"nombre\":\"nombreusuario uno\",\n  \"tipoId\":\"1\",\n  \"documentoUsuario\":\"1111111111\",\n  \"fechaNacimiento\":\"12-01-1995\"\n}"
 				},
 				"description": "POST para Usuarios"
 			},
@@ -67,7 +67,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\t\n  \"name\":\"Pedro neon\",\n  \"tipoId\":\"1\",\n  \"documentoUsuario\":\"123456789\",\n  \"fechaNacimiento\":\"12-01-1995\"\n}"
+					"raw": "{\t\n  \"nombre\":\"nombreusuario uno\",\n  \"tipoId\":\"1\",\n  \"documentoUsuario\":\"1111111111\",\n  \"fechaNacimiento\":\"12-01-1995\"\n}"
 				},
 				"description": "POST para Usuarios"
 			},
@@ -89,7 +89,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/bicicletas-web/api/usuarios/{{new_id_e}}",
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/1111111111",
 				"method": "PUT",
 				"header": [
 					{
@@ -100,7 +100,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"name\":\"Juan Tungsteno\",\n  \"tipoId\":\"3\",\n  \"documentoUsuario\":\"456789123\",\n  \"fechaNacimiento\":\"12/01/1995\"\n}"
+					"raw": "{\t\n  \"nombre\":\"nombreusuario uno cambiado\",\n  \"tipoId\":\"3\",\n  \"documentoUsuario\":\"1111111122\",\n  \"fechaNacimiento\":\"12-01-1995\"\n}"
 				},
 				"description": "PUT de Usuarios"
 			},
@@ -146,7 +146,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/bicicletas-web/api/usuarios/{{new_id_e}}",
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/1111111111",
 				"method": "GET",
 				"header": [],
 				"body": {},
@@ -168,7 +168,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/bicicletas-web/api/usuarios/{{new_id_e}}",
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/1111111111",
 				"method": "DELETE",
 				"header": [],
 				"body": {},
