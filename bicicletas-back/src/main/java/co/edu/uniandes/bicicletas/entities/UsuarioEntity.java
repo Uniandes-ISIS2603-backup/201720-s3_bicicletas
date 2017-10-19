@@ -49,7 +49,6 @@ public class UsuarioEntity implements Serializable {
 
    private Integer tipoId;
    @Id
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long documentoUsuario;
    private String nombre;
    @Temporal(TemporalType.DATE)
