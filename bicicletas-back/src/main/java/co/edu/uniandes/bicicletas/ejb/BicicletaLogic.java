@@ -99,9 +99,10 @@ public class BicicletaLogic {
          persistence.delete(id);
     }
     public AccesorioBicicletaEntity createAccesorioBici(Long idBici,AccesorioBicicletaEntity entity) throws BusinessLogicException {
+        LOGGER.info(entity.darNombre()+""+entity.darDescrip());
         BicicletaEntity bici = persistence.find(idBici);
         if(bici== null){
-             throw new WebApplicationException("No hay una estación con dicho ID", 402);
+             throw new WebApplicationException("No hay una bicicleta con dicho ID", 402);
          }
         List<AccesorioBicicletaEntity> rta = bici.getAccesorioBicicletas();
         rta.add(entity);

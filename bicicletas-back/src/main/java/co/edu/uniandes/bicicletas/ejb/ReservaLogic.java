@@ -197,6 +197,8 @@ public class ReservaLogic
          }
          reserva.getBicis().add(bici);
          bici.setEstado(BicicletaEntity.RESERVADA);
+         actualizarReserva(reserva);
+         biciLogic.actualizarBicicleta(bici);
          return reserva;
      }
      public BicicletaEntity getBici(Long idReserva, Long  idBici) throws BusinessLogicException{

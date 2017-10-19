@@ -23,15 +23,15 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.ext.Provider;
 
 /**
  *
  * @author js.torres1
  */
-@Path("/bicicletas")
 @Produces("application/json")
 @Consumes("application/json")
-@Stateless
+@Provider
 public class AccesorioBicicletaBicicletaResource {
     @Inject
     AccesorioBicicletaLogic bicicletasLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
@@ -51,8 +51,8 @@ public class AccesorioBicicletaBicicletaResource {
      * @throws BusinessLogicException
      */
     @POST
-    @Path("{id: \\d+}/AccesorioBicicleta")
     public AccesorioBicicletaDTO createAccesorioBici(@PathParam("idBicicleta")Long id,AccesorioBicicletaDTO accesorio) throws BusinessLogicException {
+       LOGGER.info(accesorio.getDescripcion()+""+accesorio.getNombre());
         // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
         AccesorioBicicletaEntity accBici = accesorio.toEntity();
         // Invoca la lógica para crear la Bicicleta nueva
@@ -74,7 +74,6 @@ public class AccesorioBicicletaBicicletaResource {
      * 404 con el mensaje.
      */
     @PUT
-    @Path("{idBicicleta: \\d+/AccesorioBicicleta}")
     public AccesorioBicicletaDTO updateBicicleta(@PathParam("idBicicleta") Long idBici, AccesorioBicicletaDTO bicicletas) throws BusinessLogicException, UnsupportedOperationException {
           
           AccesorioBicicletaEntity entity =bicicletas.toEntity();
@@ -95,7 +94,7 @@ public class AccesorioBicicletaBicicletaResource {
      *
      */
     @DELETE
-    @Path("{idBicicleta: \\d+/AccesorioBicicleta/idAccesorioBici: \\d+}")
+    @Path("{idAccesorioBici: \\d+}")
     public void deleteAccesorioBici(@PathParam("idBicicleta") Long id,@PathParam("idAccesorioBici") Long idAcc) throws BusinessLogicException {
          superBiciLogic.deleteAccesorioBicicleta(id, idAcc);
     }
@@ -104,7 +103,7 @@ public class AccesorioBicicletaBicicletaResource {
      * 
      */
     @GET
-    @Path("{idBicicleta: \\d+AccesorioBicicleta/idAccesorioBici: \\d+}")
+    @Path("{idAccesorioBici: \\d+}")
     public AccesorioBicicletaDTO getAccesorioBici(@PathParam("idBicicleta") Long idBici,@PathParam("idAccesorioBici") Long idAcc){
         AccesorioBicicletaEntity entity = superBiciLogic.getAccesorioBici(idBici, idAcc);
         return new AccesorioBicicletaDTO(entity);

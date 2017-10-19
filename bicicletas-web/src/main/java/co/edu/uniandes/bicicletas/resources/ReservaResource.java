@@ -118,5 +118,15 @@ public class ReservaResource {
             throw new WebApplicationException("El recurso /Reserva/" + idReserva + "/Pago no existe.", 404);
         }
         return   UsuarioReservaResource.class;
-    } 
+    }
+    
+    @Path("{idReserva: \\d+}/bicicletas")
+    public Class<ReservaBicicletaResource> getClassAcc(@PathParam("idReserva")Long idReserva) {
+        ReservaEntity entity = logica.getReserva(idReserva);
+            if (entity == null) {
+            throw new WebApplicationException("El recurso /bici/" + idReserva + "/reservas/ no existe.", 404);
+            }
+       return ReservaBicicletaResource.class;
+    }
+    
 }

@@ -95,7 +95,7 @@ public class UsuarioPersistence {
         LOGGER.log(Level.INFO, "Consultando usuario por nombre ", name);
 
         // Se crea un query para buscar usuarios con el nombre que recibe el método como argumento. ":name" es un placeholder que debe ser remplazado
-        TypedQuery query = em.createQuery("Select e From UsuarioEntity e where e.name = :name", UsuarioEntity.class);
+        TypedQuery query = em.createQuery("Select e From UsuarioEntity e where e.nombre = :name", UsuarioEntity.class);
         // Se remplaza el placeholder ":name" con el valor del argumento 
         query = query.setParameter("name", name);
         // Se invoca el query se obtiene la lista resultado
