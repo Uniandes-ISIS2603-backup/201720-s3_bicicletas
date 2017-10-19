@@ -1,0 +1,98 @@
+body {
+  margin: 0
+}
+
+/*Propiedades de la barra de menu */
+#fondoMenu {
+  background: #2f3036;
+  width: 100%;
+  height: 50px;
+  text-align: center;
+}
+
+/*Propiedades de el contenedor del menu*/
+#contenedorMenu {
+  text-align: center;
+}
+
+/*Propiedades que tiene la agrupación del menu*/
+.mostrar-menu {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #fff;
+  background: #2f3036;
+  text-align: center;
+  padding: 16px 0;
+  display: none;
+  width: 100%;
+}
+
+ 
+/*Define una lista no ordenada*/
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+
+/*Lista horizontal con espacios entre los objetos*/
+
+li {
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 1px;
+}
+
+/*Propiedades de los elementos de la lista*/
+
+li a {
+  display: block;
+  min-width: 140px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  color: #fff;
+  background: #2f3036;
+  text-decoration: none;
+}
+
+li img{
+    margin-top: 5px;
+}
+
+/*Lo que pasa cuando se pasa sobre los objetos de la lista*/
+
+li:hover a {
+  background: #2C5D94
+}
+
+input[type=checkbox] {
+  display: none
+}
+
+
+input[type=checkbox]:checked ~ #menu {
+  display: block;
+  margin: 0 auto
+}
+
+
+@media screen and (max-width: 760px) {
+  ul {
+    position: static;
+    display: none;
+  }
+  li {
+    margin-bottom: 0px
+  }
+  ul li,
+  li a {
+    width: 100%;
+  }
+  .mostrar-menu {
+    display: block
+  }
+}
