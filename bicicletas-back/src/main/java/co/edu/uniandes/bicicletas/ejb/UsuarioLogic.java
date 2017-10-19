@@ -43,6 +43,9 @@ public class UsuarioLogic {
         if (persistence.findByName(entity.getNombre()) != null) {
             throw new BusinessLogicException("Ya existe un Usuario con el nombre \"" + entity.getNombre() + "\"");
         }
+        if (entity.getDocumentoUsuario() == null) {
+            throw new BusinessLogicException("El documento del usuario no puede ser null");
+        }
         // Invoca la persistencia para crear el usuario
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación de usuario");

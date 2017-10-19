@@ -90,6 +90,8 @@ import javax.ws.rs.WebApplicationException;
 	     */
 	    @POST
 	    public UsuarioDetailDTO createUsuario(UsuarioDetailDTO dto) throws BusinessLogicException {
+               // if(dto.getDocumentoUsuario()==null)
+                //{throw new WebApplicationException("El documento del usuario no puede ser null", 200);}
 	        return new UsuarioDetailDTO(usuarioLogic.createUsuario(dto.toEntity()));
 	    }
 
