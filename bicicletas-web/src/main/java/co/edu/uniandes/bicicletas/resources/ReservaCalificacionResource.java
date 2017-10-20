@@ -44,14 +44,18 @@ public class ReservaCalificacionResource
     @Path("{id: \\d+}")
     public CalificacionDTO createCalificacion(@PathParam("idReserva") Long idReserva, @PathParam("id") Long idEstacion, CalificacionDTO dto) throws BusinessLogicException
     {
-        if( 0 > dto.getNota() || 6 <= dto.getNota() )
+        if(dto.getNota() == null)
+        {
+            throw new BusinessLogicException("Debe ingresar una nota para calificar la estación");
+        }
+        else if( 0 > dto.getNota() || 6 <= dto.getNota() )
         {
             throw new BusinessLogicException("La nota seleccionada no es valida");
         }
         
         if(!(idEstacion == 0 || idEstacion == 1))
         {
-            throw new BusinessLogicException("No se escoge correctamente la estación a calificar " + idEstacion + " " + idReserva);
+            throw new BusinessLogicException("No se escoge correctamente la estación a calificar");
         }
         
         CalificacionEntity caliEn = calificacionLogic.createCalificacion(idEstacion, idReserva, dto.toEntity());
