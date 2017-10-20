@@ -52,6 +52,10 @@ public class UsuarioEntity implements Serializable {
    @Temporal(TemporalType.DATE)
    private Date fechaNacimiento;
    
+   private Long tarjetaCredito;
+   private int numeroCsv;
+   private String contraseniaPSE;
+   
    @OneToMany(mappedBy = "usuarioReserva")
    @PodamExclude
    private List<ReservaEntity> reservas = new ArrayList<ReservaEntity>();
@@ -71,10 +75,16 @@ public class UsuarioEntity implements Serializable {
    private List<PuntoEntity> puntos = new  ArrayList<PuntoEntity>();
     
    
+   
+   
  /**
  *Metodos
-     * @return 
  */
+   
+    /**
+     *
+     * @return
+     */
    public List<DireccionEntity> getDirecciones() {   
         return direcciones;
     }
@@ -169,6 +179,56 @@ public class UsuarioEntity implements Serializable {
         this.fechaNacimiento = fechaNacimiento;
     }
 
+    /**
+     *
+     * @return
+     */
+    public Long getTarjetaCredito() {
+        return tarjetaCredito;
+    }
+
+    /**
+     *
+     * @param tarjetaCredito
+     */
+    public void setTarjetaCredito(Long tarjetaCredito) {
+        this.tarjetaCredito = tarjetaCredito;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public int getNumeroCsv() {
+        return numeroCsv;
+    }
+
+    /**
+     *
+     * @param numeroCsv
+     */
+    public void setNumeroCsv(int numeroCsv) {
+        this.numeroCsv = numeroCsv;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getContraseniaPSE() {
+        return contraseniaPSE;
+    }
+
+    /**
+     *
+     * @param contraseñaPSE
+     */
+    public void setContraseniaPSE(String contraseniaPSE) {
+        this.contraseniaPSE = contraseniaPSE;
+    }
+
+    
+    
     /**
      * @return the reservas
      */

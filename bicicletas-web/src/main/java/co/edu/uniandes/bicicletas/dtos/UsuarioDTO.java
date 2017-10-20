@@ -19,7 +19,10 @@ public class UsuarioDTO {
    private Integer tipoId; 
    private Long documentoUsuario;
    private Date fechaNacimiento;
-
+   
+   private Long tarjetaCredito;
+   private int numeroCsv;
+   private String contraseniaPSE;
     /**
      * Constructor por defecto
      */
@@ -37,6 +40,10 @@ public class UsuarioDTO {
         this.tipoId= usuario.getTipoId();
         this.documentoUsuario= usuario.getDocumentoUsuario();
         this.fechaNacimiento= usuario.getFechaNacimiento();
+        
+        this.tarjetaCredito= usuario.getTarjetaCredito();
+        this.numeroCsv= usuario.getNumeroCsv();
+        this.contraseniaPSE=usuario.getContraseniaPSE();
     }
 
 
@@ -105,6 +112,56 @@ public class UsuarioDTO {
         this.fechaNacimiento = fechaNacimiento;
     }
 
+    /**
+     *
+     * @return
+     */
+    public Long getTarjetaCredito() {
+        return tarjetaCredito;
+    }
+
+    /**
+     *
+     * @param tarjetaCredito
+     */
+    public void setTarjetaCredito(Long tarjetaCredito) {
+        this.tarjetaCredito = tarjetaCredito;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public int getNumeroCsv() {
+        return numeroCsv;
+    }
+
+    /**
+     *
+     * @param numeroCsv
+     */
+    public void setNumeroCsv(int numeroCsv) {
+        this.numeroCsv = numeroCsv;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getContraseniaPSE() {
+        return contraseniaPSE;
+    }
+
+    /**
+     *
+     * @param contraseniaPSE
+     */
+    public void setContraseniaPSE(String contraseniaPSE) {
+        this.contraseniaPSE = contraseniaPSE;
+    }
+
+    
+    
      /**
      * Convertir DTO a Entity
      * @return Un Entity con los valores del DTO 
@@ -115,6 +172,9 @@ public class UsuarioDTO {
         entity.setTipoId(this.tipoId);
         entity.setDocumentoUsuario(this.documentoUsuario);
         entity.setFechaNacimiento(this.fechaNacimiento);
+        entity.setTarjetaCredito(this.tarjetaCredito);
+        entity.setNumeroCsv(this.numeroCsv);
+        entity.setContraseniaPSE(this.contraseniaPSE);
         return entity;
     }
 }

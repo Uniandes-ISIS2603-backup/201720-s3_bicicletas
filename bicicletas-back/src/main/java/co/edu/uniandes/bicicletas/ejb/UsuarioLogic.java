@@ -39,13 +39,32 @@ public class UsuarioLogic {
      */
     public UsuarioEntity createUsuario(UsuarioEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de usuario");
-        // Verifica la regla de negocio que dice que no puede haber dos usuarios con el mismo nombre
+        // Verifica las diferentes reglas de negocio
         if (persistence.findByName(entity.getNombre()) != null) {
-            throw new BusinessLogicException("Ya existe un Usuario con el nombre \"" + entity.getNombre() + "\"");
+            throw new BusinessLogicException("Ya existe un Usuario con ese nombre");
+        }
+        if (persistence.find(entity.getDocumentoUsuario()) != null) {
+            throw new BusinessLogicException("Ya existe un Usuario con ese documento de identificacion");
         }
         if (entity.getDocumentoUsuario() == null) {
             throw new BusinessLogicException("El documento del usuario no puede ser null");
         }
+        
+        if (entity.getTarjetaCredito() == null  && entity.getContraseniaPSE() == null ) {
+            throw new BusinessLogicException("Debe ingresar un metodo de pago");
+        }
+        
+        if (entity.getTarjetaCredito() != null  ) {
+            
+            if(entity.getTarjetaCredito().toString().length()!=16){
+            throw new BusinessLogicException("Debe ingresar una tarjeta de credito valida");
+            }
+            if(String.valueOf(entity.getNumeroCsv()).length()!=3){
+            throw new BusinessLogicException("Debe ingresar un numero de  csv valido");
+            }
+        }
+      
+        
         // Invoca la persistencia para crear el usuario
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación de usuario");
