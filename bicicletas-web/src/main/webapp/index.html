@@ -5,21 +5,41 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Préstamo de Bicicletas</title>
-        <link rel="stylesheet" href="style.css">
+        
+        <link rel="shortcut icon" href="resources/img/bikeicon.jpg">
+        <!-- Dependencias Externas -->
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+        <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+        
+        <script src="src/app.js" type="text/javascript"></script> 
+        <script src="src/http-interceptor.factory.js" type="text/javascript"></script> 
+        
     </head>
     <body>
-    <div id="fondoMenu">
-    <div id="contenedorMenu">
-      <label for="mostrar-menu" class="mostrar-menu"><img src="img/grupo.png"></label>
-      <input type="checkbox" id="mostrar-menu" role="button" />
-      <ul id="menu">
-        <li><a ui-ref="#">Accesorios</a></li>
-        <li><a ui-ref="#">Bicicletas</a></li>
-        <li><a href="#index.html"><img src = "img/bicicleta.png"></a></li>
-        <li><a ui-ref="#">Estaciones</a></li>
-        <li><a ui-ref="#">Usuarios</a></li>
-      </ul>
-    </div>
-  </div>
-</body>
+        <div class="container-fluid">
+            <div class="row mainHeader">
+                <div class="col-md-4">
+                    <h3 class="mainTitle">PRÉSTAMO DE BICICLETAS</h2>
+                </div>
+            </div> 
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="nav nav-tabs">
+                        <li role="presentation"><a ui-sref="">Accesorios</a></li>
+                        <li role="presentation"><a ui-sref="">Bicicletas</a></li>
+                        <li><a href = index.html><img src = "resources/img/bicicleta1.png" ui-sref=""></a></li>
+                        <li role="presentation"><a ui-sref="">Estaciones</a></li>
+                        <li role="presentation"><a ui-sref="">Usuarios</a></li>
+                        <ul class="nav navbar-right">
+                        </ul>
+                    </ul>
+                </div>
+            </div>
+            <div class="span4" ui-view="mainView"></div> 
+        </div>
+    </body>
 </html>
+
+
