@@ -6,6 +6,7 @@
 package co.edu.uniandes.bicicletas.resources;
 
 import co.edu.uniandes.bicicletas.dtos.BicicletaDetailDTO;
+import co.edu.uniandes.bicicletas.dtos.EstacionDTO;
 import co.edu.uniandes.bicicletas.dtos.EstacionDetailDTO;
 import co.edu.uniandes.bicicletas.ejb.BicicletaLogic;
 import co.edu.uniandes.bicicletas.ejb.EstacionLogic;
@@ -22,15 +23,16 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.ext.Provider;
 
 /**
  *
  * @author js.torres1
  */
-@Path("/estaciones")
+
 @Produces("application/json")
 @Consumes("application/json")
-@Stateless
+@Provider
 public class EstacionBicicletaResource {
     @Inject
     EstacionLogic estacionLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
@@ -39,23 +41,29 @@ public class EstacionBicicletaResource {
      * 
      */
     @GET
-    @Path("{idestacion: \\d+/bicicletas/idBicicleta: \\d+}")
+    @Path("{idBicicleta: \\d+}")
     public BicicletaDetailDTO getBici(@PathParam("idestacion") Long idEstacion,@PathParam("idBicicleta") Long idBici){
         BicicletaEntity entity = estacionLogic.getBiciEstacion(idEstacion, idBici);
         return new BicicletaDetailDTO(entity);
     }
     
     @GET
-    @Path("{idEstacion: \\d+/bicicletas}")
     public List<BicicletaDetailDTO> getBicicsEstacion(@PathParam("idEstacion") Long idEstacion) {
         List<BicicletaEntity> listEntity = estacionLogic.getBicisEstacion(idEstacion);
         return listEntity2DetailDTO(listEntity);
     }
     @PUT
-    @Path("{idEstacion: \\d+/bicicletas/idBici: \\d+}")
-    public void updateBiciAso(@PathParam("idEstacion") Long idEstacion, @PathParam("idEstacion") Long idBici){
-        EstacionEntity estacion = estacionLogic.getEstacion(idEstacion);
-        estacionLogic.upDateBici(estacion, idBici);
+    public EstacionDTO updateBiciAso(@PathParam("idEstacion") Long idEstacion,BicicletaDetailDTO bici){
+        
+        return new EstacionDTO(estacionLogic.upDateBici(idEstacion, bici.toEntity()));
+        
+    }
+    @PUT
+    @Path("/añadir")
+    public EstacionDTO agregarBici(@PathParam("idEstacion") Long idEstacion,BicicletaDetailDTO bici){
+        
+        return new EstacionDTO(estacionLogic.añadirBici(idEstacion, bici.toEntity()));
+        
     }
     
     private List<BicicletaDetailDTO> listEntity2DetailDTO(List<BicicletaEntity> entityList) {

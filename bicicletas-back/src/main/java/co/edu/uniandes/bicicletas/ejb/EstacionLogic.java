@@ -30,6 +30,7 @@ import co.edu.uniandes.bicicletas.entities.CalificacionEntity;
 import co.edu.uniandes.bicicletas.entities.DireccionEntity;
 import co.edu.uniandes.bicicletas.entities.EstacionEntity;
 import co.edu.uniandes.bicicletas.entities.ReservaEntity;
+import co.edu.uniandes.bicicletas.persistence.BicicletaPersistence;
 import co.edu.uniandes.bicicletas.persistence.EstacionPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +56,7 @@ public class EstacionLogic
     private DireccionLogic direccionLogic;
     
     @Inject
-    private BicicletaLogic bicicletaLogic;
+    private BicicletaPersistence bicicletaLogic;
     
     @Inject
     private AccesorioLogic accesorioLogic;
@@ -239,7 +240,7 @@ public class EstacionLogic
         if(estacion ==null){
             throw new WebApplicationException("No hay una estación con dicho id", 402);
         }
-        BicicletaEntity bici = bicicletaLogic.getBIcicleta(idBici);
+        BicicletaEntity bici = bicicletaLogic.find(idBici);
         boolean esta = false;
         for(BicicletaEntity temp : estacion.getBicis()){
             if(bici.equals(temp)){
@@ -258,12 +259,35 @@ public class EstacionLogic
         }
         return estacion.getBicis();
     }
-    public void upDateBici(EstacionEntity estacion,Long idBici){
-        BicicletaEntity bici = bicicletaLogic.getBIcicleta(idBici);
+    public EstacionEntity upDateBici(Long idEstacion,BicicletaEntity bicicleta){
+        BicicletaEntity bici = bicicletaLogic.find(bicicleta.getId());
         EstacionEntity aBorrar = bici.getEstacion();
+        EstacionEntity aActualizar = persistence.find(idEstacion);
         aBorrar.getBicis().remove(bici);
-        bicicletaLogic.actualizarBicicleta(bici);
-        actualizarEstacion(estacion);
+        bici.setEstacion(aActualizar);
+        aActualizar.getBicis().add(bici);
+        bicicletaLogic.update(bici);
+        persistence.update(aActualizar);
+        return aActualizar;
+    }
+    public EstacionEntity añadirBici(Long idEstacion,BicicletaEntity bicicleta){
+        BicicletaEntity bici = bicicletaLogic.find(bicicleta.getId());
+        EstacionEntity aBorrar = bici.getEstacion();
+        EstacionEntity aActualizar = persistence.find(idEstacion);
+       if(aBorrar!=null){
+           throw new WebApplicationException("La bicicleta Ya tiene una estacion", 402);
+       }
+       if(aActualizar ==null){
+            throw new WebApplicationException("No hay una estación con dicho id", 402);
+        }
+       if(bici ==null){
+            throw new WebApplicationException("No hay una bici con dicho id", 402);
+        }
+        bici.setEstacion(aActualizar);
+        aActualizar.getBicis().add(bici);
+        bicicletaLogic.update(bici);
+        persistence.update(aActualizar);
+        return aActualizar;
     }
     
     //------------------------------------------------------------------------------------------------------------------
