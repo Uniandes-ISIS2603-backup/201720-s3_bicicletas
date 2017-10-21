@@ -43,7 +43,7 @@ public class UsuarioReservaResource
     UsuarioLogic usuarioLogic;
     
     @GET
-    public List<ReservaDetailDTO> getReservas(@PathParam("idUsuario") Long idUsuario)
+    public List<ReservaDTO> getReservas(@PathParam("idUsuario") Long idUsuario)
     {
         UsuarioEntity usuario=usuarioLogic.getUsuario(idUsuario);
         List<ReservaEntity> reservas = usuario.getReservas();
@@ -56,7 +56,7 @@ public class UsuarioReservaResource
     
     @GET
     @Path("{id: \\d+}")
-    public ReservaDetailDTO getReserva(@PathParam("id") Long id, @PathParam("idUsuario") Long idUsuario)throws BusinessLogicException
+    public ReservaDTO getReserva(@PathParam("id") Long id, @PathParam("idUsuario") Long idUsuario)throws BusinessLogicException
     {
         UsuarioEntity usuario = usuarioLogic.getUsuario(idUsuario);
         List<ReservaEntity> reservas = usuario.getReservas();
@@ -68,7 +68,7 @@ public class UsuarioReservaResource
         System.out.println("IdUsuario"+idUsuario);
         System.out.println(reserva.getUsuarioReserva().getDocumentoUsuario()== idUsuario);
         if(reserva.getUsuarioReserva().getDocumentoUsuario().compareTo(idUsuario)==0){
-           return new ReservaDetailDTO(reserva);
+           return new ReservaDTO(reserva);
         }else if(reserva.getUsuarioReserva().getDocumentoUsuario().compareTo(idUsuario)!=0){
             throw new WebApplicationException("La reserva con id: "+id+" no existe o no pertenece al usuario con id: "+idUsuario, 404);
         }
@@ -87,12 +87,13 @@ public class UsuarioReservaResource
         return new ReservaDTO(reservaLogic.crearReserva( idUsuario ,nuevareserva.toEntity()));
     } 
     
-    private List<ReservaDetailDTO> listEntity2DTO(List<ReservaEntity> listaEntiReserva)
+    private List<ReservaDTO> listEntity2DTO(List<ReservaEntity> listaEntiReserva)
     {
-        List<ReservaDetailDTO> lista = new ArrayList<ReservaDetailDTO>();
+        List<ReservaDTO> lista = new ArrayList<ReservaDTO>();
         for(ReservaEntity puntoEntity : listaEntiReserva)
         {
-            lista.add(new ReservaDetailDTO(puntoEntity));
+           //lista.add(new ReservaDetailDTO(puntoEntity));
+            lista.add( new ReservaDTO (puntoEntity));
         }
         return lista;
     }

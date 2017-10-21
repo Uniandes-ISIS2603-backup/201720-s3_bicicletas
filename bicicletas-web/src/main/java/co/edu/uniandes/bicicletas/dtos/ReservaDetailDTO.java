@@ -20,23 +20,13 @@ public class ReservaDetailDTO extends ReservaDTO{
     public ReservaDetailDTO() {
         //Do nothing because is not necessary
     }
-    
-    Long idReserva;
-    int estado;
-    String usuario;
-    String fechaInicio;
-    String estacionSalida;
-    String fechaEntrega;
-    String estacionLlegada;
-    Double precioFinal;
+   
     /**
      * Constructor para transformar un Entity a un DTO
      *
      * @param entity
      */
     public ReservaDetailDTO(ReservaEntity entidad) {
-        idReserva=entidad.getUsuarioReserva().getDocumentoUsuario();
-        estado=entidad.getEstado();
     }
 
     /**

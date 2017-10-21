@@ -37,11 +37,11 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     public final static int REENBOLSADO=4;
     
     
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     @PodamExclude
     private Date fechaEntrega;
     
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     @PodamExclude
     private Date fechaInicio;
      
@@ -85,17 +85,33 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     
     private double precioFinal;
     
-    private String fechaString;
+    @Temporal(TemporalType.TIMESTAMP)
+    @PodamExclude
+    private Date fechaReserva;
+    
+    private Boolean Descuento;
 
-    public String getFechaString() {
-        return fechaString;
+    public Date getFechaReserva() {
+        return fechaReserva;
     }
 
-    public void setFechaString(String fechaString) {
-        this.fechaString = fechaString;
+    public void setFechaReserva(Date fechaReserva) {
+        this.fechaReserva = fechaReserva;
     }
 
-     
+    public Boolean getDescuento() {
+        return Descuento;
+    }
+
+    public void setDescuento() {
+        if(fechaReserva.getDay()== fechaInicio.getDay() && fechaReserva.getYear()== fechaInicio.getYear() && fechaReserva.getMonth()== fechaInicio.getMonth()){
+           this.Descuento= new Boolean(false) ;
+        }else{
+           this.Descuento= new Boolean(true);
+        }
+    }
+    
+   
     public void setBicis(List<BicicletaEntity> temp){
         setBicicletas(temp);
      }

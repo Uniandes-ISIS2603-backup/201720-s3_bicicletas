@@ -9,6 +9,9 @@ import co.edu.uniandes.bicicletas.entities.EstacionEntity;
 import java.util.Date;
 import co.edu.uniandes.bicicletas.entities.ReservaEntity;
 import co.edu.uniandes.bicicletas.entities.UsuarioEntity;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.GregorianCalendar;
 
 /**
  *
@@ -17,15 +20,17 @@ import co.edu.uniandes.bicicletas.entities.UsuarioEntity;
 public class ReservaDTO {
     
     private Long idReserva;
-    private String  fechaString;
-    private UsuarioEntity usuarioReserva;
     private int estado;
-    private Date fechaInicio;
+    private UsuarioEntity usuarioReserva;
+    private String fechaReserva;
+    private String fechaInicio;
+    private String fechaFin;
     private EstacionEntity estacionSalida;
-    private Date fechaEntrega;
     private EstacionEntity estacionLlegada;
     private double precioFinal;
-        
+    private Boolean descuento;
+    
+    
     public ReservaDTO(){
     }
 
@@ -34,21 +39,13 @@ public class ReservaDTO {
             this.idReserva = entidad.getId();
             this.usuarioReserva = entidad.getUsuarioReserva();
             this.estado = entidad.getEstado();
-            this.fechaInicio = entidad.getFechaInicio();
+            this.fechaInicio = entidad.getFechaInicio().toString();
             this.estacionSalida = entidad.getEstacionSalida();
-            this.fechaEntrega = entidad.getFechaEntrega();
+            this.fechaFin = entidad.getFechaEntrega().toString();
             this.estacionLlegada = entidad.getEstacionLlegada();
             this.precioFinal = entidad.getPrecioFinal();
-            this.fechaString = entidad.getFechaString();
-//            Date fecha = new Date(2000, 12, 1);
-//            this.idReserva = Long.parseLong("133");
-//            this.usuarioReserva =null ;
-//            this.estado = 12;
-//            this.fechaInicio = entidad.getFechaInicio();
-//            this.estacionSalida = null;
-//            this.fechaEntrega =null;
-//            this.estacionLlegada = null;
-//            this.precioFinal = 20;
+            this.fechaReserva = entidad.getFechaReserva().toString();
+            this.descuento = entidad.getDescuento();
         }
     }
     
@@ -57,22 +54,31 @@ public class ReservaDTO {
         entity.setId(this.getIdReserva());
         entity.setUsuarioReserva(this.getUsuarioReserva());
         entity.setEstado(this.getEstado());
-        entity.setFechaInicio(this.getFechaInicio());
+        entity.setFechaInicio(this.pasceFecha(fechaInicio));
         entity.setEstacionSalida(this.getEstacionSalida());
-        entity.setFechaEntrega(this.getFechaEntrega());       
+        entity.setFechaEntrega(this.pasceFecha(fechaFin));       
         entity.setEstacionLlegada(this.getEstacionLlegada());
         entity.setPrecioFinal(this.getPrecioFinal());
-        entity.setFechaString(this.getFechaString());
-
+        entity.setFechaReserva(this.getFechaReserva());
+        entity.setDescuento( );
         return entity;
     }
 
-     public String getFechaString() {
-        return fechaString;
+    
+     public Date getFechaReserva() {
+        return new GregorianCalendar().getTime();
     }
 
-    public void setFechaString(String fechaString) {
-        this.fechaString = fechaString;
+    public void setFechaReserva(String fechaReserva) {
+        this.fechaReserva = fechaReserva;
+    }
+
+    public boolean isDescuento() {
+        return descuento;
+    }
+
+    public void setDescuento(boolean descuento) {
+        this.descuento = descuento;
     }
     /**
      * @return the idReserva
@@ -119,14 +125,25 @@ public class ReservaDTO {
     /**
      * @return the fechaInicio
      */
-    public Date getFechaInicio() {
-        return fechaInicio;
+    public String getFechaInicio() {
+       return this.fechaInicio;
+    }
+    
+    public Date pasceFecha ( String pfecha  ){
+        
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        try {
+            Date fecha = formato.parse(pfecha);
+            return fecha;
+        } catch (ParseException ex) {
+           return new Date(2001, 01,01,01,00,00);
+        }
     }
 
     /**
      * @param fechaInicio the fechaInicio to set
      */
-    public void setFechaInicio(Date fechaInicio) {
+    public void setFechaInicio(String fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
@@ -147,15 +164,15 @@ public class ReservaDTO {
     /**
      * @return the fechaEntrega
      */
-    public Date getFechaEntrega() {
-        return fechaEntrega;
+    public String getFechaEntrega() {
+        return this.fechaFin;
     }
 
     /**
      * @param fechaEntrega the fechaEntrega to set
      */
-    public void setFechaEntrega(Date fechaEntrega) {
-        this.fechaEntrega = fechaEntrega;
+    public void setFechaEntrega(String fechaEntrega) {
+        this.fechaFin = fechaEntrega;
     }
 
     /**
