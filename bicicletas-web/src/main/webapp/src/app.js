@@ -4,17 +4,7 @@
         'ui.router',
         'ui.bootstrap',
         // Internal modules dependencies       
-        'accesorioModule',
-        'accesorioBicicletaModule',
-        'bicicletaModule',
-        'calificacionModule',
-        'direccionModule',
-        'estacionModule',
-        'pagoModule',
-        'puntoModule',
-        'reservaModule',
-        'transaccionModule',
-        'usuarioModule'
+        'calificacionModule'
     ]);
     // Resuelve problemas de las promesas
     app.config(['$qProvider', function ($qProvider) {
