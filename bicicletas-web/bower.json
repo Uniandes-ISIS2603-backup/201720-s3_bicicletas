@@ -1,21 +1,12 @@
 {
   "name": "bicicletas",
-  "license": "MIT",
   "version": "1.0.0",
   "main": "src/main/webapp/index.html",
   "dependencies": {
-    "angular-ui-router": "~0.2.15",
-    "angular": "angularjs#^1.6.4",
+    "angular": "^1.5.8",
     "bootstrap": "^3.3.7",
-    "jquery": "^3.2.1"
+    "angular-ui-router": "~0.2.14",
+    "angular-bootstrap": "^0.13.4"
   },
-  "overrides": {
-    "bootstrap": {
-      "main": [
-        "less/bootstrap.less",
-        "dist/css/bootstrap.css",
-        "dist/js/bootstrap.js"
-      ]
-    }
-  }
+  "devDependencies": {}
 }
