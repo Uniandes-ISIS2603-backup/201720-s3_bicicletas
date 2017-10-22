@@ -250,23 +250,25 @@ public class ReservaLogic
          return accesorios;
      }
      
-     public ReservaEntity asignarAccesorio(Long idReserva, Long  idAccesorio) throws BusinessLogicException{
+     public ReservaEntity asignarAccesorio(Long idReserva, AccesorioEntity accesorio) throws BusinessLogicException{
          ReservaEntity reserva = getReserva(idReserva);
-         AccesorioEntity accesorio = persistenceAccesorio.find(idAccesorio);
-         if(accesorio.getReservado()!= 0){
+         AccesorioEntity accesorioEntity = persistenceAccesorio.find(accesorio.getId());
+         if(accesorioEntity.getReservado()==1){
              throw new BusinessLogicException("No esta disponible el accesorio");
          }
-         boolean reservado = false;
-        // for (AccesorioEntity accesorioR : reserva.getAccesorios()) {
-          //   if(accesorioR.equals(accesorioR)){
-            //     reservado=true;
-        //  }
-        //}
-         if(reservado){
-             throw new BusinessLogicException("No esta disponible el accesorio");
+         boolean a = false;
+         for (AccesorioEntity accesorioR : reserva.getAccesorios()) {
+             if(accesorioR.equals(accesorioEntity)){
+                 a=true;
+          }
+        }
+         if(a){
+             throw new BusinessLogicException("No esta disponible la bici");
          }
-         reserva.getAccesorios().add(accesorio);
-         accesorio.setReservado(1);
+         reserva.getAccesorios().add(accesorioEntity);
+         accesorioEntity.setReservado(AccesorioEntity.EN_RESERVA);
+         persistence.update(reserva);
+         persistenceAccesorio.update(accesorioEntity);
          return reserva;
      }
 }

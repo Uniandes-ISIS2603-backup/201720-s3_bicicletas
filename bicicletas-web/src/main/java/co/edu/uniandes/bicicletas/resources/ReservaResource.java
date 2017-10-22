@@ -44,6 +44,7 @@ public class ReservaResource {
     private ReservaLogic logica;
     @Inject
     private UsuarioLogic logicaUsuario ;
+    
 
     private List<ReservaDTO> listEntity2DTO(List<ReservaEntity> entityList) {
         List<ReservaDTO> lista = new ArrayList<>();
@@ -129,4 +130,12 @@ public class ReservaResource {
        return ReservaBicicletaResource.class;
     }
     
+    @Path("{idReserva: \\d+}/accesorios")
+    public Class<ReservaAccesorioResource> getAccesorio(@PathParam("idReserva") Long idReserva) {
+        ReservaEntity entity = logica.getReserva(idReserva);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /reservas/" + idReserva + "/accesorios no existe.", 404);
+        }
+        return ReservaAccesorioResource.class;
+    }
 }

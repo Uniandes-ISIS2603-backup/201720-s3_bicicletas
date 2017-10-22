@@ -107,12 +107,5 @@ public class UsuarioReservaResource
         return ReservaCalificacionResource.class;
     }
     
-    @Path("{idReserva: \\d+}/accesorios")
-    public Class<ReservaAccesorioResource> getAccesorioReservaResource(@PathParam("idReserva") Long idReserva) {
-        ReservaEntity entity = reservaLogic.getReserva(idReserva);
-        if (entity == null) {
-            throw new WebApplicationException("El recurso /reservas/" + idReserva + "/calificaciones no existe.", 404);
-        }
-        return ReservaAccesorioResource.class;
-    }
+    
 }

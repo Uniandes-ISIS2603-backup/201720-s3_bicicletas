@@ -18,13 +18,13 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class AccesorioEntity extends BaseEntity implements Serializable {
     /** Constante que indica si es casco */
-    public final int CASCO = 1;
+    public static final int CASCO = 1;
     /** Constante que indica si es chaleco */
-    public final int CHALECO = 2;
+    public static final int CHALECO = 2;
     
-    public final int EN_RESERVA = 1;
+    public static final int EN_RESERVA = 1;
     
-    public final int EN_ESTACION = 2;
+    public static final int EN_ESTACION = 2;
     /** Variable que modela indica el tipo del accesorio*/
     private int tipo;
     

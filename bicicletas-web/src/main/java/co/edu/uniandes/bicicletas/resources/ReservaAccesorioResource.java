@@ -7,6 +7,7 @@ package co.edu.uniandes.bicicletas.resources;
 
 import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.bicicletas.dtos.AccesorioDTO;
+import co.edu.uniandes.bicicletas.dtos.ReservaDTO;
 import co.edu.uniandes.bicicletas.ejb.ReservaLogic;
 import co.edu.uniandes.bicicletas.entities.AccesorioEntity;
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.ext.Provider;
 
 /**
  *
@@ -27,27 +29,26 @@ import javax.ws.rs.Produces;
  */
 @Produces("application/json")
 @Consumes("application/json")
-@Stateless
+@Provider
 public class ReservaAccesorioResource {
+    
     @Inject
     ReservaLogic reservaLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
     private static final Logger LOGGER = Logger.getLogger(EstacionBicicletaResource.class.getName());
     
     @GET
-    @Path("{idReserva: \\d+/accesorios/idAccesorio: \\d+}")
+    @Path("{idAccesorio: \\d+}")
     public AccesorioDTO getAccesorios(@PathParam("idReserva") Long idReserva,@PathParam("idAccesorio") Long idAccesorio) throws BusinessLogicException{
         AccesorioEntity entity = reservaLogic.getAccesorio(idReserva, idAccesorio);
         return new AccesorioDTO(entity);
     }
     
     @PUT
-    @Path("{idReserva: \\d+/accesorios/idAccesorio: \\d+}")
-    public void asignarAccesorioReserva(@PathParam("idReserva") Long idReserva, @PathParam("idAccesorio") Long idAccesorio)throws BusinessLogicException{
-      reservaLogic.asignarAccesorio(idReserva, idAccesorio);
+    public ReservaDTO asignarAccesorioReserva(@PathParam("idReserva") Long idReserva, AccesorioDTO accesorio)throws BusinessLogicException{
+      return new ReservaDTO(reservaLogic.asignarAccesorio(idReserva, accesorio.toEntity()));
     }
     
     @GET
-    @Path("{idReserva: \\d+/accesorios}")
     public List<AccesorioDTO> getReservaAccesorios(@PathParam("idReserva") Long idEstacion)throws BusinessLogicException {
         List<AccesorioEntity> listEntity = reservaLogic.getAccesorios(idEstacion);
         return listEntity2DetailDTO(listEntity);

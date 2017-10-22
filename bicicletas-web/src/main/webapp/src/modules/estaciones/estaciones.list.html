@@ -1,0 +1,31 @@
+<div class="container-fluid">
+    <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><label>Lista de estaciones</label></div>
+            <div class="panel-body">
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                </div>
+                <div class="col-md-8">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>   
+                                <th>Nombre</th>  
+                                <th>Dirección</th>  
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="estacion in estacionesRecords">
+                                <td id="{{$index}}-nombre">{{estacion.nombre}}</td>
+                                <td id="{{$index}}-direccion">{{estacion.direccion}}</td>
+                                <td id="{{$index}}-actions">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
