@@ -1,0 +1,26 @@
+[{
+  "nombre":"nombreusuario uno",
+  "tipoId":"1",
+  "documentoUsuario":"1111111111",
+  "fechaNacimiento":"2000-08-20T00:00:00-05:00",
+  "tarjetaCredito":"1234123412341234",
+  "numeroCsv":111,
+  "contraseniaPSE":"contrasenia111"
+}, {
+  "nombre":"nombreusuario dos",
+  "tipoId":"1",
+  "documentoUsuario":"1111111122",
+  "fechaNacimiento":"2000-08-20T00:00:00-05:00",
+  "tarjetaCredito":"1234123412341234",
+  "numeroCsv":112,
+  "contraseniaPSE":"contrasenia122"
+}, {
+  "nombre":"nombreusuario tres",
+  "tipoId":"2",
+  "documentoUsuario":"1111111133",
+  "fechaNacimiento":"2000-08-20T00:00:00-05:00",
+  "tarjetaCredito":"1234123412341234",
+  "numeroCsv":113,
+  "contraseniaPSE":"contrasenia133"
+}]
+ 

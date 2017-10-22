@@ -6,6 +6,7 @@
         // Internal modules dependencies  
         'estacionModule',     
         'calificacionModule',
+        'usuarioModule',
         'accesorioModule'
 
     ]);

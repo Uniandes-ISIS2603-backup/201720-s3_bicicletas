@@ -1,0 +1,30 @@
+<div class="panel panel-default"> 
+    <div class="panel-body">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="thumb">
+                <img class="img-responsive" ng-src="{{currentUsuario.image}}"/>
+            </div>
+
+        </div>
+        <div class="col-md-3">
+            <dl>     
+                <dt>{{currentUsuario.documentoUsuario}}</dt>
+                
+                <hr>
+                <dt>Tipo de documento</dt>
+                <dd>{{currentUsuario.tipoId}}</dd>
+                
+                <hr>
+                <dt>Nombres y apellidos</dt>
+                <dd>{{currentUsuario.nombre}}</dd>
+                
+                <hr>
+                <dt>Fecha de nacimiento</dt>
+                <dd>{{currentUsuario.birthDate| date:'dd-MM-yyyy'}}</dd>
+                
+            </dl>
+        </div>
+    </div>
+        </div>
+</div>
