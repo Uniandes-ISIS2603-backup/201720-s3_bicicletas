@@ -7,12 +7,14 @@ package co.edu.uniandes.bicicletas.resources;
 
 import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.bicicletas.dtos.BicicletaDetailDTO;
+import co.edu.uniandes.bicicletas.dtos.BicicletaDTO;
+import co.edu.uniandes.bicicletas.dtos.ReservaDTO;
+import co.edu.uniandes.bicicletas.dtos.ReservaDetailDTO;
 import co.edu.uniandes.bicicletas.ejb.ReservaLogic;
 import co.edu.uniandes.bicicletas.entities.BicicletaEntity;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
-import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -20,15 +22,15 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.ext.Provider;
 
 /**
  *
  * @author js.torres1
  */
-@Path("/reservas")
 @Produces("application/json")
 @Consumes("application/json")
-@Stateless
+@Provider
 public class ReservaBicicletaResource {
     @Inject
     ReservaLogic reservaLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
@@ -37,22 +39,21 @@ public class ReservaBicicletaResource {
      * 
      */
     @GET
-    @Path("{idReserva: \\d+/bicicletas/idBicicleta: \\d+}")
+    @Path("{idBicicleta: \\d+}")
     public BicicletaDetailDTO getBici(@PathParam("idReserva") Long idReserva,@PathParam("idBicicleta") Long idBici) throws BusinessLogicException{
         BicicletaEntity entity = reservaLogic.getBici(idReserva, idBici);
         return new BicicletaDetailDTO(entity);
     }
     
     @GET
-    @Path("{idReserva: \\d+/bicicletas}")
-    public List<BicicletaDetailDTO> getReservaBicicis(@PathParam("idReserva") Long idEstacion)throws BusinessLogicException {
-        List<BicicletaEntity> listEntity = reservaLogic.getBicis(idEstacion);
+    public List<BicicletaDetailDTO> getReservaBicicis(@PathParam("idReserva") Long idReserva)throws BusinessLogicException {
+        List<BicicletaEntity> listEntity = reservaLogic.getBicis(idReserva);
         return listEntity2DetailDTO(listEntity);
     }
     @PUT
-    @Path("{idReserva: \\d+/bicicletas/idBicicleta: \\d+}")
-    public void updateBiciAso(@PathParam("idReserva") Long idReserva, @PathParam("idBicicleta") Long idBici)throws BusinessLogicException{
-      reservaLogic.asignarBicicleta(idReserva, idBici);
+    public ReservaDTO updateBiciAso(@PathParam("idReserva") Long idReserva,BicicletaDTO bicicleta)throws BusinessLogicException{
+      
+      return new ReservaDTO(reservaLogic.asignarBicicleta(idReserva, bicicleta.toEntity()));
     }
     private List<BicicletaDetailDTO> listEntity2DetailDTO(List<BicicletaEntity> entityList) {
         List<BicicletaDetailDTO> list = new ArrayList<>();

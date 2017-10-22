@@ -71,7 +71,7 @@ public class BicicletaDTO {
     }public String getMarca(){
         return marca;
     }
-    public String garModelo(){
+    public String getModelo(){
         return modelo;
     }
 

@@ -31,6 +31,7 @@ import co.edu.uniandes.bicicletas.entities.EstacionEntity;
 import co.edu.uniandes.bicicletas.entities.ReservaEntity;
 import co.edu.uniandes.bicicletas.entities.UsuarioEntity;
 import co.edu.uniandes.bicicletas.persistence.AccesorioPersistence;
+import co.edu.uniandes.bicicletas.persistence.BicicletaPersistence;
 import co.edu.uniandes.bicicletas.persistence.EstacionPersistence;
 import co.edu.uniandes.bicicletas.persistence.ReservaPersistence;
 import co.edu.uniandes.bicicletas.persistence.UsuarioPersistence;
@@ -60,7 +61,7 @@ public class ReservaLogic
     private EstacionPersistence persistenceEstacion;
     
     @Inject 
-    private BicicletaLogic biciLogic;
+    private BicicletaPersistence biciLogic;
     
     @Inject
     private AccesorioPersistence persistenceAccesorio;
@@ -180,28 +181,30 @@ public class ReservaLogic
     }
     
     
-     public ReservaEntity asignarBicicleta(Long idReserva, Long  idBici) throws BusinessLogicException{
+     public ReservaEntity asignarBicicleta(Long idReserva, BicicletaEntity bici) throws BusinessLogicException{
          ReservaEntity reserva = getReserva(idReserva);
-         BicicletaEntity bici = biciLogic.getBIcicleta(idBici);
-         if(bici.darEstado()!=BicicletaEntity.DISPONIBLE){
+         BicicletaEntity entity = biciLogic.find(bici.getId());
+         if(entity.darEstado()>BicicletaEntity.DISPONIBLE){
              throw new BusinessLogicException("No esta disponible la bici");
          }
          boolean a = false;
          for (BicicletaEntity bicicletaR : reserva.getBicis()) {
-             if(bicicletaR.equals(bici)){
+             if(bicicletaR.equals(entity)){
                  a=true;
           }
         }
          if(a){
              throw new BusinessLogicException("No esta disponible la bici");
          }
-         reserva.getBicis().add(bici);
-         bici.setEstado(BicicletaEntity.RESERVADA);
+         reserva.getBicis().add(entity);
+         entity.setEstado(BicicletaEntity.RESERVADA);
+         persistence.update(reserva);
+         biciLogic.update(entity);
          return reserva;
      }
      public BicicletaEntity getBici(Long idReserva, Long  idBici) throws BusinessLogicException{
          ReservaEntity reserva = getReserva(idReserva);
-         BicicletaEntity bici = biciLogic.getBIcicleta(idBici);
+         BicicletaEntity bici = biciLogic.find(idBici);
          if(bici.darEstado()!=BicicletaEntity.DISPONIBLE){
              throw new BusinessLogicException("No esta disponible la bici");
          }

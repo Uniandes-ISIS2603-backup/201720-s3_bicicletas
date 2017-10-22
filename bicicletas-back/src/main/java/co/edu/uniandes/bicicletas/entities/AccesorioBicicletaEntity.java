@@ -18,6 +18,11 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class AccesorioBicicletaEntity extends BaseEntity implements Serializable{
     private int nombre;
     private String descripcion;
+    
+    private final static int LUCES = 0;
+    private final static int CANDADO = 1;
+    private final static int CANASTILLA = 2;
+    
     @ManyToOne 
     @PodamExclude
     private BicicletaEntity bici;

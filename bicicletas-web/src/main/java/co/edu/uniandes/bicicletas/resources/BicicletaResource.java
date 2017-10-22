@@ -26,6 +26,7 @@ SOFTWARE.
 
 import co.edu.uniandes.bicicletas.ejb.BicicletaLogic;
 import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
+import co.edu.uniandes.bicicletas.dtos.BicicletaDTO;
 import co.edu.uniandes.bicicletas.entities.BicicletaEntity;
 
 import co.edu.uniandes.bicicletas.dtos.BicicletaDetailDTO;
@@ -44,6 +45,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  * Clase que implementa el recurso REST correspondiente a "Bicicletas".
@@ -77,13 +79,13 @@ public class BicicletaResource {
      * @throws BusinessLogicException
      */
     @POST
-    public BicicletaDetailDTO createBicicleta(BicicletaDetailDTO Bicicleta) throws BusinessLogicException {
+    public BicicletaDTO createBicicleta(BicicletaDTO Bicicleta) throws BusinessLogicException {
         // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
         BicicletaEntity BicicletaEntity = Bicicleta.toEntity();
         // Invoca la lógica para crear la Bicicleta nueva
         BicicletaEntity nuevoBicicleta = bicicletasLogic.createBicicleta(BicicletaEntity);
         // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
-        return new BicicletaDetailDTO(nuevoBicicleta);
+        return new BicicletaDTO(nuevoBicicleta);
     }
 
     /**
@@ -154,5 +156,18 @@ public class BicicletaResource {
         }
         return list;
     }
-
+/**
+     *
+     * @param idUsuario
+     * @return
+     */
+    @Path("{idBicicleta: \\d+}/accesorioBicicleta")
+    public Class<AccesorioBicicletaBicicletaResource> getClassAcc(@PathParam("idBicicleta")Long idBicicleta) {
+        BicicletaEntity entity = bicicletasLogic.getBIcicleta(idBicicleta);
+            if (entity == null) {
+            throw new WebApplicationException("El recurso /bici/" + idBicicleta + "/reservas/ no existe.", 404);
+            }
+       return AccesorioBicicletaBicicletaResource.class;
+    }
+	
 }

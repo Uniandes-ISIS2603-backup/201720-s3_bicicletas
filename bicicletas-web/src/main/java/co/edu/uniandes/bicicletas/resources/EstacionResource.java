@@ -158,4 +158,19 @@
 //		    }
 	    
 
-	}
+            
+            
+         /**
+     *
+     * @param idUsuario
+     * @return
+     */
+    @Path("{idEstacion: \\d+}/bicicletas")
+            public Class<EstacionBicicletaResource> getUsuarioReservaResource(@PathParam("idEstacion") Long idEstacion) {
+            EstacionEntity entity = estacionLogic.getEstacion(idEstacion);
+            if (entity == null) {
+            throw new WebApplicationException("El recurso /usuarios/" + idEstacion + "/reservas/ no existe.", 404);
+            }
+            return EstacionBicicletaResource.class;
+            }
+}

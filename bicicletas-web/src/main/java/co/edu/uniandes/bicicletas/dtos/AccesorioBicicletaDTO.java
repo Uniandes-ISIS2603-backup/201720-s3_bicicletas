@@ -30,10 +30,10 @@ public class AccesorioBicicletaDTO {
     public Long getId() {
         return id;
     }
-    public int getName(){
+    public int getNombre(){
         return nombre;
     }
-    public String getDescrip(){
+    public String getDescripcion(){
         return descripcion;
     }
     /**
@@ -42,7 +42,7 @@ public class AccesorioBicicletaDTO {
     public void setId(Long id) {
         this.id = id;
     }
-    public void setName(int pNombre){
+    public void setNombre(int pNombre){
         this.nombre = pNombre;
     }
     public void setDescripcion(String pDescrip){

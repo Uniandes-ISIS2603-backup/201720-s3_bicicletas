@@ -45,7 +45,7 @@ public class BicicletaEntity extends BaseEntity implements Serializable {
    //Las contantes que indican el estado de la bicicleta
     public final static int DANADO=3;
     public final static int DISPONIBLE=2;
-    public final static int EN_USO=1;
+    public final static int PRESTADA=1;
     public final static int RESERVADA=0;
     //este atributo da el estado de la bicicleta
     private int estado;
