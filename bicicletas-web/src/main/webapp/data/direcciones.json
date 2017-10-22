@@ -1,0 +1,22 @@
+[{
+      "name":"Direccion uno",
+      "codigoPostal":"11111",
+      "descripcion":"Descripcion de direccion 1",
+      "ciudad":"Ciudad uno"
+
+    }, {
+      "name":"Direccion dos",
+      "codigoPostal":"22222",
+      "descripcion":"Descripcion de direccion 2",
+      "ciudad":"Ciudad dos"
+    },{
+      "name":"Direccion tres",
+      "codigoPostal":"33333",
+      "descripcion":"Descripcion de direccion 3",
+      "ciudad":"Ciudad tres"
+    },{
+      "name":"Direccion cuatro",
+      "codigoPostal":"4444",
+      "descripcion":"Descripcion de direccion 4",
+      "ciudad":"Ciudad cuatro"
+}]
