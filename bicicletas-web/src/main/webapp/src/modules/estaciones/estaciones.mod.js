@@ -1,5 +1,5 @@
 (function (ng) {
-    var mod = ng.module("estacionModule", ['ui.router']);
+    var mod = ng.module("estacionModule", ['estacionModule','ui.router']);
     mod.constant("estacionesContext", "api/estaciones");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/estaciones/';

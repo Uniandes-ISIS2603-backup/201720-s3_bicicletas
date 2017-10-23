@@ -1,6 +1,6 @@
 (function (ng) {
-    var mod = ng.module("accesorioModule", ['ui.router']);
-    mod.constant("accesoriosContext", "api/estaciones");
+    var mod = ng.module("accesorioModule", ['accesorioModule','ui.router']);
+    mod.constant("accesoriosContext", "api/accesorios");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/accesorios/';
             $urlRouterProvider.otherwise("/accesoriosList");
@@ -25,16 +25,16 @@
                 }
             }).state('accesorioDetail', {
                 url: '/{idaccesorio:Long}/detail',
-                parent: 'accesorio',
+                parent: 'accesorios',
                 param: {
                     bookId: null
                 },
                 views: {
                     'listView': {
-                        templateUrl: basePath + 'accesorio.list.html'
+                        templateUrl: basePath + 'accesorios.list.html'
                     },
                     'detailView': {
-                        templateUrl: basePath + 'accesorio.detail.html',
+                        templateUrl: basePath + 'accesorios.detail.html',
                         controller: 'accesorioCtrl',
                         controllerAs: 'ctrl'
                     }

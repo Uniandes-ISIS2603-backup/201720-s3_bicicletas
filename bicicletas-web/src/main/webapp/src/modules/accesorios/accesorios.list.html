@@ -5,19 +5,16 @@
             <div class="panel-body">
                 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <table class="table table-striped">
                         <thead>
-                            <tr>   
-                                <th>Accesorio</th>  
-                                <th>Estado</th>  
+                            <tr> 
+                                <th>Estación</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr ng-repeat="accesorio in accesoriosRecords">
-                                <td id="{{$index}}-tipo">{{accesorio.tipo}}</td>
-                                <td id="{{$index}}-estado">{{accesorio.estado}}</td>
-                                <td id="{{$index}}-actions">
+                                <td id="{{$index}}-idaccesorio">{{accesorio.idaccesorio}}</td>
                                 </td>
                             </tr>
                         </tbody>

@@ -6,8 +6,8 @@
         // Internal modules dependencies  
         'estacionModule',     
         'calificacionModule',
-        'usuarioModule',
-        'accesorioModule'
+        'accesorioModule',
+        'usuarioModule'
 
     ]);
     // Resuelve problemas de las promesas
