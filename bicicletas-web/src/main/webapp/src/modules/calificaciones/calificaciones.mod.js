@@ -1,5 +1,5 @@
 (function (ng) {
-    var mod = ng.module("calificacionModule", ['ui.router']);
+    var mod = ng.module("calificacionModule", ['estacionModule','ui.router']);
     mod.constant("calificacionesContext", "api/calificaciones");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/calificaciones/';

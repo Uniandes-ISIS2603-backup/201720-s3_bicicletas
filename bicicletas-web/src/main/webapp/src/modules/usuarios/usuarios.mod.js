@@ -25,17 +25,12 @@
 	                    }
 	                }
 	            }).state('usuarioDetail', {
-	                url: '/{usuarioId:long}/detail',
+	                url: '/{usuarioId:int}/detail',
 	                parent: 'usuarios',
 	                param: {
 	                    usuarioId: null
 	                },
 	                views: {
-	                    'listView': {
-	                        templateUrl: basePathDirecciones + 'direccions.list.html',
-	                        controller: 'usuarioCtrl',
-	                        controllerAs: 'ctrl'
-	                    },
 	                    'detailView': {
 	                        templateUrl: basePath + 'usuarios.detail.html',
 	                        controller: 'usuarioCtrl',
