@@ -11,6 +11,7 @@ import co.edu.uniandes.bicicletas.entities.ReservaEntity;
 import co.edu.uniandes.bicicletas.entities.UsuarioEntity;
 import co.edu.uniandes.bicicletas.persistence.PagoPersistence;
 import co.edu.uniandes.bicicletas.persistence.ReservaPersistence;
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -252,16 +253,33 @@ public class PagoLogic {
             throw new BusinessLogicException("No se puede realizar el pago en"
                     + "el estado que se encuentra el pago");
         }
-
-
+       Date dateActual = new Date(System.currentTimeMillis());
+       Date dateInicio = reserva.getFechaInicio();
+       
+        Long timestampActual = dateActual.getTime();
+        Long timestampIncio = dateInicio.getTime();
+        
+        Long timestampRestante = timestampIncio - timestampActual;
+        
+        if(timestampRestante > 1){
+            pago.setEstado(PagoEntity.PROCESANDO_REEMBOLSO);    
+            reserva.setEstado(ReservaEntity.CANCELADO);
+        }
+        
+        else{
+            pago.setEstado(PagoEntity.REEMBOLSO_PARCIAL);
+            pago.setMonto(pago.getMonto()*0.8);
+            reserva.setEstado(ReservaEntity.REENBOLSADO);
+            reservaPersistence.update(reserva);
+        }
+        
+        
+        
         //Actualizar estado del pago 
-        pago.setEstado(PagoEntity.PROCESANDO_REEMBOLSO);
         updatePago(pago);
 
-        reserva.setEstado(ReservaEntity.CANCELADO);
-        reservaPersistence.update(reserva);
-        
         return pago;
+    
     }
     
 }

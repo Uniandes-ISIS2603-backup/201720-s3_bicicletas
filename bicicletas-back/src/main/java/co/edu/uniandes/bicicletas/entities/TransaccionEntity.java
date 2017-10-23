@@ -6,6 +6,7 @@
 package co.edu.uniandes.bicicletas.entities;
 
 import java.io.Serializable;
+import javax.persistence.Entity;
 
 /**
  * Clase que modela la transacción que se realizará luego de ser finalizada una
@@ -14,6 +15,7 @@ import java.io.Serializable;
  * bicicletas.
  * @author jd.trujillom
  */
+@Entity
 public class TransaccionEntity extends BaseEntity implements Serializable {
     
     /**

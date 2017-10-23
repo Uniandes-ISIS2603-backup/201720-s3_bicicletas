@@ -8,6 +8,7 @@ package co.edu.uniandes.bicicletas.dtos;
 import co.edu.uniandes.bicicletas.entities.EstacionEntity;
 import java.util.Date;
 import co.edu.uniandes.bicicletas.entities.ReservaEntity;
+import co.edu.uniandes.bicicletas.entities.TransaccionEntity;
 import co.edu.uniandes.bicicletas.entities.UsuarioEntity;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -29,6 +30,7 @@ public class ReservaDTO {
     private EstacionEntity estacionLlegada;
     private double precioFinal;
     private Boolean descuento;
+    private TransaccionEntity transaccion;
     
     
     public ReservaDTO(){
@@ -46,6 +48,7 @@ public class ReservaDTO {
             this.precioFinal = entidad.getPrecioFinal();
             this.fechaReserva = entidad.getFechaReserva().toString();
             this.descuento = entidad.getDescuento();
+            this.transaccion = entidad.getTransaccion();
         }
     }
     
@@ -61,6 +64,7 @@ public class ReservaDTO {
         entity.setPrecioFinal(this.getPrecioFinal());
         entity.setFechaReserva(this.getFechaReserva());
         entity.setDescuento( );
+        entity.setTransaccion(transaccion);
         return entity;
     }
 
@@ -201,6 +205,14 @@ public class ReservaDTO {
      */
     public void setPrecioFinal(double precioFinal) {
         this.precioFinal = precioFinal;
+    }
+
+    public TransaccionEntity getTransaccion() {
+        return transaccion;
+    }
+
+    public void setTransaccion(TransaccionEntity transaccion) {
+        this.transaccion = transaccion;
     }
 
     

@@ -15,6 +15,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import co.edu.uniandes.bicicletas.ejb.PagoLogic;
 import co.edu.uniandes.bicicletas.entities.PagoEntity;
+import co.edu.uniandes.bicicletas.entities.ReservaEntity;
+import co.edu.uniandes.bicicletas.persistence.ReservaPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -37,6 +39,9 @@ public class PagoResource {
 
     @Inject
     PagoLogic logic;
+    
+    @Inject
+    ReservaPersistence reservaPersistence;
 
     private static final Logger LOGGER = Logger.getLogger(PagoResource.class.getName());
 
@@ -112,6 +117,7 @@ public class PagoResource {
     @Path("{idPago: \\d+}/verificarPago")
     public PagoDetailDTO solicitarReembolso(@PathParam("idPago")Long idPago)throws BusinessLogicException{
         PagoEntity pago = logic.find(idPago);
+        ReservaEntity reserva = pago.getReserva();
         
         if(pago == null)
            throw new BusinessLogicException("No existe una pago con ese id");
@@ -122,6 +128,8 @@ public class PagoResource {
                     + " el estado que se encuentra el pago");
         }
         
+        reserva.setEstado(ReservaEntity.REENBOLSADO);
+        reservaPersistence.update(reserva);
         //Actualizar estado del pago 
         pago.setEstado(PagoEntity.PAGADO);
         logic.updatePago(pago);

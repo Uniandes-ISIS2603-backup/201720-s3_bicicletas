@@ -12,7 +12,7 @@
     <class>co.edu.uniandes.bicicletas.entities.InfoEstacionEntity</class>
     <class>co.edu.uniandes.bicicletas.entities.PagoEntity</class>
     <class>co.edu.uniandes.bicicletas.entities.PuntoEntity</class>
-    <class>co.edu.uniandes.bicicletas.entities.UsuarioEntity</class>
+  <class>co.edu.uniandes.bicicletas.entities.TransaccionEntity</class> <class>co.edu.uniandes.bicicletas.entities.ReservaEntity</class>  <class>co.edu.uniandes.bicicletas.entities.UsuarioEntity</class>
     <properties>
       <property name="eclipselink.logging.level" value="FINE"/>
       <property name="eclipselink.cache.type.default" value="NONE"/>

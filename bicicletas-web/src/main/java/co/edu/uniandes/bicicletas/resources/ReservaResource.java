@@ -7,11 +7,14 @@ package co.edu.uniandes.bicicletas.resources;
 
 import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.bicicletas.dtos.ReservaDTO;
+import co.edu.uniandes.bicicletas.dtos.TransaccionDTO;
 import co.edu.uniandes.bicicletas.ejb.EstacionLogic;
 import co.edu.uniandes.bicicletas.ejb.ReservaLogic;
+import co.edu.uniandes.bicicletas.ejb.TransaccionLogic;
 import co.edu.uniandes.bicicletas.ejb.UsuarioLogic;
 import co.edu.uniandes.bicicletas.entities.EstacionEntity;
 import co.edu.uniandes.bicicletas.entities.ReservaEntity;
+import co.edu.uniandes.bicicletas.entities.TransaccionEntity;
 import co.edu.uniandes.bicicletas.entities.UsuarioEntity;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -44,6 +47,8 @@ public class ReservaResource {
     private ReservaLogic logica;
     @Inject
     private UsuarioLogic logicaUsuario ;
+    @Inject
+    private TransaccionLogic logicaTransaccion;
     
 
     private List<ReservaDTO> listEntity2DTO(List<ReservaEntity> entityList) {
@@ -93,6 +98,18 @@ public class ReservaResource {
         logica.deleteReserva(id);
     }
     
+    @GET
+    @Path("{id: \\d+}/transaccion")
+    public TransaccionDTO darTransaccion(@PathParam("id") Long id) throws BusinessLogicException{
+        ReservaEntity reserva = logica.getReserva(id);
+        if(reserva==null){
+          throw new WebApplicationException("La reserva con id "+ id +" no existe", 404);
+        }
+        
+        TransaccionEntity transaccion = logicaTransaccion.obtenerTransaccion(reserva);
+        
+        return new TransaccionDTO(transaccion);
+    }
     
     @Path("{idReserva: \\d+}/Estacion / { llegada: \\d+}")
     public Class<ReservaEstacionResource> getReservaEstacionResource(@PathParam("idReserva") Long idReserva,@PathParam("llegada") int llegada){
@@ -138,4 +155,6 @@ public class ReservaResource {
         }
         return ReservaAccesorioResource.class;
     }
+    
+    
 }

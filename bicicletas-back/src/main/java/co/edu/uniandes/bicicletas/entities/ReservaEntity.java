@@ -35,6 +35,7 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     public final static int CANCELADO=2;
     public final static int USO=3;
     public final static int REENBOLSADO=4;
+    public final static int FINALIZADA=5;
     
     
     @Temporal(TemporalType.TIMESTAMP)
@@ -75,6 +76,11 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     @PodamExclude
     private PagoEntity pago;
     
+    @OneToOne
+    @JoinColumn(name="TRANSACCION_ID")
+    @PodamExclude
+    private TransaccionEntity transaccion;
+                    
     @OneToMany
     @PodamExclude
     private List<BicicletaEntity> bicicletas = new ArrayList<>();
@@ -282,6 +288,15 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     public void setAccesorios(List<AccesorioEntity> accesorios) {
         this.accesorios = accesorios;
     }
+
+    public TransaccionEntity getTransaccion() {
+        return transaccion;
+    }
+
+    public void setTransaccion(TransaccionEntity transaccion) {
+        this.transaccion = transaccion;
+    }
+    
     
 
 }

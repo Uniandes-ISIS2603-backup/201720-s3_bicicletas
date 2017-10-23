@@ -27,16 +27,17 @@ public class TransaccionLogic {
     ReservaPersistence reservaPersistence;
     
     /**
-     * Obtiene una transacción dado su id
-     * @param idTransaccion de la transacción que se quiere obtener. 
-     * @return la transaccion asociada al id si la encuentra, null de lo contratrio. 
+     * Obtiene una transacción por medio de una reserva
+     * @param reserva asociada a la transacción que se quiere obtener. 
+     * @return la transaccion asociada a la reserva, sino existe, la crea y 
+     * la retorna. 
      */
-    public TransaccionEntity obtenerTransaccion(Long idTransaccion, ReservaEntity reserva) throws BusinessLogicException{
+    public TransaccionEntity obtenerTransaccion(ReservaEntity reserva) throws BusinessLogicException{
         //Verifica si la reserva se encuentra en el estado correcto.
-        if(reserva.getEstado() != 0)
+        if(reserva.getEstado() != ReservaEntity.FINALIZADA)
             throw new BusinessLogicException("La reserva debe haber finalizado para calcular la transaccion final");
         
-        TransaccionEntity entity = persistence.findTransaccion(idTransaccion);
+        TransaccionEntity entity = reserva.getTransaccion();
         
         //Si no encuentra la transacción, la crea.
         if(entity == null){
@@ -44,6 +45,15 @@ public class TransaccionLogic {
         }
         
         return entity;
+    }
+    /**
+     * Obtiene una transacción por medio de su id.
+     * @param idReserva de la transaccion buscada.
+     * @return la transaccion asociada a la reserva, null de lo contrario
+     */
+    public TransaccionEntity obtenerTransaccion(Long idReserva){
+        
+        return persistence.findTransaccion(idReserva);
     }
     
     
@@ -89,6 +99,10 @@ public class TransaccionLogic {
         
         //Persiste la nueva transaccion
         persistence.createTransaccion(entity);
+        
+        //Le agrega la transaccion a la reserva
+        reserva.setTransaccion(entity);
+        reservaPersistence.update(reserva);
         
         return entity;
 
