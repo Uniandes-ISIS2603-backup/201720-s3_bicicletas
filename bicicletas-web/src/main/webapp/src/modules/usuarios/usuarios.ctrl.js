@@ -7,8 +7,8 @@
                 $scope.usuariosRecords = response.data;
             });
 
-            if ($state.params.usuarioId !== undefined) {
-                $http.get(usuariosContext + '/' + $state.params.usuarioId).then(function (response) {
+            if ($state.params.documentoUsuario !== undefined) {
+                $http.get(usuariosContext + '/' + $state.params.documentoUsuario).then(function (response) {
                     $scope.currentUsuario = response.data;
                 });
             }

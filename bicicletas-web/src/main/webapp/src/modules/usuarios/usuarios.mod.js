@@ -25,7 +25,7 @@
 	                    }
 	                }
 	            }).state('usuarioDetail', {
-	                url: '/{usuarioId:int}/detail',
+	                url: '/{documentoUsuario:int}/detail',
 	                parent: 'usuarios',
 	                param: {
 	                    usuarioId: null
