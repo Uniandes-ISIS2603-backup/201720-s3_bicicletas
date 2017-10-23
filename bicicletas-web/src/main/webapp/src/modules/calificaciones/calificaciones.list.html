@@ -5,16 +5,23 @@
             <div class="panel-body">
                 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <table class="table table-striped">
                         <thead>
-                            <tr>   
+                            <tr> 
+                                <th>Estación</th>
+                                <th>Reserva</th>
+                                <th>Fecha</th>
                                 <th>Descripción</th>  
                                 <th>Nota</th>  
+                                
                             </tr>
                         </thead>
                         <tbody>
                             <tr ng-repeat="calificacion in calificacionesRecords">
+                                <td id="{{$index}}-idEstacion">{{calificacion.idEstacion}}</td>
+                                <td id="{{$index}}-idReserva">{{calificacion.idReserva}}</td>
+                                <td id="{{$index}}-fechaCali">{{calificacion.fechaCali| date:'yyyy-MM-dd'}}</td>
                                 <td id="{{$index}}-descripcion">{{calificacion.descripcion}}</td>
                                 <td id="{{$index}}-nota">{{calificacion.nota}}</td>
                                 <td id="{{$index}}-actions">
