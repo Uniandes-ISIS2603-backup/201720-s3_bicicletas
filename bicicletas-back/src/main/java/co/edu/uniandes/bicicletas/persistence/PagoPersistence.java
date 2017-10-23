@@ -45,8 +45,8 @@ public class PagoPersistence {
     protected EntityManager em;
 
     /**
-     * Persistence un pago en la base de datos
-     * @param Pago (como objeto) el cual se quiere persistir
+     * Persiste un pago en la base de datos
+     * @param pago (como objeto) el cual se quiere persistir
      * @return 
      */
     public PagoEntity createPago(PagoEntity pago) {

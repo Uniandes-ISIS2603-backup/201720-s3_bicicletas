@@ -26,7 +26,6 @@ package co.edu.uniandes.bicicletas.entities;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -82,6 +81,21 @@ public class PagoEntity extends BaseEntity implements Serializable{
     public final static Integer PROCESANDO_REEMBOLSO = 8;
     
     /**
+     * Constante que modela el método de pago con tarjeta de credito
+     */
+    public final static Integer TARJETA_DE_CREDITO = 1;
+    
+    /**
+     * Constante que modela el método de pago con PSE.
+     */
+    public final static Integer PSE = 2;
+    
+    /**
+     * Constante que modela el precio de alquilar una bicicleta por una hora
+     */
+    public final static Integer PRECIO_BICICLETA_HORA = 10000;
+    
+    /**
      * Relación que modela una reserva asociada a un pago 
      */
     @PodamExclude
@@ -110,6 +124,7 @@ public class PagoEntity extends BaseEntity implements Serializable{
     
     private Long idTransaccion;
     
+    
     /**
      * Atributo que indica el id del usuario que realizó el pago
      */
@@ -122,6 +137,18 @@ public class PagoEntity extends BaseEntity implements Serializable{
     
     private Double monto;
 
+    /**
+     * Atributo que modela el método de pago que se usará
+     */
+    
+    private Integer metodoDePago;
+    
+    /**
+     * Atributo que modela la cantidad de bicicletas que aun no han sido
+     * pagadas
+     */
+    private Integer bicicletasPendientes;
+    
     public Integer getEstado() {
         return estado;
     }
@@ -171,6 +198,26 @@ public class PagoEntity extends BaseEntity implements Serializable{
     public void setReserva(ReservaEntity reserva){
         this.reserva = reserva;
     }
+
+    public Integer getMetodoDePago() {
+        return metodoDePago;
+    }
+
+    public void setMetodoDePago(Integer metodoDePago) {
+        this.metodoDePago = metodoDePago;
+    }
+
+    public Integer getBicicletasPendientes() {
+        return bicicletasPendientes;
+    }
+
+    public void setBicicletasPendientes(Integer bicicletasPendientes) {
+        this.bicicletasPendientes = bicicletasPendientes;
+    }
+    
+    
+    
+    
    
     
     

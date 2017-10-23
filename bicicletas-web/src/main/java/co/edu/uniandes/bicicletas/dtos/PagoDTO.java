@@ -20,11 +20,13 @@ public class PagoDTO {
     private Integer estado;
     private Long idTransaccion;
     private Long idUsuario;
+    private Integer bicicletasPendientes;
+    private Integer metodoDePago;
     /**
      * Constructor por defecto
      */
     public PagoDTO(){
-        
+        // Don't do nothing.
     }
     
     
@@ -35,7 +37,8 @@ public class PagoDTO {
         this.estado = pago.getEstado();
         this.idTransaccion = pago.getIdTransaccion();
         this.idUsuario = pago.getIdUsuario();
-        
+        this.bicicletasPendientes = pago.getBicicletasPendientes();
+        this.metodoDePago = pago.getMetodoDePago();
     }
 
     public Long getId() {
@@ -85,6 +88,24 @@ public class PagoDTO {
     public void setIdUsuario(Long idUsuario) {
         this.idUsuario = idUsuario;
     }
+
+    public Integer getBicicletasPendientes() {
+        return bicicletasPendientes;
+    }
+
+    public void setBicicletasPendientes(Integer bicicletasPendientes) {
+        this.bicicletasPendientes = bicicletasPendientes;
+    }
+
+    public Integer getMetodoDePago() {
+        return metodoDePago;
+    }
+
+    public void setMetodoDePago(Integer metodoDePago) {
+        this.metodoDePago = metodoDePago;
+    }
+    
+    
     
     public PagoEntity toEntity(){
         PagoEntity entity = new PagoEntity();
@@ -94,6 +115,8 @@ public class PagoDTO {
         entity.setEstado(this.estado);
         entity.setIdTransaccion(this.idTransaccion);
         entity.setIdUsuario(this.idUsuario);
+        entity.setBicicletasPendientes(bicicletasPendientes);
+        entity.setMetodoDePago(metodoDePago);
         
         return entity;
     }   
