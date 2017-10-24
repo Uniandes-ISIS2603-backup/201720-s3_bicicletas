@@ -1,24 +1,31 @@
 <div class="panel panel-default"> 
     <div class="panel-body">
     <div class="row">
+        
         <div class="col-md-3">
-
-        </div>
-        <div class="col-md-3">
-            <dl>     
+            <dl>
+                <dt>Documento de identificación</dt>
                 <dt>{{currentUsuario.documentoUsuario}}</dt>
-                
-                <hr>
-                <dt>Tipo de documento</dt>
-                <dd>{{currentUsuario.tipoId}}</dd>
                 
                 <hr>
                 <dt>Nombres y apellidos</dt>
                 <dd>{{currentUsuario.nombre}}</dd>
                 
                 <hr>
+                <dt>Tipo de documento</dt>
+                <dd>{{currentUsuario.tipoId}}</dd>
+                
+                <hr>
                 <dt>Fecha de nacimiento</dt>
-                <dd>{{currentUsuario.birthDate| date:'dd-MM-yyyy'}}</dd>
+                <dd>{{currentUsuario.fechaNacimiento| date:'dd-MM-yyyy'}}</dd>
+                
+                <hr>
+                <dt>Tarjeta de crédito</dt>
+                <dd>{{currentUsuario.tarjetaCredito}}</dd>
+                
+                <hr>
+                <dt>PSE</dt>
+                <dd>{{currentUsuario.contraseniaPSE}}</dd>
                 
             </dl>
         </div>
