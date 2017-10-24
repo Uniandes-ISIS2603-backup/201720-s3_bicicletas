@@ -28,7 +28,7 @@
 	                url: '/{documentoUsuario:int}/detail',
 	                parent: 'usuarios',
 	                param: {
-	                    usuarioId: null
+	                    usuarioDocumentoUsuario: null
 	                },
 	                views: {
 	                    'detailView': {
@@ -47,10 +47,10 @@
 	                    }
 	                }
 	            }).state('usuarioUpdate', {
-	                url: '/update/{usuarioId:long}',
+	                url: '/update/{documentoUsuario:int}',
 	                parent: 'usuarios',
 	                param: {
-	                    usuarioId: null
+	                    usuarioDocumentoUsuario: null
 	                },
 	                views: {
 	                    'detailView': {
@@ -59,10 +59,10 @@
 	                    }
 	                }
 	            }).state('usuarioDelete', {
-	                url: '/delete/{usuarioId:long}',
+	                url: '/delete/{documentoUsuario:int}',
 	                parent: 'usuarios',
 	                param: {
-	                    usuarioId: null
+	                    usuarioDocumentoUsuario: null
 	                },
 	                views: {
 	                    'detailView': {
