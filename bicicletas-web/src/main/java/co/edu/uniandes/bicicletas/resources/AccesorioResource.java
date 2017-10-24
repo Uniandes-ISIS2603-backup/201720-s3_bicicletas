@@ -59,7 +59,14 @@ public class AccesorioResource {
     
     @POST
     public AccesorioDTO crearEstacion(AccesorioDTO dto) throws BusinessLogicException {
-        return new AccesorioDTO(logica.crearAccesorio(dto.toEntity()));
+        if(dto.getReservado()==0||dto.getReservado()==1)
+        {
+            if(dto.getTipo()==0||dto.getTipo()==1)
+            {
+               return new AccesorioDTO(logica.crearAccesorio(dto.toEntity())); 
+            }
+        }
+        throw new WebApplicationException("No esta dentro del tipo o estado correspondiente", 301);
     }
     
     @PUT
