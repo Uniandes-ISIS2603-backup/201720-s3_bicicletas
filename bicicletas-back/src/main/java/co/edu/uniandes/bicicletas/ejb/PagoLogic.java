@@ -96,7 +96,7 @@ public class PagoLogic {
         ReservaEntity reserva = darReserva(idPago);
             Integer estadoReserva = reserva.getEstado(); 
         if(Objects.equals(nuevoEstado, PagoEntity.PAGADO) && estadoReserva  == ReservaEntity.PAGO) //Cambiar por esperando pago
-            reserva.setEstado(ReservaEntity.PAGADO);
+            reserva.setEstado(ReservaEntity.PAGADA);
         
         else if((Objects.equals(nuevoEstado, PagoEntity.REEMBOLSO_TOTAL) || 
                 Objects.equals(nuevoEstado, PagoEntity.REEMBOLSO_PARCIAL)) && estadoReserva == 10) //Cambiar reembolso solicitado
@@ -263,13 +263,13 @@ public class PagoLogic {
         
         if(timestampRestante > 1){
             pago.setEstado(PagoEntity.PROCESANDO_REEMBOLSO);    
-            reserva.setEstado(ReservaEntity.CANCELADO);
+            reserva.setEstado(ReservaEntity.CANCELADA);
         }
         
         else{
             pago.setEstado(PagoEntity.REEMBOLSO_PARCIAL);
             pago.setMonto(pago.getMonto()*0.8);
-            reserva.setEstado(ReservaEntity.REENBOLSADO);
+            reserva.setEstado(ReservaEntity.REEMBOLSADO);
             reservaPersistence.update(reserva);
         }
         

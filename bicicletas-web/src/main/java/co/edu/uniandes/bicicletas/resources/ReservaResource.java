@@ -7,21 +7,15 @@ package co.edu.uniandes.bicicletas.resources;
 
 import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.bicicletas.dtos.ReservaDTO;
+import co.edu.uniandes.bicicletas.dtos.ReservaDetailDTO;
 import co.edu.uniandes.bicicletas.dtos.TransaccionDTO;
-import co.edu.uniandes.bicicletas.ejb.EstacionLogic;
 import co.edu.uniandes.bicicletas.ejb.ReservaLogic;
 import co.edu.uniandes.bicicletas.ejb.TransaccionLogic;
 import co.edu.uniandes.bicicletas.ejb.UsuarioLogic;
-import co.edu.uniandes.bicicletas.entities.EstacionEntity;
 import co.edu.uniandes.bicicletas.entities.ReservaEntity;
 import co.edu.uniandes.bicicletas.entities.TransaccionEntity;
-import co.edu.uniandes.bicicletas.entities.UsuarioEntity;
-import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import javax.ejb.Stateless;
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -31,9 +25,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.WebApplicationException;
-import org.slf4j.Logger;
 
 /**
  *
@@ -54,7 +46,7 @@ public class ReservaResource {
     private List<ReservaDTO> listEntity2DTO(List<ReservaEntity> entityList) {
         List<ReservaDTO> lista = new ArrayList<>();
         for(ReservaEntity entidad : entityList){
-            lista.add(new ReservaDTO(entidad));
+            lista.add(new ReservaDetailDTO(entidad));
     }
         return lista;
         
@@ -72,7 +64,7 @@ public class ReservaResource {
         if(reservas==null){
           throw new WebApplicationException("La reserva con id "+ id +" no existe", 404);
         }
-        return new ReservaDTO(reservas);
+        return new ReservaDetailDTO(reservas);
     }
     
     @POST

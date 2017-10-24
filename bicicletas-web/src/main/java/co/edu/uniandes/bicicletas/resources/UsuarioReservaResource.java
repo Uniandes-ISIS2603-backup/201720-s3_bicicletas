@@ -68,7 +68,7 @@ public class UsuarioReservaResource
         System.out.println("IdUsuario"+idUsuario);
         System.out.println(reserva.getUsuarioReserva().getDocumentoUsuario()== idUsuario);
         if(reserva.getUsuarioReserva().getDocumentoUsuario().compareTo(idUsuario)==0){
-           return new ReservaDTO(reserva);
+           return new ReservaDetailDTO(reserva);
         }else if(reserva.getUsuarioReserva().getDocumentoUsuario().compareTo(idUsuario)!=0){
             throw new WebApplicationException("La reserva con id: "+id+" no existe o no pertenece al usuario con id: "+idUsuario, 404);
         }
@@ -93,7 +93,7 @@ public class UsuarioReservaResource
         for(ReservaEntity puntoEntity : listaEntiReserva)
         {
            //lista.add(new ReservaDetailDTO(puntoEntity));
-            lista.add( new ReservaDTO (puntoEntity));
+            lista.add( new ReservaDetailDTO (puntoEntity));
         }
         return lista;
     }

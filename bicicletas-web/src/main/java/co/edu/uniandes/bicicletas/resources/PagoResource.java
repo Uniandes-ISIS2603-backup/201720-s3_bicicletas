@@ -128,7 +128,7 @@ public class PagoResource {
                     + " el estado que se encuentra el pago");
         }
         
-        reserva.setEstado(ReservaEntity.REENBOLSADO);
+        reserva.setEstado(ReservaEntity.REEMBOLSADO);
         reservaPersistence.update(reserva);
         //Actualizar estado del pago 
         pago.setEstado(PagoEntity.PAGADO);

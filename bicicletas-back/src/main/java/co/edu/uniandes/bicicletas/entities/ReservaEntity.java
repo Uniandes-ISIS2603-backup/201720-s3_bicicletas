@@ -30,11 +30,11 @@ import uk.co.jemos.podam.common.PodamExclude;
 
 public class ReservaEntity extends BaseEntity implements Serializable {
     
-    public final static int PAGADO=0;
+    public final static int PAGADA=0;
     public final static int PAGO=1;
-    public final static int CANCELADO=2;
+    public final static int CANCELADA=2;
     public final static int USO=3;
-    public final static int REENBOLSADO=4;
+    public final static int REEMBOLSADO=4;
     public final static int FINALIZADA=5;
     
     
@@ -94,6 +94,25 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     @PodamExclude
     private Date fechaReserva;
+    
+    @Temporal(TemporalType.TIMESTAMP)
+    @PodamExclude
+    private Date fechaFinal;
+
+    
+   
+    public Date getFechaFinal() {
+        if (fechaFinal==null){
+         return new Date(0, 0, 0);
+        }else{
+          return fechaFinal; 
+        }
+     
+    }
+
+    public void setFechaFinal(Date fechaFinal) {
+        this.fechaFinal = fechaFinal;
+    }
     
     private Boolean Descuento;
 
@@ -264,7 +283,11 @@ public class ReservaEntity extends BaseEntity implements Serializable {
      * @param precioFinal the precioFinal to set
      */
     public void setPrecioFinal(double precioFinal) {
-        this.precioFinal = precioFinal;
+        if(bicicletas.isEmpty()){
+        this.precioFinal = bicicletas.size()*PagoEntity.PRECIO_BICICLETA_HORA;
+        }else{
+        this.precioFinal = 0;
+        }
     }
 
     /**

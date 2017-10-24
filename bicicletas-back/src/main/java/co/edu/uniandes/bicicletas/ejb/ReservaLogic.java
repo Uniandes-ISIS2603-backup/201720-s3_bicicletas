@@ -164,6 +164,7 @@ public class ReservaLogic
 
         entity.setEstacionSalida(estacionSalida);
         entity.setUsuarioReserva(usuario);
+        entity.setEstado(1);
         reservaNueva=persistence.create(entity);
         
         reservasUsuario.add(reservaNueva);
