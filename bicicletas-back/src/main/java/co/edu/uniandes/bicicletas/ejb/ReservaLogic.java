@@ -258,7 +258,7 @@ public class ReservaLogic
          }
          boolean a = false;
          for (AccesorioEntity accesorioR : reserva.getAccesorios()) {
-             if(accesorioR.equals(accesorioEntity)){
+             if(accesorioEntity.equals(accesorioR)){
                  a=true;
           }
         }
