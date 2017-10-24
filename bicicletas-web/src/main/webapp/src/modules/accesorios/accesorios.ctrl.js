@@ -7,8 +7,8 @@
                 $scope.accesoriosRecords = response.data;
             });
             
-            if ($state.params.idaccesorio !== undefined) {
-                $http.get(accesoriosContext + '/' + $state.params.idaccesorio).then(function (response) {
+            if ($state.params.id !== undefined) {
+                $http.get(accesoriosContext + '/' + $state.params.id).then(function (response) {
                     $scope.currentaccesorio = response.data;
                 });
             }

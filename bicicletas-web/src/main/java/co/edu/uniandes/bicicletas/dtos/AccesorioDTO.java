@@ -16,7 +16,7 @@ import co.edu.uniandes.bicicletas.entities.ReservaEntity;
 public class AccesorioDTO {
     private int tipo;
     private int reservado;
-    private Long id;
+    private Long id; 
     private EstacionEntity estacion;
     private ReservaEntity reserva;
 

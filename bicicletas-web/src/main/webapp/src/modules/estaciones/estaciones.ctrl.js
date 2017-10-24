@@ -7,8 +7,8 @@
                 $scope.estacionesRecords = response.data;
             });
             
-            if ($state.params.idestacion !== undefined) {
-                $http.get(estacionesContext + '/' + $state.params.idestacion).then(function (response) {
+            if ($state.params.id !== undefined) {
+                $http.get(estacionesContext + '/' + $state.params.id).then(function (response) {
                     $scope.currentestacion = response.data;
                 });
             }

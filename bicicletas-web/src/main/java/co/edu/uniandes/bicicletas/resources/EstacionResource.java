@@ -92,7 +92,11 @@
 	     */
 	    @POST
 	    public EstacionDTO createEstacion(EstacionDTO dto) {
-	        return new EstacionDTO(estacionLogic.crearEstacion(dto.toEntity()));
+                if(dto.getNombre()!=null){
+                   return new EstacionDTO(estacionLogic.crearEstacion(dto.toEntity())); 
+                }
+	        else
+                    throw new WebApplicationException("Debe ser indicado un nombre para la estación", 300);
 	    }
 
 	    /**
