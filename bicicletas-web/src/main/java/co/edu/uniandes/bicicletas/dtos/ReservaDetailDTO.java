@@ -15,16 +15,16 @@ import java.util.Date;
 public class ReservaDetailDTO extends ReservaDTO{
     
     
-    private Boolean descuento;
-    private Long idEstacionSalida;
-    private int estado;
-    private Date fechaReserva;
-    private String fechaEntrega;
-    private String fechaInicio;
-    private String fechaFinal;
-    private Long idReserva;
-    private double preciofinal;
-    private long idUsuario;
+//    private Boolean descuento;
+//    private Long idEstacionSalida;
+//    private int estado;
+//    private Date fechaReserva;
+//    private String fechaEntrega;
+//    private String fechaInicio;
+//    private String fechaFinal;
+//    private Long idReserva;
+//    private double preciofinal;
+//    private long idUsuario;
 
     
     
@@ -34,98 +34,99 @@ public class ReservaDetailDTO extends ReservaDTO{
      * @param entity
      */
     public ReservaDetailDTO(ReservaEntity entidad) {
-        this.descuento=entidad.getDescuento();
-        this.idEstacionSalida=entidad.getEstacionSalida().getId();
-        this.estado=entidad.getEstado();
-        this.fechaReserva=entidad.getFechaReserva();
-        this.fechaInicio=entidad.getFechaInicio().toString();
-        this.fechaEntrega=entidad.getFechaEntrega().toString();
-        this.fechaFinal=entidad.getFechaFinal().toString();
-        this.idReserva=entidad.getId();
-        this.preciofinal=entidad.getPrecioFinal();
-        this.idUsuario=entidad.getUsuarioReserva().getDocumentoUsuario();
+        super(entidad);
+//        this.descuento=entidad.getDescuento();
+//        this.idEstacionSalida=entidad.getEstacionSalida().getId();
+//        this.estado=entidad.getEstado();
+//        this.fechaReserva=entidad.getFechaReserva();
+//        this.fechaInicio=entidad.getFechaInicio().toString();
+//        this.fechaEntrega=entidad.getFechaEntrega().toString();
+//        this.fechaFinal=entidad.getFechaFinal().toString();
+//        this.idReserva=entidad.getId();
+//        this.preciofinal=entidad.getPrecioFinal();
+//        this.idUsuario=entidad.getUsuarioReserva().getDocumentoUsuario();  
     }
     
-    
-    public Boolean getDescuento() {
-        return descuento;
-    }
-
-    public void setDescuento(Boolean descuento) {
-        this.descuento = descuento;
-    }
-
-    public Long getIdEstacionSalida() {
-        return idEstacionSalida;
-    }
-
-    public void setIdEstacionSalida(Long idEstacionSalida) {
-        this.idEstacionSalida = idEstacionSalida;
-    }
-
-    public int getEstado() {
-        return estado;
-    }
-
-    public void setEstado(int estado) {
-        this.estado = estado;
-    }
-
-    public Date getFechaReserva() {
-        return fechaReserva;
-    }
-
-    public void setFechaReserva(Date fechaReserva) {
-        this.fechaReserva = fechaReserva;
-    }
-
-    public String getFechaEntrega() {
-        return fechaEntrega;
-    }
-
-    public void setFechaEntrega(String fechaEntrega) {
-        this.fechaEntrega = fechaEntrega;
-    }
-
-    public String getFechaInicio() {
-        return fechaInicio;
-    }
-
-    public void setFechaInicio(String fechaInicio) {
-        this.fechaInicio = fechaInicio;
-    }
-
-    public String getFechaFinal() {
-        return fechaFinal;
-    }
-
-    public void setFechaFinal(String fechaFinal) {
-        this.fechaFinal = fechaFinal;
-    }
-
-    public Long getIdReserva() {
-        return idReserva;
-    }
-
-    public void setIdReserva(Long idReserva) {
-        this.idReserva = idReserva;
-    }
-
-    public double getPreciofinal() {
-        return preciofinal;
-    }
-
-    public void setPreciofinal(double preciofinal) {
-        this.preciofinal = preciofinal;
-    }
-
-    public long getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(long idUsuario) {
-        this.idUsuario = idUsuario;
-    }
+//    
+//    public Boolean getDescuento() {
+//        return descuento;
+//    }
+//
+//    public void setDescuento(Boolean descuento) {
+//        this.descuento = descuento;
+//    }
+//
+//    public Long getIdEstacionSalida() {
+//        return idEstacionSalida;
+//    }
+//
+//    public void setIdEstacionSalida(Long idEstacionSalida) {
+//        this.idEstacionSalida = idEstacionSalida;
+//    }
+//
+//    public int getEstado() {
+//        return estado;
+//    }
+//
+//    public void setEstado(int estado) {
+//        this.estado = estado;
+//    }
+//
+//    public Date getFechaReserva() {
+//        return fechaReserva;
+//    }
+//
+//    public void setFechaReserva(Date fechaReserva) {
+//        this.fechaReserva = fechaReserva;
+//    }
+//
+//    public String getFechaEntrega() {
+//        return fechaEntrega;
+//    }
+//
+//    public void setFechaEntrega(String fechaEntrega) {
+//        this.fechaEntrega = fechaEntrega;
+//    }
+//
+//    public String getFechaInicio() {
+//        return fechaInicio;
+//    }
+//
+//    public void setFechaInicio(String fechaInicio) {
+//        this.fechaInicio = fechaInicio;
+//    }
+//
+//    public String getFechaFinal() {
+//        return fechaFinal;
+//    }
+//
+//    public void setFechaFinal(String fechaFinal) {
+//        this.fechaFinal = fechaFinal;
+//    }
+//
+//    public Long getIdReserva() {
+//        return idReserva;
+//    }
+//
+//    public void setIdReserva(Long idReserva) {
+//        this.idReserva = idReserva;
+//    }
+//
+//    public double getPreciofinal() {
+//        return preciofinal;
+//    }
+//
+//    public void setPreciofinal(double preciofinal) {
+//        this.preciofinal = preciofinal;
+//    }
+//
+//    public long getIdUsuario() {
+//        return idUsuario;
+//    }
+//
+//    public void setIdUsuario(long idUsuario) {
+//        this.idUsuario = idUsuario;
+//    }
     
     
      /**

@@ -19,7 +19,6 @@ public class UsuarioDTO {
    private Integer tipoId; 
    private Long documentoUsuario;
    private Date fechaNacimiento;
-   
    private Long tarjetaCredito;
    private int numeroCsv;
    private String contraseniaPSE;
