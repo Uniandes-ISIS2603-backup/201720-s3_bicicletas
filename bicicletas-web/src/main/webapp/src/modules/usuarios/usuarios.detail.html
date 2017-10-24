@@ -1,11 +1,10 @@
 <div class="panel panel-default"> 
     <div class="panel-body">
-    <div class="row">
-        
-        <div class="col-md-3">
-            <dl>
+        <div class="row">
+            <div class="col-md-3">
+                <dl>     
                 <dt>Documento de identificación</dt>
-                <dt>{{currentUsuario.documentoUsuario}}</dt>
+                <dd>{{currentUsuario.documentoUsuario}}</dd>
                 
                 <hr>
                 <dt>Nombres y apellidos</dt>
@@ -26,9 +25,22 @@
                 <hr>
                 <dt>PSE</dt>
                 <dd>{{currentUsuario.contraseniaPSE}}</dd>
+            </div>
+            <div class="col-md-6">
+                </dl>
+                <ul class="nav nav-tabs">
+                    <li role="presentation" class="active"> <a ui-sref="puntosList({documentoUsuario: currentUsuario.documentoUsuario})">Puntos</a></li>
+                    <li role="presentation" class="active"> <a ui-sref=""></a></li>
+                </ul>
                 
-            </dl>
+                <div class="col-md-12">
+                <div ui-view="childrenView"></div>
+            </div>
+            </div>
+        </div>
+        <div class="row">
+            
         </div>
     </div>
-        </div>
 </div>
+

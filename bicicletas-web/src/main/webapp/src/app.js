@@ -7,7 +7,8 @@
         'estacionModule',     
         'calificacionModule',
         'accesorioModule',
-        'usuarioModule'
+        'usuarioModule',
+        'puntoModule'
 
     ]);
     // Resuelve problemas de las promesas
