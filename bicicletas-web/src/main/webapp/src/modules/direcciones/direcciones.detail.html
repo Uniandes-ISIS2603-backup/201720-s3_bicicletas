@@ -1,0 +1,33 @@
+	<div class="panel panel-default"> 
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-3">
+                <dl>     
+                    <dt>{{currentDireccion.name}}</dt>
+                    <ul ng-repeat="usuario in currentDireccion.usuarios">
+                        <a ui-sref="usuarioDetail({documentoUsuario: usuario.documentoUsuario})">{{usuario.documentoUsuario}}</a>
+                    </ul>
+                    <dt> Name:</dt>
+                    <dd>{{currentDireccion.name}}</dd>
+                    <hr>
+                    <dt> Codigo postal:</dt>
+                    <dd>{{currentDireccion.codigoPostal}}</dd>
+                    <hr>
+                    <dt> Descripción: </dt>
+                    <dd>{{currentDireccion.descripcion}}</dd>
+                    <hr>
+                    <dt> Ciudad:</dt>
+                    <dd>{{currentDireccion.ciudad}}</dd>
+                    <hr>
+
+                </dl>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-9">
+                <div ui-view="childrenView"></div>
+            </div>
+        </div>
+    </div>
+</div>

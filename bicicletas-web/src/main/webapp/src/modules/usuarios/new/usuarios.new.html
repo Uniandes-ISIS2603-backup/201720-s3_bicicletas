@@ -59,17 +59,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="panel panel-success">
-                            <div class="panel-heading">All direcciones</div>
-                            <div class="panel-body">
-                                <div id="div1" ondrop="angular.element(document.getElementById('theDirecciones')).scope().dropDelete(event)" ondragover="angular.element(document.getElementById('theDirecciones')).scope().allowDrop(event)">
-                                    <label></label>
-                                    <div ng-repeat="direccion in allDireccionesShow">
-                                        <p draggable="true" ondragstart="angular.element(document.getElementById('theDirecciones')).scope().drag(event)" id="{{direccion.id}}">{{direccion.name}}</p>                
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
                     <div class="form-group row">
