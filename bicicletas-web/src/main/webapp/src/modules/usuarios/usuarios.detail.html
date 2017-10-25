@@ -12,7 +12,17 @@
                 
                 <hr>
                 <dt>Tipo de documento</dt>
-                <dd>{{currentUsuario.tipoId}}</dd>
+                <dd>
+                    <div ng-if="currentUsuario.tipoId == 1">
+                    Cedula
+                    </div>
+                    <div ng-if="currentUsuario.tipoId == 2">
+                    Cedula extranjería
+                    </div>
+                    <div ng-if="currentUsuario.tipoId == 3">
+                    Pasaporte
+                    </div>
+                </dd>
                 
                 <hr>
                 <dt>Fecha de nacimiento</dt>

@@ -24,15 +24,12 @@
                     }
                 }
             }).state('accesorioDetail', {
-                url: '/{idaccesorio:Long}/detail',
+                url: '/{id:int}/detail',
                 parent: 'accesorios',
                 param: {
-                    bookId: null
+                    id: null
                 },
                 views: {
-                    'listView': {
-                        templateUrl: basePath + 'accesorios.list.html'
-                    },
                     'detailView': {
                         templateUrl: basePath + 'accesorios.detail.html',
                         controller: 'accesorioCtrl',

@@ -9,7 +9,7 @@
             
             if ($state.params.id !== undefined) {
                 $http.get(accesoriosContext + '/' + $state.params.id).then(function (response) {
-                    $scope.currentaccesorio = response.data;
+                    $scope.currentAccesorio = response.data;
                 });
             }
         }

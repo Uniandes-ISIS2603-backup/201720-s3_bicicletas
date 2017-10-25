@@ -10,12 +10,32 @@
                         <thead>
                             <tr> 
                                 <th>Accesorio</th>
+                                <th>Tipo</th>
+                                <th>Estado</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr ng-repeat="accesorio in accesoriosRecords">
                                 <td id="{{$index}}-id">{{accesorio.id}}</td>
                                 </td>
+                                <td id="{{$index}}-id">
+                                    <div ng-if="accesorio.tipo == 1">
+                                        Casco
+                                    </div>
+                                    <div ng-if="accesorio.tipo == 0">
+                                        Chaleco
+                                    </div>
+                                </td>
+                                <td>
+                                   <div ng-if="accesorio.reservado == 1">
+                                        Reservado
+                                    </div>
+                                    <div ng-if="accesorio.reservado == 0">
+                                        Libre
+                                    </div> 
+                                </td>
+                                <td></td>
+                                <td></td>
                             </tr>
                         </tbody>
                     </table>
