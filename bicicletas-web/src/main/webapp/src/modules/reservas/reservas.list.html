@@ -1,0 +1,38 @@
+<div class="container-fluid">   
+    <div class="col-sm-12">
+        <br>
+        <table ng-if="!messageReservas" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Total Reservas:</th>
+                    <td> {{reservasRecords.length}}</td>
+                </tr>
+                <tr>
+                    <th>&nbsp;</th>
+                </tr>
+                
+                            <tr> 
+                                <th>Fecha de inicio</th>
+                                <th>Fecha de Fin</th>   
+                            </tr>
+            </thead>
+            
+            <tbody>
+                <tr ng-repeat="reserva in reservasRecords">
+                    <td id="{{$index}}-fechaInicio">{{reserva.fechaInicio }}</td>
+                    <td id="{{$index}}-fechaFin">{{reserva.fechaFin }}</td> 
+                    
+                </tr>
+            </tbody>
+        </table>
+        <table ng-if="messageReservas" class="table table-striped">
+            
+            <tbody>
+                <tr>
+                    <td><b>{{messageReservas}}</b></td>                                  
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

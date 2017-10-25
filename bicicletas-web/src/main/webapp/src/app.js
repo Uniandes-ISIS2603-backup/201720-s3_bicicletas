@@ -8,8 +8,8 @@
         'calificacionModule',
         'accesorioModule',
         'usuarioModule',
-        'puntoModule'
-
+        'puntoModule',
+        'reservaModule'
     ]);
     // Resuelve problemas de las promesas
     app.config(['$qProvider', function ($qProvider) {

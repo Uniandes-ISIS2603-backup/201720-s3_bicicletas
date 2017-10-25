@@ -25,12 +25,18 @@
                 <hr>
                 <dt>PSE</dt>
                 <dd>{{currentUsuario.contraseniaPSE}}</dd>
+                
+                <hr>
+                <button type="button" class="btn btn-primary" >Crear Reserva</button>
+                
             </div>
             <div class="col-md-6">
                 </dl>
                 <ul class="nav nav-tabs">
+                    
+                    <li role="presentation" class="active"> <a ui-sref="reservasList({documentoUsuario: currentUsuario.documentoUsuario})">Reservas</a></li>
                     <li role="presentation" class="active"> <a ui-sref="puntosList({documentoUsuario: currentUsuario.documentoUsuario})">Puntos</a></li>
-                    <li role="presentation" class="active"> <a ui-sref=""></a></li>
+                    
                 </ul>
                 
                 <div class="col-md-12">
