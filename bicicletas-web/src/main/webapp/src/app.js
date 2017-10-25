@@ -8,7 +8,8 @@
         'calificacionModule',
         'accesorioModule',
         'usuarioModule',
-        'puntoModule'
+        'puntoModule',
+        'bicicletaModule'
 
     ]);
     // Resuelve problemas de las promesas

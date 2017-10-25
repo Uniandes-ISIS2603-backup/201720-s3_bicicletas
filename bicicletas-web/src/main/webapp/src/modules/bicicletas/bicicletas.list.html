@@ -1,0 +1,33 @@
+<div class="container-fluid">
+    <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><label>Lista de bicicletas</label></div>
+            <div class="panel-body">
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                </div>
+                <div class="col-md-12">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr> 
+                                <th>ID</th>
+                                <th>modelo</th>
+                                <th>marca</th>
+                                <th>estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="bicicleta in bicicletaRecords">
+                                <td id="{{$index}}-id">{{bicicleta.id}}</td>
+                                <td id="{{$index}}-modelo">{{bicicleta.modelo}}</td>
+                                <td id="{{$index}}-modelo">{{bicicleta.marca}}</td>
+                                <td id="{{$index}}-modelo">{{bicicleta.estado}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
