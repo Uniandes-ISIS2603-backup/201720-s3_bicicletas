@@ -18,16 +18,12 @@ import java.util.List;
  *
  * @author ka.babativa
  */
-public class EstacionDetailDTO {
-    
-    private String nombre;
-
+public class EstacionDetailDTO extends EstacionDTO {
     
     private List<DireccionEntity> direccion;
     private List<CalificacionEntity> calificaciones;
     private List<AccesorioEntity> accesorios;
     private List<ReservaEntity> reservas;
-    private Long id;
     private List<BicicletaDetailDTO> bicicletas = new ArrayList<>();
 
     
@@ -37,10 +33,10 @@ public class EstacionDetailDTO {
     }
     
     public EstacionDetailDTO(EstacionEntity entidad) {
+        super(entidad);
         if(entidad!=null){
-            this.nombre = entidad.getName();
+            
             this.direccion = entidad.getDirecciones();
-            this.id = entidad.getId();
             this.accesorios = entidad.getAccesorios();
             this.calificaciones = entidad.getCalificaciones();
             this.reservas = entidad.getReservas();
@@ -64,9 +60,6 @@ public class EstacionDetailDTO {
         this.calificaciones = calificaciones;
     }
     
-    public String getNombre() {
-        return nombre;
-    }
     
     public List<AccesorioEntity> getAccesorios() {
         return accesorios;
@@ -76,9 +69,6 @@ public class EstacionDetailDTO {
         this.accesorios = accesorios;
     }
     
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
     
     public List<DireccionEntity> getDireccion() {
         return direccion;
@@ -88,13 +78,6 @@ public class EstacionDetailDTO {
         this.direccion = direccion;
     }
     
-    public Long getId() {
-        return id;
-    }
-    
-    public void setId(Long id) {
-        this.id = id;
-    }
     
     public EstacionEntity toEntity() {
         EstacionEntity entity = new EstacionEntity();

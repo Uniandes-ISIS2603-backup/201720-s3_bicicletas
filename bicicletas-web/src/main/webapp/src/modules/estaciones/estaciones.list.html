@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="panel-group">
         <div class="panel panel-primary">
-            <div class="panel-heading"><label>Lista de estacione</label></div>
+            <div class="panel-heading"><label>Lista de estaciones</label></div>
             <div class="panel-body">
                 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                 </div>
@@ -15,7 +15,7 @@
                         </thead>
                         <tbody>
                             <tr ng-repeat="estacion in estacionesRecords">
-                                <td id="{{$index}}-id">{{estacion.id}}</td>
+                                <td id="{{$index}}-id"><a ui-sref="estacionDetail({id: estacion.id})">{{estacion.id}}</a></td>
                                 <td id="{{$index}}-nombre">{{estacion.nombre}}</td>
                                 </td>
                             </tr>

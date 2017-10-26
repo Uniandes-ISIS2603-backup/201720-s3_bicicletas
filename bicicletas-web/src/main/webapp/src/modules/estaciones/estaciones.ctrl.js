@@ -9,7 +9,7 @@
             
             if ($state.params.id !== undefined) {
                 $http.get(estacionesContext + '/' + $state.params.id).then(function (response) {
-                    $scope.currentestacion = response.data;
+                    $scope.currentEstacion = response.data;
                 });
             }
         }

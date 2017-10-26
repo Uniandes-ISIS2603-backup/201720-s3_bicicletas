@@ -24,15 +24,12 @@
                     }
                 }
             }).state('estacionDetail', {
-                url: '/{idestacion:Long}/detail',
+                url: '/{id:int}/detail',
                 parent: 'estaciones',
                 param: {
-                    bookId: null
+                    id: null
                 },
                 views: {
-                    'listView': {
-                        templateUrl: basePath + 'estaciones.list.html'
-                    },
                     'detailView': {
                         templateUrl: basePath + 'estaciones.detail.html',
                         controller: 'estacionCtrl',
