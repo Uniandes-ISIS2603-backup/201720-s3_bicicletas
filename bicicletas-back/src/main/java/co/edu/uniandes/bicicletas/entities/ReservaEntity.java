@@ -39,11 +39,9 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     
     
     @Temporal(TemporalType.TIMESTAMP)
-    //@PodamExclude
     private Date fechaEntrega;
     
     @Temporal(TemporalType.TIMESTAMP)
-    //@PodamExclude
     private Date fechaInicio;
      
     private int estado;

@@ -9,6 +9,7 @@
 	import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
 	import co.edu.uniandes.bicicletas.dtos.EstacionDTO;
 	import co.edu.uniandes.bicicletas.dtos.EstacionDTO;
+import co.edu.uniandes.bicicletas.dtos.EstacionDetailDTO;
 	import co.edu.uniandes.bicicletas.ejb.EstacionLogic;
 	import co.edu.uniandes.bicicletas.entities.EstacionEntity;
 	import java.util.ArrayList;
@@ -54,6 +55,14 @@
 	        }
 	        return list;
 	    }
+            
+            private List<EstacionDetailDTO> listEntityDetail2DTO(List<EstacionEntity> entityList) {
+	        List<EstacionDetailDTO> list = new ArrayList<>();
+	        for (EstacionEntity entity : entityList) {
+	            list.add(new EstacionDetailDTO(entity));
+	        }
+	        return list;
+	    }
 
 	    /**
 	     * Obtiene la lista de los registros de Estacion
@@ -62,8 +71,8 @@
 	     * 
 	     */
 	    @GET
-	    public List<EstacionDTO> getEstaciones() {
-	        return listEntity2DTO(estacionLogic.getEstaciones());
+	    public List<EstacionDetailDTO> getEstaciones() {
+	        return listEntityDetail2DTO(estacionLogic.getEstaciones());
 	    }
 
 	    /**

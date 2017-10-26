@@ -61,8 +61,7 @@ public class CalificacionEntity extends BaseEntity implements Serializable
     /**
      * La reserva asociada a la calificación
      */
-    @PodamExclude
-    
+    //@PodamExclude    
     private Long idReserva;
     
     /**

@@ -15,7 +15,7 @@
 	                    contraseniaPSE: $scope.usuarioContraseniaPSE
 	                }).then(function (response) {
 	                    //Usuario created successfully
-	                    $state.go('usuariosList', {usuarioId: response.data.id}, {reload: true});
+	                    $state.go('usuariosList', {documentoUsuario: response.data.documentoUsuario}, {reload: true});
 	                });
 	            };
 	        }

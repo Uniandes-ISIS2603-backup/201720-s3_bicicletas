@@ -7,7 +7,7 @@ function (ng) {
                 function ($scope, $http, usuariosContext, $state, direccionesContext, $rootScope, $filter) {
                     $rootScope.edit = true;
 
-                    var idUsuario = $state.params.usuarioDocumentoUsuario;
+                    var documentoUsuario = $state.params.documentoUsuario;
 
                     // Este arreglo guardara los ids de los direcciones asociados y por asociar al usuario.
                     var idsDireccion = [];
@@ -16,7 +16,7 @@ function (ng) {
                     $scope.allDireccionesShow = [];
 
                     //Consulto el usuario a editar.
-                    $http.get(usuariosContext + '/' + idUsuario).then(function (response) {
+                    $http.get(usuariosContext + '/' + documentoUsuario).then(function (response) {
                         var usuario = response.data;
                         $scope.usuarioNombre = usuario.nombre;
                         $scope.usuarioDocumentoUsuario = usuario.documentoUsuario;
@@ -95,7 +95,7 @@ function (ng) {
                          en el array que tiene todos los direcciones y así saber como queda la lista final de los direcciones asociados al autor.
                          */
                         $scope.newDirecciones();
-                        $http.put(usuariosContext + "/" + idUsuario, {
+                        $http.put(usuariosContext + "/" + documentoUsuario, {
                             usuarioNombre: $scope.usuarioNombre,
                             usuarioDocumentoUsuario: $scope.usuarioDocumentoUsuario,
                             usuarioTipoId: $scope.usuarioTipoId,
@@ -108,7 +108,7 @@ function (ng) {
                                 });
                             }
                             //Usuario created successfully
-                            $state.go('usuariosList', {usuarioId: response.data.id}, {reload: true});
+                            $state.go('usuariosList', {documentoUsuario: response.data.documentoUsuario}, {reload: true});
                         });
                     };
 

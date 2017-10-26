@@ -1,0 +1,17 @@
+<div class="container-fluid">
+<div class="row">
+    <div class="col-md-2" ng-repeat="direccion in direccionesRecords">
+        <div class="thumbnail">
+            <a ui-sref="direccionDetail({direccionId: direccion.id})">                                   
+            </a>
+            <div class="caption text-center">
+                <p>{{direccion.name}}</p>
+                <p ng-repeat="usuario in direccion.usuarios">
+                    <a ui-sref="usuarioDetail({documentoUsuario: usuario.documentoUsuario})" class="thumb">{{usuario.documentoUsuario}}</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
