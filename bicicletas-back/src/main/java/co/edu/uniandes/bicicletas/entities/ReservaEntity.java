@@ -41,6 +41,7 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaEntrega;
     
+    
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaInicio;
      
