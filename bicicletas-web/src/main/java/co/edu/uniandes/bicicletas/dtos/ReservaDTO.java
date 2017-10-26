@@ -40,15 +40,21 @@ public class ReservaDTO {
             this.idReserva = entidad.getId();
             this.usuarioReserva = entidad.getUsuarioReserva();
             this.estado = entidad.getEstado();
-            this.fechaInicio = entidad.getFechaInicio().toString();
+            this.fechaInicio = fechaOrg(entidad.getFechaInicio());
             this.estacionSalida = entidad.getEstacionSalida();
-            this.fechaFin = entidad.getFechaEntrega().toString();
+            this.fechaFin = fechaOrg(entidad.getFechaEntrega());
             this.estacionLlegada = entidad.getEstacionLlegada();
             this.precioFinal = entidad.getPrecioFinal();
             this.fechaReserva = entidad.getFechaReserva().toString();
             this.descuento = entidad.getDescuento();
             this.transaccion = entidad.getTransaccion();
         }
+    }
+    
+    public String fechaOrg(Date fecha){
+        String rta = fecha.toString();
+        String nuevo=rta.substring(0,10)+" "+rta.substring(24,28)+" "+rta.substring(11,19);
+        return nuevo;
     }
     
     public ReservaEntity toEntity() {

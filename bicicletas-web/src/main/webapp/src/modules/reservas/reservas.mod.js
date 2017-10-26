@@ -26,6 +26,20 @@ var mod = ng.module("reservaModule", ['usuarioModule', 'ui.router']);
                         controllerAs: 'ctrl'
                     }
                 }
-            });
+            }).state('reservaDetail', {
+	                url: '/{idReserva:int}/detail',
+	                parent: 'usuarios',
+	                param: {
+	                    idReserva: null,
+                            documentoUusrio:null
+	                },
+	                views: {
+	                    'detailView': {
+	                        templateUrl: basePath + 'reservas.detail.html',
+	                        controller: 'reservasCtrl',
+	                        controllerAs: 'ctrl'
+	                    }
+	                }
+	            });
         }]);
     })(window.angular);

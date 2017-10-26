@@ -11,16 +11,22 @@
                     <th>&nbsp;</th>
                 </tr>
                 
-                            <tr> 
-                                <th>Fecha de inicio</th>
-                                <th>Fecha de Fin</th>   
-                            </tr>
+                      <tr> 
+                      <th>idReserva</th>
+                      <th>Fecha Creacion</th>
+                      <th>Estacion Salida</th>
+                      <th>Fecha de Inicio</th>
+                      <th>Fecha de Entrega</th>   
+                      </tr>
             </thead>
             
             <tbody>
                 <tr ng-repeat="reserva in reservasRecords">
+                    <td id="{{$index}}-idReserva"><a ui-sref="reservaDetail({idReserva:reserva.idReserva})">{{reserva.idReserva}}</a></td>
+                    <td id="{{$index}}-fechaCreacion">{{reserva.usuarioReserva.reservas.fechaReserva}}</td>
+                    <td id="{{$index}}-estacionSalida">{{reserva.estacionSalida.name}}</td>
                     <td id="{{$index}}-fechaInicio">{{reserva.fechaInicio }}</td>
-                    <td id="{{$index}}-fechaFin">{{reserva.fechaFin }}</td> 
+                    <td id="{{$index}}-fechaEntega">{{reserva.fechaEntrega }}</td> 
                     
                 </tr>
             </tbody>
