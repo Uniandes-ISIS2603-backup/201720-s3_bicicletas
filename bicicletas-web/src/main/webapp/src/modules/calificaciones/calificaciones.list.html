@@ -1,38 +1,44 @@
-<div class="container-fluid">
-    <div class="panel-group">
-        <div class="panel panel-primary">
-            <div class="panel-heading"><label>Lista de calificaciones</label></div>
-            <div class="panel-body">
-                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                </div>
-                <div class="col-md-12">
-                    <table class="table table-striped">
-                        <thead>
+<div class="container-fluid">   
+    <div class="col-sm-12">
+        <br>
+        <table ng-if="!messageCalificaciones" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Total calificaciones:</th>
+                    <td> {{calificacionesRecords.length}}</td>
+                </tr>
+                <tr>
+                    <th>&nbsp;</th>
+                </tr>
+                
                             <tr> 
-                                <th>Estación</th>
-                                <th>Reserva</th>
-                                <th>Fecha</th>
-                                <th>Descripción</th>  
+                                <th>Descripción</th>
+                                <th>Fecha</th>                                                                                             
                                 <th>Nota</th>  
-                                
+                                <th>Reserva</th>
                             </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="calificacion in calificacionesRecords">
-                                <td id="{{$index}}-idEstacion">{{calificacion.idEstacion}}</td>
-                                <td id="{{$index}}-idReserva">{{calificacion.idReserva}}</td>
-                                <td id="{{$index}}-fechaCali">{{calificacion.fechaCali| date:'yyyy-MM-dd'}}</td>
-                                <td id="{{$index}}-descripcion">{{calificacion.descripcion}}</td>
+            </thead>
+            
+            <tbody>
+                 <tr ng-repeat="calificacion in calificacionesRecords">          
+                                <td id="{{$index}}-descripcion">{{calificacion.descripcion}}</td>   
+                                <td id="{{$index}}-fechaCali">{{calificacion.fechaCali| date:'dd/MM/yyyy'}}</td> 
                                 <td id="{{$index}}-nota">{{calificacion.nota}}</td>
+                                <td id="{{$index}}-idReserva">{{calificacion.idReserva}}</td>                                                         
+                                
                                 <td id="{{$index}}-actions">
                                 </td>
                             </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+            </tbody>
+        </table>
+        <table ng-if="messageCalificaciones" class="table table-striped">
+            
+            <tbody>
+                <tr>
+                    <td><b>{{messageCalificaciones}}</b></td>                                  
+                </tr>
+            </tbody>
+        </table>
     </div>
-
 
 </div>
