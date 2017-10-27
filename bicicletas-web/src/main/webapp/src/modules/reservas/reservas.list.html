@@ -22,12 +22,11 @@
             
             <tbody>
                 <tr ng-repeat="reserva in reservasRecords">
-                    <td id="{{$index}}-idReserva"><a ui-sref="reservaDetail({idReserva:reserva.idReserva})">{{reserva.idReserva}}</a></td>
-                    <td id="{{$index}}-fechaCreacion">{{reserva.usuarioReserva.reservas.fechaReserva}}</td>
+                    <td id="{{$index}}-idReserva"><a ui-sref="reservaDetail({idUsuario:reserva.usuarioReserva.documentoUsuario,idReserva:reserva.idReserva})">{{reserva.idReserva}}</a></td>
+                    <td id="{{$index}}-fechaCreacion">{{reserva.usuarioReserva.documentoUsuario}}</td>
                     <td id="{{$index}}-estacionSalida">{{reserva.estacionSalida.name}}</td>
                     <td id="{{$index}}-fechaInicio">{{reserva.fechaInicio }}</td>
                     <td id="{{$index}}-fechaEntega">{{reserva.fechaEntrega }}</td> 
-                    
                 </tr>
             </tbody>
         </table>

@@ -27,16 +27,16 @@ var mod = ng.module("reservaModule", ['usuarioModule', 'ui.router']);
                     }
                 }
             }).state('reservaDetail', {
-	                url: '/{idReserva:int}/detail',
+	                url: '{idUsuario:int}/{idReserva:int}/detail',
 	                parent: 'usuarios',
 	                param: {
-	                    idReserva: null,
-                            documentoUusrio:null
+                            idReserva:null,
+                            idUsuario: null
 	                },
 	                views: {
 	                    'detailView': {
 	                        templateUrl: basePath + 'reservas.detail.html',
-	                        controller: 'reservasCtrl',
+	                        controller: 'reservasDetailCtrl',
 	                        controllerAs: 'ctrl'
 	                    }
 	                }
