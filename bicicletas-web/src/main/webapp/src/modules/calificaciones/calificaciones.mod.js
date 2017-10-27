@@ -1,46 +1,31 @@
 (function (ng) {
     var mod = ng.module("calificacionModule", ['estacionModule','ui.router']);
-    mod.constant("calificacionesContext", "api/calificaciones");
+    mod.constant("calificacionesContext", "calificaciones");
+    mod.constant("usuariosContext", "api/estaciones");
+    
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/calificaciones/';
             $urlRouterProvider.otherwise("/calificacionesList");
 
-            $stateProvider.state('calificaciones', {
+        $stateProvider.state('calificaciones', {
                 url: '/calificaciones',
                 abstract: true,
+                parent: 'estacionDetail',
                 views: {
-                    'mainView': {
-                        templateUrl: basePath + 'calificaciones.html',
-                        controller: 'calificacionCtrl',
-                        controllerAs: 'ctrl'
+                    childrenView: {
+                        templateUrl: basePath + 'calificaciones.html'
                     }
                 }
-            }).state('calificacionesList', {
+            }).state('calificacionesEstacionList', {
                 url: '/list',
                 parent: 'calificaciones',
                 views: {
                     'listView': {
-                        templateUrl: basePath + 'calificaciones.list.html'
-                    }
-                }
-            }).state('calificacionDetail', {
-                url: '/{idCalificacion:Long}/detail',
-                parent: 'calificaciones',
-                param: {
-                    bookId: null
-                },
-                views: {
-                    'listView': {
-                        templateUrl: basePath + 'calificaciones.list.html'
-                    },
-                    'detailView': {
-                        templateUrl: basePath + 'calificaciones.detail.html',
-                        controller: 'calificacionCtrl',
+                        templateUrl: basePath + 'calificaciones.list.html',
+                        controller: 'calificacionesCtrl',
                         controllerAs: 'ctrl'
                     }
-
                 }
-
             });
         }]);
 })(window.angular);
