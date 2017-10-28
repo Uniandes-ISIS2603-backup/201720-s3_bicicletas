@@ -2,77 +2,65 @@
     <div class="panel-group">
         <div class="panel panel-primary">
             <div class="panel-heading"><label ng-if="!edit" id="createUsuario">Create new Usuario</label>
-                <label ng-if="edit" id="editUsuario">Editar Usuario</label></div>
+                <label ng-if="edit" id="editUsuario">Edit Usuario</label></div>
             <div class="panel-body">
                 <form ng-submit="createUsuario()" name="usuario">
                     <div class="form-group row">
                         <div class="form-group col-md-6">
-                            <label for="usuarioNombre" class="col-sm-3">Nombre:</label>
+                            <label for="usuarioNombre" class="col-sm-2">Nombre:</label>
                             <input id="usuarioNombre" required ng-model="usuarioNombre" class="col-sm-6"/>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="form-group col-md-6">
-                            <label for="usuarioDocumentoUsuario" class="col-sm-3">Documento de identificación:</label>
+                            <label for="usuarioTipoId" class="col-sm-2">Tipo documento:</label>
+                            <input id="usuarioTipoId" required ng-model="usuarioTipoId" class="col-sm-2"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="usuarioDocumentoUsuario" class="col-sm-2">Documento usuario:</label>
                             <input id="usuarioDocumentoUsuario" required ng-model="usuarioDocumentoUsuario" class="col-sm-6"/>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="form-group col-md-6">
-                            <label for="usuarioTipoId" class="col-sm-3">Tipo de identificación:</label>
-                            <input id="usuarioTipoId" required ng-model="usuarioTipoId" class="col-sm-1"/>
+                            <label for="usuarioFechaNacimiento" class="col-sm-2">Fecha nacimiento:</label>
+                            <input type="date" id="usuarioFechaNacimiento" placeholder="DD/MM/YYYY" required ng-model="usuarioFechaNacimiento" class="col-sm-6"/>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="form-group col-md-6">
-                            <label for="usuarioFechaNacimiento" class="col-sm-3">Fecha de nacimiento:</label>
-                            <input type="date" id="usuarioFechaNacimiento" placeholder="DD/MM/YYYY" required ng-model="usuarioFechaNacimiento" class="col-sm-4"/>
+                            <label for="usuarioTarjetaCredito" class="col-sm-2">Tarjeta credito:</label>
+                            <input id="usuarioTarjetaCredito" required ng-model="usuarioTarjetaCredito" class="col-sm-6"/>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="form-group col-md-6">
-                            <label for="usuarioTarjetaCredito" class="col-sm-3">Tarjeta de crédito:</label>
-                            <input  id="usuarioTarjetaCredito" required ng-model="usuarioTarjetaCredito" class="col-sm-6"/>
+                            <label for="usuarioNumeroCsv" class="col-sm-2">Numero csv:</label>
+                            <input id="usuarioNumeroCsv" required ng-model="usuarioNumeroCsv" class="col-sm-2"/>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="form-group col-md-6">
-                            <label for="usuarioNumeroCsv" class="col-sm-3">Número csv:</label>
-                            <input  id="usuarioNumeroCsv" required ng-model="usuarioNumeroCsv" class="col-sm-2"/>
+                            <label for="usuarioContraseniaPSE" class="col-sm-2">Contrasenia PSE:</label>
+                            <input id="usuarioContraseniaPSE" required ng-model="usuarioContraseniaPSE" class="col-sm-6"/>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <div class="form-group col-md-6">
-                            <label for="usuarioContraseniaPSE" class="col-sm-3">Contraseña PSE:</label>
-                            <input  id="usuarioContraseniaPSE" required ng-model="usuarioContraseniaPSE" class="col-sm-6"/>
-                        </div>
-                    </div>
-                    <div ng-if="edit" class="panel-group" id="theDirecciones">
-                        <div class="panel panel-info">
-                            <div class="panel-heading">Direcciones asociadas</div>
-                            <div class="panel-body">
-                                <div id="div2" ondrop="angular.element(document.getElementById('theDirecciones')).scope().dropAdd(event)" ondragover="angular.element(document.getElementById('theDirecciones')).scope().allowDrop(event)">
-                                    <label></label>
-                                    <div ng-show="edit" ng-repeat="direccion in allDireccionesUsuario">
-                                        <p draggable="true" ondragstart="angular.element(document.getElementById('theDirecciones')).scope().drag(event)" id="{{direccion.id}}">{{direccion.name}}</p>                                 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
 
                     <div class="form-group row">
                         <div class="form-group col-sm-4" ng-if="!usuario.$valid">
 
                             <div class="alert alert-warning" >
-                                <strong>Error!</strong><p>Es necesario llenar todos los campos*</p>
+                                <strong>Warning!</strong><p>All inputs are required*</p>
                             </div> 
                         </div> 
                     </div> 
                     <div class="form-group row">
                         <div class="form-group col-sm-12">
                             <input ng-show="usuario.$valid" type="submit" value="Save" class="btn btn-success"/>
-                            <a class="btn btn-info" ui-sref="usuariosList">Cancel</a>
+                            <a class="btn btn-info" ui-sref="usuariosList">Canceler</a>
                         </div>
                     </div>
                 </form>
