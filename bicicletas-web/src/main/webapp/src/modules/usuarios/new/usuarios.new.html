@@ -47,7 +47,30 @@
                             <input id="usuarioContraseniaPSE" required ng-model="usuarioContraseniaPSE" class="col-sm-6"/>
                         </div>
                     </div>
-                    
+                    <div ng-if="edit" class="panel-group" id="theDirecciones">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">Direcciones asociadas</div>
+                            <div class="panel-body">
+                                <div id="div2" ondrop="angular.element(document.getElementById('theDirecciones')).scope().dropAdd(event)" ondragover="angular.element(document.getElementById('theDirecciones')).scope().allowDrop(event)">
+                                    <label></label>
+                                    <div ng-show="edit" ng-repeat="direccion in allDireccionesUsuario">
+                                        <p draggable="true" ondragstart="angular.element(document.getElementById('theDirecciones')).scope().drag(event)" id="{{direccion.id}}">{{direccion.name}}</p>                                 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-success">
+                            <div class="panel-heading">Todas las direcciones</div>
+                            <div class="panel-body">
+                                <div id="div1" ondrop="angular.element(document.getElementById('theDirecciones')).scope().dropDelete(event)" ondragover="angular.element(document.getElementById('theDirecciones')).scope().allowDrop(event)">
+                                    <label></label>
+                                    <div ng-repeat="direccion in allDireccionesShow">
+                                        <p draggable="true" ondragstart="angular.element(document.getElementById('theDirecciones')).scope().drag(event)" id="{{direccion.id}}">{{direccion.name}}</p>                
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="form-group row">
                         <div class="form-group col-sm-4" ng-if="!usuario.$valid">
