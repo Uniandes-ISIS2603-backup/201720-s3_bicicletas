@@ -35,7 +35,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\t\n  \"nombre\":\"nombreusuario uno\",\n  \"tipoId\":\"1\",\n  \"documentoUsuario\":\"1111111111\",\n  \"fechaNacimiento\":\"12-01-1995\"\n}"
+					"raw": "{\r\n  \"nombre\":\"nombreusuario uno\",\r\n  \"tipoId\":\"1\",\r\n  \"documentoUsuario\":\"1111111111\",\r\n  \"fechaNacimiento\":\"2000-10-01T00:00:00-00:00\",\r\n  \"tarjetaCredito\":\"1234123412341234\",\r\n  \"numeroCsv\":111,\r\n  \"contraseniaPSE\":\"contrasenia111\"\r\n}"
 				},
 				"description": ""
 			},
@@ -70,7 +70,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"name\":\"Avenida Jimenez con calle 28\",\r\n  \"codigoPostal\":\"11111\",\r\n  \"descripcion\":\"Frente al parque\",\r\n  \"ciudad\":\"Bogota\"\r\n}"
+					"raw": "{\n  \"name\":\"Direccion uno\",\n  \"codigoPostal\":\"11111\",\n  \"descripcion\":\"Descripcion de direccion 1\",\n  \"ciudad\":\"Ciudad uno\"\n}"
 				},
 				"description": ""
 			},

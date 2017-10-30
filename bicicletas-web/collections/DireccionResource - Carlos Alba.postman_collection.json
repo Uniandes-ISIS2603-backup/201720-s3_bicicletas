@@ -34,7 +34,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"name\":\"Avenida Jimenez con calle 28\",\n  \"codigoPostal\":\"11111\",\n  \"descripcion\":\"Frente al parque\",\n  \"ciudad\":\"Bogota\"\n}"
+					"raw": "{\n  \"name\":\"Direccion uno\",\n  \"codigoPostal\":\"11111\",\n  \"descripcion\":\"Descripcion de direccion 1\",\n  \"ciudad\":\"Ciudad uno\"\n}"
 				},
 				"description": "POST para Direcciones"
 			},
@@ -67,7 +67,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"name\":\"Avenida Jimenez con calle 28\",\n  \"codigoPostal\":\"11111\",\n  \"descripcion\":\"Frente al parque\",\n  \"ciudad\":\"Bogota\"\n}"
+					"raw": "{\n  \"name\":\"Direccion uno\",\n  \"codigoPostal\":\"11111\",\n  \"descripcion\":\"Descripcion de direccion 1\",\n  \"ciudad\":\"Ciudad uno\"\n}"
 				},
 				"description": "POST para Direcciones"
 			},
@@ -100,7 +100,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\":\"Avenida Jimenez con calle 14\",\n  \"codigoPostal\":\"11111\",\n  \"descripcion\":\"Frente a la estacion\",\n  \"ciudad\":\"Bogota\"\n}"
+					"raw": "{\n  \"name\":\"Direccion uno\",\n  \"codigoPostal\":\"11111\",\n  \"descripcion\":\"Descripcion nueva de direccion 1\",\n  \"ciudad\":\"Ciudad uno\"\n}"
 				},
 				"description": "PUT de direcciones"
 			},
