@@ -2,7 +2,7 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-md-3">
-                <dl>     
+               <dl>     
                 <dt>Id Reserva</dt>
                 <dd>{{currentReserva.idReserva}}</dd>
                 
@@ -10,9 +10,23 @@
                 <button type="button" class="btn btn-primary" >Crear Reserva</button>
                 
             </div>
+            <div class="col-md-9">
+                </dl>
+                <ul class="nav nav-tabs">
+                    <li role="presentation" class="active"> <a ui-sref="">Accesorios</a></li>        
+                    <li role="presentation" class="active"> <a ui-sref="">Bicicletas</a></li>      
+                    <li role="presentation" class="active"> <a ui-sref="">Calificación estación de salida</a></li>
+                    <li role="presentation" class="active"> <a ui-sref="">Calificación estación de llegada</a></li>         
+                </ul>
+                
+                <div class="col-md-12">
+                <div ui-view="childrenView"></div>
+            </div>
+            </div>
         </div>
         <div class="row">
             
         </div>
     </div>
 </div>
+
