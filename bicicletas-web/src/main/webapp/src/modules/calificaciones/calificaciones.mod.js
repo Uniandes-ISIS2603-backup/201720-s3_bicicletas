@@ -1,7 +1,9 @@
 (function (ng) {
-    var mod = ng.module("calificacionModule", ['estacionModule','ui.router']);
+    var mod = ng.module("calificacionModule", ['estacionModule','usuarioModule', 'ui.router']);
     mod.constant("calificacionesContext", "calificaciones");
     mod.constant("usuariosContext", "api/estaciones");
+    mod.constant("reservasContext", "reservas");
+    mod.constant("usuariosContext", "api/usuarios");
     
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/calificaciones/';
@@ -11,6 +13,15 @@
                 url: '/calificaciones',
                 abstract: true,
                 parent: 'estacionDetail',
+                views: {
+                    childrenView: {
+                        templateUrl: basePath + 'calificaciones.html'
+                    }
+                }
+            }).state('calificacionesReserva', {
+                url: '/calificaciones',
+                abstract: true,
+                parent: 'reservaDetail',
                 views: {
                     childrenView: {
                         templateUrl: basePath + 'calificaciones.html'
@@ -26,6 +37,29 @@
                         controllerAs: 'ctrl'
                     }
                 }
-            });
+            }).state('calificacionDetail', {
+                url:'/usuarios/{idUsuario}/reservas/{idReserva}/calificacion/:cali',
+                parent: 'calificacionesReserva',
+                params:{
+                    idUsuario: null,
+                    idReserva: null
+                },
+                views: {
+                    'listView':{
+                        templateUrl: basePath + 'calificaciones.detail.html',
+                        controller: 'calificacionesDetailCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            }).state('calificacionesCreate', {
+	                url: '/create/:cali',
+	                parent: 'calificacionesReserva',
+	                views: {
+	                    'listView': {
+	                        templateUrl: basePath + '/new/calificaciones.new.html',
+	                        controller: 'calificacionNewCtrl'
+	                    }
+	                }
+	            });
         }]);
 })(window.angular);

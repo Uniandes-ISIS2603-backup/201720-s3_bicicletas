@@ -95,7 +95,7 @@ public class ReservaCalificacionResource
         if (entity == null) 
         {   
             String esta = darNombreEstacion(origen);
-            throw new WebApplicationException("El recurso /reservas/" + idReserva + "/calificaciones/" + esta + " no existe", 404);
+            throw new WebApplicationException("Aún no hay una calificación para la " + esta, 404);
         }
        
         return new CalificacionDTO(entity);
@@ -140,14 +140,14 @@ public class ReservaCalificacionResource
     
     private String darNombreEstacion(boolean cali)
     {
-        String estacion = "estacionDe";
+        String estacion = "estación de ";
         if(cali)
         {
-            estacion = estacion + "Salida";
+            estacion = estacion + "salida";
         }
         else
         {
-           estacion = estacion + "Llegada"; 
+           estacion = estacion + "llegada"; 
         }        
         return estacion;
         
