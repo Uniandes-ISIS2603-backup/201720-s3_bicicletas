@@ -265,7 +265,7 @@ public class ReservaLogic
           }
         }
          if(a){
-             throw new BusinessLogicException("No esta disponible la bici");
+             throw new BusinessLogicException("No esta disponible el accesorio");
          }
          reserva.getAccesorios().add(accesorioEntity);
          accesorioEntity.setReservado(AccesorioEntity.EN_RESERVA);

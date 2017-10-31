@@ -30,6 +30,7 @@ import co.edu.uniandes.bicicletas.entities.CalificacionEntity;
 import co.edu.uniandes.bicicletas.entities.DireccionEntity;
 import co.edu.uniandes.bicicletas.entities.EstacionEntity;
 import co.edu.uniandes.bicicletas.entities.ReservaEntity;
+import co.edu.uniandes.bicicletas.persistence.AccesorioPersistence;
 import co.edu.uniandes.bicicletas.persistence.BicicletaPersistence;
 import co.edu.uniandes.bicicletas.persistence.EstacionPersistence;
 import java.util.ArrayList;
@@ -58,8 +59,7 @@ public class EstacionLogic
     @Inject
     private BicicletaPersistence bicicletaLogic;
     
-    @Inject
-    private AccesorioLogic accesorioLogic;
+    private AccesorioPersistence persistenceAccesorio;
     
     public EstacionEntity getEstacion(Long id) throws WebApplicationException
     {
@@ -79,6 +79,35 @@ public class EstacionLogic
          }
          persistence.delete(id);
     }
+    
+    public EstacionEntity asignarAccesorio(Long idEstacion, AccesorioEntity accesorio) throws BusinessLogicException{
+         EstacionEntity estacion = getEstacion(idEstacion);
+         AccesorioEntity accesorioEntity = persistenceAccesorio.find(accesorio.getId());
+         if(accesorioEntity.getReservado()==1){
+             throw new BusinessLogicException("No esta disponible el accesorio");
+         }
+         boolean a = false;
+         for (AccesorioEntity accesorioR : estacion.getAccesorios()) {
+             if(accesorioEntity.equals(accesorioR)){
+                 a=true;
+          }
+        }
+         if(a){
+             throw new BusinessLogicException("No esta disponible el accesorio");
+         }
+         estacion.getAccesorios().add(accesorioEntity);
+         accesorioEntity.setReservado(AccesorioEntity.EN_RESERVA);
+         accesorioEntity.setEstacion(estacion);
+         persistence.update(estacion);
+         persistenceAccesorio.update(accesorioEntity);
+         return estacion;
+     }
+    
+    public List<AccesorioEntity> getAccesorios1(Long idEstacion)throws BusinessLogicException{
+         EstacionEntity estacion = getEstacion(idEstacion);
+         List<AccesorioEntity> accesorios = estacion.getAccesorios();
+         return accesorios;
+     }
     
     public List<EstacionEntity> getEstaciones(){
         return persistence.findAll();
@@ -312,28 +341,23 @@ public class EstacionLogic
         return null;
     }
 
-    public AccesorioEntity addAccesorio(Long estacionId, Long accesoriosId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de agregar un libro al estacion con id = {0}", estacionId);
-        direccionLogic.addEstacion(accesoriosId, estacionId);
-        return accesorioLogic.getAccesorio(accesoriosId);
-    }
     
-    public List<AccesorioEntity> replaceAccesorios(Long estacionId, List<AccesorioEntity> list) {
-        LOGGER.log(Level.INFO, "Inicia proceso de reemplazar los libros asocidos al estacion con id = {0}", estacionId);
-        EstacionEntity entity = getEstacion(estacionId);
-        List<AccesorioEntity> accesorioList = accesorioLogic.getAccesorios();
-        for (AccesorioEntity direccion : accesorioList) {
-            if (list.contains(direccion)) {
-                if (!direccion.getEstacion().equals(entity)) {
-                    accesorioLogic.addEstacion(direccion.getId(), estacionId);
-                }
-            } else {
-                accesorioLogic.removeEstacion(direccion.getId(), estacionId);
-            }
-        }
-        entity.setAccesorios(list);
-        return entity.getAccesorios();
-    }
+    //public List<AccesorioEntity> replaceAccesorios(Long estacionId, List<AccesorioEntity> list) {
+      //  LOGGER.log(Level.INFO, "Inicia proceso de reemplazar los libros asocidos al estacion con id = {0}", estacionId);
+        //EstacionEntity entity = getEstacion(estacionId);
+        //List<AccesorioEntity> accesorioList = accesorioLogic.getAccesorios();
+        //for (AccesorioEntity direccion : accesorioList) {
+          //  if (list.contains(direccion)) {
+            //    if (!direccion.getEstacion().equals(entity)) {
+              //      accesorioLogic.addEstacion(direccion.getId(), estacionId);
+               // }
+           // } else {
+             //   accesorioLogic.removeEstacion(direccion.getId(), estacionId);
+           // }
+     //   }
+       // entity.setAccesorios(list);
+      //  return entity.getAccesorios();
+    //}
 
     /**
      * Desasocia un Direccion existente de un Estacion existente

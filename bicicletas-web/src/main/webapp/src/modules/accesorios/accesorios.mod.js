@@ -38,6 +38,27 @@
 
                 }
 
-            });
+            }).state('accesoriosCreate', {
+                    url: '/create',
+                    parent: 'accesorios',
+                    views: {
+                        'detailView': {
+                            templateUrl: basePath + '/new/accesorios.new.html',
+                            controller: 'accesorioNewCtrl'
+                        }
+                    }
+                }).state('accesorioDelete', {
+                    url: '/delete/{id:int}',
+                    parent: 'accesorios',
+                    param: {
+                        id: null
+                    },
+                    views: {
+                        'detailView': {
+                            templateUrl: basePath + 'delete/accesorio.delete.html',
+                            controller: 'accesorioDeleteCtrl'
+                        }
+                    }
+                });;;
         }]);
 })(window.angular);
