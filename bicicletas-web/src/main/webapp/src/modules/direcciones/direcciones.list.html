@@ -1,17 +1,45 @@
-<div class="container-fluid">
-<div class="row">
-    <div class="col-md-2" ng-repeat="direccion in direccionesRecords">
-        <div class="thumbnail">
-            <a ui-sref="direccionDetail({direccionId: direccion.id})">                                   
-            </a>
-            <div class="caption text-center">
-                <p>{{direccion.name}}</p>
-                <p ng-repeat="usuario in direccion.usuarios">
-                    <a ui-sref="usuarioDetail({documentoUsuario: usuario.documentoUsuario})" class="thumb">{{usuario.documentoUsuario}}</a>
-                </p>
-            </div>
-        </div>
+<div class="container-fluid">   
+    <div class="col-sm-12">
+        <br>
+        <table ng-if="!messageDirecciones" class="table table-striped">
+            <thead>
+                <a class="btn btn-info" ui-sref="direccionesCreate"><span class="glyphicon glyphicon-plus-sign"></span>Añadir dirección</a>
+                <tr>
+                    <th>&nbsp;</th>
+                </tr>
+                
+                            <tr> 
+                                <th>ID</th>
+                                <th>Dirección</th>
+                                <th>Codigo postal</th>
+                                <th>Ciudad</th>
+                                <th>Descripción</th>
+                                <th>Eliminar</th>
+                            </tr>
+            </thead>
+            
+            <tbody>
+                <tr ng-repeat="direccion in direccionesRecords">
+                    <td id="{{$index}}-id">{{direccion.id}}</td>
+                    <td id="{{$index}}-name">{{direccion.name}}</td>
+                    <td id="{{$index}}-codigoPostal">{{direccion.codigoPostal}}</td>
+                    <td id="{{$index}}-ciudad">{{direccion.ciudad}}</td>
+                    <td id="{{$index}}-descripcion">{{direccion.descripcion}}</td>
+                    <td id="{{$index}}-actions">
+                       <a class="btn btn-danger btn-sm" ui-sref="direccionDelete({direccionId: direccion.id})"><span class="glyphicon glyphicon-trash"></span></a>
+                    </td>
+                </tr>
+                
+            </tbody>
+        </table>
+        <table ng-if="messageDirecciones" class="table table-striped">
+            
+            <tbody>
+                <tr>
+                    <td><b>{{messageDirecciones}}</b></td>                                  
+                </tr>
+            </tbody>
+        </table>
     </div>
-</div>
-</div>
 
+</div>
