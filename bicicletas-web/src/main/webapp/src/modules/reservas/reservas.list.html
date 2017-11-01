@@ -3,14 +3,20 @@
         <br>
         <table ng-if="!messageReservas" class="table table-striped">
             <thead>
-                <tr>
-                    <th>Total Reservas:</th>
-                    <td> {{reservasRecords.length}}</td>
-                </tr>
+                <div class="col-sm-3">
+                    <tr>
+                        <th>Total Reservas:</th>
+                        <td> {{reservasRecords.length}}</td>
+                    <div class="row">
+                        <br>
+                        <td><a class="btn btn-info" ui-sref="ReservaCreate"><span class="glyphicon glyphicon-plus-sign"></span>Crear Reserva</a>
+                        </td>
+                    </div>
+                    </tr>
+                </div>
                 <tr>
                     <th>&nbsp;</th>
                 </tr>
-                
                       <tr> 
                       <th>idReserva</th>
                       <th>Fecha Creacion</th>
