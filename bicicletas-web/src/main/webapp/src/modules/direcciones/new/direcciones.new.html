@@ -1,0 +1,77 @@
+<div class="container-fluid">
+    <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><label ng-if="!edit" id="createDireccion">Crear nueva direccion</label>
+                <label ng-if="edit" id="editDireccion">Edit Direccion</label></div>
+            <div class="panel-body">
+                <form ng-submit="createDireccion()" name="direccion">
+                    <div class="form-group row">
+                        <div class="form-group col-md-8">
+                            <label for="direccionName" class="col-sm-3">Direccion:</label>
+                            <input id="direccionName" required ng-model="direccionName" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-8">
+                            <label for="direccionCodigoPostal" class="col-sm-3">Codigo postal:</label>
+                            <input id="direccionCodigoPostal" required ng-model="direccionCodigoPostal" class="col-sm-3"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-8">
+                            <label for="direccionDescripcion" class="col-sm-3">Descripcion:</label>
+                            <input id="direccionDescripcion" required ng-model="direccionDescripcion" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-8">
+                            <label for="direccionCiudad " class="col-sm-3">Ciudad:</label>
+                            <input id="direccionCiudad " required ng-model="direccionCiudad " class="col-sm-3"/>
+                        </div>
+                    </div>
+                    <div ng-if="edit" class="panel-group" id="theDirecciones">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">Direcciones asociadas</div>
+                            <div class="panel-body">
+                                <div id="div2" ondrop="angular.element(document.getElementById('theDirecciones')).scope().dropAdd(event)" ondragover="angular.element(document.getElementById('theDirecciones')).scope().allowDrop(event)">
+                                    <label></label>
+                                    <div ng-show="edit" ng-repeat="direccion in allDireccionesUsuario">
+                                        <p draggable="true" ondragstart="angular.element(document.getElementById('theDirecciones')).scope().drag(event)" id="{{direccion.id}}">{{direccion.name}}</p>                                 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-success">
+                            <div class="panel-heading">Todas las direcciones</div>
+                            <div class="panel-body">
+                                <div id="div1" ondrop="angular.element(document.getElementById('theDirecciones')).scope().dropDelete(event)" ondragover="angular.element(document.getElementById('theDirecciones')).scope().allowDrop(event)">
+                                    <label></label>
+                                    <div ng-repeat="direccion in allDireccionesShow">
+                                        <p draggable="true" ondragstart="angular.element(document.getElementById('theDirecciones')).scope().drag(event)" id="{{direccion.id}}">{{direccion.name}}</p>                
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                    <div class="form-group row">
+                        <div class="form-group col-sm-4" ng-if="!direccion.$valid">
+
+                            <div class="alert alert-warning" >
+                                <strong>Warning!</strong><p>All inputs are required*</p>
+                            </div> 
+                        </div> 
+                    </div> 
+                    <div class="form-group row">
+                        <div class="form-group col-sm-12">
+                            <input ng-show="direccion.$valid" type="submit" value="Save" class="btn btn-success"/>
+                            <a class="btn btn-info" ui-sref="direccionesList">Cancelar</a>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -35,9 +35,29 @@
                         controller: 'estacionCtrl',
                         controllerAs: 'ctrl'
                     }
-
                 }
-
-            });
+            }).state('estacionesCreate',{
+                url: '/create',
+                    parent: 'estaciones',
+                    views: {
+                        'detailView': {
+                            templateUrl: basePath + '/new/estaciones.new.html',
+                            controller: 'estacionNewCtrl',
+                            controllerAs: 'ctrl'
+                        }
+                    }
+            }).state('estacionDelete', {
+                    url: '/delete/{id:int}',
+                    parent: 'estaciones',
+                    param: {
+                        id: null
+                    },
+                    views: {
+                        'detailView': {
+                            templateUrl: basePath + 'delete/estaciones.delete.html',
+                            controller: 'estacionDeleteCtrl'
+                        }
+                    }
+                });
         }]);
 })(window.angular);

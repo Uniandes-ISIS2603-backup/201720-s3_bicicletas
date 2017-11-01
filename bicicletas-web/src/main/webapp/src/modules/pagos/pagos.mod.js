@@ -23,6 +23,20 @@
                         templateUrl: basePath + 'pagos.list.html'
                     }
                 }
+            }).state('pagoDetail', {
+                url: '/{id:int}/detail',
+                parent: 'pagos',
+                param: {
+                    id: null
+                }, 
+                views:{
+                    
+                    'detailView':{
+                        templateUrl: basePath + 'pagos.detail.html',
+                        controller: 'pagosCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                } 
             });
         }]);
 })(window.angular);

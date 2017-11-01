@@ -7,6 +7,8 @@ package co.edu.uniandes.bicicletas.resources;
 
 import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.bicicletas.dtos.AccesorioDTO;
+import co.edu.uniandes.bicicletas.dtos.EstacionDetailDTO;
+import co.edu.uniandes.bicicletas.dtos.ReservaDTO;
 import co.edu.uniandes.bicicletas.ejb.AccesorioLogic;
 import co.edu.uniandes.bicicletas.ejb.EstacionLogic;
 import co.edu.uniandes.bicicletas.entities.AccesorioEntity;
@@ -15,10 +17,12 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.ext.Provider;
 
 /**
  * Clase que implementa el recurso REST correspondiente a "direcciones"
@@ -27,13 +31,36 @@ import javax.ws.rs.WebApplicationException;
  */
 @Produces("application/json")
 @Consumes("application/json")
+@Provider
 public class EstacionAccesorioResource {
-    
-    @Inject
-    private AccesorioLogic accesorioLogic;
-    
     @Inject
     private EstacionLogic estacionLogic;
+    
+    @GET
+    @Path("{idAccesorio: \\d+}")
+    public AccesorioDTO getAccesorios(@PathParam("idEstacion") Long idEstacion,@PathParam("idAccesorio") Long idAccesorio) throws BusinessLogicException{
+        AccesorioEntity entity = estacionLogic.getAccesorio(idEstacion, idAccesorio);
+        return new AccesorioDTO(entity);
+    }
+    
+    @PUT
+    public EstacionDetailDTO asignarAccesorioEstacion(@PathParam("idEstacion") Long idEstacion, AccesorioDTO accesorio)throws BusinessLogicException{
+      return new EstacionDetailDTO(estacionLogic.asignarAccesorio(idEstacion, accesorio.toEntity()));
+    }
+    
+    @GET
+    public List<AccesorioDTO> getEstacionAccesorios(@PathParam("idEstacion") Long idEstacion)throws BusinessLogicException {
+        List<AccesorioEntity> listEntity = estacionLogic.getAccesorios1(idEstacion);
+        return listEntity2DetailDTO(listEntity);
+    }
+    
+    private List<AccesorioDTO> listEntity2DetailDTO(List<AccesorioEntity> entityList) {
+        List<AccesorioDTO> list = new ArrayList<>();
+        for (AccesorioEntity entity : entityList) {
+            list.add(new AccesorioDTO(entity));
+        }
+        return list;
+    }
     
     private List<AccesorioDTO> listEntity2DTO(List<AccesorioEntity> listaEntiCali)
     {
@@ -53,10 +80,6 @@ public class EstacionAccesorioResource {
         return list;
     }
     
-     @GET
-     public List<AccesorioDTO> listAccesorios(@PathParam("estacionesId") Long estacionesId){
-         return listEntity2DTO(estacionLogic.listAccesorios(estacionesId));
-     }
     
     
 }

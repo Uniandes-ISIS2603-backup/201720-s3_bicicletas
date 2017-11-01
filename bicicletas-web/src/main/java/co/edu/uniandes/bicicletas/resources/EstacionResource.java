@@ -12,6 +12,7 @@
 import co.edu.uniandes.bicicletas.dtos.EstacionDetailDTO;
 	import co.edu.uniandes.bicicletas.ejb.EstacionLogic;
 	import co.edu.uniandes.bicicletas.entities.EstacionEntity;
+import co.edu.uniandes.bicicletas.entities.ReservaEntity;
 	import java.util.ArrayList;
 	import java.util.List;
 	import javax.ejb.Stateless;
@@ -84,12 +85,12 @@ import co.edu.uniandes.bicicletas.dtos.EstacionDetailDTO;
 	     */
 	    @GET
 	    @Path("{id: \\d+}")
-	    public EstacionDTO getEstacion(@PathParam("id") Long id) {
+	    public EstacionDetailDTO getEstacion(@PathParam("id") Long id) {
 	        EstacionEntity entity = estacionLogic.getEstacion(id);
 	        if (entity == null) {
 	            throw new WebApplicationException("El estacion no existe", 404);
 	        }
-	        return new EstacionDTO(entity);
+	        return new EstacionDetailDTO(entity);
 	    }
 
 	    /**
@@ -186,4 +187,13 @@ import co.edu.uniandes.bicicletas.dtos.EstacionDetailDTO;
             }
             return EstacionBicicletaResource.class;
             }
+            
+    @Path("{idEstacion: \\d+}/accesorios")
+    public Class<EstacionAccesorioResource> getAccesorio(@PathParam("idEstacion") Long idEstacion) {
+        EstacionEntity entity = estacionLogic.getEstacion(idEstacion);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /estaciones/" + idEstacion + "/accesorios no existe.", 404);
+        }
+        return EstacionAccesorioResource.class;
+    }
 }

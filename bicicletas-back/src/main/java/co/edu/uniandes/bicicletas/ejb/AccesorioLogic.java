@@ -27,7 +27,8 @@ public class AccesorioLogic {
     @Inject
     private AccesorioPersistence persistence;
     
-    private EstacionLogic estacionLogic;
+    //private EstacionLogic estacionLogic;
+    
     
     public AccesorioEntity getAccesorio(Long id) throws WebApplicationException{
         AccesorioEntity accesorio = persistence.find(id);
@@ -76,29 +77,7 @@ public class AccesorioLogic {
         return persistence.update(entidad);
     }
     
-    public List<AccesorioEntity> getAccesoriosEstacion(Long idEstacion) throws BusinessLogicException
-    {
-        EstacionEntity estacion = estacionLogic.getEstacion(idEstacion);
-        if (estacion.getAccesorios() == null) {
-            throw new BusinessLogicException("La estación que consultó aún no tiene accesorios");
-        }
-        return estacion.getAccesorios();
-    }
     
-    public AccesorioEntity getAccesorioEstacion(Long idEstacion, Long idAccesorio) throws BusinessLogicException
-    {
-        List<AccesorioEntity> lista = estacionLogic.getEstacion(idEstacion).getAccesorios();
-        if (lista == null) {
-            throw new BusinessLogicException("La estación que consultó aún no tiene accesorios");
-        }
-        AccesorioEntity aEntidad = new AccesorioEntity();
-        aEntidad.setId(idAccesorio);
-        int index = lista.indexOf(aEntidad);
-        if (index >= 0) {
-            return lista.get(index);
-        }
-        return null;
-    }
     
     public EstacionEntity listEstaciones(Long direccionId) {
         return getAccesorio(direccionId).getEstacion();
@@ -144,9 +123,9 @@ public class AccesorioLogic {
      * @param estacionesId Identificador de la instancia de Estacion
      *
      */
-    public void removeEstacion(Long direccionId, Long estacionesId) {
-        estacionLogic.removeEstacion(direccionId, estacionesId);
-    }
+   // public void removeEstacion(Long direccionId, Long estacionesId) {
+     //   estacionLogic.removeEstacion(direccionId, estacionesId);
+    //}
     
     public EstacionEntity addEstacion(Long direccionId, Long estacionesId) {
         AccesorioEntity direccionEntity = getAccesorio(direccionId);
