@@ -44,6 +44,17 @@ public class EstacionDetailDTO extends EstacionDTO {
         }
     }
 
+
+    public List<BicicletaDetailDTO> getBicicletas() {
+        return bicicletas;
+    }
+
+    public void setBicicletas(List<BicicletaDetailDTO> bicicletas) {
+        this.bicicletas = bicicletas;
+    }
+    
+    
+
     public List<ReservaEntity> getReservas() {
         return reservas;
     }

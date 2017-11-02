@@ -182,6 +182,17 @@ public class ReservaLogic
         return persistence.update(entidad);
     }
     
+    public ReservaEntity asignarEstacionLlegada(Long idReserva, EstacionEntity estacion) throws BusinessLogicException{
+         ReservaEntity reserva = getReserva(idReserva);
+         EstacionEntity entity = persistenceEstacion.find(estacion.getId());
+         if(entity==null){
+             throw new BusinessLogicException("La estacion no existe");
+         }
+         reserva.setEstacionSalida(entity);
+         persistence.update(reserva);
+         persistenceEstacion.update(entity);
+         return reserva;
+     }
     
      public ReservaEntity asignarBicicleta(Long idReserva, BicicletaEntity bici) throws BusinessLogicException{
          ReservaEntity reserva = getReserva(idReserva);

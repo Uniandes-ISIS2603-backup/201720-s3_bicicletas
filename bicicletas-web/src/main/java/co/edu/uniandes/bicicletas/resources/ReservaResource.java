@@ -112,6 +112,15 @@ public class ReservaResource {
         return ReservaEstacionResource.class;
     }
     
+    @Path("{idReserva: \\d+}/estaciones")
+    public Class<ReservaEstacionResource> getReservaEstacionResource(@PathParam("idReserva") Long idReserva){
+        ReservaEntity entity = logica.getReserva(idReserva);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /Reserva/" + idReserva +"no existe.", 404);
+        }
+        return ReservaEstacionResource.class;
+    }
+    
     @Path("{idReserva: \\d+}/Pago")
     public Class<PagoReservaResource> getResource(@PathParam("idReserva") Long idReserva){
         ReservaEntity entity = logica.getReserva(idReserva);
