@@ -5,14 +5,19 @@
         function ($scope, $http, direccionesContext, $state, direccionesContext, $rootScope) {
             $rootScope.edit = false;
             $scope.createDireccion = function () {
-                $http.post(direccionesContext, {
+                $http.post('api/direcciones', {
                     name: $scope.direccionName,
                     codigoPostal: $scope.direccionCodigoPostal,
                     descripcion: $scope.direccionDescripcion,
                     ciudad: $scope.direccionCiudad
                 }).then(function (response) {
                     //Direccion created successfully
-                    $state.go('direccionesList', {direccionId: response.data.id}, {reload: true});
+                    $http.post("api/usuarios" + '/' + $state.params.documentoUsuario + '/' + direccionesContext+ '/' +response.data.id).then(function (response)
+                    {
+                        $state.go('direccionesList', {direccionId: response.data.id}, {reload: true});
+                    });
+                    
+                     
                 });
             };
         }

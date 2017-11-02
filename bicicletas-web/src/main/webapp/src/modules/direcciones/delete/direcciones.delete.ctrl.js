@@ -5,7 +5,7 @@
         function ($scope, $http, direccionesContext, $state) {
             var idDireccion = $state.params.direccionId;
             $scope.deleteDireccion = function () {
-                $http.delete(direccionesContext + '/' + idDireccion, {}).then(function (response) {
+                $http.delete('api/direcciones' + '/' + idDireccion, {}).then(function (response) {
                     $state.go('direccionesList', {direccionId: response.data.id}, {reload: true});
                 });
             };
