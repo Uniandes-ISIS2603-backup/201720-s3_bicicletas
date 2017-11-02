@@ -2,18 +2,19 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-md-3">
-               <dl>     
-                <dt>Id Reserva</dt>
-                <dd>{{currentReserva.idReserva}}</dd>
-                
-                <hr>
-                <div class="btn-group-vertical">
-                <a class="btn btn-info" ui-sref="calificacionesCreate({cali: 0, idUsuario: currentReserva.usuarioReserva.documentoUsuario, idReserva: currentReserva.idReserva})"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp; Calificar estación de salida</a>
-                <a class="btn btn-info" ui-sref="calificacionesCreate({cali: 1, idUsuario: currentReserva.usuarioReserva.documentoUsuario, idReserva: currentReserva.idReserva})"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp; Calificar estación de llegada</a>
-               
-                </div>
-                
-                
+                <dl>     
+                    <dt>Id Reserva</dt>
+                    <dd>{{currentReserva.idReserva}}</dd>
+
+                    <hr>
+                    <div class="btn-group-vertical">
+                        <a class="btn btn-info" ui-sref="calificacionesCreate({cali: 0, idUsuario: currentReserva.usuarioReserva.documentoUsuario, idReserva: currentReserva.idReserva})"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp; Calificar estación de salida</a>
+                        <a class="btn btn-info" ui-sref="calificacionesCreate({cali: 1, idUsuario: currentReserva.usuarioReserva.documentoUsuario, idReserva: currentReserva.idReserva})"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp; Calificar estación de llegada</a>
+                        <a class="btn btn-info" ui-sref="pagoReserva({id: currentReserva.idReserva})"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp; Pagar</a>
+
+                    </div>
+
+
             </div>
             <div class="col-md-9">
                 </dl>
@@ -23,14 +24,14 @@
                     <li role="presentation" class="active"> <a ui-sref="calificacionDetail({cali: 0, idUsuario: currentReserva.usuarioReserva.documentoUsuario, idReserva: currentReserva.idReserva})">Calificación estación de salida</a></li>
                     <li role="presentation" class="active"> <a ui-sref="calificacionDetail({cali: 1, idUsuario: currentReserva.usuarioReserva.documentoUsuario, idReserva: currentReserva.idReserva})">Calificación estación de llegada</a></li>         
                 </ul>
-                
+
                 <div class="col-md-12">
-                <div ui-view="childrenView"></div>
-            </div>
+                    <div ui-view="childrenView"></div>
+                </div>
             </div>
         </div>
         <div class="row">
-            
+
         </div>
     </div>
 </div>

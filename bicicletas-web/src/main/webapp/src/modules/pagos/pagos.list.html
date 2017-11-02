@@ -1,20 +1,25 @@
 <div class="container-fluid">
-    <div class="col-md-4">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Id de un pago</th>    
-                    <th>Monto</th>  
-                    <th>Estado</th>  
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="pago in pagosRecords">
-                    <td id="{{$index}}-id"><a ui-sref="pagoDetail({id: pago.id})">{{pago.id}}</a></td>
-                    <td id="{{$index}}-monto">{{pago.monto}}</td>     
-                    <td id="{{$index}}-estado">{{pago.estado}}</td>    
-                </tr>
-            </tbody>
-        </table>
+    <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><label>Pagos</label></div>
+            <div class="panel-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Id de un pago</th>    
+                            <th>Monto</th>  
+                            <th>Estado</th>  
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="pago in pagosRecords">
+                            <td id="{{$index}}-id"><a ui-sref="pagoDetail({id: pago.id})">{{pago.id}}</a></td>
+                            <td id="{{$index}}-monto">{{pago.monto}}</td>     
+                            <td id="{{$index}}-estado">{{pago.estado}}</td>    
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>

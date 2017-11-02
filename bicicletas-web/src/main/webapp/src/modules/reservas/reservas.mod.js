@@ -1,5 +1,5 @@
 (function (ng) {
-var mod = ng.module("reservaModule", ['usuarioModule', 'ui.router']);
+var mod = ng.module("reservaModule", ['usuarioModule', 'ui.router', 'pagosModule']);
     mod.constant("reservasContext", "reservas");
     mod.constant("usuariosContext", "api/usuarios");
 

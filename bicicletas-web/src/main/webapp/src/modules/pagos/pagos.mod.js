@@ -37,6 +37,20 @@
                         controllerAs: 'ctrl'
                     }
                 } 
+            }).state('pagoReserva', {
+                url: '/{id:int}/Pago',
+                parent: 'pagos',
+                param: {
+                    id: null
+                }, 
+                views:{
+                    
+                    'detailView':{
+                        templateUrl: basePath + 'pagos.detail.html',
+                        controller: 'pagoReserva',
+                        controllerAs: 'ctrl'
+                    }
+                } 
             });
         }]);
 })(window.angular);
