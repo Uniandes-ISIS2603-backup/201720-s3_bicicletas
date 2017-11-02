@@ -6,16 +6,16 @@
 	    mod.controller('calificacionNewCtrl', ['$scope', '$http', 'usuariosContext', 'reservasContext', '$state', 'calificacionesContext', '$rootScope',
 	        function ($scope, $http, usuariosContext, reservasContext, $state, calificacionesContext, $rootScope) {
 	            $rootScope.edit = false;
-                    var usu = $state.params.idUsuario;
-                    var califi = $state.params.cali;
+                    $scope.cali = $state.params.cali;
 	            $scope.createCalificacion = function () {
-	                $http.post(usuariosContext + '/' + usu + '/'+ reservasContext + '/' + $state.params.idReserva + '/' + calificacionesContext + '/' + califi, {
+                        $scope.cali = $state.params.cali;
+	                $http.post(usuariosContext + '/' + $state.params.idUsuario + '/'+ reservasContext + '/' + $state.params.idReserva + '/' + calificacionesContext + '/' + $state.params.cali, {
 	                    nota: $scope.nota,
 	                    descripcion: $scope.descripcion	                
 	                }).then(function (response) {
 	                    //Calificacion created successfully
                             
-	                    $state.go('calificacionDetail', {idUsuario: usu, idReserva: response.data.idReserva, cali: califi}, {reload: true});
+	                    $state.go('calificacionDetail', {idUsuario: $state.params.idUsuario, idReserva: response.data.idReserva, cali: $state.params.cali}, {reload: true});
 	                });
 	            };
 	        }
