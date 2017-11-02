@@ -33,6 +33,9 @@
                     <td id="{{$index}}-estacionSalida">{{reserva.estacionSalida.name}}</td>
                     <td id="{{$index}}-fechaInicio">{{reserva.fechaInicio }}</td>
                     <td id="{{$index}}-fechaEntega">{{reserva.fechaEntrega }}</td> 
+                    <td id="{{$index}}-actions">
+                        <a class="btn btn-danger btn-sm" ui-sref="reservaDelete({idReserva:reserva.idReserva})"><span class="glyphicon glyphicon-trash"></span></a>
+                    </td>
                 </tr>
             </tbody>
         </table>

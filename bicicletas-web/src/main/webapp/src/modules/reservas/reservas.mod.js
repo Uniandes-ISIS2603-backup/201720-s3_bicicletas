@@ -50,6 +50,19 @@ var mod = ng.module("reservaModule", ['usuarioModule', 'ui.router']);
                                 controllerAs: 'ctrl'
 	                    }
 	                }
+	            }).state('reservaDelete', {
+	                url: '/delete/{idReserva:int}',
+	                parent: 'reservas',
+	                param: {
+	                    idReserva: null
+	                },
+	                views: {
+	                    'detailView': {
+	                        templateUrl: basePath + '/delete/reservas.delete.html',
+	                        controller: 'reservaDeleteCtrl',
+                                controllerAs: 'ctrl'
+	                    }
+	                }
 	            });
         }]);
     })(window.angular);

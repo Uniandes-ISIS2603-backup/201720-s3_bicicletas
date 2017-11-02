@@ -76,10 +76,11 @@ public class UsuarioReservaResource
             return null;
     }
     
-    @DELETE 
-    public void deleteReserva(@PathParam("idUsuario") Long idUsuario) throws BusinessLogicException 
+    @DELETE
+    @Path("reservas/{idReserva: \\d+}")
+    public void deleteReserva(@PathParam("idReserva") Long idReserva) throws BusinessLogicException 
     {
-        reservaLogic.deleteReserva(idUsuario);
+        reservaLogic.deleteReserva(idReserva);
     }
     
     @POST

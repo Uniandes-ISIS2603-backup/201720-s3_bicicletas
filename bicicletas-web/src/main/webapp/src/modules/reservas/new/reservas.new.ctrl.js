@@ -15,7 +15,7 @@
                             }
 	                }).then(function (response) {
 	                    //Usuario created successfully
-	                    $state.go('usuariosList', {UsuarioDocumentoUsuario: response.data.documentoUsuario}, {reload: true});
+	                    $state.go("usuarioDetail({documentoUsuario:reserva.usuarioReserva.documentoUsuario})", {idUsuario: response.data.idUsuario}, {reload: true});
 	                });
 	            };
 	        }
