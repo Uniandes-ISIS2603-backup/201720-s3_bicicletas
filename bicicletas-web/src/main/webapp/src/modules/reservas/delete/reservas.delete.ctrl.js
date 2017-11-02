@@ -7,7 +7,7 @@
             var idReserva = $state.params.idReserva;
             $scope.deleteReserva = function () {
                 $http.delete("api/reservas/"+ idReserva, {}).then(function (response) {
-                    $state.go('usuariosList', {idResereva: response.data.idReserva}, {reload: true});
+                    $state.go('reservasList', {idResereva: response.data.idReserva}, {reload: true});
                 });
             };
         }
