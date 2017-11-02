@@ -59,6 +59,7 @@ public class EstacionLogic
     @Inject
     private BicicletaPersistence bicicletaLogic;
     
+    @Inject
     private AccesorioPersistence persistenceAccesorio;
     
     public EstacionEntity getEstacion(Long id) throws WebApplicationException

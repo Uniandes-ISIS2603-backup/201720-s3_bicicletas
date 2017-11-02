@@ -20,7 +20,6 @@
                             <tr ng-repeat="estacion in estacionesRecords">
                                 <td id="{{$index}}-id"><a ui-sref="estacionDetail({id: estacion.id})">{{estacion.id}}</a></td>
                                 <td id="{{$index}}-nombre">{{estacion.nombre}}</td>
-                                </td>
                                 <td id="{{$index}}-actions">
                                     <a class="btn btn-danger btn-sm" ui-sref="estacionDelete({id: estacion.id})"><span class="glyphicon glyphicon-trash"></span></a>
                                 </td>

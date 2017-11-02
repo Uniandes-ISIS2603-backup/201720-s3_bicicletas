@@ -80,7 +80,7 @@ public class CalificacionLogic
         }       
         else if (idEstacion == 1 && reserva.getEstacionSalida() != null && reserva.getCalificacionEstacionLlegada() == null)
         {
-            estacion = estacionPersistence.find(reserva.getEstacionLlegada().getId());
+            estacion = estacionPersistence.find(reserva.getEstacionSalida().getId()); //CAMBIADO POR GETESTACIONSALIDA()
         }
         else
         {
@@ -197,7 +197,7 @@ public class CalificacionLogic
             calEntity.setId(reserva.getCalificacionEstacionSalida().getId());
             califi = caliPersistence.update(calEntity);
         }
-        else if(!cali && reserva.getEstacionLlegada() != null)
+        else if(!cali && reserva.getEstacionSalida() != null)  //CAMBIADO POR ESTACIONSALIDA
         {
             calEntity.setId(reserva.getCalificacionEstacionLlegada().getId());
             califi = caliPersistence.update(calEntity);

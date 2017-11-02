@@ -26,7 +26,6 @@ public class ReservaDTO {
     private String fechaInicio;
     private String fechaFin;
     private EstacionEntity estacionSalida;
-    private EstacionEntity estacionLlegada;
     private double precioFinal;
     private Boolean descuento;
     private TransaccionEntity transaccion;
@@ -43,7 +42,6 @@ public class ReservaDTO {
             this.fechaInicio = fechaOrg(entidad.getFechaInicio());
             this.estacionSalida = entidad.getEstacionSalida();
             this.fechaFin = fechaOrg(entidad.getFechaEntrega());
-            this.estacionLlegada = entidad.getEstacionLlegada();
             this.precioFinal = entidad.getPrecioFinal();
             this.fechaReserva = entidad.getFechaReserva().toString();
             this.descuento = entidad.getDescuento();
@@ -64,8 +62,7 @@ public class ReservaDTO {
         entity.setEstado(this.getEstado());
         entity.setFechaInicio(this.pasceFecha(fechaInicio));
         entity.setEstacionSalida(this.getEstacionSalida());
-        entity.setFechaEntrega(this.pasceFecha(fechaFin));       
-        entity.setEstacionLlegada(this.getEstacionLlegada());
+        entity.setFechaEntrega(this.pasceFecha(fechaFin));   
         entity.setPrecioFinal(this.getPrecioFinal());
         entity.setFechaReserva(this.getFechaReserva());
         entity.setDescuento( );
@@ -183,21 +180,6 @@ public class ReservaDTO {
     public void setFechaEntrega(String fechaEntrega) {
         this.fechaFin = fechaEntrega;
     }
-
-    /**
-     * @return the estacionLlegada
-     */
-    public EstacionEntity getEstacionLlegada() {
-        return estacionLlegada;
-    }
-
-    /**
-     * @param estacionLlegada the estacionLlegada to set
-     */
-    public void setEstacionLlegada(EstacionEntity estacionLlegada) {
-        this.estacionLlegada = estacionLlegada;
-    }
-
     /**
      * @return the precioFinal
      */

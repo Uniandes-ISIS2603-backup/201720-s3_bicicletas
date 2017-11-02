@@ -10,9 +10,11 @@ import co.edu.uniandes.bicicletas.dtos.EstacionDTO;
 import co.edu.uniandes.bicicletas.ejb.EstacionLogic;
 import co.edu.uniandes.bicicletas.ejb.ReservaLogic;
 import co.edu.uniandes.bicicletas.entities.EstacionEntity;
+import co.edu.uniandes.bicicletas.entities.ReservaEntity;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.WebApplicationException;
@@ -37,7 +39,7 @@ public class ReservaEstacionResource {
         if(llegada==0){
             Estacion = new EstacionDTO(logic.getReserva(idReserva).getEstacionSalida()) ;
         }else if(llegada==1){
-             Estacion = new EstacionDTO(logic.getReserva(idReserva).getEstacionLlegada());
+             Estacion = new EstacionDTO(logic.getReserva(idReserva).getEstacionSalida());  //CAMBIADO POR ESTACION SALIDA
         }else{
             throw new WebApplicationException("El recurso /reservas/" + idReserva + "/Estacion/" + llegada + " no existe", 404);
         }
@@ -50,10 +52,24 @@ public class ReservaEstacionResource {
       EstacionDTO Estacion = new EstacionDTO(Estacionlogic.getEstacion(idEstacion));
       EstacionEntity Entity =Estacion.toEntity();
        if(llegada==1){
-             logic.getReserva(idReserva).setEstacionLlegada(Entity);
+             logic.getReserva(idReserva).setEstacionSalida(Entity); //CAMBIADO POR ESTACION SALIDA
         }else{
             throw new WebApplicationException("El recurso /reservas/" + idReserva + "/Estacion/" + llegada + " no existe", 404);
         }  
+    }
+    
+    @PUT
+    public void asignarEstacion (@PathParam("idReserva") Long idReserva, EstacionDTO estacion) throws BusinessLogicException{
+        EstacionDTO estacion1 = new EstacionDTO(Estacionlogic.getEstacion(estacion.getId()));
+        ReservaEntity actua = logic.getReserva(idReserva);
+        EstacionEntity entity = estacion1.toEntity();
+        if(entity!=null&&actua!=null)
+        {
+            actua.setEstacionSalida(entity); //CAMBIADO POR ESTACION SALIDA
+            logic.actualizarReserva(actua);
+                    }
+        else
+           throw new WebApplicationException("El recurso /reservas/" + idReserva, 404);    
     }
     
     

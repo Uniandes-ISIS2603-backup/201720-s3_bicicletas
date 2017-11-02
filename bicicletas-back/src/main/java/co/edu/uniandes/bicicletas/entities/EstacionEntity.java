@@ -11,9 +11,11 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.xml.bind.annotation.XmlTransient;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -37,7 +39,7 @@ public class EstacionEntity extends BaseEntity implements Serializable {
     private List<CalificacionEntity> calificaciones = new ArrayList<CalificacionEntity>();
     
     @PodamExclude
-    @OneToMany(mappedBy="estacionLlegada")
+    @OneToMany(mappedBy="estacionSalida", cascade = CascadeType.ALL)
     private List<ReservaEntity> reservas = new ArrayList<ReservaEntity>();
     
     @PodamExclude
@@ -59,6 +61,14 @@ public class EstacionEntity extends BaseEntity implements Serializable {
 
     public void setAccesorios(List<AccesorioEntity> accesorios) {
         this.accesorios = accesorios;
+    }
+
+    public List<BicicletaEntity> getBicicletas() {
+        return bicicletas;
+    }
+
+    public void setBicicletas(List<BicicletaEntity> bicicletas) {
+        this.bicicletas = bicicletas;
     }
     
    
