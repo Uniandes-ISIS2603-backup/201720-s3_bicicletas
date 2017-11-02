@@ -1,0 +1,51 @@
+<div class="container-fluid">
+    <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><label ng-if="!edit" id="createUsuario">Crear Reserva Nueva</label>
+                <label ng-if="edit" id="editUsuario">Edit Reserva</label></div>
+            <div class="panel-body">
+                <form ng-submit="createUsuario()" name="usuario">
+                    <div class="form-group row">
+                        <div class="form-group col-md-9">
+                            <label for="documentoUsuario" class="col-sm-6">Documento Usuario:</label>
+                            <input  id="documentoUsuario" required ng-model="documentoUsuario" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-9">
+                            <label for="estacionId" class="col-sm-4">Id Estacion Salida:</label>
+                            <input id="estacionId" required ng-model="estacionId" class="col-sm-1"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-9">
+                            <label for="fechaSalida" class="col-sm-4">Fecha Salida:</label>
+                            <input type="datetime" id="fechaSalida" placeholder="DD/MM/YYYY HH:mm" required ng-model="fechaSalida" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-9">
+                            <label for="fechaLlegada" class="col-sm-4">Fecha Llegada:</label>
+                            <input type="datetime" id="fechaLlegada" placeholder="DD/MM/YYYY HH:mm" required ng-model="fechaLlegada" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-sm-4" ng-if="!usuario.$valid">
+
+                            <div class="alert alert-warning" >
+                                <strong>Warning!</strong><p>All inputs are required*</p>
+                            </div> 
+                        </div> 
+                    </div> 
+                    <div class="form-group row">
+                        <div class="form-group col-sm-12">
+                            <input ng-show="usuario.$valid" type="submit" value="Save" class="btn btn-success"/>
+                            <a class="btn btn-info" ui-sref="reservasList">Cancelar</a>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

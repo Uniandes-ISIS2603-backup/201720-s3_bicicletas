@@ -9,6 +9,7 @@
         'accesorioModule',
         'usuarioModule',
         'puntoModule',
+        'direccionModule',
         'bicicletaModule',
         'reservaModule',
         'pagosModule'
