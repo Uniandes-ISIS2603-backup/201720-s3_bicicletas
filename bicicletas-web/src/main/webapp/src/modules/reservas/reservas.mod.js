@@ -40,9 +40,12 @@ var mod = ng.module("reservaModule", ['usuarioModule', 'ui.router', 'pagosModule
 	                        controllerAs: 'ctrl'
 	                    }
 	                }
-	            }).state('ReservaCreate', {
-	                url: '/create',
+	            }).state('reservaCreate', {
+	                url: '{idUsuario:int}/create',
 	                parent: 'reservas',
+                        param:{
+                            idUsuario:null
+                        },
 	                views: {
 	                    'detailView': {
 	                        templateUrl: basePath + '/new/reservas.new.html',
