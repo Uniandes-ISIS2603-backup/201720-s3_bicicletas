@@ -1,7 +1,7 @@
 (function (ng) {
     var mod = ng.module("calificacionModule", ['estacionModule','usuarioModule', 'ui.router']);
     mod.constant("calificacionesContext", "calificaciones");
-    mod.constant("usuariosContext", "api/estaciones");
+    mod.constant("estacionesContext", "api/estaciones");
     mod.constant("reservasContext", "reservas");
     mod.constant("usuariosContext", "api/usuarios");
     

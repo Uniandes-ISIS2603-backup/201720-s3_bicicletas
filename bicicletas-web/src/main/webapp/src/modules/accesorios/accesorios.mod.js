@@ -1,6 +1,7 @@
 (function (ng) {
-    var mod = ng.module("accesorioModule", ['accesorioModule','ui.router']);
+    var mod = ng.module("accesorioModule", ['estacionModule','ui.router']);
     mod.constant("accesoriosContext", "api/accesorios");
+    mod.constant("estacionesContext", "api/estaciones");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/accesorios/';
             $urlRouterProvider.otherwise("/accesoriosList");
@@ -47,18 +48,37 @@
                             controller: 'accesorioNewCtrl'
                         }
                     }
-                }).state('accesorioDelete', {
-                    url: '/delete/{id:int}',
-                    parent: 'accesorios',
+                }).state('accesoriosEstacion', {
+                url: '/accesorios',
+                abstract: true,
+                parent: 'estacionDetail',
+                views: {
+                    childrenView: {
+                        templateUrl: basePath + 'accesorios.html'
+                    }
+                }
+            }).state('accesoriosEstacionList', {
+                url: '/{id:int}/list',
+                parent: 'accesoriosEstacion',
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + 'accesorios.list.html',
+                        controller: 'accesoriosEstacionCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            }).state('accesorioDelete', {                  
+                    parent: 'accesoriosEstacion',
+                    url: '{idAccesorio:int}',
                     param: {
-                        id: null
+                        idAccesorio: null
                     },
                     views: {
                         'detailView': {
                             templateUrl: basePath + 'delete/accesorio.delete.html',
                             controller: 'accesorioDeleteCtrl'
                         }
-                    }
-                });;;
+                   } 
+                })
         }]);
 })(window.angular);
