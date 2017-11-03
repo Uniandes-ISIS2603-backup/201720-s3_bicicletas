@@ -134,14 +134,6 @@ public class ReservaEntity extends BaseEntity implements Serializable {
            this.Descuento= new Boolean(true);
         }
     }
-    
-   
-    public void setBicis(List<BicicletaEntity> temp){
-        setBicicletas(temp);
-     }
-     public List<BicicletaEntity> getBicis(){
-         return getBicicletas();
-     }
 
     /**
      * @return the fechaEntrega

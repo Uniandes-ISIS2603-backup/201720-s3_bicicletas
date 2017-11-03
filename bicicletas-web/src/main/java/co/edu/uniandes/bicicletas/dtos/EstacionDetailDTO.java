@@ -40,7 +40,7 @@ public class EstacionDetailDTO extends EstacionDTO {
             this.accesorios = entidad.getAccesorios();
             this.calificaciones = entidad.getCalificaciones();
             this.reservas = entidad.getReservas();
-            bicicletas = listEntity2DetailDTO(entidad.getBicis());
+            this.bicicletas = listEntity2DetailDTO(entidad.getBicicletas());
         }
     }
 
@@ -98,7 +98,7 @@ public class EstacionDetailDTO extends EstacionDTO {
         entity.setAccesorios(this.getAccesorios());
         entity.setCalificaciones(this.getCalificaciones());
         entity.setReservas(this.getReservas());
-        entity.setBicics(listDTO2Entity(bicicletas));
+        entity.setBicicletas(listDTO2Entity(bicicletas));
         return entity;
     }
     private List<BicicletaDetailDTO> listEntity2DetailDTO(List<BicicletaEntity> entityList) {

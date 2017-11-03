@@ -201,7 +201,7 @@ public class ReservaLogic
              throw new BusinessLogicException("No esta disponible la bici");
          }
          boolean a = false;
-         for (BicicletaEntity bicicletaR : reserva.getBicis()) {
+         for (BicicletaEntity bicicletaR : reserva.getBicicletas()) {
              if(bicicletaR.equals(entity)){
                  a=true;
           }
@@ -209,7 +209,7 @@ public class ReservaLogic
          if(a){
              throw new BusinessLogicException("No esta disponible la bici");
          }
-         reserva.getBicis().add(entity);
+         reserva.getBicicletas().add(entity);
          entity.setEstado(BicicletaEntity.RESERVADA);
          persistence.update(reserva);
          biciLogic.update(entity);
@@ -222,7 +222,7 @@ public class ReservaLogic
              throw new BusinessLogicException("No esta disponible la bici");
          }
          boolean a = false;
-         for (BicicletaEntity bicicletaR : reserva.getBicis()) {
+         for (BicicletaEntity bicicletaR : reserva.getBicicletas()) {
              if(bicicletaR.equals(bici)){
                  a=true;
              }
@@ -234,7 +234,7 @@ public class ReservaLogic
      }
      public List<BicicletaEntity> getBicis(Long idReserva)throws BusinessLogicException{
          ReservaEntity reserva = getReserva(idReserva);
-         List<BicicletaEntity> bicis = reserva.getBicis();
+         List<BicicletaEntity> bicis = reserva.getBicicletas();
          return bicis;
      }
     

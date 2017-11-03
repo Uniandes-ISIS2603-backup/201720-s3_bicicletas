@@ -88,13 +88,5 @@ public class EstacionEntity extends BaseEntity implements Serializable {
     public void setCalificaciones(List<CalificacionEntity> calificaciones) {
         this.calificaciones = calificaciones;
     }
-    
-    
-    public void setBicics(List<BicicletaEntity> bici){
-        bicicletas = bici;
-    }
-    
-    public List<BicicletaEntity> getBicis(){
-        return bicicletas;
-    }
+     
 }
