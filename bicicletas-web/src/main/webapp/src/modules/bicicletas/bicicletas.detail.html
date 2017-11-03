@@ -1,0 +1,35 @@
+<div class="panel panel-default"> 
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-3">
+                <dl>     
+                <dt>Id de bicicleta</dt>
+                <dd>{{currentBicicleta.id}}</dd>
+                
+                <hr>
+                <dt>Modelo:</dt>
+                <dd>{{currentBicicleta.modelo}}</dd>
+                <hr>
+                <dt>Marca:</dt>
+                <dd>{{currentBicicleta.marca}}</dd>
+                <hr>
+                <dt>Estado:</dt>
+                <dd>{{currentBicicleta.estado}}</dd>
+            </div>
+            <div class="col-md-9">
+                </dl>
+                <ul class="nav nav-tabs">
+                    <li role="presentation" class="active"> <a ui-sref="#">AccesorioBicicleta</a></li>       
+                </ul>
+                
+                <div class="col-md-12">
+                <div ui-view="childrenView"></div>
+            </div>
+            </div>
+        </div>
+        <div class="row">
+            
+        </div>
+    </div>
+</div>
+

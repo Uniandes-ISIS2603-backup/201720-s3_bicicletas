@@ -100,6 +100,11 @@ public class BicicletaResource {
     public List<BicicletaDetailDTO> getBicicletas() throws BusinessLogicException {
         return listEntity2DetailDTO(bicicletasLogic.getBicicletas());
     }
+    @GET
+    @Path("{id:\\d+}")
+    public BicicletaDetailDTO getBicicletaId(@PathParam("id")Long id){
+        return new BicicletaDetailDTO(bicicletasLogic.getBIcicleta(id));
+    }
 
    
     /**
@@ -159,9 +164,10 @@ public class BicicletaResource {
     }
 /**
      *
-     * @param idUsuario
+     * @param idBicicleta
      * @return
      */
+    @GET
     @Path("{idBicicleta: \\d+}/accesorioBicicleta")
     public Class<AccesorioBicicletaBicicletaResource> getClassAcc(@PathParam("idBicicleta")Long idBicicleta) {
         BicicletaEntity entity = bicicletasLogic.getBIcicleta(idBicicleta);

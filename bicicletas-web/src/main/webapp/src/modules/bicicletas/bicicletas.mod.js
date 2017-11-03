@@ -24,14 +24,14 @@
                     }
                 }
             }).state('bicicletaDetail', {
-                url: '/{idBiccileta:Long}/detail',
+                url: '/{id:int}/detail',
                 parent: 'bicicletas',
                 param: {
-                    bicicletaId: null
+                    id: null
                 },
                 views: {
                     'listView': {
-                        templateUrl: basePath + 'bicicletas.list.html'
+                        templateUrl: basePath + 'bicicletas.html'
                     },
                     'detailView': {
                         templateUrl: basePath + 'bicicletas.detail.html',

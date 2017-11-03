@@ -7,8 +7,8 @@
                 $scope.bicicletaRecords = response.data;
             });
 
-            if ($state.params.bicicletaId !== undefined) {
-                $http.get(bicicletasContext + '/' + $state.params.bicicletaId).then(function (response) {
+            if ($state.params.id !== undefined) {
+                $http.get(bicicletasContext + '/' + $state.params.id).then(function (response) {
                     $scope.currentBicicleta = response.data;
                 });
             }
