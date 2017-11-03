@@ -3,16 +3,19 @@
         <div class="panel panel-primary">
             <div class="panel-heading"><label>Lista de bicicletas</label></div>
             <div class="panel-body">
-                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+               <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                        <a class="btn btn-info" ui-sref="bicicletasCreate"><span class="glyphicon glyphicon-plus-sign"></span>Añadir biciccleta</a>
+                    </div>
                 </div>
                 <div class="col-md-12">
                     <table class="table table-striped">
                         <thead>
                             <tr> 
-                                <th>ID</th>
-                                <th>modelo</th>
-                                <th>marca</th>
-                                <th>estado</th>
+                                <th>Id</th>
+                                <th>Modelo</th>
+                                <th>Marca</th>
+                                <th>Estado</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -20,7 +23,23 @@
                                 <td id="{{$index}}-id">{{bicicleta.id}}</td>
                                 <td id="{{$index}}-modelo">{{bicicleta.modelo}}</td>
                                 <td id="{{$index}}-modelo">{{bicicleta.marca}}</td>
-                                <td id="{{$index}}-modelo">{{bicicleta.estado}}</td>
+                                <td id="{{$index}}-id">
+                                    <div ng-if="bicicleta.estado == 0">
+                                        Reservada
+                                    </div>
+                                    <div ng-if="bicicleta.estado == 1">
+                                        Prestada
+                                    </div>
+                                    <div ng-if="bicicleta.estado == 2">
+                                        Disponible
+                                    </div>
+                                    <div ng-if="bicicleta.estado == 3">
+                                        Dañado
+                                    </div>
+                                </td>
+                                <td id="{{$index}}-actions">
+                                    <a class="btn btn-danger btn-sm" ui-sref="bicicletaDelete({id: bicicleta.id})"><span class="glyphicon glyphicon-trash"></span></a>
+                                </td>
                             </tr>
                         </tbody>
                     </table>

@@ -41,7 +41,29 @@
 
                 }
 
-            });
+            }).state('bicicletasCreate', {
+	                url: '/create',
+	                parent: 'bicicletas',
+	                views: {
+	                    'detailView': {
+	                        templateUrl: basePath + '/new/bicicletas.new.html',
+	                        controller: 'bicicletaNewCtrl'
+	                    }
+	                }
+	    }).state('bicicletaDelete', {
+	                url: '/delete/{id:int}',
+	                parent: 'bicicletas',
+	                param: {
+	                    id: null
+	                },
+	                views: {
+	                    'detailView': {
+	                        templateUrl: basePath + '/delete/bicicletas.delete.html',
+	                        controller: 'bicicletaDeleteCtrl'
+	                    }
+	                }
+	            });;
+                    
         }]);
 })(window.angular);
         

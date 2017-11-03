@@ -81,6 +81,7 @@ public class BicicletaResource {
     @POST
     public BicicletaDTO createBicicleta(BicicletaDTO Bicicleta) throws BusinessLogicException {
         // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
+        Bicicleta.setEstado(2);
         BicicletaEntity BicicletaEntity = Bicicleta.toEntity();
         // Invoca la lógica para crear la Bicicleta nueva
         BicicletaEntity nuevoBicicleta = bicicletasLogic.createBicicleta(BicicletaEntity);
