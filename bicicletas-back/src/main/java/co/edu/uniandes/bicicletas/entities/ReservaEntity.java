@@ -80,7 +80,7 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     @PodamExclude
     private TransaccionEntity transaccion;
                     
-    @OneToMany
+    @OneToMany(mappedBy = "reserva", cascade = CascadeType.REFRESH)
     @PodamExclude
     private List<BicicletaEntity> bicicletas = new ArrayList<>();
     
