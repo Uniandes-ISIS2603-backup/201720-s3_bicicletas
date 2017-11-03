@@ -79,6 +79,6 @@
                             controller: 'accesorioDeleteCtrl'
                         }
                    } 
-                })
+                });
         }]);
 })(window.angular);

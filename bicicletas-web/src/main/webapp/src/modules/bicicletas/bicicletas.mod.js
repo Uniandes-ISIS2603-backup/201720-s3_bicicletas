@@ -1,5 +1,5 @@
 (function (ng) {
-    var mod = ng.module("bicicletaModule", ['bicicletaModule','ui.router']);
+    var mod = ng.module("bicicletaModule", ['estacionModule','ui.router']);
     mod.constant("bicicletasContext", "api/bicicletas");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/bicicletas/';
@@ -62,8 +62,26 @@
 	                        controller: 'bicicletaDeleteCtrl'
 	                    }
 	                }
-	            });;
-                    
+	            }).state('bicicletasEstacion', {
+                url: '/bicicletas',
+                abstract: true,
+                parent: 'estacionDetail',
+                views: {
+                    childrenView: {
+                        templateUrl: basePath + 'bicicletas.html'
+                    }
+                }
+            }).state('bicicletasEstacionList', {
+                url: '/{id:int}/list',
+                parent: 'bicicletasEstacion',
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + 'bicicletas.list.html',
+                        controller: 'bicicletasEstacionCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            });                   
         }]);
 })(window.angular);
         
