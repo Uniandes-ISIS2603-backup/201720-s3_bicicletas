@@ -81,7 +81,36 @@
                         controllerAs: 'ctrl'
                     }
                 }
-            });                   
+            }).state('bicicletasReserva', {
+                url: '/bicicletas',
+                abstract: true,
+                parent: 'reservaDetail',
+                views: {
+                    childrenView: {
+                        templateUrl: basePath + 'bicicletas.html'
+                    }
+                }
+            }).state('bicicletasReservaList', {
+                url: '/{idReserva:int}/estacion/{idEstacionSalida:int}/list',
+                parent: 'bicicletasReserva',
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + 'reservaBicicletas.html',
+                        controller: 'bicicletasReservaCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                    
+                }
+            }).state('asociarBicicleta', {
+	                url: '/create',
+	                parent: 'bicicletasReserva',
+	                views: {
+	                    'detailView': {
+	                        templateUrl: basePath + '/asociar/bicicletas.asociar.html',
+	                        controller: 'bicicletasReservaCtrl'
+	                    }
+	                }
+	    });                   
         }]);
 })(window.angular);
         
