@@ -197,22 +197,26 @@ public class ReservaLogic
      public ReservaEntity asignarBicicleta(Long idReserva, BicicletaEntity bici) throws BusinessLogicException{
          ReservaEntity reserva = getReserva(idReserva);
          BicicletaEntity entity = biciLogic.find(bici.getId());
-         if(entity.darEstado()>BicicletaEntity.DISPONIBLE){
+         if(entity.darEstado() == BicicletaEntity.RESERVADA){
              throw new BusinessLogicException("No esta disponible la bici");
          }
+         
          boolean a = false;
          for (BicicletaEntity bicicletaR : reserva.getBicis()) {
              if(bicicletaR.equals(entity)){
                  a=true;
           }
         }
+         
          if(a){
              throw new BusinessLogicException("No esta disponible la bici");
          }
-         reserva.getBicis().add(entity);
+         entity.setReserva(reserva);
+         
          entity.setEstado(BicicletaEntity.RESERVADA);
-         persistence.update(reserva);
+
          biciLogic.update(entity);
+         reserva.getBicis().add(entity);
          return reserva;
      }
      public BicicletaEntity getBici(Long idReserva, Long  idBici) throws BusinessLogicException{

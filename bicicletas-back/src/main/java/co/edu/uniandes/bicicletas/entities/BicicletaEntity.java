@@ -34,6 +34,7 @@ import javax.persistence.FetchType;
 import static javax.persistence.FetchType.EAGER;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import org.eclipse.persistence.oxm.annotations.XmlInverseReference;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -59,9 +60,12 @@ public class BicicletaEntity extends BaseEntity implements Serializable {
     
     @PodamExclude
     @ManyToOne
+    @XmlInverseReference(mappedBy="bicicletas")
     private EstacionEntity estacion;
+    
     @PodamExclude
     @ManyToOne
+    @XmlInverseReference(mappedBy="bicicletas")
     private ReservaEntity reserva;
     /**
      * Este metodo permite cambiar el estado del Entity bicicleta en su marca.
