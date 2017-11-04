@@ -9,7 +9,6 @@ import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.bicicletas.dtos.CalificacionDTO;
 import co.edu.uniandes.bicicletas.ejb.CalificacionLogic;
 import co.edu.uniandes.bicicletas.entities.CalificacionEntity;
-import co.edu.uniandes.bicicletas.entities.EstacionEntity;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -59,10 +58,6 @@ public class ReservaCalificacionResource
         }
         
         CalificacionEntity caliEn = calificacionLogic.createCalificacion(idEstacion, idReserva, dto.toEntity());
-        if(caliEn == null )
-        {
-            throw new BusinessLogicException("Ya existe una calificación para la estación indicada dentro de la reserva");
-        }
         
         return new CalificacionDTO(caliEn);
     }

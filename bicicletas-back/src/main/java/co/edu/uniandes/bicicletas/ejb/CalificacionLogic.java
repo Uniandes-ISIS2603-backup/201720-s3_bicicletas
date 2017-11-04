@@ -75,8 +75,7 @@ public class CalificacionLogic
         boolean origen = false;
         
         if (idEstacion == 0 && getCalificacionPos(calificaciones, 0) == null)
-        {
-            LOGGER.info("eNTRA CREA");
+        {           
             origen = true; 
             estacion = estacionPersistence.find(reserva.getEstacionSalida().getId());
         }
@@ -90,7 +89,7 @@ public class CalificacionLogic
         }
         else
         {
-            return null;
+            throw new BusinessLogicException("Ya existe una calificación para la estación indicada dentro de la reserva");
         }
                   
         caliEntity.setReserva(reserva);
@@ -203,6 +202,7 @@ public class CalificacionLogic
         }
         catch(IndexOutOfBoundsException e)
         {
+            LOGGER.info(e.getMessage());
             return null;
         }
         return cali;
