@@ -58,7 +58,7 @@ public class ReservaEstacionResource {
             una = Estacionlogic.getEstacion(reserva.getEstacionLlegada());
             estacion = new EstacionDetailDTO(una);
         }else{
-            throw new WebApplicationException("El recurso /reservas/" + idReserva + "/Estacion/" + reserva.getEstacionLlegada() + " no existe", 404);
+            throw new WebApplicationException("El recurso /reservas/" + idReserva + "/Estacion/ no existe", 404);
         }
      return estacion;   
     }
