@@ -25,10 +25,6 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class EstacionEntity extends BaseEntity implements Serializable {
     
-    @ManyToMany
-    @PodamExclude
-    private List<DireccionEntity> direcciones = new ArrayList<DireccionEntity>();
-    
     @PodamExclude
     @OneToMany(mappedBy = "estacion", cascade = CascadeType.ALL)
     private List<AccesorioEntity> accesorios = new ArrayList<AccesorioEntity>();
@@ -45,6 +41,28 @@ public class EstacionEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @OneToMany(mappedBy = "estacion", cascade = CascadeType.REFRESH)
     private List<BicicletaEntity> bicicletas = new ArrayList<>();
+    
+    private String direccion;
+    
+    private String ciudad;
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
+    }
+    
+    
     
 
     public List<ReservaEntity> getReservas() {
@@ -70,17 +88,7 @@ public class EstacionEntity extends BaseEntity implements Serializable {
     public void setBicicletas(List<BicicletaEntity> bicicletas) {
         this.bicicletas = bicicletas;
     }
-    
-   
 
-    public List<DireccionEntity> getDirecciones() {
-        return direcciones;
-    }
-
-    public void setDirecciones(List<DireccionEntity> direcciones) {
-        this.direcciones = direcciones;
-    }
-    
    public List<CalificacionEntity> getCalificaciones() {
         return calificaciones;
     }

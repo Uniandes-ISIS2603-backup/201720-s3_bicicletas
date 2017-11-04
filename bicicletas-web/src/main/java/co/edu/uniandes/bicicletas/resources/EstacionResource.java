@@ -9,10 +9,10 @@
 	import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
 	import co.edu.uniandes.bicicletas.dtos.EstacionDTO;
 	import co.edu.uniandes.bicicletas.dtos.EstacionDTO;
-import co.edu.uniandes.bicicletas.dtos.EstacionDetailDTO;
+        import co.edu.uniandes.bicicletas.dtos.EstacionDetailDTO;
 	import co.edu.uniandes.bicicletas.ejb.EstacionLogic;
 	import co.edu.uniandes.bicicletas.entities.EstacionEntity;
-import co.edu.uniandes.bicicletas.entities.ReservaEntity;
+        import co.edu.uniandes.bicicletas.entities.ReservaEntity;
 	import java.util.ArrayList;
 	import java.util.List;
 	import javax.ejb.Stateless;
@@ -126,7 +126,6 @@ import co.edu.uniandes.bicicletas.entities.ReservaEntity;
 	        if (oldEntity == null) {
 	            throw new WebApplicationException("El estacion no existe", 404);
 	        }
-	        entity.setDirecciones(oldEntity.getDirecciones());
 	        return new EstacionDTO(estacionLogic.actualizarEstacion(entity));
 	    }
 
@@ -141,16 +140,6 @@ import co.edu.uniandes.bicicletas.entities.ReservaEntity;
             public void borrarEstacion(@PathParam("id") Long id) {
                 estacionLogic.deleteEstacion(id);
             }
-
-            
-	    @Path("{estacionesId: \\d+}/direcciones")
-	    public Class<EstacionDireccionResource> getEstacionDireccionesResource(@PathParam("estacionesId") Long estacionesId) {
-	        EstacionEntity entity = estacionLogic.getEstacion(estacionesId);
-	        if (entity == null) {
-	            throw new WebApplicationException("El estacion no existe", 404);
-	        }
-	        return EstacionDireccionResource.class;
-	    }
 	    
 	    @Path("{idEstacion: \\d+}/calificaciones")
 	    public Class<EstacionCalificacionResource> getCalificacionEstacionResource(@PathParam("idEstacion") Long idEstacion) {
@@ -160,17 +149,6 @@ import co.edu.uniandes.bicicletas.entities.ReservaEntity;
 	        }
 	        return EstacionCalificacionResource.class;
 	    }
-	    
-	    //CODIGO AÑADIDO POR CM.ALBA10 PARA RELACIONAR CON DIRECCION
-//	    @Path("{estacionesId: \\d+}/direcciones")
-//		    public Class<EstacionDireccionResource> getEstacionDireccionResource(@PathParam("estacionesID") Long estacionesId) {
-//		        EstacionEntity entity = estacionLogic.getEstacion(estacionesId);
-//		        if (entity == null) {
-//		            throw new WebApplicationException("La estacion no existe", 404);
-//		        }
-//		        return EstacionDireccionResource.class;
-//		    }
-	    
 
             
             

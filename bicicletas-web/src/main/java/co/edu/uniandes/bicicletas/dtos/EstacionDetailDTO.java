@@ -20,12 +20,12 @@ import java.util.List;
  */
 public class EstacionDetailDTO extends EstacionDTO {
     
-    private List<DireccionEntity> direccion;
     private List<CalificacionEntity> calificaciones;
     private List<AccesorioEntity> accesorios;
     private List<ReservaEntity> reservas;
     private List<BicicletaDetailDTO> bicicletas = new ArrayList<>();
-
+    private String direccion;
+    private String ciudad;
     
     
     public EstacionDetailDTO(){
@@ -35,13 +35,29 @@ public class EstacionDetailDTO extends EstacionDTO {
     public EstacionDetailDTO(EstacionEntity entidad) {
         super(entidad);
         if(entidad!=null){
-            
-            this.direccion = entidad.getDirecciones();
+            this.direccion=entidad.getDireccion();
+            this.ciudad=entidad.getCiudad();
             this.accesorios = entidad.getAccesorios();
             this.calificaciones = entidad.getCalificaciones();
             this.reservas = entidad.getReservas();
             bicicletas = listEntity2DetailDTO(entidad.getBicis());
         }
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
     }
 
 
@@ -53,8 +69,6 @@ public class EstacionDetailDTO extends EstacionDTO {
         this.bicicletas = bicicletas;
     }
     
-    
-
     public List<ReservaEntity> getReservas() {
         return reservas;
     }
@@ -79,22 +93,13 @@ public class EstacionDetailDTO extends EstacionDTO {
     public void setAccesorios(List<AccesorioEntity> accesorios) {
         this.accesorios = accesorios;
     }
-    
-    
-    public List<DireccionEntity> getDireccion() {
-        return direccion;
-    }
-    
-    public void setDireccion(List<DireccionEntity> direccion) {
-        this.direccion = direccion;
-    }
-    
-    
+
     public EstacionEntity toEntity() {
         EstacionEntity entity = new EstacionEntity();
         entity.setName(this.getNombre());
         entity.setId(this.getId());
-        entity.setDirecciones(this.getDireccion());
+        entity.setDireccion(this.getDireccion());
+        entity.setCiudad(this.getCiudad());
         entity.setAccesorios(this.getAccesorios());
         entity.setCalificaciones(this.getCalificaciones());
         entity.setReservas(this.getReservas());

@@ -18,11 +18,28 @@ import java.util.List;
 public class EstacionDTO {
     private String nombre;
     private Long id;
-
+    private String direccion;
+    private String ciudad;
     
     
     public EstacionDTO(){
         
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
     }
     
     public EstacionDTO(EstacionEntity entidad) {
@@ -56,6 +73,8 @@ public class EstacionDTO {
         EstacionEntity entity = new EstacionEntity();
         entity.setName(this.getNombre());
         entity.setId(this.getId());
+        entity.setDireccion(this.direccion);
+        entity.setCiudad(this.ciudad);
         return entity;
     }
 }
