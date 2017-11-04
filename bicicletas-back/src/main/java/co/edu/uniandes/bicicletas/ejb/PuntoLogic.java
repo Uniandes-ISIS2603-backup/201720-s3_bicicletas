@@ -79,7 +79,8 @@ public class PuntoLogic
         dateFormat.format(date); 
         dateFormat.format(vence);
      
-        PuntoEntity punt, punto;
+        PuntoEntity punt;
+        PuntoEntity punto;
         
         punt = new PuntoEntity();
         punt.setFechaPunto(date);
