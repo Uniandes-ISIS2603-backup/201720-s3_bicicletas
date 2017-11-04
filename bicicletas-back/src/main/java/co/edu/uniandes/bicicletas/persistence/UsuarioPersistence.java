@@ -100,7 +100,7 @@ public class UsuarioPersistence {
         query = query.setParameter("name", name);
         // Se invoca el query se obtiene la lista resultado
         List<UsuarioEntity> sameName = query.getResultList();
-        UsuarioEntity result = null; 
+        UsuarioEntity result; 
         if (sameName == null ) {
             result = null;
         } else if (sameName.isEmpty()) {

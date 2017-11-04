@@ -25,22 +25,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class UsuarioEntity implements Serializable {
-    
- /**
- *Constantes
- */
-   public final static Integer CEDULA=1; 
- 
-    /**
-     *
-     */
-    public final static Integer TARJETA_IDENTIDAD=2; 
- 
-    /**
-     *
-     */
-    public final static Integer PASAPORTE=3; 
-   
+
 /**
  *Atributos
  */
@@ -58,21 +43,21 @@ public class UsuarioEntity implements Serializable {
    
    @OneToMany(mappedBy = "usuarioReserva")
    @PodamExclude
-   private List<ReservaEntity> reservas = new ArrayList<ReservaEntity>();
+   private List<ReservaEntity> reservas = new ArrayList<>();
 
     /**
      *
      */
    @ManyToMany(mappedBy = "usuarios")
    @PodamExclude
-   private List<DireccionEntity> direcciones = new  ArrayList<DireccionEntity>();
+   private List<DireccionEntity> direcciones = new  ArrayList<>();
  
     /**
      *
      */
    @PodamExclude
    @OneToMany(mappedBy = "usuarioPunto", cascade=CascadeType.ALL)
-   private List<PuntoEntity> puntos = new  ArrayList<PuntoEntity>();
+   private List<PuntoEntity> puntos = new  ArrayList<>();
     
    
    

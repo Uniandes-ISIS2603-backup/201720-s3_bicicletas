@@ -4,7 +4,7 @@ function (ng) {
             mod.constant("usuariosContext", "api/usuarios");
             mod.constant("direccionesContext", "api/direcciones");
             mod.controller('usuarioUpdateCtrl', ['$scope', '$http', 'usuariosContext', '$state', 'direccionesContext', '$rootScope', '$filter',
-                function ($scope, $http, usuariosContext, $state, direccionesContext, $rootScope, $filter) {
+                function ($scope, $http, usuariosContext, $state, direccionesContext, $rootScope) {
                     $rootScope.edit = true;
 
                     var documentoUsuario = $state.params.documentoUsuario;
