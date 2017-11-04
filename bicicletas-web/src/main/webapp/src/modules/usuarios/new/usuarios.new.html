@@ -14,7 +14,11 @@
                     <div class="form-group row">
                         <div class="form-group col-md-6">
                             <label for="usuarioTipoId" class="col-sm-4">Tipo documento:</label>
-                            <input id="usuarioTipoId" required ng-model="usuarioTipoId" class="col-sm-1"/>
+                              <select id="usuarioTipoId" required ng-model="usuarioTipoId">
+                                <option value="1">Cedula</option>
+                                <option value="2">Cedula de extranjeria</option>
+                                <option value="3">Pasaporte</option>
+                              </select>
                         </div>
                     </div>
                     <div class="form-group row">
