@@ -1,5 +1,5 @@
 (function (ng) {
-var mod = ng.module("reservaModule", ['usuarioModule', 'ui.router', 'pagosModule']);
+var mod = ng.module("reservaModule", ['usuarioModule', 'ui.router', 'pagosModule', 'estacionModule']);
     mod.constant("reservasContext", "reservas");
     mod.constant("usuariosContext", "api/usuarios");
 
@@ -66,6 +66,25 @@ var mod = ng.module("reservaModule", ['usuarioModule', 'ui.router', 'pagosModule
                                 controllerAs: 'ctrl'
 	                    }
 	                }
-	            });
+            }).state('reservasEstacion', {
+                url: '/reservas',
+                abstract: true,
+                parent: 'estacionDetail',
+                views: {
+                    childrenView: {
+                        templateUrl: basePath + 'reservas.html'
+                    }
+                }
+            }).state('reservasEstacionList', {
+                url: '/{id:int}/list',
+                parent: 'reservasEstacion',
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + 'reservas.list.html',
+                        controller: 'reservasEstacionCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            });
         }]);
     })(window.angular);
