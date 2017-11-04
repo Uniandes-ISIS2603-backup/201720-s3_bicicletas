@@ -65,8 +65,6 @@ public class UsuarioReservaResource
         }
         ReservaEntity reserva = reservaLogic.getReserva(id);
         System.out.println("Documento de la reserva "+reserva.getUsuarioReserva().getDocumentoUsuario());
-        System.out.println("IdUsuario"+idUsuario);
-        System.out.println(reserva.getUsuarioReserva().getDocumentoUsuario()== idUsuario);
         if(reserva.getUsuarioReserva().getDocumentoUsuario().compareTo(idUsuario)==0){
            return new ReservaDetailDTO(reserva);
         }else if(reserva.getUsuarioReserva().getDocumentoUsuario().compareTo(idUsuario)!=0){
