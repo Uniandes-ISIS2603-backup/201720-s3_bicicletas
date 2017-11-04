@@ -71,23 +71,29 @@ public class CalificacionLogic
         LOGGER.info("Inicia proceso de crear una calificación");
         ReservaEntity reserva = reservaLogic.getReserva(idReserva);
         EstacionEntity estacion;
+        List<CalificacionEntity> calificaciones = reserva.getCalificaciones();
         boolean origen = false;
         
-        if (idEstacion == 0 && reserva.getCalificacionEstacionSalida() == null)
+        if (idEstacion == 0 && getCalificacionPos(calificaciones, 0) == null)
         {
+            LOGGER.info("eNTRA CREA");
             origen = true; 
             estacion = estacionPersistence.find(reserva.getEstacionSalida().getId());
-        }       
-        else if (idEstacion == 1 && reserva.getEstacionSalida() != null && reserva.getCalificacionEstacionLlegada() == null)
+        }
+        else if(idEstacion == 1 && reserva.getEstacionLlegada() == null)
         {
-            estacion = estacionPersistence.find(reserva.getEstacionSalida().getId()); //CAMBIADO POR GETESTACIONSALIDA()
+            throw new BusinessLogicException("No es posible calificar la estación de llegada, porque aún no ha sido definida.");
+        }
+        else if (idEstacion == 1  && getCalificacionPos(calificaciones, 1) == null)
+        {
+            estacion = estacionPersistence.find(reserva.getEstacionLlegada());
         }
         else
         {
             return null;
         }
                   
-        caliEntity.setIdReserva(idReserva);
+        caliEntity.setReserva(reserva);
         
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
@@ -97,7 +103,7 @@ public class CalificacionLogic
         caliEntity.setEstacion(estacion);
         CalificacionEntity califiEntity = caliPersistence.create(caliEntity);
         
-        LOGGER.info("Termina proceso de crear una calificación");
+        
         
         if(origen)
         {
@@ -107,7 +113,7 @@ public class CalificacionLogic
         {
             reserva.setCalificacionEstacionLlegada(califiEntity);
         }
-        
+        LOGGER.info("Termina proceso de crear una calificación");
         return califiEntity;
     }
     
@@ -165,18 +171,37 @@ public class CalificacionLogic
         
         ReservaEntity reserva = reservaLogic.getReserva(idReserva);
         
+        List<CalificacionEntity> calificaciones = reserva.getCalificaciones();
         CalificacionEntity caliEntity;
         
+        LOGGER.info("Entra get CALI RESERVA");
         if(cali)
         {
-            caliEntity = reserva.getCalificacionEstacionSalida();
+            LOGGER.info("eNTRA ACA");
+            caliEntity = getCalificacionPos(calificaciones, 0);
         }
         else
         {
-            caliEntity = reserva.getCalificacionEstacionLlegada();
+            caliEntity = getCalificacionPos(calificaciones, 1);
         }
         
         return caliEntity;
+    }
+    
+    public CalificacionEntity getCalificacionPos(List<CalificacionEntity> calis, int pos)
+    {
+        CalificacionEntity cali;
+        LOGGER.info("Entra pos");
+        try
+        {
+            cali = calis.get(pos);
+            LOGGER.info("Entra pos 1");
+        }
+        catch(IndexOutOfBoundsException e)
+        {
+            return null;
+        }
+        return cali;
     }
     
     /**
@@ -191,15 +216,17 @@ public class CalificacionLogic
         
         ReservaEntity reserva = reservaLogic.getReserva(idReserva);
         CalificacionEntity califi = null;
+        List<CalificacionEntity> calificaciones = reserva.getCalificaciones();
         
-        if(cali && reserva.getCalificacionEstacionSalida() != null)
+        
+        if(cali && getCalificacionPos(calificaciones, 0) != null)
         {
-            calEntity.setId(reserva.getCalificacionEstacionSalida().getId());
+            calEntity.setId(reserva.getCalificaciones().get(0).getId());
             califi = caliPersistence.update(calEntity);
         }
-        else if(!cali && reserva.getEstacionSalida() != null)  //CAMBIADO POR ESTACIONSALIDA
+        else if(!cali && getCalificacionPos(calificaciones, 1) != null)  
         {
-            calEntity.setId(reserva.getCalificacionEstacionLlegada().getId());
+            calEntity.setId(reserva.getCalificaciones().get(1).getId());
             califi = caliPersistence.update(calEntity);
         }
                 

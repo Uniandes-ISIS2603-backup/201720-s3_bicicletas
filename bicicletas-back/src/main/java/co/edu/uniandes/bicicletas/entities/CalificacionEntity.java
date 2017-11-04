@@ -25,9 +25,7 @@ package co.edu.uniandes.bicicletas.entities;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -61,8 +59,10 @@ public class CalificacionEntity extends BaseEntity implements Serializable
     /**
      * La reserva asociada a la calificación
      */
-    //@PodamExclude    
-    private Long idReserva;
+    @PodamExclude
+    @ManyToOne
+    @XmlInverseReference(mappedBy="calificaciones")
+    private ReservaEntity reserva;
     
     /**
      * La nota que le asigna el usuario a la estación
@@ -111,8 +111,6 @@ public class CalificacionEntity extends BaseEntity implements Serializable
         this.nota = nota;
     }
 
-    
-    
     public EstacionEntity getEstacion() {
         return estacion;
     }
@@ -124,15 +122,15 @@ public class CalificacionEntity extends BaseEntity implements Serializable
     /**
      * @return the idReserva
      */
-    public Long getIdReserva() {
-        return idReserva;
+    public ReservaEntity getReserva() {
+        return this.reserva;
     }
 
     /**
-     * @param idReserva the idReserva to set
+     * @param reservaCal
      */
-    public void setIdReserva(Long idReserva) {
-        this.idReserva = idReserva;
+    public void setReserva(ReservaEntity reservaCal) {
+        this.reserva = reservaCal;
     }
     
 }

@@ -1,8 +1,13 @@
 <div class="container-fluid">
     <div class="panel-group">
         <div class="panel panel-primary">
-            <div class="panel-heading"><label ng-if="!edit" id="createCalificacion">Calificar una estación</label>
-                <label ng-if="edit" id="editUsuario">Crear Calificacion</label></div>
+            <div class="panel-heading">
+                
+                <label ng-show="cali==0" id="createCalificacion">Calificar a la estación de salida - {{currentReserva.estacionSalida.name}}</label>
+                <label ng-show="cali==1" id="createCalificacion">Calificar a la estación de llegada - {{currentReserva.mostrarLlegada.name}}</label>
+                <label ng-if="edit" id="editUsuario">Crear Calificacion</label>
+                
+            </div>
             <div class="panel-body">
                 <form ng-submit="createCalificacion()" name="calificacion">
                     <div class="form-group row">

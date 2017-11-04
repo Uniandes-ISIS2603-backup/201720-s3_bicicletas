@@ -34,7 +34,7 @@ public class EstacionEntity extends BaseEntity implements Serializable {
     private List<AccesorioEntity> accesorios = new ArrayList<AccesorioEntity>();
     
     @PodamExclude
-    @OneToMany(mappedBy = "estacion")
+    @OneToMany(mappedBy = "estacion", cascade = CascadeType.REFRESH)
     @JoinColumn(name="ESTACION_ID")
     private List<CalificacionEntity> calificaciones = new ArrayList<CalificacionEntity>();
     
