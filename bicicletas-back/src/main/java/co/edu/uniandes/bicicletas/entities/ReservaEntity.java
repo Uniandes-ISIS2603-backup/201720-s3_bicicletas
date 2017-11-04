@@ -84,7 +84,7 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     @PodamExclude
     private List<AccesorioEntity> accesorios = new ArrayList<>();
     
-    private double precioFinal;
+    private Double precioFinal;
     
     @Temporal(TemporalType.TIMESTAMP)
     //@PodamExclude
@@ -266,9 +266,9 @@ public class ReservaEntity extends BaseEntity implements Serializable {
      */
     public void setPrecioFinal(double precioFinal) {
         if(bicicletas.isEmpty()){
-        this.precioFinal = bicicletas.size()*PagoEntity.PRECIO_BICICLETA_HORA;
+        this.precioFinal = new Double( bicicletas.size()*PagoEntity.PRECIO_BICICLETA_HORA);
         }else{
-        this.precioFinal = 0;
+        this.precioFinal = new Double(0);
         }
     }
 

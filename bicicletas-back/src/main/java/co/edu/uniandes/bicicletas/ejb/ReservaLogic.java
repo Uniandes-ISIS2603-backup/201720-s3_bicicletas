@@ -133,7 +133,8 @@ public class ReservaLogic
          if(Reserva == null){
              throw new WebApplicationException("No hay una reserva con dicho ID", 402);
          }
-         persistence.delete(id);
+         Reserva.setEstado(2);
+         persistence.update(Reserva);
     }
     public ReservaEntity crearReserva(Long idUsuario, ReservaEntity entity ) throws BusinessLogicException{
         
