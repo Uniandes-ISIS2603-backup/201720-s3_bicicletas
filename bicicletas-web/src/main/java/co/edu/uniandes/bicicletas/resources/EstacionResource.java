@@ -196,4 +196,13 @@ import co.edu.uniandes.bicicletas.entities.ReservaEntity;
         }
         return EstacionAccesorioResource.class;
     }
+    
+    @Path("{idEstacion: \\d+}/reservas")
+	    public Class<EstacionReservaResource> getReservasEstacionResource(@PathParam("idEstacion") Long idEstacion) {
+	        EstacionEntity entity = estacionLogic.getEstacion(idEstacion);
+	        if (entity == null) {
+	            throw new WebApplicationException("El recurso /estaciones/" + idEstacion + "/calificaciones no existe.", 404);
+	        }
+	        return EstacionReservaResource.class;
+	    }
 }

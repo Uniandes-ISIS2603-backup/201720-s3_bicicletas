@@ -1,8 +1,16 @@
 <div class="container-fluid">
     <div class="panel-group">
         <div class="panel panel-primary">
-            <div class="panel-heading"><label ng-if="!edit" id="createCalificacion">Calificar una estación</label>
-                <label ng-if="edit" id="editUsuario">Crear Calificacion</label></div>
+            <div class="panel-heading">              
+                <div ng-hide="edit">
+                <label ng-show="cali==0" id="createCalificacion">Calificar estación de salida - {{currentReserva.estacionSalida.name}}</label>
+                <label ng-show="cali==1" id="createCalificacion">Calificar estación de llegada - {{currentReserva.mostrarLlegada.name}}</label>               
+                </div>
+                <div ng-show="edit">
+                <label ng-show="cali==0" id="updateCalificacion">Editar la calificación de la estación de salida - {{currentReserva.estacionSalida.name}}</label>
+                <label ng-show="cali==1" id="updateCalificacion">Editar la califcación de la estación de llegada - {{currentReserva.mostrarLlegada.name}}</label>
+                </div>
+            </div>
             <div class="panel-body">
                 <form ng-submit="createCalificacion()" name="calificacion">
                     <div class="form-group row">
@@ -35,9 +43,16 @@
                         </div> 
                     </div> 
                     <div class="form-group row">
-                        <div class="form-group col-sm-12">
-                            <input ng-show="calificacion.$valid" type="submit" value="Calificar" class="btn btn-success"/>
-                            
+                        <div class="form-group col-sm-12">                          
+                            <button ng-show="calificacion.$valid" type="submit" class="btn btn-success">
+                                <div ng-hide="edit">
+                                    <i class="glyphicon glyphicon-star"></i> Calificar
+                                </div>
+                                <div ng-show="edit">
+                                    <i class="glyphicon glyphicon-edit"></i> Editar
+                                </div>                          
+                            </button>
+                            <a class="btn btn-danger btn-sm" ui-sref="reservaDetail({idReserva: currentReserva.idReserva})"><span class="glyphicon glyphicon-remove"></span>&nbsp;Cancelar</a>
                         </div>
                     </div>
                 </form>

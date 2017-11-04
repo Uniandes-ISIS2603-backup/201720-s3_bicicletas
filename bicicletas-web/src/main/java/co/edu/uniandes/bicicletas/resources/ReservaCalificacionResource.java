@@ -126,13 +126,18 @@ public class ReservaCalificacionResource
         {
             String esta = darNombreEstacion(origen);
             
-            throw new WebApplicationException("El recurso /reservas/" + idReserva + "/calificaciones/" + esta + " no existe", 404);
+            throw new WebApplicationException("No puede actualizar la calificación para la " + esta + " porque no existe", 404);
         
         }
        
-        dto.setIdCali(entity.getId());
+        entity.setNota(dto.getNota());
         
-        CalificacionEntity actualizada = calificacionLogic.updateCalificacion(idReserva, origen, dto.toEntity());
+        if(dto.getDescripcion() != null)
+        {
+            entity.setDescripcion(dto.getDescripcion());
+        }
+        
+        CalificacionEntity actualizada = calificacionLogic.updateCalificacion(entity);
         
         return new CalificacionDTO(actualizada);
 

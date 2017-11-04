@@ -71,33 +71,36 @@ public class CalificacionLogic
         LOGGER.info("Inicia proceso de crear una calificación");
         ReservaEntity reserva = reservaLogic.getReserva(idReserva);
         EstacionEntity estacion;
+        List<CalificacionEntity> calificaciones = reserva.getCalificaciones();
         boolean origen = false;
         
-        if (idEstacion == 0 && reserva.getCalificacionEstacionSalida() == null)
+        if (idEstacion == 0 && getCalificacionPos(calificaciones, 0) == null)
         {
+            LOGGER.info("eNTRA CREA");
             origen = true; 
             estacion = estacionPersistence.find(reserva.getEstacionSalida().getId());
-        }       
-        else if (idEstacion == 1 && reserva.getEstacionSalida() != null && reserva.getCalificacionEstacionLlegada() == null)
+        }
+        else if(idEstacion == 1 && reserva.getEstacionLlegada() == null)
         {
-            estacion = estacionPersistence.find(reserva.getEstacionSalida().getId()); //CAMBIADO POR GETESTACIONSALIDA()
+            throw new BusinessLogicException("No es posible calificar la estación de llegada, porque aún no ha sido definida.");
+        }
+        else if (idEstacion == 1  && getCalificacionPos(calificaciones, 1) == null)
+        {
+            estacion = estacionPersistence.find(reserva.getEstacionLlegada());
         }
         else
         {
             return null;
         }
                   
-        caliEntity.setIdReserva(idReserva);
+        caliEntity.setReserva(reserva);
+             
         
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-        Date date = new Date();
-        dateFormat.format(date); 
-        
-        caliEntity.setFechaCali(date);
+        caliEntity.setFechaCali(fechaActual());
         caliEntity.setEstacion(estacion);
         CalificacionEntity califiEntity = caliPersistence.create(caliEntity);
         
-        LOGGER.info("Termina proceso de crear una calificación");
+        
         
         if(origen)
         {
@@ -107,7 +110,7 @@ public class CalificacionLogic
         {
             reserva.setCalificacionEstacionLlegada(califiEntity);
         }
-        
+        LOGGER.info("Termina proceso de crear una calificación");
         return califiEntity;
     }
     
@@ -126,6 +129,15 @@ public class CalificacionLogic
         }
                
         return estacion.getCalificaciones();
+    }
+    
+    public Date fechaActual()
+    {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        Date date = new Date();
+        dateFormat.format(date); 
+        
+        return date;
     }
     
     /**
@@ -165,45 +177,46 @@ public class CalificacionLogic
         
         ReservaEntity reserva = reservaLogic.getReserva(idReserva);
         
+        List<CalificacionEntity> calificaciones = reserva.getCalificaciones();
         CalificacionEntity caliEntity;
-        
+                
         if(cali)
         {
-            caliEntity = reserva.getCalificacionEstacionSalida();
+            caliEntity = getCalificacionPos(calificaciones, 0);
         }
         else
         {
-            caliEntity = reserva.getCalificacionEstacionLlegada();
+            caliEntity = getCalificacionPos(calificaciones, 1);
         }
         
         return caliEntity;
     }
     
+    public CalificacionEntity getCalificacionPos(List<CalificacionEntity> calis, int pos)
+    {
+        CalificacionEntity cali;
+        LOGGER.info("Entra pos");
+        try
+        {
+            cali = calis.get(pos);
+            LOGGER.info("Entra pos 1");
+        }
+        catch(IndexOutOfBoundsException e)
+        {
+            return null;
+        }
+        return cali;
+    }
+    
     /**
      * Actualiza los datos de una calificación 
-     * @param idReserva El id que tiene la información de la calificación a actuaalizar
-     * @param cali false o true dependiendo de si se quiere ver la calificación de la estación de llegada u origen
      * @param calEntity Objeto con los nuevos datos de la calificación
      * @return Objeto CalificacionEntity con los datos actualizado
      */
-    public CalificacionEntity updateCalificacion(Long idReserva, boolean cali, CalificacionEntity calEntity) {
-        LOGGER.info("Inicia proceso de actualizar una calificacion");
-        
-        ReservaEntity reserva = reservaLogic.getReserva(idReserva);
-        CalificacionEntity califi = null;
-        
-        if(cali && reserva.getCalificacionEstacionSalida() != null)
-        {
-            calEntity.setId(reserva.getCalificacionEstacionSalida().getId());
-            califi = caliPersistence.update(calEntity);
-        }
-        else if(!cali && reserva.getEstacionSalida() != null)  //CAMBIADO POR ESTACIONSALIDA
-        {
-            calEntity.setId(reserva.getCalificacionEstacionLlegada().getId());
-            califi = caliPersistence.update(calEntity);
-        }
-                
-        return califi;
+    public CalificacionEntity updateCalificacion(CalificacionEntity calEntity) {
+        LOGGER.info("Inicia proceso de actualizar una calificacion");  
+        calEntity.setFechaCali(fechaActual());
+        return caliPersistence.update(calEntity);
     }
    
     /**

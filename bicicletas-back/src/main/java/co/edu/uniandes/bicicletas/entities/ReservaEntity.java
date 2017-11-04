@@ -49,15 +49,9 @@ public class ReservaEntity extends BaseEntity implements Serializable {
      
     private int estado;
     
-    @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="CALIFICACIONESTACIONSALIDA_ID")
+    @OneToMany(mappedBy = "reserva", cascade = CascadeType.ALL)
     @PodamExclude
-    private CalificacionEntity calificacionEstacionSalida;
-    
-    @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="CALIFICACIONESTACIONLLEGADA_ID")
-    @PodamExclude
-    private CalificacionEntity calificacionEstacionLlegada;
+    private List<CalificacionEntity> calificaciones = new ArrayList<>();
     
     @ManyToOne
     @PodamExclude
@@ -67,8 +61,10 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     @ManyToOne
     @PodamExclude
     @XmlInverseReference(mappedBy="reservas")
-    @JoinTable(name = "ESTACIONSALIDA_ID")
     private EstacionEntity estacionSalida;
+    
+    @PodamExclude
+    private Long estacionLlegada;
     
     @OneToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="PAGO_ID")
@@ -97,6 +93,15 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     //@PodamExclude
     private Date fechaFinal;
+
+    public Long getEstacionLlegada() {
+        return estacionLlegada;
+    }
+
+    
+    public void setEstacionLlegada(Long estacionLlegada) {
+        this.estacionLlegada = estacionLlegada;
+    }
 
     
    
@@ -184,21 +189,12 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     public void setEstado(int estado) {
         this.estado = estado;
     }
-
     
-
-    /**
-     * @return the calificacionEstacionLlegada
-     */
-    public CalificacionEntity getCalificacionEstacionLlegada() {
-        return calificacionEstacionLlegada;
-    }
-
     /**
      * @param calificacionEstacionLlegada the calificacionEstacionLlegada to set
      */
     public void setCalificacionEstacionLlegada(CalificacionEntity calificacionEstacionLlegada) {
-        this.calificacionEstacionLlegada = calificacionEstacionLlegada;
+        this.calificaciones.add(1, calificacionEstacionLlegada);
     }
 
     /**
@@ -277,17 +273,10 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     }
 
     /**
-     * @return the calificacionEstacionSalida
-     */
-    public CalificacionEntity getCalificacionEstacionSalida() {
-        return calificacionEstacionSalida;
-    }
-
-    /**
      * @param calificacionEstacionSalida the calificacionEstacionSalida to set
      */
     public void setCalificacionEstacionSalida(CalificacionEntity calificacionEstacionSalida) {
-        this.calificacionEstacionSalida = calificacionEstacionSalida;
+        this.calificaciones.add(0, calificacionEstacionSalida);
     }
 
     public List<AccesorioEntity> getAccesorios() {
@@ -306,6 +295,10 @@ public class ReservaEntity extends BaseEntity implements Serializable {
         this.transaccion = transaccion;
     }
     
+    public List<CalificacionEntity> getCalificaciones()
+    {
+        return this.calificaciones;
+    }
     
 
 }

@@ -9,7 +9,7 @@
                         <td> {{reservasRecords.length}}</td>
                     <div class="row">
                         <br>
-                        <td><a class="btn btn-info" ui-sref="reservaCreate({idUsuario:currentUsuario.documentoUsuario})"><span class="glyphicon glyphicon-plus-sign"></span>Crear Reserva</a>
+                        <td><a ng-hide="mostrar" class="btn btn-info" ui-sref="reservaCreate({idUsuario:currentUsuario.documentoUsuario})"><span class="glyphicon glyphicon-plus-sign"></span>Crear Reserva</a>
                         </td>
                     </div>
                     </tr>
@@ -18,7 +18,8 @@
                     <th>&nbsp;</th>
                 </tr>
                       <tr> 
-                      <th>idReserva</th>
+                      <th ng-show="mostrar">Usuario</th>
+                      <th>Reserva</th>
                       <th>Fecha de Inicio</th>
                       <th>Fecha de Entrega</th>   
                       </tr>
@@ -26,11 +27,12 @@
             
             <tbody>
                 <tr ng-repeat="reserva in reservasRecords">
+                    <td ng-show="mostrar" id="{{$index}}-idUsuario"><a ui-sref="usuarioDetail({documentoUsuario:reserva.usuarioReserva.documentoUsuario})">{{reserva.usuarioReserva.documentoUsuario }}</a></td>
                     <td id="{{$index}}-idReserva"><a ui-sref="reservaDetail({idUsuario:reserva.usuarioReserva.documentoUsuario,idReserva:reserva.idReserva})">{{reserva.idReserva}}</a></td>
                     <td id="{{$index}}-fechaInicio">{{reserva.fechaInicio }}</td>
                     <td id="{{$index}}-fechaEntega">{{reserva.fechaEntrega }}</td> 
                     <td id="{{$index}}-actions">
-                        <a class="btn btn-danger btn-sm" ui-sref="reservaDelete({idReserva:reserva.idReserva})"><span class="glyphicon glyphicon-trash"></span></a>
+                        <a ng-hide="mostrar" class="btn btn-danger btn-sm" ui-sref="reservaDelete({idReserva:reserva.idReserva})"><span class="glyphicon glyphicon-trash"></span></a>
                     </td>
                 </tr>
             </tbody>

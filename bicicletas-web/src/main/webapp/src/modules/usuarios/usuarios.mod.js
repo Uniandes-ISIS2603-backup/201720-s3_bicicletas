@@ -3,7 +3,6 @@
 	    mod.constant("usuariosContext", "api/usuarios");
 	    mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
 	            var basePath = 'src/modules/usuarios/';
-	            var basePathDirecciones = 'src/modules/direcciones/';
 	            $urlRouterProvider.otherwise("/usuariosList");
 
 	            $stateProvider.state('usuarios', {
