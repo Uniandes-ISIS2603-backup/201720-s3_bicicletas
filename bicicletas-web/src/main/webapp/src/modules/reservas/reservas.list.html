@@ -19,8 +19,6 @@
                 </tr>
                       <tr> 
                       <th>idReserva</th>
-                      <th>Fecha Creacion</th>
-                      <th>Estacion Salida</th>
                       <th>Fecha de Inicio</th>
                       <th>Fecha de Entrega</th>   
                       </tr>
@@ -29,8 +27,6 @@
             <tbody>
                 <tr ng-repeat="reserva in reservasRecords">
                     <td id="{{$index}}-idReserva"><a ui-sref="reservaDetail({idUsuario:reserva.usuarioReserva.documentoUsuario,idReserva:reserva.idReserva})">{{reserva.idReserva}}</a></td>
-                    <td id="{{$index}}-fechaCreacion">{{reserva.usuarioReserva.documentoUsuario}}</td>
-                    <td id="{{$index}}-estacionSalida">{{reserva.estacionSalida.name}}</td>
                     <td id="{{$index}}-fechaInicio">{{reserva.fechaInicio }}</td>
                     <td id="{{$index}}-fechaEntega">{{reserva.fechaEntrega }}</td> 
                     <td id="{{$index}}-actions">

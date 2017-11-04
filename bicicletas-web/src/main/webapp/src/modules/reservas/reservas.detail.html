@@ -7,6 +7,29 @@
                     <dd>{{currentReserva.idReserva}}</dd>
 
                     <hr>
+                    <dt>Estacion Salida</dt>
+                    <dd>{{currentReserva.estacionSalida.name}}</dd>
+                    
+                    <hr>
+                    <dt>Estacion Llegada</dt>
+                    <dd>{{currentReserva.estacionLlegada.id}}</dd>
+
+                    <hr>
+                    <dt>Fecha inicio</dt>
+                    <dd>{{currentReserva.fechaInicio}}</dd>
+
+                    <hr>
+                    
+                     <hr>
+                    <dt>Fecha Legada</dt>
+                    <dd>{{currentReserva.fechaEntrega}}</dd>
+
+                    <hr>
+                     <hr>
+                    <dt>Costo</dt>
+                    <dd>{{currentReserva.precioFinal}}</dd>
+
+                    <hr>
                     <div class="btn-group-vertical">
                         <a class="btn btn-info" ui-sref="calificacionesCreate({cali: 0, idUsuario: currentReserva.usuarioReserva.documentoUsuario, idReserva: currentReserva.idReserva})"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp; Calificar estación de salida</a>
                         <a class="btn btn-info" ui-sref="calificacionesCreate({cali: 1, idUsuario: currentReserva.usuarioReserva.documentoUsuario, idReserva: currentReserva.idReserva})"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp; Calificar estación de llegada</a>
