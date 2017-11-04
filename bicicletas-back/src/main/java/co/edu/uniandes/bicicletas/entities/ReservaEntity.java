@@ -67,8 +67,10 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     @ManyToOne
     @PodamExclude
     @XmlInverseReference(mappedBy="reservas")
-    @JoinTable(name = "ESTACIONSALIDA_ID")
     private EstacionEntity estacionSalida;
+    
+    @PodamExclude
+    private Long estacionLlegada;
     
     @OneToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="PAGO_ID")
@@ -97,6 +99,15 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     //@PodamExclude
     private Date fechaFinal;
+
+    public Long getEstacionLlegada() {
+        return estacionLlegada;
+    }
+
+    
+    public void setEstacionLlegada(Long estacionLlegada) {
+        this.estacionLlegada = estacionLlegada;
+    }
 
     
    

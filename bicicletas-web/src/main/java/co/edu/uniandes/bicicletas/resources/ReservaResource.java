@@ -73,7 +73,7 @@ public class ReservaResource {
         if(logicaUsuario.getUsuario(id)==null){
           throw new WebApplicationException("El usuario con id "+ id +" no existe", 404);
         }
-        return new ReservaDTO(logica.crearReserva( id ,dto.toEntity()));
+        return new ReservaDTO(logica.crearReserva(id ,dto.toEntity()));
     }
     
     @PUT
