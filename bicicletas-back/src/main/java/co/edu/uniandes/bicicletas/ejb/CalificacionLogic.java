@@ -93,13 +93,10 @@ public class CalificacionLogic
         }
                   
         caliEntity.setReserva(reserva);
-             
-        
+                     
         caliEntity.setFechaCali(fechaActual());
         caliEntity.setEstacion(estacion);
         CalificacionEntity califiEntity = caliPersistence.create(caliEntity);
-        
-        
         
         if(origen)
         {
@@ -130,6 +127,10 @@ public class CalificacionLogic
         return estacion.getCalificaciones();
     }
     
+    /**
+     * Devulve la fecha actual con el formato definido
+     * @return La fecha actual
+     */
     public Date fechaActual()
     {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
@@ -191,18 +192,24 @@ public class CalificacionLogic
         return caliEntity;
     }
     
+    /**
+     * Verifica, y devuelve, si ya existe la calificación de la estación de llegada o salida
+     * @param calis Calificaciones de la reserva
+     * @param pos 0 - Calificacion estacion de salida, 1 - Calificacion estacion de llegada
+     * @return calificación de la estación de llegada o salida
+     */
     public CalificacionEntity getCalificacionPos(List<CalificacionEntity> calis, int pos)
     {
         CalificacionEntity cali;
-        LOGGER.info("Entra pos");
+       
         try
         {
             cali = calis.get(pos);
-            LOGGER.info("Entra pos 1");
+            
         }
         catch(IndexOutOfBoundsException e)
         {
-            LOGGER.info(e.getMessage());
+            LOGGER.log(Level.SEVERE, "Excepcion:", e);
             return null;
         }
         return cali;
