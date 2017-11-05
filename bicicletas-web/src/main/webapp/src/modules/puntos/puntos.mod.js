@@ -1,10 +1,11 @@
 (function (ng) {
-var mod = ng.module("puntoModule", ['usuarioModule', 'ui.router']);
-    mod.constant("puntosContext", "puntos");
+var mod = ng.module("puntoModule", ['ui.router', 'usuarioModule']);
     mod.constant("usuariosContext", "api/usuarios");
+    mod.constant("puntosContext", "puntos");
 
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/puntos/';
+            
             $urlRouterProvider.otherwise("/puntosList");
 
             $stateProvider.state('puntos', {

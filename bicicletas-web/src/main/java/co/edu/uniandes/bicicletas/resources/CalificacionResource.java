@@ -49,6 +49,9 @@ import javax.ws.rs.WebApplicationException;
 @RequestScoped
 public class CalificacionResource 
 {
+    /**
+     * Lógica de CalificacionEntity
+     */
     @Inject
     CalificacionLogic calLogic;
    
@@ -89,7 +92,5 @@ public class CalificacionResource
            list.add(new CalificacionDTO(entity));
        }
        return list;
-   }
-   
-   
+   }  
 }

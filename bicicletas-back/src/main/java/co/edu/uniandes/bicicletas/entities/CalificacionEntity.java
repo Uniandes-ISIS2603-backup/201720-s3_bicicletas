@@ -50,6 +50,10 @@ public class CalificacionEntity extends BaseEntity implements Serializable
     @Temporal(TemporalType.DATE)
     private Date fechaCali;
     
+    
+    /**
+     * La estación que se califica
+     */
     @ManyToOne
     @PodamExclude
     @XmlInverseReference(mappedBy="calificaciones")
@@ -110,14 +114,6 @@ public class CalificacionEntity extends BaseEntity implements Serializable
         this.nota = nota;
     }
 
-    public EstacionEntity getEstacion() {
-        return estacion;
-    }
-
-    public void setEstacion(EstacionEntity estacion) {
-        this.estacion = estacion;
-    }
-
     /**
      * @return the idReserva
      */
@@ -131,5 +127,18 @@ public class CalificacionEntity extends BaseEntity implements Serializable
     public void setReserva(ReservaEntity reservaCal) {
         this.reserva = reservaCal;
     }
-    
+
+    /**
+     * @return the estacion
+     */
+    public EstacionEntity getEstacion() {
+        return estacion;
+    }
+
+    /**
+     * @param estacion the estacion to set
+     */
+    public void setEstacion(EstacionEntity estacion) {
+        this.estacion = estacion;
+    } 
 }

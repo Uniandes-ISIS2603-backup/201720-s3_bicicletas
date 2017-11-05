@@ -1,12 +1,14 @@
 (function (ng) {
     var mod = ng.module("calificacionModule", ['estacionModule','usuarioModule', 'reservaModule', 'ui.router']);
     mod.constant("calificacionesContext", "calificaciones");
-    mod.constant("estacionesContext", "api/estaciones");
     mod.constant("reservasContext", "reservas");
+    mod.constant("estacionesContext", "api/estaciones");
     mod.constant("usuariosContext", "api/usuarios");
     
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+            
             var basePath = 'src/modules/calificaciones/';
+            
             $urlRouterProvider.otherwise("/calificacionesList");
 
         $stateProvider.state('calificaciones', {

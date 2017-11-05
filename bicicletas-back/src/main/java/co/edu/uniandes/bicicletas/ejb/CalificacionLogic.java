@@ -22,7 +22,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 package co.edu.uniandes.bicicletas.ejb;
-
 import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.bicicletas.entities.CalificacionEntity;
 import co.edu.uniandes.bicicletas.entities.EstacionEntity;
@@ -45,17 +44,32 @@ import javax.inject.Inject;
 @Stateless
 public class CalificacionLogic 
 {
+    /**
+     * Logger de información
+     */
     private static final Logger LOGGER = Logger.getLogger(CalificacionLogic.class.getName());
     
+    /**
+     * Persistencia de CalificacionEntity
+     */
     @Inject
     private CalificacionPersistence caliPersistence;
     
+    /**
+     * Lógica de ReservaEntity
+     */
     @Inject 
     private ReservaLogic reservaLogic;
     
+    /**
+     * Persistencia de EstacionEntity
+     */
     @Inject
     private EstacionPersistence estacionPersistence;
     
+    /**
+     * Constate que modela una estación sin calificaciones
+     */
     public static final String MENSAJE = "La estación que consultó aún no tiene calificaciones";
     
     /**
