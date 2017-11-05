@@ -1,5 +1,5 @@
 (function (ng) {
-    var mod = ng.module("bicicletaModule", ['estacionModule','ui.router']);
+    var mod = ng.module("bicicletaModule", ['estacionModule','reservaModule','ui.router']);
     mod.constant("bicicletasContext", "api/bicicletas");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/bicicletas/';
@@ -91,7 +91,7 @@
                     }
                 }
             }).state('bicicletasReservaList', {
-                url: '/{idReserva:int}/estacion/{idEstacionSalida:int}/list',
+                url: '/{idReserva:int}/list',
                 parent: 'bicicletasReserva',
                 views: {
                     'detailView': {
@@ -102,12 +102,12 @@
                     
                 }
             }).state('asociarBicicleta', {
-	                url: '/create',
+	                url: '/asociar',
 	                parent: 'bicicletasReserva',
 	                views: {
 	                    'detailView': {
 	                        templateUrl: basePath + '/asociar/bicicletas.asociar.html',
-	                        controller: 'bicicletasReservaCtrl'
+	                        controller: 'asoBiciCtrl'
 	                    }
 	                }
 	    });                   
