@@ -47,7 +47,7 @@ public class CalificacionEntity extends BaseEntity implements Serializable
     /**
      * La fecha en la que se realiza la calificación
      */
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fechaCali;
     
     

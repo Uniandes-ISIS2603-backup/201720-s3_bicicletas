@@ -142,12 +142,20 @@ public class CalificacionPersistenceTest {
     {
         PodamFactory factory = new PodamFactoryImpl();
         CalificacionEntity newEntity = factory.manufacturePojo(CalificacionEntity.class);
+        newEntity.setReserva(null);
+        newEntity.setEstacion(null);
         CalificacionEntity result = persistence.create(newEntity);
 
         Assert.assertNotNull(result);
         CalificacionEntity entity = em.find(CalificacionEntity.class, result.getId());
         Assert.assertNotNull(entity);
         Assert.assertEquals(newEntity.getName(), entity.getName());
+        Assert.assertEquals(newEntity.getId(), entity.getId());
+        Assert.assertEquals(newEntity.getDescripcion(), entity.getDescripcion());
+        Assert.assertEquals(newEntity.getNota(), entity.getNota());
+        Assert.assertEquals(newEntity.getFechaCali(), entity.getFechaCali());
+        Assert.assertNull(entity.getReserva());
+        Assert.assertNull(entity.getEstacion());
     }
 
     /**
