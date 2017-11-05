@@ -36,7 +36,7 @@ import javax.ws.rs.WebApplicationException;
 
     @Inject
     DireccionLogic direccionLogic;
-
+    private String aviso = "El recurso /direcciones/";
     /**
      *
      * @return
@@ -58,7 +58,7 @@ import javax.ws.rs.WebApplicationException;
     public DireccionDetailDTO getDireccion(@PathParam("id") Long id) throws BusinessLogicException {
         DireccionEntity entity = direccionLogic.getDireccion(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /direcciones/" + id + " no existe.", 404);
+            throw new WebApplicationException(aviso + id + " no existe.", 404);
         }
         return new DireccionDetailDTO(entity);
     }
@@ -92,7 +92,7 @@ import javax.ws.rs.WebApplicationException;
         direccion.setId(id);
         DireccionEntity entity = direccionLogic.getDireccion(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /direcciones/" + id + " no existe.", 404);
+            throw new WebApplicationException(aviso + id + " no existe.", 404);
         }
         return new DireccionDetailDTO(direccionLogic.updateDireccion(id, direccion.toEntity()));
     }
@@ -107,7 +107,7 @@ import javax.ws.rs.WebApplicationException;
     public void deleteDireccion(@PathParam("direccionesId") Long id) throws BusinessLogicException {
         DireccionEntity entity = direccionLogic.getDireccion(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /direcciones/" + id + " no existe.", 404);
+            throw new WebApplicationException(aviso + id + " no existe.", 404);
         }
         direccionLogic.deleteDireccion(id);
     }

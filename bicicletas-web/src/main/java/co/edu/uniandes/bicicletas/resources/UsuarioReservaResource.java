@@ -9,6 +9,7 @@ import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.bicicletas.dtos.ReservaDTO;
 import co.edu.uniandes.bicicletas.dtos.ReservaDetailDTO;
 import co.edu.uniandes.bicicletas.dtos.UsuarioDTO;
+import co.edu.uniandes.bicicletas.ejb.EstacionLogic;
 import co.edu.uniandes.bicicletas.ejb.ReservaLogic;
 import co.edu.uniandes.bicicletas.ejb.UsuarioLogic;
 import co.edu.uniandes.bicicletas.entities.ReservaEntity;
@@ -42,6 +43,9 @@ public class UsuarioReservaResource
     @Inject
     UsuarioLogic usuarioLogic;
     
+    @Inject
+    EstacionLogic estacionLogic;
+    
     @GET
     public List<ReservaDTO> getReservas(@PathParam("idUsuario") Long idUsuario)
     {
@@ -65,10 +69,13 @@ public class UsuarioReservaResource
         }
         ReservaEntity reserva = reservaLogic.getReserva(id);
         System.out.println("Documento de la reserva "+reserva.getUsuarioReserva().getDocumentoUsuario());
-        System.out.println("IdUsuario"+idUsuario);
-        System.out.println(reserva.getUsuarioReserva().getDocumentoUsuario()== idUsuario);
         if(reserva.getUsuarioReserva().getDocumentoUsuario().compareTo(idUsuario)==0){
-           return new ReservaDetailDTO(reserva);
+           ReservaDetailDTO reser = new ReservaDetailDTO(reserva);
+           if(reserva.getEstacionLlegada() != null)
+           {
+               reser.setMostrarLlegada(estacionLogic.getEstacion(reserva.getEstacionLlegada()));
+           }          
+           return reser;
         }else if(reserva.getUsuarioReserva().getDocumentoUsuario().compareTo(idUsuario)!=0){
             throw new WebApplicationException("La reserva con id: "+id+" no existe o no pertenece al usuario con id: "+idUsuario, 404);
         }

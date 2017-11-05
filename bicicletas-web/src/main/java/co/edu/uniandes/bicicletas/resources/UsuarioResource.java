@@ -33,7 +33,8 @@ import javax.ws.rs.WebApplicationException;
         @Consumes("application/json")
 	@RequestScoped
 	public class UsuarioResource {
-
+            
+            private String noExiste="El usuario no existe";
 	    @Inject
 	    private UsuarioLogic usuarioLogic;
 
@@ -75,7 +76,7 @@ import javax.ws.rs.WebApplicationException;
 	    public UsuarioDetailDTO getUsuario(@PathParam("id") Long id) {
 	        UsuarioEntity entity = usuarioLogic.getUsuario(id);
 	        if (entity == null) {
-	            throw new WebApplicationException("El usuario no existe", 404);
+	            throw new WebApplicationException(noExiste, 404);
 	        }
 	        return new UsuarioDetailDTO(entity);
 	    }
@@ -90,8 +91,6 @@ import javax.ws.rs.WebApplicationException;
 	     */
 	    @POST
 	    public UsuarioDetailDTO createUsuario(UsuarioDetailDTO dto) throws BusinessLogicException {
-               // if(dto.getDocumentoUsuario()==null)
-                //{throw new WebApplicationException("El documento del usuario no puede ser null", 200);}
 	        return new UsuarioDetailDTO(usuarioLogic.createUsuario(dto.toEntity()));
 	    }
 
@@ -110,7 +109,7 @@ import javax.ws.rs.WebApplicationException;
 	        entity.setDocumentoUsuario(id);
 	        UsuarioEntity oldEntity = usuarioLogic.getUsuario(id);
 	        if (oldEntity == null) {
-	            throw new WebApplicationException("El usuario no existe", 404);
+	            throw new WebApplicationException(noExiste, 404);
 	        }
 	        entity.setDirecciones(oldEntity.getDirecciones());
 	        return new UsuarioDetailDTO(usuarioLogic.updateUsuario(id, entity));
@@ -127,7 +126,7 @@ import javax.ws.rs.WebApplicationException;
 	    public void deleteUsuario(@PathParam("id") Long id) {
 	        UsuarioEntity entity = usuarioLogic.getUsuario(id);
 	        if (entity == null) {
-	            throw new WebApplicationException("El usuario no existe", 404);
+	            throw new WebApplicationException(noExiste, 404);
 	        }
 	        usuarioLogic.deleteUsuario(id);
 	    }
@@ -141,7 +140,7 @@ import javax.ws.rs.WebApplicationException;
 	    public Class<UsuarioDireccionResource> getUsuarioDireccionesResource(@PathParam("usuariosId") Long usuariosId) {
 	        UsuarioEntity entity = usuarioLogic.getUsuario(usuariosId);
 	        if (entity == null) {
-	            throw new WebApplicationException("El usuario no existe", 404);
+	            throw new WebApplicationException(noExiste, 404);
 	        }
 	        return UsuarioDireccionResource.class;
 	    }

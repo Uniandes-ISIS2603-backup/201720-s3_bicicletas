@@ -27,7 +27,6 @@ import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.bicicletas.entities.AccesorioEntity;
 import co.edu.uniandes.bicicletas.entities.BicicletaEntity;
 import co.edu.uniandes.bicicletas.entities.CalificacionEntity;
-import co.edu.uniandes.bicicletas.entities.DireccionEntity;
 import co.edu.uniandes.bicicletas.entities.EstacionEntity;
 import co.edu.uniandes.bicicletas.entities.ReservaEntity;
 import co.edu.uniandes.bicicletas.persistence.AccesorioPersistence;
@@ -52,9 +51,6 @@ public class EstacionLogic
     
     @Inject
     private EstacionPersistence persistence;
-    
-    @Inject
-    private DireccionLogic direccionLogic;
     
     @Inject
     private BicicletaPersistence bicicletaLogic;
@@ -123,10 +119,6 @@ public class EstacionLogic
             ArrayList <CalificacionEntity> lista = new ArrayList<>();
             entidad.setCalificaciones(lista);
         }
-        else if(entidad.getDirecciones()==null){
-            List <DireccionEntity> lista = new ArrayList<>();
-            entidad.setDirecciones(lista);
-        }
         else if(entidad.getReservas()==null){
             List <ReservaEntity> lista = new ArrayList<>();
             entidad.setReservas(lista);
@@ -141,97 +133,7 @@ public class EstacionLogic
         }
         return persistence.update(entidad);
     }
-    
-    //-----------------------------------------------------------------------------------------------------------------
-    
-    //-----------------------------------------------------------------------------------------------------------------
-    
-    /**
-     * Obtiene una colección de instancias de DireccionEntity asociadas a una
-     * instancia de Estacion
-     *
-     * @param estacionId Identificador de la instancia de Estacion
-     * @return Colección de instancias de DireccionEntity asociadas a la instancia de
-     * Estacion
-     * @generated
-     */
-    public List<DireccionEntity> listDirecciones(Long estacionId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los libros del autor con id = {0}", estacionId);
-        return getEstacion(estacionId).getDirecciones();
-    }
 
-    /**
-     * Obtiene una instancia de DireccionEntity asociada a una instancia de Estacion
-     *
-     * @param estacionId Identificador de la instancia de Estacion
-     * @param direccionesId Identificador de la instancia de Direccion
-     * @return
-     * @generated
-     */
-    public DireccionEntity getDireccion(Long estacionId, Long direccionesId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar un libro con id = {0}", direccionesId);
-        List<DireccionEntity> list = getEstacion(estacionId).getDirecciones();
-        DireccionEntity direccionesEntity = new DireccionEntity();
-        direccionesEntity.setId(direccionesId);
-        int index = list.indexOf(direccionesEntity);
-        if (index >= 0) {
-            return list.get(index);
-        }
-        return null;
-    }
-
-    /**
-     * Asocia un Direccion existente a un Estacion
-     *
-     * @param estacionId Identificador de la instancia de Estacion
-     * @param direccionesId Identificador de la instancia de Direccion
-     * @return Instancia de DireccionEntity que fue asociada a Estacion
-     * @generated
-     */
-    public DireccionEntity addDireccion(Long estacionId, Long direccionesId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de agregar un libro al estacion con id = {0}", estacionId);
-        direccionLogic.addEstacion(direccionesId, estacionId);
-        return direccionLogic.getDireccion(direccionesId);
-    }
-
-    /**
-     * Remplaza las instancias de Direccion asociadas a una instancia de Estacion
-     *
-     * @param estacionId Identificador de la instancia de Estacion
-     * @param list Colección de instancias de DireccionEntity a asociar a instancia
-     * de Estacion
-     * @return Nueva colección de DireccionEntity asociada a la instancia de Estacion
-     * @generated
-     */
-    public List<DireccionEntity> replaceDirecciones(Long estacionId, List<DireccionEntity> list) {
-        LOGGER.log(Level.INFO, "Inicia proceso de reemplazar los libros asocidos al estacion con id = {0}", estacionId);
-        EstacionEntity estacionEntity = getEstacion(estacionId);
-        List<DireccionEntity> direccionList = direccionLogic.getDirecciones();
-        for (DireccionEntity direccion : direccionList) {
-            if (list.contains(direccion)) {
-                if (!direccion.getEstaciones().contains(estacionEntity)) {
-                    direccionLogic.addEstacion(direccion.getId(), estacionId);
-                }
-            } else {
-                direccionLogic.removeEstacion(direccion.getId(), estacionId);
-            }
-        }
-        estacionEntity.setDirecciones(list);
-        return estacionEntity.getDirecciones();
-    }
-
-    /**
-     * Desasocia un Direccion existente de un Estacion existente
-     *
-     * @param estacionId Identificador de la instancia de Estacion
-     * @param direccionesId Identificador de la instancia de Direccion
-     * @generated
-     */
-    public void removeDireccion(Long estacionId, Long direccionesId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar un libro del estacion con id = {0}", estacionId);
-        direccionLogic.removeEstacion(direccionesId, estacionId);
-    }
-    
     //------------------------------------------------------------------------------------------------------------------
     //------------------------------------------------------------------------------------------------------------------
     //-----------------------------------------RESERVAS-----------------------------------------------------------------
@@ -341,36 +243,5 @@ public class EstacionLogic
         }
         return null;
     }
-
-    
-    //public List<AccesorioEntity> replaceAccesorios(Long estacionId, List<AccesorioEntity> list) {
-      //  LOGGER.log(Level.INFO, "Inicia proceso de reemplazar los libros asocidos al estacion con id = {0}", estacionId);
-        //EstacionEntity entity = getEstacion(estacionId);
-        //List<AccesorioEntity> accesorioList = accesorioLogic.getAccesorios();
-        //for (AccesorioEntity direccion : accesorioList) {
-          //  if (list.contains(direccion)) {
-            //    if (!direccion.getEstacion().equals(entity)) {
-              //      accesorioLogic.addEstacion(direccion.getId(), estacionId);
-               // }
-           // } else {
-             //   accesorioLogic.removeEstacion(direccion.getId(), estacionId);
-           // }
-     //   }
-       // entity.setAccesorios(list);
-      //  return entity.getAccesorios();
-    //}
-
-    /**
-     * Desasocia un Direccion existente de un Estacion existente
-     *
-     * @param estacionId Identificador de la instancia de Estacion
-     * @param direccionesId Identificador de la instancia de Direccion
-     * @generated
-     */
-    public void removeEstacion(Long estacionId, Long direccionesId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar un libro del estacion con id = {0}", estacionId);
-        direccionLogic.removeEstacion(direccionesId, estacionId);
-    }
-    
     
 }

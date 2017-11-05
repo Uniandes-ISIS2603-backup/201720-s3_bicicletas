@@ -7,6 +7,7 @@ package co.edu.uniandes.bicicletas.resources;
 
 import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.bicicletas.dtos.EstacionDTO;
+import co.edu.uniandes.bicicletas.dtos.EstacionDetailDTO;
 import co.edu.uniandes.bicicletas.ejb.EstacionLogic;
 import co.edu.uniandes.bicicletas.ejb.ReservaLogic;
 import co.edu.uniandes.bicicletas.entities.EstacionEntity;
@@ -46,6 +47,22 @@ public class ReservaEstacionResource {
      return Estacion;   
     }
     
+    @GET
+    @Path("/llegada")
+    public EstacionDetailDTO  darEstacionLlegada (@PathParam("idReserva") Long idReserva)throws BusinessLogicException{
+        
+        EstacionDetailDTO estacion = null;
+        ReservaEntity reserva = logic.getReserva(idReserva);
+        EstacionEntity una = null;
+        if(reserva!=null){
+            una = Estacionlogic.getEstacion(reserva.getEstacionLlegada());
+            estacion = new EstacionDetailDTO(una);
+        }else{
+            throw new WebApplicationException("El recurso /reservas/" + idReserva + "/Estacion/ no existe", 404);
+        }
+     return estacion;   
+    }
+    
     @POST
     @Path("{idEstacion: \\d+}")
     public void  setEstacion (@PathParam("idReserva") Long idReserva, Integer llegada ,@PathParam("idEstacion") Long idEstacion )throws BusinessLogicException{
@@ -65,7 +82,7 @@ public class ReservaEstacionResource {
         EstacionEntity entity = estacion1.toEntity();
         if(entity!=null&&actua!=null)
         {
-            actua.setEstacionSalida(entity); //CAMBIADO POR ESTACION SALIDA
+            actua.setEstacionLlegada(entity.getId()); //CAMBIADO POR ESTACION SALIDA
             logic.actualizarReserva(actua);
                     }
         else

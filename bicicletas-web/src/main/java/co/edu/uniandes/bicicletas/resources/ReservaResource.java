@@ -9,6 +9,7 @@ import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.bicicletas.dtos.ReservaDTO;
 import co.edu.uniandes.bicicletas.dtos.ReservaDetailDTO;
 import co.edu.uniandes.bicicletas.dtos.TransaccionDTO;
+import co.edu.uniandes.bicicletas.dtos.consultaDTO;
 import co.edu.uniandes.bicicletas.ejb.ReservaLogic;
 import co.edu.uniandes.bicicletas.ejb.TransaccionLogic;
 import co.edu.uniandes.bicicletas.ejb.UsuarioLogic;
@@ -52,9 +53,13 @@ public class ReservaResource {
         
 }
     
-    @GET
-    public List<ReservaDTO> obtenerReservas(){
-        return listEntity2DTO(logica.getReservas());
+    @PUT
+    @Path("{id: \\d+}/consulta")
+    public List<ReservaDTO> obtenerReservas(@PathParam("id") Long id , consultaDTO consulta){
+        consulta.setFechaFinal(consulta.getStringFinal());
+        consulta.setFechaInicio(consulta.getStringInicio());
+        List<ReservaEntity> rta = logica.darReservasPorFecha(logicaUsuario.getUsuario(id).getReservas(),consulta.getFechaInicio(), consulta.getFechaFinal());
+        return listEntity2DTO(rta);
     }
     
     @GET
@@ -73,7 +78,7 @@ public class ReservaResource {
         if(logicaUsuario.getUsuario(id)==null){
           throw new WebApplicationException("El usuario con id "+ id +" no existe", 404);
         }
-        return new ReservaDTO(logica.crearReserva( id ,dto.toEntity()));
+        return new ReservaDTO(logica.crearReserva(id ,dto.toEntity()));
     }
     
     @PUT

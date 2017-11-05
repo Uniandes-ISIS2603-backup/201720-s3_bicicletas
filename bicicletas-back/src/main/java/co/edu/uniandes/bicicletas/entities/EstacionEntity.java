@@ -11,11 +11,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.xml.bind.annotation.XmlTransient;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -25,18 +21,14 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class EstacionEntity extends BaseEntity implements Serializable {
     
-    @ManyToMany
-    @PodamExclude
-    private List<DireccionEntity> direcciones = new ArrayList<DireccionEntity>();
-    
     @PodamExclude
     @OneToMany(mappedBy = "estacion", cascade = CascadeType.ALL)
     private List<AccesorioEntity> accesorios = new ArrayList<AccesorioEntity>();
     
     @PodamExclude
-    @OneToMany(mappedBy = "estacion")
+    @OneToMany(mappedBy = "estacion", cascade = CascadeType.REFRESH)
     @JoinColumn(name="ESTACION_ID")
-    private List<CalificacionEntity> calificaciones = new ArrayList<CalificacionEntity>();
+    private List<CalificacionEntity> calificaciones = new ArrayList<>();
     
     @PodamExclude
     @OneToMany(mappedBy="estacionSalida", cascade = CascadeType.ALL)
@@ -45,6 +37,28 @@ public class EstacionEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @OneToMany(mappedBy = "estacion", cascade = CascadeType.REFRESH)
     private List<BicicletaEntity> bicicletas = new ArrayList<>();
+    
+    private String direccion;
+    
+    private String ciudad;
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
+    }
+    
+    
     
 
     public List<ReservaEntity> getReservas() {
@@ -70,17 +84,7 @@ public class EstacionEntity extends BaseEntity implements Serializable {
     public void setBicicletas(List<BicicletaEntity> bicicletas) {
         this.bicicletas = bicicletas;
     }
-    
-   
 
-    public List<DireccionEntity> getDirecciones() {
-        return direcciones;
-    }
-
-    public void setDirecciones(List<DireccionEntity> direcciones) {
-        this.direcciones = direcciones;
-    }
-    
    public List<CalificacionEntity> getCalificaciones() {
         return calificaciones;
     }

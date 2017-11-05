@@ -17,7 +17,6 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.runner.RunWith;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -140,6 +139,7 @@ public class PuntoPersistenceTest {
         PodamFactory factory = new PodamFactoryImpl();
         
         PuntoEntity nuevoPunto = factory.manufacturePojo(PuntoEntity.class);
+        nuevoPunto.setUsuarioPunto(null);
         PuntoEntity resultado = persistence.create(nuevoPunto);
 
         Assert.assertNotNull(resultado);
@@ -149,6 +149,10 @@ public class PuntoPersistenceTest {
         Assert.assertNotNull(pCreado);
         
         Assert.assertEquals(nuevoPunto.getId(), pCreado.getId());
+        Assert.assertEquals(nuevoPunto.getName(), pCreado.getName());
+        Assert.assertEquals(nuevoPunto.getFechaPunto(), pCreado.getFechaPunto());
+        Assert.assertEquals(nuevoPunto.getFechaVencimiento(), pCreado.getFechaVencimiento());
+        Assert.assertNull(nuevoPunto.getUsuarioPunto());
     }
 
     /**

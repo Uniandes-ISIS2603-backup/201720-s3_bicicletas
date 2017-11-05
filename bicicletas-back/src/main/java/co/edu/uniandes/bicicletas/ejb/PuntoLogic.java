@@ -44,13 +44,22 @@ import javax.inject.Inject;
 @Stateless
 public class PuntoLogic 
 {
+    /**
+     * Logger de información
+     */
     private static final Logger LOGGER = Logger.getLogger(PuntoLogic.class.getName());
     
+    /**
+     * Persistencia de PuntoEntity
+     */
     @Inject
-    private PuntoPersistence puntPersistence; // Variable para acceder a la persistencia de la aplicación.
+    private PuntoPersistence puntPersistence; 
     
+    /**
+     * Lógica del usuario
+     */
     @Inject
-    private UsuarioLogic usuarioLogic; //Logica del usuario
+    private UsuarioLogic usuarioLogic;
     
     /**
      * Se encarga de crear 10 puntos en la base de datos
@@ -79,7 +88,8 @@ public class PuntoLogic
         dateFormat.format(date); 
         dateFormat.format(vence);
      
-        PuntoEntity punt, punto;
+        PuntoEntity punt;
+        PuntoEntity punto;
         
         punt = new PuntoEntity();
         punt.setFechaPunto(date);
@@ -133,6 +143,12 @@ public class PuntoLogic
         LOGGER.info("Termina el proceso de borrar 10 puntos de un usuario");
     }
     
+    /**
+     * Verifica los puntos de una lista que ya se vencieron y los elimina
+     * @param usuario El usuario que tiene los puntos
+     * @param fechaActual La fecha actual
+     * @return La lista de puntos sin los puntos vencidos
+     */
     public List<PuntoEntity> verificarFechaVencimiento(UsuarioEntity usuario, Date fechaActual)
     {
         LOGGER.info("Inicia el proceso de verificar las fechas de vencimiento de los puntos");

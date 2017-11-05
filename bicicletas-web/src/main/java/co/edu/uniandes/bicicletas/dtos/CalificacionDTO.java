@@ -66,7 +66,7 @@ public class CalificacionDTO
             {
                 this.idEstacion = caliEntity.getEstacion().getId();
             } 
-            this.idReserva = caliEntity.getIdReserva();
+            this.idReserva = caliEntity.getReserva().getId();
         }
         
     }
@@ -83,7 +83,9 @@ public class CalificacionDTO
         caliEntity.setNota(this.getNota());
         caliEntity.setDescripcion(this.getDescripcion());
         caliEntity.setEstacion(this.getEstacion());
-        caliEntity.setIdReserva(this.getIdReserva());
+        ReservaEntity reserva = new ReservaEntity();
+        reserva.setId(this.getIdReserva());
+        caliEntity.setReserva(reserva);
         
         return caliEntity;
     }

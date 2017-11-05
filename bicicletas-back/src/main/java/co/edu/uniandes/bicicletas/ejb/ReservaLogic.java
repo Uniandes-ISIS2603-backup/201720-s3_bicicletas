@@ -35,6 +35,8 @@ import co.edu.uniandes.bicicletas.persistence.BicicletaPersistence;
 import co.edu.uniandes.bicicletas.persistence.EstacionPersistence;
 import co.edu.uniandes.bicicletas.persistence.ReservaPersistence;
 import co.edu.uniandes.bicicletas.persistence.UsuarioPersistence;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
@@ -114,7 +116,7 @@ public class ReservaLogic
         LOGGER.log(Level.INFO, "Inicia proceso de consultar una reserva del usuario con id = {0}", idUsuario);
         List<ReservaEntity> reservasUsuario = usuario.getReservas();
         if(reservasUsuario==null || reservasUsuario.isEmpty()){
-            throw new BusinessLogicException("hola ");
+            throw new BusinessLogicException(" EL usuario no tiene reservas ");
         }
         ReservaEntity lreserva = persistence.find(idReserva);
         int index = reservasUsuario.indexOf(lreserva);
@@ -131,7 +133,8 @@ public class ReservaLogic
          if(Reserva == null){
              throw new WebApplicationException("No hay una reserva con dicho ID", 402);
          }
-         persistence.delete(id);
+         Reserva.setEstado(2);
+         persistence.update(Reserva);
     }
     public ReservaEntity crearReserva(Long idUsuario, ReservaEntity entity ) throws BusinessLogicException{
         
@@ -139,7 +142,7 @@ public class ReservaLogic
         entity.setUsuarioReserva(usuario);
         List<ReservaEntity> reservasUsuario = usuario.getReservas();
         List<ReservaEntity> reservasEstacion;
-        
+     
         EstacionEntity estacionSalida;
         
         if(entity.getEstado()<0||entity.getEstado()>4){
@@ -166,6 +169,32 @@ public class ReservaLogic
         entity.setEstacionSalida(estacionSalida);
         entity.setUsuarioReserva(usuario);
         entity.setEstado(1);
+                
+       
+        Iterator<ReservaEntity> iter = reservasUsuario.iterator();
+        while(iter.hasNext()){
+            ReservaEntity local= iter.next();
+            if(local.getFechaInicio().compareTo( entity.getFechaInicio() )== 0 && 
+               local.getEstacionSalida().getId().equals(entity.getEstacionSalida().getId()))
+            {
+                 throw new BusinessLogicException("No es posible crear una reserva a la misma hora en la misma estacion ");
+            }
+            if(local.getFechaInicio().compareTo( entity.getFechaInicio())== 0){
+                 throw new BusinessLogicException("No es posible crear una reserva a la misma hora en diferente estacion");
+            }
+        }
+        
+        if(entity.getFechaInicio().compareTo(entity.getFechaEntrega())==0){
+            throw new BusinessLogicException("No es posible crear una reserva con la misma hora de salida y llegada ");
+        }
+        if(entity.getFechaInicio().before(entity.getFechaReserva())){
+             throw new BusinessLogicException("No es posible crear una reserva antes de la fecha actual ");
+        }
+        if(entity.getFechaEntrega().before(entity.getFechaInicio())){
+             throw new BusinessLogicException("No es posible crear una reserva con la entrega antes del inicio  ");
+        }
+        
+        
         reservaNueva=persistence.create(entity);
         
         reservasUsuario.add(reservaNueva);
@@ -193,6 +222,23 @@ public class ReservaLogic
          persistenceEstacion.update(entity);
          return reserva;
      }
+    
+    
+    public List<ReservaEntity> darReservasPorFecha(List<ReservaEntity> preservas , Date inicio , Date fin ){
+        List<ReservaEntity> reservasUsuario = preservas;
+        List<ReservaEntity> filtro = new ArrayList<>(); 
+        Iterator<ReservaEntity> iter = reservasUsuario.iterator();
+        if(reservasUsuario.isEmpty()){
+            return null;
+        }
+        while(iter.hasNext()){
+            ReservaEntity local =iter.next();
+            if(local.getFechaReserva().after(inicio)&& local.getFechaReserva().before(fin)){
+                filtro.add(local);
+            }
+        }
+        return filtro;
+    }
     
      public ReservaEntity asignarBicicleta(Long idReserva, BicicletaEntity bici) throws BusinessLogicException{
          ReservaEntity reserva = getReserva(idReserva);

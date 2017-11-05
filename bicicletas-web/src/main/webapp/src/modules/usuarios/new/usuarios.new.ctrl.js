@@ -5,7 +5,7 @@
 	        function ($scope, $http, usuariosContext, $state, direccionesContext, $rootScope) {
 	            $rootScope.edit = false;
 	            $scope.createUsuario = function () {
-	                $http.post(usuariosContext, {
+	                $http.post("api/usuarios", {
 	                    nombre: $scope.usuarioNombre,
 	                    tipoId: $scope.usuarioTipoId,
 	                    documentoUsuario: $scope.usuarioDocumentoUsuario,

@@ -19,6 +19,8 @@ import java.util.GregorianCalendar;
  */
 public class ReservaDTO {
     
+    
+    
     private Long idReserva;
     private int estado;
     private UsuarioEntity usuarioReserva;
@@ -26,13 +28,32 @@ public class ReservaDTO {
     private String fechaInicio;
     private String fechaFin;
     private EstacionEntity estacionSalida;
+    private Long estacionLlegada;
     private double precioFinal;
     private Boolean descuento;
     private TransaccionEntity transaccion;
+    private EstacionEntity mostrarLlegada;
     
     
     public ReservaDTO(){
     }
+
+    public Long getEstacionLlegada() {
+        return estacionLlegada;
+    }
+
+    public void setEstacionLlegada(Long estacionLlegada) {
+        this.estacionLlegada = estacionLlegada;
+    }
+
+    public EstacionEntity getMostrarLlegada() {
+        return mostrarLlegada;
+    }
+
+    public void setMostrarLlegada(EstacionEntity mostrarLlegada) {
+        this.mostrarLlegada = mostrarLlegada;
+    }
+    
 
     public ReservaDTO(ReservaEntity entidad) {
         if(entidad!=null){
@@ -46,6 +67,7 @@ public class ReservaDTO {
             this.fechaReserva = entidad.getFechaReserva().toString();
             this.descuento = entidad.getDescuento();
             this.transaccion = entidad.getTransaccion();
+            this.estacionLlegada = entidad.getEstacionLlegada();
         }
     }
     
@@ -65,6 +87,7 @@ public class ReservaDTO {
         entity.setFechaEntrega(this.pasceFecha(fechaFin));   
         entity.setPrecioFinal(this.getPrecioFinal());
         entity.setFechaReserva(this.getFechaReserva());
+        entity.setEstacionLlegada(this.estacionLlegada);
         entity.setDescuento( );
         entity.setTransaccion(transaccion);
         return entity;

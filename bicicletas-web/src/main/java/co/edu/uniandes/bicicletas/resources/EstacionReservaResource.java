@@ -51,13 +51,13 @@ public class EstacionReservaResource {
     }
      
      @GET
-    public List<ReservaDTO> listReserva(@PathParam("estacionesId") Long estacionesId) {
+    public List<ReservaDTO> listReserva(@PathParam("idEstacion") Long estacionesId) {
         return reservaListEntity2DTO(estacionLogic.listReservas(estacionesId));
     }
     
     @GET
     @Path("{reservaId: \\d+}")
-    public ReservaDTO getReservas(@PathParam("estacionesId") Long estacionesId, @PathParam("reservaId") Long reservaId) {
+    public ReservaDTO getReservas(@PathParam("idEstacion") Long estacionesId, @PathParam("reservaId") Long reservaId) {
         return new ReservaDTO(estacionLogic.getReserva(estacionesId, reservaId));
     }
     

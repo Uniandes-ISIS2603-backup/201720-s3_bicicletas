@@ -1,15 +1,31 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+MIT License
+
+Copyright (c) 2017 Universidad de los Andes - ISIS2603
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
  */
 package co.edu.uniandes.bicicletas.resources;
-
 import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.bicicletas.dtos.CalificacionDTO;
 import co.edu.uniandes.bicicletas.ejb.CalificacionLogic;
 import co.edu.uniandes.bicicletas.entities.CalificacionEntity;
-import co.edu.uniandes.bicicletas.entities.EstacionEntity;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -29,6 +45,9 @@ import javax.ws.rs.WebApplicationException;
 @Consumes("application/json")
 public class ReservaCalificacionResource 
 {
+    /**
+     * Lógica de CalificacionEntity
+     */
     @Inject
     private CalificacionLogic calificacionLogic;
     
@@ -59,10 +78,6 @@ public class ReservaCalificacionResource
         }
         
         CalificacionEntity caliEn = calificacionLogic.createCalificacion(idEstacion, idReserva, dto.toEntity());
-        if(caliEn == null )
-        {
-            throw new BusinessLogicException("Ya existe una calificación para la estación indicada dentro de la reserva");
-        }
         
         return new CalificacionDTO(caliEn);
     }
@@ -101,6 +116,14 @@ public class ReservaCalificacionResource
         return new CalificacionDTO(entity);
     }
     
+    /**
+     * Actualiza una de las 2 calificaciones de una reserva
+     * @param idReserva El id de la reserva
+     * @param idCali 0 - Calificación estación de salida 1 - Calificación estación de llegada
+     * @param dto Los datos para actualizar la calificación
+     * @return La calificación actualizada
+     * @throws BusinessLogicException 
+     */
     @PUT
     @Path("{id: \\d+}")
     public CalificacionDTO updateCalificacion(@PathParam("idReserva") Long idReserva, @PathParam("id") Long idCali, CalificacionDTO dto) throws BusinessLogicException 
@@ -126,18 +149,28 @@ public class ReservaCalificacionResource
         {
             String esta = darNombreEstacion(origen);
             
-            throw new WebApplicationException("El recurso /reservas/" + idReserva + "/calificaciones/" + esta + " no existe", 404);
+            throw new WebApplicationException("No puede actualizar la calificación para la " + esta + " porque no existe", 404);
         
         }
        
-        dto.setIdCali(entity.getId());
+        entity.setNota(dto.getNota());
         
-        CalificacionEntity actualizada = calificacionLogic.updateCalificacion(idReserva, origen, dto.toEntity());
+        if(dto.getDescripcion() != null)
+        {
+            entity.setDescripcion(dto.getDescripcion());
+        }
+        
+        CalificacionEntity actualizada = calificacionLogic.updateCalificacion(entity);
         
         return new CalificacionDTO(actualizada);
 
     }
     
+    /**
+     * Retorna el nombre de la estación con base a la calificación
+     * @param cali true = estación de salida. false = estación de llegada
+     * @return El nombre de la calificación con base a la calificación
+     */
     private String darNombreEstacion(boolean cali)
     {
         String estacion = "estación de ";

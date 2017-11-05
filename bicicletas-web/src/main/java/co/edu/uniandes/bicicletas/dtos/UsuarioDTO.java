@@ -22,13 +22,10 @@ public class UsuarioDTO {
    private Long tarjetaCredito;
    private int numeroCsv;
    private String contraseniaPSE;
-    /**
-     * Constructor por defecto
-     */
-    public UsuarioDTO() {
-        //Do nothing because is not necessary
-    }
 
+   public UsuarioDTO() {
+       //Do nothing because is not necessary
+    }
     /**
      * Conviertir Entity a DTO
      * (Crea un nuevo DTO con los valores que recibe en la entidad que viene de argumento.
