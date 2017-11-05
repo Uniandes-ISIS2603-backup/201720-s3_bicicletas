@@ -1,0 +1,81 @@
+<div class="container-fluid">
+
+    <div class="panel panel-primary">
+        <div class="panel panel-heading"> <label> Pago con puntos</label>   </div>
+
+        <div class="panel-body">
+            <div class="panel panel-default">
+                <div class="panel-body"> 
+                    <div>
+                        Usted cuenta con {{puntos}} puntos.
+                    </div>
+
+                    <div ng-show="puntos < 10">
+                        Usted no cuenta con los puntos suficientes para hacer el pago
+                    </div>
+                </div>
+            </div>
+
+            <div ng-show="puntos >= 10" class="container">
+                <div class="row">
+
+                    <div class="col-sm-6">
+                        <div class="panel panel-default"> <label> Confirmar pago </label>
+                            <div class="panel-body"> 
+                                ¿Desea pagar una bicicleta por 10 puntos?
+                                
+                            </div>
+                            
+                            <form ng-submit="pagarConPuntos()" name="pago">
+                                <input type="submit" value="Pagar" class="btn btn-success"/>
+                            </form>
+                        </div>
+                    </div> 
+
+
+                    <div class="col-sm-6">
+                        <div class="panel panel-default">
+                            <div class="panel-body"> 
+                                Su balance de puntos luego del pago será el siguiente:
+
+                                <table style="width:100%">
+                                    <tr>
+                                        <th>disponibles</th>
+                                        <th>{{puntos}}</th> 
+                                    </tr>
+
+                                    <tr>
+                                        <td> </td>
+                                        <td>-10</td>                                 
+                                    </tr>
+
+                                    <tr>
+                                        <td> </td>
+                                        <td> </td>               
+                                    </tr>
+
+                                    <tr>
+                                        <td>Total puntos</td>
+                                        <td>{{darPuntosRestantes()}}</td>               
+                                    </tr>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-sm-12">
+                    <a class="btn btn-info" ui-sref="pagoReserva({id: currentpago.id})">Regresar</a>
+                </div>
+
+            </div>
+
+
+
+
+
+
+        </div>
+    </div>

@@ -8,14 +8,21 @@
                         <tr>
                             <th>Id de un pago</th>    
                             <th>Monto</th>  
-                            <th>Estado</th>  
+                            <th>Estado</th> 
+                            <th>Accion</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr ng-repeat="pago in pagosRecords">
-                            <td id="{{$index}}-id"><a ui-sref="pagoDetail({id: pago.id})">{{pago.id}}</a></td>
+                            <td id="{{$index}}-id">{{pago.id}}</td>
                             <td id="{{$index}}-monto">{{pago.monto}}</td>     
-                            <td id="{{$index}}-estado">{{pago.estado}}</td>    
+                            <td id="{{$index}}-estado">{{mapearEstado(pago)}}</td>
+
+                            <td id="{{$index}}-idReserva">
+                                <button type="button" ng-click="verificarPago(pago)" class="btn btn-primary">Aceptar pago</button>
+                                <button type="button" ng-click="verificarReembolso(pago)" class="btn btn-warning">Aceptar reembolso</button>
+                            </td>
+
                         </tr>
                     </tbody>
                 </table>

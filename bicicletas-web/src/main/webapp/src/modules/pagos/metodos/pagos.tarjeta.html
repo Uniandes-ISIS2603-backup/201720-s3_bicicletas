@@ -1,0 +1,54 @@
+<div class="container-fluid">
+
+    <div class="panel panel-primary">
+        <div class="panel panel-heading"> <label>Pago con tarjeta</label>  </div>
+        <div class="panel-body">
+
+            <div class="panel panel-default">
+                <div class="panel-body">Confirme la información de su tarjeta de credito para confirmar el pago</div>
+            </div>
+            <div class="form-group row">
+                <div class="form-group col-md-6">
+                    <label class="col-sm-2">Titular de la tarjeta: </label>
+                    <input ng-model="currentusuario.nombre" disabled class="col-sm-6"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="form-group col-md-6">
+                    <label class="col-sm-2">Número de la tarjeta:</label>
+                    <input ng-model="currentusuario.tarjetaCredito" id="tarjetaCredito" disabled class="col-sm-6"/>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-body">Ingrese la fecha y el CSV asociado a esta tarjeta.</div>
+            </div>
+
+            <form ng-submit="pagarConTarjeta()" name="pago">
+
+                <div class="form-group row">
+                    <div class="form-group col-md-6">
+                        <label for="csv" class="col-sm-2">CSV</label>
+                        <input id="csv" type="number" required ng-model="contrasenia" class="col-sm-2"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="form-group col-sm-4" ng-if="!pago.$valid">
+                        <div class="alert alert-warning">
+                            <strong>¡Cuidado!</strong><p>No olvides ingresar el CSV</p>
+                        </div> 
+                    </div> 
+                </div> 
+                <div class="form-group row">
+                    <div class="form-group col-sm-12">
+                        <input ng-show="pago.$valid" type="submit" value="Save" class="btn btn-success"/>
+                        <a class="btn btn-info" ui-sref="pagoReserva({id: currentpago.id})">Cancel</a>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,33 +1,140 @@
-<div class="panel panel-default"> 
+<div ng-show="estaProcesando()" class="alert alert-info">
+    <strong>¡Listo!</strong> Estamos procesando tu pago, espera unos minutos.
+</div>
+
+<div ng-show="estaPagado()" class="alert alert-success">
+    <strong>¡Pago acreditado!</strong> ¡Disfruta tu reserva!.
+</div>
+
+<div ng-show="estaEsperandoPago()" class="alert alert-warning">
+    <strong>¡Recuerda!</strong> Puedes pagar tu reserva con tu tarjeta de credito, PSE o puntos acumulados.
+</div>
+
+<div ng-show="estaProcesandoReembolso()" class="alert alert-info">
+    <strong>¡Ya casi!</strong> Estamos procesando tu solicitud de reembolso, regresa en unos minutos.
+</div>
+
+<div ng-show="estaReembolsadoTotal() || estaReembolsadoParcial()" class="alert alert-success">
+    <strong>¡Reembolso aprobado!</strong> Sigue las instrucciones que fueron enviadas a tu correo.
+</div>
+
+
+<div class="panel panel-primary">
+    <div class="panel panel-heading"> <label>Pago en detalle</label>  </div>
     <div class="panel-body">
-        <div class="row">
-            <div class="col-md-3">
-                <dl>     
-                    <dt>Pago {{currentpago.id}}</dt>
 
-                    <dt> Estado del pago</dt>
-                    <dd>{{currentpago.estado}}</dd>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <label>Pago {{currentpago.id}}</label>
 
-                    <hr>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <dl>     
 
-                    <dt> Monto </dt>
-                    <dd>{{currentpago.monto}}</dd>
+                                        <hr>
 
-                </dl>
+                                        <dt> Estado del pago</dt>
+                                        <dd>{{mapearEstado()}}</dd>
+
+                                        <hr>
+
+                                        <dt> Monto </dt>
+                                        <dd>{{currentpago.monto}}</dd>
+
+                                        <hr>
+
+                                        <dt> Bicicletas por pagar </dt>
+                                        <dd>{{currentpago.bicicletasPendientes}}</dd>
+
+                                    </dl>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class='panel panel-default'>
+                        <div class='panel panel-body'>  <label>Resumen</label>
+                            <br>Los items a pagar son los siguientes
+                            <hr>
+                            <table style="width:100%">
+                                <tr>
+                                    <th>Articulo</th>
+                                    <th>Cantidad</th>
+                                    <th>Costo</th> 
+                                </tr>
+
+                                <tr>
+                                    <td>Bicicleta</td>
+                                    <td>X{{currentpago.bicicletasPendientes}}</td>
+                                    <td>{{darCosto()}}$</td>
+                                </tr>
+
+                                <tr>
+                                    <td></td>
+                                    <td><hr></td>
+                                    <td><hr></td>
+
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Total</td>
+                                    <td>{{currentpago.monto}}$</td>
+                                </tr>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+        <hr>
     </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="panel panel-default">
+                    <div class="panel panel-body">
+                        <label> Metodos de pago </label>
+                        <br>
+                        <div class="col-md-9">
+                            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                                <div class="btn-group mr-2" role="group" aria-label="First group">
+                                    <a style='margin-right:16px' class="btn btn-info" ng-disabled="estaProcesando() || estaPagado()" ui-sref="pagoConTarjeta({id: currentpago.id})"><span class="glyphicon glyphicon-plus-sign"></span>Pagar con tarjeta</a>
+                                    <a style='margin-right:16px' class="btn btn-info" ng-disabled="estaProcesando() || estaPagado()" ui-sref="pagoConPSE({id: currentpago.id})"><span class="glyphicon glyphicon-plus-sign"></span>Pagar con PSE</a>
+                                    <a style='margin-right:16px' class="btn btn-info" ng-disabled="estaProcesando() || estaPagado()" ui-sref="pagoConPuntos({id: currentpago.id})"><span class="glyphicon glyphicon-plus-sign"></span>Pagar con puntos</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-        <div class="btn-group mr-2" role="group" aria-label="First group">
-            <a class="btn btn-info" ui-sref="estacionesCreate"><span class="glyphicon glyphicon-plus-sign"></span>Pagar con tarjeta</a>
-            <a class="btn btn-info" ui-sref="estacionesCreate"><span class="glyphicon glyphicon-plus-sign"></span>Pagar con puntos</a>
-            <a class="btn btn-info" ui-sref="estacionesCreate"><span class="glyphicon glyphicon-plus-sign"></span>Pagar con PSE</a>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel panel-body">
+                        <label> Reembolso </label>
+                        <br>
+                        <div class="col-md-6">
+                            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                                <div class="btn-group mr-2" role="group" aria-label="First group">
+                                    <a style='margin-right:16px' class="btn btn-info" ng-disabled="estaProcesando(currentpago)" ui-sref="solicitarReembolso({id: currentpago.id})"><span class="glyphicon glyphicon-plus-sign"></span>Solictar reembolso</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
     </div>
 
-    <div class="row">
-
-    </div>
+</div>
 </div>
 
