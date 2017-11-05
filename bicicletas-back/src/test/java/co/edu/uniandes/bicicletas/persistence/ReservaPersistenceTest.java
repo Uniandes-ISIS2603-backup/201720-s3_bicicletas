@@ -187,6 +187,16 @@ public class ReservaPersistenceTest {
         ReservaEntity entity = em.find(ReservaEntity.class, result.getId());
         Assert.assertNotNull(entity);
         Assert.assertEquals(newEntity.getId(), entity.getId());
+        Assert.assertEquals(newEntity.getName(), entity.getName());
+        Assert.assertEquals(newEntity.getDescuento(), entity.getDescuento());
+        Assert.assertEquals(newEntity.getEstado(), entity.getEstado());
+        Assert.assertEquals(newEntity.getFechaEntrega(), entity.getFechaEntrega());
+        Assert.assertEquals(newEntity.getFechaInicio(), entity.getFechaInicio());
+        Assert.assertEquals(newEntity.getFechaFinal(), entity.getFechaFinal());
+        Assert.assertEquals(newEntity.getFechaReserva(), entity.getFechaReserva());
+        Assert.assertEquals(newEntity.getPrecioFinal(), entity.getPrecioFinal(), 0);
+        
+        
     }
     
     /**
