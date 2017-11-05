@@ -170,7 +170,7 @@ public class ReservaLogic
         entity.setUsuarioReserva(usuario);
         entity.setEstado(1);
                 
-        
+       
         Iterator<ReservaEntity> iter = reservasUsuario.iterator();
         while(iter.hasNext()){
             ReservaEntity local= iter.next();
@@ -182,6 +182,16 @@ public class ReservaLogic
             if(local.getFechaInicio().compareTo( entity.getFechaInicio())== 0){
                  throw new BusinessLogicException("No es posible crear una reserva a la misma hora en diferente estacion");
             }
+        }
+        
+        if(entity.getFechaInicio().compareTo(entity.getFechaEntrega())==0){
+            throw new BusinessLogicException("No es posible crear una reserva con la misma hora de salida y llegada ");
+        }
+        if(entity.getFechaInicio().before(entity.getFechaReserva())){
+             throw new BusinessLogicException("No es posible crear una reserva antes de la fecha actual ");
+        }
+        if(entity.getFechaEntrega().before(entity.getFechaInicio())){
+             throw new BusinessLogicException("No es posible crear una reserva con la entrega antes del inicio  ");
         }
         
         
