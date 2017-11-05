@@ -310,9 +310,6 @@ public class EstacionLogic
        if(aActualizar ==null){
             throw new WebApplicationException("No hay una estación con dicho id", 402);
         }
-       if(bici ==null){
-            throw new WebApplicationException("No hay una bici con dicho id", 402);
-        }
         bici.setEstacion(aActualizar);
         if(aActualizar.getBicicletas().contains(bici)){
             throw new WebApplicationException("No hay una bici con dicho id", 402);

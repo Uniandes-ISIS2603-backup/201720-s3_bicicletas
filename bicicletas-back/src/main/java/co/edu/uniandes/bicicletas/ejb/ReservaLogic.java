@@ -201,12 +201,7 @@ public class ReservaLogic
              throw new BusinessLogicException("No esta disponible la bici");
          }
          
-         boolean a = false;
-         for (BicicletaEntity bicicletaR : reserva.getBicicletas()) {
-             if(bicicletaR.equals(entity)){
-                 a=true;
-          }
-        }
+         boolean a = reserva.getBicicletas().contains(bici);
          
          if(a){
              throw new BusinessLogicException("No esta disponible la bici");
@@ -216,6 +211,7 @@ public class ReservaLogic
 
          biciLogic.update(entity);
         reserva.getBicicletas().add(entity);
+        persistence.update(reserva);
          return reserva;
      }
      public BicicletaEntity getBici(Long idReserva, Long  idBici) throws BusinessLogicException{
