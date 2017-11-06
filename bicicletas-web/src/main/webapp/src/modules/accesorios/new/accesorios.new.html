@@ -7,14 +7,17 @@
                 <form ng-submit="createAccesorio()" name="accesorio">
                     <div class="form-group row">
                         <div class="form-group col-md-6">
-                            <label for="accesorioTipo" class="col-sm-4">Tipo:</label>
-                            <input id="accesorioTipo" required ng-model="accesorioTipo" class="col-sm-6"/>
+                                <label for="accesorioTipo" class="col-sm-4">Tipo:</label>
+                                <select id="accesorioTipo" required ng-model="accesorioTipo">
+                                    <option value="1">Casco</option>
+                                    <option value="2">Chaleco</option>
+                                </select>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="form-group col-md-6">
-                            <label for="accesorioReservado" class="col-sm-4">Reservado:</label>
-                            <input id="accesorioReservado" required ng-model="accesorioReservado" class="col-sm-2"/>
+                            <label for="accesorioEstacion" class="col-sm-4">Estacion:</label>
+                            <input id="accesorioEstacion" required ng-model="accesorioEstacion" class="col-sm-2"/>
                         </div>
                     </div>
                     <div class="form-group row">

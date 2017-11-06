@@ -21,7 +21,7 @@ public class AccesorioEntity extends BaseEntity implements Serializable {
     /** Constante que indica si es casco */
     public static final int CASCO = 1;
     /** Constante que indica si es chaleco */
-    public static final int CHALECO = 0;
+    public static final int CHALECO = 2;
     
     public static final int EN_RESERVA = 1;
     

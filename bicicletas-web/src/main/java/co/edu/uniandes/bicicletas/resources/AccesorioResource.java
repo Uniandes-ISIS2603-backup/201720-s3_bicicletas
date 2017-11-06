@@ -8,6 +8,7 @@ package co.edu.uniandes.bicicletas.resources;
 import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.bicicletas.dtos.AccesorioDTO;
 import co.edu.uniandes.bicicletas.ejb.AccesorioLogic;
+import co.edu.uniandes.bicicletas.ejb.EstacionLogic;
 import co.edu.uniandes.bicicletas.entities.AccesorioEntity;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +38,9 @@ public class AccesorioResource {
     @Inject
     AccesorioLogic logica;
     
+    @Inject
+    EstacionLogic estacionLogica;
+    
     private List<AccesorioDTO> listEntity2DTO(List<AccesorioEntity> entityList) {
         List<AccesorioDTO> lista = new ArrayList<>();
         for(AccesorioEntity entidad : entityList){
@@ -59,12 +63,14 @@ public class AccesorioResource {
     
     @POST
     public AccesorioDTO crearEstacion(AccesorioDTO dto) throws BusinessLogicException {
-        if(dto.getReservado()==0||dto.getReservado()==1)
-        {
-            if(dto.getTipo()==0||dto.getTipo()==1)
+            if(dto.getTipo()==2||dto.getTipo()==1)
             {
-               return new AccesorioDTO(logica.crearAccesorio(dto.toEntity())); 
-            }
+                if(estacionLogica.getEstacion(dto.getEstacion().getId())!=null){
+                   dto.setReservado(0);
+                    AccesorioDTO accesorio = new AccesorioDTO(logica.crearAccesorio(dto.toEntity()));
+                    
+                   return accesorio; 
+               }
         }
         throw new WebApplicationException("No esta dentro del tipo o estado correspondiente", 301);
     }
