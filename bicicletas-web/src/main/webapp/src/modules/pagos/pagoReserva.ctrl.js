@@ -4,7 +4,7 @@
     mod.constant("pagosContext2", "Pago");
     mod.constant("costoBicicleta", 1000);
     mod.controller('pagoReserva', ['$scope', '$http', 'pagosContext1', 'pagosContext2', '$state', 'costoBicicleta',
-        function ($scope, $http, pagosContext1, pagosContext2, $state, costoBicicleta) {
+        function ($scope, $http, pagosContext1, pagosContext2, $state) {
 
             $scope.currentpago = 0;
             $scope.currentreserva = 0;
@@ -149,7 +149,7 @@
                 
                 var minutosInicio = fechaInicio.getMinutes();
                 var minutosEntrega = fechaEntrega.getMinutes();
-                var minutos = 0;
+                var minutos;
                 
                 if(minutosEntrega >= minutosInicio){
                     minutos = minutosEntrega - minutosInicio;

@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 /**
  *
@@ -33,10 +32,6 @@ public class DireccionEntity extends BaseEntity implements Serializable {
    @ManyToMany
    @PodamExclude
    private List<UsuarioEntity> usuarios = new ArrayList<UsuarioEntity>();
-
-   @OneToOne
-   @PodamExclude
-   private List<EstacionEntity> estaciones = new ArrayList<EstacionEntity>();
 
  /**
  *Metodos
@@ -103,27 +98,5 @@ public class DireccionEntity extends BaseEntity implements Serializable {
      */
     public void setUsuarios(List<UsuarioEntity> usuarios) {
         this.usuarios = usuarios;
-    }
-    
-    
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //////////////////////////////////RELACION CON ESTACIONES////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////////////////////
-
-    /**
-     *
-     * @return
-     */
-
-    public List<EstacionEntity> getEstaciones() {
-    return estaciones;
-    }
-
-    /**
-     *
-     * @param estaciones
-     */
-    public void setEstaciones(List<EstacionEntity> estaciones) {
-    this.estaciones = estaciones;
     }
 }

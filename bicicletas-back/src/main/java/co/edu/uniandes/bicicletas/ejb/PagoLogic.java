@@ -11,7 +11,6 @@ import co.edu.uniandes.bicicletas.entities.ReservaEntity;
 import co.edu.uniandes.bicicletas.entities.UsuarioEntity;
 import co.edu.uniandes.bicicletas.persistence.PagoPersistence;
 import co.edu.uniandes.bicicletas.persistence.ReservaPersistence;
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -153,7 +152,7 @@ public class PagoLogic {
         
 
         //Verificar pago completo
-        if (monto == 0) {
+        if (monto == 0.0) {
            // sumarPunto(reserva.getUsuarioReserva().getDocumentoUsuario());
             pago.setEstado(PagoEntity.PAGADO);
             reserva.setEstado(ReservaEntity.PAGO);
