@@ -2,7 +2,7 @@
     var mod = ng.module("direccionModule");
     mod.constant("direccionesContext", "api/direcciones");
     mod.controller('direccionNewCtrl', ['$scope', '$http', 'direccionesContext', '$state', 'direccionesContext', '$rootScope',
-        function ($scope, $http, direccionesContext, $state, direccionesContext, $rootScope) {
+        function ($scope, $http, direccionesContext, $state, $rootScope) {
             $rootScope.edit = false;
             $scope.createDireccion = function () {
                 $http.post('api/direcciones', {
