@@ -172,7 +172,7 @@ public class BicicletaResource {
     public Class<AccesorioBicicletaBicicletaResource> getClassAcc(@PathParam("idBicicleta")Long idBicicleta) {
         BicicletaEntity entity = bicicletasLogic.getBIcicleta(idBicicleta);
             if (entity == null) {
-            throw new WebApplicationException("El recurso /bici/" + idBicicleta + "/reservas/ no existe.", 404);
+            throw new WebApplicationException("El recurso /bici/" + idBicicleta + "/accBici/ no existe.", 404);
             }
        return AccesorioBicicletaBicicletaResource.class;
     }
