@@ -93,7 +93,7 @@ public class PagoEntity extends BaseEntity implements Serializable{
     /**
      * Constante que modela el precio de alquilar una bicicleta por una hora
      */
-    public final static Integer PRECIO_BICICLETA_HORA = 10000;
+    public final static Integer PRECIO_BICICLETA_HORA = 1000;
     
     /**
      * Relación que modela una reserva asociada a un pago 

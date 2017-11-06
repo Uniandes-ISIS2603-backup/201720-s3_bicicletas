@@ -7,7 +7,6 @@ package co.edu.uniandes.bicicletas.ejb;
 
 import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.bicicletas.entities.DireccionEntity;
-import co.edu.uniandes.bicicletas.entities.EstacionEntity;
 import co.edu.uniandes.bicicletas.entities.UsuarioEntity;
 import co.edu.uniandes.bicicletas.persistence.DireccionPersistence;
 import java.util.List;
@@ -192,90 +191,4 @@ public class DireccionLogic {
         usuariosEntity.setDocumentoUsuario(usuariosId);
         entity.getUsuarios().remove(usuariosEntity);
     }
-    
-    ///////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////RELACION CON ESTACIONES////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////
-
-/**
-* Obtiene una colección de instancias de EstacionEntity asociadas a una
-* instancia de Direccion
-*
-* @param direccionId Identificador de la instancia de Direccion
-* @return Colección de instancias de EstacionEntity asociadas a la instancia
-* de Direccion
-* 
-*/
-public List<EstacionEntity> listEstaciones(Long direccionId) {
-LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los estaciones del direccion con id = {0}", direccionId);
-return getDireccion(direccionId).getEstaciones();
-}
-
-/**
-* Obtiene una instancia de EstacionEntity asociada a una instancia de Direccion
-*
-* @param direccionId Identificador de la instancia de Direccion
-* @param estacionesId Identificador de la instancia de Estacion
-     * @return 
-* 
-*/
-public EstacionEntity getEstacion(Long direccionId, Long estacionesId) {
-LOGGER.log(Level.INFO, "Inicia proceso de consultar un estacion del direccion con id = {0}", direccionId);
-List<EstacionEntity> list = getDireccion(direccionId).getEstaciones();
-EstacionEntity estacionesEntity = new EstacionEntity();
-estacionesEntity.setId(estacionesId);
-int index = list.indexOf(estacionesEntity);
-if (index >= 0) {
-return list.get(index);
-}
-return null;
-}
-
-/**
-* Asocia un Estacion existente a un Direccion
-*
-* @param direccionId Identificador de la instancia de Direccion
-* @param estacionesId Identificador de la instancia de Estacion
-* @return Instancia de EstacionEntity que fue asociada a Direccion
-* 
-*/
-public EstacionEntity addEstacion(Long direccionId, Long estacionesId) {
-LOGGER.log(Level.INFO, "Inicia proceso de asociar un estacion al direccion con id = {0}", direccionId);
-DireccionEntity direccionEntity = getDireccion(direccionId);
-EstacionEntity estacionesEntity = new EstacionEntity();
-estacionesEntity.setId(estacionesId);
-direccionEntity.getEstaciones().add(estacionesEntity);
-return getEstacion(direccionId, estacionesId);
-}
-
-/**
-* Remplaza las instancias de Estacion asociadas a una instancia de Direccion
-*
-* @param direccionId Identificador de la instancia de Direccion
-* @param list Colección de instancias de EstacionEntity a asociar a instancia
-* de Direccion
-* @return Nueva colección de EstacionEntity asociada a la instancia de Direccion
-* 
-*/
-public List<EstacionEntity> replaceEstaciones(Long direccionId, List<EstacionEntity> list) {
-LOGGER.log(Level.INFO, "Inicia proceso de reemplazar un estacion del direccion con id = {0}", direccionId);
-DireccionEntity direccionEntity = getDireccion(direccionId);
-direccionEntity.setEstaciones(list);
-return direccionEntity.getEstaciones();
-}
-
-/**
-* Desasocia un Estacion existente de un Direccion existente
-*
-* @param direccionId Identificador de la instancia de Direccion
-* @param estacionesId Identificador de la instancia de Estacion
-* 
-*/
-public void removeEstacion(Long direccionId, Long estacionesId) {
-LOGGER.log(Level.INFO, "Inicia proceso de borrar un estacion del direccion con id = {0}", direccionId);
-DireccionEntity entity = getDireccion(direccionId);
-EstacionEntity estacionesEntity = new EstacionEntity();
-estacionesEntity.setId(estacionesId);
-entity.getEstaciones().remove(estacionesEntity);
-}
 }

@@ -55,9 +55,15 @@ public class PagoReservaResource {
         //Si el pago no existe, lo crea
         if (pago == null) {
             pago = new PagoEntity();
+            
+            reserva.setPrecioFinalNumBicicletas(reserva.getBicicletas().size());
+            double monto = reserva.getPrecioFinal();
+            if(reserva.getDescuento()){
+                monto -= monto*0.05;
+            }
 
             pago.setFecha(reserva.getFechaInicio());
-            pago.setMonto(reserva.getPrecioFinal());
+            pago.setMonto(monto);
             pago.setIdUsuario(reserva.getUsuarioReserva().getDocumentoUsuario());
 
             //Verificar si reserva tiene la lista de bicicletas inicializada
@@ -75,23 +81,25 @@ public class PagoReservaResource {
         //En este metodo es una buena idea usar a pagologic porque se puede
         //utilizar el método para crear un pago y asociarselo a una reserva
 
+        
         pago.setEstado(PagoEntity.ESPERANDO_PAGO);
         pago.setReserva(reserva);
 
         pago = pagoLogic.crearPago(pago);
 
         reserva.setPago(pago);
+        
         reservaPersistence.update(reserva);
-
+        
         return pago;
     }
 
     @PUT
     @Path("pagarConPuntos")
     public PagoDetailDTO efectuarPagoConPuntos(@PathParam("idReserva") Long idReserva) throws BusinessLogicException {
-       
+
         PagoEntity pago = pagoLogic.pagarReservaConPuntos(idReserva);
-        
+
         return new PagoDetailDTO(pago);
     }
 
@@ -99,11 +107,12 @@ public class PagoReservaResource {
     @Path("pagar")
     @Consumes("text/plain")
     public PagoDetailDTO efectuarPago(@PathParam("idReserva") Long idReserva, @QueryParam("metodo") int metodoDePago, String contrasenia) throws BusinessLogicException {
-        
-        if(metodoDePago != PagoEntity.TARJETA_DE_CREDITO && metodoDePago !=  PagoEntity.PSE)
-            throw new WebApplicationException("El recurso /reservas/" + idReserva+"/Pago/pagar?metodo="+ metodoDePago + "/ no existe. ", 404);
-        
-        PagoEntity pago =  pagoLogic.pagarReserva(idReserva, metodoDePago, contrasenia);
+
+        if (metodoDePago != PagoEntity.TARJETA_DE_CREDITO && metodoDePago != PagoEntity.PSE) {
+            throw new WebApplicationException("El recurso /reservas/" + idReserva + "/Pago/pagar?metodo=" + metodoDePago + "/ no existe. ", 404);
+        }
+
+        PagoEntity pago = pagoLogic.pagarReserva(idReserva, metodoDePago, contrasenia);
         PagoDetailDTO pagoRealizado = new PagoDetailDTO(pago);
 
         return pagoRealizado;
@@ -112,11 +121,10 @@ public class PagoReservaResource {
     @PUT
     @Path("solicitarReembolso")
     public PagoDetailDTO solicitarReembolso(@PathParam("idReserva") Long idReserva) throws BusinessLogicException {
-       
+
         PagoEntity pago = pagoLogic.solicitarReembolso(idReserva);
         return new PagoDetailDTO(pago);
 
     }
-    
-    
+
 }

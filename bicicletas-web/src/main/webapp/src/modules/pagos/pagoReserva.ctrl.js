@@ -4,12 +4,16 @@
     mod.constant("pagosContext2", "Pago");
     mod.constant("costoBicicleta", 1000);
     mod.controller('pagoReserva', ['$scope', '$http', 'pagosContext1', 'pagosContext2', '$state', 'costoBicicleta',
-        function ($scope, $http, pagosContext1, pagosContext2, $state, costoBicicleta) {
+        function ($scope, $http, pagosContext1, pagosContext2, $state) {
 
-            $scope.currentpago =  0;
+            $scope.currentpago = 0;
+            $scope.currentreserva = 0;
             $http.get(pagosContext1 + '/' + $state.params.id + '/' + pagosContext2).then(function (response) {
-                    $scope.currentpago = response.data;
-                });
+                $scope.currentpago = response.data;
+            });
+            $http.get('api/reservas/' + $state.params.id + '/').then(function (response) {
+                $scope.currentreserva = response.data;
+            });
 
             /**
              * Retorna el significado de la constante
@@ -58,15 +62,19 @@
                 }
                 return respuesta;
             };
+            
+            $scope.darRestaDescuento = function () {
+                return $scope.currentreserva.precioFinal*0.05;
+            };
 
             /**
              * Retorno el costo total de un pago
              * @returns el costo total.
              */
             $scope.darCosto = function () {
-                return $scope.currentpago.bicicletasPendientes * costoBicicleta;
+                return $scope.currentreserva.precioFinal;
             };
-            
+
             /**
              * Informa si el pago esta en el estado "esperandoPago"
              * @returns {Number}
@@ -78,7 +86,7 @@
                 }
                 return respuesta;
             };
-            
+
             /**
              * Informa si el pago esta en el estado "pagado"
              * @returns {Number}
@@ -90,8 +98,8 @@
                 }
                 return respuesta;
             };
-            
-             /**
+
+            /**
              * Informa si el pago esta en el estado "pagado"
              * @returns {Number}
              */
@@ -102,8 +110,8 @@
                 }
                 return respuesta;
             };
-            
-              /**
+
+            /**
              * Informa si el pago esta en el estado "pagado"
              * @returns {Number}
              */
@@ -115,7 +123,50 @@
                 return respuesta;
             };
             
+            /**
+             * Método que calcula las horas estimadas
+             * @returns horas estimadas
+             */
+            $scope.darHoras = function(){
+                var fechaInicio = new Date($scope.currentreserva.fechaInicio);
+                var fechaEntrega = new Date($scope.currentreserva.fechaEntrega);
+                
+                
+                var horasInicio = fechaInicio.getHours();
+                var horasEntrega = fechaEntrega.getHours();
+                
+                return horasEntrega - horasInicio + " horas";
+            };
             
+            
+            /**
+             * Método que calcula los minutos estimados.
+             * @returns minutlos estimados
+             */
+            $scope.darMinutos = function(){
+                var fechaInicio = new Date($scope.currentreserva.fechaInicio);
+                var fechaEntrega = new Date($scope.currentreserva.fechaEntrega);
+                
+                var minutosInicio = fechaInicio.getMinutes();
+                var minutosEntrega = fechaEntrega.getMinutes();
+                var minutos;
+                
+                if(minutosEntrega >= minutosInicio){
+                    minutos = minutosEntrega - minutosInicio;
+                } else{
+                    minutos = minutosInicio - minutosEntrega;
+                }
+                
+                var respuesta = "";
+                
+                if(minutos !== 0){
+                    respuesta = " y " + minutos + " minutos"; 
+                }
+                
+                return respuesta;
+            };
+
+
         }
     ]);
 }
