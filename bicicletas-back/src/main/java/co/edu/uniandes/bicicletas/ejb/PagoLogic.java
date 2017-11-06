@@ -22,7 +22,9 @@ import javax.inject.Inject;
 import javax.ws.rs.WebApplicationException;
 
 /**
- * Clase que modela el pago hecho por un usuario antes de hacer efectiva una reserva. 
+ * Clase que modela el pago hecho por un usuario antes de hacer efectiva una
+ * reserva.
+ *
  * @author jd.trujillom
  */
 @Stateless
@@ -32,13 +34,13 @@ public class PagoLogic {
 
     @Inject
     PagoPersistence persistence;
-    
+
     @Inject
     ReservaPersistence reservaPersistence;
-    
+
     @Inject
     UsuarioLogic usuarioLogic;
-    
+
     @Inject
     PuntoLogic puntoLogic;
 
@@ -76,37 +78,38 @@ public class PagoLogic {
         persistence.delatePago(id);
         LOGGER.log(Level.INFO, "Termina proceso de borrar pago con id={0}", id);
     }
-    
-    public List<PagoEntity> findAll(){
+
+    public List<PagoEntity> findAll() {
         return persistence.findAll();
     }
-    
-    
-    public ReservaEntity darReserva(Long idPago){
-        PagoEntity pago = find(idPago); 
-        if(pago == null)
+
+    public ReservaEntity darReserva(Long idPago) {
+        PagoEntity pago = find(idPago);
+        if (pago == null) {
             throw new WebApplicationException("No se encontró un pago con el id"
                     + "dado");
-    
-    return pago.getReserva();
+        }
+
+        return pago.getReserva();
     }
-    
-    
-    public ReservaEntity actualizarEstadoReserva(Long idPago, Integer nuevoEstado){
+
+    public ReservaEntity actualizarEstadoReserva(Long idPago, Integer nuevoEstado) {
         ReservaEntity reserva = darReserva(idPago);
-            Integer estadoReserva = reserva.getEstado(); 
-        if(Objects.equals(nuevoEstado, PagoEntity.PAGADO) && estadoReserva  == ReservaEntity.PAGO) //Cambiar por esperando pago
+        Integer estadoReserva = reserva.getEstado();
+        if (Objects.equals(nuevoEstado, PagoEntity.PAGADO) && estadoReserva == ReservaEntity.PAGO) //Cambiar por esperando pago
+        {
             reserva.setEstado(ReservaEntity.PAGADA);
-        
-        else if((Objects.equals(nuevoEstado, PagoEntity.REEMBOLSO_TOTAL) || 
-                Objects.equals(nuevoEstado, PagoEntity.REEMBOLSO_PARCIAL)) && estadoReserva == 10) //Cambiar reembolso solicitado
+        } else if ((Objects.equals(nuevoEstado, PagoEntity.REEMBOLSO_TOTAL)
+                || Objects.equals(nuevoEstado, PagoEntity.REEMBOLSO_PARCIAL)) && estadoReserva == 10) //Cambiar reembolso solicitado
+        {
             reserva.setEstado(10);
-        
+        }
+
         return reserva;
     }
-    
-    public PagoEntity pagarReservaConPuntos(Long idReserva) throws BusinessLogicException{
-        
+
+    public PagoEntity pagarReservaConPuntos(Long idReserva) throws BusinessLogicException {
+
         ReservaEntity reserva = reservaPersistence.find(idReserva);
         PagoEntity pago = reserva.getPago();
 
@@ -119,8 +122,8 @@ public class PagoLogic {
             throw new BusinessLogicException("No se puede realizar el pago con puntos "
                     + " en el estado que se encuentra el pago");
         }
-        
-        if(pago.getBicicletasPendientes() == 0){
+
+        if (pago.getBicicletasPendientes() == 0) {
             throw new BusinessLogicException("Ya no hay bicicletas por pagar");
         }
 
@@ -133,36 +136,37 @@ public class PagoLogic {
             throw new BusinessLogicException("El usuario cuenta con "
                     + usuario.getPuntos().size() + " puntos  y son necesario "
                     + 10 + " puntos para pagar la reserva");
+        
+        }
+        //Se desminuye en uno las bicicletas pendientes
+        pago.setBicicletasPendientes(pago.getBicicletasPendientes() - 1);
+        
+        //Se recalcula el costo de una reserva
+        reserva.setPrecioFinalNumBicicletas(pago.getBicicletasPendientes());
+        double monto = reserva.getPrecioFinal();
+        if (reserva.getDescuento()) {
+            monto -= monto * 0.05;
         }
 
-        //Calcular el nuevo costo
-        Double costoActual = pago.getMonto();
-        costoActual -= PagoEntity.PRECIO_BICICLETA_HORA * (reserva.getFechaEntrega().getHours()- reserva.getFechaInicio().getHours()); //Falta fecha estimada
-        
         //Actualizar nuevo costo y disminuir bicicletas pendientes. 
-        pago.setMonto(pago.getMonto() - costoActual);
-        pago.setBicicletasPendientes(pago.getBicicletasPendientes() - 1);
+        pago.setMonto(monto);
+        
 
         //Verificar pago completo
-        if (costoActual == 0) {
-            sumarPunto(reserva.getUsuarioReserva().getDocumentoUsuario());
+        if (monto == 0) {
+           // sumarPunto(reserva.getUsuarioReserva().getDocumentoUsuario());
             pago.setEstado(PagoEntity.PAGADO);
             reserva.setEstado(ReservaEntity.PAGO);
         }
-        
-        if (reserva.getUsuarioReserva() != null) {
-            pago.setIdUsuario(reserva.getUsuarioReserva().getDocumentoUsuario());
-        }
-        
+
         //Actualizar pago y reserva
         PagoEntity updatePago = updatePago(pago);
         reservaPersistence.update(reserva);
 
         return updatePago;
     }
-    
-    
-    public PagoEntity pagarReserva(Long idReserva, int metodoDePago, String contrasenia) throws BusinessLogicException{
+
+    public PagoEntity pagarReserva(Long idReserva, int metodoDePago, String contrasenia) throws BusinessLogicException {
         ReservaEntity reserva = reservaPersistence.find(idReserva);
         PagoEntity pago = reserva.getPago();
 
@@ -175,72 +179,70 @@ public class PagoLogic {
             throw new BusinessLogicException("No se puede realizar el pago en"
                     + "el estado que se encuentra el pago");
         }
-        
-        if(metodoDePago == PagoEntity.TARJETA_DE_CREDITO){
-            pago = pagarConTarjeta(reserva,pago, contrasenia);
-        }
-        
-        else if(metodoDePago == PagoEntity.PSE)
-        {
+
+        if (metodoDePago == PagoEntity.TARJETA_DE_CREDITO) {
+            pago = pagarConTarjeta(reserva, pago, contrasenia);
+        } else if (metodoDePago == PagoEntity.PSE) {
             pagarConPSE(reserva, pago, contrasenia);
         }
-        
+
         return pago;
     }
-    
-    private PagoEntity pagarConTarjeta(ReservaEntity reserva, PagoEntity pago, String contraseniaTarjeta) throws BusinessLogicException{
+
+    private PagoEntity pagarConTarjeta(ReservaEntity reserva, PagoEntity pago, String contraseniaTarjeta) throws BusinessLogicException {
         UsuarioEntity usuario = reserva.getUsuarioReserva();
         int csvUsuario = usuario.getNumeroCsv();
         int csvActual = Integer.parseInt(contraseniaTarjeta);
-        
-        if(csvActual != csvUsuario)
+
+        if (csvActual != csvUsuario) {
             throw new BusinessLogicException("La contraseña no coincide con la registrada");
-        
+        }
+
         //El pago es posible
         pago.setEstado(PagoEntity.PROCESANDO_PAGO);
         pago.setFecha(new Date(System.currentTimeMillis()));
         pago.setIdUsuario(usuario.getDocumentoUsuario());
         pago.setMetodoDePago(PagoEntity.TARJETA_DE_CREDITO);
         pago.setBicicletasPendientes(0);
-        
+
         //El usuario acumula un nuevo punto
         sumarPunto(usuario.getDocumentoUsuario());
-           
+
         //Actualiza el pago.
         PagoEntity pagoActualizado = updatePago(pago);
-   
+
         return pagoActualizado;
     }
-    
-    private PagoEntity pagarConPSE(ReservaEntity reserva, PagoEntity pago, String contraseniaPSE) throws BusinessLogicException{
+
+    private PagoEntity pagarConPSE(ReservaEntity reserva, PagoEntity pago, String contraseniaPSE) throws BusinessLogicException {
         UsuarioEntity usuario = reserva.getUsuarioReserva();
         String pseContraseniaReal = usuario.getContraseniaPSE();
-        
-        if(!contraseniaPSE.equals(pseContraseniaReal))
+
+        if (!contraseniaPSE.equals(pseContraseniaReal)) {
             throw new BusinessLogicException("La contraseña no coincide con la registrada");
-        
+        }
+
         //El pago es posible
         pago.setEstado(PagoEntity.PROCESANDO_PAGO);
         pago.setFecha(new Date(System.currentTimeMillis()));
         pago.setIdUsuario(usuario.getDocumentoUsuario());
         pago.setMetodoDePago(PagoEntity.PSE);
         pago.setBicicletasPendientes(0);
-        
+
         //El usuario acumula un punto
         sumarPunto(usuario.getDocumentoUsuario());
-        
+
         //Actualiza el pago.
         PagoEntity pagoActualizado = updatePago(pago);
-   
+
         return pagoActualizado;
     }
-    
-    private void sumarPunto(Long idUsuario) throws BusinessLogicException{
+
+    private void sumarPunto(Long idUsuario) throws BusinessLogicException {
         puntoLogic.createPunto(idUsuario);
     }
 
-    
-    public PagoEntity solicitarReembolso(Long idReserva) throws BusinessLogicException{
+    public PagoEntity solicitarReembolso(Long idReserva) throws BusinessLogicException {
         ReservaEntity reserva = reservaPersistence.find(idReserva);
         PagoEntity pago = reserva.getPago();
 
@@ -253,33 +255,29 @@ public class PagoLogic {
             throw new BusinessLogicException("No se puede realizar el pago en"
                     + "el estado que se encuentra el pago");
         }
-       Date dateActual = new Date(System.currentTimeMillis());
-       Date dateInicio = reserva.getFechaInicio();
-       
+        Date dateActual = new Date(System.currentTimeMillis());
+        Date dateInicio = reserva.getFechaInicio();
+
         Long timestampActual = dateActual.getTime();
         Long timestampIncio = dateInicio.getTime();
-        
+
         Long timestampRestante = timestampIncio - timestampActual;
-        
-        if(timestampRestante > 1){
-            pago.setEstado(PagoEntity.PROCESANDO_REEMBOLSO);    
+
+        if (timestampRestante > 1) {
+            pago.setEstado(PagoEntity.PROCESANDO_REEMBOLSO);
             reserva.setEstado(ReservaEntity.CANCELADA);
-        }
-        
-        else{
+        } else {
             pago.setEstado(PagoEntity.REEMBOLSO_PARCIAL);
-            pago.setMonto(pago.getMonto()*0.8);
+            pago.setMonto(pago.getMonto() * 0.8);
             reserva.setEstado(ReservaEntity.REEMBOLSADO);
             reservaPersistence.update(reserva);
         }
-        
-        
-        
+
         //Actualizar estado del pago 
         updatePago(pago);
 
         return pago;
-    
+
     }
-    
+
 }

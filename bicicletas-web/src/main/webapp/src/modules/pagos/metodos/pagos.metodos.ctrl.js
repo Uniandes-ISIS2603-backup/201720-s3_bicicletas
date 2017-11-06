@@ -2,8 +2,6 @@
     var mod = ng.module("pagosModule");
     mod.constant("pagosContext1", "api/reservas");
     mod.constant("pagosContext2", "Pago");
-    var puntos = 0;
-    var puntosRestantes = 0;
 
 
     mod.controller('metodosCtrl', ['$scope', '$http', 'pagosContext1', 'pagosContext2', '$state', '$rootScope',
@@ -11,7 +9,6 @@
 
             $rootScope.edit = false;
 
-            var solicitarPuntos = false;
             $scope.reembolso = false;
             $scope.noReembolso = false;
             $scope.currentpago = function () {
@@ -28,7 +25,9 @@
 
                         if ($state.current.name === 'pagoConPuntos') {
                             $http.get('api/usuarios' + '/' + $scope.currentusuario.documentoUsuario + '/puntos').then(function (response) {
-                                $scope.puntos = response.length;
+
+                                
+                                $scope.puntos = response.data.length;
 
                             });
                         }
