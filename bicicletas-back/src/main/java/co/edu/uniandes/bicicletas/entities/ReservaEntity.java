@@ -31,65 +31,63 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 
 public class ReservaEntity extends BaseEntity implements Serializable {
-    
-    public final static int PAGADA=0;
-    public final static int PAGO=1;
-    public final static int CANCELADA=2;
-    public final static int USO=3;
-    public final static int REEMBOLSADO=4;
-    public final static int FINALIZADA=5;
-    
-    
+
+    public final static int PAGADA = 0;
+    public final static int PAGO = 1;
+    public final static int CANCELADA = 2;
+    public final static int USO = 3;
+    public final static int REEMBOLSADO = 4;
+    public final static int FINALIZADA = 5;
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaEntrega;
-    
-    
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaInicio;
-     
+
     private int estado;
-    
+
     @OneToMany(mappedBy = "reserva", cascade = CascadeType.ALL)
     @PodamExclude
     private List<CalificacionEntity> calificaciones = new ArrayList<>();
-    
+
     @ManyToOne
     @PodamExclude
-    @XmlInverseReference(mappedBy="reservas")
+    @XmlInverseReference(mappedBy = "reservas")
     private UsuarioEntity usuarioReserva;
-        
+
     @ManyToOne
     @PodamExclude
-    @XmlInverseReference(mappedBy="reservas")
+    @XmlInverseReference(mappedBy = "reservas")
     private EstacionEntity estacionSalida;
-    
+
     @PodamExclude
     private Long estacionLlegada;
-    
-    @OneToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="PAGO_ID")
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "PAGO_ID")
     @PodamExclude
     private PagoEntity pago;
-    
+
     @OneToOne
-    @JoinColumn(name="TRANSACCION_ID")
+    @JoinColumn(name = "TRANSACCION_ID")
     @PodamExclude
     private TransaccionEntity transaccion;
-                    
+
     @OneToMany(mappedBy = "reserva", cascade = CascadeType.REFRESH)
     @PodamExclude
     private List<BicicletaEntity> bicicletas = new ArrayList<>();
-    
+
     @OneToMany
     @PodamExclude
     private List<AccesorioEntity> accesorios = new ArrayList<>();
-    
+
     private Double precioFinal;
-    
+
     @Temporal(TemporalType.TIMESTAMP)
     //@PodamExclude
     private Date fechaReserva;
-    
+
     @Temporal(TemporalType.TIMESTAMP)
     //@PodamExclude
     private Date fechaFinal;
@@ -98,26 +96,23 @@ public class ReservaEntity extends BaseEntity implements Serializable {
         return estacionLlegada;
     }
 
-    
     public void setEstacionLlegada(Long estacionLlegada) {
         this.estacionLlegada = estacionLlegada;
     }
 
-    
-   
     public Date getFechaFinal() {
-        if (fechaFinal==null){
-         return new Date(0, 0, 0);
-        }else{
-          return fechaFinal; 
+        if (fechaFinal == null) {
+            return new Date(0, 0, 0);
+        } else {
+            return fechaFinal;
         }
-     
+
     }
 
     public void setFechaFinal(Date fechaFinal) {
         this.fechaFinal = fechaFinal;
     }
-    
+
     private Boolean Descuento;
 
     public Date getFechaReserva() {
@@ -133,10 +128,10 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     }
 
     public void setDescuento() {
-        if(fechaReserva.getDay()== fechaInicio.getDay() && fechaReserva.getYear()== fechaInicio.getYear() && fechaReserva.getMonth()== fechaInicio.getMonth()){
-           this.Descuento= new Boolean(false) ;
-        }else{
-           this.Descuento= new Boolean(true);
+        if (fechaReserva.getDay() == fechaInicio.getDay() && fechaReserva.getYear() == fechaInicio.getYear() && fechaReserva.getMonth() == fechaInicio.getMonth()) {
+            this.Descuento = new Boolean(false);
+        } else {
+            this.Descuento = new Boolean(true);
         }
     }
 
@@ -181,7 +176,7 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     public void setEstado(int estado) {
         this.estado = estado;
     }
-    
+
     /**
      * @param calificacionEstacionLlegada the calificacionEstacionLlegada to set
      */
@@ -202,7 +197,6 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     public void setUsuarioReserva(UsuarioEntity usuarioReserva) {
         this.usuarioReserva = usuarioReserva;
     }
-
 
     /**
      * @return the estacionSalida
@@ -254,14 +248,49 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     }
 
     /**
-     * @param precioFinal the precioFinal to set
+     *
      */
-    public void setPrecioFinal(double precioFinal) {
-        if(bicicletas.isEmpty()){
-        this.precioFinal = new Double( bicicletas.size()*PagoEntity.PRECIO_BICICLETA_HORA);
-        }else{
-        this.precioFinal = new Double(0);
+    public void setPrecioFinalNumBicicletas(int numBicicletgas) {
+        precioFinal = calcularCostoFinal(fechaInicio, fechaEntrega, numBicicletgas);
+    }
+
+    public void setPrecioFinal(Double precioFinal) {
+        this.precioFinal = precioFinal;
+    }
+
+    /**
+     * Calcula el costo de usar un conjunto de bicicletas en un intervalo de
+     * tiempo.
+     *
+     * @param inicio fecha en la que inicia la cuenta.
+     * @param fin fecha en la que termina la cuenta.
+     * @return el precio en el intervalo de tiempo;
+     */
+    private double calcularCostoFinal(Date inicio, Date fin, int cantidadBicicletas) {
+        double costo = 0;
+        int horasTotales = fin.getHours() - inicio.getHours();
+
+        double precioHoras = cantidadBicicletas * PagoEntity.PRECIO_BICICLETA_HORA * horasTotales;
+
+        //Calcular el precio por minutos
+        double precioPorMinutos = Math.ceil(PagoEntity.PRECIO_BICICLETA_HORA / 60.0);
+
+        //Calcula los minutos adicionales
+        int minutosInicio = inicio.getMinutes();
+        int minutosFin = fin.getMinutes();
+        int minutos = 0;
+
+        if (minutosFin >= minutosInicio) {
+            minutos = minutosFin - minutosInicio;
+        } else {
+            minutos = minutosInicio - minutosFin;
         }
+
+        double precioMinutos = cantidadBicicletas * precioPorMinutos * minutos;
+
+        costo = precioMinutos + precioHoras;
+
+        return costo;
     }
 
     /**
@@ -286,11 +315,9 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     public void setTransaccion(TransaccionEntity transaccion) {
         this.transaccion = transaccion;
     }
-    
-    public List<CalificacionEntity> getCalificaciones()
-    {
+
+    public List<CalificacionEntity> getCalificaciones() {
         return this.calificaciones;
     }
-    
 
 }
