@@ -1,0 +1,48 @@
+<div class="alert alert-danger">
+    <strong>¡Cuidado!</strong> Al solicitar reembolso de su reserva. Está se cancelará automaticamente.
+</div>
+
+<div class="container-fluid">
+    <div class="panel panel-primary">
+        <div class="panel panel-heading"> <label> Solicitud de reembolso</label> </div>
+
+        <div class="panel-body">
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    Está apunto de solictar un reembolso por esta reserva. Tenga en cuenta lo siguiente
+
+                </div>
+            </div>
+
+            <div class="panel panel-danger">
+                <div class="panel-heading"><label> Información </label> </div>
+                <div class="panel-body">
+                    <label> 1) Para recibir 100% de lo que pago, debe solicitarlo con 1 hora de anterioridad. </label>
+                    <br>
+                    <label> 2) Una vez realizada su solicitud, deberá esperar un lapso de 1 a 3 horas para que el dinero aparezca de nuevo en su cuenta. Las instrucciones llegarán a su correo.</label>
+                </div>
+            </div>
+
+            <div class="panel panel-danger">
+                <div class="panel-heading"> <label> Confirmar solicitud </label> </div>
+                <div class="panel-body">
+                    Seleccione alguna de las siguientes opciones y, posteriormente, oprima el botón. 
+                </div>
+
+                <form ng-submit="solicitarReembolso()" name="reembolso">
+                    <div class="form-group row">
+                        <div class="form-group col-sm-12" ng-model="reembolso">
+                            <input type="radio" name="reembolso" value="Sí" ng-model="reembolso"> Sí<br>
+                            <input type="radio" name="reembolso" value="Car" ng-model="noReembolso" checked> No <br>
+                            <input type="submit" value="Confirmar"  class="btn btn-warning">
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>

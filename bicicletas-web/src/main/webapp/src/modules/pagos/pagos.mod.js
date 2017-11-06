@@ -3,6 +3,8 @@
     mod.constant("pagosContext", "api/pagos");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/pagos/';
+            var basePathMetodo = 'src/modules/pagos/metodos/';
+            
             $urlRouterProvider.otherwise("/pagosList");
 
             $stateProvider.state('pagos', {
@@ -48,6 +50,58 @@
                     'detailView':{
                         templateUrl: basePath + 'pagos.detail.html',
                         controller: 'pagoReserva',
+                        controllerAs: 'ctrl'
+                    }
+                } 
+            }).state('pagoConTarjeta', {
+                url: '/{id:int}/Pago/pagoTarjeta',
+                parent: 'pagos',
+                param: {
+                    id: null
+                }, 
+                views:{
+                    'detailView':{
+                        templateUrl: basePathMetodo + 'pagos.tarjeta.html',
+                        controller: 'metodosCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                } 
+            }).state('pagoConPSE', {
+                url: '/{id:int}/Pago/pagoPSE',
+                parent: 'pagos',
+                param: {
+                    id: null
+                }, 
+                views:{
+                    'detailView':{
+                        templateUrl: basePathMetodo + 'pagos.PSE.html',
+                        controller: 'metodosCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                } 
+            }).state('pagoConPuntos', {
+                url: '/{id:int}/Pago/pagoConPuntos',
+                parent: 'pagos',
+                param: {
+                    id: null
+                }, 
+                views:{
+                    'detailView':{
+                        templateUrl: basePathMetodo + 'pagos.puntos.html',
+                        controller: 'metodosCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                } 
+            }).state('solicitarReembolso', {
+                url: '/{id:int}/Pago/solicitarReembolso',
+                parent: 'pagos',
+                param: {
+                    id: null
+                }, 
+                views:{
+                    'detailView':{
+                        templateUrl: basePathMetodo + 'pagos.reembolso.html',
+                        controller: 'metodosCtrl',
                         controllerAs: 'ctrl'
                     }
                 } 

@@ -39,7 +39,7 @@ public class PagoResource {
 
     @Inject
     PagoLogic logic;
-    
+
     @Inject
     ReservaPersistence reservaPersistence;
 
@@ -68,8 +68,9 @@ public class PagoResource {
         pago.setId(id);
 
         PagoEntity buscado = logic.find(id);
-        if (buscado == null) 
+        if (buscado == null) {
             throw new WebApplicationException("El recurso /pagos/" + id + "no existe.", 404);
+        }
 
         PagoEntity updated = logic.updatePago(pago.toEntity());
         return new PagoDetailDTO(updated);
@@ -95,14 +96,15 @@ public class PagoResource {
         logic.deletePago(id);
 
     }
-    
+
     @Path("{idPago: \\d+}/reserva")
-    public Class<ReservaPagoResource> getReservaPago(@PathParam("idPago") Long idPago){
+    public Class<ReservaPagoResource> getReservaPago(@PathParam("idPago") Long idPago) {
         PagoEntity pago = logic.find(idPago);
-        if(pago == null)
-            throw new WebApplicationException("El recurso /pagos/" + idPago+ "no existe.", 404);
+        if (pago == null) {
+            throw new WebApplicationException("El recurso /pagos/" + idPago + "no existe.", 404);
+        }
         return ReservaPagoResource.class;
-}
+    }
 
     private List<PagoDetailDTO> listEntity2DetailDTO(List<PagoEntity> entityList) {
         List<PagoDetailDTO> lista = new ArrayList<>();
@@ -112,52 +114,52 @@ public class PagoResource {
 
         return lista;
     }
-    
+
     @PUT
     @Path("{idPago: \\d+}/verificarPago")
-    public PagoDetailDTO solicitarReembolso(@PathParam("idPago")Long idPago)throws BusinessLogicException{
+    public PagoDetailDTO verificarPago(@PathParam("idPago") Long idPago) throws BusinessLogicException {
         PagoEntity pago = logic.find(idPago);
-        ReservaEntity reserva = pago.getReserva();
-        
-        if(pago == null)
-           throw new BusinessLogicException("No existe una pago con ese id");
- 
-        
-        if(pago.getEstado() != PagoEntity.PROCESANDO_PAGO){
+
+        if (pago == null) {
+            throw new BusinessLogicException("No existe una pago con ese id");
+        }
+
+        if (pago.getEstado() != PagoEntity.PROCESANDO_PAGO) {
             throw new BusinessLogicException("No se puede realizar el pago en"
                     + " el estado que se encuentra el pago");
         }
-        
+
+        ReservaEntity reserva = pago.getReserva();
+
         reserva.setEstado(ReservaEntity.REEMBOLSADO);
         reservaPersistence.update(reserva);
         //Actualizar estado del pago 
         pago.setEstado(PagoEntity.PAGADO);
         logic.updatePago(pago);
-        
+
         return new PagoDetailDTO(pago);
-        
-    } 
-    
-      
+
+    }
+
     @PUT
     @Path("{idPago: \\d+}/verificarReembolso")
-    public PagoDetailDTO verificarReembolso(@PathParam("idPago")Long idPago)throws BusinessLogicException{
+    public PagoDetailDTO verificarReembolso(@PathParam("idPago") Long idPago) throws BusinessLogicException {
         PagoEntity pago = logic.find(idPago);
-        
-        if(pago == null)
-           throw new BusinessLogicException("No existe una pago con ese id");
- 
-        
-        if(pago.getEstado() != PagoEntity.PROCESANDO_REEMBOLSO){
+
+        if (pago == null) {
+            throw new BusinessLogicException("No existe una pago con ese id");
+        }
+
+        if (pago.getEstado() != PagoEntity.PROCESANDO_REEMBOLSO) {
             throw new BusinessLogicException("No se puede realizar el pago en"
                     + " el estado que se encuentra el pago");
         }
-        
+
         //Actualizar estado del pago 
         pago.setEstado(PagoEntity.REEMBOLSO_TOTAL);
         logic.updatePago(pago);
-        
+
         return new PagoDetailDTO(pago);
-        
-    } 
+
+    }
 }
