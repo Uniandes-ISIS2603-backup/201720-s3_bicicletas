@@ -9,7 +9,9 @@
                         stringInicio: $scope.fechaSalida+":00",
                         stringFinal: $scope.fechaLlegada+":00"
                     }).then(function (response) {
-                        $state.go('usuarioConsultaList', {respuesta: response.data, usuarioDocumentoUsuario: documentoUsuario}, {reload: true});
+                        $scope.respuesta = response.data;
+                        $state.go('usuarioConsultaList', {usuarioDocumentoUsuario: documentoUsuario}, {reload: true});
+                        
                     });
             };
         }
