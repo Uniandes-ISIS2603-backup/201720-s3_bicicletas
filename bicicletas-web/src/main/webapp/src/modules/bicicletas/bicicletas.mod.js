@@ -76,7 +76,7 @@
                 parent: 'bicicletasEstacion',
                 views: {
                     'detailView': {
-                        templateUrl: basePath + 'bicicletas.list.html',
+                        templateUrl: basePath + 'bicicletasEstacion.html',
                         controller: 'bicicletasEstacionCtrl',
                         controllerAs: 'ctrl'
                     }

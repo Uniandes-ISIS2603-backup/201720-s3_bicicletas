@@ -1,11 +1,11 @@
 (function (ng) {
 var mod = ng.module("bicicletaModule");
     mod.constant("bicicletasEstacionContext", "bicicletas");
-    mod.constant("bicicletasEstacionContext", "api/estaciones");
-    mod.controller('biciEstacionCtrl', ['$scope', '$http', 'bicicletasEstacionContext', '$state', 'bicicletasEstacionContext',
-        function ($scope, $http, bicicletasEstacionContext, $state, bicicletasEstacionContext) {
+    mod.constant("biciEstContext", "api/estaciones");
+    mod.controller('biciEstacionCtrl', ['$scope', '$http', 'bicicletasEstacionContext', '$state', 'biciEstContext',
+        function ($scope, $http, bicicletasEstacionContext, $state, biciEstContext) {
             $scope.agregarBicicletaEstacion = function () {
-	                $http.put(bicicletasEstacionContext + '/' + $state.params.idEstacion + '/' + bicicletasEstacionContext, {
+	                $http.put(biciEstContext + '/' + $state.params.id + '/' + bicicletasEstacionContext+'/'+'añadir', {
 	                    id: $scope.bicicletaId
 	                }).then(function (response) {
 	                    //Usuario created successfully
