@@ -315,6 +315,9 @@ public class ReservaLogic
          if(accesorioEntity.getReservado()==1){
              throw new BusinessLogicException("No esta disponible el accesorio");
          }
+         if(reserva.getEstacionSalida().getId()!=accesorioEntity.getEstacion().getId()){
+             throw new BusinessLogicException("La reserva y el accesorio no pertenecen a una misma estación");
+         }
          boolean a = false;
          for (AccesorioEntity accesorioR : reserva.getAccesorios()) {
              if(accesorioEntity.equals(accesorioR)){
@@ -326,6 +329,20 @@ public class ReservaLogic
          }
          reserva.getAccesorios().add(accesorioEntity);
          accesorioEntity.setReservado(AccesorioEntity.EN_RESERVA);
+         persistence.update(reserva);
+         persistenceAccesorio.update(accesorioEntity);
+         return reserva;
+     }
+     
+     public ReservaEntity desasignarAccesorio(Long idReserva, AccesorioEntity accesorio) throws BusinessLogicException{
+         ReservaEntity reserva = getReserva(idReserva);
+         AccesorioEntity accesorioEntity = persistenceAccesorio.find(accesorio.getId());
+         for(int i =0; i<reserva.getAccesorios().size(); i++){
+             if(reserva.getAccesorios().get(i).getId()==accesorioEntity.getId()){
+                 reserva.getAccesorios().remove(i);
+             }
+         }
+         accesorioEntity.setReservado(AccesorioEntity.EN_ESTACION);
          persistence.update(reserva);
          persistenceAccesorio.update(accesorioEntity);
          return reserva;

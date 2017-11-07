@@ -79,6 +79,48 @@
                             controller: 'accesorioDeleteCtrl'
                         }
                    } 
-                });
+                }).state('accesoriosReserva', {
+                url: '/accesorios',
+                abstract: true,
+                parent: 'reservaDetail',
+                views: {
+                    childrenView: {
+                        templateUrl: basePath + 'accesorios.html'
+                    }
+                }
+            }).state('accesoriosReservaList', {
+                url: '/{idReserva:int}/list',
+                parent: 'accesoriosReserva',
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + 'reservaAccesorios.html',
+                        controller: 'accesoriosReservaCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                    
+                }
+            }).state('asociarAccesorio', {
+                    url: '/asociar',
+                    parent: 'accesoriosReserva',
+                    views: {
+                        'detailView': {
+                            templateUrl: basePath + '/asociar/accesorios.asociar.html',
+                            controller: 'asoAccesorioReservaCtrl'
+                        }
+                    }
+        }).state('quitarAccesorio', {
+                    url: '/quitar',
+                    parent: 'accesoriosReserva',
+                    url: '{idAccesorio:int}',
+                    param: {
+                        idAccesorio: null
+                    },
+                    views: {
+                        'detailView': {
+                            templateUrl: basePath + '/quitar/accesorios.quitar.html',
+                            controller: 'quitarAccesorioReservaCtrl'
+                        }
+                    }
+        });
         }]);
 })(window.angular);

@@ -69,6 +69,31 @@
 	                        controller: 'usuarioDeleteCtrl'
 	                    }
 	                }
+	            }).state('usuarioConsulta', {
+	                url: '/consulta/{documentoUsuario:int}/',
+	                parent: 'usuarios',
+	                param: {
+	                    usuarioDocumentoUsuario: null
+	                },
+	                views: {
+	                    'listView': {
+	                        templateUrl: basePath + 'consulta/usuarios.consulta.input.html',
+	                        controller: 'usuarioConsultaCtrl'
+	                    }
+	                }
+	            }).state('usuarioConsultaList', {
+	                url: '/consulta/{documentoUsuario:int}/list',
+	                parent: 'usuarios',
+	                param: {
+                            usuarioDocumentoUsuario: null,
+	                    respuesta: null
+	                },
+	                views: {
+	                    'listView': {
+	                        templateUrl: basePath + 'consulta/usuarios.consulta.list.html',
+	                        controller: 'usuarioConsultaCtrl'
+	                    }
+	                }
 	            });
 	        }]);
 	})(window.angular);

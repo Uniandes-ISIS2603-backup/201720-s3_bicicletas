@@ -6,8 +6,10 @@
 	            $rootScope.edit = false;
 	            $scope.createAccesorio = function () {
 	                $http.post(accesoriosContext, {
-	                    reservado: $scope.reservado,
-	                    tipo: $scope.tipo
+	                    tipo: $scope.accesorioTipo,
+	                    estacion:{
+	                    	id: $scope.accesorioEstacion
+	                    } 
 	                }).then(function (response) {
 	                    //Usuario created successfully
 	                    $state.go('accesoriosList', {id: response.data.id}, {reload: true});

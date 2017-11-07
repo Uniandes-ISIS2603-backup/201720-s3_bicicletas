@@ -3,12 +3,13 @@
         <div class="panel panel-primary">
             <div class="panel-heading"><label>Lista de accesorios</label></div>
             <div class="panel-body">
-                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+               <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                     <div class="btn-group mr-2" role="group" aria-label="First group">
-                        <a class="btn btn-info" ui-sref="accesoriosCreate"><span class="glyphicon glyphicon-plus-sign"></span>Añadir accesorio</a>
+                        <a class="btn btn-info" ui-sref="asociarAccesorio({idReserva: currentReserva.idReserva})"><span class="glyphicon glyphicon-plus-sign"></span>Asociar Accesorio</a>
                     </div>
                 </div>
                 <div class="col-md-12">
+                   <div class="col-md-12">
                     <table class="table table-striped">
                         <thead>
                             <tr> 
@@ -18,7 +19,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="accesorio in accesoriosRecords">
+                            <tr ng-repeat="accesorio in accesorioRecords">
                                 <td id="{{$index}}-id">{{accesorio.id}}</td>
                                 
                                 <td id="{{$index}}-id">
@@ -38,16 +39,12 @@
                                     </div> 
                                 </td>
                                 <td id="{{$index}}-actions">
-                                    <a class="btn btn-danger btn-sm" ui-sref="accesorioDelete({idAccesorio: accesorio.id})"><span class="glyphicon glyphicon-trash"></span></a>
+                                    <a class="btn btn-danger btn-sm" ui-sref="quitarAccesorio({idAccesorio: accesorio.id})"><span class="glyphicon glyphicon-trash"></span>&nbsp;Quitar Accesorio</a>
                                 </td>
-                                <td></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-        </div>
-    </div>
 
-
-</div>
+            
