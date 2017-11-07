@@ -132,7 +132,7 @@ public class PagoLogic {
         try {
             puntoLogic.deletePuntos(usuario.getDocumentoUsuario());
         } catch (BusinessLogicException e) {
-            e.getMessage();
+            LOGGER.log(Level.SEVERE, "Excepcion:", e);
             throw new BusinessLogicException("El usuario cuenta con "
                     + usuario.getPuntos().size() + " puntos  y son necesario "
                     + 10 + " puntos para pagar la reserva");
