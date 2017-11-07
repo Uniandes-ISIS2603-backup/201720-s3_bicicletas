@@ -115,7 +115,7 @@ public class BicicletaLogic {
      *
      * @return una lista de Bicicletaes.
      */
-    public List<AccesorioBicicletaEntity> getAccesoriosBici(Long idBici, Long id) {
+    public List<AccesorioBicicletaEntity> getAccesoriosBici(Long idBici) {
         BicicletaEntity bici = persistence.find(idBici);
         if(bici== null){
              throw new WebApplicationException("No hay una estación con dicho ID", 402);

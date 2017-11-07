@@ -14,12 +14,15 @@
                 <dd>{{currentBicicleta.marca}}</dd>
                 <hr>
                 <dt>Estado:</dt>
-                <dd>{{currentBicicleta.estado}}</dd>
+                <dd ng-if="currentBicicleta.estado == 0">Reservada</dd>
+                <dd ng-if="currentBicicleta.estado == 1">Prestada</dd>
+                <dd ng-if="currentBicicleta.estado == 2">Disponible</dd>
+                <dd ng-if="currentBicicleta.estado == 3">Dañada</dd>
             </div>
             <div class="col-md-9">
                 </dl>
                 <ul class="nav nav-tabs">
-                    <li role="presentation" class="active"> <a ui-sref="#">AccesorioBicicleta</a></li>       
+                    <li role="presentation" class="active"> <a ui-sref="accesoriosBicicletaBicicleta({id: currentBicicleta.id})">AccesorioBicicleta</a></li>       
                 </ul>
                 
                 <div class="col-md-12">

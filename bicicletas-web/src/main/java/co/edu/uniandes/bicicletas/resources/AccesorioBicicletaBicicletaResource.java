@@ -13,7 +13,6 @@ import co.edu.uniandes.bicicletas.entities.AccesorioBicicletaEntity;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
-import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -107,6 +106,12 @@ public class AccesorioBicicletaBicicletaResource {
     public AccesorioBicicletaDTO getAccesorioBici(@PathParam("idBicicleta") Long idBici,@PathParam("idAccesorioBici") Long idAcc){
         AccesorioBicicletaEntity entity = superBiciLogic.getAccesorioBici(idBici, idAcc);
         return new AccesorioBicicletaDTO(entity);
+    }
+    
+    @GET
+    public List<AccesorioBicicletaDTO> getAccesorioBicis(@PathParam("idBicicleta") Long idBici){
+        List<AccesorioBicicletaEntity> entity = superBiciLogic.getAccesoriosBici(idBici);
+        return listEntity2DetailDTO(entity);
     }
 
     /**

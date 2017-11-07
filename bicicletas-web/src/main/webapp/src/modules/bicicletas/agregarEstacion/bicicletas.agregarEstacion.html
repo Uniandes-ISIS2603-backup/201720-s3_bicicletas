@@ -4,7 +4,7 @@
             <div class="panel-heading"><label ng-if="!edit" id="createBicicleta">Asociar nueva bicicleta</label>
                 <label ng-if="edit" id="editBicicleta">Edit bicicleta</label></div>
             <div class="panel-body">
-                <form ng-submit="asociarBicicleta()" name="bicicleta">
+                <form ng-submit="agregarBicicletaEstacion()" name="bicicleta">
                     <div class="form-group row">
                         <div class="form-group col-md-6">
                             <label for="bicicletaId" class="col-sm-4">Bicicleta:</label>
@@ -21,7 +21,7 @@
                         <div class="form-group row">
                         <div class="form-group col-sm-12">
                             <input ng-show="bicicleta.$valid" type="submit" value="Save" class="btn btn-success"/>
-                            <a class="btn btn-info" ui-sref="reservaDetail">Cancelar</a>
+                            <a class="btn btn-info" ui-sref="estacionDetail">Cancelar</a>
                         </div>
                     </div>
                     </div> 

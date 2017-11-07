@@ -111,7 +111,6 @@
         }).state('quitarAccesorio', {
                     url: '/quitar',
                     parent: 'accesoriosReserva',
-                    url: '{idAccesorio:int}',
                     param: {
                         idAccesorio: null
                     },

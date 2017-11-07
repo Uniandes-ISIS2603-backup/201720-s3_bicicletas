@@ -37,7 +37,7 @@ public class AccesorioEntity extends BaseEntity implements Serializable {
     private EstacionEntity estacion;
     
     @PodamExclude
-    @OneToOne
+    @ManyToOne
     private ReservaEntity reserva;
 
     public EstacionEntity getEstacion() {

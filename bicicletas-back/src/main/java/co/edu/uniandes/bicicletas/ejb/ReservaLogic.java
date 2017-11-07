@@ -256,6 +256,9 @@ public class ReservaLogic
          if(entity.darEstado() == BicicletaEntity.RESERVADA){
              throw new BusinessLogicException("No esta disponible la bici");
          }
+         if(!reserva.getEstacionSalida().equals(entity.getEstacion())){
+             throw new BusinessLogicException("Esta bicicleta no esta disponoble en esa estacion");
+         }
          
          boolean a = reserva.getBicicletas().contains(bici);
          
@@ -263,8 +266,6 @@ public class ReservaLogic
              throw new BusinessLogicException("No esta disponible la bici");
          }
          entity.setReserva(reserva);
-         entity.setEstado(BicicletaEntity.RESERVADA);
-
          biciLogic.update(entity);
         reserva.getBicicletas().add(entity);
         persistence.update(reserva);
