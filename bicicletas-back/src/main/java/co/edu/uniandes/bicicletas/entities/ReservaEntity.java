@@ -270,7 +270,7 @@ public class ReservaEntity extends BaseEntity implements Serializable {
         double costo = 0;
         int horasTotales = fin.getHours() - inicio.getHours();
 
-        double precioHoras = cantidadBicicletas * PagoEntity.PRECIO_BICICLETA_HORA * horasTotales;
+        double precioHoras = cantidadBicicletas * PagoEntity.PRECIO_BICICLETA_HORA * ((double)horasTotales);
 
         //Calcular el precio por minutos
         double precioPorMinutos = Math.ceil(PagoEntity.PRECIO_BICICLETA_HORA / 60.0);
