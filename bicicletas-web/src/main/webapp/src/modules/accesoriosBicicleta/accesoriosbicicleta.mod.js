@@ -25,7 +25,17 @@
                     }
                     
                 }
-            });                   
+            }).state('createAccesorioBicicleta', {
+	                url: '/{id:int}/create',
+	                parent: 'accesoriosBicicletaList',
+	                views: {
+	                    'detailView': {
+	                        templateUrl: basePath + '/new/accesoriosBicicleta.new.html',
+	                        controller: 'accesorioBicicletaNewCtrl',
+                                controllerAs: 'ctrl'
+	                    }
+	                }
+	    });                   
         }]);
 })(window.angular);
         

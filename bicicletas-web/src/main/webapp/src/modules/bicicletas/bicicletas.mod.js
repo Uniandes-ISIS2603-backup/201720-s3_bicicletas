@@ -90,6 +90,15 @@
 	                        controller: 'biciEstacionCtrl'
 	                    }
 	                }
+	    }).state('entregarBicicleta', {
+	                url: '/entregarBicicleta',
+	                parent: 'bicicletasEstacion',
+	                views: {
+	                    'detailView': {
+	                        templateUrl: basePath + '/entregar/bicicletas.entregar.html',
+	                        controller: 'entregarCtrl'
+	                    }
+	                }
 	    }).state('bicicletasReserva', {
                 url: '/bicicletas',
                 abstract: true,
