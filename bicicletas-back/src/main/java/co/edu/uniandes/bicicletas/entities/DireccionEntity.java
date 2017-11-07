@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import org.eclipse.persistence.oxm.annotations.XmlInverseReference;
 import uk.co.jemos.podam.common.PodamExclude;
 /**
  *
@@ -31,6 +32,7 @@ public class DireccionEntity extends BaseEntity implements Serializable {
    
    @ManyToMany
    @PodamExclude
+   @XmlInverseReference(mappedBy = "direcciones")
    private List<UsuarioEntity> usuarios = new ArrayList<UsuarioEntity>();
 
  /**
