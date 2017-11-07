@@ -69,9 +69,18 @@
 	                        controller: 'usuarioDeleteCtrl'
 	                    }
 	                }
-	            }).state('usuarioConsulta', {
+	            }).state('usuariosDetail', {
+                        url: '/usuario',
+                        abstract: true,
+                        parent: 'usuarioDetail',
+                        views: {
+                             childrenView: {
+                                templateUrl: basePath + 'usuarios.html'
+                            }
+                        }
+                    }).state('usuarioConsulta', {
 	                url: '/consulta/{documentoUsuario:int}/',
-	                parent: 'usuarios',
+	                parent: 'usuariosDetail',
 	                param: {
 	                    usuarioDocumentoUsuario: null
 	                },
@@ -83,7 +92,7 @@
 	                }
 	            }).state('usuarioConsultaList', {
 	                url: '/consulta/{documentoUsuario:int}/list',
-	                parent: 'usuarios',
+	                parent: 'usuariosDetail',
 	                param: {
                             usuarioDocumentoUsuario: null,
 	                    respuesta: null
