@@ -32,7 +32,9 @@ import co.edu.uniandes.bicicletas.entities.ReservaEntity;
 import co.edu.uniandes.bicicletas.persistence.AccesorioPersistence;
 import co.edu.uniandes.bicicletas.persistence.BicicletaPersistence;
 import co.edu.uniandes.bicicletas.persistence.EstacionPersistence;
+import co.edu.uniandes.bicicletas.persistence.ReservaPersistence;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import javax.ejb.Stateless;
@@ -57,6 +59,9 @@ public class EstacionLogic
     
     @Inject
     private AccesorioPersistence persistenceAccesorio;
+    
+    @Inject
+    private ReservaPersistence persistenceReserva;
     
     public EstacionEntity getEstacion(Long id) throws WebApplicationException
     {
@@ -191,14 +196,25 @@ public class EstacionLogic
         }
         return estacion.getBicicletas();
     }
-    public EstacionEntity upDateBici(Long idEstacion,BicicletaEntity bicicleta){
+    public EstacionEntity upDateBici(Long idEstacion,BicicletaEntity bicicleta) throws BusinessLogicException{
         BicicletaEntity bici = bicicletaLogic.find(bicicleta.getId());
         EstacionEntity aBorrar = bici.getEstacion();
         EstacionEntity aActualizar = persistence.find(idEstacion);
+        ReservaEntity reserva = bici.getReserva();
+        List<BicicletaEntity> bicicletas = reserva.getBicicletas();
+        if(reserva == null){
+            throw new BusinessLogicException("No se puede entregar una bicicleta sin reserva");
+        }
         aBorrar.getBicicletas().remove(bici);
         bici.setEstacion(aActualizar);
         aActualizar.getBicicletas().add(bici);
-        bici.getReserva().setEstacionLlegada(idEstacion);
+        reserva.setEstacionLlegada(idEstacion);
+        bicicletas.remove(bici);
+        if(bicicletas.isEmpty()){
+            reserva.setEstado(ReservaEntity.FINALIZADA);
+            reserva.setFechaEntrega(new Date(System.currentTimeMillis()));
+        }
+        persistenceReserva.update(reserva);
         bicicletaLogic.update(bici);
         persistence.update(aActualizar);
         return aActualizar;

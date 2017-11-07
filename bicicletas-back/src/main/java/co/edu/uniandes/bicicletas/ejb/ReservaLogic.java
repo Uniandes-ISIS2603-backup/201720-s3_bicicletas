@@ -265,6 +265,9 @@ public class ReservaLogic
          if(a){
              throw new BusinessLogicException("No esta disponible la bici");
          }
+         if(reserva.getPago()!=null){
+             throw new BusinessLogicException("Hay un pago no se puede añadir la bicicleta");
+         }
          entity.setReserva(reserva);
          biciLogic.update(entity);
         reserva.getBicicletas().add(entity);
