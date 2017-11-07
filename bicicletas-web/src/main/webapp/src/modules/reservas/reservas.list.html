@@ -32,8 +32,12 @@
                     <td id="{{$index}}-idReserva"><a ui-sref="reservaDetail({idUsuario:reserva.usuarioReserva.documentoUsuario,idReserva:reserva.idReserva})">{{reserva.idReserva}}</a></td>
                     <td id="{{$index}}-fechaInicio" >{{reserva.fechaInicio }}</td>
                     <td id="{{$index}}-fechaEntega">{{reserva.fechaEntrega }}</td>
-                    <td id="{{$index}}-estado" ng-if="reserva.estado==1">{{"En curso"}}</td>
-                    <td id="{{$index}}-estado" ng-if="reserva.estado==2">{{"Cancelada"}}</td> 
+                    <td id="{{$index}}-estado" ng-if="reserva.estado==0">{{"Pagada"}}</td>
+                    <td id="{{$index}}-estado" ng-if="reserva.estado==1">{{"Esperando Pago"}}</td> 
+                    <td id="{{$index}}-estado" ng-if="reserva.estado==2">{{"Cancelada"}}</td>
+                    <td id="{{$index}}-estado" ng-if="reserva.estado==3">{{"En Uso"}}</td> 
+                    <td id="{{$index}}-estado" ng-if="reserva.estado==4">{{"Reembolsado"}}</td>
+                    <td id="{{$index}}-estado" ng-if="reserva.estado==5">{{"Finalizada"}}</td> 
                     <td id="{{$index}}-actions">
                         <a ng-hide="mostrar" class="btn btn-danger btn-sm" ui-sref="reservaDelete({idReserva:reserva.idReserva})"><span class="glyphicon glyphicon-trash"></span></a>
                     </td>

@@ -85,7 +85,7 @@
 	                url: '/consulta/{documentoUsuario:int}/list',
 	                parent: 'usuarios',
 	                param: {
-	                	usuarioDocumentoUsuario: null,
+                            usuarioDocumentoUsuario: null,
 	                    respuesta: null
 	                },
 	                views: {
