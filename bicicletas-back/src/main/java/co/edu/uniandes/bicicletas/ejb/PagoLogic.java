@@ -98,6 +98,7 @@ public class PagoLogic {
         if (Objects.equals(nuevoEstado, PagoEntity.PAGADO) && estadoReserva == ReservaEntity.PAGO) //Cambiar por esperando pago
         {
             reserva.setEstado(ReservaEntity.PAGADA);
+            
         } else if ((Objects.equals(nuevoEstado, PagoEntity.REEMBOLSO_TOTAL)
                 || Objects.equals(nuevoEstado, PagoEntity.REEMBOLSO_PARCIAL)) && estadoReserva == 10) //Cambiar reembolso solicitado
         {

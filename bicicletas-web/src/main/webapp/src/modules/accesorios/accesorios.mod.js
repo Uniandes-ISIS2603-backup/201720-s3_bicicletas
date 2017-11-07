@@ -108,6 +108,19 @@
                             controller: 'asoAccesorioReservaCtrl'
                         }
                     }
+        }).state('quitarAccesorio', {
+                    url: '/quitar',
+                    parent: 'accesoriosReserva',
+                    url: '{idAccesorio:int}',
+                    param: {
+                        idAccesorio: null
+                    },
+                    views: {
+                        'detailView': {
+                            templateUrl: basePath + '/quitar/accesorios.quitar.html',
+                            controller: 'quitarAccesorioReservaCtrl'
+                        }
+                    }
         });
         }]);
 })(window.angular);

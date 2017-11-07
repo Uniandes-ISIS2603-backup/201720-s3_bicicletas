@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -46,6 +47,12 @@ public class ReservaAccesorioResource {
     @PUT
     public ReservaDTO asignarAccesorioReserva(@PathParam("idReserva") Long idReserva, AccesorioDTO accesorio)throws BusinessLogicException{
       return new ReservaDTO(reservaLogic.asignarAccesorio(idReserva, accesorio.toEntity()));
+    }
+    
+    @PUT
+    @Path("/quitar")
+    public ReservaDTO desasignarAccesorioReserva(@PathParam("idReserva") Long idReserva, AccesorioDTO accesorio)throws BusinessLogicException{
+        return new ReservaDTO(reservaLogic.desasignarAccesorio(idReserva, accesorio.toEntity()));
     }
     
     @GET
