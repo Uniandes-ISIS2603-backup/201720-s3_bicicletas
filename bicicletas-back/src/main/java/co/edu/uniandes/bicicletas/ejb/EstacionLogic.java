@@ -202,9 +202,9 @@ public class EstacionLogic
         EstacionEntity aActualizar = persistence.find(idEstacion);
         ReservaEntity reserva = bici.getReserva();
         List<BicicletaEntity> bicicletas = reserva.getBicicletas();
-        if(reserva == null){
-            throw new BusinessLogicException("No se puede entregar una bicicleta sin reserva");
-        }
+        //if(reserva == null){
+        //    throw new BusinessLogicException("No se puede entregar una bicicleta sin reserva");
+        //}
         aBorrar.getBicicletas().remove(bici);
         bici.setEstacion(aActualizar);
         aActualizar.getBicicletas().add(bici);
