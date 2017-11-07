@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.bicicletas.resources;
 
+import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.bicicletas.dtos.BicicletaDetailDTO;
 import co.edu.uniandes.bicicletas.dtos.EstacionDTO;
 import co.edu.uniandes.bicicletas.dtos.EstacionDetailDTO;
@@ -53,7 +54,7 @@ public class EstacionBicicletaResource {
         return listEntity2DetailDTO(listEntity);
     }
     @PUT
-    public EstacionDTO updateBiciAso(@PathParam("idEstacion") Long idEstacion,BicicletaDetailDTO bici){
+    public EstacionDTO updateBiciAso(@PathParam("idEstacion") Long idEstacion,BicicletaDetailDTO bici) throws BusinessLogicException{
         
         return new EstacionDTO(estacionLogic.upDateBici(idEstacion, bici.toEntity()));
         

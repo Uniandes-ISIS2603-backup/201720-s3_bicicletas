@@ -33,7 +33,7 @@
                             $state.go("pagoReserva", {id: $scope.currentReserva.idReserva}, {reload: true});
                         }
                     } else {
-                        alert("Agregue bicicletas antes de continuar");
+                        confirm("Agregue bicicletas antes de continuar");
                     }
                 }
 
@@ -53,7 +53,7 @@
                 });
                 
                 if(verTransaccion){
-                    var texto = "";
+                    var texto = "Las bicicletas fueron entregadas a tiempo";
                     if($scope.currenttransaccion.tipo === 0){
                         texto = "Se debe reembolsar un monto de: " + $scope.currenttransaccion.valor; + "$";
                     }
@@ -61,12 +61,8 @@
                     else if($scope.currenttransaccion.tipo === 1){
                         texto = "Se debe pagar un excedente de: " + $scope.currenttransaccion.valor; + "$";
                     }
-                    
-                    else{
-                        texto = "Las bicicletas fueron entregadas a tiempo";
-                    }
-                    
-                    alert(texto);
+                   
+                    confirm(texto);
                 }
             };
         }

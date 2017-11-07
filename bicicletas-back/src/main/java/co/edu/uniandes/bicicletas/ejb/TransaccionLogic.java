@@ -77,7 +77,7 @@ public class TransaccionLogic {
         int[] horasTotales = calcularHorasMinutosEntreFechas(reserva.getFechaInicio(), reserva.getFechaFinal());
         int cantidadBicicletas = reserva.getPago().getBicicletasPendientes();
         
-        double precioHoras = cantidadBicicletas * PagoEntity.PRECIO_BICICLETA_HORA * horasTotales[0];
+        double precioHoras = cantidadBicicletas * PagoEntity.PRECIO_BICICLETA_HORA * ((double)horasTotales[0]);
         double precioPorMinutos = Math.ceil(PagoEntity.PRECIO_BICICLETA_HORA / 60.0);
         double precioMinutos = cantidadBicicletas * precioPorMinutos * horasTotales[1];
 

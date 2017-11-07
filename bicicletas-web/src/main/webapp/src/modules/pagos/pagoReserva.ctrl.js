@@ -3,9 +3,11 @@
     mod.constant("pagosContext1", "api/reservas");
     mod.constant("pagosContext2", "Pago");
     mod.constant("costoBicicleta", 1000);
+    var cargar = true;
     mod.controller('pagoReserva', ['$scope', '$http', 'pagosContext1', 'pagosContext2', '$state', 'costoBicicleta',
         function ($scope, $http, pagosContext1, pagosContext2, $state) {
 
+            $scope.recargar = true;
             $scope.currentpago = 0;
             $scope.currentreserva = 0;
             $http.get(pagosContext1 + '/' + $state.params.id + '/' + pagosContext2).then(function (response) {
@@ -13,7 +15,13 @@
             });
             $http.get('api/reservas/' + $state.params.id + '/').then(function (response) {
                 $scope.currentreserva = response.data;
+                if(cargar){
+                $state.go('pagoReserva', {id: $state.params.id}, {reload: true});
+                cargar = false;
+            }
             });
+
+
 
             /**
              * Retorna el significado de la constante
@@ -62,9 +70,9 @@
                 }
                 return respuesta;
             };
-            
+
             $scope.darRestaDescuento = function () {
-                return $scope.currentreserva.precioFinal*0.05;
+                return $scope.currentreserva.precioFinal * 0.05;
             };
 
             /**
@@ -122,52 +130,56 @@
                 }
                 return respuesta;
             };
-            
+
             /**
              * Método que calcula las horas estimadas
              * @returns horas estimadas
              */
-            $scope.darHoras = function(){
+            $scope.darHoras = function () {
                 var fechaInicio = new Date($scope.currentreserva.fechaInicio);
                 var fechaEntrega = new Date($scope.currentreserva.fechaEntrega);
-                
-                
+
+
                 var horasInicio = fechaInicio.getHours();
                 var horasEntrega = fechaEntrega.getHours();
-                
+
                 return horasEntrega - horasInicio + " horas";
             };
-            
-            
+
+
             /**
              * Método que calcula los minutos estimados.
              * @returns minutlos estimados
              */
-            $scope.darMinutos = function(){
+            $scope.darMinutos = function () {
                 var fechaInicio = new Date($scope.currentreserva.fechaInicio);
                 var fechaEntrega = new Date($scope.currentreserva.fechaEntrega);
-                
+
                 var minutosInicio = fechaInicio.getMinutes();
                 var minutosEntrega = fechaEntrega.getMinutes();
                 var minutos;
-                
-                if(minutosEntrega >= minutosInicio){
+
+                if (minutosEntrega >= minutosInicio) {
                     minutos = minutosEntrega - minutosInicio;
-                } else{
+                } else {
                     minutos = minutosInicio - minutosEntrega;
                 }
-                
+
                 var respuesta = "";
-                
-                if(minutos !== 0){
-                    respuesta = " y " + minutos + " minutos"; 
+
+                if (minutos !== 0) {
+                    respuesta = " y " + minutos + " minutos";
                 }
-                
+
                 return respuesta;
             };
+
+
+            
 
 
         }
     ]);
 }
 )(angular);
+

@@ -153,7 +153,7 @@ public class PagoLogic {
         
 
         //Verificar pago completo
-        if (monto == 0) {
+        if (pago.getBicicletasPendientes() == 0) {
            // sumarPunto(reserva.getUsuarioReserva().getDocumentoUsuario());
             pago.setEstado(PagoEntity.PAGADO);
             reserva.setEstado(ReservaEntity.PAGO);
