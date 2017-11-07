@@ -200,8 +200,8 @@ public class ReservaLogic
              throw new BusinessLogicException("No es posible crear una reserva con la entrega antes del inicio  ");
         }
         
-        if(entity.getFechaInicio().getDay()-entity.getFechaEntrega().getDay()==0){
-            throw new BusinessLogicException("No es posible crear una reserva con mas de 24 horas de reserva ");
+        if(entity.getFechaInicio().getDay()-entity.getFechaEntrega().getDay()!= 0){
+            throw new BusinessLogicException("La reserva debe finalizar el mismo dia de creacion  ");
         }
         
         
