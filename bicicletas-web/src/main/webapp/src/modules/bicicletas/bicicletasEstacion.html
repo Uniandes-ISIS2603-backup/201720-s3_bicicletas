@@ -4,8 +4,11 @@
             <div class="panel-heading"><label>Lista de bicicletas</label></div>
             <div class="panel-body">
                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                    <div class="btn-group mr-4" role="group" aria-label="First group">
                         <a class="btn btn-info" ui-sref="agregarBicicletaEstacion({id: currentEstacion.id})"><span class="glyphicon glyphicon-plus-sign"></span>AsociarBicicleta</a>
+                        <br>
+                        <br>
+                        <a class="btn btn-danger btn-sm" ui-sref="entregarBicicleta({id: currentEstacion.id})"><span class="glyphicon glyphicon-trash"></span>&nbsp;Entregar Bicicleta</a>
                     </div>
                 </div>
                 <div class="col-md-12">
@@ -37,9 +40,6 @@
                                     <div ng-if="bicicleta.estado == 3">
                                         Dañado
                                     </div>
-                                </td>
-                                <td id="{{$index}}-actions">
-                                    <a class="btn btn-danger btn-sm" ui-sref="entregarBicicleta({id: currentEstacion.id})"><span class="glyphicon glyphicon-trash"></span>&nbsp;Entregar Bicicleta</a>
                                 </td>
                             </tr>
                         </tbody>
