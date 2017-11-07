@@ -81,7 +81,16 @@
                         controllerAs: 'ctrl'
                     }
                 }
-            }).state('bicicletasReserva', {
+            }).state('agregarBicicletaEstacion', {
+	                url: '/agregarBiciEstacion',
+	                parent: 'bicicletasEstacion',
+	                views: {
+	                    'detailView': {
+	                        templateUrl: basePath + '/agregarEstacion/bicicletas.agregarEstacion.html',
+	                        controller: 'biciEstacionCtrl'
+	                    }
+	                }
+	    }).state('bicicletasReserva', {
                 url: '/bicicletas',
                 abstract: true,
                 parent: 'reservaDetail',

@@ -5,7 +5,7 @@
             <div class="panel-body">
                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                     <div class="btn-group mr-2" role="group" aria-label="First group">
-                        <a class="btn btn-info" ui-sref="AccesorioBicicletaCreate"><span class="glyphicon glyphicon-plus-sign"></span>Añadir biciccleta</a>
+                        <a class="btn btn-info" ui-sref="#"><span class="glyphicon glyphicon-plus-sign"></span>Añadir accesorioBicicleta</a>
                     </div>
                 </div>
                 <div class="col-md-12">
@@ -20,8 +20,18 @@
                         <tbody>
                             <tr ng-repeat="accesorioBicicleta in accesorioBicicletaRecords">
                                 <td id="{{$index}}-id"><a ui-sref="#">{{accesorioBicicleta.id}}</a></td>
-                                <td id="{{$index}}-modelo">{{accesorioBicicleta.nombre}}</td>
-                                <td id="{{$index}}-modelo">{{accesorioBicicleta.descripcion}}</td>
+                                <td id="{{$index}}-estado">
+                                    <div ng-if="accesorioBicicleta.nombre == 0">
+                                        Luces
+                                    </div>
+                                    <div ng-if="accesorioBicicleta.nombre == 1">
+                                        Candado
+                                    </div>
+                                    <div ng-if="accesorioBicicleta.nombre == 2">
+                                        Canastilla
+                                    </div>
+                                </td>
+                                <td id="{{$index}}-descripcion">{{accesorioBicicleta.descripcion}}</td>
                                 <td id="{{$index}}-actions">
                                     <a class="btn btn-danger btn-sm" ui-sref="(#)"><span class="glyphicon glyphicon-trash"></span></a>
                                 </td>

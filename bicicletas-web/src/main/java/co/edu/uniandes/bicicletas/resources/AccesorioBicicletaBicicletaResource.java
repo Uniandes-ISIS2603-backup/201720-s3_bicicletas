@@ -107,6 +107,12 @@ public class AccesorioBicicletaBicicletaResource {
         AccesorioBicicletaEntity entity = superBiciLogic.getAccesorioBici(idBici, idAcc);
         return new AccesorioBicicletaDTO(entity);
     }
+    
+    @GET
+    public List<AccesorioBicicletaDTO> getAccesorioBicis(@PathParam("idBicicleta") Long idBici){
+        List<AccesorioBicicletaEntity> entity = superBiciLogic.getAccesoriosBici(idBici);
+        return listEntity2DetailDTO(entity);
+    }
 
     /**
      *

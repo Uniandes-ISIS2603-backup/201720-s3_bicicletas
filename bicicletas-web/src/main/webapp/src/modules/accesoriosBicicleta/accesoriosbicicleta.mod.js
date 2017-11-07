@@ -18,7 +18,7 @@
                 url: '/{id:int}/list',
                 parent: 'accesoriosBicicletaList',
                 views: {
-                    'detailView': {
+                    'listView': {
                         templateUrl: basePath + 'accesoriosBicicleta.list.html',
                         controller: 'accesorioBicicletaCtrl',
                         controllerAs: 'ctrl'

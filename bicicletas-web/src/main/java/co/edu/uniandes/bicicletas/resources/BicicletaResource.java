@@ -167,7 +167,6 @@ public class BicicletaResource {
      * @param idBicicleta
      * @return
      */
-    @GET
     @Path("{idBicicleta: \\d+}/accesorioBicicleta")
     public Class<AccesorioBicicletaBicicletaResource> getClassAcc(@PathParam("idBicicleta")Long idBicicleta) {
         BicicletaEntity entity = bicicletasLogic.getBIcicleta(idBicicleta);
