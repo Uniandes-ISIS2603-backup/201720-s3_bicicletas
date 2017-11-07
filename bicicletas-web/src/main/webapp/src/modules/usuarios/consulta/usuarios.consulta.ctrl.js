@@ -10,8 +10,8 @@
                         stringFinal: $scope.fechaLlegada+":00"
                     }).then(function (response) {
                         $state.go('usuarioConsultaList', {respuesta: response.data, usuarioDocumentoUsuario: documentoUsuario}, {reload: true});
-                    })
-            }
+                    });
+            };
         }
     ]);
 }

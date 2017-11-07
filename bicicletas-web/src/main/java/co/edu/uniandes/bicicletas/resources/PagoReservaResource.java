@@ -48,6 +48,26 @@ public class PagoReservaResource {
     private SistemaDePagosLogic sistemaDePagos;
 
     @GET
+    @Path("existePago")
+    public PagoDTO existePago(@PathParam("idReserva") Long idReserva)throws BusinessLogicException {
+        PagoDTO respuesta = null;
+        
+        ReservaEntity reserva = reservaPersistence.find(idReserva);
+        PagoEntity pago = reserva.getPago();
+        
+        if(pago == null){
+            throw new BusinessLogicException("No existe un pago asociado");
+        }
+        
+        respuesta= new PagoDTO(pago);
+        
+        return respuesta;
+        
+    }
+        //Si el pago no existe, lo crea
+    
+    
+    @GET
     public PagoDTO darPago(@PathParam("idReserva") Long idReserva) {
         ReservaEntity reserva = reservaPersistence.find(idReserva);
         PagoEntity pago = reserva.getPago();

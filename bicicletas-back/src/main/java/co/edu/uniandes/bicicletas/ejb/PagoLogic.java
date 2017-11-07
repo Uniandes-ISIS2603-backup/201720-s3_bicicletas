@@ -153,7 +153,7 @@ public class PagoLogic {
         
 
         //Verificar pago completo
-        if (monto == 0.0) {
+        if (monto == 0) {
            // sumarPunto(reserva.getUsuarioReserva().getDocumentoUsuario());
             pago.setEstado(PagoEntity.PAGADO);
             reserva.setEstado(ReservaEntity.PAGO);
@@ -203,7 +203,6 @@ public class PagoLogic {
         pago.setFecha(new Date(System.currentTimeMillis()));
         pago.setIdUsuario(usuario.getDocumentoUsuario());
         pago.setMetodoDePago(PagoEntity.TARJETA_DE_CREDITO);
-        pago.setBicicletasPendientes(0);
 
         //El usuario acumula un nuevo punto
         sumarPunto(usuario.getDocumentoUsuario());
@@ -227,7 +226,6 @@ public class PagoLogic {
         pago.setFecha(new Date(System.currentTimeMillis()));
         pago.setIdUsuario(usuario.getDocumentoUsuario());
         pago.setMetodoDePago(PagoEntity.PSE);
-        pago.setBicicletasPendientes(0);
 
         //El usuario acumula un punto
         sumarPunto(usuario.getDocumentoUsuario());
