@@ -198,6 +198,7 @@ public class EstacionLogic
         aBorrar.getBicicletas().remove(bici);
         bici.setEstacion(aActualizar);
         aActualizar.getBicicletas().add(bici);
+        bici.getReserva().setEstacionLlegada(idEstacion);
         bicicletaLogic.update(bici);
         persistence.update(aActualizar);
         return aActualizar;
