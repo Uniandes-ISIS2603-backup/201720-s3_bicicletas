@@ -174,15 +174,21 @@ public class ReservaLogic
         Iterator<ReservaEntity> iter = reservasUsuario.iterator();
         while(iter.hasNext()){
             ReservaEntity local= iter.next();
-            if(local.getFechaInicio().compareTo( entity.getFechaInicio() )== 0 && 
-               local.getEstacionSalida().getId().equals(entity.getEstacionSalida().getId()))
-            {
-                 throw new BusinessLogicException("No es posible crear una reserva a la misma hora en la misma estacion ");
-            }
-            if(local.getFechaInicio().compareTo( entity.getFechaInicio())== 0){
-                 throw new BusinessLogicException("No es posible crear una reserva a la misma hora en diferente estacion");
+            if(local.getEstado()!=2){
+                
+                if(local.getFechaInicio().compareTo( entity.getFechaInicio() )== 0 && 
+                local.getEstacionSalida().getId().equals(entity.getEstacionSalida().getId()))
+                {
+                     throw new BusinessLogicException("No es posible crear una reserva a la misma hora en la misma estacion ");
+                }
+                if(local.getFechaInicio().compareTo( entity.getFechaInicio())== 0){
+                     throw new BusinessLogicException("No es posible crear una reserva a la misma hora en diferente estacion");
+                }
+                
             }
         }
+        
+
         
         if(entity.getFechaInicio().compareTo(entity.getFechaEntrega())==0){
             throw new BusinessLogicException("No es posible crear una reserva con la misma hora de salida y llegada ");
@@ -192,6 +198,10 @@ public class ReservaLogic
         }
         if(entity.getFechaEntrega().before(entity.getFechaInicio())){
              throw new BusinessLogicException("No es posible crear una reserva con la entrega antes del inicio  ");
+        }
+        
+        if(entity.getFechaInicio().getDay()-entity.getFechaEntrega().getDay()==0){
+            throw new BusinessLogicException("No es posible crear una reserva con mas de 24 horas de reserva ");
         }
         
         
