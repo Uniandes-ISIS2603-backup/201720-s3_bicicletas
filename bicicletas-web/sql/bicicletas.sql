@@ -14,12 +14,12 @@ DELETE FROM APP.USUARIOENTITY;
 
 
 /*Estaciones*/
-insert into App.ESTACIONENTITY(ID, NAME) values (100, 'Portal el Dorado');
-insert into App.ESTACIONENTITY(ID, NAME) values (101, 'Modelia');
-insert into App.ESTACIONENTITY(ID, NAME) values (102, 'CAN');
-insert into App.ESTACIONENTITY(ID, NAME) values (103, 'Gobernación');
-insert into App.ESTACIONENTITY(ID, NAME) values (104, 'Corferias');
-insert into App.ESTACIONENTITY(ID, NAME) values (105, 'Universidades');
+insert into App.ESTACIONENTITY(ID, NAME, CIUDAD, DIRECCION) values (100, 'Portal el Dorado', 'Bogotá', 'Calle 40 #87-13' );
+insert into App.ESTACIONENTITY(ID, NAME, CIUDAD, DIRECCION) values (101, 'Modelia', 'Bogotá', 'Carrera 74 #23-12' );
+insert into App.ESTACIONENTITY(ID, NAME, CIUDAD, DIRECCION) values (102, 'CAN','Bogotá', 'Calle 35 #12-13' );
+insert into App.ESTACIONENTITY(ID, NAME, CIUDAD, DIRECCION) values (103, 'Gobernación', 'Bogotá', 'Avenida 96 con calle 31' );
+insert into App.ESTACIONENTITY(ID, NAME, CIUDAD, DIRECCION) values (104, 'Corferias', 'Bogotá', 'Carrera 89 #24-87' );
+insert into App.ESTACIONENTITY(ID, NAME, CIUDAD, DIRECCION) values (105, 'Universidades', 'Bogotá', 'Avenida 24 #33-21');
 
 /*Usuarios */
 insert into App.USUARIOENTITY(DOCUMENTOUSUARIO, CONTRASENIAPSE, FECHANACIMIENTO, NOMBRE, NUMEROCSV, TARJETACREDITO, TIPOID) values (4651451689,'bisonte','01/15/1990','Carlos Alba',413,12348890266785,1);
