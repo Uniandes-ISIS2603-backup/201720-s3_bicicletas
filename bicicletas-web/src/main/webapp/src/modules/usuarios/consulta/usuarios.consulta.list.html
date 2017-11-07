@@ -1,0 +1,45 @@
+<div class="container-fluid">   
+    <div class="col-sm-12">
+        <br>
+        <table ng-if="!messageReservas" class="table table-striped">
+            <thead>
+                <div class="col-sm-3">
+                    <tr>
+                        <th>Total Reservas:</th>
+                        <td> {{respuesta.length}}</td>
+                    </tr>
+                </div>
+                <tr>
+                    <th>&nbsp;</th>
+                </tr>
+                      <tr> 
+                      <th ng-show="mostrar">Usuario</th>
+                      <th>Reserva</th>
+                      <th>Fecha de Inicio</th>
+                      <th>Fecha de Entrega</th>
+                      <th>Estado</th>
+                      </tr>
+            </thead>
+            
+            <tbody>
+                <tr ng-repeat="resp in respuesta">
+                    <td id="{{$index}}-idReserva"><a ui-sref="reservaDetail({idUsuario:resp.usuarioReserva.documentoUsuario,idReserva:resp.idReserva})">{{resp.idReserva}}</a></td>
+                    <td id="{{$index}}-fechaInicio" >{{resp.fechaInicio }}</td>
+                    <td id="{{$index}}-fechaEntega">{{resp.fechaEntrega }}</td>
+                    <td id="{{$index}}-estado" ng-if="resp.estado==1">{{"En curso"}}</td>
+                    <td id="{{$index}}-estado" ng-if="resp.estado==2">{{"Cancelada"}}</td></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table ng-if="messageReservas" class="table table-striped">
+            
+            <tbody>
+                <tr>
+                    <td><b>{{messageReservas}}</b></td>                                  
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
