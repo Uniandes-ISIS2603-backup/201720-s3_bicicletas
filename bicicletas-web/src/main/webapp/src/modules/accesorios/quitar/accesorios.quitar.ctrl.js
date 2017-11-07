@@ -6,10 +6,10 @@ var mod = ng.module("accesorioModule");
         function ($scope, $http, reservasAccesoriosContext, $state, accesoriosReservaContext) {
             $scope.quitarAccesorio = function () {
 	                $http.put(reservasAccesoriosContext + '/' + $state.params.idReserva + '/' + accesoriosReservaContext + '/quitar', {
-	                    id: $state.params.idAccesorio
+	                    id: $state.params.id
 	                }).then(function (response) {
 	                    //Usuario created successfully
-	                    $state.go('reservaDetail', {nombre: response.data.nombre}, {reload: true});
+	                    $state.go('accesoriosReservaList', {nombre: response.data.nombre}, {reload: true});
 	                });
 	            };
         }

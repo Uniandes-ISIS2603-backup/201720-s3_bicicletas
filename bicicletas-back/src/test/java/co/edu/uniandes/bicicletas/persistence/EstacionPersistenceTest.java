@@ -140,13 +140,31 @@ public class EstacionPersistenceTest {
         PodamFactory factory = new PodamFactoryImpl();
         
         EstacionEntity nuevaEstacion = factory.manufacturePojo(EstacionEntity.class);
+        ArrayList listaAccesorio = new ArrayList();
+        ArrayList listaBicicletas = new ArrayList();
+        ArrayList listaCalificaciones = new ArrayList();
+        ArrayList listaReservas = new ArrayList();
+        
+        nuevaEstacion.setAccesorios(listaAccesorio);
+        nuevaEstacion.setBicicletas(listaBicicletas);
+        nuevaEstacion.setCalificaciones(listaCalificaciones);
+        nuevaEstacion.setReservas(listaReservas);
+        
         EstacionEntity resultado = persistence.create(nuevaEstacion);
         
         Assert.assertNotNull(resultado);
         
         EstacionEntity creada = em.find(EstacionEntity.class, resultado.getId());
         
+        Assert.assertNotNull(creada);
         Assert.assertEquals(nuevaEstacion.getName(), creada.getName());
+        Assert.assertEquals(nuevaEstacion.getId(), creada.getId());
+        Assert.assertEquals(nuevaEstacion.getCiudad(), creada.getCiudad());
+        Assert.assertEquals(nuevaEstacion.getDireccion(), creada.getDireccion());
+        Assert.assertEquals(nuevaEstacion.getAccesorios(), creada.getAccesorios());
+        Assert.assertEquals(nuevaEstacion.getBicicletas(), creada.getBicicletas());
+        Assert.assertEquals(nuevaEstacion.getCalificaciones(), creada.getCalificaciones());
+        Assert.assertEquals(nuevaEstacion.getReservas(), creada.getReservas());
     }
     
     /**

@@ -141,13 +141,22 @@ public class AccesorioPersistenceTest {
         PodamFactory factory = (PodamFactory) new PodamFactoryImpl();
         
         AccesorioEntity nuevoAccesorio = factory.manufacturePojo(AccesorioEntity.class);
+        nuevoAccesorio.setEstacion(null);
+        nuevoAccesorio.setReserva(null);
+        
         AccesorioEntity resultado = persistence.create(nuevoAccesorio);
         
         Assert.assertNotNull(resultado);
         
         AccesorioEntity creada = em.find(AccesorioEntity.class, resultado.getId());
         
+        Assert.assertNotNull(creada);
+        Assert.assertEquals(nuevoAccesorio.getName(), creada.getName());
+        Assert.assertEquals(nuevoAccesorio.getId(), creada.getId());
+        Assert.assertEquals(nuevoAccesorio.getReservado(), creada.getReservado());
         Assert.assertEquals(nuevoAccesorio.getTipo(), creada.getTipo());
+        Assert.assertNull(creada.getReserva());
+        Assert.assertNull(creada.getEstacion());
     }
     
     /**

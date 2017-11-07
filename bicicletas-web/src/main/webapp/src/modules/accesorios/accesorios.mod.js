@@ -59,7 +59,7 @@
                 }
             }).state('accesoriosEstacionList', {
                 url: '/{id:int}/list',
-                parent: 'accesoriosEstacion',
+                parent: 'accesorios',
                 views: {
                     'detailView': {
                         templateUrl: basePath + 'accesorios.list.html',
@@ -68,10 +68,10 @@
                     }
                 }
             }).state('accesorioDelete', {                  
-                    parent: 'accesoriosEstacion',
-                    url: '{idAccesorio:int}',
+                    parent: 'accesorios',
+                    url: '/delete/{id:int}',
                     param: {
-                        idAccesorio: null
+                        id: null
                     },
                     views: {
                         'detailView': {
@@ -109,10 +109,10 @@
                         }
                     }
         }).state('quitarAccesorio', {
-                    url: '/quitar',
+                    url: '/quitar/{id:int}',
                     parent: 'accesoriosReserva',
                     param: {
-                        idAccesorio: null
+                        id: null
                     },
                     views: {
                         'detailView': {
