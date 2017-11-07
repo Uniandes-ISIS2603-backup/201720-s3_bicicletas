@@ -42,28 +42,23 @@
                     $state.go("pagoReserva", {id: $scope.currentReserva.idReserva}, {reload: true});
                 }
             };
-            
+
             $scope.verTransaccion = function () {
                 //Hace la solicitud de la traansaccion
-                var verTransaccion = false;
                 $http.get('api/' + reservasContext + '/' + $state.params.idReserva + '/transaccion').then(function (response) {
                     $scope.currenttransaccion = response.data;
-                    verTransaccion = true;
-                   
-                });
-                
-                if(verTransaccion){
+
                     var texto = "Las bicicletas fueron entregadas a tiempo";
-                    if($scope.currenttransaccion.tipo === 0){
-                        texto = "Se debe reembolsar un monto de: " + $scope.currenttransaccion.valor; + "$";
-                    }
                     
-                    else if($scope.currenttransaccion.tipo === 1){
-                        texto = "Se debe pagar un excedente de: " + $scope.currenttransaccion.valor; + "$";
+                    if ($scope.currenttransaccion.tipo === 0) {
+                        texto = "Se debe reembolsar un monto de: " + $scope.currenttransaccion.valor+"$";
+                    } else if ($scope.currenttransaccion.tipo === 1) {
+                        texto = "Se debe pagar un excedente de: " + $scope.currenttransaccion.valor+"$";
                     }
-                   
+
                     confirm(texto);
-                }
+
+                });
             };
         }
     ]);

@@ -43,7 +43,7 @@ public class TransaccionLogic {
             throw new BusinessLogicException("La reserva debe haber finalizado para calcular la transaccion final");
         }
 
-        TransaccionEntity entity = reserva.getTransaccion();
+        TransaccionEntity entity = obtenerTransaccion(reserva.getTransaccion().getId());
 
         //Si no encuentra la transacción, la crea.
         if (entity == null) {
@@ -88,7 +88,7 @@ public class TransaccionLogic {
         int tipo = -1;
         
         //Si el costo excendente o faltante es menor a 500
-        if(Math.abs(diferencia) <= 500){
+        if(Math.abs(diferencia) == 0){
             tipo = TransaccionEntity.NO_NECESARIO;
         }
         
@@ -110,7 +110,7 @@ public class TransaccionLogic {
         entity.setValor(valor);
 
         //Persiste la nueva transaccion
-        persistence.createTransaccion(entity);
+        entity = persistence.createTransaccion(entity);
 
         //Le agrega la transaccion a la reserva
         reserva.setTransaccion(entity);
