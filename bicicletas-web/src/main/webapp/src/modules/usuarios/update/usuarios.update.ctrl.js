@@ -27,12 +27,12 @@ function (ng) {
                          en el array que tiene todos los direcciones y así saber como queda la lista final de los direcciones asociados al autor.
                          */
                         $http.put("api/usuarios" + "/" + documentoUsuario, {
-                            usuarioNombre: $scope.usuarioNombre,
-                            usuarioDocumentoUsuario: $scope.usuarioDocumentoUsuario,
-                            usuarioTipoId: $scope.usuarioTipoId,
-                            usuarioTarjetaCredito: $scope.usuarioTarjetaCredito,
-                            usuarioNumeroCsv: $scope.usuarioNumeroCsv,
-                            usuarioContraseniaPSE: $scope.usuarioContraseniaPSE
+                            nombre: $scope.usuarioNombre,
+                            documentoUsuario: $scope.usuarioDocumentoUsuario,
+                            tipoId: $scope.usuarioTipoId,
+                            tarjetaCredito: $scope.usuarioTarjetaCredito,
+                            numeroCsv: $scope.usuarioNumeroCsv,
+                            contraseniaPSE: $scope.usuarioContraseniaPSE
                         }).then(function (response) {
                             
                             //Usuario created successfully
