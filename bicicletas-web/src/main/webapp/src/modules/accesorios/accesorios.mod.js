@@ -59,7 +59,7 @@
                 }
             }).state('accesoriosEstacionList', {
                 url: '/{id:int}/list',
-                parent: 'accesorios',
+                parent: 'accesoriosEstacion',
                 views: {
                     'detailView': {
                         templateUrl: basePath + 'accesorios.list.html',
