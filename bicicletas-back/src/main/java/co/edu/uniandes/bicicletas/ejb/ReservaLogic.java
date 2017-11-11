@@ -91,35 +91,6 @@ public class ReservaLogic
         return persistence.findAll();
     }
     
-//    public List<ReservaEntity> getReservasUsuario( Long id ) throws BusinessLogicException{
-//        UsuarioEntity usuario = persistenceUsuario.find(id);
-//        List<ReservaEntity> reservas = usuario.getReservas();
-//        if(reservas.isEmpty()){
-//            throw new BusinessLogicException("El usuario no tiene reservas");
-//        }
-//        return usuario.getReservas();
-//    }
-    
-//    public List<ReservaEntity> getReservasUsuarioId( Long idUsuario , Long id ) throws BusinessLogicException{
-//        UsuarioEntity usuario = persistenceUsuario.find(idUsuario);
-//        List<ReservaEntity> reservas = usuario.getReservas();
-//        
-//        if(reservas.isEmpty()){
-//            throw new BusinessLogicException("El usuario no tiene reservas");
-//        }
-//        
-//        Iterator<ReservaEntity> iter = reservas.iterator();
-//        ReservaEntity lreserva =null;
-//        boolean encontro = false;
-//         if(iter.hasNext()&& !encontro){
-//             lreserva = iter.next();
-//             if(lreserva.getId() == id){
-//                 encontro=true;
-//             } 
-//         }
-//        return usuario.getReservas();
-//    }
-    
     public ReservaEntity getReservaUsuario(Long idReserva  , Long idUsuario) throws BusinessLogicException{
         UsuarioEntity usuario = persistenceUsuario.find(idUsuario);
         LOGGER.log(Level.INFO, "Inicia proceso de consultar una reserva del usuario con id = {0}", idUsuario);
