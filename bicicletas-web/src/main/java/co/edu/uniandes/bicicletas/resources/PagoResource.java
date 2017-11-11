@@ -43,13 +43,23 @@ public class PagoResource {
     ReservaPersistence reservaPersistence;
 
     private static final Logger LOGGER = Logger.getLogger(PagoResource.class.getName());
+    
+    /**
+     * Constante para indicar que no existe
+    */
+    private static final String NO_EXISTE = "no existe.";
+    
+    /**
+     * Constante para representar el recurso pagos
+    */
+    private static final String RECURSO_PAGO = "El recurso /pagos/";
 
     @GET
     @Path("{id: \\d+}")
     public PagoDetailDTO findPago(@PathParam("id") Long id) {
         PagoEntity pago = logic.find(id);
         if (pago == null) {
-            throw new WebApplicationException("El recurso /pagos/" + id + "no existe.", 404);
+            throw new WebApplicationException(RECURSO_PAGO + id + NO_EXISTE, 404);
         }
 
         return new PagoDetailDTO(pago);
@@ -68,7 +78,7 @@ public class PagoResource {
 
         PagoEntity buscado = logic.find(id);
         if (buscado == null) {
-            throw new WebApplicationException("El recurso /pagos/" + id + "no existe.", 404);
+            throw new WebApplicationException(RECURSO_PAGO + id + NO_EXISTE, 404);
         }
 
         PagoEntity updated = logic.updatePago(pago.toEntity());
@@ -89,7 +99,7 @@ public class PagoResource {
 
         PagoEntity buscado = logic.find(id);
         if (buscado == null) {
-            throw new WebApplicationException("El recurso /pagos/" + id + "no existe.", 404);
+            throw new WebApplicationException(RECURSO_PAGO + id + NO_EXISTE, 404);
         }
 
         logic.deletePago(id);
@@ -100,7 +110,7 @@ public class PagoResource {
     public Class<ReservaPagoResource> getReservaPago(@PathParam("idPago") Long idPago) {
         PagoEntity pago = logic.find(idPago);
         if (pago == null) {
-            throw new WebApplicationException("El recurso /pagos/" + idPago + "no existe.", 404);
+            throw new WebApplicationException(RECURSO_PAGO + idPago + NO_EXISTE, 404);
         }
         return ReservaPagoResource.class;
     }

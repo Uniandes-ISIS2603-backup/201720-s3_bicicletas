@@ -68,6 +68,16 @@ public class ReservaLogic
     @Inject
     private AccesorioPersistence persistenceAccesorio;
     
+    /**
+     * Constante para indicar que no esta disponible la bicicleta
+    */
+    private static final String NO_BICI = "No esta disponible la bicicleta";
+    
+    /**
+     * Constante para indicar que no esta disponible el accesorio
+    */
+    private static final String NO_ACCESORIO = "No esta disponible el accesorio";
+    
     
     public ReservaEntity getReserva(Long id)
     {
@@ -253,7 +263,7 @@ public class ReservaLogic
          ReservaEntity reserva = getReserva(idReserva);
          BicicletaEntity entity = biciLogic.find(bici.getId());
          if(entity.darEstado() == BicicletaEntity.RESERVADA){
-             throw new BusinessLogicException("No esta disponible la bici");
+             throw new BusinessLogicException(NO_BICI);
          }
          if(!reserva.getEstacionSalida().equals(entity.getEstacion())){
              throw new BusinessLogicException("Esta bicicleta no esta disponoble en esa estacion");
@@ -262,7 +272,7 @@ public class ReservaLogic
          boolean a = reserva.getBicicletas().contains(bici);
          
          if(a){
-             throw new BusinessLogicException("No esta disponible la bici");
+             throw new BusinessLogicException(NO_BICI);
          }
          if(reserva.getPago()!=null){
              throw new BusinessLogicException("Hay un pago no se puede añadir la bicicleta");
@@ -277,7 +287,7 @@ public class ReservaLogic
          ReservaEntity reserva = getReserva(idReserva);
          BicicletaEntity bici = biciLogic.find(idBici);
          if(bici.darEstado()!=BicicletaEntity.DISPONIBLE){
-             throw new BusinessLogicException("No esta disponible la bici");
+             throw new BusinessLogicException(NO_BICI);
          }
          boolean a = false;
          for (BicicletaEntity bicicletaR : reserva.getBicicletas()) {
@@ -286,7 +296,7 @@ public class ReservaLogic
              }
          }
          if(!a){
-             throw new BusinessLogicException("No esta disponible la bici");
+             throw new BusinessLogicException(NO_BICI);
          }
          return bici;
      }
@@ -301,7 +311,7 @@ public class ReservaLogic
          ReservaEntity reserva = getReserva(idReserva);
          AccesorioEntity accesorio = persistenceAccesorio.find(idReserva);
          if(accesorio.getReservado()!=1){
-             throw new BusinessLogicException("No esta disponible el accesorio");
+             throw new BusinessLogicException(NO_ACCESORIO);
          }
          boolean reservado = false;
          for (AccesorioEntity accesorioR : reserva.getAccesorios()) {
@@ -310,7 +320,7 @@ public class ReservaLogic
              }
          }
          if(reservado){
-             throw new BusinessLogicException("No esta disponible el accesorio");
+             throw new BusinessLogicException(NO_ACCESORIO);
          }
          return accesorio;
      }
@@ -325,7 +335,7 @@ public class ReservaLogic
          ReservaEntity reserva = getReserva(idReserva);
          AccesorioEntity accesorioEntity = persistenceAccesorio.find(accesorio.getId());
          if(accesorioEntity.getReservado()==1){
-             throw new BusinessLogicException("No esta disponible el accesorio");
+             throw new BusinessLogicException(NO_ACCESORIO);
          }
          if(reserva.getEstacionSalida().getId()!=accesorioEntity.getEstacion().getId()){
              throw new BusinessLogicException("La reserva y el accesorio no pertenecen a una misma estación");
@@ -337,7 +347,7 @@ public class ReservaLogic
           }
         }
          if(a){
-             throw new BusinessLogicException("No esta disponible el accesorio");
+             throw new BusinessLogicException(NO_ACCESORIO);
          }
          reserva.getAccesorios().add(accesorioEntity);
          accesorioEntity.setReservado(AccesorioEntity.EN_RESERVA);

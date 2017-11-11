@@ -43,6 +43,16 @@ public class ReservaResource {
     @Inject
     private TransaccionLogic logicaTransaccion;
     
+    /**
+     * Constante para representar el recurso reservas
+    */
+    private static final String RECURSO_RESERVA = "El recurso /reservas/";
+    
+     /**
+     * Constante para indicar que no existe
+    */
+    private static final String NO_EXISTE = " no existe";
+    
 
     private List<ReservaDTO> listEntity2DTO(List<ReservaEntity> entityList) {
         List<ReservaDTO> lista = new ArrayList<>();
@@ -67,7 +77,7 @@ public class ReservaResource {
     public ReservaDTO getReserva(@PathParam("id") Long id) {
         ReservaEntity reservas = logica.getReserva(id);
         if(reservas==null){
-          throw new WebApplicationException("La reserva con id "+ id +" no existe", 404);
+          throw new WebApplicationException("La reserva con id "+ id +NO_EXISTE, 404);
         }
         return new ReservaDetailDTO(reservas);
     }
@@ -76,7 +86,7 @@ public class ReservaResource {
     @Path("{id: \\d+}")
     public ReservaDTO crearReserva (@PathParam("id") Long id , ReservaDTO dto) throws BusinessLogicException {
         if(logicaUsuario.getUsuario(id)==null){
-          throw new WebApplicationException("El usuario con id "+ id +" no existe", 404);
+          throw new WebApplicationException("El usuario con id "+ id +NO_EXISTE, 404);
         }
         return new ReservaDTO(logica.crearReserva(id ,dto.toEntity()));
     }
@@ -100,7 +110,7 @@ public class ReservaResource {
     public TransaccionDTO darTransaccion(@PathParam("id") Long id) throws BusinessLogicException{
         ReservaEntity reserva = logica.getReserva(id);
         if(reserva==null){
-          throw new WebApplicationException("La reserva con id "+ id +" no existe", 404);
+          throw new WebApplicationException("La reserva con id "+ id +NO_EXISTE, 404);
         }
         
         TransaccionEntity transaccion = logicaTransaccion.obtenerTransaccion(reserva);
@@ -112,7 +122,7 @@ public class ReservaResource {
     public Class<ReservaEstacionResource> getReservaEstacionResource(@PathParam("idReserva") Long idReserva,@PathParam("llegada") int llegada){
         ReservaEntity entity = logica.getReserva(idReserva);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /Reserva/" + idReserva + "/Estacion/"+ llegada +"no existe.", 404);
+            throw new WebApplicationException(RECURSO_RESERVA + idReserva + "/Estacion/"+ llegada +"no existe.", 404);
         }
         return ReservaEstacionResource.class;
     }
@@ -121,7 +131,7 @@ public class ReservaResource {
     public Class<ReservaEstacionResource> getReservaEstacionResource(@PathParam("idReserva") Long idReserva){
         ReservaEntity entity = logica.getReserva(idReserva);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /Reserva/" + idReserva +"no existe.", 404);
+            throw new WebApplicationException(RECURSO_RESERVA + idReserva +"no existe.", 404);
         }
         return ReservaEstacionResource.class;
     }
@@ -130,7 +140,7 @@ public class ReservaResource {
     public Class<PagoReservaResource> getResource(@PathParam("idReserva") Long idReserva){
         ReservaEntity entity = logica.getReserva(idReserva);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /Reserva/" + idReserva + "/Pago no existe.", 404);
+            throw new WebApplicationException(RECURSO_RESERVA + idReserva + "/Pago no existe.", 404);
         }
         return PagoReservaResource.class;
     }
@@ -139,7 +149,7 @@ public class ReservaResource {
     public Class<UsuarioReservaResource> getUsuario(@PathParam("idReserva") Long idReserva) {
         ReservaEntity entity = logica.getReserva(idReserva);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /Reserva/" + idReserva + "/Pago no existe.", 404);
+            throw new WebApplicationException(RECURSO_RESERVA + idReserva + "/Pago no existe.", 404);
         }
         return   UsuarioReservaResource.class;
     }
@@ -157,7 +167,7 @@ public class ReservaResource {
     public Class<ReservaAccesorioResource> getAccesorio(@PathParam("idReserva") Long idReserva) {
         ReservaEntity entity = logica.getReserva(idReserva);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /reservas/" + idReserva + "/accesorios no existe.", 404);
+            throw new WebApplicationException(RECURSO_RESERVA + idReserva + "/accesorios no existe.", 404);
         }
         return ReservaAccesorioResource.class;
     }

@@ -30,6 +30,16 @@ import javax.ws.rs.WebApplicationException;
 public class PagoLogic {
 
     private static final Logger LOGGER = Logger.getLogger(PagoLogic.class.getName());
+    
+    /**
+     * Constante para indicar algo sobre una reserva
+    */
+    private static final String RESERVA_ID = "La reserva con id: ";
+    
+    /**
+     * Constante para indicar que no se tiene un pago asociado
+    */
+    private static final String NO_PAGO = " no tiene un pago asociado";
 
     @Inject
     PagoPersistence persistence;
@@ -114,8 +124,8 @@ public class PagoLogic {
         PagoEntity pago = reserva.getPago();
 
         if (reserva.getPago() == null) {
-            throw new BusinessLogicException("La reserva con id: " + idReserva
-                    + " no tiene un pago asociado");
+            throw new BusinessLogicException(RESERVA_ID + idReserva
+                    + NO_PAGO);
         }
 
         if (pago.getEstado() != PagoEntity.ESPERANDO_PAGO) {
@@ -171,8 +181,8 @@ public class PagoLogic {
         PagoEntity pago = reserva.getPago();
 
         if (reserva.getPago() == null) {
-            throw new BusinessLogicException("La reserva con id: " + idReserva
-                    + " no tiene un pago asociado");
+            throw new BusinessLogicException(RESERVA_ID + idReserva
+                    + NO_PAGO);
         }
 
         if (pago.getEstado() != PagoEntity.ESPERANDO_PAGO) {
@@ -245,8 +255,8 @@ public class PagoLogic {
         PagoEntity pago = reserva.getPago();
 
         if (reserva.getPago() == null) {
-            throw new BusinessLogicException("La reserva con id: " + idReserva
-                    + " no tiene un pago asociado");
+            throw new BusinessLogicException(RESERVA_ID + idReserva
+                    + NO_PAGO);
         }
 
         if (!pago.getEstado().equals(PagoEntity.PAGADO)) {
