@@ -33,7 +33,7 @@ public class DireccionEntity extends BaseEntity implements Serializable {
    @ManyToMany
    @PodamExclude
    @XmlInverseReference(mappedBy = "direcciones")
-   private List<UsuarioEntity> usuarios = new ArrayList<UsuarioEntity>();
+   private List<UsuarioEntity> usuarios = new ArrayList<>();
 
  /**
  *Metodos

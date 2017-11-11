@@ -95,7 +95,7 @@ public class UsuarioReservaResource
     
     private List<ReservaDTO> listEntity2DTO(List<ReservaEntity> listaEntiReserva)
     {
-        List<ReservaDTO> lista = new ArrayList<ReservaDTO>();
+        List<ReservaDTO> lista = new ArrayList<>();
         for(ReservaEntity puntoEntity : listaEntiReserva)
         {
            

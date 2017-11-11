@@ -56,7 +56,7 @@ public class BicicletaEntity extends BaseEntity implements Serializable {
     private String modelo;
     @PodamExclude
     @OneToMany(cascade = CascadeType.REMOVE,fetch = FetchType.EAGER)
-    private List<AccesorioBicicletaEntity> accesorios = new ArrayList<AccesorioBicicletaEntity>();
+    private List<AccesorioBicicletaEntity> accesorios = new ArrayList<>();
     
     @PodamExclude
     @ManyToOne
