@@ -6,7 +6,6 @@
 package co.edu.uniandes.bicicletas.dtos;
 
 import co.edu.uniandes.bicicletas.entities.ReservaEntity;
-import java.util.Date;
 
 /**
  *
