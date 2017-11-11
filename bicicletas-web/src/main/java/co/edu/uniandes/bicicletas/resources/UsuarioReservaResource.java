@@ -98,7 +98,7 @@ public class UsuarioReservaResource
         List<ReservaDTO> lista = new ArrayList<ReservaDTO>();
         for(ReservaEntity puntoEntity : listaEntiReserva)
         {
-           //lista.add(new ReservaDetailDTO(puntoEntity));
+           
             lista.add( new ReservaDetailDTO (puntoEntity));
         }
         return lista;
