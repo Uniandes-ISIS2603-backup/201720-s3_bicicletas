@@ -6,16 +6,12 @@
 	 */
 	package co.edu.uniandes.bicicletas.resources;
 
-	import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
-	import co.edu.uniandes.bicicletas.dtos.EstacionDTO;
 	import co.edu.uniandes.bicicletas.dtos.EstacionDTO;
         import co.edu.uniandes.bicicletas.dtos.EstacionDetailDTO;
 	import co.edu.uniandes.bicicletas.ejb.EstacionLogic;
 	import co.edu.uniandes.bicicletas.entities.EstacionEntity;
-        import co.edu.uniandes.bicicletas.entities.ReservaEntity;
 	import java.util.ArrayList;
 	import java.util.List;
-	import javax.ejb.Stateless;
 	import javax.enterprise.context.RequestScoped;
 	import javax.inject.Inject;
 	import javax.ws.rs.Consumes;
@@ -26,7 +22,6 @@
 	import javax.ws.rs.Path;
 	import javax.ws.rs.PathParam;
 	import javax.ws.rs.Produces;
-	import javax.ws.rs.QueryParam;
 	import javax.ws.rs.WebApplicationException;
 
 	/**

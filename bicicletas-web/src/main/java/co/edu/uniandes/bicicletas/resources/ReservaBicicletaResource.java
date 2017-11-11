@@ -9,7 +9,6 @@ import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.bicicletas.dtos.BicicletaDetailDTO;
 import co.edu.uniandes.bicicletas.dtos.BicicletaDTO;
 import co.edu.uniandes.bicicletas.dtos.ReservaDTO;
-import co.edu.uniandes.bicicletas.dtos.ReservaDetailDTO;
 import co.edu.uniandes.bicicletas.ejb.ReservaLogic;
 import co.edu.uniandes.bicicletas.entities.BicicletaEntity;
 import java.util.ArrayList;

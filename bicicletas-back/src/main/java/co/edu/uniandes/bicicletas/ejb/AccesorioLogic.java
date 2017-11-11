@@ -7,12 +7,8 @@ package co.edu.uniandes.bicicletas.ejb;
 
 import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.bicicletas.entities.AccesorioEntity;
-import co.edu.uniandes.bicicletas.entities.CalificacionEntity;
-import co.edu.uniandes.bicicletas.entities.DireccionEntity;
 import co.edu.uniandes.bicicletas.entities.EstacionEntity;
-import co.edu.uniandes.bicicletas.entities.ReservaEntity;
 import co.edu.uniandes.bicicletas.persistence.AccesorioPersistence;
-import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;

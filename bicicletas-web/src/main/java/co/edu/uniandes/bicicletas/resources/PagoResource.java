@@ -7,7 +7,6 @@ package co.edu.uniandes.bicicletas.resources;
 
 import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.bicicletas.dtos.PagoDetailDTO;
-import javax.ejb.Stateless;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
