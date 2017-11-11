@@ -33,6 +33,7 @@ import javax.ejb.ApplicationException;
 public class BusinessLogicException extends Exception {
 
     public BusinessLogicException() {
+        //No necesita cuerpo
     }
 
     /**

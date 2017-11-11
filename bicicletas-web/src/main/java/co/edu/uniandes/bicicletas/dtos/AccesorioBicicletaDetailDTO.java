@@ -16,6 +16,7 @@ public class AccesorioBicicletaDetailDTO extends AccesorioBicicletaDTO{
      * Constructor por defecto
      */
     public AccesorioBicicletaDetailDTO() {
+        //No necesita cuerpo
     }
 
     /**

@@ -24,7 +24,7 @@ public class DireccionDTO {
      * Constructor por defecto
      */
     public DireccionDTO() {
-        //Do nothing because is not necessary
+        //No necesita cuerpo
     }
     
     /**

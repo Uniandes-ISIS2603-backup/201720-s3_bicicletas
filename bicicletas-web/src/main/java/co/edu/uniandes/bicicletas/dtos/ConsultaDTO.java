@@ -14,7 +14,7 @@ import java.util.Date;
  *
  * @author ds.chacon
  */
-public class consultaDTO {
+public class ConsultaDTO {
     
     private UsuarioEntity usuario;
     
@@ -26,7 +26,7 @@ public class consultaDTO {
             
     private String stringFinal;
     
-    public consultaDTO(){
+    public ConsultaDTO(){
         
     }
     

@@ -18,7 +18,7 @@ public class EstacionDTO {
     
     
     public EstacionDTO(){
-        
+        //No necesita cuerpo
     }
 
     public String getDireccion() {

@@ -9,7 +9,7 @@ import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.bicicletas.dtos.ReservaDTO;
 import co.edu.uniandes.bicicletas.dtos.ReservaDetailDTO;
 import co.edu.uniandes.bicicletas.dtos.TransaccionDTO;
-import co.edu.uniandes.bicicletas.dtos.consultaDTO;
+import co.edu.uniandes.bicicletas.dtos.ConsultaDTO;
 import co.edu.uniandes.bicicletas.ejb.ReservaLogic;
 import co.edu.uniandes.bicicletas.ejb.TransaccionLogic;
 import co.edu.uniandes.bicicletas.ejb.UsuarioLogic;
@@ -65,7 +65,7 @@ public class ReservaResource {
     
     @PUT
     @Path("{id: \\d+}/consulta")
-    public List<ReservaDTO> obtenerReservas(@PathParam("id") Long id , consultaDTO consulta){
+    public List<ReservaDTO> obtenerReservas(@PathParam("id") Long id , ConsultaDTO consulta){
         consulta.setFechaFinal(consulta.getStringFinal());
         consulta.setFechaInicio(consulta.getStringInicio());
         List<ReservaEntity> rta = logica.darReservasPorFecha(logicaUsuario.getUsuario(id).getReservas(),consulta.getFechaInicio(), consulta.getFechaFinal());

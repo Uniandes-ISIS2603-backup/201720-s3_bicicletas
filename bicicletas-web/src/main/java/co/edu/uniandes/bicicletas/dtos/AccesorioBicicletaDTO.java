@@ -17,7 +17,7 @@ public class AccesorioBicicletaDTO {
     private int nombre;
     
     public AccesorioBicicletaDTO(){
-        
+        //No necesita cuerpo
     }
     public AccesorioBicicletaDTO(AccesorioBicicletaEntity accesorio){
         this.id = accesorio.getId();

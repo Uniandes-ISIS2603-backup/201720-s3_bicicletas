@@ -28,7 +28,7 @@ public class EstacionDetailDTO extends EstacionDTO {
     
     
     public EstacionDetailDTO(){
-        
+        //No necesita cuerpo
     }
     
     public EstacionDetailDTO(EstacionEntity entidad) {

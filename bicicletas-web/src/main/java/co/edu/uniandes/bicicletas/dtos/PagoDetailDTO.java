@@ -18,7 +18,7 @@ public class PagoDetailDTO extends PagoDTO{
      * Constructor vacio
      */
     public PagoDetailDTO(){
-        
+        //No necesita cuerpo
     }
     
     public PagoDetailDTO (PagoEntity entity){

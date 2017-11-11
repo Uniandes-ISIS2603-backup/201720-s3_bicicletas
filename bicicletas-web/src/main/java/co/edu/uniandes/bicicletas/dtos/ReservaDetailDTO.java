@@ -14,17 +14,7 @@ import java.util.Date;
  */
 public class ReservaDetailDTO extends ReservaDTO{
     
-    
-//    private Boolean descuento;
-//    private Long idEstacionSalida;
-//    private int estado;
-//    private Date fechaReserva;
-//    private String fechaEntrega;
-//    private String fechaInicio;
-//    private String fechaFinal;
-//    private Long idReserva;
-//    private double preciofinal;
-//    private long idUsuario;
+   
 
     
     
@@ -133,7 +123,7 @@ public class ReservaDetailDTO extends ReservaDTO{
      * Constructor por defecto
      */
     public ReservaDetailDTO() {
-        //Do nothing because is not necessary
+        //No necesita cuerpo
     }
    
     /**
