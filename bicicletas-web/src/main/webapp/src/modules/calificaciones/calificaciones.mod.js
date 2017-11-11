@@ -1,5 +1,5 @@
 (function (ng) {
-    var mod = ng.module("calificacionModule", ['estacionModule','usuarioModule', 'ui.router']);
+    var mod = ng.module("calificacionModule", ['estacionModule','usuarioModule', 'reservaModule', 'ui.router']);
     mod.constant("calificacionesContext", "calificaciones");
     mod.constant("estacionesContext", "api/estaciones");
     mod.constant("reservasContext", "reservas");
@@ -38,7 +38,7 @@
                     }
                 }
             }).state('calificacionDetail', {
-                url:'/usuarios/{idUsuario}/reservas/{idReserva}/calificacion/:cali',
+                url:'/detail/:cali',
                 parent: 'calificacionesReserva',
                 params:{
                     idUsuario: null,
@@ -58,6 +58,15 @@
 	                    'listView': {
 	                        templateUrl: basePath + '/new/calificaciones.new.html',
 	                        controller: 'calificacionNewCtrl'
+	                    }
+	                }
+	    }).state('editarCalificacion', {
+	                url: '/edit/:cali',
+	                parent: 'calificacionesReserva',
+	                views: {
+	                    'listView': {
+	                        templateUrl: basePath + '/new/calificaciones.new.html',
+	                        controller: 'calificacionUpdateCtrl'
 	                    }
 	                }
 	            });

@@ -27,7 +27,7 @@ var mod = ng.module("reservaModule", ['usuarioModule', 'ui.router', 'pagosModule
                     }
                 }
             }).state('reservaDetail', {
-	                url: '{idUsuario:int}/{idReserva:int}/detail',
+	                url: '/{idUsuario:int}/reservas/{idReserva:int}/detail',
 	                parent: 'usuarios',
 	                param: {
                             idReserva:null,

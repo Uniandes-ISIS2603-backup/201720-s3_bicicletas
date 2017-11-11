@@ -23,8 +23,14 @@
     <a class="list-group-item">
       <h4 class="list-group-item-heading">Descripción:</h4>
       <p class="list-group-item-text">{{currentCalificacion.descripcion}}</p>
-    </a>
-        
+    </a>  
     </div>
+    <div class="col-sm-12">&nbsp;</div>
+    <div ng-show="idCali === 1" class="col-sm-1" ui-sref="editarCalificacion({cali: cali, idUsuario: currentReserva.usuarioReserva.documentoUsuario, idReserva: currentReserva.idReserva})">
+        <button class="btn btn-primary">
+            <i class="glyphicon glyphicon-edit"></i> Editar
+        </button>
+    </div>
+    
 
 </div>

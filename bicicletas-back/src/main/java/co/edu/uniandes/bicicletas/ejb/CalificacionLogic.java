@@ -94,12 +94,9 @@ public class CalificacionLogic
         }
                   
         caliEntity.setReserva(reserva);
+             
         
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-        Date date = new Date();
-        dateFormat.format(date); 
-        
-        caliEntity.setFechaCali(date);
+        caliEntity.setFechaCali(fechaActual());
         caliEntity.setEstacion(estacion);
         CalificacionEntity califiEntity = caliPersistence.create(caliEntity);
         
@@ -132,6 +129,15 @@ public class CalificacionLogic
         }
                
         return estacion.getCalificaciones();
+    }
+    
+    public Date fechaActual()
+    {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        Date date = new Date();
+        dateFormat.format(date); 
+        
+        return date;
     }
     
     /**
@@ -173,11 +179,9 @@ public class CalificacionLogic
         
         List<CalificacionEntity> calificaciones = reserva.getCalificaciones();
         CalificacionEntity caliEntity;
-        
-        LOGGER.info("Entra get CALI RESERVA");
+                
         if(cali)
         {
-            LOGGER.info("eNTRA ACA");
             caliEntity = getCalificacionPos(calificaciones, 0);
         }
         else
@@ -206,31 +210,13 @@ public class CalificacionLogic
     
     /**
      * Actualiza los datos de una calificación 
-     * @param idReserva El id que tiene la información de la calificación a actuaalizar
-     * @param cali false o true dependiendo de si se quiere ver la calificación de la estación de llegada u origen
      * @param calEntity Objeto con los nuevos datos de la calificación
      * @return Objeto CalificacionEntity con los datos actualizado
      */
-    public CalificacionEntity updateCalificacion(Long idReserva, boolean cali, CalificacionEntity calEntity) {
-        LOGGER.info("Inicia proceso de actualizar una calificacion");
-        
-        ReservaEntity reserva = reservaLogic.getReserva(idReserva);
-        CalificacionEntity califi = null;
-        List<CalificacionEntity> calificaciones = reserva.getCalificaciones();
-        
-        
-        if(cali && getCalificacionPos(calificaciones, 0) != null)
-        {
-            calEntity.setId(reserva.getCalificaciones().get(0).getId());
-            califi = caliPersistence.update(calEntity);
-        }
-        else if(!cali && getCalificacionPos(calificaciones, 1) != null)  
-        {
-            calEntity.setId(reserva.getCalificaciones().get(1).getId());
-            califi = caliPersistence.update(calEntity);
-        }
-                
-        return califi;
+    public CalificacionEntity updateCalificacion(CalificacionEntity calEntity) {
+        LOGGER.info("Inicia proceso de actualizar una calificacion");  
+        calEntity.setFechaCali(fechaActual());
+        return caliPersistence.update(calEntity);
     }
    
     /**

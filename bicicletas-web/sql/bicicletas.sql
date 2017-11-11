@@ -105,3 +105,5 @@ insert into App.BICICLETAENTITY(ID, ESTADO, MARCA, MODELO, ESTACION_ID) VALUES (
 insert into App.BICICLETAENTITY(ID, ESTADO, MARCA, MODELO, ESTACION_ID) VALUES (158, 2, 'Orbea', 'Doble', 105);
 insert into App.BICICLETAENTITY(ID, ESTADO, MARCA, MODELO, ESTACION_ID) VALUES (159, 2, 'Orbea', 'Doble', 105);
 
+/*Reservas*/
+                      
