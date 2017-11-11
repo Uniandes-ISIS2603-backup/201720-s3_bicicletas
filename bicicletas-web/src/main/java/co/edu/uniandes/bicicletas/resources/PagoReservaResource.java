@@ -33,7 +33,7 @@ import javax.ws.rs.WebApplicationException;
 @Consumes("application/json")
 public class PagoReservaResource {
 
-    public final static int PUNTOS_MINIMOS = 10;
+    public static final int PUNTOS_MINIMOS = 10;
 
     @Inject
     private ReservaPersistence reservaPersistence;

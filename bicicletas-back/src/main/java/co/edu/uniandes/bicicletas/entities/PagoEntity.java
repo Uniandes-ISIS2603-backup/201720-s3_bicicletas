@@ -43,57 +43,57 @@ public class PagoEntity extends BaseEntity implements Serializable{
     /**
      * Constante que modela el estado de una reserva en pagado. 
      */
-    public final static Integer PAGADO = 0;
+    public static final Integer PAGADO = 0;
     
     /**
      * Constante que modela el estado de una reserva en espera del pago.
      */
-    public final static Integer ESPERANDO_PAGO = 1;
+    public static final Integer ESPERANDO_PAGO = 1;
     
     /**
      * Constante que modela el estado de un pago que no fue efectuado. Por ejemplo,
      * si la persona está dentro de la central de pagos y este es abortado o el
      * tiempo limite se alcanza. 
      */
-    public final static Integer NO_EFECTUADO = 2;
+    public static final Integer NO_EFECTUADO = 2;
     
     /**
      * Constante que modela el estado de un pago que fue reembolsado de forma
      * total. 
      */
-    public final static Integer REEMBOLSO_TOTAL = 4;
+    public static final Integer REEMBOLSO_TOTAL = 4;
     
     
     /**
      * Constante que modela el estado de un pago que se reembolso parcialmente
      * porque la reserva no se hizo efectiva. 
      */
-    public final static Integer REEMBOLSO_PARCIAL = 5;
+    public static final Integer REEMBOLSO_PARCIAL = 5;
     
       /**
      * Constante que modela el estado de un pago el cual se está procesando.
      */
-    public final static Integer PROCESANDO_PAGO = 7;
+    public static final Integer PROCESANDO_PAGO = 7;
     
       /**
      * Constante que modela el estado de un pago el cual se está reembolsando.
      */
-    public final static Integer PROCESANDO_REEMBOLSO = 8;
+    public static final Integer PROCESANDO_REEMBOLSO = 8;
     
     /**
      * Constante que modela el método de pago con tarjeta de credito
      */
-    public final static Integer TARJETA_DE_CREDITO = 1;
+    public static final Integer TARJETA_DE_CREDITO = 1;
     
     /**
      * Constante que modela el método de pago con PSE.
      */
-    public final static Integer PSE = 2;
+    public static final Integer PSE = 2;
     
     /**
      * Constante que modela el precio de alquilar una bicicleta por una hora
      */
-    public final static Integer PRECIO_BICICLETA_HORA = 1000;
+    public static final Integer PRECIO_BICICLETA_HORA = 1000;
     
     /**
      * Relación que modela una reserva asociada a un pago 

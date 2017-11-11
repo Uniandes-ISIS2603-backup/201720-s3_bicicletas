@@ -30,12 +30,12 @@ import uk.co.jemos.podam.common.PodamExclude;
 
 public class ReservaEntity extends BaseEntity implements Serializable {
 
-    public final static int PAGADA = 0;
-    public final static int PAGO = 1;
-    public final static int CANCELADA = 2;
-    public final static int USO = 3;
-    public final static int REEMBOLSADO = 4;
-    public final static int FINALIZADA = 5;
+    public static final int PAGADA = 0;
+    public static final int PAGO = 1;
+    public static final int CANCELADA = 2;
+    public static final int USO = 3;
+    public static final int REEMBOLSADO = 4;
+    public static final int FINALIZADA = 5;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaEntrega;
