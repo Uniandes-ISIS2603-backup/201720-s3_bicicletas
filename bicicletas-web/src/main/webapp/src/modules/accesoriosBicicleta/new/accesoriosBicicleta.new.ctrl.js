@@ -1,5 +1,5 @@
 (function(ng){
-        var mod = ng.module("accesorioBicicletaModule", []);
+        var mod = ng.module("accesorioBicicletaModule");
         mod.constant("accBicicletaContext","api/bicicletas");
         mod.constant("accesorioBicicletasContext","accesorioBicicleta");
         mod.controller('accesorioBicicletaNewCtrl',['$scope', '$http','accBicicletaContext', 'accesorioBicicletasContext', '$state',

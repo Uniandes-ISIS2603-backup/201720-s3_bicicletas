@@ -19,9 +19,9 @@ public class AccesorioBicicletaEntity extends BaseEntity implements Serializable
     private int nombre;
     private String descripcion;
     
-    private final static int LUCES = 0;
-    private final static int CANDADO = 1;
-    private final static int CANASTILLA = 2;
+    public static final int LUCES = 0;
+    public static final int CANDADO = 1;
+    public static final int CANASTILLA = 2;
     
     @ManyToOne 
     @PodamExclude

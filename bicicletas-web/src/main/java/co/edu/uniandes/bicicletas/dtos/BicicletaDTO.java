@@ -44,6 +44,7 @@ public class BicicletaDTO {
      * Constructor por defecto
      */
     public BicicletaDTO() {
+        //No necesita cuerpo
     }
 
     /**

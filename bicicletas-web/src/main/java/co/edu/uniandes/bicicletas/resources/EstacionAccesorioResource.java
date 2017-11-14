@@ -8,8 +8,6 @@ package co.edu.uniandes.bicicletas.resources;
 import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.bicicletas.dtos.AccesorioDTO;
 import co.edu.uniandes.bicicletas.dtos.EstacionDetailDTO;
-import co.edu.uniandes.bicicletas.dtos.ReservaDTO;
-import co.edu.uniandes.bicicletas.ejb.AccesorioLogic;
 import co.edu.uniandes.bicicletas.ejb.EstacionLogic;
 import co.edu.uniandes.bicicletas.entities.AccesorioEntity;
 import java.util.ArrayList;
@@ -21,7 +19,6 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.ext.Provider;
 
 /**

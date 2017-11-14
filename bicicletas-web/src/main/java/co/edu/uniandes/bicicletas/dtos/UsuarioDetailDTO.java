@@ -17,7 +17,7 @@ public class UsuarioDetailDTO extends UsuarioDTO {
      * Constructor por defecto
      */
     public UsuarioDetailDTO() {
-        //Do nothing because is not necessary
+        //No necesita cuerpo
     }
 
     /**

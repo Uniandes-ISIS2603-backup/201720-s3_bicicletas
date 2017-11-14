@@ -44,10 +44,10 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class BicicletaEntity extends BaseEntity implements Serializable {
    //Las contantes que indican el estado de la bicicleta
-    public final static int DANADO=3;
-    public final static int DISPONIBLE=2;
-    public final static int PRESTADA=1;
-    public final static int RESERVADA=0;
+    public static final int DANADO=3;
+    public static final int DISPONIBLE=2;
+    public static final int PRESTADA=1;
+    public static final int RESERVADA=0;
     //este atributo da el estado de la bicicleta
     private int estado;
     //este atributo da la marca de la bicicleta
@@ -56,7 +56,7 @@ public class BicicletaEntity extends BaseEntity implements Serializable {
     private String modelo;
     @PodamExclude
     @OneToMany(cascade = CascadeType.REMOVE,fetch = FetchType.EAGER)
-    private List<AccesorioBicicletaEntity> accesorios = new ArrayList<AccesorioBicicletaEntity>();
+    private List<AccesorioBicicletaEntity> accesorios = new ArrayList<>();
     
     @PodamExclude
     @ManyToOne

@@ -29,6 +29,11 @@ public class ReservaEstacionResource {
     @Inject ReservaLogic logic ;
     @Inject EstacionLogic Estacionlogic ;
     
+    /**
+     * Constante para representar el recurso reservas
+    */
+    private static final String RECURSO_RESERVA = "El recurso /reservas/";
+    
     /*
     Dar la estacion de la reserva
     */
@@ -42,7 +47,7 @@ public class ReservaEstacionResource {
         }else if(llegada==1){
              Estacion = new EstacionDTO(logic.getReserva(idReserva).getEstacionSalida());  //CAMBIADO POR ESTACION SALIDA
         }else{
-            throw new WebApplicationException("El recurso /reservas/" + idReserva + "/Estacion/" + llegada + " no existe", 404);
+            throw new WebApplicationException(RECURSO_RESERVA + idReserva + "/Estacion/" + llegada + " no existe", 404);
         }
      return Estacion;   
     }
@@ -58,7 +63,7 @@ public class ReservaEstacionResource {
             una = Estacionlogic.getEstacion(reserva.getEstacionLlegada());
             estacion = new EstacionDetailDTO(una);
         }else{
-            throw new WebApplicationException("El recurso /reservas/" + idReserva + "/Estacion/ no existe", 404);
+            throw new WebApplicationException(RECURSO_RESERVA + idReserva + "/Estacion/ no existe", 404);
         }
      return estacion;   
     }
@@ -71,7 +76,7 @@ public class ReservaEstacionResource {
        if(llegada==1){
              logic.getReserva(idReserva).setEstacionSalida(Entity); //CAMBIADO POR ESTACION SALIDA
         }else{
-            throw new WebApplicationException("El recurso /reservas/" + idReserva + "/Estacion/" + llegada + " no existe", 404);
+            throw new WebApplicationException(RECURSO_RESERVA + idReserva + "/Estacion/" + llegada + " no existe", 404);
         }  
     }
     
@@ -86,7 +91,7 @@ public class ReservaEstacionResource {
             logic.actualizarReserva(actua);
                     }
         else
-           throw new WebApplicationException("El recurso /reservas/" + idReserva, 404);    
+           throw new WebApplicationException(RECURSO_RESERVA + idReserva, 404);    
     }
     
     

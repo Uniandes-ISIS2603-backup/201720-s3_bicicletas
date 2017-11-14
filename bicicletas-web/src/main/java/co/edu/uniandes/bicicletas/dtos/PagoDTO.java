@@ -26,7 +26,7 @@ public class PagoDTO {
      * Constructor por defecto
      */
     public PagoDTO(){
-        // Don't do nothing.
+        //No necesita cuerpo
     }
     
     

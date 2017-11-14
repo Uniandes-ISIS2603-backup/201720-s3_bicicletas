@@ -7,12 +7,8 @@ package co.edu.uniandes.bicicletas.ejb;
 
 import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.bicicletas.entities.AccesorioEntity;
-import co.edu.uniandes.bicicletas.entities.CalificacionEntity;
-import co.edu.uniandes.bicicletas.entities.DireccionEntity;
 import co.edu.uniandes.bicicletas.entities.EstacionEntity;
-import co.edu.uniandes.bicicletas.entities.ReservaEntity;
 import co.edu.uniandes.bicicletas.persistence.AccesorioPersistence;
-import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -66,23 +62,11 @@ public class AccesorioLogic {
      */
     public AccesorioEntity crearAccesorio(AccesorioEntity entidadA)throws BusinessLogicException{
         
-        //Falta que se cree la relación entre Eeserva y Estacion
-        //EstacionEntity estacion = estacionLogic.getEstacion(entidadA.getEstacion().getId());
-       // if(estacion == null){
-        //    throw new BusinessLogicException("No se encontró la estación que se desea agregar al sistema");
-       // }
+       
         
         AccesorioEntity accesorioEntity = persistence.create(entidadA);
         
-        //List<AccesorioEntity> listaAccesorios = estacion.getAccesorios();
-        
-        //if(listaAccesorios == null){
-        //    listaAccesorios = new ArrayList<>();
-       //     listaAccesorios.add(accesorioEntity);
-        //    estacion.setAccesorios(listaAccesorios);
-       // }
-       // 
-       // listaAccesorios.add(accesorioEntity);
+       
         
         return accesorioEntity;
     }
@@ -115,7 +99,7 @@ public class AccesorioLogic {
      * @return Un accesorio.
      */
     public AccesorioEntity getDireccion(Long id) {
-        // Note que, por medio de la inyección de dependencias se llama al método "find(id)" que se encuentra en la persistencia.
+        
         AccesorioEntity accesorio = persistence.find(id);
         return accesorio;
     }
@@ -147,16 +131,7 @@ public class AccesorioLogic {
         return accesorioEntity.getEstacion();
     }
     
-    /**
-     * Desasocia un Estacion existente de un Direccion existente
-     *
-     * @param direccionId Identificador de la instancia de Direccion
-     * @param estacionesId Identificador de la instancia de Estacion
-     *
-     */
-   // public void removeEstacion(Long direccionId, Long estacionesId) {
-     //   estacionLogic.removeEstacion(direccionId, estacionesId);
-    //}
+   
     
     public EstacionEntity addEstacion(Long direccionId, Long estacionesId) {
         AccesorioEntity direccionEntity = getAccesorio(direccionId);

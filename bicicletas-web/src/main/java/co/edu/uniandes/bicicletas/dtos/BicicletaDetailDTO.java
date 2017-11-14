@@ -39,12 +39,13 @@ public class BicicletaDetailDTO extends BicicletaDTO {
     /**
      * Constructor por defecto
      */
-    public List<AccesorioBicicletaDTO> accesorios=new ArrayList<AccesorioBicicletaDTO>();
+    public List<AccesorioBicicletaDTO> accesorios=new ArrayList<>();
     
     
     
     
     public BicicletaDetailDTO() {
+        //No necesita cuerpo
     }
 
     /**

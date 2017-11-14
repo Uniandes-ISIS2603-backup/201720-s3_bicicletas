@@ -2,26 +2,26 @@
 	"variables": [],
 	"info": {
 		"name": "ReservaCalificacionResource",
-		"_postman_id": "e2b04e55-1348-713f-c43f-848836afda5e",
+		"_postman_id": "c7fcf486-3a76-82fc-7650-6e0699286c33",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Obtener la calificación para la estación de salida de reserva ID=2",
+			"name": "Obtiene la calificación de la estación de salida de la reserva con ID=100",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"type": "text/javascript",
 						"exec": [
-							"tests[\"no genera error en el GET\"] = responseCode.code === 404"
+							"tests[\"no genera error en el GET\"] = responseCode.code === 200"
 						]
 					}
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/bicicletas-web/api/usuarios/1/reservas/2/calificaciones/1",
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/3488291091/reservas/100/calificaciones/0",
 				"method": "GET",
 				"header": [
 					{
@@ -39,51 +39,100 @@
 			"response": []
 		},
 		{
-			"name": "Obtener la calificación para la estación de llegada de reserva ID=2",
+			"name": "Edita la calificación de la estación de salida de la reserva con ID=100",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"type": "text/javascript",
 						"exec": [
-							"tests[\"no genera error en el GET\"] = responseCode.code === 404"
+							"tests[\"no genera error en el PUT\"] = responseCode.code === 200"
 						]
 					}
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/bicicletas-web/api/usuarios/1/reservas/2/calificaciones/1",
-				"method": "GET",
-				"header": [],
-				"body": {},
-				"description": "No hay calificación para la estación de llegada"
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/3488291091/reservas/100/calificaciones/0",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nota\":1,\n\t\"descripcion\":\"Me robaron\"\n}"
+				},
+				"description": "No hay calificación para la estación de salida"
 			},
 			"response": []
 		},
 		{
-			"name": "Obtener una calificación de una reserva. No correctamente pedido",
+			"name": "Obtiene la calificación para la estación de llegada de reserva ID=100",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"type": "text/javascript",
 						"exec": [
-							"tests[\"no genera error en el GET\"] = responseCode.code === 412"
+							"tests[\"no genera error en el GET\"] = responseCode.code === 200"
 						]
 					}
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/bicicletas-web/api/usuarios/1/reservas/2/calificaciones/2",
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/3488291091/reservas/100/calificaciones/1",
 				"method": "GET",
-				"header": [],
-				"body": {},
-				"description": "Se pide una calificación, pero no se pide de forma correcta"
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "No hay calificación para la estación de salida"
 			},
 			"response": []
 		},
 		{
-			"name": "Agregar una calificación con una nota mayor a 5",
+			"name": "Edita la calificación de la estación de llegada de la reserva con ID=100",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"no genera error en el PUT\"] = responseCode.code === 200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/3488291091/reservas/100/calificaciones/1",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nota\":5,\n\t\"descripcion\":\"La remodelaron por completo, quedó maravillosa\"\n}"
+				},
+				"description": "No hay calificación para la estación de salida"
+			},
+			"response": []
+		},
+		{
+			"name": "Intenta agregar una calificación con una nota mayor a 5",
 			"event": [
 				{
 					"listen": "test",
@@ -96,7 +145,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/bicicletas-web/api/usuarios/1/reservas/2/calificaciones/2",
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/4651451689/reservas/101/calificaciones/0",
 				"method": "POST",
 				"header": [
 					{
@@ -114,7 +163,7 @@
 			"response": []
 		},
 		{
-			"name": "Agregar una calificación con una nota menor a 0",
+			"name": "Intenta gregar una calificación con una nota menor a 0",
 			"event": [
 				{
 					"listen": "test",
@@ -127,7 +176,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/bicicletas-web/api/usuarios/1/reservas/2/calificaciones/2",
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/4651451689/reservas/101/calificaciones/0",
 				"method": "POST",
 				"header": [
 					{
@@ -139,6 +188,192 @@
 				"body": {
 					"mode": "raw",
 					"raw": "{\n\t\"nota\":\"-2\",\n\t\"descripcion\":\"Excelente\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Intenta obtener la calificación de la estación de salida de la reserva con ID=101",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"no genera error en el GET\"] = responseCode.code === 404"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/4651451689/reservas/101/calificaciones/0",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "No hay calificación para la estación de salida"
+			},
+			"response": []
+		},
+		{
+			"name": "Califica a la estación de salida de la reserva con ID=101",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"no genera error en el POST\"] = responseCode.code === 200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/4651451689/reservas/101/calificaciones/0",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nota\":\"4\",\n\t\"descripcion\":\"Excelente estación, muy limpia\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Intenta calificar a la estación de salida de la reserva con ID=101",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"no genera error en el POST\"] = responseCode.code === 412"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/4651451689/reservas/101/calificaciones/0",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nota\":\"4\",\n\t\"descripcion\":\"Excelente estación, muy limpia\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Intenta obtener la calificación de la estación de llegada de la reserva con ID=101",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"no genera error en el GET\"] = responseCode.code === 404"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/4651451689/reservas/101/calificaciones/1",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "No hay calificación para la estación de salida"
+			},
+			"response": []
+		},
+		{
+			"name": "Califica a la estación de llegada de la reserva con ID=101",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"no genera error en el POST\"] = responseCode.code === 200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/4651451689/reservas/101/calificaciones/1",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nota\":\"3\",\n\t\"descripcion\":\"Servicio regular\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Intenta calificar a la estación de llegada de la reserva con ID=101",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"no genera error en el POST\"] = responseCode.code === 412"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/4651451689/reservas/101/calificaciones/1",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nota\":\"3\",\n\t\"descripcion\":\"Servicio regular\"\n}"
 				},
 				"description": ""
 			},

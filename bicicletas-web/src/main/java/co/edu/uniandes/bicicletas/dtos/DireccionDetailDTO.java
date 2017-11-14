@@ -18,7 +18,7 @@ public class DireccionDetailDTO extends DireccionDTO{
      * Constructor por defecto
      */
     public DireccionDetailDTO() {
-        //Do nothing because is not necessary
+        //No necesita cuerpo
     }
 
     /**

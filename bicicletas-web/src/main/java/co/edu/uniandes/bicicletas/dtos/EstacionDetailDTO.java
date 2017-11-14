@@ -8,7 +8,6 @@ package co.edu.uniandes.bicicletas.dtos;
 import co.edu.uniandes.bicicletas.entities.AccesorioEntity;
 import co.edu.uniandes.bicicletas.entities.BicicletaEntity;
 import co.edu.uniandes.bicicletas.entities.CalificacionEntity;
-import co.edu.uniandes.bicicletas.entities.DireccionEntity;
 import co.edu.uniandes.bicicletas.entities.EstacionEntity;
 import co.edu.uniandes.bicicletas.entities.ReservaEntity;
 import java.util.ArrayList;
@@ -29,7 +28,7 @@ public class EstacionDetailDTO extends EstacionDTO {
     
     
     public EstacionDetailDTO(){
-        
+        //No necesita cuerpo
     }
     
     public EstacionDetailDTO(EstacionEntity entidad) {

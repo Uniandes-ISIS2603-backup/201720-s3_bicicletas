@@ -45,6 +45,7 @@ public class AccesorioDTO {
     }
 
     public AccesorioDTO(){
+        //No necesita cuerpo
         
     }
     

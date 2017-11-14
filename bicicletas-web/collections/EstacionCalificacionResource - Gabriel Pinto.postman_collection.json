@@ -2,13 +2,13 @@
 	"variables": [],
 	"info": {
 		"name": "EstacionCalificacionResource",
-		"_postman_id": "36285fdd-5aa6-f8b1-2fc1-68b7320bf832",
+		"_postman_id": "6e98b931-1884-3188-f2b7-73b0c6117366",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Obtiene las calificaciones de la estación con ID=4",
+			"name": "Intentar obtener las calificaciones de la estación con ID=100",
 			"event": [
 				{
 					"listen": "test",
@@ -23,7 +23,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/bicicletas-web/api/estaciones/4/calificaciones/",
+				"url": "http://localhost:8080/bicicletas-web/api/estaciones/100/calificaciones/",
 				"method": "GET",
 				"header": [
 					{
@@ -41,14 +41,14 @@
 			"response": []
 		},
 		{
-			"name": "Obtiene las calificaciones de la estación con ID=1",
+			"name": "Obtiene las calificaciones de la estación con ID=104",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"type": "text/javascript",
 						"exec": [
-							"tests[\"no genera error en el GET\"] = responseCode.code === 412;",
+							"tests[\"no genera error en el GET\"] = responseCode.code === 200;",
 							"",
 							""
 						]
@@ -56,7 +56,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/bicicletas-web/api/estaciones/1/calificaciones/",
+				"url": "http://localhost:8080/bicicletas-web/api/estaciones/104/calificaciones/",
 				"method": "GET",
 				"header": [
 					{
@@ -74,14 +74,14 @@
 			"response": []
 		},
 		{
-			"name": "Obtiene la calificacion con ID =1 de la estación con ID=1",
+			"name": "Obtiene la calificacion con ID =101 de la estación con ID=104",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"type": "text/javascript",
 						"exec": [
-							"tests[\"no genera error en el GET\"] = responseCode.code === 412;",
+							"tests[\"no genera error en el GET\"] = responseCode.code === 200;",
 							"",
 							""
 						]
@@ -89,7 +89,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/bicicletas-web/api/estaciones/1/calificaciones/1",
+				"url": "http://localhost:8080/bicicletas-web/api/estaciones/104/calificaciones/101",
 				"method": "GET",
 				"header": [
 					{
@@ -107,14 +107,14 @@
 			"response": []
 		},
 		{
-			"name": "Obtener la calificacion con ID = 4 de la estación con ID=3",
+			"name": "Intenta obtener la calificacion con ID = 100 de la estación con ID=104",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"type": "text/javascript",
 						"exec": [
-							"tests[\"no genera error en el GET\"] = responseCode.code === 412;",
+							"tests[\"no genera error en el GET\"] = responseCode.code === 404;",
 							"",
 							""
 						]
@@ -122,7 +122,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/bicicletas-web/api/estaciones/3/calificaciones/4",
+				"url": "http://localhost:8080/bicicletas-web/api/estaciones/104/calificaciones/100",
 				"method": "GET",
 				"header": [
 					{
@@ -140,14 +140,14 @@
 			"response": []
 		},
 		{
-			"name": "Obtiene las calificaciones de la estación con ID=2",
+			"name": "Intenta obtener la calificacion con ID = 100 de la estación con ID=105",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"type": "text/javascript",
 						"exec": [
-							"tests[\"no genera error en el GET\"] = responseCode.code === 412;",
+							"tests[\"no genera error en el GET\"] = responseCode.code === 200;",
 							"",
 							""
 						]
@@ -155,7 +155,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/bicicletas-web/api/estaciones/2/calificaciones/",
+				"url": "http://localhost:8080/bicicletas-web/api/estaciones/105/calificaciones/100",
 				"method": "GET",
 				"header": [
 					{

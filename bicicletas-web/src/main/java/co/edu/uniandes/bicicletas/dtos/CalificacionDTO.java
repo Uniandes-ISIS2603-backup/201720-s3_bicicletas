@@ -34,6 +34,9 @@ import java.util.Date;
  */
 public class CalificacionDTO 
 {
+    /**
+     * Id de la calificación
+     */
     private Long idCali;
     private Date fechaCalificacion;
     private Integer nota;

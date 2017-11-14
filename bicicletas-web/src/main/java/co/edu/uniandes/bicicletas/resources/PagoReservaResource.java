@@ -20,7 +20,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import co.edu.uniandes.bicicletas.ejb.SistemaDePagosLogic;
-import co.edu.uniandes.bicicletas.entities.UsuarioEntity;
 import co.edu.uniandes.bicicletas.persistence.ReservaPersistence;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.WebApplicationException;
@@ -34,7 +33,7 @@ import javax.ws.rs.WebApplicationException;
 @Consumes("application/json")
 public class PagoReservaResource {
 
-    public final static int PUNTOS_MINIMOS = 10;
+    public static final int PUNTOS_MINIMOS = 10;
 
     @Inject
     private ReservaPersistence reservaPersistence;

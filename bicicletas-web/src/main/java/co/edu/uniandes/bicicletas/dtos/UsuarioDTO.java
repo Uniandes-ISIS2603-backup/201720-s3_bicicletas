@@ -24,7 +24,7 @@ public class UsuarioDTO {
    private String contraseniaPSE;
 
    public UsuarioDTO() {
-       //Do nothing because is not necessary
+       //No necesita cuerpo
     }
     /**
      * Conviertir Entity a DTO

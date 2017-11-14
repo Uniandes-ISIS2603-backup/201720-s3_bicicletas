@@ -5,12 +5,7 @@
 */
 package co.edu.uniandes.bicicletas.dtos;
 
-import co.edu.uniandes.bicicletas.entities.AccesorioEntity;
-import co.edu.uniandes.bicicletas.entities.CalificacionEntity;
-import co.edu.uniandes.bicicletas.entities.DireccionEntity;
 import co.edu.uniandes.bicicletas.entities.EstacionEntity;
-import java.util.ArrayList;
-import java.util.List;
 /**
  *
  * @author ka.babativa
@@ -23,7 +18,7 @@ public class EstacionDTO {
     
     
     public EstacionDTO(){
-        
+        //No necesita cuerpo
     }
 
     public String getDireccion() {

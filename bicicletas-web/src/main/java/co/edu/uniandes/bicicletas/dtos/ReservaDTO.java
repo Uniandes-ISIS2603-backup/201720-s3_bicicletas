@@ -36,6 +36,7 @@ public class ReservaDTO {
     
     
     public ReservaDTO(){
+        //No necesita cuerpo
     }
 
     public Long getEstacionLlegada() {

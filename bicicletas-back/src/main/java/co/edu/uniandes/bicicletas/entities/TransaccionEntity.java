@@ -23,21 +23,21 @@ public class TransaccionEntity extends BaseEntity implements Serializable {
      * le debe reembolsar dinero al usuario.
      */
     
-    public final static Integer REEMBOLSO = 0;
+    public static final Integer REEMBOLSO = 0;
     
     /**
      * Constante que modela el tipo de transaccion para la cual un usario debe
      * pagar cierto excedente.
      */
     
-    public final static Integer PAGO_EXCEDENTE = 1;
+    public static final Integer PAGO_EXCEDENTE = 1;
     
     
     /**
      * Constante que modela la transaccion posterior a la reserva en la cual no
      * es necesario ni reembolsar ni pagar un excedente.
      */
-    public final static Integer NO_NECESARIO = 2;
+    public static final Integer NO_NECESARIO = 2;
     
     /**
      * Atributo que modela el tipo de transaccion

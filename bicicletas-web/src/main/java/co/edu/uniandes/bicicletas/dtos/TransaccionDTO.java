@@ -32,7 +32,7 @@ public class TransaccionDTO {
      * Constructor vacio
      */
     public TransaccionDTO() {
-        //Don´t do nothing.
+        //No necesita cuerpo
     }
 
     /**

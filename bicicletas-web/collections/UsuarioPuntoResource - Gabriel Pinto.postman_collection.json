@@ -2,13 +2,13 @@
 	"variables": [],
 	"info": {
 		"name": "UsuarioPuntoResource",
-		"_postman_id": "b0179846-b2d1-b925-cd1d-a9ef1e6388f1",
+		"_postman_id": "053c58c7-37b5-b06c-8472-4ac022f32976",
 		"description": "Pruebas para el recurso UsuarioPuntoResource",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Obtiene los puntos del usuario con ID = 2",
+			"name": "Obtiene los puntos del usuario con ID = 3488291091",
 			"event": [
 				{
 					"listen": "test",
@@ -21,7 +21,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/bicicletas-web/api/usuarios/2/puntos",
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/3488291091/puntos",
 				"method": "GET",
 				"header": [
 					{
@@ -39,7 +39,7 @@
 			"response": []
 		},
 		{
-			"name": "Borra los puntos del usuario con ID = 2",
+			"name": "Borra los puntos del usuario con ID = 3488291091",
 			"event": [
 				{
 					"listen": "test",
@@ -52,7 +52,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/bicicletas-web/api/usuarios/2/puntos",
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/3488291091/puntos",
 				"method": "DELETE",
 				"header": [
 					{
@@ -70,20 +70,51 @@
 			"response": []
 		},
 		{
-			"name": "Obtiene los puntos del usuario con ID = 2 - Borrados",
+			"name": "Intenta agregar 1 punto al usuario con ID = 3488291091",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"type": "text/javascript",
 						"exec": [
-							"tests[\"No genera error en el GET\"] = responseCode.code === 404;"
+							"tests[\"No genera error en el Post\"] = responseCode.code === 412;"
 						]
 					}
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/bicicletas-web/api/usuarios/2/puntos",
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/3488291091/puntos",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "El usuario solo tiene una reserva, no puede tener 2 puntos"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtiene los puntos del usuario con ID = 3488291091 - Borrados",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"No genera error en el GET\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/3488291091/puntos",
 				"method": "GET",
 				"header": [
 					{
@@ -101,69 +132,7 @@
 			"response": []
 		},
 		{
-			"name": "Intenta agregar un punto al usuario con ID = 2",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							"tests[\"No genera error en el POST\"] = responseCode.code === 412;"
-						]
-					}
-				}
-			],
-			"request": {
-				"url": "http://localhost:8080/bicicletas-web/api/usuarios/2/puntos",
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"description": "El usuario con ID = 2 no tiene ninguna reserva asociada"
-			},
-			"response": []
-		},
-		{
-			"name": "Obtiene los puntos del usuario con ID = 1 - Vacio",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							"tests[\"No genera error en el GET\"] = responseCode.code === 404;"
-						]
-					}
-				}
-			],
-			"request": {
-				"url": "http://localhost:8080/bicicletas-web/api/usuarios/1/puntos",
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"description": "El usuario con ID=1 no tiene puntos\n"
-			},
-			"response": []
-		},
-		{
-			"name": "Agregar 1 punto al usuario con ID = 1 - Reserva = 1",
+			"name": "Agregar 1 punto al usuario con ID = 4651451689",
 			"event": [
 				{
 					"listen": "test",
@@ -176,7 +145,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/bicicletas-web/api/usuarios/1/puntos",
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/4651451689/puntos",
 				"method": "POST",
 				"header": [
 					{
@@ -194,21 +163,52 @@
 			"response": []
 		},
 		{
-			"name": "Agregar 1 punto al usuario con ID = 1 - Reservas != 1",
+			"name": "Obtiene los puntos del usuario con ID = 4651451689 - Vacio",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"type": "text/javascript",
 						"exec": [
-							"tests[\"No genera error en el Get\"] = responseCode.code === 412;"
+							"tests[\"No genera error en el GET\"] = responseCode.code === 200;"
 						]
 					}
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/bicicletas-web/api/usuarios/1/puntos",
-				"method": "POST",
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/4651451689/puntos",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "El usuario con ID=1 no tiene puntos\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Intenta borrar los puntos del usuario con ID=4651451689",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/4651451689/puntos",
+				"method": "DELETE",
 				"header": [
 					{
 						"key": "Content-Type",

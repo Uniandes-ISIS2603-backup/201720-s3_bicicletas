@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 @Stateless
 public class TransaccionPersistence {
     
-    private final static Logger LOGGER = Logger.getLogger(TransaccionPersistence.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(TransaccionPersistence.class.getName());
     
     @PersistenceContext(unitName = "bicicletasPU")
     protected EntityManager em;
