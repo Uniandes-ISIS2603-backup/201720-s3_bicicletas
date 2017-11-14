@@ -229,13 +229,7 @@ public class EstacionLogic
      * Este metodo obtiene una bicicleta de la Estacion establecida
      * @param idEstacion Long el id de la estacion
      * @param idBici Long el id de la bicicleta
-     * @return Bicicleta que pertenece a ese id y a esa Estaicon
-=======
-     * Metodo que obtiene una bicicleta de una estación.
-     * @param idEstacion de la estación a consultar.
-     * @param idBici de la bicicleta a consultar.
-     * @return una bicicleta de una estación dada.
->>>>>>> 6b62f9fd662afe64e29b4882120313a3cdcc6183
+     * @return Bicicleta que pertenece a ese id y a esa Estaicion
      */
     public BicicletaEntity getBiciEstacion(Long idEstacion,Long idBici){
         EstacionEntity estacion = persistence.find(idEstacion);
