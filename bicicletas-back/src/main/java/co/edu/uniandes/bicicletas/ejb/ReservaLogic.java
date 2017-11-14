@@ -229,8 +229,20 @@ public class ReservaLogic
         }
         return filtro;
     }
+    //------------------------------------------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------
+    //--------------------------------------------BICICLETAS------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------
     
-     public ReservaEntity asignarBicicleta(Long idReserva, BicicletaEntity bici) throws BusinessLogicException{
+    /**
+     * Este metodo asigna una bicicleta en la reserva
+     * @param idReserva Long id de la reserva a la que se quiere agregar la Bicicleta
+     * @param bici bicicleta que se quiere añadir a la reserva
+     * @return reserva a la que se le asigno la bicicleta
+     * @throws BusinessLogicException Esta bicicleta no esta disponoble en esa estacion,Hay un pago no se puede añadir la bicicleta
+     */
+    public ReservaEntity asignarBicicleta(Long idReserva, BicicletaEntity bici) throws BusinessLogicException{
          ReservaEntity reserva = getReserva(idReserva);
          BicicletaEntity entity = biciLogic.find(bici.getId());
          if(entity.darEstado() == BicicletaEntity.RESERVADA){
@@ -276,7 +288,11 @@ public class ReservaLogic
          List<BicicletaEntity> bicis = reserva.getBicicletas();
          return bicis;
      }
-    
+    //------------------------------------------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------
+    //----------------------------------ACCESORIOS----------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------
      
      public AccesorioEntity getAccesorio(Long idReserva, Long  idAccesorio) throws BusinessLogicException{
          ReservaEntity reserva = getReserva(idReserva);

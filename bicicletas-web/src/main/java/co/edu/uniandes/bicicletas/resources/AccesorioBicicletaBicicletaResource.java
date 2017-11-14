@@ -40,10 +40,10 @@ public class AccesorioBicicletaBicicletaResource {
 
 
    /**
-     * POST http://localhost:8080/bicicletas-web/api/bicicletas
+     * POST http://localhost:8080/bicicletas-web/api/bicicletas/{id}/accesorioBicicleta
      *
-     * @param Bicicleta correponde a la representación java del objeto json
-     * enviado en el llamado.
+     * @param id Long del id de la bicicleta.
+     * @param accesorio DTO del accesorioBicicleta.
      * @return Devuelve el objeto json de entrada que contiene el id creado por
      * la base de datos y el tipo del objeto java. Ejemplo: { "type":
      * "BicicletaDetailDTO", "id": 1, atributo1 : "valor" }
@@ -51,7 +51,6 @@ public class AccesorioBicicletaBicicletaResource {
      */
     @POST
     public AccesorioBicicletaDTO createAccesorioBici(@PathParam("idBicicleta")Long id,AccesorioBicicletaDTO accesorio) throws BusinessLogicException {
-       LOGGER.info(accesorio.getDescripcion()+""+accesorio.getNombre());
         // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
         AccesorioBicicletaEntity accBici = accesorio.toEntity();
         // Invoca la lógica para crear la Bicicleta nueva
@@ -64,7 +63,7 @@ public class AccesorioBicicletaBicicletaResource {
      * json { "id": 2, "atirbuto1": "Valor nuevo" }
      *
      * @param idBici corresponde a la Bicicleta a actualizar.
-     * @param bicicletas corresponde  al objeto con los cambios que se van a
+     * @param bicicletas corresponde  al accesorioBicicleta con los cambios que se van a
      * realizar.
      * @return La Bicicleta actualizada.
      * @throws BusinessLogicException
@@ -73,7 +72,7 @@ public class AccesorioBicicletaBicicletaResource {
      * 404 con el mensaje.
      */
     @PUT
-    public AccesorioBicicletaDTO updateBicicleta(@PathParam("idBicicleta") Long idBici, AccesorioBicicletaDTO bicicletas) throws BusinessLogicException, UnsupportedOperationException {
+    public AccesorioBicicletaDTO updateAccesorioBicicleta(@PathParam("idBicicleta") Long idBici, AccesorioBicicletaDTO bicicletas) throws BusinessLogicException, UnsupportedOperationException {
           
           AccesorioBicicletaEntity entity =bicicletas.toEntity();
           superBiciLogic.updateAcc(idBici, entity);
@@ -99,7 +98,10 @@ public class AccesorioBicicletaBicicletaResource {
     }
     
     /**
-     * 
+     * GET http://localhost:8080/bicicletas-web/api/bicicletas/{idBicicleta}/AccesorioBicicleta/{idAccesorioBici}
+     * @param idBici id de la bicicleta.
+     * @param idAcc id del accesorioBicicleta.
+     * @return 
      */
     @GET
     @Path("{idAccesorioBici: \\d+}")
@@ -107,7 +109,11 @@ public class AccesorioBicicletaBicicletaResource {
         AccesorioBicicletaEntity entity = superBiciLogic.getAccesorioBici(idBici, idAcc);
         return new AccesorioBicicletaDTO(entity);
     }
-    
+    /**
+     * GET http://localhost:8080/bicicletas-web/api/bicicletas/{idBicicleta}/AccesorioBicicleta
+     * @param idBici bicicleta de los accesoriosBuscados
+     * @return lista accesoriosBicicleta.
+     */
     @GET
     public List<AccesorioBicicletaDTO> getAccesorioBicis(@PathParam("idBicicleta") Long idBici){
         List<AccesorioBicicletaEntity> entity = superBiciLogic.getAccesoriosBici(idBici);

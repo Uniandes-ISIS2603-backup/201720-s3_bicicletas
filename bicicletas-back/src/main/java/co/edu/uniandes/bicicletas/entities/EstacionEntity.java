@@ -33,7 +33,9 @@ public class EstacionEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @OneToMany(mappedBy="estacionSalida", cascade = CascadeType.ALL)
     private List<ReservaEntity> reservas = new ArrayList<>();
-    
+    /**
+     * Atributo que moldea las bicicletas de la estacion.
+     */
     @PodamExclude
     @OneToMany(mappedBy = "estacion", cascade = CascadeType.REFRESH)
     private List<BicicletaEntity> bicicletas = new ArrayList<>();
@@ -76,11 +78,18 @@ public class EstacionEntity extends BaseEntity implements Serializable {
     public void setAccesorios(List<AccesorioEntity> accesorios) {
         this.accesorios = accesorios;
     }
+    /**
+     * Obtiene las Bicicletas de una Estacion.
+     * @return bicicletas que pertenecen a la estacion.
+     */
 
     public List<BicicletaEntity> getBicicletas() {
         return bicicletas;
     }
-
+    /**
+     * Set de las bicicletas de una Estacion
+     * @param bicicletas bicicletas de una estacion.
+     */
     public void setBicicletas(List<BicicletaEntity> bicicletas) {
         this.bicicletas = bicicletas;
     }

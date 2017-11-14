@@ -41,7 +41,7 @@ public class AccesorioBicicletaPersistence {
     }
 
     /**
-     * Actualiza un bicicletas.
+     * Actualiza un accesorioBicicleta.
      *
      * @param entity: el accesorioBicicleta que viene con los nuevos cambios. Por ejemplo
      * el codigo pudo cambiar. En ese caso, se haria uso del método update.
@@ -58,14 +58,14 @@ public class AccesorioBicicletaPersistence {
 
     /**
      *
-     * Borra un bicicletas de la base de datos recibiendo como argumento el id
-     * de la Bicicleta
+     * Borra un accesorioBicicleta de la base de datos recibiendo como argumento el id
+     * del AccesorioBicicleta
      *
      * @param id: id correspondiente a la Bicicleta a borrar.
      */
     public void delete(Long id) {
         LOGGER.log(Level.INFO, "Borrando AccesorioBicicleta con id={0}", id);
-        // Se hace uso de mismo método que esta explicado en public BicicletaEntity find(Long id) para obtener la Bicicleta a borrar.
+        // Se hace uso de mismo método que esta explicado en public AccesorioBicicletaEntity find(Long id) para obtener la Bicicleta a borrar.
         AccesorioBicicletaEntity entity = em.find(AccesorioBicicletaEntity.class, id);
         /* Note que una vez obtenido el objeto desde la base de datos llamado "entity", volvemos hacer uso de un método propio del
          EntityManager para eliminar de la base de datos el objeto que encontramos y queremos borrar.
@@ -74,10 +74,10 @@ public class AccesorioBicicletaPersistence {
     }
 
     /**
-     * Busca si hay algun bicicletas con el id que se envía de argumento
+     * Busca si hay algun accesorioBicicleta con el id que se envía de argumento
      *
-     * @param id: id correspondiente a la Bicicleta buscada.
-     * @return un bicicletas.
+     * @param id: id correspondiente a el accesorioBicicleta buscada.
+     * @return un accesorioBicicleta.
      */
     public AccesorioBicicletaEntity find(Long id) {
         LOGGER.log(Level.INFO, "Consultando AccesorioBicicleta con id={0}", id);

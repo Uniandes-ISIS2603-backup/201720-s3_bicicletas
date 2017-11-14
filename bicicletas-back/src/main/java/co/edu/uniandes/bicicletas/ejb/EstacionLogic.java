@@ -176,7 +176,12 @@ public class EstacionLogic
     //------------------------------------------------------------------------------------------------------------------
     //------------------------------------------------------------------------------------------------------------------
     
-    
+    /**
+     * Este metodo obtiene una bicicleta de la Estacion establecida
+     * @param idEstacion Long el id de la estacion
+     * @param idBici Long el id de la bicicleta
+     * @return Bicicleta que pertenece a ese id y a esa Estaicon
+     */
     public BicicletaEntity getBiciEstacion(Long idEstacion,Long idBici){
         EstacionEntity estacion = persistence.find(idEstacion);
         if(estacion ==null){
@@ -194,6 +199,11 @@ public class EstacionLogic
         }
         return bici;
     }
+    /**
+     * Este metodo obtiene todas las bicicletas que pertenecen a dicha Estacion
+     * @param idEstacion Long id de la Estacion
+     * @return Lista de bicicletas que pertenecen a una estacion
+     */
     public List<BicicletaEntity> getBicisEstacion(Long idEstacion){
         EstacionEntity estacion = persistence.find(idEstacion);
         if(estacion ==null){
@@ -201,6 +211,13 @@ public class EstacionLogic
         }
         return estacion.getBicicletas();
     }
+    /**
+     * Este metodo entrega una Bicicleta a una nueva Estacion
+     * @param idEstacion Long id de la Estacion en la que se va a entregar la bicicleta
+     * @param bicicleta bicicleta que se desea entregar
+     * @return La estacion nueva de la bicicleta
+     * @throws BusinessLogicException No se puede entregar una bicicleta que no este reservada
+     */
     public EstacionEntity upDateBici(Long idEstacion,BicicletaEntity bicicleta) throws BusinessLogicException{
         BicicletaEntity bici = bicicletaLogic.find(bicicleta.getId());
         EstacionEntity aBorrar = bici.getEstacion();
@@ -222,12 +239,19 @@ public class EstacionLogic
         persistence.update(aActualizar);
         return aActualizar;
     }
-    public EstacionEntity añadirBici(Long idEstacion,BicicletaEntity bicicleta){
+    /**
+     * Este metodo asocia una Bicicleta a una Estacion
+     * @param idEstacion Estacion a la que se quiere asociar una bicicleta
+     * @param bicicleta 
+     * @return La estacion a la que se añadio la Bicicleta
+     * @throws co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException La bicicleta ya esta asociada a una estacion.
+     */
+    public EstacionEntity añadirBici(Long idEstacion,BicicletaEntity bicicleta) throws BusinessLogicException{
         BicicletaEntity bici = bicicletaLogic.find(bicicleta.getId());
         EstacionEntity aBorrar = bici.getEstacion();
         EstacionEntity aActualizar = persistence.find(idEstacion);
        if(aBorrar!=null){
-           throw new WebApplicationException("La bicicleta Ya tiene una estacion", 402);
+           throw new BusinessLogicException("La bicicleta Ya tiene una estacion");
        }
        if(aActualizar ==null){
             throw new WebApplicationException(NO_ESTACION_ID, 402);
