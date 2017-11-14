@@ -48,37 +48,6 @@
 			"response": []
 		},
 		{
-			"name": "Crear una reserva por usuario",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							"tests[\"status code is 200\"]= responseCode.code===200;"
-						]
-					}
-				}
-			],
-			"request": {
-				"url": "http://localhost:8080/bicicletas-web/api/usuarios/1/reservas\n ",
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n        \"estado\": 1,\n        \"fechaEntrega\": \"2017-09-28T00:00:00-05:00\",\n        \"fechaInicio\": \"2017-09-20T00:00:00-05:00\",\n        \"id\": \"5\",\n        \"idEstacionOrigen\": 2,\n        \"idEstacionesLlegada\": 1,\n        \"idusuarioReserva\": 1,\n        \"precioFinal\": 40000,\n        \"usuarioReserva\": 1\n    }"
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
 			"name": "Dar reservas de un usuario",
 			"event": [
 				{
@@ -136,6 +105,57 @@
 					"mode": "raw",
 					"raw": "{\n        \"estado\": 1,\n        \"fechaEntrega\": \"2017-09-28T00:00:00-05:00\",\n        \"fechaInicio\": \"2017-09-20T00:00:00-05:00\",\n        \"id\": \"5\",\n        \"idEstacionOrigen\": 2,\n        \"idEstacionesLlegada\": 1,\n        \"idusuarioReserva\": 1,\n        \"precioFinal\": 440000,\n        \"usuarioReserva\": 1\n    }"
 				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Una  Reserva",
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/2/reservas",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"fechaInicio\":\"01/11/2017 3:00:00\",\n\t\"fechaEntrega\":\"01/11/2017 22:00:00\",\n\t\"estacionSalida\":{\n\t\t\"id\":1\n\t}\n}"
+				},
+				"description": "Crear una reserva"
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar reservas en cierto rango de fechas",
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/reservas/1/consulta",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"stringInicio\":\"04/11/2017 1:00:00\",\n\t\"stringFinal\":\"04/11/2017 23:00:00\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Cancelar una reserva",
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/reservas/2",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
 				"description": ""
 			},
 			"response": []

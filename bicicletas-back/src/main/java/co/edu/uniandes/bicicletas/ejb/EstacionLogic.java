@@ -43,13 +43,13 @@ import java.util.logging.Logger;
 import javax.ws.rs.WebApplicationException;
 
 /**
- *
- * @author 
+ * Clase que modela la logica de una estación
+ * @author ka.babativa
  */
 @Stateless
 public class EstacionLogic 
 {
-    private static final Logger LOGGER = Logger.getLogger(BicicletaLogic.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(BicicletaLogic.class.getName()); //Atributo LOGGER
     
     /**
      * Constante para indicar que no hay una estación con dicho id
@@ -57,17 +57,23 @@ public class EstacionLogic
     private static final String NO_ESTACION_ID = "No hay una estación con dicho id";
     
     @Inject
-    private EstacionPersistence persistence;
+    private EstacionPersistence persistence; //Atributo para inyectar la persistencia de una estación
     
     @Inject
-    private BicicletaPersistence bicicletaLogic;
+    private BicicletaPersistence bicicletaLogic; //Atributo que inyecta la persistencia de una bicicleta
     
     @Inject
-    private AccesorioPersistence persistenceAccesorio;
+    private AccesorioPersistence persistenceAccesorio; //Atributo que inyecta la persistencia de un accesorio.
     
     @Inject
-    private ReservaPersistence persistenceReserva;
+    private ReservaPersistence persistenceReserva; //Atributo que inyecta la persistencia de una reserva.
     
+    /**
+     * Metodo que retorna una estación.
+     * @param id de la estación a buscar.
+     * @return Una estación con id dado por parametro.
+     * @throws WebApplicationException 
+     */
     public EstacionEntity getEstacion(Long id) throws WebApplicationException
     {
         //Toca agregarle más cosas, solo lo hice provisional
@@ -78,6 +84,11 @@ public class EstacionLogic
          return estacion;
     }
     
+    /**
+     * Metodo que elimina una estaación
+     * @param id de la estación a eliminar.
+     * @throws WebApplicationException 
+     */
     public void deleteEstacion(Long id) throws WebApplicationException
     {
          EstacionEntity estacion = persistence.find(id);
@@ -87,6 +98,13 @@ public class EstacionLogic
          persistence.delete(id);
     }
     
+    /**
+     * Metodo que asigna una accesorio a una estación.
+     * @param idEstacion que contendra el accesorio.
+     * @param accesorio a asignar.
+     * @return La estación con el accesorio que entra por parametro.
+     * @throws BusinessLogicException 
+     */
     public EstacionEntity asignarAccesorio(Long idEstacion, AccesorioEntity accesorio) throws BusinessLogicException{
          EstacionEntity estacion = getEstacion(idEstacion);
          AccesorioEntity accesorioEntity = persistenceAccesorio.find(accesorio.getId());
@@ -110,16 +128,30 @@ public class EstacionLogic
          return estacion;
      }
     
+    /**
+     * Obtiene los accesorios dada una estación.
+     * @param idEstacion de la estación que se quiere consultar.
+     * @return Los accesorios de una estación.
+     * @throws BusinessLogicException 
+     */
     public List<AccesorioEntity> getAccesorios1(Long idEstacion)throws BusinessLogicException{
          EstacionEntity estacion = getEstacion(idEstacion);
          List<AccesorioEntity> accesorios = estacion.getAccesorios();
          return accesorios;
      }
-    
+     /**
+      * Metodo que obtiene todas las estaciones.
+      * @return Una lista con todas las estaciones.
+      */
     public List<EstacionEntity> getEstaciones(){
         return persistence.findAll();
     }
     
+    /**
+     * Metodo que crea una estación.
+     * @param entidad de la estación que desea crear.
+     * @return La estación creada.
+     */
     public EstacionEntity crearEstacion(EstacionEntity entidad){
         if(entidad.getAccesorios()==null){
             List <AccesorioEntity> lista = new ArrayList<>();
@@ -137,6 +169,12 @@ public class EstacionLogic
         return entidad;
     }
     
+    /**
+     * Metodo que actualiza una estación.
+     * @param entidad estación a actualizar.
+     * @return La estación actualizada.
+     * @throws WebApplicationException 
+     */
     public EstacionEntity actualizarEstacion(EstacionEntity entidad) throws WebApplicationException{
         if(persistence.find(entidad.getId())==null){
             throw new WebApplicationException(NO_ESTACION_ID, 402);
@@ -150,12 +188,22 @@ public class EstacionLogic
     //------------------------------------------------------------------------------------------------------------------
     //------------------------------------------------------------------------------------------------------------------
     
-    
+    /**
+     * Metodo que retorna una lista de reservas asociadas a una estación.
+     * @param estacionId ID de la estación a consultar.
+     * @return Una lista con las reservas de una estación dada.
+     */
     public List<ReservaEntity> listReservas(Long estacionId) {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los libros del autor con id = {0}", estacionId);
         return getEstacion(estacionId).getReservas();
     }
     
+    /**
+     * Metodo que retorna una reserva de una estación.
+     * @param estacionId ID De la estación a consultar.
+     * @param reservaId ID De la reserva a consultar.
+     * @return Una reserva de una estación.
+     */
     public ReservaEntity getReserva(Long estacionId, Long reservaId) {
         List<ReservaEntity> list = getEstacion(estacionId).getReservas();
         ReservaEntity rEntity = new ReservaEntity();
@@ -177,10 +225,17 @@ public class EstacionLogic
     //------------------------------------------------------------------------------------------------------------------
     
     /**
+<<<<<<< HEAD
      * Este metodo obtiene una bicicleta de la Estacion establecida
      * @param idEstacion Long el id de la estacion
      * @param idBici Long el id de la bicicleta
      * @return Bicicleta que pertenece a ese id y a esa Estaicon
+=======
+     * Metodo que obtiene una bicicleta de una estación.
+     * @param idEstacion de la estación a consultar.
+     * @param idBici de la bicicleta a consultar.
+     * @return una bicicleta de una estación dada.
+>>>>>>> 6b62f9fd662afe64e29b4882120313a3cdcc6183
      */
     public BicicletaEntity getBiciEstacion(Long idEstacion,Long idBici){
         EstacionEntity estacion = persistence.find(idEstacion);
@@ -199,10 +254,12 @@ public class EstacionLogic
         }
         return bici;
     }
+
     /**
      * Este metodo obtiene todas las bicicletas que pertenecen a dicha Estacion
      * @param idEstacion Long id de la Estacion
      * @return Lista de bicicletas que pertenecen a una estacion
+
      */
     public List<BicicletaEntity> getBicisEstacion(Long idEstacion){
         EstacionEntity estacion = persistence.find(idEstacion);
@@ -217,6 +274,7 @@ public class EstacionLogic
      * @param bicicleta bicicleta que se desea entregar
      * @return La estacion nueva de la bicicleta
      * @throws BusinessLogicException No se puede entregar una bicicleta que no este reservada
+
      */
     public EstacionEntity upDateBici(Long idEstacion,BicicletaEntity bicicleta) throws BusinessLogicException{
         BicicletaEntity bici = bicicletaLogic.find(bicicleta.getId());
@@ -239,14 +297,16 @@ public class EstacionLogic
         persistence.update(aActualizar);
         return aActualizar;
     }
+
+    
     /**
-     * Este metodo asocia una Bicicleta a una Estacion
-     * @param idEstacion Estacion a la que se quiere asociar una bicicleta
-     * @param bicicleta 
-     * @return La estacion a la que se añadio la Bicicleta
-     * @throws co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException La bicicleta ya esta asociada a una estacion.
+     * Metodo que asocia una bicicleta a una estación.
+     * @param idEstacion ID de la estación.
+     * @param bicicleta Bicicleta que sera asociada.
+     * @return Estación con la bicicleta.
      */
     public EstacionEntity añadirBici(Long idEstacion,BicicletaEntity bicicleta) throws BusinessLogicException{
+
         BicicletaEntity bici = bicicletaLogic.find(bicicleta.getId());
         EstacionEntity aBorrar = bici.getEstacion();
         EstacionEntity aActualizar = persistence.find(idEstacion);
@@ -272,11 +332,22 @@ public class EstacionLogic
     //------------------------------------------------------------------------------------------------------------------
     //------------------------------------------------------------------------------------------------------------------
     
+    /**
+     * Metodo que retorna los accesorios de una estación.
+     * @param estacionId ID De la estación a consultar.
+     * @return Lista de accesorios de una entidad.
+     */
     public List<AccesorioEntity> listAccesorios(Long estacionId) {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los libros del autor con id = {0}", estacionId);
         return getEstacion(estacionId).getAccesorios();
     }
     
+    /**
+     * Metodo que retorna un accesorio de una estación.
+     * @param estacionId ID De la estación.
+     * @param accesorioId ID del accesorio.
+     * @return Un accesorio de una estación dada.
+     */
     public AccesorioEntity getAccesorio(Long estacionId, Long accesorioId) {
         List<AccesorioEntity> list = getEstacion(estacionId).getAccesorios();
         AccesorioEntity accesoriosEntity = new AccesorioEntity();
