@@ -54,15 +54,22 @@ public class BicicletaEntity extends BaseEntity implements Serializable {
     private String marca;
     //este atributo da modelo de la bicicleta
     private String modelo;
+    /**
+     * Este atributo moldea la relacion que tiene con los accesoriosBicicleta.
+     */
     @PodamExclude
     @OneToMany(cascade = CascadeType.REMOVE,fetch = FetchType.EAGER)
     private List<AccesorioBicicletaEntity> accesorios = new ArrayList<>();
-    
+    /**
+     * Este atributo moldea la relacion que tiene con las estaciones.
+     */
     @PodamExclude
     @ManyToOne
     @XmlInverseReference(mappedBy="bicicletas")
     private EstacionEntity estacion;
-    
+    /**
+     * Este atributo moldea las relaciones que tiene con reserva.
+     */
     @PodamExclude
     @ManyToOne
     @XmlInverseReference(mappedBy="bicicletas")
@@ -110,21 +117,45 @@ public class BicicletaEntity extends BaseEntity implements Serializable {
     public String darMarca(){
         return marca;
     }
+    /**
+     * Obtiene los accesorios Bicicleta.
+     * @return lista de accesoriosBicicleta.
+     */
     public List<AccesorioBicicletaEntity> getAccesorioBicicletas(){
         return accesorios;
     }
+    /**
+     * Set de los accesoriosBicicleta.
+     * @param temp lista nueva de accesoriosBicicleta.
+     */
     public void setAccesoriosBicicleta(List<AccesorioBicicletaEntity> temp){
         accesorios=temp;
     }
+    /**
+     * Set de la estacion de la bicicleta.
+     * @param temp estacion de la bicicleta.
+     */
     public void setEstacion(EstacionEntity temp){
         estacion = temp;
     }
+    /**
+     * Obtiene la estacion de la bicicleta.
+     * @return la estacion de la bicicleta.
+     */
     public EstacionEntity getEstacion(){
         return estacion;
     }
+    /**
+     * Set de la reserva de la bicicleta.
+     * @param temp reserva de la bicicelta.
+     */
     public void setReserva(ReservaEntity temp){
         reserva = temp;
     }
+    /**
+     * Obtiene la reserva de la bicicleta.
+     * @return reserva de la bicicleta.
+     */
     public ReservaEntity getReserva(){
         return reserva;
     }

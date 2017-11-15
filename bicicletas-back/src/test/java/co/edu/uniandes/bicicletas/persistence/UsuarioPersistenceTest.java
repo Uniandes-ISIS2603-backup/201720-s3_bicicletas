@@ -181,11 +181,23 @@ public class UsuarioPersistenceTest {
     public void testCreate() throws Exception {
         PodamFactory factory = new PodamFactoryImpl();
         UsuarioEntity newEntity = factory.manufacturePojo(UsuarioEntity.class);
+        newEntity.setDirecciones(null);
+        newEntity.setPuntos(null);
+        newEntity.setReservas(null);
         UsuarioEntity result = persistence.create(newEntity);
-
+        
         Assert.assertNotNull(result);
         UsuarioEntity entity = em.find(UsuarioEntity.class, result.getDocumentoUsuario());
         Assert.assertNotNull(entity);
+        Assert.assertEquals(newEntity.getTipoId(), entity.getTipoId());
+        Assert.assertNotNull(newEntity.getFechaNacimiento());
+        Assert.assertNotNull(entity.getFechaNacimiento());
+         Assert.assertEquals(newEntity.getContraseniaPSE(), entity.getContraseniaPSE());
+        Assert.assertEquals(newEntity.getTarjetaCredito(), entity.getTarjetaCredito());
+        Assert.assertEquals(newEntity.getNumeroCsv(), entity.getNumeroCsv());
+        Assert.assertNotNull(newEntity.getReservas());
+        Assert.assertNotNull(entity.getDirecciones());
+        Assert.assertNotNull(entity.getPuntos());
         Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
     }
     

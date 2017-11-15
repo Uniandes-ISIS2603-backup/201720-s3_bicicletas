@@ -57,7 +57,7 @@ public class EstacionBicicletaResource {
     }
     @PUT
     @Path("/añadir")
-    public EstacionDTO agregarBici(@PathParam("idEstacion") Long idEstacion,BicicletaDetailDTO bici){
+    public EstacionDTO agregarBici(@PathParam("idEstacion") Long idEstacion,BicicletaDetailDTO bici) throws BusinessLogicException{
         
         return new EstacionDTO(estacionLogic.añadirBici(idEstacion, bici.toEntity()));
         

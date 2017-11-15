@@ -1,0 +1,67 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Bicicletas Pruebas",
+		"_postman_id": "916fbb9f-a6a0-b4f5-323b-eb3a092163a8",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CREATE Bicicleta",
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/bicicletas",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n \t\"modelo\":\"Raizen-1250\",\n \"marca\":\"BM-X\"\n }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET bicicletas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"no genera error en el GET\"] = responseCode.code === 200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/bicicletas/200",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Bicicleta",
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/bicicletas/201",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

@@ -114,9 +114,8 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     @JoinColumn(name = "TRANSACCION_ID")
     @PodamExclude
     private TransaccionEntity transaccion;
-
-    /*
-     * bicicletas asociadas a la reserva
+    /**
+     * Atributo que moldea las bicicletas de una reserva.
      */
     @OneToMany(mappedBy = "reserva", cascade = CascadeType.REFRESH)
     @PodamExclude

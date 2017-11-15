@@ -153,7 +153,25 @@ public class PuntoPersistenceTest {
         Assert.assertEquals(nuevoPunto.getFechaPunto(), pCreado.getFechaPunto());
         Assert.assertEquals(nuevoPunto.getFechaVencimiento(), pCreado.getFechaVencimiento());
         Assert.assertNull(nuevoPunto.getUsuarioPunto());
+        Assert.assertTrue(nuevoPunto.equals(pCreado));
+        nuevoPunto.setFechaPunto(null);
+        Assert.assertFalse(nuevoPunto.equals(pCreado));
     }
+    
+    @Test
+    public void testEquals() throws Exception 
+    {
+        PodamFactory factory = new PodamFactoryImpl();
+        PuntoEntity nuevoPunto = factory.manufacturePojo(PuntoEntity.class);
+        nuevoPunto.setUsuarioPunto(null);
+        
+        PuntoEntity punto = null;
+        String puntSt = "String de punto";
+        
+        Assert.assertFalse(nuevoPunto.equals(punto));
+        Assert.assertFalse(nuevoPunto.equals(puntSt));    
+    }
+    
 
     /**
      * Test of find method, of class PuntoPersistence.
@@ -215,6 +233,8 @@ public class PuntoPersistenceTest {
 
         Assert.assertEquals(newEntity.getName(), resp.getName());
     }
+    
+   
 }
     
 

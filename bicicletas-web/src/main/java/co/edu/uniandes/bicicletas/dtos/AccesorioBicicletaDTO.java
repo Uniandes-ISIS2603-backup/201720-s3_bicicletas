@@ -12,8 +12,17 @@ import co.edu.uniandes.bicicletas.entities.AccesorioBicicletaEntity;
  * @author js.torres1
  */
 public class AccesorioBicicletaDTO {
+    /**
+     * Id del DTO accBicicleta.
+     */
     private Long id;
+    /**
+     * Descripcion del DTO accBicicleta.
+     */
     private String descripcion;
+    /**
+     * Nombre del DTO accBicicleta.
+     */
     private int nombre;
     
     public AccesorioBicicletaDTO(){

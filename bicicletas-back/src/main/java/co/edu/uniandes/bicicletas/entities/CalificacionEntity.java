@@ -25,6 +25,7 @@ package co.edu.uniandes.bicicletas.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
@@ -141,4 +142,39 @@ public class CalificacionEntity extends BaseEntity implements Serializable
     public void setEstacion(EstacionEntity estacion) {
         this.estacion = estacion;
     } 
+    
+    @Override
+    public boolean equals(Object obj) 
+    {
+        if (obj == null)
+        {
+            return false;
+        }
+            
+
+        if (this.getClass() != obj.getClass())
+        {
+            return false;
+        }
+            
+
+        CalificacionEntity mc = (CalificacionEntity)obj;
+    
+        return this.hashCode() == mc.hashCode();
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 6;
+        hash = 97 * hash + Objects.hashCode(this.getId());
+        hash = 97 * hash + Objects.hashCode(this.descripcion);
+        hash = 97 * hash + Objects.hashCode(this.fechaCali);
+        hash = 97 * hash + Objects.hashCode(this.estacion);
+        hash = 97 * hash + Objects.hashCode(this.reserva);
+        hash = 97 * hash + Objects.hashCode(this.nota);
+        return hash;
+    }
+    
+    
+
 }

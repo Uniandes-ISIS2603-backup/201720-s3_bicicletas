@@ -26,9 +26,9 @@ public class AccesorioBicicletaLogic {
     private AccesorioBicicletaPersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
    
     /**
-     *
+     * Crea un accesorio Bicicleta
      * @param entity
-     * @return
+     * @return el accesorioBicicleta que fue creado.
      * @throws BusinessLogicException
      */
     public AccesorioBicicletaEntity createAccesorioBici(AccesorioBicicletaEntity entity) throws BusinessLogicException {
@@ -41,7 +41,7 @@ public class AccesorioBicicletaLogic {
 
     /**
      * 
-     * Obtener todas las Bicicletaes existentes en la base de datos.
+     * Obtener todos los accesorios Bicicleta existentes en la base de datos.
      *
      * @return una lista de Bicicletaes.
      */
@@ -54,7 +54,9 @@ public class AccesorioBicicletaLogic {
     }
     /**
      * 
-     * Obtener una bicicleta Especifica
+     * Obtener un accesorioBicicleta especifico.
+     * @param id Long el id del accesorio Bicicleta
+     * @return el accesorio Bicicleta de dicho id
      */
     public AccesorioBicicletaEntity getAccesorioBici(Long id){
         LOGGER.info("Inicica proceso de consulta a una bicicleta");
@@ -62,6 +64,11 @@ public class AccesorioBicicletaLogic {
         LOGGER.info("Termina el proceso de consulta a una bicicleta");
         return acc;
     }
+    /**
+     * Borrar un accesorioBicicleta
+     * @param id Long el id de la bicicleta que se necesita
+     * @throws WebApplicationException 
+     */
     
     public void deleteAccesorioBicicleta(Long id) throws WebApplicationException
     {
@@ -71,6 +78,12 @@ public class AccesorioBicicletaLogic {
          }
          persistence.delete(id);
     }
+    /**
+     * Actualiza un accesorioBicicleta
+     * @param entidad
+     * @return el accesorioBicicleta que se debe actualizar.
+     * @throws WebApplicationException 
+     */
     public AccesorioBicicletaEntity actualizarAccesorioBici(AccesorioBicicletaEntity entidad) throws WebApplicationException{
         if(persistence.find(entidad.getId())==null){
             throw new WebApplicationException("No hay una estación con dicho id", 402);

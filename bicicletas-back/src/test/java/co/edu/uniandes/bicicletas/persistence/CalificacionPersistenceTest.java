@@ -156,8 +156,26 @@ public class CalificacionPersistenceTest {
         Assert.assertEquals(newEntity.getFechaCali(), entity.getFechaCali());
         Assert.assertNull(entity.getReserva());
         Assert.assertNull(entity.getEstacion());
+        Assert.assertTrue(newEntity.equals(entity));
+        newEntity.setNota(null);
+        Assert.assertFalse(newEntity.equals(entity));
     }
 
+    @Test
+    public void testEquals() throws Exception 
+    {
+        PodamFactory factory = new PodamFactoryImpl();
+        CalificacionEntity nuevaCalificacion = factory.manufacturePojo(CalificacionEntity.class);
+        nuevaCalificacion.setEstacion(null);
+        nuevaCalificacion.setReserva(null);
+        
+        CalificacionEntity calificacion = null;
+        String caliSt = "String de calificacion";
+        
+        Assert.assertFalse(nuevaCalificacion.equals(calificacion));
+        Assert.assertFalse(nuevaCalificacion.equals(caliSt));    
+    }
+    
     /**
      * Test of update method, of class CalificacionPersistence.
      */

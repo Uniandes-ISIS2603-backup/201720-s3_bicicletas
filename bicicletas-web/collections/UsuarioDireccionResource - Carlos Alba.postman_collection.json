@@ -42,6 +42,39 @@
 			"response": []
 		},
 		{
+			"name": "Editar un usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/1111111111",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"nombre\":\"nombreusuario uno\",\n  \"tipoId\":\"1\",\n  \"documentoUsuario\":\"1111111111\",\n  \"fechaNacimiento\":\"2000-10-01T00:00:00-00:00\",\n  \"tarjetaCredito\":\"4321432143214321\",\n  \"numeroCsv\":111,\n  \"contraseniaPSE\":\"contrasenia111\"\n}"
+				},
+				"description": "PUT de Usuarios"
+			},
+			"response": []
+		},
+		{
 			"name": "Crear una direccion",
 			"event": [
 				{
@@ -77,7 +110,40 @@
 			"response": []
 		},
 		{
-			"name": "Crear una direccion asociada con el usuario",
+			"name": "Editar una direccion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/direcciones/1",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\":\"Direccion uno\",\n  \"codigoPostal\":\"11111\",\n  \"descripcion\":\"Descripcion nueva de direccion 1\",\n  \"ciudad\":\"Ciudad uno\"\n}"
+				},
+				"description": "PUT de direcciones"
+			},
+			"response": []
+		},
+		{
+			"name": "Asignar una direccion a un usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -90,7 +156,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/bicicletas-web/api/usuarios/1111111111/direcciones/{{new_id_b}}",
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/1111111111/direcciones/1",
 				"method": "POST",
 				"header": [
 					{
@@ -195,7 +261,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/bicicletas-web/api/usuarios/1111111111/direcciones/{{new_id_b}}",
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/1111111111/direcciones/1",
 				"method": "GET",
 				"header": [],
 				"body": {},
@@ -217,7 +283,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/bicicletas-web/api/usuarios/1111111111/direcciones/{{new_id_b}}",
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/1111111111/direcciones/1",
 				"method": "DELETE",
 				"header": [],
 				"body": {},

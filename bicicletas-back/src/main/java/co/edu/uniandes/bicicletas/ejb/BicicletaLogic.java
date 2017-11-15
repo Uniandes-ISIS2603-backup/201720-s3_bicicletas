@@ -53,9 +53,9 @@ public class BicicletaLogic {
     @Inject
     private AccesorioBicicletaLogic AccesorioBicicleta;
     /**
-     *
+     * Este metodo se usa para crear una bicicleta
      * @param entity
-     * @return
+     * @return BicicletaEntity
      * @throws BusinessLogicException
      */
     public BicicletaEntity createBicicleta(BicicletaEntity entity) throws BusinessLogicException {
@@ -69,7 +69,6 @@ public class BicicletaLogic {
     /**
      * 
      * Obtener todas las Bicicletaes existentes en la base de datos.
-     *
      * @return una lista de Bicicletaes.
      */
     public List<BicicletaEntity> getBicicletas() {
@@ -79,6 +78,12 @@ public class BicicletaLogic {
         LOGGER.info("Termina proceso de consultar todas las Bicicletaes");
         return Bicicletas;
     }
+    /**
+     * 
+     * Obtener todas las Bicicletaes existentes en la base de datos.
+     * @param entidad la informacion de la bicicleta que se desea actualizar
+     * @return una bicicleta ya actualizada.
+     */
     public BicicletaEntity actualizarBicicleta(BicicletaEntity entidad) throws WebApplicationException{
         if(persistence.find(entidad.getId())==null){
             throw new WebApplicationException("No hay una estación con dicho id", 402);
@@ -88,6 +93,8 @@ public class BicicletaLogic {
     /**
      * 
      * Obtener una bicicleta Especifica
+     * @param id Long del id de la bicicleta
+     * @return la bicicleta que se obtiene de dicho id
      */
     public BicicletaEntity getBIcicleta(Long id){
         LOGGER.info("Inicica proceso de consulta a una bicicleta");
@@ -95,6 +102,11 @@ public class BicicletaLogic {
         LOGGER.info("Termina el proceso de consulta a una bicicleta");
         return bicicleta;
     }
+    /**
+     * 
+     * Borrar una bicicleta Especifica
+     * @param id Long del id de la bicicleta
+     */
     public void deleteBicicleta(Long id) throws WebApplicationException
     {
          BicicletaEntity bicicleta = persistence.find(id);
@@ -103,8 +115,15 @@ public class BicicletaLogic {
          }
          persistence.delete(id);
     }
-    public AccesorioBicicletaEntity createAccesorioBici(Long idBici,AccesorioBicicletaEntity entity) throws BusinessLogicException {
-        LOGGER.info(entity.darNombre()+""+entity.darDescrip());
+    /**
+     * 
+     * Crear un AccesiorioBicicleta especifico
+     * @param idBici Long del id de la bicicleta
+     * @param entity con la informacion del accesorio Bicicleta que se va a crear
+     * @return el nuevo accesorioBicicleta
+     * @throws co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException
+     */
+    public AccesorioBicicletaEntity createAccesorioBici(Long idBici,AccesorioBicicletaEntity entity) throws BusinessLogicException{
         BicicletaEntity bici = persistence.find(idBici);
         if(bici== null){
              throw new WebApplicationException(NO_ESTACION_ID, 402);
@@ -116,9 +135,10 @@ public class BicicletaLogic {
 
     /**
      * 
-     * Obtener todas las Bicicletaes existentes en la base de datos.
+     * Obtener todas los accesoriosBicicleta existentes en la base de datos.
      *
-     * @return una lista de Bicicletaes.
+     * @param idBici
+     * @return una lista de accesoriosBicicleta.
      */
     public List<AccesorioBicicletaEntity> getAccesoriosBici(Long idBici) {
         BicicletaEntity bici = persistence.find(idBici);
@@ -129,7 +149,10 @@ public class BicicletaLogic {
     }
     /**
      * 
-     * Obtener una bicicleta Especifica
+     * Obtener un accesorioBicicleta especifico
+     * @param idBici Long id de la bicicleta
+     * @param idAcc Long id del AccesorioBicicleta
+     * @return debuelve un accesorio bicicleta Buscado
      */
     public AccesorioBicicletaEntity getAccesorioBici(Long idBici, Long idAcc){
         BicicletaEntity bici = persistence.find(idBici);
@@ -138,7 +161,12 @@ public class BicicletaLogic {
          }
         return AccesorioBicicleta.getAccesorioBici(idAcc);
     }
-    
+    /**
+     * 
+     * Borrar un accesorioBicicleta especifico
+     * @param idBici Long del id de la bicicleta
+     * @param id Long del id de la bicicleta
+     */
     public void deleteAccesorioBicicleta(Long idBici,Long id) throws WebApplicationException
     {
         BicicletaEntity bici = persistence.find(idBici);
@@ -148,6 +176,13 @@ public class BicicletaLogic {
         bici.getAccesorioBicicletas().remove(AccesorioBicicleta.getAccesorioBici(id));
          AccesorioBicicleta.deleteAccesorioBicicleta(id);
     }
+    /**
+     * 
+     * Borrar un accesorioBicicleta especifico
+     * @param idBici Long del id de la bicicleta
+     * @param entity Long del id de la bicicleta
+     * @return el accesorio bicicleta que fue actualizado
+     */
     public AccesorioBicicletaEntity updateAcc(Long idBici,AccesorioBicicletaEntity entity){
         BicicletaEntity bici = persistence.find(idBici);
         if(bici== null){

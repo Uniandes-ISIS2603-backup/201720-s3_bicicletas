@@ -50,21 +50,6 @@ public class UsuarioLogic {
             throw new BusinessLogicException("El documento del usuario no puede ser null");
         }
         
-        if (entity.getTarjetaCredito() == null  && entity.getContraseniaPSE() == null ) {
-            throw new BusinessLogicException("Debe ingresar un metodo de pago");
-        }
-        
-        if (entity.getTarjetaCredito() != null  ) {
-            
-            if(entity.getTarjetaCredito().toString().length()!=16){
-            throw new BusinessLogicException("Debe ingresar una tarjeta de credito valida");
-            }
-            if(String.valueOf(entity.getNumeroCsv()).length()!=3){
-            throw new BusinessLogicException("Debe ingresar un numero de  csv valido");
-            }
-        }
-      
-        
         // Invoca la persistencia para crear el usuario
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación de usuario");

@@ -25,6 +25,7 @@ package co.edu.uniandes.bicicletas.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
@@ -102,6 +103,38 @@ public class PuntoEntity extends BaseEntity implements Serializable
     public void setFechaVencimiento(Date fechaVencimiento) {
         this.fechaVencimiento = fechaVencimiento;
     }
+    
+    @Override
+    public boolean equals(Object obj) 
+    {
+        if (obj == null)
+        {
+            return false;
+        }
+            
+
+        if (this.getClass() != obj.getClass())
+        {
+            return false;
+        }
+            
+
+        PuntoEntity mc = (PuntoEntity)obj;
+    
+        return this.hashCode() == mc.hashCode();
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 4;
+        hash = 37 * hash + Objects.hashCode(this.getId());
+        hash = 37 * hash + Objects.hashCode(this.fechaPunto);
+        hash = 37 * hash + Objects.hashCode(this.fechaVencimiento);
+        hash = 37 * hash + Objects.hashCode(this.usuarioPunto);
+        return hash;
+    }
+
+   
     
     
 }

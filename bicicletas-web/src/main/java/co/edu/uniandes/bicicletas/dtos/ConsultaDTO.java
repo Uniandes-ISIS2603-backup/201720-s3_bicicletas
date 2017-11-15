@@ -27,6 +27,7 @@ public class ConsultaDTO {
     private String stringFinal;
     
     public ConsultaDTO(){
+       //No necesita cuerpo
         
     }
     
