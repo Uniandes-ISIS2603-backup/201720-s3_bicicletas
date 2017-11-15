@@ -29,6 +29,17 @@
 		},
 		{
 			"name": "GET bicicletas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"no genera error en el GET\"] = responseCode.code === 200"
+						]
+					}
+				}
+			],
 			"request": {
 				"url": "http://localhost:8080/bicicletas-web/api/bicicletas/200",
 				"method": "GET",

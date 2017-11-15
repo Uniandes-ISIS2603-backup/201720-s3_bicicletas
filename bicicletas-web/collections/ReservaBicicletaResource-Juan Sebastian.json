@@ -29,6 +29,17 @@
 		},
 		{
 			"name": "GET Bicicletas Reserva",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"no genera error en el GET\"] = responseCode.code === 200"
+						]
+					}
+				}
+			],
 			"request": {
 				"url": "http://localhost:8080/bicicletas-web/api/reservas/200/bicicletas",
 				"method": "GET",

@@ -29,6 +29,17 @@
 		},
 		{
 			"name": "GET Accesorio Bicicleta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"no genera error en el GET\"] = responseCode.code === 200"
+						]
+					}
+				}
+			],
 			"request": {
 				"url": "http://localhost:8080/bicicletas-web/api/bicicletas/200/accesorioBicicleta",
 				"method": "GET",
@@ -41,7 +52,7 @@
 		{
 			"name": "DELETE AccesorioBicicleta",
 			"request": {
-				"url": "http://localhost:8080/bicicletas-web/api/bicicletas/100/accesorioBicicleta/200",
+				"url": "http://localhost:8080/bicicletas-web/api/bicicletas/200/accesorioBicicleta/1",
 				"method": "DELETE",
 				"header": [],
 				"body": {},

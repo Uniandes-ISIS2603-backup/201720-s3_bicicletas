@@ -10,7 +10,7 @@
 		{
 			"name": "PUT asociar Bicicleta",
 			"request": {
-				"url": "http://localhost:8080/bicicletas-web/api/estaciones/101/bicicletas/añadir",
+				"url": "http://localhost:8080/bicicletas-web/api/estaciones/200/bicicletas/añadir",
 				"method": "PUT",
 				"header": [
 					{
@@ -49,6 +49,17 @@
 		},
 		{
 			"name": "GET Bicicletas Estacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"no genera error en el GET\"] = responseCode.code === 200"
+						]
+					}
+				}
+			],
 			"request": {
 				"url": "http://localhost:8080/bicicletas-web/api/estaciones/200/bicicletas",
 				"method": "GET",
