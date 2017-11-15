@@ -192,6 +192,7 @@ public class UsuarioPersistenceTest {
         Assert.assertEquals(newEntity.getTipoId(), entity.getTipoId());
         Assert.assertNotNull(newEntity.getFechaNacimiento());
         Assert.assertNotNull(entity.getFechaNacimiento());
+         Assert.assertEquals(newEntity.getContraseniaPSE(), entity.getContraseniaPSE());
         Assert.assertEquals(newEntity.getTarjetaCredito(), entity.getTarjetaCredito());
         Assert.assertEquals(newEntity.getNumeroCsv(), entity.getNumeroCsv());
         Assert.assertNotNull(newEntity.getReservas());
