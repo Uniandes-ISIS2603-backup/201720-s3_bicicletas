@@ -25,7 +25,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 
 /**
- *
+ * Clase que maneja el REST de Estaciones
  * @author ka.babativa
  */
 @Path("/estaciones")
@@ -35,7 +35,7 @@ import javax.ws.rs.WebApplicationException;
 public class EstacionResource {
 
     @Inject
-    private EstacionLogic estacionLogic;
+    private EstacionLogic estacionLogic; //Variable que inyecta la logica de estación.
     
     /**
      * Constante para representar el recurso estaciones
@@ -43,20 +43,12 @@ public class EstacionResource {
     private static final String RECURSO_ESTACIONES = "El recurso /estaciones/";
 
     /**
-     * Convierte una lista de EstacionEntity a una lista de EstacionDTO.
+     * Convierte una lista de EstacionEntity a una lista de EstacionDetailDTO.
      *
      * @param entityList Lista de EstacionEntity a convertir.
-     * @return Lista de EstacionDTO convertida.
+     * @return Lista de EstacionDetailDTO convertida.
      *
      */
-    private List<EstacionDTO> listEntity2DTO(List<EstacionEntity> entityList) {
-        List<EstacionDTO> list = new ArrayList<>();
-        for (EstacionEntity entity : entityList) {
-            list.add(new EstacionDTO(entity));
-        }
-        return list;
-    }
-
     private List<EstacionDetailDTO> listEntityDetail2DTO(List<EstacionEntity> entityList) {
         List<EstacionDetailDTO> list = new ArrayList<>();
         for (EstacionEntity entity : entityList) {
@@ -141,6 +133,11 @@ public class EstacionResource {
         estacionLogic.deleteEstacion(id);
     }
 
+    /**
+     * Metodo que dirige a la clase CalificacionEstacionResource
+     * @param idEstacion ID De la estación a consultar
+     * @return Clase CalficacionEstacionResource
+     */
     @Path("{idEstacion: \\d+}/calificaciones")
     public Class<EstacionCalificacionResource> getCalificacionEstacionResource(@PathParam("idEstacion") Long idEstacion) {
         EstacionEntity entity = estacionLogic.getEstacion(idEstacion);
@@ -151,9 +148,9 @@ public class EstacionResource {
     }
 
     /**
-     *
-     * @param idUsuario
-     * @return
+     * Metodo que dirige a la clase EstacionBicicletaResource
+     * @param idEstacion: Estacion a consultar
+     * @return Clase EstacionBicicletaResource
      */
     @Path("{idEstacion: \\d+}/bicicletas")
     public Class<EstacionBicicletaResource> getUsuarioReservaResource(@PathParam("idEstacion") Long idEstacion) {
@@ -164,6 +161,11 @@ public class EstacionResource {
         return EstacionBicicletaResource.class;
     }
 
+    /**
+     * Metodo que dirige a la clase EstacionAccesorioResource
+     * @param idEstacion Estacion a consultar
+     * @return  Clase EstacionAccesorioResource
+     */
     @Path("{idEstacion: \\d+}/accesorios")
     public Class<EstacionAccesorioResource> getAccesorio(@PathParam("idEstacion") Long idEstacion) {
         EstacionEntity entity = estacionLogic.getEstacion(idEstacion);
@@ -173,6 +175,11 @@ public class EstacionResource {
         return EstacionAccesorioResource.class;
     }
 
+    /**
+     * Metodo que dirige a la clase ReservasEstacionResource
+     * @param idEstacion Estacion a consultar
+     * @return Clase ReservasEstacionResource
+     */
     @Path("{idEstacion: \\d+}/reservas")
     public Class<EstacionReservaResource> getReservasEstacionResource(@PathParam("idEstacion") Long idEstacion) {
         EstacionEntity entity = estacionLogic.getEstacion(idEstacion);

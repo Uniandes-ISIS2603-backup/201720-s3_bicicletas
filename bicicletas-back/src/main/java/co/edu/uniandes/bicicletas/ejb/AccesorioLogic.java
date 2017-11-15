@@ -132,7 +132,12 @@ public class AccesorioLogic {
     }
     
    
-    
+    /**
+     * Metodo que retorna una estacion dada una direccion y una estacion.
+     * @param direccionId ID de la direccion a Consultar
+     * @param estacionesId ID De la estacion a consultar
+     * @return Una estacion entity.
+     */
     public EstacionEntity addEstacion(Long direccionId, Long estacionesId) {
         AccesorioEntity direccionEntity = getAccesorio(direccionId);
         EstacionEntity estacionesEntity = new EstacionEntity();

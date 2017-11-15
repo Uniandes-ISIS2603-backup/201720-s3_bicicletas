@@ -99,7 +99,10 @@ public class AccesorioBicicletaBicicletaResource {
     }
     
     /**
-     * 
+     * Metodo que retorna un accesorio de una bicicleta dada una bicicleta a traves de HTTP GET
+     * @param idBici ID de la bicicleta a consultar
+     * @param idAcc ID Del accesorio a consultar
+     * @return AccesorioBicicletaDTO dado por los parametros.
      */
     @GET
     @Path("{idAccesorioBici: \\d+}")
@@ -108,6 +111,11 @@ public class AccesorioBicicletaBicicletaResource {
         return new AccesorioBicicletaDTO(entity);
     }
     
+    /**
+     * Metodo que retorna todos los accesorios de una bicicleta
+     * @param idBici ID De la bicicleta a consultar
+     * @return Una lista de AccesoriosBicicletaDTO
+     */
     @GET
     public List<AccesorioBicicletaDTO> getAccesorioBicis(@PathParam("idBicicleta") Long idBici){
         List<AccesorioBicicletaEntity> entity = superBiciLogic.getAccesoriosBici(idBici);

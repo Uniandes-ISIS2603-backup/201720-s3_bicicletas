@@ -35,11 +35,16 @@ import javax.ws.rs.WebApplicationException;
 public class AccesorioResource {
     
     @Inject
-    AccesorioLogic logica;
+    AccesorioLogic logica; //Atributo que inyecta la logica de un accesorio
     
     @Inject
-    EstacionLogic estacionLogica;
+    EstacionLogic estacionLogica; //Atributo que modela la logica de una estación
     
+    /**
+     * Metodo que convierte una lista de entidades a una lista de DTO
+     * @param entityList Lista con las entidades
+     * @return Una lista con los DTOS de las entidades que entran por parametro
+     */
     private List<AccesorioDTO> listEntity2DTO(List<AccesorioEntity> entityList) {
         List<AccesorioDTO> lista = new ArrayList<>();
         for(AccesorioEntity entidad : entityList){
@@ -48,20 +53,34 @@ public class AccesorioResource {
         return lista;
         
 }
-    
+    /**
+     * Metodo que obtiene todos los accesorios a travs de HTTP GET
+     * @return Una lista de accesorios DTO.
+     */
    @GET
     public List<AccesorioDTO> obtenerAccesorios(){
         return listEntity2DTO(logica.getAccesorios());
     }
     
+    /**
+     * Metodo oque obtiene un accesorio con un ID Dado a traves de HTTP GET
+     * @param id ID del accesorio a consultar
+     * @return Un accesorio de tipo DTO.
+     */
     @GET
     @Path("{id: \\d+}")
-    public AccesorioDTO getEstacion(@PathParam("id") Long id) {
+    public AccesorioDTO getAccesorio(@PathParam("id") Long id) {
         return new AccesorioDTO(logica.getAccesorio(id));
     }
     
+    /**
+     * Metodo que crea un accesorio a traves HTTP POST
+     * @param dto con la informacion del acccesorio a crear
+     * @return El accesorio creado
+     * @throws BusinessLogicException 
+     */
     @POST
-    public AccesorioDTO crearEstacion(AccesorioDTO dto) throws BusinessLogicException {
+    public AccesorioDTO crearAccesorio(AccesorioDTO dto) throws BusinessLogicException {
             if(dto.getTipo()==2||dto.getTipo()==1)
             {
                 if(estacionLogica.getEstacion(dto.getEstacion().getId())!=null){
@@ -74,6 +93,12 @@ public class AccesorioResource {
         throw new WebApplicationException("No esta dentro del tipo o estado correspondiente", 301);
     }
     
+    /**
+     * Metodo que actualiza un accesorio a traves de HTTP PUT
+     * @param id ID del accesorio a actualizar
+     * @param dto con la nueva información del accesorio.
+     * @return El accesorio actualizado
+     */
     @PUT
     @Path("{id: \\d+}")
     public AccesorioDTO actualizarAccesorio(@PathParam("id") Long id, AccesorioDTO dto) {
@@ -82,6 +107,10 @@ public class AccesorioResource {
         return new AccesorioDTO(logica.actualizarAccesorio(entity));
     }
     
+    /**
+     * Metodo que elimina un accesorio a traves de HTTP DELETE
+     * @param id del accesorio a eliminar
+     */
     @DELETE
     @Path("{id: \\d+}")
     public void borrarAccesorio(@PathParam("id") Long id) {
