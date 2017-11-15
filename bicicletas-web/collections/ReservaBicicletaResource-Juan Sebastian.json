@@ -1,0 +1,51 @@
+{
+	"variables": [],
+	"info": {
+		"name": "ReservaBicicleta",
+		"_postman_id": "400a7378-b26f-437e-aba5-79ede8ce4e1d",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "PUT asociar Bicicleta reserva",
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/reservas/200/bicicletas",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":200\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET Bicicletas Reserva",
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/reservas/200/bicicletas",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":101\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
