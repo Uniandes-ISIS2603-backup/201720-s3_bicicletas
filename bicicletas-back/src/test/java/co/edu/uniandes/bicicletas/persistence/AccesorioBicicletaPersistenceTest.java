@@ -138,6 +138,7 @@ public class AccesorioBicicletaPersistenceTest {
         PodamFactory factory = (PodamFactory) new PodamFactoryImpl();
         
         AccesorioBicicletaEntity nuevoAccesorio = factory.manufacturePojo(AccesorioBicicletaEntity.class);
+        nuevoAccesorio.setBicicleta(null);
         AccesorioBicicletaEntity resultado = persistence.create(nuevoAccesorio);
         
         Assert.assertNotNull(resultado);
@@ -145,6 +146,9 @@ public class AccesorioBicicletaPersistenceTest {
         AccesorioBicicletaEntity creada = em.find(AccesorioBicicletaEntity.class, resultado.getId());
         
         Assert.assertEquals(nuevoAccesorio.getId(), creada.getId());
+        Assert.assertEquals(nuevoAccesorio.darNombre(), creada.darNombre());
+        Assert.assertEquals(nuevoAccesorio.darDescrip(), creada.darDescrip());
+        Assert.assertNull(creada.getBicicleta());
     }
     
     /**
