@@ -119,9 +119,9 @@ public class PuntoEntity extends BaseEntity implements Serializable
         }
             
 
-        BaseEntity mc = (BaseEntity)obj;
+        PuntoEntity mc = (PuntoEntity)obj;
     
-        return this.hashCode() == obj.hashCode();
+        return this.hashCode() == mc.hashCode();
     }
 
     @Override
