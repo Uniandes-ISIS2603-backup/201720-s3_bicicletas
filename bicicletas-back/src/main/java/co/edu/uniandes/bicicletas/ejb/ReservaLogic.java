@@ -81,10 +81,7 @@ public class ReservaLogic
     
     public ReservaEntity getReserva(Long id)
     {
-        //Toca agregarle más cosas, solo lo hice provisional
-         ReservaEntity reserva = persistence.find(id);
-         
-         return reserva;
+        return persistence.find(id);
     }
     
     public List<ReservaEntity> getReservas(  ){
