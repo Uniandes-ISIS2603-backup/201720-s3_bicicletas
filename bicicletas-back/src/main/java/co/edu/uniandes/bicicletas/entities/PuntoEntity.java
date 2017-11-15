@@ -104,7 +104,7 @@ public class PuntoEntity extends BaseEntity implements Serializable
         this.fechaVencimiento = fechaVencimiento;
     }
     
-     @Override
+    @Override
     public boolean equals(Object obj) 
     {
         if (obj == null)
@@ -126,7 +126,7 @@ public class PuntoEntity extends BaseEntity implements Serializable
 
     @Override
     public int hashCode() {
-        int hash = 3;
+        int hash = 4;
         hash = 37 * hash + Objects.hashCode(this.getId());
         hash = 37 * hash + Objects.hashCode(this.fechaPunto);
         hash = 37 * hash + Objects.hashCode(this.fechaVencimiento);

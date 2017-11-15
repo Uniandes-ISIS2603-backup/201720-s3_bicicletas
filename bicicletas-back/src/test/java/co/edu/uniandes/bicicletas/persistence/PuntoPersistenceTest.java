@@ -154,9 +154,11 @@ public class PuntoPersistenceTest {
         Assert.assertEquals(nuevoPunto.getFechaVencimiento(), pCreado.getFechaVencimiento());
         Assert.assertNull(nuevoPunto.getUsuarioPunto());
         Assert.assertTrue(nuevoPunto.equals(pCreado));
+        nuevoPunto.setFechaPunto(null);
+        Assert.assertFalse(nuevoPunto.equals(pCreado));
     }
     
-     @Test
+    @Test
     public void testEquals() throws Exception 
     {
         PodamFactory factory = new PodamFactoryImpl();
