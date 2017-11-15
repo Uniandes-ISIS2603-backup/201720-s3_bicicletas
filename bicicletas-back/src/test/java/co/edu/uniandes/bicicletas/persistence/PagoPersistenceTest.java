@@ -128,12 +128,22 @@ public class PagoPersistenceTest {
     public void testCreatePago() {
         PodamFactory factory = new PodamFactoryImpl();
         PagoEntity newEntity = factory.manufacturePojo(PagoEntity.class);
+        newEntity.setReserva(null);
         PagoEntity result = persistence.createPago(newEntity);
 
         Assert.assertNotNull(result);
         PagoEntity entity = em.find(PagoEntity.class, result.getId());
         Assert.assertNotNull(entity);
         Assert.assertEquals(newEntity.getName(), entity.getName());
+        Assert.assertEquals(newEntity.getBicicletasPendientes(), entity.getBicicletasPendientes());
+        Assert.assertEquals(newEntity.getEstado(), entity.getEstado());
+        Assert.assertEquals(newEntity.getId(), entity.getId());
+        Assert.assertEquals(newEntity.getFecha(), entity.getFecha());
+        Assert.assertEquals(newEntity.getIdTransaccion(), entity.getIdTransaccion());
+        Assert.assertEquals(newEntity.getMetodoDePago(), entity.getMetodoDePago());
+        Assert.assertEquals(newEntity.getIdUsuario(), entity.getIdUsuario());
+        Assert.assertEquals(newEntity.getMonto(), entity.getMonto());
+        Assert.assertNull(newEntity.getReserva());
     }
 
     /**

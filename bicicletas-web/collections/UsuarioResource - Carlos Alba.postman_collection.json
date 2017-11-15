@@ -100,7 +100,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\t\n  \"nombre\":\"nombreusuario modificadouno\",\n  \"tipoId\":\"1\",\n  \"documentoUsuario\":\"1111111111\",\n  \"fechaNacimiento\":\"12-01-1995\",\n  \"tarjetaCredito\":\"1234123412341234\",\n  \"numeroCsv\":112,\n  \"contraseniaPSE\":\"contrasenia111\"\n}"
+					"raw": "{\n  \"nombre\":\"nombreusuario uno\",\n  \"tipoId\":\"1\",\n  \"documentoUsuario\":\"1111111111\",\n  \"fechaNacimiento\":\"2000-10-01T00:00:00-00:00\",\n  \"tarjetaCredito\":\"4321432143214321\",\n  \"numeroCsv\":111,\n  \"contraseniaPSE\":\"contrasenia111\"\n}"
 				},
 				"description": "PUT de Usuarios"
 			},

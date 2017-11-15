@@ -188,12 +188,17 @@ public class DireccionPersistenceTest {
     public void testCreate() throws Exception {
         PodamFactory factory = new PodamFactoryImpl();
         DireccionEntity newEntity = factory.manufacturePojo(DireccionEntity.class);
+        newEntity.setUsuarios(null);
         DireccionEntity result = persistence.create(newEntity);
 
         Assert.assertNotNull(result);
         DireccionEntity entity = em.find(DireccionEntity.class, result.getId());
         Assert.assertNotNull(entity);
         Assert.assertEquals(newEntity.getName(), entity.getName());
+        Assert.assertEquals(newEntity.getCiudad(), entity.getCiudad());
+        Assert.assertEquals(newEntity.getCodigoPostal(), entity.getCodigoPostal());
+        Assert.assertEquals(newEntity.getDescripcion(), entity.getDescripcion());
+        Assert.assertNotNull(newEntity.getUsuarios());
     }
 
     /**

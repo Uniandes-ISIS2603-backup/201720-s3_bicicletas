@@ -114,7 +114,7 @@ public class PagoEntity extends BaseEntity implements Serializable{
      * Atributo que modela la fecha en que fue realizado el pago
      */
     
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date fecha;
     
     /**
