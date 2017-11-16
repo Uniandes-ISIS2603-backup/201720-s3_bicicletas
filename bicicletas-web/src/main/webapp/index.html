@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Préstamo de Bicicletas</title>
-        
+
         <link rel="shortcut icon" href="resources/img/bikeicon.jpg">
         <!-- Dependencias Externas -->
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
@@ -16,13 +16,13 @@
         <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>       
         <script src="bower_components/jquery/dist/jquery.min.js"></script>
         <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-        
+
         <script src="src/modules/calificaciones/calificaciones.mod.js" type="text/javascript"></script>
         <script src="src/modules/calificaciones/calificaciones.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/calificaciones/calificacionesDetail.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/calificaciones/new/calificaciones.new.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/calificaciones/update/calificaciones.update.ctrl.js" type="text/javascript"></script>
-        
+
 
         <script src="src/modules/estaciones/estaciones.mod.js" type="text/javascript"></script>
         <script src="src/modules/estaciones/estaciones.ctrl.js" type="text/javascript"></script>
@@ -38,7 +38,7 @@
         <script src="src/modules/accesorios/asociar/accesorios.asociar.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/accesorios/quitar/accesorios.quitar.ctrl.js" type="text/javascript"></script>
 
-        
+
         <script src="src/modules/bicicletas/bicicletas.mod.js" type="text/javascript"></script>
         <script src="src/modules/bicicletas/bicicletas.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/bicicletas/new/bicicletas.new.ctrl.js" type="text/javascript"></script>
@@ -48,30 +48,30 @@
         <script src="src/modules/bicicletas/asociar/bicicletas.asociar.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/bicicletas/agregarEstacion/bicicletas.agregarEstacion.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/bicicletas/entregar/bicicletas.entregar.ctrl.js" type="text/javascript"></script>
-        
-        
+
+
         <script src="src/modules/accesoriosBicicleta/accesoriosbicicleta.mod.js" type="text/javascript"></script>
         <script src="src/modules/accesoriosBicicleta/accesoriosbicicleta.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/accesoriosBicicleta/new/accesoriosBicicleta.new.ctrl.js" type="text/javascript"></script>
-        
-        
-        
+
+
+
         <script src="src/modules/usuarios/usuarios.mod.js" type="text/javascript"></script>
         <script src="src/modules/usuarios/usuarios.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/usuarios/delete/usuarios.delete.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/usuarios/new/usuarios.new.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/usuarios/update/usuarios.update.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/usuarios/consulta/usuarios.consulta.ctrl.js" type="text/javascript"></script>
-    
+
         <script src="src/modules/puntos/puntos.mod.js" type="text/javascript"></script>
         <script src="src/modules/puntos/puntos.ctrl.js" type="text/javascript"></script>
-        
+
         <script src="src/modules/direcciones/direcciones.mod.js" type="text/javascript"></script>
         <script src="src/modules/direcciones/direcciones.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/direcciones/delete/direcciones.delete.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/direcciones/new/direcciones.new.ctrl.js" type="text/javascript"></script>
-	
-        
+
+
         <script src="src/modules/pagos/pagos.mod.js" type="text/javascript"></script>
         <script src="src/modules/pagos/pagos.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/pagos/pagoReserva.ctrl.js" type="text/javascript"></script>
@@ -84,39 +84,39 @@
         <script src="src/modules/reservas/new/reservas.new.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/reservas/delete/reservas.delete.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/reservas/estacion/reservas.estacion.ctrl.js" type="text/javascript"></script>
-        
+
         <script src="src/app.js" type="text/javascript"></script> 
         <script src="src/http-interceptor.factory.js" type="text/javascript"></script> 
-        
+
     </head>
     <body>
         <div class="container-fluid">
             <nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="fa fa-bicycle" style="font-size:24px;color:white"></span>                          
-      </button>   
-      <a class="navbar-brand">DEAP</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        
-        
-        <li role="presentation"><a ui-sref="accesoriosList">Accesorios</a></li>
-                        <li role="presentation"><a ui-sref="bicicletasList">Bicicletas</a></li>
-                        <li role="presentation"><a ui-sref="estacionesList">Estaciones</a></li>
-                        <li role="presentation"><a ui-sref="usuariosList">Usuarios</a></li>   
-                        <li role="presentation"><a ui-sref="pagosList">Pagos</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a ui-sref="usuariosCreate"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-            
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                            <span class="fa fa-bicycle" style="font-size: 20px;color:white"></span>                          
+                        </button>   
+                        <a class="navbar-brand" style="font-size: 20px;color: white">DEAP</a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="myNavbar" style="font-size: 16px">
+                        <ul class="nav navbar-nav">
+
+
+                            <li role="presentation"><a ui-sref="accesoriosList">Accesorios</a></li>
+                            <li role="presentation"><a ui-sref="bicicletasList">Bicicletas</a></li>
+                            <li role="presentation"><a ui-sref="estacionesList">Estaciones</a></li>
+                            <li role="presentation"><a ui-sref="usuariosList">Usuarios</a></li>   
+                            <li role="presentation"><a ui-sref="pagosList">Pagos</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a ui-sref="usuariosCreate"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
             <div class="span4" ui-view="mainView"></div> 
         </div>
     </body>
