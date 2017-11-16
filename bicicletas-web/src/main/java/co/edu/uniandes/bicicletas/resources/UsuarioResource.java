@@ -11,7 +11,7 @@ import co.edu.uniandes.bicicletas.ejb.UsuarioLogic;
 import co.edu.uniandes.bicicletas.entities.UsuarioEntity;
 import java.util.ArrayList;
 import java.util.List;
-import javax.enterprise.context.RequestScoped;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -31,13 +31,31 @@ import javax.ws.rs.WebApplicationException;
 	@Path("/usuarios")
 	@Produces("application/json")
         @Consumes("application/json")
-	@RequestScoped
+        @Stateless
 	public class UsuarioResource {
             
-            private String noExiste="El usuario no existe";
-	    @Inject
+            //----------------------------------------------------------
+            //Atributos
+            //----------------------------------------------------------
+            /**
+             * inyeccion de la logica de usuario
+             */
 	    private UsuarioLogic usuarioLogic;
 
+ 
+            public UsuarioResource() {
+                //constructor para la parte web
+            }
+
+            @Inject public UsuarioResource(UsuarioLogic usuarioLogic) {
+                this.usuarioLogic = usuarioLogic;
+            }
+            
+            private final String noExiste = "El usuario no existe";
+            
+            //----------------------------------------------------------
+            //Metodos
+            //----------------------------------------------------------
 	    /**
              * Esta es la documentación 
              * del metodo listentitytodto.
