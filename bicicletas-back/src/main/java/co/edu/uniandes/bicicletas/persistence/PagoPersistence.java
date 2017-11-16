@@ -39,8 +39,14 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class PagoPersistence {
 
+    /**
+     * El logger de la clase PagoPersistence.
+     */
     private static final Logger LOGGER = Logger.getLogger(PagoPersistence.class.getName());
 
+    /**
+     * El contexto de persistencia.
+     */
     @PersistenceContext(unitName = "bicicletasPU")
     protected EntityManager em;
 
@@ -92,7 +98,10 @@ public class PagoPersistence {
          return em.find(PagoEntity.class, idPago);
     }
     
-    
+    /**
+     * Retorna todos los pagos del sistema.
+     * @return una lista con todos los pagos del sistema.s
+     */
     public List<PagoEntity> findAll(){
         LOGGER.info("Consultando todos los Pagos del sistema");
         
