@@ -39,6 +39,11 @@ import javax.ws.rs.WebApplicationException;
 	    private UsuarioLogic usuarioLogic;
 
 	    /**
+             * Esta es la documentación 
+             * del metodo listentitytodto.
+             * Este metodo ha sido creado por
+             * Carlos Alba
+             * Este metodo se encarga de
 	     * Convierte una lista de UsuarioEntity a una lista de UsuarioDetailDTO.
 	     *
 	     * @param entityList Lista de UsuarioEntity a convertir.
@@ -54,6 +59,11 @@ import javax.ws.rs.WebApplicationException;
 	    }
 
 	    /**
+             * Esta es la documentación 
+             * del metodo getusuarios.
+             * Este metodo ha sido creado por
+             * Carlos Alba
+             * Este metodo se encarga de
 	     * Obtiene la lista de los registros de Usuario
 	     *
 	     * @return Colección de objetos de UsuarioDetailDTO
@@ -65,6 +75,11 @@ import javax.ws.rs.WebApplicationException;
 	    }
 
 	    /**
+             * Esta es la documentación 
+             * del metodo getusuario.
+             * Este metodo ha sido creado por
+             * Carlos Alba
+             * Este metodo se encarga de
 	     * Obtiene los datos de una instancia de Usuario a partir de su ID
 	     *
 	     * @param id Identificador de la instancia a consultar
@@ -95,6 +110,11 @@ import javax.ws.rs.WebApplicationException;
 	    }
 
 	    /**
+             * Esta es la documentación 
+             * del metodo updateusuario.
+             * Este metodo ha sido creado por
+             * Carlos Alba
+             * Este metodo se encarga de
 	     * Actualiza la información de una instancia de Usuario
 	     *
 	     * @param id Identificador de la instancia de Usuario a modificar
@@ -116,6 +136,11 @@ import javax.ws.rs.WebApplicationException;
 	    }
 
 	    /**
+             * * Esta es la documentación 
+             * del metodo deleteusuario.
+             * Este metodo ha sido creado por
+             * Carlos Alba
+             * Este metodo se encarga de
 	     * Elimina una instancia de Usuario de la base de datos
 	     *
 	     * @param id Identificador de la instancia a eliminar
@@ -132,7 +157,11 @@ import javax.ws.rs.WebApplicationException;
 	    }
 
     /**
-     *
+     * Esta es la documentación 
+     * del metodo getdireccionesusuario.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * @param usuariosId
      * @return
      */
@@ -146,7 +175,11 @@ import javax.ws.rs.WebApplicationException;
 	    }
 
     /**
-     *
+     ** Esta es la documentación 
+     * del metodo getpuntosusuario.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * @param idUsuario
      * @return
      */
@@ -160,7 +193,11 @@ import javax.ws.rs.WebApplicationException;
             }
             
     /**
-     *
+     * Esta es la documentación 
+     * del metodo getreservasusuario.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * @param idUsuario
      * @return
      */

@@ -32,6 +32,11 @@ public class UsuarioDireccionResource {
     @Inject private UsuarioLogic usuarioLogic;
     
     /**
+     * Esta es la documentación 
+     * del metodo direccioneslisttodto.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * Convierte una lista de DireccionEntity a una lista de DireccionDetailDTO.
      *
      * @param entityList Lista de DireccionEntity a convertir.
@@ -47,6 +52,11 @@ public class UsuarioDireccionResource {
     }
 
     /**
+     * * Esta es la documentación 
+     * del metodo direccioneslitdtotoententi.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * Convierte una lista de DireccionDetailDTO a una lista de DireccionEntity.
      *
      * @param dtos Lista de DireccionDetailDTO a convertir.
@@ -62,6 +72,11 @@ public class UsuarioDireccionResource {
     }
 
     /**
+     * Esta es la documentación 
+     * del metodo listdirecciones.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * Obtiene una colección de instancias de DireccionDetailDTO asociadas a una
      * instancia de Usuario
      *
@@ -75,6 +90,11 @@ public class UsuarioDireccionResource {
     }
 
      /**
+      * Esta es la documentación 
+     * del metodo getdirecciones.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * Obtiene una instancia de Direccion asociada a una instancia de Usuario
      *
      * @param usuariosId Identificador de la instancia de Usuario
@@ -89,6 +109,11 @@ public class UsuarioDireccionResource {
     }
 
     /**
+     * Esta es la documentación 
+     * del metodo adddirecciones.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * Asocia un Direccion existente a un Usuario
      *
      * @param usuariosId Identificador de la instancia de Usuario
@@ -116,6 +141,11 @@ public class UsuarioDireccionResource {
     }
 
     /**
+     * Esta es la documentación 
+     * del metodo removedireccion.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * Desasocia un Direccion existente de un Usuario existente
      *
      * @param usuariosId Identificador de la instancia de Usuario
