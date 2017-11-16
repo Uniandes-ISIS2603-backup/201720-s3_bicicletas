@@ -12,7 +12,8 @@
                             fechaNacimiento: $scope.usuarioFechaNacimiento,
                             tarjetaCredito: $scope.usuarioTarjetaCredito,
                             numeroCsv: $scope.usuarioNumeroCsv,
-	                    contraseniaPSE: $scope.usuarioContraseniaPSE
+	                    contraseniaPSE: $scope.usuarioContraseniaPSE,
+                            password: $scope.usuarioPassword
 	                }).then(function (response) {
 	                    //Usuario created successfully
 	                    $state.go('usuariosList', {documentoUsuario: response.data.documentoUsuario}, {reload: true});

@@ -22,7 +22,8 @@ public class UsuarioDTO {
    private Long tarjetaCredito;
    private int numeroCsv;
    private String contraseniaPSE;
-
+    private String password;
+   
    public UsuarioDTO() {
        //No necesita cuerpo
     }
@@ -45,10 +46,26 @@ public class UsuarioDTO {
         this.tarjetaCredito= usuario.getTarjetaCredito();
         this.numeroCsv= usuario.getNumeroCsv();
         this.contraseniaPSE=usuario.getContraseniaPSE();
+        this.password=usuario.getPassword();
+    }
+    /**
+     *
+     * @return
+     */
+    public String getPassword() {
+        return password;
+    }
+    /**
+     *
+     * @param password
+     */
+    public void setPassword(String password) {
+        this.password = password;
     }
 
 
-
+    
+    
     /**
      *
      * @return
@@ -189,6 +206,7 @@ public class UsuarioDTO {
         entity.setTarjetaCredito(this.tarjetaCredito);
         entity.setNumeroCsv(this.numeroCsv);
         entity.setContraseniaPSE(this.contraseniaPSE);
+        entity.setPassword(this.password);
         return entity;
     }
 }

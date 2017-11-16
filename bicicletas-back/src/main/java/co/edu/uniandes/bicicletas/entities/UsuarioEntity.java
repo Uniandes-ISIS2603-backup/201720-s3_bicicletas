@@ -40,6 +40,7 @@ public class UsuarioEntity implements Serializable {
    private Long tarjetaCredito;
    private int numeroCsv;
    private String contraseniaPSE;
+   private String password;
    
    @OneToMany(mappedBy = "usuarioReserva")
    @PodamExclude
@@ -58,16 +59,40 @@ public class UsuarioEntity implements Serializable {
    @PodamExclude
    @OneToMany(mappedBy = "usuarioPunto", cascade=CascadeType.ALL)
    private List<PuntoEntity> puntos = new  ArrayList<>();
-    
+
    
-   
-   
- /**
- *Metodos
- */
-   
+
     /**
+     *Metodos 
+     */
+   /**
+     *  Esta es la documentación
+     * del metodo getpassword.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
+     * get password
+     * @return
+     */
+   public String getPassword() {   
+        return password;
+    }
+   
+   /**
      *  Esta es la documentación 
+     * del metodo setpassword.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
+     * set password
+     * @param password
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    /**
+     *  Esta es la documentación
      * del metodo getdirecciones.
      * Este metodo ha sido creado por
      * Carlos Alba
@@ -75,7 +100,7 @@ public class UsuarioEntity implements Serializable {
      * get direcciones
      * @return
      */
-   public List<DireccionEntity> getDirecciones() {   
+    public List<DireccionEntity> getDirecciones() {   
         return direcciones;
     }
 
