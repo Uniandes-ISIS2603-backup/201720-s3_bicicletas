@@ -30,6 +30,11 @@ public class DireccionPersistence {
     protected EntityManager em;
     
      /**
+      * Esta es la documentación 
+     * del metodo finall.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * Devuelve todas las direcciones de la base de datos
      * @return Una lista con todas las direcciones que se encuentran en el sistema
      */
@@ -42,6 +47,11 @@ public class DireccionPersistence {
     }
     
     /**
+     * Esta es la documentación 
+     * del metodo find.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * Busca si hay alguna direccion con el id que se envía como argumento
      * @param id: id correspondiente a la direccion buscada
      * @return la direccion buscada
@@ -53,6 +63,11 @@ public class DireccionPersistence {
     }
 
     /**
+     * Esta es la documentación 
+     * del metodo create.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * Persiste una nueva direccion
      * @param entity: Objeto direccion que se creará en la base de datos
      * @return devuelve la entidad creada con un id en la base de datos
@@ -65,6 +80,11 @@ public class DireccionPersistence {
     }
     
     /**
+     * Esta es la documentación 
+     * del metodo upodate.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * Actualiza una direccion
      * @param entity: La direccion que viene con los nuevos datos
      * @return Una direccion que tiene los nuevo datos
@@ -75,6 +95,11 @@ public class DireccionPersistence {
     }
     
     /**
+     * Esta es la documentación 
+     * del metodo detele.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * Elimina una direccion
      * @param id: El id de la direccion que se busca eliminar
      */
@@ -85,6 +110,11 @@ public class DireccionPersistence {
     }
     
     /**
+     * Esta es la documentación 
+     * del metodo findbyname.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * Busca si hay alguna Direccion con el nombre que se envía de argumento
      *
      * @param name: Nombre de la Direccion que se está buscando

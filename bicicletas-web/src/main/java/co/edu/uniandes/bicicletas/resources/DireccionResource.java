@@ -44,7 +44,11 @@ import javax.ws.rs.WebApplicationException;
     private static final String NO_EXISTE = " no existe.";
     
     /**
-     *
+     * Esta es la documentación 
+     * del metodo getdirecciones.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * @return
      * @throws BusinessLogicException
      */
@@ -54,7 +58,11 @@ import javax.ws.rs.WebApplicationException;
     }
 
     /**
-     *
+     *Esta es la documentación 
+     * del metodo getdirecion.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * @param id
      * @return
      * @throws BusinessLogicException
@@ -70,6 +78,11 @@ import javax.ws.rs.WebApplicationException;
     }
 
     /**
+     *  *Esta es la documentación 
+     * del metodo getdirereateccion.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * @param direccion
      * @return
      * @throws BusinessLogicException
@@ -80,7 +93,11 @@ import javax.ws.rs.WebApplicationException;
     }
 
     /**
-     *
+     * *Esta es la documentación 
+     * del metodo getdupdateirecion.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * Ejemplo: { "description": "Las habilidades gerenciales en arquitectos de
      * software.", "editorial": { "id": 200, "name": "Oveja Negra 2" }, "image":
      * "https://images-na.ssl-images-amazon.com/images/I/516GyHY9p6L.jpg",
@@ -104,7 +121,11 @@ import javax.ws.rs.WebApplicationException;
     }
 
     /**
-     *
+     * *Esta es la documentación 
+     * del metodo delete.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * @param id
      * @throws BusinessLogicException
      */

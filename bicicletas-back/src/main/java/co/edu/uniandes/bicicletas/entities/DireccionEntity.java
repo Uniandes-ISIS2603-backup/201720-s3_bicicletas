@@ -68,7 +68,11 @@ public class DireccionEntity extends BaseEntity implements Serializable {
     }
 
     /**
-     *
+     * Esta es la documentación 
+     * del metodo getdescripcion.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * @return
      */
     public String getDescripcion() {
@@ -76,7 +80,11 @@ public class DireccionEntity extends BaseEntity implements Serializable {
     }
 
     /**
-     *
+     * Esta es la documentación 
+     * del metodo setdescripciop.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * @param descripcion
      */
     public void setDescripcion(String descripcion) {
@@ -87,7 +95,11 @@ public class DireccionEntity extends BaseEntity implements Serializable {
     ///////////////////////////////////////////////////////////////////////////////////////
     
     /**
-     *
+     * Esta es la documentación 
+     * del metodo getusuario.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * @return
      */
     public List<UsuarioEntity> getUsuarios() {
@@ -95,7 +107,11 @@ public class DireccionEntity extends BaseEntity implements Serializable {
     }
 
     /**
-     *
+     * Esta es la documentación 
+     * del metodo setusuario.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * @param usuarios
      */
     public void setUsuarios(List<UsuarioEntity> usuarios) {
