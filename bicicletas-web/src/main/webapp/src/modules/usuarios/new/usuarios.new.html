@@ -35,14 +35,16 @@
                     </div>
                     <div class="form-group row">
                         <div class="form-group col-md-6">
-                            <label for="usuarioTarjetaCredito" class="col-sm-4">Tarjeta credito:</label>
-                            <input id="usuarioTarjetaCredito" ng-model="usuarioTarjetaCredito" class="col-sm-6"/>
+                            <label for="usuarioPassword" class="col-sm-4">Contraseña:</label>
+                            <input type="password" id="usuarioPassword" required ng-model="usuarioPassword" class="col-sm-3"/>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="form-group col-md-6">
-                            <label for="usuarioNumeroCsv" class="col-sm-4">Numero csv:</label>
-                            <input id="usuarioNumeroCsv" ng-model="usuarioNumeroCsv" class="col-sm-2"/>
+                            <label for="usuarioTarjetaCredito" class="col-sm-4">Tarjeta de crédito:</label>
+                            <input id="usuarioTarjetaCredito" ng-model="usuarioTarjetaCredito" class="col-sm-6"/>
+                            <label for="usuarioNumeroCsv" class="col-sm-4">CSV:</label>
+                            <input id="usuarioNumeroCsv" ng-model="usuarioNumeroCsv" class="col-sm-1"/>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -51,19 +53,14 @@
                             <input id="usuarioContraseniaPSE" ng-model="usuarioContraseniaPSE" class="col-sm-6"/>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <div class="form-group col-md-6">
-                            <label for="usuarioPassword" class="col-sm-4">Contraseña:</label>
-                            <input type="password" id="usuarioPassword" required ng-model="usuarioPassword" class="col-sm-3"/>
-                        </div>
-                    </div>
+                    
                     
 
                     <div class="form-group row">
                         <div class="form-group col-sm-4" ng-if="!usuario.$valid">
 
                             <div class="alert alert-warning" >
-                                <strong>Warning!</strong><p>All inputs are required*</p>
+                                <strong>Advertencia!</strong><p>A excepción de Tarjeta de crédito, CSV y PSE todos los campos son obligatorios*</p>
                             </div> 
                         </div> 
                     </div> 
