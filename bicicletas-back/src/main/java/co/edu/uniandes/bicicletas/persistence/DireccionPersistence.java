@@ -130,7 +130,7 @@ public class DireccionPersistence {
         query = query.setParameter("name", name);
         // Se invoca el query se obtiene la lista resultado
         List<DireccionEntity> sameName = query.getResultList();
-        DireccionEntity result = null; 
+        DireccionEntity result; 
         if (sameName == null ) {
             result = null;
         } else if (sameName.isEmpty()) {
