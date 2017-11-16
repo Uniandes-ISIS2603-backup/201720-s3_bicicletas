@@ -10,7 +10,6 @@
     import co.edu.uniandes.bicicletas.entities.DireccionEntity;
     import java.util.ArrayList;
     import java.util.List;
-    import javax.ejb.Stateless;
     import javax.inject.Inject;
     import javax.ws.rs.Consumes;
     import javax.ws.rs.DELETE;
@@ -38,12 +37,28 @@
          */
         private UsuarioLogic usuarioLogic;
 
-
-        public UsuarioDireccionResource() {
+    /**
+     * Esta es la documentación 
+     * del metodo constructor.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
+     * ser el constructor de la parte web
+     */
+    public UsuarioDireccionResource() {
             //constructor para la parte web
         }
 
-        @Inject public UsuarioDireccionResource(UsuarioLogic usuarioLogic) {
+    /**
+     * Esta es la documentación 
+     * del metodo usuario direccion.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
+     * ser el constructor de la parte web
+     * @param usuarioLogic
+     */
+    @Inject public UsuarioDireccionResource(UsuarioLogic usuarioLogic) {
             this.usuarioLogic = usuarioLogic;
         }
 

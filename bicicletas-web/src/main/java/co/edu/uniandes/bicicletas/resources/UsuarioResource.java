@@ -42,12 +42,28 @@ import javax.ws.rs.WebApplicationException;
              */
 	    private UsuarioLogic usuarioLogic;
 
- 
-            public UsuarioResource() {
+    /**
+     * Esta es la documentación 
+     * del metodo listentitytodto.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
+     * ser el constructor de la parte web
+     */
+    public UsuarioResource() {
                 //constructor para la parte web
             }
 
-            @Inject public UsuarioResource(UsuarioLogic usuarioLogic) {
+    /**
+     * Esta es la documentación 
+     * del metodo usuarioresource.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
+     * ser el constructor de la parte web
+     * @param usuarioLogic
+     */
+    @Inject public UsuarioResource(UsuarioLogic usuarioLogic) {
                 this.usuarioLogic = usuarioLogic;
             }
             
