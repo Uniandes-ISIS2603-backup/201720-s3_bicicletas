@@ -53,7 +53,11 @@ public class ReservaResource {
     */
     private static final String NO_EXISTE = " no existe";
     
-
+    /**
+     * Metodo que transfoma una lista de entitys en DTOS
+     * @param entityList
+     * @return reservaDTO 
+     */
     private List<ReservaDTO> listEntity2DTO(List<ReservaEntity> entityList) {
         List<ReservaDTO> lista = new ArrayList<>();
         for(ReservaEntity entidad : entityList){
@@ -62,7 +66,12 @@ public class ReservaResource {
         return lista;
         
 }
-    
+    /**
+     * Metodo que hace la consulta
+     * @param id
+     * @param consulta
+     * @return 
+     */
     @PUT
     @Path("{id: \\d+}/consulta")
     public List<ReservaDTO> obtenerReservas(@PathParam("id") Long id , ConsultaDTO consulta){
@@ -71,7 +80,11 @@ public class ReservaResource {
         List<ReservaEntity> rta = logica.darReservasPorFecha(logicaUsuario.getUsuario(id).getReservas(),consulta.getFechaInicio(), consulta.getFechaFinal());
         return listEntity2DTO(rta);
     }
-    
+    /**
+     * Da reserva por id
+     * @param id
+     * @return 
+     */
     @GET
     @Path("{id: \\d+}")
     public ReservaDTO getReserva(@PathParam("id") Long id) {
@@ -81,7 +94,13 @@ public class ReservaResource {
         }
         return new ReservaDetailDTO(reservas);
     }
-    
+    /**
+     * Crea una reserva 
+     * @param id
+     * @param dto
+     * @return
+     * @throws BusinessLogicException 
+     */
     @POST
     @Path("{id: \\d+}")
     public ReservaDTO crearReserva (@PathParam("id") Long id , ReservaDTO dto) throws BusinessLogicException {
@@ -90,7 +109,12 @@ public class ReservaResource {
         }
         return new ReservaDTO(logica.crearReserva(id ,dto.toEntity()));
     }
-    
+    /**
+     * Atualiza una Reserva
+     * @param id
+     * @param dto
+     * @return 
+     */
     @PUT
     @Path("{id: \\d+}")
     public ReservaDTO actualizarReserva (@PathParam("id") Long id, ReservaDTO dto) {
@@ -98,13 +122,21 @@ public class ReservaResource {
         entity.setId(id);
         return new ReservaDTO(logica.actualizarReserva(entity));
     }
-    
+    /**
+     * Borrar una Reserva
+     * @param id 
+     */
     @DELETE
     @Path("{id: \\d+}")
     public void borrarReserva(@PathParam("id") Long id) {
         logica.deleteReserva(id);
     }
-    
+    /**
+     * Da la transaccion de una reserva
+     * @param id
+     * @return
+     * @throws BusinessLogicException 
+     */
     @GET
     @Path("{id: \\d+}/transaccion")
     public TransaccionDTO darTransaccion(@PathParam("id") Long id) throws BusinessLogicException{
@@ -117,7 +149,12 @@ public class ReservaResource {
         
         return new TransaccionDTO(transaccion);
     }
-    
+    /**
+     * Redirecciona el recurso a reservaEstacion
+     * @param idReserva
+     * @param llegada
+     * @return 
+     */
     @Path("{idReserva: \\d+}/Estacion / { llegada: \\d+}")
     public Class<ReservaEstacionResource> getReservaEstacionResource(@PathParam("idReserva") Long idReserva,@PathParam("llegada") int llegada){
         ReservaEntity entity = logica.getReserva(idReserva);
@@ -126,7 +163,11 @@ public class ReservaResource {
         }
         return ReservaEstacionResource.class;
     }
-    
+    /**
+     * Redirecciona el recurso a reservaEstacion
+     * @param idReserva
+     * @return 
+     */
     @Path("{idReserva: \\d+}/estaciones")
     public Class<ReservaEstacionResource> getReservaEstacionResource(@PathParam("idReserva") Long idReserva){
         ReservaEntity entity = logica.getReserva(idReserva);
@@ -135,7 +176,11 @@ public class ReservaResource {
         }
         return ReservaEstacionResource.class;
     }
-    
+    /**
+     * Redirecciona el recurso a PagoReserva
+     * @param idReserva
+     * @return 
+     */
     @Path("{idReserva: \\d+}/Pago")
     public Class<PagoReservaResource> getResource(@PathParam("idReserva") Long idReserva){
         ReservaEntity entity = logica.getReserva(idReserva);
@@ -144,7 +189,11 @@ public class ReservaResource {
         }
         return PagoReservaResource.class;
     }
-    
+    /**
+     * Redirecciona el recurso a UsuarioReserva
+     * @param idReserva
+     * @return 
+     */
     @Path("{idReserva: \\d+}/usuario")
     public Class<UsuarioReservaResource> getUsuario(@PathParam("idReserva") Long idReserva) {
         ReservaEntity entity = logica.getReserva(idReserva);
@@ -153,7 +202,11 @@ public class ReservaResource {
         }
         return   UsuarioReservaResource.class;
     }
-    
+    /**
+     * Redirecciona el recurso ReservaBicicleta
+     * @param idReserva
+     * @return 
+     */
     @Path("{idReserva: \\d+}/bicicletas")
     public Class<ReservaBicicletaResource> getClassAcc(@PathParam("idReserva")Long idReserva) {
         ReservaEntity entity = logica.getReserva(idReserva);
@@ -162,7 +215,11 @@ public class ReservaResource {
             }
        return ReservaBicicletaResource.class;
     }
-    
+    /**
+     * Redirecciona el recurso ReservaAccsesorio
+     * @param idReserva
+     * @return 
+     */
     @Path("{idReserva: \\d+}/accesorios")
     public Class<ReservaAccesorioResource> getAccesorio(@PathParam("idReserva") Long idReserva) {
         ReservaEntity entity = logica.getReserva(idReserva);
