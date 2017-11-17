@@ -19,6 +19,28 @@ public class AccesorioDTO {
     private Long id;  //Variable que modela el ID del accesorio
     private EstacionEntity estacion; //Estacion padre del accesorio
     private ReservaEntity reserva; //Reserva padre del accesorio
+    
+    /**
+     * Constructor de la clase. No necesita cuerpo.
+     */
+    public AccesorioDTO(){
+        //No necesita cuerpo
+        
+    }
+    
+    /**
+     * Constructor en caso de que llegue una entidad.
+     * @param entidad Entidad a convertir
+     */
+    public AccesorioDTO(AccesorioEntity entidad){
+        if(entidad!=null){
+            this.tipo = entidad.getTipo();
+            this.id = entidad.getId();
+            this.estacion = entidad.getEstacion();
+            this.reserva = entidad.getReserva();
+            this.reservado = entidad.getReservado();
+        }
+    }
 
     /**
      * Metodo que devuelve un integer de estado de accesorio.
@@ -66,28 +88,6 @@ public class AccesorioDTO {
      */
     public void setEstacion(EstacionEntity estacion) {
         this.estacion = estacion;
-    }
-
-    /**
-     * Constructor de la clase. No necesita cuerpo.
-     */
-    public AccesorioDTO(){
-        //No necesita cuerpo
-        
-    }
-    
-    /**
-     * Constructor en caso de que llegue una entidad.
-     * @param entidad Entidad a convertir
-     */
-    public AccesorioDTO(AccesorioEntity entidad){
-        if(entidad!=null){
-            this.tipo = entidad.getTipo();
-            this.id = entidad.getId();
-            this.estacion = entidad.getEstacion();
-            this.reserva = entidad.getReserva();
-            this.reservado = entidad.getReservado();
-        }
     }
     
     /**

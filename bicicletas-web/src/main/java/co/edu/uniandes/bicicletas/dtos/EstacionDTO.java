@@ -24,6 +24,17 @@ public class EstacionDTO {
     }
 
     /**
+     * Constructor de la clase en que caso de que haya una entidad por parametro.
+     * @param entidad Con las caracteristicas por parametro
+     */
+    public EstacionDTO(EstacionEntity entidad) {
+        if(entidad!=null){
+            this.nombre = entidad.getName();
+            this.id = entidad.getId();
+        }
+    }
+    
+    /**
      * Metodo que retorna una dirección.
      * @return Un string con la direccion de la estación.
      */
@@ -53,17 +64,6 @@ public class EstacionDTO {
     */
     public void setCiudad(String ciudad) {
         this.ciudad = ciudad;
-    }
-    
-    /**
-     * Constructor de la clase en que caso de que haya una entidad por parametro.
-     * @param entidad Con las caracteristicas por parametro
-     */
-    public EstacionDTO(EstacionEntity entidad) {
-        if(entidad!=null){
-            this.nombre = entidad.getName();
-            this.id = entidad.getId();
-        }
     }
     
     /**

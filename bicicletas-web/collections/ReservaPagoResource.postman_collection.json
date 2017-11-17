@@ -1,0 +1,111 @@
+{
+	"variables": [],
+	"info": {
+		"name": "ReservaPagoResource",
+		"_postman_id": "186b8e8a-0b49-4d08-fa61-94f2afd6eed0",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtener la reserva asociada a un pago con id 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/pagos/1/reserva",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "Obtener la reserva asociada del pago con id 1\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener la reserva asociada a un pago con id 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/pagos/2/reserva",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "Obtener la reserva asociada del pago con id 1\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener la reserva asociada a un pago con id 3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/pagos/3/reserva",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "Obtener la reserva asociada del pago con id 1\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener la reserva asociada a un pago que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] = responseCode.code === 404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/pagos/43/reserva",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "Obtener la reserva asociada del pago con id 1\n"
+			},
+			"response": []
+		}
+	]
+}

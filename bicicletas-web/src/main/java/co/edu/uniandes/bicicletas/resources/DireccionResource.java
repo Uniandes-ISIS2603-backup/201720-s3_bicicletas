@@ -42,21 +42,37 @@ import javax.ws.rs.WebApplicationException;
          */
         private DireccionLogic direccionLogic;
 
-        public DireccionResource() {
+    /**
+     * Esta es la documentación 
+     * del metodo constructor.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
+     * constructor
+     */
+    public DireccionResource() {
             //constructor para la parte web
         }
 
-        @Inject public DireccionResource(DireccionLogic direccionLogic) {
+    /**
+     ** Esta es la documentación 
+     * del metodo direccionresource.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
+     * @param direccionLogic
+     */
+    @Inject public DireccionResource(DireccionLogic direccionLogic) {
             this.direccionLogic = direccionLogic;
         }
         /**
          * Constante para indicar que no existe
         */
-        private static final String NO_EXISTE = " no existe.";
+        private static final String NOEXISTE = "no existe.";
         /**
          * Constante de aviso
         */
-        private static final String aviso = "El recurso /direcciones/";
+        private static final String AVISO = "El recurso /direcciones/";
         
         //----------------------------------------------------------
         //Metodos
@@ -91,7 +107,7 @@ import javax.ws.rs.WebApplicationException;
         public DireccionDetailDTO getDireccion(@PathParam("id") Long id) throws BusinessLogicException {
             DireccionEntity entity = direccionLogic.getDireccion(id);
             if (entity == null) {
-                throw new WebApplicationException(aviso + id + NO_EXISTE, 404);
+                throw new WebApplicationException(AVISO + id + NOEXISTE, 404);
             }
             return new DireccionDetailDTO(entity);
         }
@@ -134,7 +150,7 @@ import javax.ws.rs.WebApplicationException;
             direccion.setId(id);
             DireccionEntity entity = direccionLogic.getDireccion(id);
             if (entity == null) {
-                throw new WebApplicationException(aviso + id + NO_EXISTE, 404);
+                throw new WebApplicationException(AVISO + id + NOEXISTE, 404);
             }
             return new DireccionDetailDTO(direccionLogic.updateDireccion(id, direccion.toEntity()));
         }
@@ -153,7 +169,7 @@ import javax.ws.rs.WebApplicationException;
         public void deleteDireccion(@PathParam("direccionesId") Long id) throws BusinessLogicException {
             DireccionEntity entity = direccionLogic.getDireccion(id);
             if (entity == null) {
-                throw new WebApplicationException(aviso + id + NO_EXISTE, 404);
+                throw new WebApplicationException(AVISO + id + NOEXISTE, 404);
             }
             direccionLogic.deleteDireccion(id);
         }

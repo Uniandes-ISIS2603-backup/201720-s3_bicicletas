@@ -29,6 +29,9 @@ import javax.ws.rs.WebApplicationException;
 @Stateless
 public class PagoLogic {
 
+    /**
+     * Logger de la clase PagoLogic
+     */
     private static final Logger LOGGER = Logger.getLogger(PagoLogic.class.getName());
     
     /**
@@ -53,6 +56,11 @@ public class PagoLogic {
     @Inject
     PuntoLogic puntoLogic;
 
+    /**
+     * Persiste el pago que revise por parametro en la base de datoss
+     * @param entity que se quiere persistir.
+     * @return el pago ya persistido en la base de datos. 
+     */
     public PagoEntity crearPago(PagoEntity entity) {
 
         LOGGER.info("Inicia proceso de creación de editorial");
@@ -63,6 +71,11 @@ public class PagoLogic {
         return entity;
     }
 
+    /**
+     * Retorna el pago con el id dato por parametro
+     * @param idPago del pago que se quiere recuperar
+     * @return el pago buscado, null de lo contrario
+     */
     public PagoEntity find(Long idPago) {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar pago con idPago={0}", idPago);
         PagoEntity estacion = persistence.find(idPago);
@@ -73,6 +86,11 @@ public class PagoLogic {
         return estacion;
     }
 
+    /**
+     * Actualiza el pago que es pasado por parametro
+     * @param el pago que se quiere actualizar
+     * @return el pago actualiazado. 
+     */
     public PagoEntity updatePago(PagoEntity pago) {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar pago con id={0}", pago.getId());
         // Note que, por medio de la inyección de dependencias se llama al método "update(entity)" que se encuentra en la persistencia.
@@ -81,6 +99,10 @@ public class PagoLogic {
         return newEntity;
     }
 
+    /**
+     * Elimina un pago dado su id.
+     * @param id del pago que se quiere eliminar.
+     */
     public void deletePago(Long id) {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar pago con id={0}", id);
         // Note que, por medio de la inyección de dependencias se llama al método "delete(id)" que se encuentra en la persistencia.
@@ -88,10 +110,19 @@ public class PagoLogic {
         LOGGER.log(Level.INFO, "Termina proceso de borrar pago con id={0}", id);
     }
 
+    /**
+     * Retorna todos los pagos del sistema
+     * @return una lista con los pagos del sistema
+     */
     public List<PagoEntity> findAll() {
         return persistence.findAll();
     }
 
+    /**
+     * Dado el id de un pago, retorna la reserva asociada.
+     * @param idPago cuya reserva se quiere recuperar.
+     * @return la reserva del pago cuyo id fue pasado por parametro
+     */
     public ReservaEntity darReserva(Long idPago) {
         PagoEntity pago = find(idPago);
         if (pago == null) {
@@ -102,6 +133,12 @@ public class PagoLogic {
         return pago.getReserva();
     }
 
+    /**
+     * Actualiza el estado de una reserva.
+     * @param idPago cuya reserva se quiere actualizar
+     * @param nuevoEstado al que se quiere cambiar el estado de la reserva.
+     * @return la reserva actualizada.
+     */
     public ReservaEntity actualizarEstadoReserva(Long idPago, Integer nuevoEstado) {
         ReservaEntity reserva = darReserva(idPago);
         Integer estadoReserva = reserva.getEstado();
@@ -118,6 +155,12 @@ public class PagoLogic {
         return reserva;
     }
 
+    /**
+     * Permite realizar el pago de una bicicleta con puntos.
+     * @param idReserva que se quiere pagar con puntos.
+     * @return el pago asociado a la reserva.
+     * @throws BusinessLogicException en caso que el usuario no tenga puntos suficientes.
+     */
     public PagoEntity pagarReservaConPuntos(Long idReserva) throws BusinessLogicException {
 
         ReservaEntity reserva = reservaPersistence.find(idReserva);
@@ -176,6 +219,14 @@ public class PagoLogic {
         return updatePago;
     }
 
+    /**
+     * Método con el que se paga una reserva, ya sea por PSE o tarjeta
+     * @param idReserva que se quiere pagar.
+     * @param metodoDePago que es 1 para tarjeta y 2 para PSE
+     * @param contrasenia que puede ser el CSV o la contraseña de PSE.
+     * @return el pago con el pago ya realiza.
+     * @throws BusinessLogicException si el estado en el que se encuentra el pago no es valido.
+     */
     public PagoEntity pagarReserva(Long idReserva, int metodoDePago, String contrasenia) throws BusinessLogicException {
         ReservaEntity reserva = reservaPersistence.find(idReserva);
         PagoEntity pago = reserva.getPago();
@@ -199,6 +250,14 @@ public class PagoLogic {
         return pago;
     }
 
+    /**
+     * Método con el que se paga con la tarjeta de credito.
+     * @param reserva que se quiere pagar con tarjeta de credito.
+     * @param pago asociado a la reserva.
+     * @param contraseniaTarjeta que está asociada al usuario de la reserva.
+     * @return el pago asociado a la reserva.
+     * @throws BusinessLogicException si la contraseña no es valida.
+     */
     private PagoEntity pagarConTarjeta(ReservaEntity reserva, PagoEntity pago, String contraseniaTarjeta) throws BusinessLogicException {
         UsuarioEntity usuario = reserva.getUsuarioReserva();
         int csvUsuario = usuario.getNumeroCsv();
@@ -223,6 +282,14 @@ public class PagoLogic {
         return pagoActualizado;
     }
 
+     /**
+     * Método con el que se paga con PSE.
+     * @param reserva que se quiere pagar con PSE
+     * @param pago asociado a la reserva.
+     * @param contraseniaPSE que está asociada al usuario de la reserva.
+     * @return el pago asociado a la reserva.
+     * @throws BusinessLogicException si la contraseña no es valida.
+     */
     private PagoEntity pagarConPSE(ReservaEntity reserva, PagoEntity pago, String contraseniaPSE) throws BusinessLogicException {
         UsuarioEntity usuario = reserva.getUsuarioReserva();
         String pseContraseniaReal = usuario.getContraseniaPSE();
@@ -246,10 +313,21 @@ public class PagoLogic {
         return pagoActualizado;
     }
 
+    /**
+     * Invoca a la logica de punto.
+     * @param idUsuario
+     * @throws BusinessLogicException 
+     */
     private void sumarPunto(Long idUsuario) throws BusinessLogicException {
         puntoLogic.createPunto(idUsuario);
     }
 
+    /**
+     * Solicitar un reembolso sobre una reserva.
+     * @param idReserva de la reserva sobre la cual se quiere solicitar un reembolso. 
+     * @return el pago asociado a la reserva.
+     * @throws BusinessLogicException  si la reserva no se encuentra en el estado pagado. 
+     */
     public PagoEntity solicitarReembolso(Long idReserva) throws BusinessLogicException {
         ReservaEntity reserva = reservaPersistence.find(idReserva);
         PagoEntity pago = reserva.getPago();
