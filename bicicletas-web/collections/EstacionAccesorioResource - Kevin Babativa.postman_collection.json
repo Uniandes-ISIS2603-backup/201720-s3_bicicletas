@@ -1,0 +1,53 @@
+{
+	"variables": [],
+	"info": {
+		"name": "EstacionAccesorioResource",
+		"_postman_id": "6bad898b-b709-b9f4-7d13-23312732048e",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET Accesorios de una estación",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/estaciones/1/accesorios/",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"tipo\" : 1,\n\t\"estacion\": {\n\t\t\"id\": 1\n\t}\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET Accesorio ID",
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/estaciones/1/accesorios/2",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
