@@ -14,63 +14,63 @@ import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 
 /**
- *
+ * Dto de reserva 
  * @author ds.chacon
  */
 public class ReservaDTO {
     
     
     /**
-     * 
+     *id de la reserva 
      */
     private Long idReserva;
     /**
-     * 
+     * estado de la reserva
      */
     private int estado;
     /**
-     * 
+     * usuario de la reserva
      */
     private UsuarioEntity usuarioReserva;
     /**
-     * 
+     * fecha de creacion de la reserva 
      */
     private String fechaReserva;
     /**
-     * 
+     *fecha inicio de la reserva 
      */
     private String fechaInicio;
     /**
-     * 
+     * Fecha fin de la reserva 
      */
     private String fechaFin;
     /**
-     * 
+     * estacion salida
      */
     private EstacionEntity estacionSalida;
     /**
-     * 
+     * Estacion de llegada
      */
     private Long estacionLlegada;
     /**
-     * 
+     * Precio Final
      */
     private double precioFinal;
     /**
-     * 
+     * boooleano que indica si hay Descuento 
      */
     private Boolean descuento;
     /**
-     * 
+     * Trnsaccion de la reserva
      */
     private TransaccionEntity transaccion;
     /**
-     * 
+     * Estacion de llegada
      */
     private EstacionEntity mostrarLlegada;
     
     /**
-     * 
+     * constructor vacio
      */
     public ReservaDTO(){
         //No necesita cuerpo
@@ -92,6 +92,12 @@ public class ReservaDTO {
         this.estacionLlegada = estacionLlegada;
     }
 
+    
+    public String isuue(){
+        String a = fechaReserva;
+         return a;
+    }
+    
     /**
      * 
      * @return 
