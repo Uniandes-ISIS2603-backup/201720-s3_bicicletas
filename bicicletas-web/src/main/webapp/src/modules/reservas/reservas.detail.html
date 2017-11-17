@@ -28,27 +28,27 @@
                     <hr>
                     <dt>Costo</dt>
                     <dd>{{currentReserva.precioFinal}}</dd>
-
+                    
                     <hr>
                     <div class="btn-group-vertical">
-                        <a class="btn btn-info" ui-sref="calificacionesCreate({cali: 0, idUsuario: currentReserva.usuarioReserva.documentoUsuario, idReserva: currentReserva.idReserva})"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp; Calificar estación de salida</a>
-                        <a class="btn btn-info" ui-sref="calificacionesCreate({cali: 1, idUsuario: currentReserva.usuarioReserva.documentoUsuario, idReserva: currentReserva.idReserva})"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp; Calificar estación de llegada</a>
                         <a class="btn btn-info" ng-click="irAPagar()"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp; Pagar</a>
                         <a class="btn btn-info" ng-click="verTransaccion()"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp; Ver transaccion</a>
 
                     </div>
+                                            </dl>
+
 
 
             </div>
-            <div class="col-md-9">
-                </dl>
-                <ul class="nav nav-tabs">
-                    <li role="presentation" class="active"> <a ui-sref="accesoriosReservaList({idReserva: currentReserva.idReserva})">Accesorios</a></li>        
-                    <li role="presentation" class="active"> <a ui-sref="bicicletasReservaList({idReserva: currentReserva.idReserva})">Bicicletas</a></li>
-                    <li role="presentation" class="active"> <a ui-sref="calificacionDetail({cali: 0, idUsuario: currentReserva.usuarioReserva.documentoUsuario, idReserva: currentReserva.idReserva})">Calificación estación de salida</a></li>
-                    <li role="presentation" class="active"> <a ui-sref="calificacionDetail({cali: 1, idUsuario: currentReserva.usuarioReserva.documentoUsuario, idReserva: currentReserva.idReserva})">Calificación estación de llegada</a></li>         
-                </ul>
 
+            <div class="col-md-9">
+                <ul class="nav nav-tabs" style="display: flex;justify-content: center">
+                    <li> <a ui-sref="accesoriosReservaList({idReserva: currentReserva.idReserva})">Accesorios</a></li>        
+                    <li> <a ui-sref="bicicletasReservaList({idReserva: currentReserva.idReserva})">Bicicletas</a></li>
+                    <li> <a ui-sref="calificacionDetail({cali: 0, idUsuario: currentReserva.usuarioReserva.documentoUsuario, idReserva: currentReserva.idReserva})">Calificación estación de salida</a></li>
+                    <li> <a ui-sref="calificacionDetail({cali: 1, idUsuario: currentReserva.usuarioReserva.documentoUsuario, idReserva: currentReserva.idReserva})">Calificación estación de llegada</a></li>         
+                </ul>
+                <br>
                 <div class="col-md-12">
                     <div ui-view="childrenView"></div>
                 </div>

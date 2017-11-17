@@ -21,7 +21,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.WebApplicationException;
 
 /**
- *
+ *Clase que modela la relacion reserva 
  * @author ds.chacon
  */
 public class ReservaEstacionResource {
@@ -34,9 +34,13 @@ public class ReservaEstacionResource {
     */
     private static final String RECURSO_RESERVA = "El recurso /reservas/";
     
-    /*
-    Dar la estacion de la reserva
-    */
+    /**
+     * Dar estacion
+     * @param idReserva
+     * @param llegada
+     * @return
+     * @throws BusinessLogicException 
+     */
     @GET
     public EstacionDTO  darEstacion (@PathParam("idReserva") Long idReserva, Integer llegada )throws BusinessLogicException{
         
@@ -52,6 +56,13 @@ public class ReservaEstacionResource {
      return Estacion;   
     }
     
+    
+    /**
+     * Dar estacion llegada
+     * @param idReserva
+     * @return
+     * @throws BusinessLogicException 
+     */
     @GET
     @Path("/llegada")
     public EstacionDetailDTO  darEstacionLlegada (@PathParam("idReserva") Long idReserva)throws BusinessLogicException{
@@ -68,6 +79,13 @@ public class ReservaEstacionResource {
      return estacion;   
     }
     
+    /**
+     *Colocar la reserva en la estacion 
+     * @param idReserva
+     * @param llegada
+     * @param idEstacion
+     * @throws BusinessLogicException 
+     */
     @POST
     @Path("{idEstacion: \\d+}")
     public void  setEstacion (@PathParam("idReserva") Long idReserva, Integer llegada ,@PathParam("idEstacion") Long idEstacion )throws BusinessLogicException{
@@ -80,6 +98,12 @@ public class ReservaEstacionResource {
         }  
     }
     
+    /**
+     * Asignar Estacion 
+     * @param idReserva
+     * @param estacion
+     * @throws BusinessLogicException 
+     */
     @PUT
     public void asignarEstacion (@PathParam("idReserva") Long idReserva, EstacionDTO estacion) throws BusinessLogicException{
         EstacionDTO estacion1 = new EstacionDTO(Estacionlogic.getEstacion(estacion.getId()));

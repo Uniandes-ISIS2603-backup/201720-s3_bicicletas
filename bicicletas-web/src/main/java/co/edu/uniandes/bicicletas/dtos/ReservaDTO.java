@@ -20,42 +20,99 @@ import java.util.GregorianCalendar;
 public class ReservaDTO {
     
     
-    
+    /**
+     * 
+     */
     private Long idReserva;
+    /**
+     * 
+     */
     private int estado;
+    /**
+     * 
+     */
     private UsuarioEntity usuarioReserva;
+    /**
+     * 
+     */
     private String fechaReserva;
+    /**
+     * 
+     */
     private String fechaInicio;
+    /**
+     * 
+     */
     private String fechaFin;
+    /**
+     * 
+     */
     private EstacionEntity estacionSalida;
+    /**
+     * 
+     */
     private Long estacionLlegada;
+    /**
+     * 
+     */
     private double precioFinal;
+    /**
+     * 
+     */
     private Boolean descuento;
+    /**
+     * 
+     */
     private TransaccionEntity transaccion;
+    /**
+     * 
+     */
     private EstacionEntity mostrarLlegada;
     
-    
+    /**
+     * 
+     */
     public ReservaDTO(){
         //No necesita cuerpo
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
     public Long getEstacionLlegada() {
         return estacionLlegada;
     }
 
+    /**
+     * 
+     * @param estacionLlegada 
+     */
     public void setEstacionLlegada(Long estacionLlegada) {
         this.estacionLlegada = estacionLlegada;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public EstacionEntity getMostrarLlegada() {
         return mostrarLlegada;
     }
 
+    /**
+     * 
+     * @param mostrarLlegada 
+     */
     public void setMostrarLlegada(EstacionEntity mostrarLlegada) {
         this.mostrarLlegada = mostrarLlegada;
     }
     
 
+    /**
+     * 
+     * @param entidad 
+     */
     public ReservaDTO(ReservaEntity entidad) {
         if(entidad!=null){
             this.idReserva = entidad.getId();
@@ -72,12 +129,20 @@ public class ReservaDTO {
         }
     }
     
+    /**
+     * 
+     * @param fecha
+     * @return 
+     */
     public String fechaOrg(Date fecha){
         String rta = fecha.toString();
         String nuevo=rta.substring(0,10)+" "+rta.substring(24,28)+" "+rta.substring(11,19);
         return nuevo;
     }
-    
+    /**
+     * 
+     * @return 
+     */
     public ReservaEntity toEntity() {
         ReservaEntity entity = new ReservaEntity();
         entity.setId(this.getIdReserva());
@@ -94,19 +159,33 @@ public class ReservaDTO {
         return entity;
     }
 
-    
+    /**
+     * 
+     * @return 
+     */
      public Date getFechaReserva() {
         return new GregorianCalendar().getTime();
     }
-
+/**
+ * 
+ * @param fechaReserva 
+ */
     public void setFechaReserva(String fechaReserva) {
         this.fechaReserva = fechaReserva;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public boolean isDescuento() {
         return descuento;
     }
 
+    /**
+     * 
+     * @param descuento 
+     */
     public void setDescuento(boolean descuento) {
         this.descuento = descuento;
     }
@@ -158,7 +237,11 @@ public class ReservaDTO {
     public String getFechaInicio() {
        return this.fechaInicio;
     }
-    
+    /**
+     * 
+     * @param pfecha
+     * @return 
+     */
     public Date pasceFecha ( String pfecha  ){
         
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -217,11 +300,19 @@ public class ReservaDTO {
     public void setPrecioFinal(double precioFinal) {
         this.precioFinal = precioFinal;
     }
+    
+    /**
+     * 
+     * @return 
+     */
 
     public TransaccionEntity getTransaccion() {
         return transaccion;
     }
-
+/**
+ * 
+ * @param transaccion 
+ */
     public void setTransaccion(TransaccionEntity transaccion) {
         this.transaccion = transaccion;
     }

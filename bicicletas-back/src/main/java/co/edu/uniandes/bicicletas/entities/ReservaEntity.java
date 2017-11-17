@@ -30,76 +30,77 @@ import uk.co.jemos.podam.common.PodamExclude;
 
 public class ReservaEntity extends BaseEntity implements Serializable {
     
-    /*
+    
+    /**
      *Constante que repesenta el estado de una reserva.Que la reseserva fue pagada 
      */
     public static final int PAGADA = 0;
-    /*
+    /**
      * La reserva requiere ser pagada 
      */
     public static final int PAGO = 1;
-    /*
+    /**
      * la reserva fue cancelada
      */
     public static final int CANCELADA = 2;
-    /*
+    /**
      * la reserva esta en uso
      */
     public static final int USO = 3;
-    /*
+    /**
      * el pago de l reserva fue reembolsado
      */
     public static final int REEMBOLSADO = 4;
-    /*
+    /**
      * La reserva esta finalizada
      */
     public static final int FINALIZADA = 5;
 
-    /*
+    /**
      * Fecha que el usuario define al crear la reserva
      */
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaEntrega;
-    /*
+    /**
      * Fecha que el usuariodefine para comenzar la reserva
      */
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaInicio;
     
     
-    /*
+    /**
      * estado de la reserva
      */
     private int estado;
 
-    /*
+    /**
      * Calificaciones de una reserva 
      */
     @OneToMany(mappedBy = "reserva", cascade = CascadeType.ALL)
     @PodamExclude
     private List<CalificacionEntity> calificaciones = new ArrayList<>();
 
-    /*
+    /**
      * Usuario que hace la reserva
      */
     @ManyToOne
     @PodamExclude
     @XmlInverseReference(mappedBy = "reservas")
     private UsuarioEntity usuarioReserva;
-    /*
+    /**
      * Estaciondonde comienza la reserva
      */
     @ManyToOne
     @PodamExclude
     @XmlInverseReference(mappedBy = "reservas")
     private EstacionEntity estacionSalida;
-    /*
+    /**
      * Estacion donde el usuario termina la reserva
      */
     @PodamExclude
     private Long estacionLlegada;
     
-    /*
+    /**
      * pago la reserva
      */
     @OneToOne(fetch = FetchType.LAZY)
@@ -107,7 +108,7 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     @PodamExclude
     private PagoEntity pago;
 
-    /*
+    /**
      * Transaccion de la reserva
      */
     @OneToOne
@@ -121,45 +122,45 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     @PodamExclude
     private List<BicicletaEntity> bicicletas = new ArrayList<>();
 
-    /*
+    /**
      * accesorios de la reserva
      */
     @OneToMany
     @PodamExclude
     private List<AccesorioEntity> accesorios = new ArrayList<>();
 
-    /*
+    /**
      * precio final de la reserva
      */
     private Double precioFinal;
 
-    /*
+    /**
      * fecha en la que fue creadala reserva la reserva
      */
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaReserva;
 
-    /*
+    /**
      *Fecha en la cual se finaliza una reserva 
      */
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaFinal;
 
-    /*
+    /**
      * Metodo que devuelve la estacion de llegada
      */
     public Long getEstacionLlegada() {
         return estacionLlegada;
     }
 
-    /*
+    /**
      *Metodo que mofifica la estacion de llegada
      */
     public void setEstacionLlegada(Long estacionLlegada) {
         this.estacionLlegada = estacionLlegada;
     }
 
-    /*
+    /**
      * Metodo que devuelve la fecha final
      */
     public Date getFechaFinal() {
@@ -171,39 +172,39 @@ public class ReservaEntity extends BaseEntity implements Serializable {
 
     }
     
-    /*
+    /**
      * metodo que modifica la fecha final
      */
     public void setFechaFinal(Date fechaFinal) {
         this.fechaFinal = fechaFinal;
     }
 
-    /*
+    /**
      * Atributo que representa si hay o no descuento
      */
     private Boolean Descuento;
 
-    /*
+    /**
      * metodo que devuelve la fecha de la reserva
      */
     public Date getFechaReserva() {
         return fechaReserva;
     }
-    /*
+    /**
      * metodo que modifica la fecha de la reserva
      */
     public void setFechaReserva(Date fechaReserva) {
         this.fechaReserva = fechaReserva;
     }
     
-    /*
+    /**
      * metodo que devuelve eldescuento
      */
     public Boolean getDescuento() {
         return Descuento;
     }
 
-    /*
+    /**
      * metodo que decide si hay descuento
      */
     public void setDescuento() {
@@ -333,7 +334,7 @@ public class ReservaEntity extends BaseEntity implements Serializable {
         precioFinal = calcularCostoFinal(fechaInicio, fechaEntrega, numBicicletgas);
     }
 
-    /*
+    /**
      * metodo que cambia el precio final
      */
     public void setPrecioFinal(Double precioFinal) {
@@ -381,27 +382,27 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     public void setCalificacionEstacionSalida(CalificacionEntity calificacionEstacionSalida) {
         this.calificaciones.add(0, calificacionEstacionSalida);
     }
-    /*
+    /**
      * metodo que devuelve los accesorios
      */
     public List<AccesorioEntity> getAccesorios() {
         return accesorios;
     }
-    /*
+    /**
      * metodo que modifica los accesorios 
      */
     public void setAccesorios(List<AccesorioEntity> accesorios) {
         this.accesorios = accesorios;
     }
 
-    /*
+    /**
      * metodo que decuelve la transaccion
      */
     public TransaccionEntity getTransaccion() {
         return transaccion;
     }
     
-    /*
+    /**
      * metodo que modifica la transaccion
      */
 
@@ -409,7 +410,7 @@ public class ReservaEntity extends BaseEntity implements Serializable {
         this.transaccion = transaccion;
     }
     
-    /*
+    /**
      * metodo que devuelve las calificaciones
      */
 

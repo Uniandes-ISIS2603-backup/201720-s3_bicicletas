@@ -36,9 +36,15 @@ import javax.ws.rs.WebApplicationException;
 @RequestScoped
 public class PagoResource {
 
+    /**
+     * Logica de pago.
+     */
     @Inject
     PagoLogic logic;
 
+    /**
+     * Logica de persistencia.
+     */
     @Inject
     ReservaPersistence reservaPersistence;
 
@@ -54,6 +60,11 @@ public class PagoResource {
     */
     private static final String RECURSO_PAGO = "El recurso /pagos/";
 
+    /**
+     * Invoca a la logica de pago y busca un pago por id
+     * @param id del pago que se quiere recuperar
+     * @return el pago con el id dato
+     */
     @GET
     @Path("{id: \\d+}")
     public PagoDetailDTO findPago(@PathParam("id") Long id) {
@@ -65,12 +76,23 @@ public class PagoResource {
         return new PagoDetailDTO(pago);
     }
 
+    /**
+     * Invoca la logica de pago y retorna todos los pagos del sistemas.
+     * @return una lista con todos los pagos dle sistema.
+     */
     @GET
     public List<PagoDetailDTO> findAll() {
         List<PagoEntity> listEntity = logic.findAll();
         return listEntity2DetailDTO(listEntity);
     }
 
+    /**
+     * Invoca la logica de pago y actualiza un pago
+     * @param id del pago que se quiere actualizar.
+     * @param pago que contiene la información con la que se quiere actualizar
+     * el pago.
+     * @return 
+     */
     @PUT
     @Path("{id: \\d+}")
     public PagoDetailDTO updatePago(@PathParam("id") Long id, PagoDetailDTO pago) {
@@ -85,6 +107,11 @@ public class PagoResource {
         return new PagoDetailDTO(updated);
     }
 
+    /**
+     * Invoca la logica del pago y persiste un pago.
+     * @param pago que se quiere persistir.
+     * @return el pago persistido en la base de datos.
+     */
     @POST
     public PagoDetailDTO createPago(PagoDetailDTO pago) {
         PagoEntity pagoEntity = pago.toEntity();
@@ -93,6 +120,11 @@ public class PagoResource {
         return new PagoDetailDTO(nuevoPago);
     }
 
+    
+    /**
+     * Invoca la logica del pago y elimina un pago.
+     * @param id del pago que se quiere eliminar.
+     */
     @DELETE
     @Path("{id: \\d+}")
     public void deletePago(@PathParam("id") Long id) {
@@ -106,6 +138,11 @@ public class PagoResource {
 
     }
 
+    /**
+     * Redirige al recurso que contiene la relación entre pago y reserva. 
+     * @param idPago
+     * @return 
+     */
     @Path("{idPago: \\d+}/reserva")
     public Class<ReservaPagoResource> getReservaPago(@PathParam("idPago") Long idPago) {
         PagoEntity pago = logic.find(idPago);
@@ -115,6 +152,11 @@ public class PagoResource {
         return ReservaPagoResource.class;
     }
 
+    /**
+     * Convierte una lista de entities de pago a DetailDTO
+     * @param entityList que se quiere convertir.
+     * @return la lista de pagos en formato DTO.
+     */
     private List<PagoDetailDTO> listEntity2DetailDTO(List<PagoEntity> entityList) {
         List<PagoDetailDTO> lista = new ArrayList<>();
         for (PagoEntity entity : entityList) {
@@ -124,6 +166,12 @@ public class PagoResource {
         return lista;
     }
 
+    /**
+     * Invoca la logica de pago y permite verificar si un pago fue realizado.
+     * @param idPago que se quiere verificar.
+     * @return el pago con el estado cambiado
+     * @throws BusinessLogicException si el pago no está en el estado requerido.
+     */
     @PUT
     @Path("{idPago: \\d+}/verificarPago")
     public PagoDetailDTO verificarPago(@PathParam("idPago") Long idPago) throws BusinessLogicException {
@@ -150,6 +198,12 @@ public class PagoResource {
 
     }
 
+    /**
+     * Invoca la logica de pago y permite aprobar la solicitud de reembolso.
+     * @param idPago de la cual se quiere aprobar su reembolso.
+     * @return el pago reembolsado.
+     * @throws BusinessLogicException si no se encuentra en el estado deseado.
+     */
     @PUT
     @Path("{idPago: \\d+}/verificarReembolso")
     public PagoDetailDTO verificarReembolso(@PathParam("idPago") Long idPago) throws BusinessLogicException {

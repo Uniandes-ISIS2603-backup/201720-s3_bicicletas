@@ -86,12 +86,18 @@ public class CalificacionLogic
         ReservaEntity reserva = reservaLogic.getReserva(idReserva);
         EstacionEntity estacion;
         List<CalificacionEntity> calificaciones = reserva.getCalificaciones();
+        CalificacionEntity calSalida = getCalificacionPos(calificaciones, 0);
+        
         boolean origen = false;
         
-        if (idEstacion == 0 && getCalificacionPos(calificaciones, 0) == null)
+        if (idEstacion == 0 && calSalida == null)
         {           
             origen = true; 
             estacion = estacionPersistence.find(reserva.getEstacionSalida().getId());
+        }
+        else if(idEstacion == 1 && calSalida == null)
+        {
+            throw new BusinessLogicException("Antes de calificar la estación de llegada, por favor califica la estación de salida");
         }
         else if(idEstacion == 1 && reserva.getEstacionLlegada() == null)
         {
