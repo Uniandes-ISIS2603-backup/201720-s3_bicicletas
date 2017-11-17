@@ -99,15 +99,13 @@
                         </button>   
                         <a class="navbar-brand" style="font-size: 20px;color: white">DEAP</a>
                     </div>
-                    <div class="collapse navbar-collapse" id="myNavbar" style="font-size: 16px">
-                        <ul class="nav navbar-nav">
-
-
-                            <li role="presentation"><a ui-sref="accesoriosList">Accesorios</a></li>
-                            <li role="presentation"><a ui-sref="bicicletasList">Bicicletas</a></li>
-                            <li role="presentation"><a ui-sref="estacionesList">Estaciones</a></li>
-                            <li role="presentation"><a ui-sref="usuariosList">Usuarios</a></li>   
-                            <li role="presentation"><a ui-sref="pagosList">Pagos</a></li>
+                    <div class="collapse navbar-collapse" id="myNavbar" style="font-size: 16px;text-align: center;">
+                        <ul class="nav navbar-nav" style="display: inline-block;float: none" >
+                            <li><a ui-sref="accesoriosList">Accesorios</a></li>
+                            <li><a ui-sref="bicicletasList">Bicicletas</a></li>
+                            <li><a ui-sref="estacionesList">Estaciones</a></li>
+                            <li><a ui-sref="pagosList">Pagos</a></li>
+                            <li><a ui-sref="usuariosList">Usuarios</a></li>                           
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li><a ui-sref="usuariosCreate"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>

@@ -7,10 +7,10 @@ var mod = ng.module("calificacionModule");
     mod.controller('calificacionesDetailCtrl', ['$scope', '$http', 'usuariosContext', 'reservasContext', '$state', 'calificacionesContext',
         function ($scope, $http, usuariosContext, reservasContext, $state, calificacionesContext) {
             $scope.cali = $state.params.cali;
-            $http.get(usuariosContext + '/' + $state.params.idUsuario + '/'+ reservasContext + '/' + $state.params.idReserva + '/' + calificacionesContext + '/' + $state.params.cali ).then(function (response) {
+            $scope.idCali = 0; 
+            $http.get(usuariosContext + '/' + $state.params.idUsuario + '/'+ reservasContext + '/' + $state.params.idReserva + '/' + calificacionesContext + '/' + $state.params.cali ).then(function (response) { 
                 $scope.currentCalificacion = response.data;
-                $scope.idCali = 1;
-
+                $scope.idCali = 1;               
             });
         }
     ]);

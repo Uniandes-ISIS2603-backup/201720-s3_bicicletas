@@ -18,13 +18,13 @@
             </div>
             <div class="col-md-9">
                 </dl>
-                <ul class="nav nav-tabs">
-                    <li role="presentation" class="active"> <a ui-sref="accesoriosEstacionList({id: currentEstacion.id})">Accesorios</a></li>
-                    <li role="presentation" class="active"> <a ui-sref="bicicletasEstacionList({id: currentEstacion.id})">Bicicletas</a></li>       
-                    <li role="presentation" class="active"> <a ui-sref="calificacionesEstacionList({id: currentEstacion.id})">Calificaciones</a></li>
-                    <li role="presentation" class="active"> <a ui-sref="reservasEstacionList({id: currentEstacion.id})">Reservas</a></li>  
+                <ul class="nav nav-tabs" style="display: flex;justify-content: center">
+                    <li> <a ui-sref="accesoriosEstacionList({id: currentEstacion.id})">Accesorios</a></li>
+                    <li> <a ui-sref="bicicletasEstacionList({id: currentEstacion.id})">Bicicletas</a></li>       
+                    <li> <a ui-sref="calificacionesEstacionList({id: currentEstacion.id})">Calificaciones</a></li>
+                    <li> <a ui-sref="reservasEstacionList({id: currentEstacion.id})">Reservas</a></li>  
                 </ul>
-                
+                <br>
                 <div class="col-md-12">
                 <div ui-view="childrenView"></div>
             </div>
