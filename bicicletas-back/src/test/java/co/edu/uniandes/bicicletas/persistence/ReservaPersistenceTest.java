@@ -196,18 +196,7 @@ public class ReservaPersistenceTest {
         Assert.assertEquals(newEntity.getFechaFinal(), entity.getFechaFinal());
         Assert.assertEquals(newEntity.getFechaReserva(), entity.getFechaReserva());
         Assert.assertEquals(newEntity.getPrecioFinal(), entity.getPrecioFinal(), 0);
- 
-        Assert.assertTrue(newEntity.getCalificaciones().isEmpty());
-        
-//        Date fechaUno = new Date(2018,11,11,1,0, 0);
-//        Date fechados = new Date(2018,11,11,11,0, 0);
-//        Date fechaTres = new Date(2018,10,11,1,0, 0);
-//        newEntity.setFechaInicio(fechaUno);
-//        newEntity.setFechaFinal(fechados);
-//        newEntity.setFechaReserva(fechaTres);
-        
-//        newEntity.setCalificacionEstacionLlegada(null);
-//        newEntity.setCalificacionEstacionSalida(null);
+          
         newEntity.setDescuento();
         newEntity.setUsuarioReserva(null);
         newEntity.setEstacionSalida(null);
@@ -216,6 +205,12 @@ public class ReservaPersistenceTest {
         newEntity.setTransaccion(null);
         newEntity.setAccesorios(null);
         newEntity.setPrecioFinalNumBicicletas(0);
+        
+        Assert.assertTrue(newEntity.getCalificaciones().isEmpty());
+        result.setCalificacionEstacionSalida(null);
+        result.setCalificacionEstacionLlegada(null);
+        Assert.assertNull(result.getCalificaciones().get(0));
+        Assert.assertNull(result.getCalificaciones().get(1));
         
         Assert.assertEquals(newEntity.calcularCostoFinal(newEntity.getFechaInicio(), newEntity.getFechaFinal(),0),0,0);
         
