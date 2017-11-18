@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="panel-group">
         <div class="panel panel-primary">
-            <div class="panel-heading"><label ng-if="!edit" id="createDireccion">Crear nueva direccion</label>
+            <div class="panel-heading" style="background-color: #222"><label ng-if="!edit" id="createDireccion">Crear nueva direccion</label>
                 <label ng-if="edit" id="editDireccion">Edit Direccion</label></div>
             <div class="panel-body">
                 <form ng-submit="createDireccion()" name="direccion">
@@ -31,7 +31,7 @@
                     </div>
                     <div ng-if="edit" class="panel-group" id="theDirecciones">
                         <div class="panel panel-info">
-                            <div class="panel-heading">Direcciones asociadas</div>
+                            <div class="panel-heading" style="background-color: #222">Direcciones asociadas</div>
                             <div class="panel-body">
                                 <div id="div2" ondrop="angular.element(document.getElementById('theDirecciones')).scope().dropAdd(event)" ondragover="angular.element(document.getElementById('theDirecciones')).scope().allowDrop(event)">
                                     <label></label>
@@ -42,7 +42,7 @@
                             </div>
                         </div>
                         <div class="panel panel-success">
-                            <div class="panel-heading">Todas las direcciones</div>
+                            <div class="panel-heading" style="background-color: #222">Todas las direcciones</div>
                             <div class="panel-body">
                                 <div id="div1" ondrop="angular.element(document.getElementById('theDirecciones')).scope().dropDelete(event)" ondragover="angular.element(document.getElementById('theDirecciones')).scope().allowDrop(event)">
                                     <label></label>

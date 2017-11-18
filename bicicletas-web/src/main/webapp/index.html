@@ -11,6 +11,8 @@
         <!-- Dependencias Externas -->
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="style.css">
+        
         <script src="bower_components/angular/angular.js"></script>
         <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
         <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>       
@@ -91,7 +93,7 @@
     </head>
     <body>
         <div class="container-fluid">
-            <nav class="navbar navbar-inverse">
+            <nav class="navbar navbar-inverse navbar-fixed-top">
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -108,8 +110,8 @@
                             <li><a ui-sref="usuariosList">Usuarios</a></li>                           
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a ui-sref="usuariosCreate"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                            <li><a ui-sref="usuariosCreate"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Registrarse</a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span>&nbsp;&nbsp;Iniciar sesión</a></li>
                         </ul>
                     </div>
                 </div>
