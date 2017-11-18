@@ -90,6 +90,7 @@ public class CalificacionLogic
         
         boolean origen = false;
         boolean noPuede = true;
+        String mensajeExcepcion = "Ya existe una calificación para la estación indicada dentro de la reserva";
         
         if (idEstacion == 0 && calSalida == null)
         {           
@@ -101,11 +102,11 @@ public class CalificacionLogic
         {
             if(calSalida == null)
             {
-                throw new BusinessLogicException("Antes de calificar la estación de llegada, por favor califica la estación de salida");
+                mensajeExcepcion = "Antes de calificar la estación de llegada, por favor califica la estación de salida";
             }
             else if(reserva.getEstacionLlegada() == null)
             {
-                throw new BusinessLogicException("No es posible calificar la estación de llegada, porque aún no ha sido definida.");
+                mensajeExcepcion = "No es posible calificar la estación de llegada, porque aún no ha sido definida.";
             }
             else if(getCalificacionPos(calificaciones, 1) == null)
             {
@@ -116,7 +117,7 @@ public class CalificacionLogic
             
         if(noPuede)
         {
-            throw new BusinessLogicException("Ya existe una calificación para la estación indicada dentro de la reserva");
+            throw new BusinessLogicException(mensajeExcepcion);
         }
                   
         caliEntity.setReserva(reserva);

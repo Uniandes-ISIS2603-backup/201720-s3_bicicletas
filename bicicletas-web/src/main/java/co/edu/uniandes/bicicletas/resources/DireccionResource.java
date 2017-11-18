@@ -41,6 +41,15 @@ import javax.ws.rs.WebApplicationException;
          * inyeccion de la logica de usuario
          */
         private DireccionLogic direccionLogic;
+        
+        /**
+         * Constante para indicar que no existe
+        */
+        private static final String NOEXISTE = "no existe.";
+        /**
+         * Constante de aviso
+        */
+        private static final String AVISO = "El recurso /direcciones/";
 
     /**
      * Esta es la documentación 
@@ -65,14 +74,6 @@ import javax.ws.rs.WebApplicationException;
     @Inject public DireccionResource(DireccionLogic direccionLogic) {
             this.direccionLogic = direccionLogic;
         }
-        /**
-         * Constante para indicar que no existe
-        */
-        private static final String NOEXISTE = "no existe.";
-        /**
-         * Constante de aviso
-        */
-        private static final String AVISO = "El recurso /direcciones/";
         
         //----------------------------------------------------------
         //Metodos
