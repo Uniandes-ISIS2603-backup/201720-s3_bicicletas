@@ -186,7 +186,7 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     /**
      * Atributo que representa si hay o no descuento
      */
-    private Boolean Descuento;
+    private Boolean descuento;
 
     /**
      * 
@@ -208,7 +208,7 @@ public class ReservaEntity extends BaseEntity implements Serializable {
      * @return 
      */
     public Boolean getDescuento() {
-        return Descuento;
+        return descuento;
     }
 
     /**
@@ -216,9 +216,9 @@ public class ReservaEntity extends BaseEntity implements Serializable {
      */
     public void setDescuento() {
         if (fechaReserva.getDay() == fechaInicio.getDay() && fechaReserva.getYear() == fechaInicio.getYear() && fechaReserva.getMonth() == fechaInicio.getMonth()) {
-            this.Descuento = false;
+            this.descuento = false;
         } else {
-            this.Descuento = true;
+            this.descuento = true;
         }
     }
 
@@ -358,7 +358,7 @@ public class ReservaEntity extends BaseEntity implements Serializable {
      * @param fin fecha en la que termina la cuenta.
      * @return el precio en el intervalo de tiempo;
      */
-    private double calcularCostoFinal(Date inicio, Date fin, int cantidadBicicletas) {
+    public double calcularCostoFinal(Date inicio, Date fin, int cantidadBicicletas) {
         double costo;
         int horasTotales = fin.getHours() - inicio.getHours();
 

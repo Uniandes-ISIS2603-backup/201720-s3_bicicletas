@@ -7,6 +7,7 @@ package co.edu.uniandes.bicicletas.persistence;
 
 import co.edu.uniandes.bicicletas.entities.ReservaEntity;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -195,15 +196,28 @@ public class ReservaPersistenceTest {
         Assert.assertEquals(newEntity.getFechaFinal(), entity.getFechaFinal());
         Assert.assertEquals(newEntity.getFechaReserva(), entity.getFechaReserva());
         Assert.assertEquals(newEntity.getPrecioFinal(), entity.getPrecioFinal(), 0);
-        
+ 
         Assert.assertTrue(newEntity.getCalificaciones().isEmpty());
         
+//        Date fechaUno = new Date(2018,11,11,1,0, 0);
+//        Date fechados = new Date(2018,11,11,11,0, 0);
+//        Date fechaTres = new Date(2018,10,11,1,0, 0);
+//        newEntity.setFechaInicio(fechaUno);
+//        newEntity.setFechaFinal(fechados);
+//        newEntity.setFechaReserva(fechaTres);
+        
+//        newEntity.setCalificacionEstacionLlegada(null);
+//        newEntity.setCalificacionEstacionSalida(null);
+        newEntity.setDescuento();
         newEntity.setUsuarioReserva(null);
         newEntity.setEstacionSalida(null);
         newEntity.setEstacionLlegada(null);
         newEntity.setPago(null);
         newEntity.setTransaccion(null);
         newEntity.setAccesorios(null);
+        newEntity.setPrecioFinalNumBicicletas(0);
+        
+        Assert.assertEquals(newEntity.calcularCostoFinal(newEntity.getFechaInicio(), newEntity.getFechaFinal(),0),0,0);
         
         Assert.assertTrue(newEntity.getBicicletas().isEmpty());
         Assert.assertNull(newEntity.getUsuarioReserva());
@@ -214,7 +228,9 @@ public class ReservaPersistenceTest {
         Assert.assertNull(newEntity.getAccesorios());
         
         
-        
+        newEntity.setBicicletas(null);
+        newEntity.setFechaFinal(null);
+        Assert.assertEquals(newEntity.getFechaFinal(),new Date(0, 0, 0));
         
     }
     
