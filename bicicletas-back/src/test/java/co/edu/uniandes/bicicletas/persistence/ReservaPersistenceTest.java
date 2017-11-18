@@ -196,7 +196,7 @@ public class ReservaPersistenceTest {
         Assert.assertEquals(newEntity.getFechaReserva(), entity.getFechaReserva());
         Assert.assertEquals(newEntity.getPrecioFinal(), entity.getPrecioFinal(), 0);
         
-        Assert.assertNull(newEntity.getCalificaciones());
+        Assert.assertTrue(newEntity.getCalificaciones().isEmpty());
         
         newEntity.setUsuarioReserva(null);
         newEntity.setEstacionSalida(null);
@@ -205,7 +205,7 @@ public class ReservaPersistenceTest {
         newEntity.setTransaccion(null);
         newEntity.setAccesorios(null);
         
-        Assert.assertNull(newEntity.getBicicletas());
+        Assert.assertTrue(newEntity.getBicicletas().isEmpty());
         Assert.assertNull(newEntity.getUsuarioReserva());
         Assert.assertNull(newEntity.getEstacionSalida());
         Assert.assertNull(newEntity.getEstacionLlegada());
