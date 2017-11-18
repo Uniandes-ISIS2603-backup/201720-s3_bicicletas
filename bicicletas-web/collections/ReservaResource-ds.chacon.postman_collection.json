@@ -1,0 +1,104 @@
+{
+	"variables": [],
+	"info": {
+		"name": "ReservasTets",
+		"_postman_id": "9eb4dc86-3608-fc77-c345-610a2b52dbd1",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear Reserva",
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/reservas/1",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"estacionSalida\":{\n\t\t\"id\":1\n\t},\n\t\"fechaInicio\":\"30/11/2017 01:00:00\",\n\t\"fechaEntrega\":\"30/11/2017 12:00:00\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Reservas",
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/reservas/1",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"estacionSalida\":{\n\t\t\"id\":1\n\t},\n\t\"fechaInicio\":\"11/11/2018 01:00:00\",\n\t\"fechaEntrega\":\"11/11/2018 22:00:00\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Cancelar Una reserva",
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/reservas/1",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get por id",
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/reservas/1\n ",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get all reservas ",
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/reservas",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Consulta de fechas entre una fecha determinada",
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/reservas/1/consulta",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"stringInicio\":\"01/01/2017 00:00:00\",\n\t\"stringFinal\":\"31/12/2017 00:00:00\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

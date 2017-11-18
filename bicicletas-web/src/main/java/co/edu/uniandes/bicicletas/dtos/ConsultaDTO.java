@@ -15,35 +15,66 @@ import java.util.Date;
  * @author ds.chacon
  */
 public class ConsultaDTO {
-    
+    /**
+     * 
+     */
     private UsuarioEntity usuario;
     
+    /**
+     * 
+     */
     private Date fechaInicio;
-            
+       
+    /**
+     * 
+     */
     private Date fechaFinal;
     
+    /**
+     * 
+     */
     private String stringInicio;
-            
+       
+    /**
+     * 
+     */
     private String stringFinal;
     
+    /**
+     * 
+     */
     public ConsultaDTO(){
        //No necesita cuerpo
         
     }
     
-
+    /**
+     * 
+     * @return 
+     */
     public UsuarioEntity getUsuario() {
         return usuario;
     }
-
+    
+    /**
+     * 
+     * @param usuario 
+     */
     public void setUsuario(UsuarioEntity usuario) {
         this.usuario = usuario;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public Date getFechaInicio() {
         return fechaInicio;
     }
-
+/**
+ * 
+ * @param fechaInicio 
+ */
     public void setFechaInicio( String fechaInicio) {
         
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -55,9 +86,18 @@ public class ConsultaDTO {
         }
     }
 
+    /**
+     * 
+     * @return 
+     */
     public Date getFechaFinal() {
         return fechaFinal;
     }
+    
+    /**
+     * 
+     * @param fechaFinal 
+     */
 
     public void setFechaFinal(String fechaFinal) {
          SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -69,18 +109,34 @@ public class ConsultaDTO {
         }
     }
 
+    /**
+     * 
+     * @return 
+     */
     public String getStringInicio() {
         return stringInicio;
     }
 
+    /**
+     * 
+     * @param stringInicio 
+     */
     public void setStringInicio(String stringInicio) {
         this.stringInicio = stringInicio;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public String getStringFinal() {
         return stringFinal;
     }
 
+    /**
+     * 
+     * @param stringFinal 
+     */
     public void setStringFinal(String stringFinal) {
         this.stringFinal = stringFinal;
     }

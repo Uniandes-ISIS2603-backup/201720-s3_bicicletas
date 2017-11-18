@@ -92,9 +92,12 @@ public class ReservaDTO {
         this.estacionLlegada = estacionLlegada;
     }
 
-    
+    /**
+     * 
+     * @return 
+     */
     public String isuue(){
-        String a = fechaReserva;
+        String a = fechaReserva+"000";
          return a;
     }
     
@@ -315,10 +318,10 @@ public class ReservaDTO {
     public TransaccionEntity getTransaccion() {
         return transaccion;
     }
-/**
- * 
- * @param transaccion 
- */
+    /**
+    * 
+    * @param transaccion 
+    */
     public void setTransaccion(TransaccionEntity transaccion) {
         this.transaccion = transaccion;
     }

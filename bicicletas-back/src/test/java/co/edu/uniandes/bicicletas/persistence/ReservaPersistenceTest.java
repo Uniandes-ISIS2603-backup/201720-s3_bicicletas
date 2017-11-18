@@ -29,7 +29,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
  *
- * @author cm.alba10
+ * @author ds.chacon
  */
 
 @RunWith(Arquillian.class)
@@ -195,6 +195,25 @@ public class ReservaPersistenceTest {
         Assert.assertEquals(newEntity.getFechaFinal(), entity.getFechaFinal());
         Assert.assertEquals(newEntity.getFechaReserva(), entity.getFechaReserva());
         Assert.assertEquals(newEntity.getPrecioFinal(), entity.getPrecioFinal(), 0);
+        
+        Assert.assertNull(newEntity.getCalificaciones());
+        
+        newEntity.setUsuarioReserva(null);
+        newEntity.setEstacionSalida(null);
+        newEntity.setEstacionLlegada(null);
+        newEntity.setPago(null);
+        newEntity.setTransaccion(null);
+        newEntity.setAccesorios(null);
+        
+        Assert.assertNull(newEntity.getBicicletas());
+        Assert.assertNull(newEntity.getUsuarioReserva());
+        Assert.assertNull(newEntity.getEstacionSalida());
+        Assert.assertNull(newEntity.getEstacionLlegada());
+        Assert.assertNull(newEntity.getPago());
+        Assert.assertNull(newEntity.getTransaccion());
+        Assert.assertNull(newEntity.getAccesorios());
+        
+        
         
         
     }

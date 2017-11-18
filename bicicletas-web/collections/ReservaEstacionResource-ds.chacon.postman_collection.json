@@ -1,0 +1,22 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Estaciom",
+		"_postman_id": "9f872c54-83ca-7368-012b-746280fce50d",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Da la estacion de salida",
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/estaciones/1/reservas",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

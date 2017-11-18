@@ -147,21 +147,24 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     private Date fechaFinal;
 
     /**
-     * Metodo que devuelve la estacion de llegada
+     * 
+     * @return 
      */
     public Long getEstacionLlegada() {
         return estacionLlegada;
     }
 
     /**
-     *Metodo que mofifica la estacion de llegada
+     * 
+     * @param estacionLlegada 
      */
     public void setEstacionLlegada(Long estacionLlegada) {
         this.estacionLlegada = estacionLlegada;
     }
 
     /**
-     * Metodo que devuelve la fecha final
+     * 
+     * @return 
      */
     public Date getFechaFinal() {
         if (fechaFinal == null) {
@@ -173,7 +176,8 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     }
     
     /**
-     * metodo que modifica la fecha final
+     * 
+     * @param fechaFinal 
      */
     public void setFechaFinal(Date fechaFinal) {
         this.fechaFinal = fechaFinal;
@@ -185,20 +189,23 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     private Boolean Descuento;
 
     /**
-     * metodo que devuelve la fecha de la reserva
+     * 
+     * @return 
      */
     public Date getFechaReserva() {
         return fechaReserva;
     }
     /**
-     * metodo que modifica la fecha de la reserva
+     * 
+     * @param fechaReserva 
      */
     public void setFechaReserva(Date fechaReserva) {
         this.fechaReserva = fechaReserva;
     }
     
     /**
-     * metodo que devuelve eldescuento
+     * 
+     * @return 
      */
     public Boolean getDescuento() {
         return Descuento;
@@ -209,9 +216,9 @@ public class ReservaEntity extends BaseEntity implements Serializable {
      */
     public void setDescuento() {
         if (fechaReserva.getDay() == fechaInicio.getDay() && fechaReserva.getYear() == fechaInicio.getYear() && fechaReserva.getMonth() == fechaInicio.getMonth()) {
-            this.Descuento = new Boolean(false);
+            this.Descuento = false;
         } else {
-            this.Descuento = new Boolean(true);
+            this.Descuento = true;
         }
     }
 
@@ -328,14 +335,16 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     }
 
     /**
-     *Calcula el prefio final 
+     * 
+     * @param numBicicletgas 
      */
     public void setPrecioFinalNumBicicletas(int numBicicletgas) {
         precioFinal = calcularCostoFinal(fechaInicio, fechaEntrega, numBicicletgas);
     }
 
     /**
-     * metodo que cambia el precio final
+     * 
+     * @param precioFinal 
      */
     public void setPrecioFinal(Double precioFinal) {
         this.precioFinal = precioFinal;
@@ -350,7 +359,7 @@ public class ReservaEntity extends BaseEntity implements Serializable {
      * @return el precio en el intervalo de tiempo;
      */
     private double calcularCostoFinal(Date inicio, Date fin, int cantidadBicicletas) {
-        double costo = 0;
+        double costo;
         int horasTotales = fin.getHours() - inicio.getHours();
 
         double precioHoras = cantidadBicicletas * PagoEntity.PRECIO_BICICLETA_HORA * ((double)horasTotales);
@@ -361,7 +370,7 @@ public class ReservaEntity extends BaseEntity implements Serializable {
         //Calcula los minutos adicionales
         int minutosInicio = inicio.getMinutes();
         int minutosFin = fin.getMinutes();
-        int minutos = 0;
+        int minutos;
 
         if (minutosFin >= minutosInicio) {
             minutos = minutosFin - minutosInicio;
@@ -383,27 +392,31 @@ public class ReservaEntity extends BaseEntity implements Serializable {
         this.calificaciones.add(0, calificacionEstacionSalida);
     }
     /**
-     * metodo que devuelve los accesorios
+     * 
+     * @return 
      */
     public List<AccesorioEntity> getAccesorios() {
         return accesorios;
     }
     /**
-     * metodo que modifica los accesorios 
+     * 
+     * @param accesorios 
      */
     public void setAccesorios(List<AccesorioEntity> accesorios) {
         this.accesorios = accesorios;
     }
 
     /**
-     * metodo que decuelve la transaccion
+     * 
+     * @return 
      */
     public TransaccionEntity getTransaccion() {
         return transaccion;
     }
     
     /**
-     * metodo que modifica la transaccion
+     * 
+     * @param transaccion 
      */
 
     public void setTransaccion(TransaccionEntity transaccion) {
@@ -411,7 +424,8 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     }
     
     /**
-     * metodo que devuelve las calificaciones
+     * 
+     * @return 
      */
 
     public List<CalificacionEntity> getCalificaciones() {

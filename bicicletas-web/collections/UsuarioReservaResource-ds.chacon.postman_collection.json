@@ -1,0 +1,64 @@
+{
+	"variables": [],
+	"info": {
+		"name": "UsuarioReserva",
+		"_postman_id": "506f54fa-2435-6108-16cf-24545f5930ce",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Todas la reservas de un usuario",
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/1/reservas\n ",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Reservas de usuario por id ",
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/1/reservas/1",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una Reserva desde usuario",
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/1/reservas",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"estacionSalida\":{\n\t\t\"id\":1\n\t},\n\t\"fechaInicio\":\"19/11/2017 01:00:00\",\n\t\"fechaEntrega\":\"19/11/2017 11:00:00\"\n\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Cancelar una reserva desde ususario",
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/usuarios/1/reservas/1",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

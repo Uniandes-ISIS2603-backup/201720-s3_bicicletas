@@ -80,6 +80,17 @@ public class ReservaResource {
         List<ReservaEntity> rta = logica.darReservasPorFecha(logicaUsuario.getUsuario(id).getReservas(),consulta.getFechaInicio(), consulta.getFechaFinal());
         return listEntity2DTO(rta);
     }
+    
+    
+    @GET
+    public List<ReservaDTO> getReservas(@PathParam("id") Long id) {
+        List<ReservaEntity> reservas = logica.getReservas();
+        if(reservas==null){
+          throw new WebApplicationException("No hay reservas en el sistema "+ id +NO_EXISTE, 404);
+        }
+        return listEntity2DTO(reservas) ;
+    }
+    
     /**
      * Da reserva por id
      * @param id
