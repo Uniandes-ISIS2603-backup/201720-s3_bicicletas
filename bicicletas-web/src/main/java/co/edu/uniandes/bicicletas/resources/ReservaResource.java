@@ -29,7 +29,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 
 /**
- *
+ * Clase de recurso reserva 
  * @author ds.chacon
  */
 @Path("/reservas")
@@ -81,7 +81,11 @@ public class ReservaResource {
         return listEntity2DTO(rta);
     }
     
-    
+    /**
+     * Dar reservas
+     * @param id
+     * @return 
+     */
     @GET
     public List<ReservaDTO> getReservas(@PathParam("id") Long id) {
         List<ReservaEntity> reservas = logica.getReservas();

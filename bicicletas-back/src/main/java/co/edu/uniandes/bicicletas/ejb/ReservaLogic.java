@@ -136,14 +136,14 @@ public class ReservaLogic
      * @param id
      * @throws WebApplicationException 
      */
-     public void deleteReserva(Long id) throws WebApplicationException
+     public void deleteReserva(Long id)
     {
-         ReservaEntity Reserva = persistence.find(id);
-         if(Reserva == null){
+         ReservaEntity localReserva = persistence.find(id);
+         if(localReserva == null){
              throw new WebApplicationException("No hay una reserva con dicho ID", 402);
          }
-         Reserva.setEstado(2);
-         persistence.update(Reserva);
+         localReserva.setEstado(2);
+         persistence.update(localReserva);
     }
      /**
       * Crear la reserva, aca se aplican la mayoria de regals de negocio
@@ -237,7 +237,7 @@ public class ReservaLogic
      * @return
      * @throws WebApplicationException 
      */
-    public ReservaEntity actualizarReserva(ReservaEntity entidad) throws WebApplicationException{
+    public ReservaEntity actualizarReserva(ReservaEntity entidad){
         if(persistence.find(entidad.getId())==null){
             throw new WebApplicationException("No hay una reserva con dicho id", 402);
         }
@@ -274,7 +274,7 @@ public class ReservaLogic
         List<ReservaEntity> filtro = new ArrayList<>(); 
         Iterator<ReservaEntity> iter = reservasUsuario.iterator();
         if(reservasUsuario.isEmpty()){
-            return null;
+            return reservasUsuario ;
         }
         while(iter.hasNext()){
             ReservaEntity local =iter.next();
