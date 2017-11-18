@@ -84,30 +84,37 @@ public class CalificacionLogic
     {
         LOGGER.info("Inicia proceso de crear una calificación");
         ReservaEntity reserva = reservaLogic.getReserva(idReserva);
-        EstacionEntity estacion;
+        EstacionEntity estacion = null;
         List<CalificacionEntity> calificaciones = reserva.getCalificaciones();
         CalificacionEntity calSalida = getCalificacionPos(calificaciones, 0);
         
         boolean origen = false;
+        boolean noPuede = true;
         
         if (idEstacion == 0 && calSalida == null)
         {           
             origen = true; 
+            noPuede = false;
             estacion = estacionPersistence.find(reserva.getEstacionSalida().getId());
         }
-        else if(idEstacion == 1 && calSalida == null)
+        else if(idEstacion == 1)
         {
-            throw new BusinessLogicException("Antes de calificar la estación de llegada, por favor califica la estación de salida");
+            if(calSalida == null)
+            {
+                throw new BusinessLogicException("Antes de calificar la estación de llegada, por favor califica la estación de salida");
+            }
+            else if(reserva.getEstacionLlegada() == null)
+            {
+                throw new BusinessLogicException("No es posible calificar la estación de llegada, porque aún no ha sido definida.");
+            }
+            else if(getCalificacionPos(calificaciones, 1) == null)
+            {
+                estacion = estacionPersistence.find(reserva.getEstacionLlegada());
+                noPuede = false;
+            }      
         }
-        else if(idEstacion == 1 && reserva.getEstacionLlegada() == null)
-        {
-            throw new BusinessLogicException("No es posible calificar la estación de llegada, porque aún no ha sido definida.");
-        }
-        else if (idEstacion == 1  && getCalificacionPos(calificaciones, 1) == null)
-        {
-            estacion = estacionPersistence.find(reserva.getEstacionLlegada());
-        }
-        else
+            
+        if(noPuede)
         {
             throw new BusinessLogicException("Ya existe una calificación para la estación indicada dentro de la reserva");
         }
