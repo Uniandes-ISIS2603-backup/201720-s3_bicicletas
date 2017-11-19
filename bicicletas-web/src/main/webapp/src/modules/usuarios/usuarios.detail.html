@@ -36,20 +36,26 @@
                 <dt>PSE</dt>
                 <dd>{{currentUsuario.contraseniaPSE}}</dd>
                  <hr>
-                        <a class="btn btn-info" ui-sref="usuarioConsulta({documentoUsuario: currentUsuario.documentoUsuario})"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp; Consulta </a>
+                        <a class="btn btn-secondary" ui-sref="usuarioConsulta({documentoUsuario: currentUsuario.documentoUsuario})"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp; Consulta </a>
             </div>
            
             <div class="col-md-9">
-                <ul class="nav nav-tabs" style="display: flex;justify-content: center">
+                <nav class="navbar navbar-inverse">
+                <ul class="nav navbar-nav" style="display: inline-block;float: none" >
                     <li> <a ui-sref="direccionesList({documentoUsuario: currentUsuario.documentoUsuario})">Direcciones</a></li>
                     <li> <a ui-sref="puntosList({documentoUsuario: currentUsuario.documentoUsuario})">Puntos</a></li>
                     <li> <a ui-sref="reservasList({documentoUsuario: currentUsuario.documentoUsuario})">Reservas</a></li>      
                 </ul>
                 <br>
+                </nav>
                 <div class="col-md-12">
                 <div ui-view="childrenView"></div>
+
             </div>
+                                                            
+
             </div>
+
         </div>
         <div class="row">
             
