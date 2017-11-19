@@ -11,7 +11,7 @@ import co.edu.uniandes.bicicletas.ejb.DireccionLogic;
 import co.edu.uniandes.bicicletas.entities.DireccionEntity;
 import java.util.ArrayList;
 import java.util.List;
-import javax.ejb.Stateless;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -31,157 +31,94 @@ import javax.ws.rs.WebApplicationException;
 @Path("direcciones")
     @Produces("application/json")
     @Consumes("application/json")
-    @Stateless
+    @RequestScoped
     public class DireccionResource {
 
-        //----------------------------------------------------------
-        //Atributos
-        //----------------------------------------------------------
-        /**
-         * inyeccion de la logica de usuario
-         */
-        private DireccionLogic direccionLogic;
-        
-        /**
-         * Constante para indicar que no existe
-        */
-        private static final String NOEXISTE = "no existe.";
-        /**
-         * Constante de aviso
-        */
-        private static final String AVISO = "El recurso /direcciones/";
+    @Inject
+    DireccionLogic direccionLogic;
+    private String aviso = "El recurso /direcciones/";
+    /**
+     *
+     * @return
+     * @throws BusinessLogicException
+     */
+    @GET
+    public List<DireccionDetailDTO> getDirecciones() throws BusinessLogicException {
+        return listDireccionEntity2DetailDTO(direccionLogic.getDirecciones());
+    }
 
     /**
-     * Esta es la documentación 
-     * del metodo constructor.
-     * Este metodo ha sido creado por
-     * Carlos Alba
-     * Este metodo se encarga de
-     * constructor
+     *
+     * @param id
+     * @return
+     * @throws BusinessLogicException
      */
-    public DireccionResource() {
-            //constructor para la parte web
+    @GET
+    @Path("{id: \\d+}")
+    public DireccionDetailDTO getDireccion(@PathParam("id") Long id) throws BusinessLogicException {
+        DireccionEntity entity = direccionLogic.getDireccion(id);
+        if (entity == null) {
+            throw new WebApplicationException(aviso + id + " no existe.", 404);
         }
+        return new DireccionDetailDTO(entity);
+    }
 
     /**
-     ** Esta es la documentación 
-     * del metodo direccionresource.
-     * Este metodo ha sido creado por
-     * Carlos Alba
-     * Este metodo se encarga de
-     * @param direccionLogic
+     * @param direccion
+     * @return
+     * @throws BusinessLogicException
      */
-    @Inject public DireccionResource(DireccionLogic direccionLogic) {
-            this.direccionLogic = direccionLogic;
-        }
-        
-        //----------------------------------------------------------
-        //Metodos
-        //----------------------------------------------------------
-        
-        /**
-         * Esta es la documentación 
-         * del metodo getdirecciones.
-         * Este metodo ha sido creado por
-         * Carlos Alba
-         * Este metodo se encarga de
-         * @return
-         * @throws BusinessLogicException
-         */
-        @GET
-        public List<DireccionDetailDTO> getDirecciones() throws BusinessLogicException {
-            return listDireccionEntity2DetailDTO(direccionLogic.getDirecciones());
-        }
+    @POST
+    public DireccionDetailDTO createDireccion(DireccionDetailDTO direccion) throws BusinessLogicException {        
+         return new DireccionDetailDTO(direccionLogic.createDireccion(direccion.toEntity()));
+    }
 
-        /**
-         *Esta es la documentación 
-         * del metodo getdirecion.
-         * Este metodo ha sido creado por
-         * Carlos Alba
-         * Este metodo se encarga de
-         * @param id
-         * @return
-         * @throws BusinessLogicException
-         */
-        @GET
-        @Path("{id: \\d+}")
-        public DireccionDetailDTO getDireccion(@PathParam("id") Long id) throws BusinessLogicException {
-            DireccionEntity entity = direccionLogic.getDireccion(id);
-            if (entity == null) {
-                throw new WebApplicationException(AVISO + id + NOEXISTE, 404);
-            }
-            return new DireccionDetailDTO(entity);
+    /**
+     *
+     * Ejemplo: { "description": "Las habilidades gerenciales en arquitectos de
+     * software.", "editorial": { "id": 200, "name": "Oveja Negra 2" }, "image":
+     * "https://images-na.ssl-images-amazon.com/images/I/516GyHY9p6L.jpg",
+     * "isbn": "930330149-8", "name": "La comunicación en el software",
+     * "publishingdate": "2017-08-20T00:00:00-05:00" }
+     *
+     * @param id
+     * @param direccion
+     * @return
+     * @throws BusinessLogicException
+     */
+    @PUT
+    @Path("{id: \\d+}")
+    public DireccionDetailDTO updateDireccion(@PathParam("id") Long id, DireccionDetailDTO direccion) throws BusinessLogicException {
+        direccion.setId(id);
+        DireccionEntity entity = direccionLogic.getDireccion(id);
+        if (entity == null) {
+            throw new WebApplicationException(aviso + id + " no existe.", 404);
         }
+        return new DireccionDetailDTO(direccionLogic.updateDireccion(id, direccion.toEntity()));
+    }
 
-        /**
-         *  *Esta es la documentación 
-         * del metodo getdirereateccion.
-         * Este metodo ha sido creado por
-         * Carlos Alba
-         * Este metodo se encarga de
-         * @param direccion
-         * @return
-         * @throws BusinessLogicException
-         */
-        @POST
-        public DireccionDetailDTO createDireccion(DireccionDetailDTO direccion) throws BusinessLogicException {        
-             return new DireccionDetailDTO(direccionLogic.createDireccion(direccion.toEntity()));
+    /**
+     *
+     * @param id
+     * @throws BusinessLogicException
+     */
+    @DELETE
+    @Path("{direccionesId: \\d+}")
+    public void deleteDireccion(@PathParam("direccionesId") Long id) throws BusinessLogicException {
+        DireccionEntity entity = direccionLogic.getDireccion(id);
+        if (entity == null) {
+            throw new WebApplicationException(aviso + id + " no existe.", 404);
         }
+        direccionLogic.deleteDireccion(id);
+    }
 
-        /**
-         * *Esta es la documentación 
-         * del metodo getdupdateirecion.
-         * Este metodo ha sido creado por
-         * Carlos Alba
-         * Este metodo se encarga de
-         * Ejemplo: { "description": "Las habilidades gerenciales en arquitectos de
-         * software.", "editorial": { "id": 200, "name": "Oveja Negra 2" }, "image":
-         * "https://images-na.ssl-images-amazon.com/images/I/516GyHY9p6L.jpg",
-         * "isbn": "930330149-8", "name": "La comunicación en el software",
-         * "publishingdate": "2017-08-20T00:00:00-05:00" }
-         *
-         * @param id
-         * @param direccion
-         * @return
-         * @throws BusinessLogicException
-         */
-        @PUT
-        @Path("{id: \\d+}")
-        public DireccionDetailDTO updateDireccion(@PathParam("id") Long id, DireccionDetailDTO direccion) throws BusinessLogicException {
-            direccion.setId(id);
-            DireccionEntity entity = direccionLogic.getDireccion(id);
-            if (entity == null) {
-                throw new WebApplicationException(AVISO + id + NOEXISTE, 404);
-            }
-            return new DireccionDetailDTO(direccionLogic.updateDireccion(id, direccion.toEntity()));
+    private List<DireccionDetailDTO> listDireccionEntity2DetailDTO(List<DireccionEntity> entityList) {
+        List<DireccionDetailDTO> list = new ArrayList<>();
+        for (DireccionEntity entity : entityList) {
+            list.add(new DireccionDetailDTO(entity));
         }
-
-        /**
-         * *Esta es la documentación 
-         * del metodo delete.
-         * Este metodo ha sido creado por
-         * Carlos Alba
-         * Este metodo se encarga de
-         * @param id
-         * @throws BusinessLogicException
-         */
-        @DELETE
-        @Path("{direccionesId: \\d+}")
-        public void deleteDireccion(@PathParam("direccionesId") Long id) throws BusinessLogicException {
-            DireccionEntity entity = direccionLogic.getDireccion(id);
-            if (entity == null) {
-                throw new WebApplicationException(AVISO + id + NOEXISTE, 404);
-            }
-            direccionLogic.deleteDireccion(id);
-        }
-
-        private List<DireccionDetailDTO> listDireccionEntity2DetailDTO(List<DireccionEntity> entityList) {
-            List<DireccionDetailDTO> list = new ArrayList<>();
-            for (DireccionEntity entity : entityList) {
-                list.add(new DireccionDetailDTO(entity));
-            }
-            return list;
-        }
+        return list;
+    }
     
     
 }
