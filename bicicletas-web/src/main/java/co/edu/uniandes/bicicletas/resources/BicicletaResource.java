@@ -100,6 +100,11 @@ public class BicicletaResource {
     public List<BicicletaDetailDTO> getBicicletas() throws BusinessLogicException {
         return listEntity2DetailDTO(bicicletasLogic.getBicicletas());
     }
+    /**
+     * GET Este metodo obtiene una biciclea especifica de las bicicletas del sistema.
+     * @param id Long con el id de la bicicleta.
+     * @return 
+     */
     @GET
     @Path("{id:\\d+}")
     public BicicletaDetailDTO getBicicletaId(@PathParam("id")Long id){
@@ -163,9 +168,9 @@ public class BicicletaResource {
         return list;
     }
 /**
-     *
+     *Este metodo llama a la clase de accesesorios bicicleta.
      * @param idBicicleta
-     * @return
+     * @return el CLASS AccesroioBicicletaResource.
      */
     @Path("{idBicicleta: \\d+}/accesorioBicicleta")
     public Class<AccesorioBicicletaBicicletaResource> getClassAcc(@PathParam("idBicicleta")Long idBicicleta) {

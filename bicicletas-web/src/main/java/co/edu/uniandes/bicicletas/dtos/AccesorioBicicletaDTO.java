@@ -39,21 +39,38 @@ public class AccesorioBicicletaDTO {
     public Long getId() {
         return id;
     }
+    /**
+     * Este metodo obtiene el metodo del DTO
+     * @return int con el nombre de la bicicleta.
+     */
     public int getNombre(){
         return nombre;
     }
+    /**
+     * Este metodo obtiene el String de la descripcion
+     * @return String de la descripcion
+     */
     public String getDescripcion(){
         return descripcion;
     }
     /**
+     * Este metodo setea el id con el valor dado.
      * @param id the id to set
      */
     public void setId(Long id) {
         this.id = id;
     }
+    /**
+     * Este metodo setea el int con el Nombre dado
+     * @param pNombre El nombre a setear.
+     */
     public void setNombre(int pNombre){
         this.nombre = pNombre;
     }
+    /**
+     * Este metodo Setea la descripcion con un valor dado
+     * @param pDescrip valor a setear la descripcion.
+     */
     public void setDescripcion(String pDescrip){
         this.descripcion = pDescrip;
     }
