@@ -31,11 +31,18 @@ import javax.ws.rs.ext.Provider;
 @Consumes("application/json")
 @Provider
 public class EstacionBicicletaResource {
+    /**
+     * Atributo para llamar la logica de estaciones.
+     */
     @Inject
     EstacionLogic estacionLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
     private static final Logger LOGGER = Logger.getLogger(EstacionBicicletaResource.class.getName());
     /**
-     * 
+     * GET Este metodo obtiene una de las bicicletas de una Estacion
+     * preCondicion: bicicelta ya debe estar creada.
+     * @param idEstacion id de la estacion  
+     * @param idBici id de la bicicleta
+     * @return retorna la bicicleta que esta en dicha estacion.
      */
     @GET
     @Path("{idBicicleta: \\d+}")
@@ -43,18 +50,36 @@ public class EstacionBicicletaResource {
         BicicletaEntity entity = estacionLogic.getBiciEstacion(idEstacion, idBici);
         return new BicicletaDetailDTO(entity);
     }
-    
+    /**
+     * GET Este metodo obtiene todas las bicicletas de una Estacion.
+     * @param idEstacion id de la estacion
+     * @return Lista de las bicicletas de la estacion.
+     */
     @GET
     public List<BicicletaDetailDTO> getBicicsEstacion(@PathParam("idEstacion") Long idEstacion) {
         List<BicicletaEntity> listEntity = estacionLogic.getBicisEstacion(idEstacion);
         return listEntity2DetailDTO(listEntity);
     }
+    /**
+     * PUT Este metodo entrega la bicicleta y hace un update de la Estacion y de la bicicleta.
+     * @param idEstacion
+     * @param bici
+     * @return
+     * @throws BusinessLogicException 
+     */
     @PUT
     public EstacionDTO updateBiciAso(@PathParam("idEstacion") Long idEstacion,BicicletaDetailDTO bici) throws BusinessLogicException{
         
         return new EstacionDTO(estacionLogic.upDateBici(idEstacion, bici.toEntity()));
         
     }
+    /**
+     * PUT: Este Metodo agrega una bicicleta existente a una Estación
+     * @param idEstacion
+     * @param bici
+     * @return
+     * @throws BusinessLogicException 
+     */
     @PUT
     @Path("/añadir")
     public EstacionDTO agregarBici(@PathParam("idEstacion") Long idEstacion,BicicletaDetailDTO bici) throws BusinessLogicException{
@@ -62,7 +87,11 @@ public class EstacionBicicletaResource {
         return new EstacionDTO(estacionLogic.añadirBici(idEstacion, bici.toEntity()));
         
     }
-    
+    /**
+     * Metodo para pasar una ListEntity a una ListDTO
+     * @param entityList ListEntity que guarda los objetos
+     * @return ListDTO que equivale a ListEntity
+     */
     private List<BicicletaDetailDTO> listEntity2DetailDTO(List<BicicletaEntity> entityList) {
         List<BicicletaDetailDTO> list = new ArrayList<>();
         for (BicicletaEntity entity : entityList) {

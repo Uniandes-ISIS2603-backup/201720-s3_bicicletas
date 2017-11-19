@@ -31,11 +31,18 @@ import javax.ws.rs.ext.Provider;
 @Consumes("application/json")
 @Provider
 public class ReservaBicicletaResource {
+    /**
+     * Este atributo es para Moldear la logica de reserva.
+     */
     @Inject
     ReservaLogic reservaLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
     private static final Logger LOGGER = Logger.getLogger(EstacionBicicletaResource.class.getName());
     /**
-     * 
+     * GET Este metodo obtiene una de todas las bicicletas de una Reserva.
+     * @param idReserva el id de la reserva
+     * @param idBici el id de la Bicicleta
+     * @return La bicicleta que esta siendo buscada.
+     * @throws BusinessLogicException Las excepciones de negocio etc.
      */
     @GET
     @Path("{idBicicleta: \\d+}")
@@ -43,17 +50,34 @@ public class ReservaBicicletaResource {
         BicicletaEntity entity = reservaLogic.getBici(idReserva, idBici);
         return new BicicletaDetailDTO(entity);
     }
-    
+    /**
+     * GET Todas las bicicletas que estan ligadas a una reserva.
+     * @param idReserva el id de la reserva.
+     * @return Lista de las bicicletas que estan en una reserva.
+     * @throws BusinessLogicException 
+     */
     @GET
     public List<BicicletaDetailDTO> getReservaBicicis(@PathParam("idReserva") Long idReserva)throws BusinessLogicException {
         List<BicicletaEntity> listEntity = reservaLogic.getBicis(idReserva);
         return listEntity2DetailDTO(listEntity);
     }
+    /**
+     * PUT Este metodo asoscia una bicicleta a una reserva
+     * @param idReserva id de la reserva.
+     * @param bicicleta bicicleta que se quiere asociar.
+     * @return Reserva con la bicicleta asociada.
+     * @throws BusinessLogicException 
+     */
     @PUT
     public ReservaDTO updateBiciAso(@PathParam("idReserva") Long idReserva,BicicletaDTO bicicleta)throws BusinessLogicException{
       
       return new ReservaDTO(reservaLogic.asignarBicicleta(idReserva, bicicleta.toEntity()));
     }
+    /**
+     * Este meotdo convierte un entityList en un DTOList
+     * @param entityList Entity list que se quiere convertir en DTOList.
+     * @return DTOList.
+     */
     private List<BicicletaDetailDTO> listEntity2DetailDTO(List<BicicletaEntity> entityList) {
         List<BicicletaDetailDTO> list = new ArrayList<>();
         for (BicicletaEntity entity : entityList) {

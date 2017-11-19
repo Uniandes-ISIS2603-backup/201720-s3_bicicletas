@@ -282,6 +282,7 @@ public class EstacionLogic
         aActualizar.getBicicletas().add(bici);
         reserva.setEstacionLlegada(idEstacion);
         bicicletas.remove(bici);
+        aActualizar.setBicicletas(bicicletas);  
         if(bicicletas.isEmpty()){
             reserva.setEstado(ReservaEntity.FINALIZADA);
             reserva.setFechaEntrega(new Date(System.currentTimeMillis()));
