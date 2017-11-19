@@ -30,6 +30,11 @@ public class UsuarioPersistence {
     protected EntityManager em;
     
    /**
+     * Esta es la documentación 
+     * del metodo findall.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * Devuelve todas los usuarios de la base de datos
      * @return Una lista con todas los usuarios que se encuentran en el sistema
      */
@@ -42,6 +47,11 @@ public class UsuarioPersistence {
     }
 
     /**
+     * * Esta es la documentación 
+     * del metodo find.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * Busca si hay algunan usuario con el id que se envía como argumento
      * @param id: id correspondiente al id del usuario buscado
      * @return el usuario buscado
@@ -52,6 +62,11 @@ public class UsuarioPersistence {
     }
     
     /**
+     * Esta es la documentación 
+     * del metodo create.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * Persiste un nuevo usuario
      * @param entity: Objeto usuario que se creará en la base de datos
      * @return devuelve la entidad creada con un id en la base de datos
@@ -65,6 +80,11 @@ public class UsuarioPersistence {
     }
     
     /**
+     * Esta es la documentación 
+     * del metodo update.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * Actualiza un usuario
      * @param entity: El usuario que viene con los nuevos datos
      * @return Un usuario que tiene los nuevo datos
@@ -85,6 +105,11 @@ public class UsuarioPersistence {
     }
     
     /**
+     * Esta es la documentación 
+     * del metodo findbyname.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * Busca si hay algunan usuario con el nombre que se envía de argumento
      *
      * @param name: Nombre del usuario que se está buscando

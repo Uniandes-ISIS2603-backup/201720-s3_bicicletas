@@ -25,9 +25,17 @@ import javax.ws.rs.ext.Provider;
 @Consumes("application/json")
 @Provider
 public class ReservaPagoResource {
+    /**
+     * La logica de pago.
+     */
     @Inject
     PagoLogic pagoLogic;
     
+    /**
+     * Retorna la reserva asociada a un pago
+     * @param idPago de la cual se quiere obtener la reserva.
+     * @return la reserva asociada al pago.
+     */
     @GET
     public ReservaDTO darReserva(@PathParam("idPago")Long idPago){
         ReservaEntity reserva = pagoLogic.darReserva(idPago);
@@ -35,6 +43,12 @@ public class ReservaPagoResource {
         return new ReservaDTO(reserva);
     }
     
+    /**
+     * Actualiza una reserva desde un pago.
+     * @param idPago cuya reserva se quiere actualizar.
+     * @param reserva con los datos que se van a actualizar.
+     * @return la reserva actualizada.
+     */
     @PUT
     public ReservaDTO actualizarReserva(@PathParam("idPago")Long idPago, ReservaDTO reserva){
         

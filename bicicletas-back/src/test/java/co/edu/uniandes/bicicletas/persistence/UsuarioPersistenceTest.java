@@ -118,6 +118,11 @@ public class UsuarioPersistenceTest {
         }
     }
     /**
+     * Esta es la documentación 
+     * del metodo cleardata.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * Borra los datos en la base de datos directamente utilizando el EntityManager y la UserTransaction
      */
     private void clearData() {
@@ -125,7 +130,15 @@ public class UsuarioPersistenceTest {
     }
 
 
- private void insertData() {
+     /**
+     * Esta es la documentación 
+     * del metodo insertdata.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
+     * Inserta los datos en la base de datos directamente utilizando el EntityManager y la UserTransaction
+     */
+       private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
             UsuarioEntity entity = factory.manufacturePojo(UsuarioEntity.class);
@@ -136,13 +149,23 @@ public class UsuarioPersistenceTest {
     }
     
     /**
-     *
+     *Esta es la documentación 
+     * del metodo teardown.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
+     * teardown
      */
     @After
     public void tearDown() {
     }
 
     /**
+     * Esta es la documentación 
+     * del metodo testfindall.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * Test of findAll method, of class UsuarioPersistence.
      * @throws java.lang.Exception
      */
@@ -162,6 +185,11 @@ public class UsuarioPersistenceTest {
     }
 
     /**
+     * Esta es la documentación 
+     * del metodo testfind.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * Test of find method, of class UsuarioPersistence.
      * @throws java.lang.Exception
      */
@@ -174,7 +202,17 @@ public class UsuarioPersistenceTest {
     }
 
     /**
+     * Esta es la documentación 
+     * del metodo testcreate.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * Test of create method, of class UsuarioPersistence.
+     * adicionalmente este 
+     * metodo tambien prueba
+     * cada uno de los
+     * atributos de el
+     * recurso usuario
      * @throws java.lang.Exception
      */
     @Test
@@ -192,8 +230,9 @@ public class UsuarioPersistenceTest {
         Assert.assertEquals(newEntity.getTipoId(), entity.getTipoId());
         Assert.assertNotNull(newEntity.getFechaNacimiento());
         Assert.assertNotNull(entity.getFechaNacimiento());
-         Assert.assertEquals(newEntity.getContraseniaPSE(), entity.getContraseniaPSE());
+        Assert.assertEquals(newEntity.getContraseniaPSE(), entity.getContraseniaPSE());
         Assert.assertEquals(newEntity.getTarjetaCredito(), entity.getTarjetaCredito());
+        Assert.assertEquals(newEntity.getPassword(), entity.getPassword());
         Assert.assertEquals(newEntity.getNumeroCsv(), entity.getNumeroCsv());
         Assert.assertNotNull(newEntity.getReservas());
         Assert.assertNotNull(entity.getDirecciones());
@@ -202,6 +241,11 @@ public class UsuarioPersistenceTest {
     }
     
     /**
+     * Esta es la documentación 
+     * del metodo testupdate.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * Test of update method, of class UsuarioPersistence.
      * @throws java.lang.Exception
      */
@@ -222,6 +266,11 @@ public class UsuarioPersistenceTest {
 
 
     /**
+     * Esta es la documentación 
+     * del metodo test delete.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * Test of delete method, of class UsuarioPersistence.
      * @throws java.lang.Exception
      */
@@ -231,6 +280,23 @@ public class UsuarioPersistenceTest {
         persistence.delete(entity.getDocumentoUsuario());
         UsuarioEntity deleted = em.find(UsuarioEntity.class, entity.getDocumentoUsuario());
         Assert.assertNull(deleted);
+    }
+    
+    /**
+     * Esta es la documentación 
+     * del metodo testfindbyname.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
+     * Test of findByName method, of class UsuarioPersistence.
+     * @throws java.lang.Exception
+     */
+    @Test
+    public void testFindByName() throws Exception {
+        UsuarioEntity entity = data.get(0);
+        UsuarioEntity newEntity = persistence.findByName(entity.getNombre());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getNombre(), newEntity.getNombre());
     }
     
 }

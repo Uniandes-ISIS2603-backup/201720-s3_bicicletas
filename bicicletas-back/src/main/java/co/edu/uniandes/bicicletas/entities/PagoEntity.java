@@ -149,68 +149,131 @@ public class PagoEntity extends BaseEntity implements Serializable{
      */
     private Integer bicicletasPendientes;
     
+    /**
+     * Retorna el estado actual del pago.
+     * @return el estado del pago.
+     */
     public Integer getEstado() {
         return estado;
     }
 
+    /**
+     * Cambia el estado en el que se encuentra el pago.
+     * @param estado por el cual se quiere cambiar el pago.
+     */
     public void setEstado(Integer estado) {
         this.estado = estado;
     }
 
+    /**
+     * Retorna la fecha en la que se efectuó el pago.
+     * @return la feche del pago.
+     */
     public Date getFecha() {
         return fecha;
     }
 
+    /**
+     * Cambia la fecha en la que se efectuó el pago.
+     * @param fecha por la que se quiere cambiar la fecha del pago..
+     */
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
+     /**
+     * Retorna la transacción asociada al pago.
+     * @return la transacción asociada al pago.
+     */
     public Long getIdTransaccion() {
         return idTransaccion;
     }
 
+    /**
+     * Cambia la transacción asociada a un pago.
+     * @param idTransaccion 
+     */
     public void setIdTransaccion(Long idTransaccion) {
         this.idTransaccion = idTransaccion;
     }
 
+    /**
+     * Retorna el usuario asociado a un pago.
+     * @return el id del usuario.
+     */
     public Long getIdUsuario() {
         return idUsuario;
     }
 
+    /**
+     * Cambia el usuario asociado a un pago
+     * @param idUsuario del usuario que se quiere cambiar del pago.
+     */
     public void setIdUsuario(Long idUsuario) {
         this.idUsuario = idUsuario;
     }
 
+     /**
+     * Retorna el monto del pago.
+     * @return el monto del pago.
+     */
     public Double getMonto() {
         return monto;
     }
 
+    /**
+     * Cambia el monto del pago
+     * @param monto por el que se quiere cambiar el monto del pago.
+     */
     public void setMonto(Double monto) {
         this.monto = monto;
     }
     
-    
+    /**
+     * Retorna la reserva asociado al pago.
+     * @return la reserva del pago.
+     */
     public ReservaEntity getReserva(){
         return reserva;
     }
     
-    
+    /**
+     * Cambia la reserva asociada a un pago.
+     * @param reserva por la que se quiere cambiar.
+     */
     public void setReserva(ReservaEntity reserva){
         this.reserva = reserva;
     }
 
+    /**
+     * El método de pago empleado para realizar el pago.
+     * @return el método de pago empleado.
+     */
     public Integer getMetodoDePago() {
         return metodoDePago;
     }
 
+    /**
+     * Cambia el metodo de pago empleado para realziar el pago.
+     * @param metodoDePago por el que se quiere cambiar.
+     */
     public void setMetodoDePago(Integer metodoDePago) {
         this.metodoDePago = metodoDePago;
     }
 
+     /**
+     * Retorna el número de bicicletas que no ha sido pagado.
+     * @return el número de bicicletas pendientes.
+     */
     public Integer getBicicletasPendientes() {
         return bicicletasPendientes;
     }
 
+    /**
+     * Cambia el numero de bicicletas pendientes
+     * @param bicicletasPendientes por las cuales se quiere cambiar las bicicletas
+     * pendientes.
+     */
     public void setBicicletasPendientes(Integer bicicletasPendientes) {
         this.bicicletasPendientes = bicicletasPendientes;
     }

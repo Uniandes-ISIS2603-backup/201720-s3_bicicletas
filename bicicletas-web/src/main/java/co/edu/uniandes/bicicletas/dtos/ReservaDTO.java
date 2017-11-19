@@ -14,48 +14,114 @@ import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 
 /**
- *
+ * Dto de reserva 
  * @author ds.chacon
  */
 public class ReservaDTO {
     
     
-    
+    /**
+     *id de la reserva 
+     */
     private Long idReserva;
+    /**
+     * estado de la reserva
+     */
     private int estado;
+    /**
+     * usuario de la reserva
+     */
     private UsuarioEntity usuarioReserva;
+    /**
+     * fecha de creacion de la reserva 
+     */
     private String fechaReserva;
+    /**
+     *fecha inicio de la reserva 
+     */
     private String fechaInicio;
+    /**
+     * Fecha fin de la reserva 
+     */
     private String fechaFin;
+    /**
+     * estacion salida
+     */
     private EstacionEntity estacionSalida;
+    /**
+     * Estacion de llegada
+     */
     private Long estacionLlegada;
+    /**
+     * Precio Final
+     */
     private double precioFinal;
+    /**
+     * boooleano que indica si hay Descuento 
+     */
     private Boolean descuento;
+    /**
+     * Trnsaccion de la reserva
+     */
     private TransaccionEntity transaccion;
+    /**
+     * Estacion de llegada
+     */
     private EstacionEntity mostrarLlegada;
     
-    
+    /**
+     * constructor vacio
+     */
     public ReservaDTO(){
         //No necesita cuerpo
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
     public Long getEstacionLlegada() {
         return estacionLlegada;
     }
 
+    /**
+     * 
+     * @param estacionLlegada 
+     */
     public void setEstacionLlegada(Long estacionLlegada) {
         this.estacionLlegada = estacionLlegada;
     }
 
+    /**
+     * 
+     * @return 
+     */
+    public String isuue(){
+        String a = fechaReserva+"000";
+         return a;
+    }
+    
+    /**
+     * 
+     * @return 
+     */
     public EstacionEntity getMostrarLlegada() {
         return mostrarLlegada;
     }
 
+    /**
+     * 
+     * @param mostrarLlegada 
+     */
     public void setMostrarLlegada(EstacionEntity mostrarLlegada) {
         this.mostrarLlegada = mostrarLlegada;
     }
     
 
+    /**
+     * 
+     * @param entidad 
+     */
     public ReservaDTO(ReservaEntity entidad) {
         if(entidad!=null){
             this.idReserva = entidad.getId();
@@ -72,12 +138,20 @@ public class ReservaDTO {
         }
     }
     
+    /**
+     * 
+     * @param fecha
+     * @return 
+     */
     public String fechaOrg(Date fecha){
         String rta = fecha.toString();
         String nuevo=rta.substring(0,10)+" "+rta.substring(24,28)+" "+rta.substring(11,19);
         return nuevo;
     }
-    
+    /**
+     * 
+     * @return 
+     */
     public ReservaEntity toEntity() {
         ReservaEntity entity = new ReservaEntity();
         entity.setId(this.getIdReserva());
@@ -94,19 +168,33 @@ public class ReservaDTO {
         return entity;
     }
 
-    
+    /**
+     * 
+     * @return 
+     */
      public Date getFechaReserva() {
         return new GregorianCalendar().getTime();
     }
-
+/**
+ * 
+ * @param fechaReserva 
+ */
     public void setFechaReserva(String fechaReserva) {
         this.fechaReserva = fechaReserva;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public boolean isDescuento() {
         return descuento;
     }
 
+    /**
+     * 
+     * @param descuento 
+     */
     public void setDescuento(boolean descuento) {
         this.descuento = descuento;
     }
@@ -158,7 +246,11 @@ public class ReservaDTO {
     public String getFechaInicio() {
        return this.fechaInicio;
     }
-    
+    /**
+     * 
+     * @param pfecha
+     * @return 
+     */
     public Date pasceFecha ( String pfecha  ){
         
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -217,11 +309,19 @@ public class ReservaDTO {
     public void setPrecioFinal(double precioFinal) {
         this.precioFinal = precioFinal;
     }
+    
+    /**
+     * 
+     * @return 
+     */
 
     public TransaccionEntity getTransaccion() {
         return transaccion;
     }
-
+    /**
+    * 
+    * @param transaccion 
+    */
     public void setTransaccion(TransaccionEntity transaccion) {
         this.transaccion = transaccion;
     }

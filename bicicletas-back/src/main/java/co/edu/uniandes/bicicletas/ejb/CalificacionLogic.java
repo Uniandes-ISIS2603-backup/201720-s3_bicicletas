@@ -84,26 +84,40 @@ public class CalificacionLogic
     {
         LOGGER.info("Inicia proceso de crear una calificación");
         ReservaEntity reserva = reservaLogic.getReserva(idReserva);
-        EstacionEntity estacion;
+        EstacionEntity estacion = null;
         List<CalificacionEntity> calificaciones = reserva.getCalificaciones();
-        boolean origen = false;
+        CalificacionEntity calSalida = getCalificacionPos(calificaciones, 0);
         
-        if (idEstacion == 0 && getCalificacionPos(calificaciones, 0) == null)
+        boolean origen = false;
+        boolean noPuede = true;
+        String mensajeExcepcion = "Ya existe una calificación para la estación indicada dentro de la reserva";
+        
+        if (idEstacion == 0 && calSalida == null)
         {           
             origen = true; 
+            noPuede = false;
             estacion = estacionPersistence.find(reserva.getEstacionSalida().getId());
         }
-        else if(idEstacion == 1 && reserva.getEstacionLlegada() == null)
+        else if(idEstacion == 1)
         {
-            throw new BusinessLogicException("No es posible calificar la estación de llegada, porque aún no ha sido definida.");
+            if(calSalida == null)
+            {
+                mensajeExcepcion = "Antes de calificar la estación de llegada, por favor califica la estación de salida";
+            }
+            else if(reserva.getEstacionLlegada() == null)
+            {
+                mensajeExcepcion = "No es posible calificar la estación de llegada, porque aún no ha sido definida.";
+            }
+            else if(getCalificacionPos(calificaciones, 1) == null)
+            {
+                estacion = estacionPersistence.find(reserva.getEstacionLlegada());
+                noPuede = false;
+            }      
         }
-        else if (idEstacion == 1  && getCalificacionPos(calificaciones, 1) == null)
+            
+        if(noPuede)
         {
-            estacion = estacionPersistence.find(reserva.getEstacionLlegada());
-        }
-        else
-        {
-            throw new BusinessLogicException("Ya existe una calificación para la estación indicada dentro de la reserva");
+            throw new BusinessLogicException(mensajeExcepcion);
         }
                   
         caliEntity.setReserva(reserva);

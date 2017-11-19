@@ -40,6 +40,7 @@ public class UsuarioEntity implements Serializable {
    private Long tarjetaCredito;
    private int numeroCsv;
    private String contraseniaPSE;
+   private String password;
    
    @OneToMany(mappedBy = "usuarioReserva")
    @PodamExclude
@@ -58,24 +59,58 @@ public class UsuarioEntity implements Serializable {
    @PodamExclude
    @OneToMany(mappedBy = "usuarioPunto", cascade=CascadeType.ALL)
    private List<PuntoEntity> puntos = new  ArrayList<>();
-    
+
    
-   
-   
- /**
- *Metodos
- */
-   
+
     /**
-     *
+     *Metodos 
+     */
+   /**
+     *  Esta es la documentación
+     * del metodo getpassword.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
+     * get password
      * @return
      */
-   public List<DireccionEntity> getDirecciones() {   
+   public String getPassword() {   
+        return password;
+    }
+   
+   /**
+     *  Esta es la documentación 
+     * del metodo setpassword.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
+     * set password
+     * @param password
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    /**
+     *  Esta es la documentación
+     * del metodo getdirecciones.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
+     * get direcciones
+     * @return
+     */
+    public List<DireccionEntity> getDirecciones() {   
         return direcciones;
     }
 
     /**
-     *
+     *  Esta es la documentación 
+     * del metodo setdirecciones.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
+     * set direcciones
      * @param direcciones
      */
     public void setDirecciones(List<DireccionEntity> direcciones) {
@@ -83,7 +118,12 @@ public class UsuarioEntity implements Serializable {
     }
 
     /**
-     *
+     * Esta es la documentación 
+     * del metodo getpuntos.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
+     * get puntos
      * @return
      */
     public List<PuntoEntity> getPuntos() {
@@ -91,7 +131,12 @@ public class UsuarioEntity implements Serializable {
     }
 
     /**
-     *
+     ** Esta es la documentación 
+     * del metodo set puntos.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
+     * set puntos
      * @param puntos
      */
     public void setPuntos(List<PuntoEntity> puntos) {
@@ -99,7 +144,12 @@ public class UsuarioEntity implements Serializable {
     }
    
     /**
-     *
+     * Esta es la documentación 
+     * del metodo gettipoid.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
+     * get tipo id
      * @return
      */
     public Integer getTipoId() {
@@ -107,7 +157,12 @@ public class UsuarioEntity implements Serializable {
     }
 
     /**
-     *
+     * Esta es la documentación 
+     * del metodo settipoid.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
+     * set tipoid
      * @param tipoId
      */
     public void setTipoId(Integer tipoId) {
@@ -115,7 +170,12 @@ public class UsuarioEntity implements Serializable {
     }
 
     /**
-     *
+     * Esta es la documentación 
+     * del metodo getdocumentousario.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
+     * get documento usuario
      * @return
      */
     public Long getDocumentoUsuario() {
@@ -123,7 +183,12 @@ public class UsuarioEntity implements Serializable {
     }
 
     /**
-     *
+      * Esta es la documentación 
+     * del metodo setdocumentousario.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
+     * set documento usuario
      * @param documentoUsuario
      */
     public void setDocumentoUsuario(Long documentoUsuario) {
@@ -131,7 +196,12 @@ public class UsuarioEntity implements Serializable {
     }
 
     /**
-     *
+     * Esta es la documentación 
+     * del metodo getnombre.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
+     * get nombre
      * @return
      */
     public String getNombre() {

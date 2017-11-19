@@ -29,7 +29,7 @@ public class AccesorioLogic {
      * @return accesorio con el id dado.
      * @throws WebApplicationException 
      */
-    public AccesorioEntity getAccesorio(Long id) throws WebApplicationException{
+    public AccesorioEntity getAccesorio(Long id){
         AccesorioEntity accesorio = persistence.find(id);
         return accesorio;
     }
@@ -38,7 +38,7 @@ public class AccesorioLogic {
      * @param id del acccesorio
      * @throws WebApplicationException 
      */
-    public void deleteAccesorio(Long id) throws WebApplicationException{
+    public void deleteAccesorio(Long id){
         AccesorioEntity accesorio = persistence.find(id);
         if(accesorio == null){
             throw new WebApplicationException("No hay un accesorio con dicho ID", 402);
@@ -76,7 +76,7 @@ public class AccesorioLogic {
      * @return el accesorio actualizado.
      * @throws WebApplicationException 
      */
-    public AccesorioEntity actualizarAccesorio(AccesorioEntity entidad) throws WebApplicationException{
+    public AccesorioEntity actualizarAccesorio(AccesorioEntity entidad){
         if(persistence.find(entidad.getId())==null){
             throw new WebApplicationException("No hay una accesorio con dicho id", 402);
         }
@@ -132,7 +132,12 @@ public class AccesorioLogic {
     }
     
    
-    
+    /**
+     * Metodo que retorna una estacion dada una direccion y una estacion.
+     * @param direccionId ID de la direccion a Consultar
+     * @param estacionesId ID De la estacion a consultar
+     * @return Una estacion entity.
+     */
     public EstacionEntity addEstacion(Long direccionId, Long estacionesId) {
         AccesorioEntity direccionEntity = getAccesorio(direccionId);
         EstacionEntity estacionesEntity = new EstacionEntity();

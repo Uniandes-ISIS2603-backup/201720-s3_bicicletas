@@ -21,6 +21,11 @@ public class UsuarioDetailDTO extends UsuarioDTO {
     }
 
     /**
+     * Esta es la documentación 
+     * del metodo detaildto.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * Constructor para transformar un Entity a un DTO
      *
      * @param entity
@@ -30,6 +35,11 @@ public class UsuarioDetailDTO extends UsuarioDTO {
     }
 
     /**
+     * Esta es la documentación 
+     * del metodo toentity.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * Transformar un DTO a un Entity
      *
      * @return 

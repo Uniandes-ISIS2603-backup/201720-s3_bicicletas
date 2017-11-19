@@ -1,14 +1,14 @@
 <div class="container-fluid">
     <div class="panel-group">
         <div class="panel panel-primary">
-            <div class="panel-heading">              
+            <div class="panel-heading" style="background-color: #222">              
                 <div ng-hide="edit">
                 <label ng-show="cali==0" id="createCalificacion">Calificar estación de salida - {{currentReserva.estacionSalida.name}}</label>
                 <label ng-show="cali==1" id="createCalificacion">Calificar estación de llegada - {{currentReserva.mostrarLlegada.name}}</label>               
                 </div>
                 <div ng-show="edit">
                 <label ng-show="cali==0" id="updateCalificacion">Editar la calificación de la estación de salida - {{currentReserva.estacionSalida.name}}</label>
-                <label ng-show="cali==1" id="updateCalificacion">Editar la califcación de la estación de llegada - {{currentReserva.mostrarLlegada.name}}</label>
+                <label ng-show="cali==1" id="updateCalificacion">Editar la calificación de la estación de llegada - {{currentReserva.mostrarLlegada.name}}</label>
                 </div>
             </div>
             <div class="panel-body">
@@ -52,7 +52,7 @@
                                     <i class="glyphicon glyphicon-edit"></i> Editar
                                 </div>                          
                             </button>
-                            <a class="btn btn-danger btn-sm" ui-sref="reservaDetail({idReserva: currentReserva.idReserva})"><span class="glyphicon glyphicon-remove"></span>&nbsp;Cancelar</a>
+                            <a class="btn btn-danger btn-sm" ui-sref="calificacionDetail({cali: cali, idUsuario: currentReserva.usuarioReserva.documentoUsuario, idReserva: currentReserva.idReserva})"><span class="glyphicon glyphicon-remove"></span>&nbsp;Cancelar</a>
                         </div>
                     </div>
                 </form>

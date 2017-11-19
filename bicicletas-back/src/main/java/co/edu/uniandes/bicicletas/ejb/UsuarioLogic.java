@@ -32,7 +32,12 @@ public class UsuarioLogic {
     @Inject
     private DireccionLogic direccionLogic;
     /**
-     *
+     * Esta es la documentación 
+     * del metodo createusuario.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
+     * Crear un usuario
      * @param entity
      * @return
      * @throws BusinessLogicException
@@ -58,7 +63,12 @@ public class UsuarioLogic {
     
     
     /**
-     * 
+     * Esta es la documentación 
+     * del metodo getusuarios.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
+     * Obtener todos los usuarios
      * Obtener todos los usuarios existentes en la base de datos.
      *
      * @return una lista de usuarios.
@@ -72,7 +82,12 @@ public class UsuarioLogic {
     }
 
     /**
-     *
+     * Esta es la documentación 
+     * del metodo getusuario.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
+     * Obtener un usuario
      * Obtener un usuario por medio de su id.
      * 
      * @param id: id del usuario para ser buscada.
@@ -89,17 +104,14 @@ public class UsuarioLogic {
         return usuario;
     }
 
+    
     /**
-     *
-     * Actualizar un usuario.
-     *
-     * @param id: id del usuario para buscarla en la base de datos.
-     * @param entity: usuario con los cambios para ser actualizada, por
-     * ejemplo el nombre.
-     * @return el usuario con los cambios actualizados en la base de datos.
-     */
-    /**
-     *
+     * Esta es la documentación 
+     * del metodo updateusuario.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
+     * Actualizar un usuario
      * Actualizar un usuario.
      *
      * @param id: id del usuario para buscarla en la base de datos.
@@ -116,13 +128,12 @@ public class UsuarioLogic {
     }
    
 
-    /** public UsuarioEntity updateUsuario(Long id, UsuarioEntity entity) {
-        LOGGER.log(Level.INFO, "Inicia proceso de actualizar usuario con id={0}", id);
-        // Note que, por medio de la inyección de dependencias se llama al método "update(entity)" que se encuentra en la persistencia.
-        UsuarioEntity newEntity = persistence.update(entity);
-        LOGGER.log(Level.INFO, "Termina proceso de actualizar usuario con id={0}", entity.getId());
-        return newEntity;
-    }
+    /** Esta es la documentación 
+     * del metodo deleteusuario.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
+     * Eliminar un usuario
      * Borrar un usuario
      *
      * @param id: id del la usuario a borrar
@@ -137,6 +148,12 @@ public class UsuarioLogic {
     //PARTE DE DIRECCION
     
    /**
+    * * Esta es la documentación 
+     * del metodo listdirecciones.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
+     * Obtener la lista de direcciones de un usuario
      * Obtiene una colección de instancias de DireccionEntity asociadas a una
      * instancia de Usuario
      *
@@ -151,6 +168,12 @@ public class UsuarioLogic {
     }
     
     /**
+     * * Esta es la documentación 
+     * del metodo getdirecciones.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
+     * Obtener una direccion
      * Obtiene una instancia de DireccionEntity asociada a una instancia de Usuario
      *
      * @param usuarioId Identificador de la instancia de Usuario
@@ -171,6 +194,12 @@ public class UsuarioLogic {
     }
 
     /**
+     * * Esta es la documentación 
+     * del metodo adddireccion.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
+     * Asociar direccion
      * Asocia una direccion existente a un Usuario
      *
      * @param usuarioId Identificador de la instancia de Usuario
@@ -185,6 +214,12 @@ public class UsuarioLogic {
     }
 
     /**
+     * Esta es la documentación 
+     * del metodo replacedirecciones.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
+     * Obtener un usuario
      * Remplaza las instancias de Direcciones asociadas a una instancia de Usuario
      *
      * @param usuarioId Identificador de la instancia de Usuario
@@ -211,6 +246,12 @@ public class UsuarioLogic {
     }
 
     /**
+     *  Esta es la documentación 
+     * del metodo removedireccion.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
+     * Eliminar la direccion de un usuario
      * Desasocia un Direccion existente de un Usuario existente
      *
      * @param usuarioId Identificador de la instancia de Usuario

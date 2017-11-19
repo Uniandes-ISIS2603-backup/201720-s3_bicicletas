@@ -7,6 +7,7 @@ package co.edu.uniandes.bicicletas.persistence;
 
 import co.edu.uniandes.bicicletas.entities.ReservaEntity;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -29,7 +30,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
  *
- * @author cm.alba10
+ * @author ds.chacon
  */
 
 @RunWith(Arquillian.class)
@@ -195,7 +196,36 @@ public class ReservaPersistenceTest {
         Assert.assertEquals(newEntity.getFechaFinal(), entity.getFechaFinal());
         Assert.assertEquals(newEntity.getFechaReserva(), entity.getFechaReserva());
         Assert.assertEquals(newEntity.getPrecioFinal(), entity.getPrecioFinal(), 0);
+          
+        newEntity.setDescuento();
+        newEntity.setUsuarioReserva(null);
+        newEntity.setEstacionSalida(null);
+        newEntity.setEstacionLlegada(null);
+        newEntity.setPago(null);
+        newEntity.setTransaccion(null);
+        newEntity.setAccesorios(null);
+        newEntity.setPrecioFinalNumBicicletas(0);
         
+        Assert.assertTrue(newEntity.getCalificaciones().isEmpty());
+        result.setCalificacionEstacionSalida(null);
+        result.setCalificacionEstacionLlegada(null);
+        Assert.assertNull(result.getCalificaciones().get(0));
+        Assert.assertNull(result.getCalificaciones().get(1));
+        
+        Assert.assertEquals(newEntity.calcularCostoFinal(newEntity.getFechaInicio(), newEntity.getFechaFinal(),0),0,0);
+        
+        Assert.assertTrue(newEntity.getBicicletas().isEmpty());
+        Assert.assertNull(newEntity.getUsuarioReserva());
+        Assert.assertNull(newEntity.getEstacionSalida());
+        Assert.assertNull(newEntity.getEstacionLlegada());
+        Assert.assertNull(newEntity.getPago());
+        Assert.assertNull(newEntity.getTransaccion());
+        Assert.assertNull(newEntity.getAccesorios());
+        
+        
+        newEntity.setBicicletas(null);
+        newEntity.setFechaFinal(null);
+        Assert.assertEquals(newEntity.getFechaFinal(),new Date(0, 0, 0));
         
     }
     

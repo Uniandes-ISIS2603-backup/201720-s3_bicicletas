@@ -15,10 +15,12 @@ function (ng) {
                         var usuario = response.data;
                         $scope.usuarioNombre = usuario.nombre;
                         $scope.usuarioDocumentoUsuario = usuario.documentoUsuario;
+                        $scope.usuarioFechaNacimiento = usuario.fechaNacimiento;
                         $scope.usuarioTipoId = usuario.tipoId;
                         $scope.usuarioTarjetaCredito = usuario.tarjetaCredito;
                         $scope.usuarioNumeroCsv = usuario.numeroCsv;
                         $scope.usuarioContraseniaPSE = usuario.contraseniaPSE;
+                        $scope.usuarioPassword = usuario.password;
                     });
 
 
@@ -30,9 +32,11 @@ function (ng) {
                             nombre: $scope.usuarioNombre,
                             documentoUsuario: $scope.usuarioDocumentoUsuario,
                             tipoId: $scope.usuarioTipoId,
+                            fechaNacimiento: $scope.usuarioFechaNacimiento,
                             tarjetaCredito: $scope.usuarioTarjetaCredito,
                             numeroCsv: $scope.usuarioNumeroCsv,
-                            contraseniaPSE: $scope.usuarioContraseniaPSE
+                            contraseniaPSE: $scope.usuarioContraseniaPSE,
+                            password: $scope.usuarioPassword
                         }).then(function (response) {
                             
                             //Usuario created successfully

@@ -21,10 +21,18 @@ public class PagoDetailDTO extends PagoDTO{
         //No necesita cuerpo
     }
     
+    /**
+     * Constructor que recibe un entity. Usa el del super
+     * @param entity que se quiere convertur en DTO,
+     */
     public PagoDetailDTO (PagoEntity entity){
         super(entity);
     }
     
+    /**
+     * Método con el que se converte un DTO en entity.
+     * @return el pago en entity.
+     */
     @Override
     public PagoEntity toEntity() {
         return super.toEntity(); //To change body of generated methods, choose Tools | Templates.

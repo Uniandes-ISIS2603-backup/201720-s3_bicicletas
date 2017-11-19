@@ -46,25 +46,40 @@ import javax.inject.Inject;
 import javax.ws.rs.WebApplicationException;
 
 /**
- *
+ *Logica de la reserva
  * @author ds.chacon
  */
 @Stateless
 public class ReservaLogic 
 {
+    /**
+     * 
+     */
     private static final Logger LOGGER = Logger.getLogger(ReservaLogic.class.getName());
+    
+    /**
+     * Persistencia de la reserva 
+     */
     @Inject
     private ReservaPersistence persistence;
-    
+    /**
+     * Persistencia del ususario
+     */
     @Inject
     private UsuarioPersistence persistenceUsuario;
-     
+     /**
+      * Persistencia de la estacion
+      */
     @Inject
     private EstacionPersistence persistenceEstacion;
-    
+    /**
+     * Presistencia de bicicleta 
+     */
     @Inject 
     private BicicletaPersistence biciLogic;
-    
+    /**
+     * Persistencia de accesorio
+     */
     @Inject
     private AccesorioPersistence persistenceAccesorio;
     
@@ -78,16 +93,29 @@ public class ReservaLogic
     */
     private static final String NO_ACCESORIO = "No esta disponible el accesorio";
     
-    
+    /**
+     * Da reserva por id
+     * @param id
+     * @return 
+     */
     public ReservaEntity getReserva(Long id)
     {
         return persistence.find(id);
     }
-    
+    /**
+     * Dar reservas
+     * @return 
+     */
     public List<ReservaEntity> getReservas(  ){
         return persistence.findAll();
     }
-    
+    /**
+     * Dar usuario de la reserva
+     * @param idReserva
+     * @param idUsuario
+     * @return
+     * @throws BusinessLogicException 
+     */
     public ReservaEntity getReservaUsuario(Long idReserva  , Long idUsuario) throws BusinessLogicException{
         UsuarioEntity usuario = persistenceUsuario.find(idUsuario);
         LOGGER.log(Level.INFO, "Inicia proceso de consultar una reserva del usuario con id = {0}", idUsuario);
@@ -103,16 +131,28 @@ public class ReservaLogic
         }
         return null;
     }
-    
-     public void deleteReserva(Long id) throws WebApplicationException
+    /**
+     * Borra la reserva
+     * @param id
+     * @throws WebApplicationException 
+     */
+     public void deleteReserva(Long id)
     {
-         ReservaEntity Reserva = persistence.find(id);
-         if(Reserva == null){
+         ReservaEntity localReserva = persistence.find(id);
+         if(localReserva == null){
              throw new WebApplicationException("No hay una reserva con dicho ID", 402);
          }
-         Reserva.setEstado(2);
-         persistence.update(Reserva);
+         localReserva.setEstado(2);
+         persistence.update(localReserva);
     }
+     /**
+      * Crear la reserva, aca se aplican la mayoria de regals de negocio
+      * fecha reserva > fechainicio > fecha fin  
+      * @param idUsuario
+      * @param entity
+      * @return
+      * @throws BusinessLogicException 
+      */
     public ReservaEntity crearReserva(Long idUsuario, ReservaEntity entity ) throws BusinessLogicException{
         
         UsuarioEntity usuario = persistenceUsuario.find(idUsuario);
@@ -191,13 +231,25 @@ public class ReservaLogic
         return reservaNueva;
     }
     
-    public ReservaEntity actualizarReserva(ReservaEntity entidad) throws WebApplicationException{
+    /**
+     * 
+     * @param entidad
+     * @return
+     * @throws WebApplicationException 
+     */
+    public ReservaEntity actualizarReserva(ReservaEntity entidad){
         if(persistence.find(entidad.getId())==null){
             throw new WebApplicationException("No hay una reserva con dicho id", 402);
         }
         return persistence.update(entidad);
     }
-    
+    /**
+     * Asigna la estacion
+     * @param idReserva
+     * @param estacion
+     * @return
+     * @throws BusinessLogicException 
+     */
     public ReservaEntity asignarEstacionLlegada(Long idReserva, EstacionEntity estacion) throws BusinessLogicException{
          ReservaEntity reserva = getReserva(idReserva);
          EstacionEntity entity = persistenceEstacion.find(estacion.getId());
@@ -210,13 +262,19 @@ public class ReservaLogic
          return reserva;
      }
     
-    
+    /**
+     * Da reservas en determinada fecha
+     * @param preservas
+     * @param inicio
+     * @param fin
+     * @return 
+     */
     public List<ReservaEntity> darReservasPorFecha(List<ReservaEntity> preservas , Date inicio , Date fin ){
         List<ReservaEntity> reservasUsuario = preservas;
         List<ReservaEntity> filtro = new ArrayList<>(); 
         Iterator<ReservaEntity> iter = reservasUsuario.iterator();
         if(reservasUsuario.isEmpty()){
-            return null;
+            return reservasUsuario ;
         }
         while(iter.hasNext()){
             ReservaEntity local =iter.next();
@@ -263,6 +321,13 @@ public class ReservaLogic
         persistence.update(reserva);
          return reserva;
      }
+    /**
+     * 
+     * @param idReserva
+     * @param idBici
+     * @return
+     * @throws BusinessLogicException 
+     */
      public BicicletaEntity getBici(Long idReserva, Long  idBici) throws BusinessLogicException{
          ReservaEntity reserva = getReserva(idReserva);
          BicicletaEntity bici = biciLogic.find(idBici);
@@ -280,6 +345,12 @@ public class ReservaLogic
          }
          return bici;
      }
+     /**
+      * 
+      * @param idReserva
+      * @return
+      * @throws BusinessLogicException 
+      */
      public List<BicicletaEntity> getBicis(Long idReserva)throws BusinessLogicException{
          ReservaEntity reserva = getReserva(idReserva);
          List<BicicletaEntity> bicis = reserva.getBicicletas();
@@ -290,7 +361,13 @@ public class ReservaLogic
     //----------------------------------ACCESORIOS----------------------------------------------------------------------
     //------------------------------------------------------------------------------------------------------------------
     //------------------------------------------------------------------------------------------------------------------
-     
+     /**
+      * 
+      * @param idReserva
+      * @param idAccesorio
+      * @return
+      * @throws BusinessLogicException 
+      */
      public AccesorioEntity getAccesorio(Long idReserva, Long  idAccesorio) throws BusinessLogicException{
          ReservaEntity reserva = getReserva(idReserva);
          AccesorioEntity accesorio = persistenceAccesorio.find(idReserva);
@@ -308,13 +385,24 @@ public class ReservaLogic
          }
          return accesorio;
      }
-     
+     /**
+      * 
+      * @param idReserva
+      * @return
+      * @throws BusinessLogicException 
+      */
      public List<AccesorioEntity> getAccesorios(Long idReserva)throws BusinessLogicException{
          ReservaEntity reserva = getReserva(idReserva);
          List<AccesorioEntity> accesorios = reserva.getAccesorios();
          return accesorios;
      }
-     
+     /**
+      * 
+      * @param idReserva
+      * @param accesorio
+      * @return
+      * @throws BusinessLogicException 
+      */
      public ReservaEntity asignarAccesorio(Long idReserva, AccesorioEntity accesorio) throws BusinessLogicException{
          ReservaEntity reserva = getReserva(idReserva);
          AccesorioEntity accesorioEntity = persistenceAccesorio.find(accesorio.getId());
@@ -339,7 +427,13 @@ public class ReservaLogic
          persistenceAccesorio.update(accesorioEntity);
          return reserva;
      }
-     
+     /**
+      * 
+      * @param idReserva
+      * @param accesorio
+      * @return
+      * @throws BusinessLogicException 
+      */
      public ReservaEntity desasignarAccesorio(Long idReserva, AccesorioEntity accesorio) throws BusinessLogicException{
          ReservaEntity reserva = getReserva(idReserva);
          AccesorioEntity accesorioEntity = persistenceAccesorio.find(accesorio.getId());

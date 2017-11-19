@@ -35,15 +35,29 @@ import javax.ws.rs.ext.Provider;
 @Provider
 public class UsuarioReservaResource 
 {
+    /**
+     * Inyeccion de la logica
+     */
     @Inject
     ReservaLogic reservaLogic;
     
+    /**
+     * Logica del usuario
+     */
     @Inject
     UsuarioLogic usuarioLogic;
     
+    /**
+     * Logica de la Estacion
+     */
     @Inject
     EstacionLogic estacionLogic;
     
+    /**
+     * Dar reservas del usuario
+     * @param idUsuario
+     * @return 
+     */
     @GET
     public List<ReservaDTO> getReservas(@PathParam("idUsuario") Long idUsuario)
     {
@@ -55,7 +69,13 @@ public class UsuarioReservaResource
         }
         return listEntity2DTO(reservas);
     }
-    
+    /**
+     * Get reservas por id 
+     * @param id
+     * @param idUsuario
+     * @return
+     * @throws BusinessLogicException 
+     */
     @GET
     @Path("{id: \\d+}")
     public ReservaDTO getReserva(@PathParam("id") Long id, @PathParam("idUsuario") Long idUsuario)throws BusinessLogicException
@@ -81,18 +101,33 @@ public class UsuarioReservaResource
             return null;
     }
     
+    /**
+     * Borrar reservas
+     * @param idReserva
+     * @throws BusinessLogicException 
+     */
     @DELETE
-    @Path("reservas/{idReserva: \\d+}")
+    @Path("/{idReserva: \\d+}")
     public void deleteReserva(@PathParam("idReserva") Long idReserva) throws BusinessLogicException 
     {
         reservaLogic.deleteReserva(idReserva);
     }
-    
+    /**
+     * Crear una reserva
+     * @param idUsuario
+     * @param nuevareserva
+     * @return
+     * @throws BusinessLogicException 
+     */
     @POST
     public ReservaDTO createReserva(@PathParam("idUsuario") Long idUsuario , ReservaDTO nuevareserva) throws BusinessLogicException {
         return new ReservaDTO(reservaLogic.crearReserva( idUsuario ,nuevareserva.toEntity()));
     } 
-    
+    /**
+     * Pasar una lista de entidades a dtos
+     * @param listaEntiReserva
+     * @return 
+     */
     private List<ReservaDTO> listEntity2DTO(List<ReservaEntity> listaEntiReserva)
     {
         List<ReservaDTO> lista = new ArrayList<>();
@@ -104,6 +139,11 @@ public class UsuarioReservaResource
         return lista;
     }
     
+    /**
+     * Dar calificaciones de la reserva
+     * @param idReserva
+     * @return 
+     */
     @Path("{idReserva: \\d+}/calificaciones")
     public Class<ReservaCalificacionResource> getCalificacionReservaResource(@PathParam("idReserva") Long idReserva) {
         ReservaEntity entity = reservaLogic.getReserva(idReserva);

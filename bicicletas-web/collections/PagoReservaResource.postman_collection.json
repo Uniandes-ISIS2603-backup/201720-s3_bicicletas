@@ -1,0 +1,616 @@
+{
+	"variables": [],
+	"info": {
+		"name": "PagoReservaResource",
+		"_postman_id": "8d076cc4-c40f-a0f0-27ac-92edf8ca711c",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Busca el pago de la reserva 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/reservas/1/Pago",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "2. Busca el pago de la reserva 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/reservas/1/Pago",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "3. Busca el pago de la reserva 3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/reservas/1/Pago",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "4. Busca el pago de una reserva que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/reservas/1/Pago",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "5. Generar el pago de una reserva",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/reservas/4/Pago",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "6. Obtener el pago de una reserva que se acaba de generar.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/reservas/4/Pago",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "7. Pagar correctamente una bicicleta con puntos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/reservas/6/Pago/pagarConPuntos",
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "8. No hay puntos suficientes para pagar una reserva",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/reservas/6/Pago/pagarConPuntos",
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "9. Error al pagar con un CSV incorrecto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/bicicletas-web/api/reservas/4/Pago/pagar?metodo=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"bicicletas-web",
+						"api",
+						"reservas",
+						"4",
+						"Pago",
+						"pagar"
+					],
+					"query": [
+						{
+							"key": "metodo",
+							"value": "1",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/plain",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "160299"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "10. Realizar un pago con tarjeta correctamente.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/bicicletas-web/api/reservas/4/Pago/pagar?metodo=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"bicicletas-web",
+						"api",
+						"reservas",
+						"4",
+						"Pago",
+						"pagar"
+					],
+					"query": [
+						{
+							"key": "metodo",
+							"value": "1",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/plain",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "143"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "11. Error al pagar cuando ya se habia realizado el pago antes con tarjeta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/bicicletas-web/api/reservas/4/Pago/pagar?metodo=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"bicicletas-web",
+						"api",
+						"reservas",
+						"4",
+						"Pago",
+						"pagar"
+					],
+					"query": [
+						{
+							"key": "metodo",
+							"value": "1",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/plain",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "1234"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "12. Se genera un nuevo pago para la reserva 5",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/reservas/5/Pago",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "13. Error al pagar con una contraseña PSE incorrecta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/bicicletas-web/api/reservas/5/Pago/pagar?metodo=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"bicicletas-web",
+						"api",
+						"reservas",
+						"5",
+						"Pago",
+						"pagar"
+					],
+					"query": [
+						{
+							"key": "metodo",
+							"value": "2",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/plain",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "nosoylacontraseñacorrecta"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "14. Realizar un pago con PSE correctamente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/bicicletas-web/api/reservas/5/Pago/pagar?metodo=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"bicicletas-web",
+						"api",
+						"reservas",
+						"5",
+						"Pago",
+						"pagar"
+					],
+					"query": [
+						{
+							"key": "metodo",
+							"value": "2",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/plain",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "aletear"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "15. Error al pagar cuando ya se habia realizado el pago antes con PSE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/bicicletas-web/api/reservas/5/Pago/pagar?metodo=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"bicicletas-web",
+						"api",
+						"reservas",
+						"5",
+						"Pago",
+						"pagar"
+					],
+					"query": [
+						{
+							"key": "metodo",
+							"value": "2",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/plain",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "aletear"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "16. Solicitar correctamente un reembolso sobre una reserva.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/reservas/7/Pago/solicitarReembolso",
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "17. Error al solicitar un reembolso sobre una reserva no paga.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/bicicletas-web/api/reservas/6/Pago/solicitarReembolso",
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

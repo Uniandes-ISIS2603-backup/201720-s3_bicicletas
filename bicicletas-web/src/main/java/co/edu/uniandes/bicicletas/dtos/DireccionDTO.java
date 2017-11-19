@@ -28,6 +28,11 @@ public class DireccionDTO {
     }
     
     /**
+     *  *Esta es la documentación 
+     * del metodo direcciondto.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * Conviertir Entity a DTO
      * (Crea un nuevo DTO con los valores que recibe en la entidad que viene de argumento.
      * @param direccion: Es la entidad que se va a convertir a DTO 
@@ -89,7 +94,11 @@ public class DireccionDTO {
     }
 
     /**
-     *
+     * *Esta es la documentación 
+     * del metodo descripcion.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * @return
      */
     public String getDescripcion() {
@@ -97,7 +106,11 @@ public class DireccionDTO {
     }
 
     /**
-     *
+     * *Esta es la documentación 
+     * del metodo setdescripocion.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * @param descripcion
      */
     public void setDescripcion(String descripcion) {
@@ -121,6 +134,11 @@ public class DireccionDTO {
     }
     
      /**
+      *  *Esta es la documentación 
+     * del metodo toentity.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * Convertir DTO a Entity
      * @return Un Entity con los valores del DTO 
      */

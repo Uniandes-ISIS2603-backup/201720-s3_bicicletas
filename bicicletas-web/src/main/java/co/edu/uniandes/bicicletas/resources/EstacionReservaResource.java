@@ -18,7 +18,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 /**
- *
+ * Clase encargada de manejar el REST de EstacionReserva
  * @author ka.babativa
  */
 @Produces("application/json")
@@ -26,8 +26,13 @@ import javax.ws.rs.Produces;
 public class EstacionReservaResource {
     
     @Inject
-    private EstacionLogic estacionLogic;
+    private EstacionLogic estacionLogic; //Atributo que inyecta la logica de Estacion
     
+    /**
+     * Metodo que transforma objetos de tipo ReservaEntity a ReservaDTO
+     * @param entityList Lista con los objetos de tipo ReservaEntity
+     * @return Lista con objetos de tipo ReservaDTO convertidos.
+     */
      private List<ReservaDTO> reservaListEntity2DTO(List<ReservaEntity> entityList){
          List<ReservaDTO> list = new ArrayList<>();
         for (ReservaEntity entity : entityList) {
@@ -36,19 +41,22 @@ public class EstacionReservaResource {
         return list;
     }
      
-     private List<ReservaEntity> reservaListDTO2Entity(List<ReservaDTO> dtos){
-        List<ReservaEntity> list = new ArrayList<>();
-        for (ReservaDTO dto : dtos) {
-            list.add(dto.toEntity());
-        }
-        return list;
-    }
-     
+     /**
+      * Metodo que retorna todas las reservas de una estación a traves de HTTP GET.
+      * @param estacionesId ID de la estacion a consultar.
+      * @return Lista de reservaDTO de una estación dada. 
+      */
      @GET
     public List<ReservaDTO> listReserva(@PathParam("idEstacion") Long estacionesId) {
         return reservaListEntity2DTO(estacionLogic.listReservas(estacionesId));
     }
     
+    /**
+     * Metodo que retorna una reserva de una estación a traves de HTTP GET.
+     * @param estacionesId ID De la estacion a consultar.
+     * @param reservaId ID De la reserva a consultar.
+     * @return Un objeto de tipo ReservaDTO.
+     */
     @GET
     @Path("{reservaId: \\d+}")
     public ReservaDTO getReservas(@PathParam("idEstacion") Long estacionesId, @PathParam("reservaId") Long reservaId) {

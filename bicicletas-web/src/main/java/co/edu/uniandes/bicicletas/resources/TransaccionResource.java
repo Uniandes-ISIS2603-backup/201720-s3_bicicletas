@@ -25,13 +25,16 @@ import javax.ws.rs.WebApplicationException;
 @Consumes("application/json")
 public class TransaccionResource {
     
+    /**
+     * Injecta la logica de persistencia. 
+     */
     @Inject
     private TransaccionLogic transaccionLogic;
     
     /**
-     * 
-     * @param id
-     * @return 
+     * Retorna la transacción asociada a una reserva.
+     * @param id de la transacción que se quiere retornar. 
+     * @return la transacción con el id pasado por parametro. 
      */
     @GET
     @Path("{id: \\d+}")

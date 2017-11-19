@@ -35,7 +35,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"nombre\":\"nombreusuario uno\",\r\n  \"tipoId\":\"1\",\r\n  \"documentoUsuario\":\"1111111111\",\r\n  \"fechaNacimiento\":\"2000-10-01T00:00:00-00:00\",\r\n  \"tarjetaCredito\":\"1234123412341234\",\r\n  \"numeroCsv\":111,\r\n  \"contraseniaPSE\":\"contrasenia111\"\r\n}"
+					"raw": "{\n  \"nombre\":\"nombreusuario uno\",\n  \"tipoId\":\"1\",\n  \"documentoUsuario\":\"1111111111\",\n  \"fechaNacimiento\":\"2000-10-01T00:00:00-00:00\",\n  \"tarjetaCredito\":\"1234123412341234\",\n  \"numeroCsv\":111,\n  \"contraseniaPSE\":\"contrasenia111\",\n  \"password\":\"password1\"\n}"
 				},
 				"description": ""
 			},
@@ -68,7 +68,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"nombre\":\"nombreusuario uno\",\n  \"tipoId\":\"1\",\n  \"documentoUsuario\":\"1111111111\",\n  \"fechaNacimiento\":\"2000-10-01T00:00:00-00:00\",\n  \"tarjetaCredito\":\"4321432143214321\",\n  \"numeroCsv\":111,\n  \"contraseniaPSE\":\"contrasenia111\"\n}"
+					"raw": "{\n  \"nombre\":\"nombreusuario uno\",\n  \"tipoId\":\"1\",\n  \"documentoUsuario\":\"1111111111\",\n  \"fechaNacimiento\":\"2000-10-01T00:00:00-00:00\",\n  \"tarjetaCredito\":\"4321432143214321\",\n  \"numeroCsv\":111,\n  \"contraseniaPSE\":\"contrasenia111\",\n  \"password\":\"passwordnueva1\"\n}"
 				},
 				"description": "PUT de Usuarios"
 			},

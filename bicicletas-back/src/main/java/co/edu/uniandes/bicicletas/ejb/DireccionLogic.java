@@ -28,7 +28,11 @@ public class DireccionLogic {
     private DireccionPersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
 
     /**
-     *
+     * Esta es la documentación 
+     * del metodo createdireccion.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * @param entity
      * @return
      * @throws BusinessLogicException
@@ -46,7 +50,11 @@ public class DireccionLogic {
     }
     
     /**
-     * 
+     * Esta es la documentación 
+     * del metodo getdirecciones.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * Obtener todas las direcciones existentes en la base de datos.
      *
      * @return una lista de direcciones.
@@ -60,7 +68,11 @@ public class DireccionLogic {
     }
     
     /**
-     *
+     * Esta es la documentación 
+     * del metodo setDocumentoUsuario.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * Obtener una direccion por medio de su id.
      * 
      * @param id: id de la direccion para ser buscada.
@@ -78,7 +90,11 @@ public class DireccionLogic {
     }
     
     /**
-     *
+     * Esta es la documentación 
+     * del metodo updatedireccion.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * Actualizar una direccion.
      *
      * @param id: id de la direccion para buscarla en la base de datos.
@@ -95,6 +111,11 @@ public class DireccionLogic {
     }
     
     /**
+     * Esta es la documentación 
+     * del metodo deletedireccion.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * Borrar un direccion
      *
      * @param id: id de la direccion a borrar
@@ -125,6 +146,11 @@ public class DireccionLogic {
     }
 
     /**
+     * Esta es la documentación 
+     * del metodo getusuario.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * Obtiene una instancia de UsuarioEntity asociada a una instancia de Direccion
      *
      * @param direccionId Identificador de la instancia de Direccion
@@ -145,6 +171,11 @@ public class DireccionLogic {
     }
 
     /**
+     * Esta es la documentación 
+     * del metodo aduusaruio.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * Asocia un Usuario existente a un Direccion
      *
      * @param direccionId Identificador de la instancia de Direccion
@@ -162,6 +193,11 @@ public class DireccionLogic {
     }
 
     /**
+     * Esta es la documentación 
+     * del metodo rplaceusaurio.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * Remplaza las instancias de Usuario asociadas a una instancia de Direccion
      *
      * @param direccionId Identificador de la instancia de Direccion
@@ -178,6 +214,11 @@ public class DireccionLogic {
     }
 
     /**
+     * Esta es la documentación 
+     * del metodo removeusario.
+     * Este metodo ha sido creado por
+     * Carlos Alba
+     * Este metodo se encarga de
      * Desasocia un Usuario existente de un Direccion existente
      *
      * @param direccionId Identificador de la instancia de Direccion

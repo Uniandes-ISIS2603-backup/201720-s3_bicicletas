@@ -98,10 +98,17 @@ public class AccesorioBicicletaBicicletaResource {
     }
     
     /**
+<<<<<<< HEAD
+     * Metodo que retorna un accesorio de una bicicleta dada una bicicleta a traves de HTTP GET
+     * @param idBici ID de la bicicleta a consultar
+     * @param idAcc ID Del accesorio a consultar
+     * @return AccesorioBicicletaDTO dado por los parametros.
+=======
      * GET http://localhost:8080/bicicletas-web/api/bicicletas/{idBicicleta}/AccesorioBicicleta/{idAccesorioBici}
      * @param idBici id de la bicicleta.
      * @param idAcc id del accesorioBicicleta.
      * @return 
+>>>>>>> 41e5a095fa775f3151e071f6764d021ca18b26fd
      */
     @GET
     @Path("{idAccesorioBici: \\d+}")
@@ -109,6 +116,7 @@ public class AccesorioBicicletaBicicletaResource {
         AccesorioBicicletaEntity entity = superBiciLogic.getAccesorioBici(idBici, idAcc);
         return new AccesorioBicicletaDTO(entity);
     }
+
     /**
      * GET http://localhost:8080/bicicletas-web/api/bicicletas/{idBicicleta}/AccesorioBicicleta
      * @param idBici bicicleta de los accesoriosBuscados
