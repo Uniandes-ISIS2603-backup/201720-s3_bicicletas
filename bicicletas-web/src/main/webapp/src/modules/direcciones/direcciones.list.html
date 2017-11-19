@@ -2,20 +2,18 @@
     <div class="col-sm-12">
         <br>
         <table ng-if="!messageDirecciones" class="table table-striped">
-            <thead>
-                <a class="btn btn-info" ui-sref="direccionesCreate"><span class="glyphicon glyphicon-plus-sign"></span>Añadir dirección</a>
-                <tr>
-                    <th>&nbsp;</th>
-                </tr>
+            <thead class="thead-inverse">
                 
-                            <tr> 
-                                <th>ID</th>
-                                <th>Dirección</th>
-                                <th>Codigo postal</th>
-                                <th>Ciudad</th>
-                                <th>Descripción</th>
-                                <th>Eliminar</th>
-                            </tr>
+                <a class="btn btn-secondary" ui-sref="direccionesCreate"><span class="glyphicon glyphicon-plus-sign"></span>Añadir dirección</a>
+                <hr>
+                <tr> 
+                    <th>ID</th>
+                    <th>Dirección</th>
+                    <th>Codigo postal</th>
+                    <th>Ciudad</th>
+                    <th>Descripción</th>
+                    <th>Eliminar</th>
+                </tr>
             </thead>
             
             <tbody>
