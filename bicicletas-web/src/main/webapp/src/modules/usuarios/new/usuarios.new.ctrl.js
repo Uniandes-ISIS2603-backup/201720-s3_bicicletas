@@ -16,7 +16,7 @@
                             password: $scope.usuarioPassword
 	                }).then(function (response) {
 	                    //Usuario created successfully
-	                    $state.go('usuariosList', {documentoUsuario: response.data.documentoUsuario}, {reload: true});
+	                    $state.go('usuarioDetail', {documentoUsuario: response.data.documentoUsuario}, {reload: true});
 	                });
 	            };
 	        }
