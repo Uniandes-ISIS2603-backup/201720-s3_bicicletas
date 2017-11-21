@@ -1,48 +1,35 @@
 <div class="panel panel-default"> 
-<div class="panel-body">
+    <div class="panel-body">
+        <div class="row" style="font-size: 16px;text-align: center;">
+            <table ng-if="!messageDirecciones" class="table table-striped">
+            <thead class="thead-inverse">
+            <hr>
+                <tr> 
+                <th>Documento de identificación</th>
+                <th>Nombres y apellidos</th>
+                <th>Tipo documento</th>
+                <th>Fecha de nacimiento</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                    <td id="{{$index}}-documento">{{currentUsuario.documentoUsuario}}</td>
+                    <td id="{{$index}}-nombre">{{currentUsuario.nombre}}</td>
+                    <td id="{{$index}}-tipoDocumento">{{currentUsuario.nombre}}</td>
+                    <td id="{{$index}}-fechaNacimiento">{{currentUsuario.fechaNacimiento| date:'dd-MM-yyyy'}}</td>
+            </tbody>
+            </table>    
+                
+          
+             <hr>
+             <div class="wrapper">
+                  <button class="btn btn-secondary" ui-sref="usuarioConsulta({documentoUsuario: currentUsuario.documentoUsuario})"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp; Consulta </button>
+            </div>
+            </div>
+           <div class="panel-body">
             
         </div>
-    <div class="panel-body">
-        <div class="row">
-            <div class="col-md-3">
-                
-                <dt>Documento de identificación</dt>
-                <dd>{{currentUsuario.documentoUsuario}}</dd>
-                
-                <hr>
-                <dt>Nombres y apellidos</dt>
-                <dd>{{currentUsuario.nombre}}</dd>
-                
-                <hr>
-                <dt>Tipo de documento</dt>
-                <dd>
-                    <div ng-if="currentUsuario.tipoId == 1">
-                    Cedula
-                    </div>
-                    <div ng-if="currentUsuario.tipoId == 2">
-                    Cedula extranjería
-                    </div>
-                    <div ng-if="currentUsuario.tipoId == 3">
-                    Pasaporte
-                    </div>
-                </dd>
-                
-                <hr>
-                <dt>Fecha de nacimiento</dt>
-                <dd>{{currentUsuario.fechaNacimiento| date:'dd-MM-yyyy'}}</dd>
-                
-                <hr>
-                <dt>Tarjeta de crédito</dt>
-                <dd>{{currentUsuario.tarjetaCredito}}</dd>
-                
-                <hr>
-                <dt>PSE</dt>
-                <dd>{{currentUsuario.contraseniaPSE}}</dd>
-                 <hr>
-                        <a class="btn btn-secondary" ui-sref="usuarioConsulta({documentoUsuario: currentUsuario.documentoUsuario})"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp; Consulta </a>
-            </div>
-           
-            <div class="col-md-9">
+            <div class="col-md-12" style="font-size: 13px;text-align: center;">
                 <nav class="navbar navbar-inverse">
                 <ul class="nav navbar-nav" style="display: inline-block;float: none" >
                     <li> <a ui-sref="direccionesList({documentoUsuario: currentUsuario.documentoUsuario})">Direcciones</a></li>

@@ -31,7 +31,14 @@ body
     padding-top: 50px;
 }
 
+.wrapper {
+    text-align: center;
+}
 
+.button {
+    position: absolute;
+    top: 50%;
+}
 
 
 
