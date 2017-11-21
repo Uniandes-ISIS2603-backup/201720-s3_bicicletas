@@ -15,7 +15,16 @@
             <tbody>
                     <td id="{{$index}}-documento">{{currentUsuario.documentoUsuario}}</td>
                     <td id="{{$index}}-nombre">{{currentUsuario.nombre}}</td>
-                    <td id="{{$index}}-tipoDocumento">{{currentUsuario.nombre}}</td>
+                    <td id="{{$index}}-tipoDocumento">
+                        <div ng-if="currentUsuario.tipoId == 1">
+                        Cedula
+                        </div>
+                        <div ng-if="currentUsuario.tipoId == 2">
+                        Cedula extranjería
+                        </div>
+                        <div ng-if="currentUsuario.tipoId == 3">
+                        Pasaporte
+                        </div></td>
                     <td id="{{$index}}-fechaNacimiento">{{currentUsuario.fechaNacimiento| date:'dd-MM-yyyy'}}</td>
             </tbody>
             </table>    
