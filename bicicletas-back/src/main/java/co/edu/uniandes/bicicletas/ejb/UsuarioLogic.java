@@ -9,6 +9,8 @@ import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.bicicletas.entities.DireccionEntity;
 import co.edu.uniandes.bicicletas.entities.UsuarioEntity;
 import co.edu.uniandes.bicicletas.persistence.UsuarioPersistence;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -53,6 +55,14 @@ public class UsuarioLogic {
         }
         if (entity.getDocumentoUsuario() == null) {
             throw new BusinessLogicException("El documento del usuario no puede ser null");
+        }
+        
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(entity.getFechaNacimiento());
+        int yearUser = cal.get(Calendar.YEAR);
+    
+        if ( 2017-yearUser <18 ) {
+            throw new BusinessLogicException("El usuario debe ser mayor de edad");
         }
         
         // Invoca la persistencia para crear el usuario
