@@ -1,38 +1,54 @@
-<div class="panel panel-default"> 
-    <div class="panel-body">
-        <div class="row">
-            <div class="col-md-3">
-                <dl>     
-                <dt>Id de bicicleta</dt>
-                <dd>{{currentBicicleta.id}}</dd>
-                
-                <hr>
-                <dt>Modelo:</dt>
-                <dd>{{currentBicicleta.modelo}}</dd>
-                <hr>
-                <dt>Marca:</dt>
-                <dd>{{currentBicicleta.marca}}</dd>
-                <hr>
-                <dt>Estado:</dt>
-                <dd ng-if="currentBicicleta.estado == 0">Reservada</dd>
-                <dd ng-if="currentBicicleta.estado == 1">Prestada</dd>
-                <dd ng-if="currentBicicleta.estado == 2">Disponible</dd>
-                <dd ng-if="currentBicicleta.estado == 3">Dañada</dd>
-            </div>
-            <div class="col-md-9">
-                </dl>
-                <ul class="nav nav-tabs" >
-                    <li> <a ui-sref="accesoriosBicicletaBicicleta({id: currentBicicleta.id})">AccesorioBicicleta</a></li>       
-                </ul>
-                <br>
-                <div class="col-md-12">
-                <div ui-view="childrenView"></div>
-            </div>
-            </div>
+<div class="panel container-fluid">    
+    <div class="row">
+        <div class="col-sm-12"><br></div>
+        <div class="col-sm-12" style="text-align: center">
+            <h2>Bicicleta {{currentBicicleta.id}}</h2>
         </div>
-        <div class="row">
-            
+
+        <div class="col-sm-12"><br></div>
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="thead-inverse">
+                        <tr>                       
+                            <th style="width: 33%">Estado</th>
+                            <th style="width: 34%">Modelo</th>
+                            <th style="width: 33%">Marca</th>                                 
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <td id="{{$index}}-estado">
+                        <div ng-if="currentBicicleta.estado == 0">
+                            Reservada
+                        </div>
+                        <div ng-if="currentBicicleta.estado == 1">
+                            Prestada
+                        </div>
+                        <div ng-if="currentBicicleta.estado == 2">
+                            Disponible
+                        </div>
+                        <div ng-if="currentBicicleta.estado == 3">
+                            Dañado
+                        </div>
+                    </td>
+                    <td id="{{$index}}-modelo">{{currentBicicleta.modelo}}</td>
+                    <td id="{{$index}}-marca">{{currentBicicleta.marca}}</td>       
+                    </tbody>
+                </table>
+            </div>  
         </div>
+        <div class="col-sm-2"></div>
+    </div> 
+    <br>
+    <div class="col-sm-12">
+        <ul class="nav nav-tabs" style="display: flex;justify-content: center">
+            <li> <a ui-sref="accesoriosBicicletaBicicleta({id: currentBicicleta.id})">Accesorios de la Bicicleta</a></li>       
+        </ul>
+
+    </div>
+    <div class="col-sm-12"><br></div>
+    <div class="col-md-12">
+        <div ui-view="childrenView"></div>
     </div>
 </div>
-

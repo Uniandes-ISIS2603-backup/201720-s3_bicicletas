@@ -1,7 +1,7 @@
-<div class="container-fluid">
+<div class="container-fluid">  
     <div class="panel-group">
         <div class="panel panel-primary">
-            <div class="panel-heading" style="background-color: #222"><label ng-if="!edit" id="createAccesorioBicicleta">Crear nueva accesorioBicicleta</label>
+            <div class="panel-heading" style="background-color: #222"><label ng-if="!edit" id="createAccesorioBicicleta">Añadir un nuevo accesorio a la bicicleta</label>
                 <label ng-if="edit" id="editAccesorioBicicleta">Edit accesorioBicicleta</label></div>
             <div class="panel-body">
                 <form ng-submit="createAccesorioBicicleta()" name="accesorioBicicleta">
@@ -21,7 +21,7 @@
                         <div class="form-group col-sm-4" ng-if="!accesorioBicicleta.$valid">
 
                             <div class="alert alert-warning" >
-                                <strong>Warning!</strong><p>All inputs are required*</p>
+                                <strong>Advertencia:</strong><p>Todos los campos son requeridos*</p>
                             </div>
                         </div> 
                         <div class="form-group row">
