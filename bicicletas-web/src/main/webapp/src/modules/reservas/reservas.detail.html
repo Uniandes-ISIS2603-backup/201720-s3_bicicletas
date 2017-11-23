@@ -1,61 +1,59 @@
-<div class="panel panel-default"> 
-    <div class="panel-body">
-        <div class="row">
-            <div class="col-md-3">
-                <dl>     
-                    <dt>Id Reserva</dt>
-                    <dd>{{currentReserva.idReserva}}</dd>
-
-                    <hr>
-                    <dt>Estacion Salida</dt>
-                    <dd>{{currentReserva.estacionSalida.name}}</dd>
-
-                    <hr>
-                    <dt>Estacion Llegada</dt>
-                    <dd>{{currentReserva.mostrarLlegada.name}}</dd>
-
-                    <hr>
-                    <dt>Fecha inicio</dt>
-                    <dd>{{currentReserva.fechaInicio}}</dd>
-
-                    <hr>
-
-                    <hr>
-                    <dt>Fecha Llegada</dt>
-                    <dd>{{currentReserva.fechaEntrega}}</dd>
-
-                    <hr>
-                    <hr>
-                    <dt>Costo</dt>
-                    <dd>{{currentReserva.precioFinal}}</dd>
-                    
-                    <hr>
-                    <div class="btn-group-vertical">
-                        <a class="btn btn-info" ng-click="irAPagar()"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp; Pagar</a>
-                        <a class="btn btn-info" ng-click="verTransaccion()"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp; Ver transaccion</a>
-
-                    </div>
-                                            </dl>
-
-
-
+<div class="panel container-fluid">    
+    <div class="row">
+        <div class="col-sm-12"><br></div>
+        <div class="col-sm-12" style="text-align: center">
+            <h2>Reserva {{currentReserva.idReserva}}</h2>
+        </div>
+        <div class="col-sm-12"><br></div>
+        <div class="col-sm-4">
+            <div class="btn-group-vertical">
+                <button class="btn btn-secondary" ui-sref="asociarAccesorio({idReserva: currentReserva.idReserva})"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Añadir accesorios</button>
+                <button class="btn btn-secondary" ui-sref="asociarBicicleta({idReserva: currentReserva.idReserva})"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Añadir bicicletas</button>
+                <button class="btn btn-secondary" ng-click="irAPagar()"><span class="glyphicon glyphicon-usd"></span>&nbsp;Pagar</button>
+                <button class="btn btn-secondary" ng-click="verTransaccion()"><span class="glyphicon glyphicon-eye-open"></span>&nbsp;Ver transaccion</button>         
             </div>
 
-            <div class="col-md-9">
-                <ul class="nav nav-tabs" style="display: flex;justify-content: center">
-                    <li> <a ui-sref="accesoriosReservaList({idReserva: currentReserva.idReserva})">Accesorios</a></li>        
-                    <li> <a ui-sref="bicicletasReservaList({idReserva: currentReserva.idReserva})">Bicicletas</a></li>
-                    <li> <a ui-sref="calificacionDetail({cali: 0, idUsuario: currentReserva.usuarioReserva.documentoUsuario, idReserva: currentReserva.idReserva})">Calificación estación de salida</a></li>
-                    <li> <a ui-sref="calificacionDetail({cali: 1, idUsuario: currentReserva.usuarioReserva.documentoUsuario, idReserva: currentReserva.idReserva})">Calificación estación de llegada</a></li>         
-                </ul>
-                <br>
-                <div class="col-md-12">
-                    <div ui-view="childrenView"></div>
-                </div>
-            </div>
         </div>
-        <div class="row">
+        <div class="col-sm-2">
+             <a class="list-group-item">
+                <h4 class="list-group-item-heading">Estacion de salida:</h4>
+                <p class="list-group-item-text">{{currentReserva.estacionSalida.name}}</p>
+            </a>
+            <a class="list-group-item">
+                <h4 class="list-group-item-heading">Estacion de llegada:</h4>
+                <p class="list-group-item-text">{{currentReserva.mostrarLlegada.name}}</p>
+            </a>   
+            <a class="list-group-item">
+                <h4 class="list-group-item-heading">Costo:</h4>
+                <p class="list-group-item-text">$ {{currentReserva.precioFinal}}</p>
+            </a> 
+        </div>
+        <div class="col-sm-2">
+            <a class="list-group-item">
+                <h4 class="list-group-item-heading">Fecha de inicio:</h4>
+                <p class="list-group-item-text">{{currentReserva.fechaInicio}}</p>
+            </a>
+            <a class="list-group-item">
+                <h4 class="list-group-item-heading">Fecha de entrega:</h4>
+                <p class="list-group-item-text">{{currentReserva.fechaEntrega}}</p>
+            </a>  
+        </div>
+        <div class="col-sm-4"></div>
+    </div> 
+    <br>
+    <div class="col-sm-12">
+        <ul class="nav nav-tabs" style="display: flex;justify-content: center">
+            <li> <a ui-sref="accesoriosReservaList({idReserva: currentReserva.idReserva})">Accesorios</a></li>        
+            <li> <a ui-sref="bicicletasReservaList({idReserva: currentReserva.idReserva})">Bicicletas</a></li>
+            <li> <a ui-sref="calificacionDetail({cali: 0, idUsuario: currentReserva.usuarioReserva.documentoUsuario, idReserva: currentReserva.idReserva})">Calificación estación de salida</a></li>
+            <li> <a ui-sref="calificacionDetail({cali: 1, idUsuario: currentReserva.usuarioReserva.documentoUsuario, idReserva: currentReserva.idReserva})">Calificación estación de llegada</a></li>          
+        </ul>
 
-        </div>
+    </div>
+    <div class="col-sm-12"><br></div>
+    <div class="col-md-12">
+        <div ui-view="childrenView"></div>
     </div>
 </div>
+
+

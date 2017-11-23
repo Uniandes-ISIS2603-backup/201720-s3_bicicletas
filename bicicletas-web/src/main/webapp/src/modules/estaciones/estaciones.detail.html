@@ -1,39 +1,43 @@
-<div class="panel panel-default"> 
-    <div class="panel-body">
-        <div class="row">
-            <div class="col-md-3">
-                <dl>     
-                <dt>Id de estación</dt>
-                <dd>{{currentEstacion.id}}</dd>
-                
-                <hr>
-                <dt>Nombre</dt>
-                <dd>{{currentEstacion.nombre}}</dd>
-                <hr>
-                <dt>Direccion</dt>
-                <dd>{{currentEstacion.direccion}}</dd>
-                <hr>
-                <dt>Ciudad</dt>
-                <dd>{{currentEstacion.ciudad}}</dd>
-            </div>
-            <div class="col-md-9">
-                </dl>
-                <ul class="nav nav-tabs" style="display: flex;justify-content: center">
-                    <li> <a ui-sref="accesoriosEstacionList({id: currentEstacion.id})">Accesorios</a></li>
-                    <li> <a ui-sref="bicicletasEstacionList({id: currentEstacion.id})">Bicicletas</a></li>       
-                    <li> <a ui-sref="calificacionesEstacionList({id: currentEstacion.id})">Calificaciones</a></li>
-                    <li> <a ui-sref="reservasEstacionList({id: currentEstacion.id})">Reservas</a></li>  
-                </ul>
-                <br>
-                <div class="col-md-12">
-                <div ui-view="childrenView"></div>
-            </div>
-            </div>
+<div class="panel container-fluid">    
+    <div class="row">
+        <div class="col-sm-12"><br></div>
+        <div class="col-sm-12" style="text-align: center">
+            <h2>Estación {{currentEstacion.id}}</h2>
         </div>
-        <div class="row">
-            
+        <div class="col-sm-12"><br></div>
+        <div class="col-sm-2"></div>
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <a class="list-group-item">
+                <h4 class="list-group-item-heading">Nombre:</h4>
+                <p class="list-group-item-text">{{currentEstacion.nombre}}</p>
+            </a>
+            <a class="list-group-item">
+                <h4 class="list-group-item-heading">Direcciòn:</h4>
+                <p class="list-group-item-text">{{currentEstacion.direccion}}</p>
+            </a>
+            <a class="list-group-item">
+                <h4 class="list-group-item-heading">Ciudad:</h4>
+                <p class="list-group-item-text">{{currentEstacion.ciudad}}</p>
+            </a>  
         </div>
+        <div class="col-sm-2"></div>
+    </div> 
+    <br>
+    <div class="col-sm-12">
+        <ul class="nav nav-tabs" style="display: flex;justify-content: center">
+            <li> <a ui-sref="accesoriosEstacionList({id: currentEstacion.id})">Accesorios</a></li>
+            <li> <a ui-sref="bicicletasEstacionList({id: currentEstacion.id})">Bicicletas</a></li>       
+            <li> <a ui-sref="calificacionesEstacionList({id: currentEstacion.id})">Calificaciones</a></li>
+            <li> <a ui-sref="reservasEstacionList({id: currentEstacion.id})">Reservas</a></li>   
+        </ul>
+
+    </div>
+    <div class="col-sm-12"><br></div>
+    <div class="col-md-12">
+        <div ui-view="childrenView"></div>
     </div>
 </div>
+
 
 

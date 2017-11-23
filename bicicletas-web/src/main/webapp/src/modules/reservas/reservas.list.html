@@ -1,32 +1,25 @@
-<div class="container-fluid">   
-    <div class="col-sm-12">
-        <table ng-if="!messageReservas" class="table table-striped">
-            <thead>
-                <div class="col-sm-3">
-                    <tr>
-                        <th>Total Reservas:</th>
-                        <td> {{reservasRecords.length}}</td>
-                    <div class="row">
-                        <br>
-                        <td><a ng-hide="mostrar" class="btn btn-info" ui-sref="reservaCreate({idUsuario:currentUsuario.documentoUsuario})"><span class="glyphicon glyphicon-plus-sign"></span>Crear Reserva</a>
-                        </td>
-                    </div>
-                    </tr>
-                </div>
-                <tr>
-                    <th>&nbsp;</th>
-                </tr>
-                      <tr> 
+<div class="row">
+    <br>  
+    <div class="col-sm-12" style="text-align: center">
+        <h2><b>Total Reservas: </b> {{reservasRecords.length}}</h2>
+    </div>
+    <div class="col-sm-12"><br></div>
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10">
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-inverse">
+                    <tr> 
                       <th ng-show="mostrar">Usuario</th>
                       <th>Reserva</th>
                       <th>Fecha de Inicio</th>
                       <th>Fecha de Entrega</th>
                       <th>Estado</th>
+                      <th>Acciones</th>
                       </tr>
-            </thead>
-            
-            <tbody>
-                <tr ng-repeat="reserva in reservasRecords">
+                </thead>
+                <tbody>
+                    <tr ng-repeat="reserva in reservasRecords">
                     <td ng-show="mostrar" id="{{$index}}-idUsuario"><a ui-sref="usuarioDetail({documentoUsuario:reserva.usuarioReserva.documentoUsuario})">{{reserva.usuarioReserva.documentoUsuario }}</a></td>
                     <td id="{{$index}}-idReserva"><a ui-sref="reservaDetail({idUsuario:reserva.usuarioReserva.documentoUsuario,idReserva:reserva.idReserva})">{{reserva.idReserva}}</a></td>
                     <td id="{{$index}}-fechaInicio" >{{reserva.fechaInicio }}</td>
@@ -41,16 +34,14 @@
                         <a ng-hide="mostrar" class="btn btn-danger btn-sm" ui-sref="reservaDelete({idReserva:reserva.idReserva})"><span class="glyphicon glyphicon-trash"></span></a>
                     </td>
                 </tr>
-            </tbody>
-        </table>
-        <table ng-if="messageReservas" class="table table-striped">
-            
-            <tbody>
-                <tr>
-                    <td><b>{{messageReservas}}</b></td>                                  
-                </tr>
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
     </div>
+    <div class="col-sm-1"></div>
 
 </div>
+
+
+
+
