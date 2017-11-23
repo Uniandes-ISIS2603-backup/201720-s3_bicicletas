@@ -246,6 +246,39 @@ public class ReservaDTO {
     public String getFechaInicio() {
        return this.fechaInicio;
     }
+    
+    private String darMes( String pmes){
+        
+        switch(pmes){
+            case "Jan":
+                return "01";
+            case "Feb":
+                return "02";
+            case "Mar":
+                return "03";
+            case "Apr":
+                return "04";
+            case "May":
+                return "05";
+            case"Jun":
+               return "06";
+            case "Jul":
+                return "07";
+            case "Aug":
+                return "08";
+            case "Sep":
+                return "09";
+            case "Oct":
+                return "10";
+            case "Nov":
+                return "11";
+            case"Dec":
+                return "12";
+            default:
+                return"00";
+        }
+    }
+    
     /**
      * 
      * @param pfecha
@@ -253,9 +286,16 @@ public class ReservaDTO {
      */
     public Date pasceFecha ( String pfecha  ){
         
+        String mes = darMes(pfecha.substring(4,7));
+        String dia = pfecha.substring(7,10);
+        String año = pfecha.substring(10,15);
+        String hora = pfecha.substring(15,24);
+        
+        String newFecha = dia+"/"+mes+"/"+año+" "+hora;
+        
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         try {
-            Date fecha = formato.parse(pfecha);
+            Date fecha = formato.parse(newFecha);
             return fecha;
         } catch (ParseException ex) {
            return new Date(2001, 01,01,01,00,00);
