@@ -1,7 +1,9 @@
 <div class="row">
-    <br>  
-    <div class="col-sm-12" style="text-align: center">
-        <h2><b>Total Reservas: </b> {{reservasRecords.length}}</h2>
+    <div ng-hide="mostrar" class="col-sm-12" style="text-align: center">
+        <h4><b>Reservas realizadas: </b> {{reservasRecords.length}}</h4>
+    </div>
+    <div ng-show="mostrar" class="col-sm-12" style="text-align: center">
+        <h4><b>Reservas realizadas en la estación: </b> {{reservasRecords.length}}</h4>
     </div>
     <div class="col-sm-12"><br></div>
     <div class="col-sm-1"></div>
@@ -15,7 +17,7 @@
                       <th>Fecha de Inicio</th>
                       <th>Fecha de Entrega</th>
                       <th>Estado</th>
-                      <th>Acciones</th>
+                      <th ng-hide="mostrar">Acciones</th>
                       </tr>
                 </thead>
                 <tbody>
@@ -30,8 +32,8 @@
                     <td id="{{$index}}-estado" ng-if="reserva.estado==3">{{"En Uso"}}</td> 
                     <td id="{{$index}}-estado" ng-if="reserva.estado==4">{{"Reembolsado"}}</td>
                     <td id="{{$index}}-estado" ng-if="reserva.estado==5">{{"Finalizada"}}</td> 
-                    <td id="{{$index}}-actions">
-                        <a ng-hide="mostrar" class="btn btn-danger btn-sm" ui-sref="reservaDelete({idReserva:reserva.idReserva})"><span class="glyphicon glyphicon-trash"></span></a>
+                    <td ng-hide="mostrar" id="{{$index}}-actions">
+                        <a  class="btn btn-danger btn-sm" ui-sref="reservaDelete({idReserva:reserva.idReserva})"><span class="glyphicon glyphicon-trash"></span></a>
                     </td>
                 </tr>
                 </tbody>
