@@ -15,7 +15,7 @@
                     $scope.usuarioBuscado = response.data;
                 });
 
-                if ($scope.usuarioBuscado != undefined && $scope.usuarioBuscado.password === $scope.data.password) {
+                if ($scope.usuarioBuscado !== undefined && $scope.usuarioBuscado.password === $scope.data.password) {
                     flag = true;
                     $scope.user = $scope.usuarioBuscado;
                     $state.go('usuarioDetail', {documentoUsuario: id}, {reload: true});
