@@ -67,6 +67,16 @@
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('accesoriosEstacionCreate', {
+                url: '/{id:int}/createAccesorio',
+                parent: 'accesoriosEstacion',
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + 'estacion/accesorios.estacion.new.html',
+                        controller: 'accesoriosEstacionNewCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
             }).state('accesorioDelete', {                  
                     parent: 'accesorios',
                     url: '/delete/{id:int}',

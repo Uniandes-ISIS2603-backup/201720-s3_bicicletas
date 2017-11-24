@@ -5,6 +5,7 @@
 	        function ($scope, $http, accesoriosContext, $state, $rootScope) {
 	            $rootScope.edit = false;
 	            $scope.createAccesorio = function () {
+	            	console.log(accesoriosContext);
 	                $http.post(accesoriosContext, {
 	                    tipo: $scope.accesorioTipo,
 	                    estacion:{
