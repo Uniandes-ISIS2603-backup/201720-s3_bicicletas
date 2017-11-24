@@ -9,7 +9,7 @@ var mod = ng.module("accesorioModule");
 	                    id: $scope.accesorioId
 	                }).then(function (response) {
 	                    //Usuario created successfully
-	                    $state.go('reservaDetail', {nombre: response.data.nombre}, {reload: true});
+	                    $state.go('accesoriosReservaList', {idReserva: response.data.idReserva }, {reload: true});
 	                });
 	            };
         }

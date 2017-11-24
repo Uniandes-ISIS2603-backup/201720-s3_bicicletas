@@ -29,7 +29,7 @@
                     <div class="form-group row">
                         <div class="form-group col-sm-12">
                             <input ng-show="usuario.$valid" type="submit" value="Save" class="btn btn-success"/>
-                            <a class="btn btn-info" ui-sref="usuariosList">Cancelar</a>
+                            <a class="btn btn-info" ui-sref="usuarioDetail({documentoUsuario: currentUsuario.documentoUsuario})">Cancelar</a>
                         </div>
                     </div>
                 </form>

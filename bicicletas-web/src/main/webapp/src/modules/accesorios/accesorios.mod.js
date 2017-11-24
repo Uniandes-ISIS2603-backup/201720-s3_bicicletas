@@ -62,7 +62,7 @@
                 parent: 'accesoriosEstacion',
                 views: {
                     'detailView': {
-                        templateUrl: basePath + 'accesorios.list.html',
+                        templateUrl: basePath + '/estacion/estacion.accesorios.list.html',
                         controller: 'accesoriosEstacionCtrl',
                         controllerAs: 'ctrl'
                     }

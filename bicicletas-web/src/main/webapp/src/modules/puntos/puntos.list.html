@@ -1,38 +1,28 @@
-<div class="container-fluid">   
-    <div class="col-sm-12">
-        <br>
-        <table ng-if="!messagePuntos" class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Total puntos:</th>
-                    <td> {{puntosRecords.length}}</td>
-                </tr>
-                <tr>
-                    <th>&nbsp;</th>
-                </tr>
-                
-                            <tr> 
-                                <th>Fecha de creación</th>
-                                <th>Fecha de vencimiento</th>   
-                            </tr>
-            </thead>
-            
-            <tbody>
-                <tr ng-repeat="punto in puntosRecords">
+<div class="row">
+    <div class="col-sm-12" style="text-align: center">
+        <h4><b>Cantidad de puntos:</b> {{puntosRecords.length}}</h4>
+    </div>
+    <div class="col-sm-12"><br></div>
+    <div class="col-sm-2" style="text-align: center"></div>
+    <div class="col-sm-8">
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-inverse">
+                    <tr>
+                        <th>Fecha de creación</th>
+                        <th>Fecha de vencimiento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="punto in puntosRecords">
                     <td id="{{$index}}-fechaCreacion">{{punto.fecha| date:'dd/MM/yyyy'}}</td>
                     <td id="{{$index}}-fechaVencimiento">{{punto.fechaVencimiento| date:'dd/MM/yyyy'}}</td> 
-                    
                 </tr>
-            </tbody>
-        </table>
-        <table ng-if="messagePuntos" class="table table-striped">
-            
-            <tbody>
-                <tr>
-                    <td><b>{{messagePuntos}}</b></td>                                  
-                </tr>
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
     </div>
-
+    <div class="col-sm-2"></div>
 </div>
+
+

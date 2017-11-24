@@ -1,48 +1,45 @@
-<div class="container-fluid">
-    <div class="panel-group">
-        <div class="panel panel-primary">
-            <div class="panel-heading" style="background-color: #222"><label>Lista de bicicletas</label></div>
-            <div class="panel-body">
-               <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                    <div class="btn-group mr-4" role="group" aria-label="First group">
-                        <a class="btn btn-info" ui-sref="agregarBicicletaEstacion({id: currentEstacion.id})"><span class="glyphicon glyphicon-plus-sign"></span>AsociarBicicleta</a>
-                        <br>
-                        <br>
-                        <a class="btn btn-danger btn-sm" ui-sref="entregarBicicleta({id: currentEstacion.id})"><span class="glyphicon glyphicon-trash"></span>&nbsp;Entregar Bicicleta</a>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr> 
-                                <th>Id</th>
-                                <th>Modelo</th>
-                                <th>Marca</th>
-                                <th>Estado</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            
-                            <tr ng-repeat="bicicleta in bicicletaRecords">
-                                <td id="{{$index}}-id"><a ui-sref="bicicletaDetail({id: bicicleta.id})">{{bicicleta.id}}</a></td>
-                                <td id="{{$index}}-modelo">{{bicicleta.modelo}}</td>
-                                <td id="{{$index}}-modelo">{{bicicleta.marca}}</td>
-                                <td id="{{$index}}-estado">
-                                    <div ng-if="bicicleta.estado == 0">
-                                        Reservada
-                                    </div>
-                                    <div ng-if="bicicleta.estado == 1">
-                                        Prestada
-                                    </div>
-                                    <div ng-if="bicicleta.estado == 2">
-                                        Disponible
-                                    </div>
-                                    <div ng-if="bicicleta.estado == 3">
-                                        Dañado
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+<div class="row"> 
+    <div class="col-sm-12" style="text-align: center">
+        <h4><b>Bicicletas en la estación:</b> {{bicicletaRecords.length}}</h4>
+    </div>
+    <div class="col-sm-12"><br></div>
+    <div class="col-sm-2" style="text-align: center"></div>
+    <div class="col-sm-8">
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-inverse">
+                    <tr>
+                        <th>Id</th>
+                        <th>Modelo</th>
+                        <th>Marca</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tbody>
+
+                    <tr ng-repeat="bicicleta in bicicletaRecords">
+                        <td id="{{$index}}-id"><a ui-sref="bicicletaDetail({id: bicicleta.id})">{{bicicleta.id}}</a></td>
+                        <td id="{{$index}}-modelo">{{bicicleta.modelo}}</td>
+                        <td id="{{$index}}-marca">{{bicicleta.marca}}</td>
+                        <td id="{{$index}}-estado">
+                            <div ng-if="bicicleta.estado == 0">
+                                Reservada
+                            </div>
+                            <div ng-if="bicicleta.estado == 1">
+                                Prestada
+                            </div>
+                            <div ng-if="bicicleta.estado == 2">
+                                Disponible
+                            </div>
+                            <div ng-if="bicicleta.estado == 3">
+                                Dañado
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-sm-2"></div>
+</div>

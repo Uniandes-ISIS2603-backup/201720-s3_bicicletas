@@ -1,61 +1,66 @@
-<div class="panel panel-default"> 
-    <div class="panel-body">
-        <div class="row" style="font-size: 16px;text-align: center;">
-            <table ng-if="!messageDirecciones" class="table table-striped">
-            <thead class="thead-inverse">
-            <hr>
-                <tr> 
-                <th>Documento de identificación</th>
-                <th>Nombres y apellidos</th>
-                <th>Tipo documento</th>
-                <th>Fecha de nacimiento</th>
-                </tr>
-            </thead>
-            
-            <tbody>
-                    <td id="{{$index}}-documento">{{currentUsuario.documentoUsuario}}</td>
-                    <td id="{{$index}}-nombre">{{currentUsuario.nombre}}</td>
-                    <td id="{{$index}}-tipoDocumento">
-                        <div ng-if="currentUsuario.tipoId == 1">
-                        Cedula
-                        </div>
-                        <div ng-if="currentUsuario.tipoId == 2">
-                        Cedula extranjería
-                        </div>
-                        <div ng-if="currentUsuario.tipoId == 3">
-                        Pasaporte
-                        </div></td>
-                    <td id="{{$index}}-fechaNacimiento">{{currentUsuario.fechaNacimiento| date:'dd-MM-yyyy'}}</td>
-            </tbody>
-            </table>    
+<div class="panel container-fluid">    
+
+     <div class="form-group col-sm-12" style="text-align: center; justify-content: center">
+        <div class="alert alert-success" >
+            <strong>¡Bienvenido!</strong><p>Acceso exitoso</p>
+        </div> 
+    </div>
+                  
+    <div class="row">
+   
+        <h2 style="text-align: center">{{currentUsuario.nombre}}</h2>
+        
+        <div class="col-sm-12"><br></div>
+        <div class="col-sm-2">
+            <div class="btn-group-vertical">
+                <button class="btn btn-secondary" ui-sref="direccionesCreate"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Añadir dirección</button>
+                <button class="btn btn-secondary" ui-sref="reservaCreate({idUsuario:currentUsuario.documentoUsuario})"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Crear reserva</button>
+                <button class="btn btn-secondary" ui-sref="usuarioConsulta({documentoUsuario: currentUsuario.documentoUsuario})"><span class="glyphicon glyphicon-search"></span>&nbsp;Consultar reservas</button>    
                 
-          
-             <hr>
-             <div class="wrapper">
-                  <button class="btn btn-secondary" ui-sref="usuarioConsulta({documentoUsuario: currentUsuario.documentoUsuario})"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp; Consulta </button>
             </div>
-            </div>
-           <div class="panel-body">
             
         </div>
-            <div class="col-md-12" style="font-size: 13px;text-align: center;">
-                <nav class="nav nav-tabs">
-                <ul class="nav navbar-nav" style="display: inline-block;float: none" >
-                    <li> <a ui-sref="direccionesList({documentoUsuario: currentUsuario.documentoUsuario})">Direcciones</a></li>
-                    <li> <a ui-sref="puntosList({documentoUsuario: currentUsuario.documentoUsuario})">Puntos</a></li>
-                    <li> <a ui-sref="reservasList({documentoUsuario: currentUsuario.documentoUsuario})">Reservas</a></li>      
-                </ul>
-                <br>
-                </nav>
-                <div class="col-md-12">
-                <div ui-view="childrenView"></div>
-
+        <div class="col-sm-1"></div>
+        <div class="col-sm-3">
+            <div class="thumb">
+                <img class="img-responsive img-rounded" src="resources/img/usuario.png" style="max-height: 190px"/>
             </div>
-                                                            
-
-            </div>
-
         </div>
+        <div class="col-sm-3">
+            <a class="list-group-item">
+                <h4 class="list-group-item-heading">Documento de identificación:</h4>
+                <p class="list-group-item-text">{{currentUsuario.documentoUsuario}}</p>
+            </a>
+            <a class="list-group-item">
+                <h4 class="list-group-item-heading">Tipo de documento:</h4>
+                <p ng-if="currentUsuario.tipoId == 1">
+                    Cedula
+                </p>
+                <p ng-if="currentUsuario.tipoId == 2">
+                    Cedula extranjería
+                </p>
+                <p ng-if="currentUsuario.tipoId == 3">
+                    Pasaporte
+                </p>
+            </a>
+            <a class="list-group-item">
+                <h4 class="list-group-item-heading">Fecha de nacimiento:</h4>
+                <p class="list-group-item-text">{{currentUsuario.fechaNacimiento| date:'dd-MM-yyyy'}}</p>
+            </a>  
+        </div>
+        <div class="col-sm-3"></div>
+    </div> 
+    <br>
+    <div class="col-sm-12">
+        <ul class="nav nav-tabs" style="display: flex;justify-content: center">
+            <li> <a ui-sref="direccionesList({documentoUsuario: currentUsuario.documentoUsuario})">Direcciones</a></li>
+            <li> <a ui-sref="puntosList({documentoUsuario: currentUsuario.documentoUsuario})">Puntos</a></li>
+            <li> <a ui-sref="reservasList({documentoUsuario: currentUsuario.documentoUsuario})">Reservas</a></li>          
+        </ul>
+
+    </div>
+    <div class="col-md-12">
+        <div ui-view="childrenView"></div>
     </div>
 </div>
 

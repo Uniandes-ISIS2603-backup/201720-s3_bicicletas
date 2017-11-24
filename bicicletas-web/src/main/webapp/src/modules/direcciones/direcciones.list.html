@@ -1,6 +1,5 @@
 <div class="container-fluid">   
     <div class="col-sm-12">
-        <br>
         <table ng-if="!messageDirecciones" class="table table-striped">
             <thead class="thead-inverse">
                 
@@ -30,17 +29,6 @@
                 
             </tbody>
             
-        </table>
-        <div class="wrapper">
-                  <button class="btn btn-secondary" ui-sref="direccionesCreate"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Añadir dirección</button>
-        </div>
-        <table ng-if="messageDirecciones" class="table table-striped" style="font-size: 12px;text-align: center;">
-            
-            <tbody>
-                <tr>
-                    <td><b>{{messageDirecciones}}</b></td>                                  
-                </tr>
-            </tbody>
         </table>
     </div>
 

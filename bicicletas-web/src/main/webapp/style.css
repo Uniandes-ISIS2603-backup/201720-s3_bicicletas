@@ -26,6 +26,19 @@
     background-color: #222;
     border-color: #444; 
 }
+.btn-back
+{ 
+    margin-top: 2px;
+    color: #ffffff; 
+    background-color: #222; 
+    border-color: #222; 
+}
+.btn-back:hover, .btn-back:focus, .btn-back:active, .btn-back.active, .open .dropdown-toggle.btn-back
+{ 
+    color: #fff;
+    background-color: #343a40;
+    border-color: #444; 
+}
 body 
 {
     padding-top: 50px;
@@ -39,6 +52,10 @@ body
     position: absolute;
     top: 50%;
 }
+.list-group-item { 
+    word-wrap: break-word; 
+}
+
 
 
 

@@ -5,7 +5,7 @@
 	    mod.controller('reservaNewCtrl', ['$scope', '$http', 'usuariosContext', '$state','$rootScope','reservasContext',
 	        function ($scope, $http, usuariosContext, $state,$rootScope) {
 	            $rootScope.edit = false;
-	            $scope.createUsuario = function () {
+	            $scope.createReserva = function () {
 	                $http.post(usuariosContext+'/'+$state.params.idUsuario+'/'+'reservas',{
 	                    idUsuario : $scope.documentoUsuario,
 	                    fechaInicio : $scope.fechaSalida+':00',
@@ -15,7 +15,7 @@
                             }
 	                }).then(function (response) {
 	                    //Usuario created successfully
-	                    $state.go('reservasList', {id: response.data.idReserva}, {reload: true});
+	                    $state.go('reservaDetail', {idUsuario: $state.params.idUsuario, idReserva: response.data.idReserva}, {reload: true});
 	                });
 	            };
 	        }
