@@ -22,7 +22,7 @@
                 }
 
                 if (!flag) {
-                    $rootScope.alerts.push({type: "danger", msg: "El usuario o la contraseña son incorrectos"});
+                    $rootScope.alerts.push({type: "danger", msg: "El usuario o la contraseña son incorrectos."});
                 } else {
                     sessionStorage.token = $scope.user.token;
                     sessionStorage.setItem("username", $scope.user.user);
