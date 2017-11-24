@@ -1,45 +1,39 @@
-<div class="container-fluid">
-    <div class="panel-group">
-        <div class="panel panel-primary">
-            <div class="panel-heading" style="background-color: #222"><label>Lista de accesorios</label></div>
-            <div class="panel-body">
-                <div class="col-md-12">
-                   <div class="col-md-12">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr> 
-                                <th>Accesorio</th>
-                                <th>Tipo</th>
-                                <th>Estado</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="accesorio in accesorioRecords">
-                                <td id="{{$index}}-id">{{accesorio.id}}</td>
-                                
-                                <td id="{{$index}}-id">
-                                    <div ng-if="accesorio.tipo == 1">
-                                        Casco
-                                    </div>
-                                    <div ng-if="accesorio.tipo == 2">
-                                        Chaleco
-                                    </div>
-                                </td>
-                                <td>
-                                   <div ng-if="accesorio.reservado == 1">
-                                        Reservado
-                                    </div>
-                                    <div ng-if="accesorio.reservado == 0">
-                                        Libre
-                                    </div> 
-                                </td>
-                                <td id="{{$index}}-actions">
-                                    <a class="btn btn-danger btn-sm" ui-sref="quitarAccesorio({id: accesorio.id})"><span class="glyphicon glyphicon-trash"></span>&nbsp;Quitar Accesorio</a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+<div class="row">
+    <div class="col-sm-12" style="text-align: center">
+        <h4><b>Accesorios seleccionados:</b> {{accesorioRecords.length}}</h4>
+    </div>
+    <div class="col-sm-12"><br></div>
+    <div class="col-sm-2" style="text-align: center"></div>
+    <div class="col-sm-8">
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-inverse">
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Remover</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="accesorio in accesorioRecords">
+                            <td id="{{$index}}-id">
+                            <div ng-if="accesorio.tipo == 1">
+                                Casco
+                            </div>
+                            <div ng-if="accesorio.tipo == 2">
+                                Chaleco
+                            </div>
+                        </td>
+                        <td id="{{$index}}-actions">
+                            <a class="btn btn-danger btn-sm" ui-sref="quitarAccesorio({id: accesorio.id})"><span class="glyphicon glyphicon-remove"></span></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-sm-2"></div>
+</div>
 
-            
+
+
+

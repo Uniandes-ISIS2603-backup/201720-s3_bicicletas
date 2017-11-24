@@ -8,8 +8,7 @@ var mod = ng.module("accesorioModule");
 	                $http.put(reservasAccesoriosContext + '/' + $state.params.idReserva + '/' + accesoriosReservaContext + '/quitar', {
 	                    id: $state.params.id
 	                }).then(function (response) {
-	                    //Usuario created successfully
-	                    $state.go('accesoriosReservaList', {nombre: response.data.nombre}, {reload: true});
+	                    $state.go('accesoriosReservaList', {idReserva: response.data.idReserva }, {reload: true});
 	                });
 	            };
         }

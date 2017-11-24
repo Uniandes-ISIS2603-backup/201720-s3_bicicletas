@@ -1,5 +1,5 @@
 <div class="center-block well text-center">
-    <h1>Confimar eliminación de accesorio</h1>
-    <button id="confirm-delete" ng-click="quitarAccesorio()" class="btn btn-danger">Eliminar</button>
-    <a id="cancel-delete" ui-sref="reservaDetail" class="btn btn-info">Cancelar</a>
+    <h1>¿Desea remover el accesorio de la reserva?</h1>
+    <button id="confirm-delete" ng-click="quitarAccesorio()" class="btn btn-danger">Si</button>
+    <a id="cancel-delete" ui-sref="accesoriosReservaList({idReserva: currentReserva.idReserva})" class="btn btn-info">No</a>
 </div>

@@ -9,7 +9,7 @@ var mod = ng.module("bicicletaModule");
 	                    id: $scope.bicicletaId
 	                }).then(function (response) {
 	                    //Usuario created successfully
-	                    $state.go('reservaDetail', {nombre: response.data.nombre}, {reload: true});
+	                    $state.go('bicicletasReservaList', {idReserva: response.data.idReserva}, {reload: true});
 	                });
 	            };
         }
