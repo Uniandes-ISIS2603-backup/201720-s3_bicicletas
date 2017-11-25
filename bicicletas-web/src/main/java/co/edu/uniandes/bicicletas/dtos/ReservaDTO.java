@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.bicicletas.dtos;
+import co.edu.uniandes.bicicletas.entities.CalificacionEntity;
 import co.edu.uniandes.bicicletas.entities.EstacionEntity;
 import java.util.Date;
 import co.edu.uniandes.bicicletas.entities.ReservaEntity;
@@ -68,6 +69,16 @@ public class ReservaDTO {
      * Estacion de llegada
      */
     private EstacionEntity mostrarLlegada;
+    
+    /**
+     * Calificación de la estación de salida
+     */
+    private CalificacionEntity calificacionSalida;
+    
+    /**
+     * Calificación de la estación de salida
+     */
+    private CalificacionEntity calificacionLlegada;
     
     /**
      * constructor vacio
@@ -135,6 +146,15 @@ public class ReservaDTO {
             this.descuento = entidad.getDescuento();
             this.transaccion = entidad.getTransaccion();
             this.estacionLlegada = entidad.getEstacionLlegada();
+            
+            if(!entidad.getCalificaciones().isEmpty())
+            {
+                this.calificacionSalida = entidad.getCalificaciones().get(0);
+            }
+            if(entidad.getCalificaciones().size() == 2)
+            {
+                this.calificacionLlegada = entidad.getCalificaciones().get(1);
+            }
         }
     }
     
@@ -366,5 +386,34 @@ public class ReservaDTO {
         this.transaccion = transaccion;
     }
 
+    /**
+     * @return the calificacionSalida
+     */
+    public CalificacionEntity getCalificacionSalida() {
+        return calificacionSalida;
+    }
+
+    /**
+     * @param calificacionSalida the calificacionSalida to set
+     */
+    public void setCalificacionSalida(CalificacionEntity calificacionSalida) {
+        this.calificacionSalida = calificacionSalida;
+    }
+
+    /**
+     * @return the calificacionLlegada
+     */
+    public CalificacionEntity getCalificacionLlegada() {
+        return calificacionLlegada;
+    }
+
+    /**
+     * @param calificacionLlegada the calificacionLlegada to set
+     */
+    public void setCalificacionLlegada(CalificacionEntity calificacionLlegada) {
+        this.calificacionLlegada = calificacionLlegada;
+    }
     
+    
+
 }

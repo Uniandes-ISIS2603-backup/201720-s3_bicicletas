@@ -1,61 +1,76 @@
 <div class="container-fluid">
-    <div class="panel-group">
+    <div class="col-sm-12" style="text-align: center">
+        <div ng-hide="edit">
+            <h4 ng-show="cali == 0" id="createCalificacion"><b>Calificar estación de salida - {{currentReserva.estacionSalida.name}}</b></h4>
+            <h4 ng-show="cali == 1" id="createCalificacion"><b>Calificar estación de llegada - {{currentReserva.mostrarLlegada.name}}</b></h4>               
+        </div>
+        <div ng-show="edit">
+            <h4 ng-show="cali == 0" id="updateCalificacion"><b>Editar la calificación de la estación de salida - {{currentReserva.estacionSalida.name}}</b></h4>
+            <h4 ng-show="cali == 1" id="updateCalificacion"><b>Editar la calificación de la estación de llegada - {{currentReserva.mostrarLlegada.name}}</b></h4>
+        </div>
+    </div>
+    <div class="col-sm-12"><br></div>
+
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
         <div class="panel panel-primary">
-            <div class="panel-heading" style="background-color: #222">              
-                <div ng-hide="edit">
-                <label ng-show="cali==0" id="createCalificacion">Calificar estación de salida - {{currentReserva.estacionSalida.name}}</label>
-                <label ng-show="cali==1" id="createCalificacion">Calificar estación de llegada - {{currentReserva.mostrarLlegada.name}}</label>               
-                </div>
-                <div ng-show="edit">
-                <label ng-show="cali==0" id="updateCalificacion">Editar la calificación de la estación de salida - {{currentReserva.estacionSalida.name}}</label>
-                <label ng-show="cali==1" id="updateCalificacion">Editar la calificación de la estación de llegada - {{currentReserva.mostrarLlegada.name}}</label>
-                </div>
-            </div>
             <div class="panel-body">
                 <form ng-submit="createCalificacion()" name="calificacion">
-                    <div class="form-group row">
-                        <div class="form-group col-md-2">
-                            <label for="nota" class="col-sm-1">Nota:</label>
-                            <select id="nota" required ng-model="nota" class="form-control">                           
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            </select>                          
+                    <div class="col-sm-8">
+                        <div class="form-group row">   
+                            <div class="form-group col-sm-4">
+                                <label for="nota">Nota</label>
+                                <select id="nota" required ng-model="nota" class="form-control">                           
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>                                
+                            </div>  
+
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="form-group col-sm-12">
+                                <label for="descripcion">Descripción</label>
+                                <textarea id="descripcion" ng-model="descripcion" class="form-control" rows="3" style="resize: none"></textarea>
+                            </div>
+
+                        </div>                 
+                        <div class="form-group row">
+                            <div class="form-group col-sm-12">                          
+                                <button ng-show="calificacion.$valid" type="submit" class="btn btn-success">
+                                    <div ng-hide="edit">
+                                        <i class="glyphicon glyphicon-star"></i> Calificar
+                                    </div>
+                                    <div ng-show="edit">
+                                        <i class="glyphicon glyphicon-edit"></i> Editar
+                                    </div>                          
+                                </button>
+                                <a class="btn btn-danger btn-sm" onclick="history.back()"><span class="glyphicon glyphicon-remove"></span>&nbsp;Cancelar</a>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <div class="form-group col-md-6">
-                            <label for="descripcion" class="col-sm-2">Descripcion:</label>
-                            <textarea id="descripcion" ng-model="descripcion" class="form-control noresize"></textarea>
-                        </div>
-                    </div>
-                    
-                        
 
-                    <div class="form-group row">
-                        <div class="form-group col-sm-4" ng-if="!calificacion.$valid">
+                    <div class="col-sm-4">
+                        <div class="form-group row">
+                            <div class="form-group" ng-if="calificacion.$valid">
 
-                            <div class="alert alert-warning" >
-                                <strong>Advertencia:</strong><p>Debes seleccionar una nota para poder continuar.</p>
+                                <div class="alert alert-success" >
+                                    <strong>Dejanos tu opinión</strong><p>Juntos lograremos mejorar este gran sistema</p>
+                                </div> 
+                            </div> 
+                            <div class="form-group" ng-if="!calificacion.$valid">
+
+                                <div class="alert alert-warning" >
+                                    <strong>Advertencia:</strong><p>Debes seleccionar una nota para poder continuar.</p>
+                                </div> 
                             </div> 
                         </div> 
-                    </div> 
-                    <div class="form-group row">
-                        <div class="form-group col-sm-12">                          
-                            <button ng-show="calificacion.$valid" type="submit" class="btn btn-success">
-                                <div ng-hide="edit">
-                                    <i class="glyphicon glyphicon-star"></i> Calificar
-                                </div>
-                                <div ng-show="edit">
-                                    <i class="glyphicon glyphicon-edit"></i> Editar
-                                </div>                          
-                            </button>
-                            <a class="btn btn-danger btn-sm" ui-sref="calificacionDetail({cali: cali, idUsuario: currentReserva.usuarioReserva.documentoUsuario, idReserva: currentReserva.idReserva})"><span class="glyphicon glyphicon-remove"></span>&nbsp;Cancelar</a>
-                        </div>
                     </div>
                 </form>
+
 
             </div>
         </div>

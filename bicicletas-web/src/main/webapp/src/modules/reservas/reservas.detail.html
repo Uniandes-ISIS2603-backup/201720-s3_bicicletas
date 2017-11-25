@@ -9,6 +9,8 @@
             <div class="btn-group-vertical">
                 <button class="btn btn-secondary" ui-sref="asociarAccesorio({idReserva: currentReserva.idReserva})"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Añadir accesorios</button>
                 <button class="btn btn-secondary" ui-sref="asociarBicicleta({idReserva: currentReserva.idReserva})"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Añadir bicicletas</button>                
+                <button ng-hide="currentReserva.calificacionSalida" class="btn btn-secondary" ui-sref="calificacionesCreate({cali: 0, idUsuario: currentReserva.usuarioReserva.documentoUsuario, idReserva: currentReserva.idReserva})"><span class="glyphicon glyphicon-star"></span>&nbsp;Calificar estación de salida</button>              
+                <button ng-show="currentReserva.calificacionSalida && !currentReserva.calificacionLlegada" class="btn btn-secondary" ui-sref="calificacionesCreate({cali: 1, idUsuario: currentReserva.usuarioReserva.documentoUsuario, idReserva: currentReserva.idReserva})"><span class="glyphicon glyphicon-star"></span>&nbsp;Calificar estación de llegada</button>              
                 <button class="btn btn-secondary" ng-click="irAPagar()"><span class="glyphicon glyphicon-usd"></span>&nbsp;Pagar</button>
                 <button class="btn btn-secondary" ng-click="verTransaccion()"><span class="glyphicon glyphicon-eye-open"></span>&nbsp;Ver transaccion</button> 
                 <br>
@@ -51,7 +53,7 @@
             <li> <a class="flex-sm-fill text-sm-center"  ui-sref="accesoriosReservaList({idReserva: currentReserva.idReserva})">Accesorios</a></li>        
             <li> <a class="flex-sm-fill text-sm-center" ui-sref="bicicletasReservaList({idReserva: currentReserva.idReserva})">Bicicletas</a></li>
             <li> <a class="flex-sm-fill text-sm-center" ui-sref="calificacionDetail({cali: 0, idUsuario: currentReserva.usuarioReserva.documentoUsuario, idReserva: currentReserva.idReserva})">Calificación estación de salida</a></li>
-            <li> <a class="flex-sm-fill text-sm-center" ui-sref="calificacionDetail({cali: 1, idUsuario: currentReserva.usuarioReserva.documentoUsuario, idReserva: currentReserva.idReserva})">Calificación estación de llegada</a></li>          
+            <li> <a ng-show="currentReserva.mostrarLlegada" class="flex-sm-fill text-sm-center" ui-sref="calificacionDetail({cali: 1, idUsuario: currentReserva.usuarioReserva.documentoUsuario, idReserva: currentReserva.idReserva})">Calificación estación de llegada</a></li>          
         </ul>
 
     </div>
