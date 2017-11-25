@@ -1,5 +1,21 @@
-<div ng-if="!isAuthenticated()" class="container">
-    <form class="form-signin">
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+ 
+  background-image: url(resources/img/wallpaper.png);
+   background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center ;
+    margin-bottom: 280px;
+}
+</style>
+</head>
+<body>
+
+<div ng-if="!isAuthenticated()" class="container" background-color: transparent>
+    <form class="form-signin" >
         <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
         <h1 class="form-signin-heading text-muted">Ingresar</h1>
         <input type="text" class="form-control" placeholder="Usuario" required="" autofocus="" ng-model="data.username">
@@ -16,3 +32,6 @@
         <a class="btn btn-lg btn-primary btn-block" ui-sref="usuariosList">Cancel</a>
     </form>
 </div>
+
+</body>
+</html>
