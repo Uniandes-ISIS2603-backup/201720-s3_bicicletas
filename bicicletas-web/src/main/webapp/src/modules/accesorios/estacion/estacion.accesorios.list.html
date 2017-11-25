@@ -12,7 +12,7 @@
                         <th>Accesorio</th>
                         <th>Tipo</th>
                         <th>Estado</th>
-                        <th>Remover</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -36,7 +36,9 @@
                             </div> 
                         </td>
                         <td id="{{$index}}-actions">
-                            <a class="btn btn-danger btn-sm" ui-sref="accesorioDelete({id: accesorio.id})"><span class="glyphicon glyphicon-remove"></span></a>
+                            <a class="btn btn-primary btn-sm" ui-sref=""><span class="glyphicon glyphicon-move"></span></a> 
+                            <a class="btn btn-danger btn-sm" ui-sref="accesorioDelete({id: accesorio.id})"><span class="glyphicon glyphicon-trash"></span></a>                            
+                                              
                         </td>
 
                     </tr>

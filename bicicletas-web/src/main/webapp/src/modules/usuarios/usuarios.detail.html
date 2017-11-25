@@ -1,6 +1,7 @@
 <div class="panel container-fluid">    
 
      <div class="form-group col-sm-12" style="text-align: center; justify-content: center">
+         <br>
         <div class="alert alert-success"  >
             <strong>¡Bienvenido!</strong><p>Acceso exitoso</p>
         </div> 
@@ -13,8 +14,8 @@
         <div class="col-sm-12"><br></div>
         <div class="col-sm-2">
             <div class="btn-group-vertical">
-                <button class="btn btn-secondary" ui-sref="direccionesCreate"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Añadir dirección</button>
-                <button class="btn btn-secondary" ui-sref="reservaCreate({idUsuario:currentUsuario.documentoUsuario})"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Crear reserva</button>
+                <button class="btn btn-secondary" ui-sref="direccionesCreate"><span class="glyphicon glyphicon-plus"></span>&nbsp;Añadir dirección</button>
+                <button class="btn btn-secondary" ui-sref="reservaCreate({idUsuario:currentUsuario.documentoUsuario})"><span class="glyphicon glyphicon-plus"></span>&nbsp;Crear reserva</button>
                 <button class="btn btn-secondary" ui-sref="usuarioConsulta({documentoUsuario: currentUsuario.documentoUsuario})"><span class="glyphicon glyphicon-search"></span>&nbsp;Consultar reservas</button>    
                 
             </div>
@@ -59,6 +60,7 @@
         </ul>
 
     </div>
+    <div class="col-sm-12"><br></div>
     <div class="col-md-12">
         <div ui-view="childrenView"></div>
     </div>
