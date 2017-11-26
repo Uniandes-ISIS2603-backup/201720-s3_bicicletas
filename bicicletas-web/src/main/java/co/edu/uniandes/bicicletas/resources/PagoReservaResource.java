@@ -165,9 +165,7 @@ public class PagoReservaResource {
         }
 
         PagoEntity pago = pagoLogic.pagarReserva(idReserva, metodoDePago, contrasenia);
-        PagoDetailDTO pagoRealizado = new PagoDetailDTO(pago);
-
-        return pagoRealizado;
+        return new PagoDetailDTO(pago);
     }
 
     /**

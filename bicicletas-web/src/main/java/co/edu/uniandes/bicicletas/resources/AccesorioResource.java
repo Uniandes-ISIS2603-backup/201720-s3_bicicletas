@@ -85,9 +85,7 @@ public class AccesorioResource {
             {
                 if(estacionLogica.getEstacion(dto.getEstacion().getId())!=null){
                    dto.setReservado(0);
-                    AccesorioDTO accesorio = new AccesorioDTO(logica.crearAccesorio(dto.toEntity()));
-                    
-                   return accesorio; 
+                   return new AccesorioDTO(logica.crearAccesorio(dto.toEntity())); 
                }
         }
         throw new WebApplicationException("No esta dentro del tipo o estado correspondiente", 301);

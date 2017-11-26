@@ -70,7 +70,7 @@ public class AccesorioBicicletaLogic {
      * @throws WebApplicationException 
      */
     
-    public void deleteAccesorioBicicleta(Long id) throws WebApplicationException
+    public void deleteAccesorioBicicleta(Long id)
     {
          AccesorioBicicletaEntity bicicleta = persistence.find(id);
          if(bicicleta == null){
@@ -84,7 +84,8 @@ public class AccesorioBicicletaLogic {
      * @return el accesorioBicicleta que se debe actualizar.
      * @throws WebApplicationException 
      */
-    public AccesorioBicicletaEntity actualizarAccesorioBici(AccesorioBicicletaEntity entidad) throws WebApplicationException{
+    public AccesorioBicicletaEntity actualizarAccesorioBici(AccesorioBicicletaEntity entidad)
+    {
         if(persistence.find(entidad.getId())==null){
             throw new WebApplicationException("No hay una estación con dicho id", 402);
         }

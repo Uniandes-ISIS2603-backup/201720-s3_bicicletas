@@ -353,8 +353,7 @@ public class ReservaLogic
       */
      public List<BicicletaEntity> getBicis(Long idReserva)throws BusinessLogicException{
          ReservaEntity reserva = getReserva(idReserva);
-         List<BicicletaEntity> bicis = reserva.getBicicletas();
-         return bicis;
+         return reserva.getBicicletas();
      }
     //------------------------------------------------------------------------------------------------------------------
     //------------------------------------------------------------------------------------------------------------------
@@ -393,8 +392,7 @@ public class ReservaLogic
       */
      public List<AccesorioEntity> getAccesorios(Long idReserva)throws BusinessLogicException{
          ReservaEntity reserva = getReserva(idReserva);
-         List<AccesorioEntity> accesorios = reserva.getAccesorios();
-         return accesorios;
+         return reserva.getAccesorios();
      }
      /**
       * 

@@ -30,8 +30,7 @@ public class AccesorioLogic {
      * @throws WebApplicationException 
      */
     public AccesorioEntity getAccesorio(Long id){
-        AccesorioEntity accesorio = persistence.find(id);
-        return accesorio;
+        return persistence.find(id);
     }
     /**
      * Metodo que elimina un accesorio.
@@ -61,14 +60,7 @@ public class AccesorioLogic {
      * @throws BusinessLogicException 
      */
     public AccesorioEntity crearAccesorio(AccesorioEntity entidadA)throws BusinessLogicException{
-        
-       
-        
-        AccesorioEntity accesorioEntity = persistence.create(entidadA);
-        
-       
-        
-        return accesorioEntity;
+        return persistence.create(entidadA);
     }
     /**
      * Metodo que actualiza un accesorio
@@ -100,8 +92,8 @@ public class AccesorioLogic {
      */
     public AccesorioEntity getDireccion(Long id) {
         
-        AccesorioEntity accesorio = persistence.find(id);
-        return accesorio;
+        return persistence.find(id);
+
     }
     
     /**
@@ -113,8 +105,7 @@ public class AccesorioLogic {
      *
      */
     public EstacionEntity getEstacion(Long direccionId, Long estacionesId) {
-        EstacionEntity list = getDireccion(direccionId).getEstacion();
-        return list;
+        return getDireccion(direccionId).getEstacion();
     }
     
     /**

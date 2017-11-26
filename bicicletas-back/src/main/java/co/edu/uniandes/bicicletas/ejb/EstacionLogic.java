@@ -74,7 +74,7 @@ public class EstacionLogic
      * @return Una estación con id dado por parametro.
      * @throws WebApplicationException 
      */
-    public EstacionEntity getEstacion(Long id) throws WebApplicationException
+    public EstacionEntity getEstacion(Long id)
     {
         //Toca agregarle más cosas, solo lo hice provisional
          EstacionEntity estacion = persistence.find(id);
@@ -89,7 +89,7 @@ public class EstacionLogic
      * @param id de la estación a eliminar.
      * @throws WebApplicationException 
      */
-    public void deleteEstacion(Long id) throws WebApplicationException
+    public void deleteEstacion(Long id)
     {
          EstacionEntity estacion = persistence.find(id);
          if(estacion == null){
@@ -136,8 +136,7 @@ public class EstacionLogic
      */
     public List<AccesorioEntity> getAccesorios1(Long idEstacion)throws BusinessLogicException{
          EstacionEntity estacion = getEstacion(idEstacion);
-         List<AccesorioEntity> accesorios = estacion.getAccesorios();
-         return accesorios;
+         return estacion.getAccesorios();       
      }
      /**
       * Metodo que obtiene todas las estaciones.
@@ -175,7 +174,8 @@ public class EstacionLogic
      * @return La estación actualizada.
      * @throws WebApplicationException 
      */
-    public EstacionEntity actualizarEstacion(EstacionEntity entidad) throws WebApplicationException{
+    public EstacionEntity actualizarEstacion(EstacionEntity entidad)
+    {
         if(persistence.find(entidad.getId())==null){
             throw new WebApplicationException(NO_ESTACION_ID, 402);
         }
@@ -225,7 +225,6 @@ public class EstacionLogic
     //------------------------------------------------------------------------------------------------------------------
     
     /**
-<<<<<<< HEAD
      * Este metodo obtiene una bicicleta de la Estacion establecida
      * @param idEstacion Long el id de la estacion
      * @param idBici Long el id de la bicicleta
@@ -243,7 +242,7 @@ public class EstacionLogic
                 esta = true;
             }
         }
-        if(esta==false){
+        if(!esta){
             throw new WebApplicationException("No hay una estación asociada a la bici", 402);
         }
         return bici;

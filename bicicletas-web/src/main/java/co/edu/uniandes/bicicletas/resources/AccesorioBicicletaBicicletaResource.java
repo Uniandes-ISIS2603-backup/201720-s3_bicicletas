@@ -72,7 +72,7 @@ public class AccesorioBicicletaBicicletaResource {
      * 404 con el mensaje.
      */
     @PUT
-    public AccesorioBicicletaDTO updateAccesorioBicicleta(@PathParam("idBicicleta") Long idBici, AccesorioBicicletaDTO bicicletas) throws BusinessLogicException, UnsupportedOperationException {
+    public AccesorioBicicletaDTO updateAccesorioBicicleta(@PathParam("idBicicleta") Long idBici, AccesorioBicicletaDTO bicicletas) throws BusinessLogicException {
           
           AccesorioBicicletaEntity entity =bicicletas.toEntity();
           superBiciLogic.updateAcc(idBici, entity);

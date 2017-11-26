@@ -71,7 +71,7 @@ public class BicicletaResource {
     /**
      * POST http://localhost:8080/bicicletas-web/api/bicicletas
      *
-     * @param Bicicleta correponde a la representación java del objeto json
+     * @param bicicleta correponde a la representación java del objeto json
      * enviado en el llamado.
      * @return Devuelve el objeto json de entrada que contiene el id creado por
      * la base de datos y el tipo del objeto java. Ejemplo: { "type":
@@ -79,12 +79,12 @@ public class BicicletaResource {
      * @throws BusinessLogicException
      */
     @POST
-    public BicicletaDTO createBicicleta(BicicletaDTO Bicicleta) throws BusinessLogicException {
+    public BicicletaDTO createBicicleta(BicicletaDTO bicicleta) throws BusinessLogicException {
         // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
-        Bicicleta.setEstado(2);
-        BicicletaEntity BicicletaEntity = Bicicleta.toEntity();
+        bicicleta.setEstado(2);
+        BicicletaEntity bicicletaEntity = bicicleta.toEntity();
         // Invoca la lógica para crear la Bicicleta nueva
-        BicicletaEntity nuevoBicicleta = bicicletasLogic.createBicicleta(BicicletaEntity);
+        BicicletaEntity nuevoBicicleta = bicicletasLogic.createBicicleta(bicicletaEntity);
         // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
         return new BicicletaDTO(nuevoBicicleta);
     }
@@ -127,7 +127,7 @@ public class BicicletaResource {
      */
     @PUT
     @Path("{id: \\d+}")
-    public BicicletaDetailDTO updateBicicleta(@PathParam("id") Long id, BicicletaDetailDTO bicicletas) throws BusinessLogicException, UnsupportedOperationException {
+    public BicicletaDetailDTO updateBicicleta(@PathParam("id") Long id, BicicletaDetailDTO bicicletas) throws BusinessLogicException {
           BicicletaEntity entity = bicicletas.toEntity();
           return new BicicletaDetailDTO(bicicletasLogic.actualizarBicicleta(entity));
       

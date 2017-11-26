@@ -41,6 +41,11 @@ import javax.ws.rs.WebApplicationException;
              * inyeccion de la logica de usuario
              */
 	    private UsuarioLogic usuarioLogic;
+            
+            /**
+             * Constante que representa que no existe un usuario
+             */
+            private static final String NOEXISTE = "El usuario no existe";
 
     /**
      * Esta es la documentación 
@@ -67,7 +72,7 @@ import javax.ws.rs.WebApplicationException;
                 this.usuarioLogic = usuarioLogic;
             }
             
-            private static final String NOEXISTE = "El usuario no existe";
+            
             
             //----------------------------------------------------------
             //Metodos

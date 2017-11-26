@@ -133,6 +133,11 @@ public class ReservaEntity extends BaseEntity implements Serializable {
      * precio final de la reserva
      */
     private Double precioFinal;
+    
+    /**
+     * Atributo que representa si hay o no descuento
+     */
+    private Boolean descuento;
 
     /**
      * fecha en la que fue creadala reserva la reserva
@@ -182,11 +187,6 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     public void setFechaFinal(Date fechaFinal) {
         this.fechaFinal = fechaFinal;
     }
-
-    /**
-     * Atributo que representa si hay o no descuento
-     */
-    private Boolean descuento;
 
     /**
      * 

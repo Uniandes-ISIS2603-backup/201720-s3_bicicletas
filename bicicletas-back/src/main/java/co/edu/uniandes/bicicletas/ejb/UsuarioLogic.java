@@ -10,7 +10,6 @@ import co.edu.uniandes.bicicletas.entities.DireccionEntity;
 import co.edu.uniandes.bicicletas.entities.UsuarioEntity;
 import co.edu.uniandes.bicicletas.persistence.UsuarioPersistence;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;

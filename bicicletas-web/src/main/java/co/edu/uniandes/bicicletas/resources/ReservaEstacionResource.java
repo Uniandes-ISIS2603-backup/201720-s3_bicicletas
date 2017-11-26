@@ -27,7 +27,7 @@ import javax.ws.rs.WebApplicationException;
 public class ReservaEstacionResource {
     
     @Inject ReservaLogic logic ;
-    @Inject EstacionLogic Estacionlogic ;
+    @Inject EstacionLogic estacionlogic ;
     
     /**
      * Constante para representar el recurso reservas
@@ -44,16 +44,16 @@ public class ReservaEstacionResource {
     @GET
     public EstacionDTO  darEstacion (@PathParam("idReserva") Long idReserva, Integer llegada )throws BusinessLogicException{
         
-        EstacionDTO Estacion = null;
+        EstacionDTO estacion = null;
         
         if(llegada==0){
-            Estacion = new EstacionDTO(logic.getReserva(idReserva).getEstacionSalida()) ;
+            estacion = new EstacionDTO(logic.getReserva(idReserva).getEstacionSalida()) ;
         }else if(llegada==1){
-             Estacion = new EstacionDTO(logic.getReserva(idReserva).getEstacionSalida());  //CAMBIADO POR ESTACION SALIDA
+             estacion = new EstacionDTO(logic.getReserva(idReserva).getEstacionSalida());  //CAMBIADO POR ESTACION SALIDA
         }else{
             throw new WebApplicationException(RECURSO_RESERVA + idReserva + "/Estacion/" + llegada + " no existe", 404);
         }
-     return Estacion;   
+     return estacion;   
     }
     
     
@@ -71,7 +71,7 @@ public class ReservaEstacionResource {
         ReservaEntity reserva = logic.getReserva(idReserva);
         EstacionEntity una = null;
         if(reserva!=null){
-            una = Estacionlogic.getEstacion(reserva.getEstacionLlegada());
+            una = estacionlogic.getEstacion(reserva.getEstacionLlegada());
             estacion = new EstacionDetailDTO(una);
         }else{
             throw new WebApplicationException(RECURSO_RESERVA + idReserva + "/Estacion/ no existe", 404);
@@ -89,10 +89,10 @@ public class ReservaEstacionResource {
     @POST
     @Path("{idEstacion: \\d+}")
     public void  setEstacion (@PathParam("idReserva") Long idReserva, Integer llegada ,@PathParam("idEstacion") Long idEstacion )throws BusinessLogicException{
-      EstacionDTO Estacion = new EstacionDTO(Estacionlogic.getEstacion(idEstacion));
-      EstacionEntity Entity =Estacion.toEntity();
+      EstacionDTO estacion = new EstacionDTO(estacionlogic.getEstacion(idEstacion));
+      EstacionEntity entity =estacion.toEntity();
        if(llegada==1){
-             logic.getReserva(idReserva).setEstacionSalida(Entity); //CAMBIADO POR ESTACION SALIDA
+             logic.getReserva(idReserva).setEstacionSalida(entity); //CAMBIADO POR ESTACION SALIDA
         }else{
             throw new WebApplicationException(RECURSO_RESERVA + idReserva + "/Estacion/" + llegada + " no existe", 404);
         }  
@@ -106,7 +106,7 @@ public class ReservaEstacionResource {
      */
     @PUT
     public void asignarEstacion (@PathParam("idReserva") Long idReserva, EstacionDTO estacion) throws BusinessLogicException{
-        EstacionDTO estacion1 = new EstacionDTO(Estacionlogic.getEstacion(estacion.getId()));
+        EstacionDTO estacion1 = new EstacionDTO(estacionlogic.getEstacion(estacion.getId()));
         ReservaEntity actua = logic.getReserva(idReserva);
         EstacionEntity entity = estacion1.toEntity();
         if(entity!=null&&actua!=null)

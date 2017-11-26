@@ -53,11 +53,11 @@ public class BicicletaDTO {
      *
      * @param Bicicleta: Es la entidad que se va a convertir a DTO
      */
-    public BicicletaDTO(BicicletaEntity Bicicleta) {
-        this.id = Bicicleta.getId();
-        this.estado=Bicicleta.darEstado();
-        this.marca=Bicicleta.darMarca();
-        this.modelo=Bicicleta.darModelo();
+    public BicicletaDTO(BicicletaEntity bicicleta) {
+        this.id = bicicleta.getId();
+        this.estado=bicicleta.darEstado();
+        this.marca=bicicleta.darMarca();
+        this.modelo=bicicleta.darModelo();
         
     }
 

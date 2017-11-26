@@ -277,9 +277,8 @@ public class PagoLogic {
         sumarPunto(usuario.getDocumentoUsuario());
 
         //Actualiza el pago.
-        PagoEntity pagoActualizado = updatePago(pago);
-
-        return pagoActualizado;
+        return updatePago(pago);
+ 
     }
 
      /**
@@ -308,9 +307,7 @@ public class PagoLogic {
         sumarPunto(usuario.getDocumentoUsuario());
 
         //Actualiza el pago.
-        PagoEntity pagoActualizado = updatePago(pago);
-
-        return pagoActualizado;
+        return updatePago(pago);
     }
 
     /**

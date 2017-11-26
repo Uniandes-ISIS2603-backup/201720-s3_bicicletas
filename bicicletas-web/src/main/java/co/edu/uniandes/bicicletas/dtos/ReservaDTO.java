@@ -102,48 +102,6 @@ public class ReservaDTO {
     
     /**
      * 
-     * @return 
-     */
-    public Long getEstacionLlegada() {
-        return estacionLlegada;
-    }
-
-    /**
-     * 
-     * @param estacionLlegada 
-     */
-    public void setEstacionLlegada(Long estacionLlegada) {
-        this.estacionLlegada = estacionLlegada;
-    }
-
-    /**
-     * 
-     * @return 
-     */
-    public String isuue(){
-        String a = fechaReserva+"000";
-         return a;
-    }
-    
-    /**
-     * 
-     * @return 
-     */
-    public EstacionEntity getMostrarLlegada() {
-        return mostrarLlegada;
-    }
-
-    /**
-     * 
-     * @param mostrarLlegada 
-     */
-    public void setMostrarLlegada(EstacionEntity mostrarLlegada) {
-        this.mostrarLlegada = mostrarLlegada;
-    }
-    
-
-    /**
-     * 
      * @param entidad 
      */
     public ReservaDTO(ReservaEntity entidad) {
@@ -185,13 +143,55 @@ public class ReservaDTO {
     
     /**
      * 
+     * @return 
+     */
+    public Long getEstacionLlegada() {
+        return estacionLlegada;
+    }
+
+    /**
+     * 
+     * @param estacionLlegada 
+     */
+    public void setEstacionLlegada(Long estacionLlegada) {
+        this.estacionLlegada = estacionLlegada;
+    }
+
+    /**
+     * 
+     * @return 
+     */
+    public String isuue(){
+        return fechaReserva+"000";
+    }
+    
+    /**
+     * 
+     * @return 
+     */
+    public EstacionEntity getMostrarLlegada() {
+        return mostrarLlegada;
+    }
+
+    /**
+     * 
+     * @param mostrarLlegada 
+     */
+    public void setMostrarLlegada(EstacionEntity mostrarLlegada) {
+        this.mostrarLlegada = mostrarLlegada;
+    }
+    
+
+    
+    
+    /**
+     * 
      * @param fecha
      * @return 
      */
     public String fechaOrg(Date fecha){
         String rta = fecha.toString();
-        String nuevo=rta.substring(0,10)+" "+rta.substring(24,28)+" "+rta.substring(11,19);
-        return nuevo;
+        return rta.substring(0,10)+" "+rta.substring(24,28)+" "+rta.substring(11,19);
     }
     /**
      * 
@@ -333,15 +333,14 @@ public class ReservaDTO {
         
         String mes = darMes(pfecha.substring(4,7));
         String dia = pfecha.substring(7,10);
-        String año = pfecha.substring(10,15);
+        String anio = pfecha.substring(10,15);
         String hora = pfecha.substring(15,24);
         
-        String newFecha = dia+"/"+mes+"/"+año+" "+hora;
+        String newFecha = dia+"/"+mes+"/"+anio+" "+hora;
         
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         try {
-            Date fecha = formato.parse(newFecha);
-            return fecha;
+            return formato.parse(newFecha);
         } catch (ParseException ex) {
            return new Date(2001, 01,01,01,00,00);
         }
