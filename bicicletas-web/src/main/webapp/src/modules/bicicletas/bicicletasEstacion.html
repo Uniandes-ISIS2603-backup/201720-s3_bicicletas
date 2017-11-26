@@ -13,6 +13,7 @@
                         <th>Modelo</th>
                         <th>Marca</th>
                         <th>Estado</th>
+                        <th>Mover</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,7 +36,13 @@
                             <div ng-if="bicicleta.estado == 3">
                                 Dañado
                             </div>
+
                         </td>
+                        <td id="{{$index}}-actions">
+                            <a class="btn btn-primary btn-sm" ui-sref=""><span class="glyphicon glyphicon-move"></span></a>
+                            <a class="btn btn-danger btn-sm" ui-sref="bicicletaDelete({id: bicicleta.id})"><span class="glyphicon glyphicon-trash"></span></a>
+
+                        </td>                        
                     </tr>
                 </tbody>
             </table>

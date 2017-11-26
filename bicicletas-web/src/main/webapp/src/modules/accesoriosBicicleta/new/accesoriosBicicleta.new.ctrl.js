@@ -10,7 +10,7 @@
 	                    descripcion: $scope.accesorioBicicletaDescripcion
 	                }).then(function (response) {
 	                    //Usuario created successfully
-	                    $state.go('bicicletaDetail', {id: response.data.id}, {reload: true});
+	                    $state.go('accesoriosBicicletaBicicleta', {id: $state.params.id}, {reload: true});
 	                });
 	            };
         }

@@ -35,6 +35,16 @@
                                 controllerAs: 'ctrl'
 	                    }
 	                }
+	    }).state('deleteAccesorioBicicleta', {
+	                url: '/{id:int}/delete/{idAccesorioBicicleta:int}',
+	                parent: 'accesoriosBicicletaList',
+	                views: {
+	                    'detailView': {
+	                        templateUrl: basePath + '/delete/accesoriosBicicleta.delete.html',
+	                        controller: 'accesorioBicicletaDeleteCtrl',
+                                controllerAs: 'ctrl'
+	                    }
+	                }
 	    });                   
         }]);
 })(window.angular);
