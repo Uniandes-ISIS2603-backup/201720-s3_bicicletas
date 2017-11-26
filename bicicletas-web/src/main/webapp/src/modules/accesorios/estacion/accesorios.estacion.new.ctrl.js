@@ -4,7 +4,6 @@ var mod = ng.module("accesorioModule");
     mod.constant("estacionesAccesoriosContext", "api/accesorios");
     mod.controller('accesoriosEstacionNewCtrl', ['$scope', '$http', 'estacionesAccesoriosContext', '$state', 'accesoriosEstacionContext',
         function ($scope, $http, estacionesAccesoriosContext, $state, accesoriosEstacionContext) {
-            var id2 = 0;
             $scope.createAccesorio = function () {
 	                $http.post(estacionesAccesoriosContext + '/', {
                         tipo: $scope.accesorioTipo,
