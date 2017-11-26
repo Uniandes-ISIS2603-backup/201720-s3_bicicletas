@@ -79,9 +79,10 @@
                 }
             }).state('accesorioDelete', {                  
                     parent: 'accesorios',
-                    url: '/delete/{id:int}',
+                    url: '/{idEstacion:int}/delete/{id:int}',
                     param: {
-                        id: null
+                        id: null,
+                        idEstacion: null
                     },
                     views: {
                         'detailView': {

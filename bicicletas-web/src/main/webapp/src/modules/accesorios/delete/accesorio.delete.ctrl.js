@@ -6,7 +6,7 @@
             var id = $state.params.id;
             $scope.deleteAccesorio = function () {
                 $http.delete(accesoriosContext + '/' + id, {}).then(function (response) {
-                    $state.go('accesoriosList', {id: response.data.id}, {reload: true});
+                    $state.go('accesoriosEstacionList', {id: $state.params.idEstacion}, {reload: true});
                 });
             };
         }
