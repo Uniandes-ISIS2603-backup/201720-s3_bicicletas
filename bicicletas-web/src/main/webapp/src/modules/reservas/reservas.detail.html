@@ -1,10 +1,19 @@
 <div class="panel container-fluid">    
     <div class="row">
-        <div class="col-sm-12"><br></div>
         <div class="col-sm-12" style="text-align: center">
             <h2>Reserva {{currentReserva.idReserva}}</h2>
         </div>
-        <div class="col-sm-12"><br></div>
+        
+        <div class="col-sm-12">&nbsp;
+            <div ng-show="currentReserva.estado === 1 && !currentReserva.bicicletas" class="alert alert-info" style="text-align: center"  >
+                Empieza <a ui-sref="asociarBicicleta({idReserva: currentReserva.idReserva})" class="alert-link">añadiendo bicicletas</a> a tu reserva
+            </div>
+            <div ng-show="currentReserva.estado === 1 && currentReserva.bicicletas && !currentReserva.accesorios" class="alert alert-info" style="text-align: center"  >
+                Procede a <a ui-sref="asociarAccesorio({idReserva: currentReserva.idReserva})" class="alert-link">añadir los accesorios</a> que consideres necesarios. Estos no poseen ningún costo adicional
+            </div>
+        </div>
+       
+
         <div class="col-sm-3">
             <div class="btn-group-vertical">
                 <button class="btn btn-secondary" ui-sref="asociarAccesorio({idReserva: currentReserva.idReserva})"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Añadir accesorios</button>
@@ -17,11 +26,11 @@
                 <button class="btn btn-back" onclick="history.back()"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;Regresar</button> 
                 <br>
             </div>
-            
+
 
         </div>
         <div class="col-sm-3">
-             <a class="list-group-item">
+            <a class="list-group-item">
                 <h4 class="list-group-item-heading">Estacion de salida:</h4>
                 <p class="list-group-item-text">{{currentReserva.estacionSalida.name}}</p>
             </a>
