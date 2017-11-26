@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.bicicletas.dtos;
+import co.edu.uniandes.bicicletas.entities.AccesorioEntity;
+import co.edu.uniandes.bicicletas.entities.BicicletaEntity;
 import co.edu.uniandes.bicicletas.entities.CalificacionEntity;
 import co.edu.uniandes.bicicletas.entities.EstacionEntity;
 import java.util.Date;
@@ -13,6 +15,7 @@ import co.edu.uniandes.bicicletas.entities.UsuarioEntity;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 /**
  * Dto de reserva 
@@ -79,6 +82,16 @@ public class ReservaDTO {
      * Calificación de la estación de salida
      */
     private CalificacionEntity calificacionLlegada;
+    
+    /**
+     * Bicicletas de la reserva
+     */
+    private List<BicicletaEntity> bicicletas;
+    
+    /**
+     * Accesorios de la reserva
+     */
+    private List<AccesorioEntity> accesorios;
     
     /**
      * constructor vacio
@@ -155,6 +168,18 @@ public class ReservaDTO {
             {
                 this.calificacionLlegada = entidad.getCalificaciones().get(1);
             }
+            
+            if(!entidad.getBicicletas().isEmpty())
+            {
+                this.bicicletas = entidad.getBicicletas();
+            }
+            
+            if(!entidad.getAccesorios().isEmpty())
+            {
+                this.accesorios = entidad.getAccesorios();
+            }
+            
+            
         }
     }
     
@@ -413,6 +438,36 @@ public class ReservaDTO {
     public void setCalificacionLlegada(CalificacionEntity calificacionLlegada) {
         this.calificacionLlegada = calificacionLlegada;
     }
+
+    /**
+     * @return the bicicletas
+     */
+    public List<BicicletaEntity> getBicicletas() {
+        return bicicletas;
+    }
+
+    /**
+     * @param bicicletas the bicicletas to set
+     */
+    public void setBicicletas(List<BicicletaEntity> bicicletas) {
+        this.bicicletas = bicicletas;
+    }
+
+    /**
+     * @return the accesorios
+     */
+    public List<AccesorioEntity> getAccesorios() {
+        return accesorios;
+    }
+
+    /**
+     * @param accesorios the accesorios to set
+     */
+    public void setAccesorios(List<AccesorioEntity> accesorios) {
+        this.accesorios = accesorios;
+    }
+    
+    
     
     
 
