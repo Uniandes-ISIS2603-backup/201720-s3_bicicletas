@@ -11,7 +11,7 @@
         <div ng-show="cali==1 && currentReserva.calificacionSalida && !currentReserva.calificacionLlegada" class="alert alert-info" style="text-align: center"  >
             Tu opinión es importante para nosotros, por favor <a ui-sref="calificacionesCreate({cali: 1, idUsuario: currentReserva.usuarioReserva.documentoUsuario, idReserva: currentReserva.idReserva})" class="alert-link">califica la estación de llegada</a>
         </div> 
-        <div ng-show="cali==0 && currentReserva.calificacionSalida && !currentReserva.calificacionLlegada" class="alert alert-info" style="text-align: center"  >
+        <div ng-show="cali==0 && currentReserva.calificacionSalida && !currentReserva.calificacionLlegada && currentReserva.mostrarLlegada" class="alert alert-info" style="text-align: center"  >
             Muchas gracias por calificar la estación de salida. No olvides <a ui-sref="calificacionesCreate({cali: 1, idUsuario: currentReserva.usuarioReserva.documentoUsuario, idReserva: currentReserva.idReserva})" class="alert-link">calificar la estación de llegada</a> de igual forma
         </div> 
         
