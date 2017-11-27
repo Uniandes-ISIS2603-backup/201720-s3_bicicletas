@@ -33,7 +33,7 @@
                     <td id="{{$index}}-estado" ng-if="reserva.estado==4">{{"Reembolsado"}}</td>
                     <td id="{{$index}}-estado" ng-if="reserva.estado==5">{{"Finalizada"}}</td> 
                     <td ng-hide="mostrar" id="{{$index}}-actions">
-                        <a  class="btn btn-danger btn-sm" ui-sref="reservaDelete({idReserva:reserva.idReserva})"><span class="glyphicon glyphicon-trash"></span></a>
+                        <a  class="btn btn-danger btn-sm" ui-sref="reservaDelete({idReserva:reserva.idReserva})" ><span class="glyphicon glyphicon-trash"></span></a>
                     </td>
                 </tr>
                 </tbody>

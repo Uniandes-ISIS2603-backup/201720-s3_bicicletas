@@ -143,7 +143,10 @@ public class ReservaResource {
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void borrarReserva(@PathParam("id") Long id) {
+    public void borrarReserva(@PathParam("id") Long id) throws BusinessLogicException{
+        if (logica.getReserva(id).getEstado()!= 1){
+            throw new WebApplicationException("la reserva no se puede cancelar",404);
+        }      
         logica.deleteReserva(id);
     }
     /**
@@ -242,6 +245,19 @@ public class ReservaResource {
             throw new WebApplicationException(RECURSO_RESERVA + idReserva + "/accesorios no existe.", 404);
         }
         return ReservaAccesorioResource.class;
+    }
+    
+    @GET
+    @Path("{id: \\d+}/iniciar")
+    public ReservaDTO iniciarReserva(@PathParam("id") Long id) throws BusinessLogicException{
+        ReservaEntity reserva = logica.getReserva(id);
+        if(reserva==null){
+          throw new WebApplicationException("La reserva con id "+ id +NO_EXISTE, 404);
+        }
+        
+         ReservaEntity nueva=logica.iniciarReserva(reserva);
+        
+        return new ReservaDTO(nueva);
     }
     
     

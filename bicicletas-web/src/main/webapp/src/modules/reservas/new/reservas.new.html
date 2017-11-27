@@ -16,13 +16,17 @@
                     <div class="form-group row">
                         <div class="form-group col-md-9">
                             <label for="fechaSalida" class="col-sm-4">Fecha de salida:</label>
-                            <input type="datetime-local" id="fechaSalida" placeholder="DD/MM/YYYY HH:mm" required ng-model="fechaSalida" class="col-sm-6"/>
+                            <input type="date" id="fechaSalida" required ng-model="fechaSalida" class="col-sm-3"/>
+                            <label for="hora" class="col-sm-1">Hora:</label>
+                            <input type="time" id="hora" required ng-model="hora" class="col-sm-2"/>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="form-group col-md-9">
                             <label for="fechaLlegada" class="col-sm-4">Fecha de llegada:</label>
-                            <input type="datetime-local" id="fechaLlegada" placeholder="DD/MM/YYYY HH:mm" required ng-model="fechaLlegada" class="col-sm-6"/>
+                            <input type="date" id="fechaLlegada" required ng-model="fechaLlegada" class="col-sm-3"/>
+                            <label for="hora2" class="col-sm-1">Hora:</label>
+                            <input type="time" id="hora2" required ng-model="hora2" class="col-sm-2"/>
                         </div>
                     </div>
                     <div class="form-group row">
