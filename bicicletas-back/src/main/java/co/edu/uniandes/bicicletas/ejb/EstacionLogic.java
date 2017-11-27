@@ -230,19 +230,17 @@ public class EstacionLogic
      * @param idBici Long el id de la bicicleta
      * @return Bicicleta que pertenece a ese id y a esa Estaicion
      */
-    public BicicletaEntity getBiciEstacion(Long idEstacion,Long idBici){
+    public BicicletaEntity getBiciEstacion(Long idEstacion,Long idBici)throws BusinessLogicException{
         EstacionEntity estacion = persistence.find(idEstacion);
         if(estacion ==null){
             throw new WebApplicationException(NO_ESTACION_ID, 402);
         }
         BicicletaEntity bici = bicicletaLogic.find(idBici);
-        boolean esta = false;
-        for(BicicletaEntity temp : estacion.getBicicletas()){
-            if(bici.equals(temp)){
-                esta = true;
-            }
+        if(bici.getReserva()==null){
+            throw new BusinessLogicException("No se puede asociar una bicicleta con reserva");
         }
-        if(!esta){
+        boolean esta = estacion.getBicicletas().contains(bici);
+        if(esta==false){
             throw new WebApplicationException("No hay una estación asociada a la bici", 402);
         }
         return bici;
@@ -271,22 +269,18 @@ public class EstacionLogic
      */
     public EstacionEntity upDateBici(Long idEstacion,BicicletaEntity bicicleta) throws BusinessLogicException{
         BicicletaEntity bici = bicicletaLogic.find(bicicleta.getId());
+        if(bici==null){
+            throw new BusinessLogicException("No existe Bicicleta");
+        }
         EstacionEntity aBorrar = bici.getEstacion();
         EstacionEntity aActualizar = persistence.find(idEstacion);
-        ReservaEntity reserva = bici.getReserva();
-        List<BicicletaEntity> bicicletas = reserva.getBicicletas();
+        if(aActualizar == null){
+            throw new BusinessLogicException(NO_ESTACION_ID);
+        }
         
         aBorrar.getBicicletas().remove(bici);
         bici.setEstacion(aActualizar);
-        aActualizar.getBicicletas().add(bici);
-        reserva.setEstacionLlegada(idEstacion);
-        bicicletas.remove(bici);
-        aActualizar.setBicicletas(bicicletas);  
-        if(bicicletas.isEmpty()){
-            reserva.setEstado(ReservaEntity.FINALIZADA);
-            reserva.setFechaEntrega(new Date(System.currentTimeMillis()));
-        }
-        persistenceReserva.update(reserva);
+        aActualizar.getBicicletas().add(bici); 
         bicicletaLogic.update(bici);
         persistence.update(aActualizar);
         return aActualizar;
@@ -302,6 +296,9 @@ public class EstacionLogic
     public EstacionEntity añadirBici(Long idEstacion,BicicletaEntity bicicleta) throws BusinessLogicException{
 
         BicicletaEntity bici = bicicletaLogic.find(bicicleta.getId());
+        if(bici==null){
+            throw new BusinessLogicException("No existe una bicicleta con dicho id");
+        }
         EstacionEntity aBorrar = bici.getEstacion();
         EstacionEntity aActualizar = persistence.find(idEstacion);
        if(aBorrar!=null){

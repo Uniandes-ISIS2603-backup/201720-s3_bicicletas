@@ -46,7 +46,7 @@ public class EstacionBicicletaResource {
      */
     @GET
     @Path("{idBicicleta: \\d+}")
-    public BicicletaDetailDTO getBici(@PathParam("idestacion") Long idEstacion,@PathParam("idBicicleta") Long idBici){
+    public BicicletaDetailDTO getBici(@PathParam("idestacion") Long idEstacion,@PathParam("idBicicleta") Long idBici) throws BusinessLogicException{
         BicicletaEntity entity = estacionLogic.getBiciEstacion(idEstacion, idBici);
         return new BicicletaDetailDTO(entity);
     }

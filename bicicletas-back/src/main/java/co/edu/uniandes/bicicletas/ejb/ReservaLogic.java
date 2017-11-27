@@ -345,6 +345,42 @@ public class ReservaLogic
          }
          return bici;
      }
+     public ReservaEntity desAsociarBicicleta(BicicletaEntity bicicleta) throws BusinessLogicException{
+         BicicletaEntity bici = biciLogic.find(bicicleta.getId());
+         if(bici==null){
+             throw new BusinessLogicException(NO_BICI);
+         }
+         ReservaEntity reserva=bici.getReserva();
+         if(reserva.getPago()!=null){
+             throw new BusinessLogicException("hay un pago ya asociado a esta reserva");
+         }
+         reserva.getBicicletas().remove(bici);
+         bici.setReserva(null);
+         actualizarReserva(reserva);
+         biciLogic.update(bici);
+         return reserva;
+     }
+     public ReservaEntity entregarBicicletas(Long idReserva)throws BusinessLogicException{
+         ReservaEntity reserva = persistence.find(idReserva);
+         if(reserva==null){
+             throw new BusinessLogicException("No se encontro dicha reserva");
+         }
+         if(reserva.getEstado()!=ReservaEntity.FINALIZADA){
+             throw new BusinessLogicException("La reserva no esta finalizada");
+         }
+         
+         List<BicicletaEntity> bicicletas  = reserva.getBicicletas();
+         for (BicicletaEntity bicicleta : bicicletas) {
+             bicicleta.setReserva(null);
+             biciLogic.update(bicicleta);
+             
+         }
+         reserva.setBicicletas(new ArrayList<BicicletaEntity>());
+         reserva.setEstado(ReservaEntity.FINALIZADA);
+         persistence.update(reserva);
+         
+         return reserva;
+     }
      /**
       * 
       * @param idReserva
