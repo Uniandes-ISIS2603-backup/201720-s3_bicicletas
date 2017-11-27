@@ -74,7 +74,7 @@ public class CalificacionEntity extends BaseEntity implements Serializable
     private Integer nota;
 
     /**
-     * @return the descripcion
+     * @return the descripciones
      */
     public String getDescripcion() {
         return descripcion;
