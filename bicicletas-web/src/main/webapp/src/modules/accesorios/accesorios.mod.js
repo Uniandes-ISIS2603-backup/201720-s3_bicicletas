@@ -110,6 +110,17 @@
                     }
                     
                 }
+            }).state('actualizarAccesorio', {
+                url: '/{id:int}/mover',
+                parent: 'accesoriosReserva',
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + 'reservaAccesorios.html',
+                        controller: 'accesoriosReservaCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                    
+                }
             }).state('asociarAccesorio', {
                     url: '/asociar',
                     parent: 'accesoriosReserva',
