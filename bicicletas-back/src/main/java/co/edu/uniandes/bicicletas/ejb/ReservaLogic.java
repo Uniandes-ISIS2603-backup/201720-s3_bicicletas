@@ -231,13 +231,18 @@ public class ReservaLogic
         return reservaNueva;
     }
     
-    
+    /**
+     * Metodo que inicializa la reserva
+     * @param lreserva
+     * @return
+     * @throws BusinessLogicException 
+     */
     public ReservaEntity iniciarReserva( ReservaEntity lreserva ) throws BusinessLogicException{
         if(lreserva.getEstado()== 0){
             lreserva.setEstado(3);
             persistence.update(lreserva);
         }else{
-            throw new BusinessLogicException("No se puede inicializar una reserva finalizada o cancelada ");
+            throw new BusinessLogicException("No se puede inicializar una reserva finalizada,cancelada o en uso ");
         }
         return lreserva;
     }

@@ -17,7 +17,7 @@
                                 id: $scope.estacionId
                             }
                         }).then(function (response) {
-                            //Usuario created successfully
+                            //Reserva created successfully
                             $state.go('reservaDetail', {idUsuario: $state.params.idUsuario, idReserva: response.data.idReserva}, {reload: true});
                         });
                     };
