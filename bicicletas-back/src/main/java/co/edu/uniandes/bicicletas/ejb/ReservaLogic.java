@@ -142,6 +142,8 @@ public class ReservaLogic
          if(localReserva == null){
              throw new WebApplicationException("No hay una reserva con dicho ID", 402);
          }
+         
+         
          localReserva.setEstado(2);
          persistence.update(localReserva);
     }
@@ -161,6 +163,8 @@ public class ReservaLogic
         List<ReservaEntity> reservasEstacion;
      
         EstacionEntity estacionSalida;
+        
+        
         
         if(entity.getEstado()<0||entity.getEstado()>4){
             throw new BusinessLogicException("El estado indicado no existe");
@@ -183,6 +187,8 @@ public class ReservaLogic
         
         ReservaEntity reservaNueva;
 
+        
+        
         entity.setEstacionSalida(estacionSalida);
         entity.setUsuarioReserva(usuario);
         entity.setEstado(1);
@@ -192,6 +198,7 @@ public class ReservaLogic
         while(iter.hasNext()){
             ReservaEntity local= iter.next();
             if(local.getEstado()!=2){
+                
                 
                 if(local.getFechaInicio().compareTo( entity.getFechaInicio() )== 0 && 
                 local.getEstacionSalida().getId().equals(entity.getEstacionSalida().getId()))

@@ -10,7 +10,9 @@
             $http.get(usuariosContext + '/' + $state.params.idUsuario + '/' + reservasContext + '/' + $state.params.idReserva).then(function (response) {
                 $scope.currentReserva = response.data;
             });
-
+            
+            
+            
             //Solicitud de bicicletas
             $http.get('api/' + reservasContext + '/' + $state.params.idReserva + '/bicicletas').then(function (response) {
                 $scope.bicicletas = response.data;
