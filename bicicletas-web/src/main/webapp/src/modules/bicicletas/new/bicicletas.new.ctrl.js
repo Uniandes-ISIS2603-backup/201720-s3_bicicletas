@@ -9,11 +9,11 @@
 	                    marca: $scope.bicicletaMarca,
 	                    modelo: $scope.bicicletaModelo
 	                }).then(function (response) {
-	                  $http.post('api/estaciones' + '/' + $state.params.id + '/bicicletas/añadir',{
+	                  $http.put('api/estaciones' + '/' + $state.params.id + '/bicicletas/anadir',{
                               id: response.data.id
-                          }).then(function (response)
+                          }).then(function()
                     {
-                         $state.go('estacionList', {id: $state.params.id}, {reload: true});
+                         $state.go('bicicletaDetail', {id: response.data.id} ,{reload: true});
                     });
 	                    
 	                });
