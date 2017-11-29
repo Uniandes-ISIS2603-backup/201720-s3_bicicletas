@@ -291,6 +291,9 @@ public class EstacionLogic
         if(bici==null){
             throw new BusinessLogicException("No existe Bicicleta");
         }
+        if(bici.getReserva()!=null){
+            throw new BusinessLogicException("No se puede mover la bicicleta esta ya en una reserva");
+        }
         EstacionEntity aBorrar = bici.getEstacion();
         EstacionEntity aActualizar = persistence.find(idEstacion);
         if(aActualizar == null){

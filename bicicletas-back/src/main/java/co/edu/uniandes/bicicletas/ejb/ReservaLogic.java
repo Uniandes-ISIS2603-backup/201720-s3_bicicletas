@@ -501,6 +501,9 @@ public class ReservaLogic
          if(reserva.getEstacionSalida().getId()!=accesorioEntity.getEstacion().getId()){
              throw new BusinessLogicException("La reserva y el accesorio no pertenecen a una misma estación");
          }
+         if(reserva.getEstado() == ReservaEntity.PAGADA){
+             throw new BusinessLogicException("Ya hay un pago asociado");
+         }
          boolean a = false;
          for (AccesorioEntity accesorioR : reserva.getAccesorios()) {
              if(accesorioEntity.equals(accesorioR)){
