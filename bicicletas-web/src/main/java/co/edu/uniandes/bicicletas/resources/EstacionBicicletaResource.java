@@ -61,6 +61,17 @@ public class EstacionBicicletaResource {
         return listEntity2DetailDTO(listEntity);
     }
     /**
+     * GET Este metodo obtiene todas las bicicletas de una Estacion.
+     * @param idEstacion id de la estacion
+     * @return Lista de las bicicletas de la estacion.
+     */
+    @GET
+    @Path("disponibles")
+    public List<BicicletaDetailDTO> getBicicsEstacionDisp(@PathParam("idEstacion") Long idEstacion) {
+        List<BicicletaEntity> listEntity = estacionLogic.getBicisEstacionDisponibles(idEstacion);
+        return listEntity2DetailDTO(listEntity);
+    }
+    /**
      * PUT Este metodo entrega la bicicleta y hace un update de la Estacion y de la bicicleta.
      * @param idEstacion
      * @param bici

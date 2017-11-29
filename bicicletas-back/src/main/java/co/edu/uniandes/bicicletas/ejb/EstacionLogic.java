@@ -260,6 +260,25 @@ public class EstacionLogic
         return estacion.getBicicletas();
     }
     /**
+     * Este metodo obtiene todas las bicicletas que pertenecen a dicha Estacion
+     * @param idEstacion Long id de la Estacion
+     * @return Lista de bicicletas que pertenecen a una estacion
+
+     */
+    public List<BicicletaEntity> getBicisEstacionDisponibles(Long idEstacion){
+        EstacionEntity estacion = persistence.find(idEstacion);
+        if(estacion ==null){
+            throw new WebApplicationException(NO_ESTACION_ID, 402);
+        }
+        List<BicicletaEntity> lista = new ArrayList<>();
+        for (BicicletaEntity bicicleta : estacion.getBicicletas()) {
+            if(bicicleta.darEstado()==BicicletaEntity.DISPONIBLE){
+                lista.add(bicicleta);
+            }
+        }
+        return lista;
+    }
+    /**
      * Este metodo entrega una Bicicleta a una nueva Estacion
      * @param idEstacion Long id de la Estacion en la que se va a entregar la bicicleta
      * @param bicicleta bicicleta que se desea entregar

@@ -316,8 +316,8 @@ public class ReservaLogic
              throw new BusinessLogicException("Hay un pago no se puede añadir la bicicleta");
          }
          entity.setReserva(reserva);
-         biciLogic.update(entity);
         reserva.getBicicletas().add(entity);
+        biciLogic.update(entity);
         persistence.update(reserva);
          return reserva;
      }
@@ -365,8 +365,8 @@ public class ReservaLogic
          if(reserva==null){
              throw new BusinessLogicException("No se encontro dicha reserva");
          }
-         if(reserva.getEstado()!=ReservaEntity.FINALIZADA){
-             throw new BusinessLogicException("La reserva no esta finalizada");
+         if(reserva.getEstado()==ReservaEntity.FINALIZADA){
+             throw new BusinessLogicException("La reserva esta finalizada");
          }
          
          List<BicicletaEntity> bicicletas  = reserva.getBicicletas();
