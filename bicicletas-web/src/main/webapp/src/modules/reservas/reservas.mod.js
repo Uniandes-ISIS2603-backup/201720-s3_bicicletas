@@ -85,6 +85,24 @@ var mod = ng.module("reservaModule", ['usuarioModule', 'ui.router', 'pagosModule
                         controllerAs: 'ctrl'
                     }
                 }
-            });
+            }).state('finalizarReservaPadre', {
+                url: '/reservas',
+                abstract: true,
+                parent: 'reservaDetail',
+                views: {
+                    childrenView: {
+                        templateUrl: basePath + 'reservas.html'
+                    }
+                }
+            }).state('finalizarReserva', {
+	                url: 'finalizarReserva/{idReserva:int}',
+	                parent: 'finalizarReservaPadre',
+	                views: {
+	                    'detailView': {
+	                        templateUrl: basePath + '/finalizarReserva/reservas.finalizar.html',
+	                        controller: 'finalizarReservaCtrl'
+	                    }
+	                }
+	    });
         }]);
     })(window.angular);

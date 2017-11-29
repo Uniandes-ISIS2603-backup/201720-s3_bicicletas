@@ -8,6 +8,7 @@ package co.edu.uniandes.bicicletas.resources;
 import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.bicicletas.dtos.BicicletaDetailDTO;
 import co.edu.uniandes.bicicletas.dtos.BicicletaDTO;
+import co.edu.uniandes.bicicletas.dtos.EstacionDTO;
 import co.edu.uniandes.bicicletas.dtos.ReservaDTO;
 import co.edu.uniandes.bicicletas.ejb.ReservaLogic;
 import co.edu.uniandes.bicicletas.entities.BicicletaEntity;
@@ -88,14 +89,14 @@ public class ReservaBicicletaResource {
     /**
      * Este metodo entrega todas las bicicletas de una reserva en una estación.
      * @param idReserva id de la Reserva
-     * @param idEstacion id de la Estacion
+     * @param estacion
      * @return Reserva DTO de la reservaFinalizada
      * @throws BusinessLogicException 
      */
-    @Path("/entregar/{idEstacion: \\d+}")
+    @Path("/entregar")
     @PUT
-    public ReservaDTO entregarBicicleta(@PathParam("idReserva") Long idReserva, @PathParam("idEstacion")Long idEstacion)throws BusinessLogicException{
-      return new ReservaDTO(reservaLogic.entregarBicicletas(idReserva,idEstacion));
+    public ReservaDTO entregarBicicleta(@PathParam("idReserva") Long idReserva, EstacionDTO estacion)throws BusinessLogicException{
+      return new ReservaDTO(reservaLogic.entregarBicicletas(idReserva,estacion.toEntity()));
     }
     /**
      * Este meotdo convierte un entityList en un DTOList

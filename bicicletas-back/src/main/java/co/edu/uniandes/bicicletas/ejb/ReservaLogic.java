@@ -339,6 +339,9 @@ public class ReservaLogic
          if(!reserva.getEstacionSalida().equals(entity.getEstacion())){
              throw new BusinessLogicException("Esta bicicleta no esta disponoble en esa estacion");
          }
+         if(reserva.getEstado()!=ReservaEntity.PAGO){
+             throw new BusinessLogicException(NO_BICI);
+         }
          
          boolean a = reserva.getBicicletas().contains(bici);
          
@@ -393,9 +396,9 @@ public class ReservaLogic
          biciLogic.update(bici);
          return reserva;
      }
-     public ReservaEntity entregarBicicletas(Long idReserva,Long idEstacion)throws BusinessLogicException{
+     public ReservaEntity entregarBicicletas(Long idReserva,EstacionEntity idEstacion)throws BusinessLogicException{
          ReservaEntity reserva = persistence.find(idReserva);
-         EstacionEntity estacion = persistenceEstacion.find(idEstacion);
+         EstacionEntity estacion = persistenceEstacion.find(idEstacion.getId());
          if(reserva==null){
              throw new BusinessLogicException("No se encontro dicha reserva");
          }
