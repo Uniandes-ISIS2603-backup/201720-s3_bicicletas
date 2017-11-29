@@ -34,7 +34,7 @@
                 $rootScope.isAuthenticated = function () {
 
                     if (sessionStorage.getItem("username") != null) {
-                        $rootScope.currentUser = sessionStorage.getItem("name");
+                        $rootScope.currentUser = sessionStorage.getItem("nombre");
                         return true;
                     } else {
                         return false;
@@ -52,7 +52,7 @@
                 $rootScope.isAdministrador = function() {
                     
                     var respuesta = false;
-                    if(sessionStorage.getItem("administrador") !== null){
+                    if(sessionStorage.getItem("rol") === "administrador"){
                         respuesta = true;
                     }
                     
@@ -61,6 +61,21 @@
                 };
 
 
+                $rootScope.isCliente = function() {
+                    
+                    var respuesta = false;
+                    if(sessionStorage.getItem("rol") === "cliente"){
+                        respuesta = true;
+                    }
+                    
+                    return respuesta;
+                  
+                };
+                
+                $rootScope.getDocumentoUsuario = function(){
+                  return sessionStorage.getItem("username");  
+                };
+                
                 if (requireLogin && (sessionStorage.getItem("username") === null)) {
                     event.preventDefault();
                     $state.go('login', $state.params);

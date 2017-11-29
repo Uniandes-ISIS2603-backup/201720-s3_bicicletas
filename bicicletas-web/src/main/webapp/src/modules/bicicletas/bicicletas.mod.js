@@ -37,7 +37,11 @@
                         templateUrl: basePath + 'bicicletas.detail.html',
                         controller: 'bicicletaCtrl',
                         controllerAs: 'ctrl'
-                    }
+                    },
+                    data: {
+                    requireLogin: true,
+                    roles: ["administrador"]
+                }
 
                 }
 

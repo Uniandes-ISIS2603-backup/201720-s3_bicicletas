@@ -41,7 +41,7 @@
         <script src="src/modules/accesorios/quitar/accesorios.quitar.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/accesorios/estacion/accesorios.estacion.new.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/accesorios/estacion/accesorios.estacion.mover.ctrl.js" type="text/javascript"></script>
-        
+
 
 
         <script src="src/modules/bicicletas/bicicletas.mod.js" type="text/javascript"></script>
@@ -54,7 +54,7 @@
         <script src="src/modules/bicicletas/agregarEstacion/bicicletas.agregarEstacion.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/bicicletas/entregar/bicicletas.entregar.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/bicicletas/RemoverBicicletaReserva/bicicletas.removerBicicletaReserva.ctrl.js" type="text/javascript"></script>
-        
+
 
 
         <script src="src/modules/accesoriosBicicleta/accesoriosbicicleta.mod.js" type="text/javascript"></script>
@@ -115,14 +115,15 @@
                             <li><a ui-sref="accesoriosList">Accesorios</a></li>
                             <li><a ui-sref="bicicletasList">Bicicletas</a></li>
                             <li><a ui-sref="estacionesList">Estaciones</a></li>
-                           <li><a ng-if="isAuthenticated() && isAdministrador()" ui-sref="pagosList">Pagos</a></li>
-                            <li><a ui-sref="usuariosList">Usuarios</a></li>                           
+                            <li><a ng-if="isAuthenticated() && isAdministrador()" ui-sref="pagosList">Pagos</a></li>
+                            <li><a ng-if="isAuthenticated() && isAdministrador()" ui-sref="usuariosList">Usuarios</a></li>     
+                            <li><a ng-if="isAuthenticated() && isCliente()" ui-sref="usuarioDetail({documentoUsuario: getDocumentoUsuario()})">Mi cuenta</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a ui-sref="usuariosCreate"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Registrarse</a></li>
+                            <li><a ng-if="!isAuthenticated()" ui-sref="usuariosCreate"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Registrarse</a></li>
                             <li><a ng-if="!isAuthenticated()" ui-sref="login"><span class="glyphicon glyphicon-log-in"></span>&nbsp;&nbsp;Iniciar sesión</a></li>
-                             <li><a ng-if="isAuthenticated()" ui-sref="logout"><span class="glyphicon glyphicon-log-in"></span>&nbsp;&nbsp;Cerrar sesión</a></li>
-                            
+                            <li><a ng-if="isAuthenticated()" ui-sref="logout"><span class="glyphicon glyphicon-log-in"></span>&nbsp;&nbsp;Cerrar sesión</a></li>
+
                         </ul>
                     </div>
                 </div>
