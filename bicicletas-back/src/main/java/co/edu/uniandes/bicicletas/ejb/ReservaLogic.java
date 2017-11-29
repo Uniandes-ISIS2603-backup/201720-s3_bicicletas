@@ -247,10 +247,21 @@ public class ReservaLogic
     public ReservaEntity iniciarReserva( ReservaEntity lreserva ) throws BusinessLogicException{
         if(lreserva.getEstado()== 0){
             lreserva.setEstado(3);
+            List<BicicletaEntity> bicicletas = lreserva.getBicicletas();
+            for (BicicletaEntity bicicleta : bicicletas) {
+                bicicleta.setEstado(BicicletaEntity.RESERVADA);
+                biciLogic.update(bicicleta);
+            }
+            List<AccesorioEntity> accesorios = lreserva.getAccesorios();
+            for (AccesorioEntity accesorio : accesorios) {
+                accesorio.setReservado(AccesorioEntity.EN_RESERVA);
+                persistenceAccesorio.update(accesorio);
+            }
             persistence.update(lreserva);
         }else{
             throw new BusinessLogicException("No se puede inicializar una reserva finalizada,cancelada o en uso ");
         }
+        
         return lreserva;
     }
     /**
@@ -382,22 +393,35 @@ public class ReservaLogic
          biciLogic.update(bici);
          return reserva;
      }
-     public ReservaEntity entregarBicicletas(Long idReserva)throws BusinessLogicException{
+     public ReservaEntity entregarBicicletas(Long idReserva,Long idEstacion)throws BusinessLogicException{
          ReservaEntity reserva = persistence.find(idReserva);
+         EstacionEntity estacion = persistenceEstacion.find(idEstacion);
          if(reserva==null){
              throw new BusinessLogicException("No se encontro dicha reserva");
          }
          if(reserva.getEstado()==ReservaEntity.FINALIZADA){
              throw new BusinessLogicException("La reserva esta finalizada");
          }
-         
+         if(estacion==null){
+             throw new BusinessLogicException("No existe la estacion");
+         }
+         List<BicicletaEntity> bicisViejas = new ArrayList<BicicletaEntity>();
          List<BicicletaEntity> bicicletas  = reserva.getBicicletas();
+         BicicletaEntity entityNueva;
          for (BicicletaEntity bicicleta : bicicletas) {
+             entityNueva = new BicicletaEntity();
+             entityNueva.setMarca(bicicleta.darMarca());
+             entityNueva.setModelo(bicicleta.darModelo());
+             entityNueva.setReserva(reserva);
+             bicisViejas.add(entityNueva);
              bicicleta.setReserva(null);
+             bicicleta.setEstacion(estacion);
+             estacion.getBicicletas().add(bicicleta);
              biciLogic.update(bicicleta);
              
          }
-         reserva.setBicicletas(new ArrayList<BicicletaEntity>());
+         persistenceEstacion.update(estacion);
+         reserva.setBicicletas(bicisViejas);
          reserva.setEstado(ReservaEntity.FINALIZADA);
          persistence.update(reserva);
          

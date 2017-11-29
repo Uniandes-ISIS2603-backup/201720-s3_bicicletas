@@ -311,6 +311,7 @@ public class EstacionLogic
      * @param idEstacion ID de la estación.
      * @param bicicleta Bicicleta que sera asociada.
      * @return Estación con la bicicleta.
+     * @throws co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException
      */
     public EstacionEntity añadirBici(Long idEstacion,BicicletaEntity bicicleta) throws BusinessLogicException{
 

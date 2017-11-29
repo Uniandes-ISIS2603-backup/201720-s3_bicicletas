@@ -22,7 +22,8 @@
                 <button ng-show="currentReserva.calificacionSalida && !currentReserva.calificacionLlegada" class="btn btn-secondary" ui-sref="calificacionesCreate({cali: 1, idUsuario: currentReserva.usuarioReserva.documentoUsuario, idReserva: currentReserva.idReserva})"><span class="glyphicon glyphicon-star"></span>&nbsp;Calificar estación de llegada</button>              
                 <button class="btn btn-secondary" ng-click="irAPagar()"><span class="glyphicon glyphicon-usd"></span>&nbsp;Pagar</button>
                 <button class="btn btn-secondary" ng-click="verTransaccion()"><span class="glyphicon glyphicon-eye-open"></span>&nbsp;Ver transaccion</button>
-                <button class="btn btn-secondary" ng-click="iniciarReserva()"><span></span>&nbsp;Iniciar Reserva</button> 
+                <button class="btn btn-secondary" ng-click="iniciarReserva()"><span></span>&nbsp;Iniciar Reserva</button>
+                <button class="btn btn-secondary" ng-click="finalizarReserva()"><span></span>&nbsp;Finalizar Reserva</button>
                 <br>
                 <button class="btn btn-back" onclick="history.back()"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;Regresar</button> 
                 <br>

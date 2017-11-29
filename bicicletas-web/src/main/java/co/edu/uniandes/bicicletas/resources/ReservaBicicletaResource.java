@@ -80,7 +80,7 @@ public class ReservaBicicletaResource {
      * @return ReservaDTO de la reserva sin la bicicleta desasociada.
      * @throws BusinessLogicException 
      */
-    @Path("desAsociar")
+    @Path("/desAsociar")
     @PUT
     public ReservaDTO desAsociarBici(@PathParam("idReserva") Long idReserva,BicicletaDTO bicicleta)throws BusinessLogicException{
       return new ReservaDTO(reservaLogic.desAsociarBicicleta(bicicleta.toEntity()));
@@ -88,13 +88,14 @@ public class ReservaBicicletaResource {
     /**
      * Este metodo entrega todas las bicicletas de una reserva en una estación.
      * @param idReserva id de la Reserva
+     * @param idEstacion id de la Estacion
      * @return Reserva DTO de la reservaFinalizada
      * @throws BusinessLogicException 
      */
-    @Path("entregar")
+    @Path("/entregar/{idEstacion: \\d+}")
     @PUT
-    public ReservaDTO entregarBicicleta(@PathParam("idReserva") Long idReserva)throws BusinessLogicException{
-      return new ReservaDTO(reservaLogic.entregarBicicletas(idReserva));
+    public ReservaDTO entregarBicicleta(@PathParam("idReserva") Long idReserva, @PathParam("idEstacion")Long idEstacion)throws BusinessLogicException{
+      return new ReservaDTO(reservaLogic.entregarBicicletas(idReserva,idEstacion));
     }
     /**
      * Este meotdo convierte un entityList en un DTOList

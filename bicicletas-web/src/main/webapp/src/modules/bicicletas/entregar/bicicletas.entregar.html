@@ -1,14 +1,16 @@
 <div class="container-fluid">
     <div class="panel-group">
         <div class="panel panel-primary">
-            <div class="panel-heading" style="background-color: #222"><label ng-if="!edit" id="createBicicleta">Asociar nueva bicicleta</label>
+            <div class="panel-heading" style="background-color: #222"><label ng-if="!edit" id="moverBicicleta">Asociar nueva bicicleta</label>
                 <label ng-if="edit" id="editBicicleta">Edit bicicleta</label></div>
             <div class="panel-body">
-                <form ng-submit="agregarBicicletaEstacion()" name="bicicleta">
+                <form ng-submit="moverBicicleta()" name="bicicleta">
                     <div class="form-group row">
-                        <div class="form-group col-md-6">
-                            <label for="bicicletaId" class="col-sm-4">Bicicleta:</label>
-                            <input id="bicicletaId" required ng-model="bicicletaId" class="col-sm-6"/>
+                        <div class="form-group col-md-9">
+                            <label for="estacionId" class="col-sm-4">Estacion de salida:</label>
+                            <select id="estacionId" required ng-model="estacionId" class="col-sm-3"/>
+                         <option ng-repeat="estacion in estacionesDisponiblesRecords" value="{{estacion.id}}">{{estacion.nombre}}</option>
+                        </select>
                         </div>
                     </div>
                     <div class="form-group row">
