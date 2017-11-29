@@ -44,6 +44,7 @@ public class BicicletaDetailDTO extends BicicletaDTO {
     
     
     
+    
     public BicicletaDetailDTO() {
         //No necesita cuerpo
     }

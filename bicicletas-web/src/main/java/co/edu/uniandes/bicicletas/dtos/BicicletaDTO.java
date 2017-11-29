@@ -25,6 +25,7 @@ SOFTWARE.
  */
 
 import co.edu.uniandes.bicicletas.entities.BicicletaEntity;
+import co.edu.uniandes.bicicletas.entities.EstacionEntity;
 
 /**
  * BicicletaDTO Objeto de transferencia de datos de Bicicletaes. Los DTO
@@ -39,6 +40,7 @@ public class BicicletaDTO {
     private int estado;
     private String modelo;
     private String marca;
+    private EstacionEntity estacion;
 
     /**
      * Constructor por defecto
@@ -59,6 +61,7 @@ public class BicicletaDTO {
         this.estado=bicicleta.darEstado();
         this.marca=bicicleta.darMarca();
         this.modelo=bicicleta.darModelo();
+        this.estacion=bicicleta.getEstacion();
         
     }
 
@@ -75,6 +78,12 @@ public class BicicletaDTO {
     }
     public String getModelo(){
         return modelo;
+    }
+    public EstacionEntity getEstacion(){
+        return estacion;
+    }
+    public void setEstacion(EstacionEntity estacionr){
+        estacion=estacionr;
     }
 
     /**
@@ -105,6 +114,7 @@ public class BicicletaDTO {
         entity.setEstado(this.estado);
         entity.setMarca(this.marca);
         entity.setModelo(this.modelo);
+        entity.setEstacion(estacion);
         return entity;
     }
     

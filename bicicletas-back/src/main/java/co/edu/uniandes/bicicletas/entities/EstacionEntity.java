@@ -26,7 +26,7 @@ public class EstacionEntity extends BaseEntity implements Serializable {
     private List<AccesorioEntity> accesorios = new ArrayList<>(); //Atributo que contiene una lista de accesorios.
     
     @PodamExclude
-    @OneToMany(mappedBy = "estacion", cascade = CascadeType.REFRESH)
+    @OneToMany(mappedBy = "estacion", cascade = CascadeType.ALL)
     @JoinColumn(name="ESTACION_ID")
     private List<CalificacionEntity> calificaciones = new ArrayList<>(); //Atributo que contiene una lista de calificaciones.
     
@@ -37,7 +37,7 @@ public class EstacionEntity extends BaseEntity implements Serializable {
      * Atributo que moldea las bicicletas de la estacion.
      */
     @PodamExclude
-    @OneToMany(mappedBy = "estacion", cascade = CascadeType.REFRESH)
+    @OneToMany(mappedBy = "estacion", cascade = CascadeType.ALL)
     private List<BicicletaEntity> bicicletas = new ArrayList<>(); //Atributo que contiene una lista de bicicletas.
     
     private String direccion; //Atributo que modela la dirección.

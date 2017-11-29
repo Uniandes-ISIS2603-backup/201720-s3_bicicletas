@@ -245,6 +245,7 @@ public class ReservaLogic
      * @throws BusinessLogicException 
      */
     public ReservaEntity iniciarReserva( ReservaEntity lreserva ) throws BusinessLogicException{
+        
         if(lreserva.getEstado()== 0){
             lreserva.setEstado(3);
             List<BicicletaEntity> bicicletas = lreserva.getBicicletas();
@@ -408,6 +409,11 @@ public class ReservaLogic
          if(estacion==null){
              throw new BusinessLogicException("No existe la estacion");
          }
+         Date fechaActual = new Date(System.currentTimeMillis());
+         reserva.setFechaFinal(fechaActual);
+         if(reserva.getFechaInicio().getHours()-fechaActual.getHours()<1){
+             throw new BusinessLogicException("No se ha cumplido minimo de uso");
+         }
          List<BicicletaEntity> bicisViejas = new ArrayList<BicicletaEntity>();
          List<BicicletaEntity> bicicletas  = reserva.getBicicletas();
          BicicletaEntity entityNueva;
@@ -423,6 +429,7 @@ public class ReservaLogic
              biciLogic.update(bicicleta);
              
          }
+         reserva.setEstacionLlegada(estacion.getId());
          persistenceEstacion.update(estacion);
          reserva.setBicicletas(bicisViejas);
          reserva.setEstado(ReservaEntity.FINALIZADA);

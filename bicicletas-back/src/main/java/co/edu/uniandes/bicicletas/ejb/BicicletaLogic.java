@@ -100,6 +100,9 @@ public class BicicletaLogic {
     public BicicletaEntity getBIcicleta(Long id){
         LOGGER.info("Inicica proceso de consulta a una bicicleta");
         BicicletaEntity bicicleta = persistence.find(id);
+        if(bicicleta==null){
+            throw new WebApplicationException("No existe la bicicleta con id "+id);
+        }
         LOGGER.info("Termina el proceso de consulta a una bicicleta");
         return bicicleta;
     }

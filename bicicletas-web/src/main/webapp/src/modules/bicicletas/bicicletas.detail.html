@@ -13,10 +13,10 @@
                 <br>
             </div>
         </div>
-        <div class="col-sm-2"></div>
-        <div class="col-sm-2">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-3">
             <div class="thumb">
-                <img class="img-responsive img-rounded" src="resources/img/bicicleta.jpg" style="max-height: 190px"/>
+                <img class="img-responsive img-rounded" src="resources/img/bicicleta.jpg" style="max-height: 270px"/>
             </div>
         </div>
         <div class="col-sm-2">
@@ -42,7 +42,11 @@
             <a class="list-group-item">
                 <h4 class="list-group-item-heading">Marca:</h4>
                 <p class="list-group-item-text">{{currentBicicleta.marca}}</p>
-            </a>  
+            </a>
+            <a class="list-group-item">
+                <h4 class="list-group-item-heading">Estación:</h4>
+                <p class="list-group-item-text">{{currentBicicleta.estacion.name}} - {{currentBicicleta.estacion.id}}</p>
+            </a>
         </div>
         <div class="col-sm-4"></div>
     </div> 

@@ -108,6 +108,9 @@ public class BicicletaResource {
     @GET
     @Path("{id:\\d+}")
     public BicicletaDetailDTO getBicicletaId(@PathParam("id")Long id){
+        if(bicicletasLogic.getBIcicleta(id)==null){
+            throw new WebApplicationException("No existe bicicleta con ese id");
+        }
         return new BicicletaDetailDTO(bicicletasLogic.getBIcicleta(id));
     }
 
