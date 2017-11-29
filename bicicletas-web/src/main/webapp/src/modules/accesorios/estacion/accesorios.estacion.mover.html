@@ -1,15 +1,15 @@
 <div class="container-fluid">
     <div class="panel-group">
         <div class="panel panel-primary">
-            <div class="panel-heading" style="background-color: #222"><label ng-if="!edit" id="createAccesorio">Asignar accesorio</label>
-                <label ng-if="edit" id="editBicicleta">Edit accesorio</label></div>
+            <div class="panel-heading" style="background-color: #222"><label ng-if="!edit" id="createAccesorio">Mover un accesorio:</label>
+                <label ng-if="edit" id="editUsuario">Edit Usuario</label></div>
             <div class="panel-body">
-                <form ng-submit="asociarAccesorio()" name="accesorio">
+                <form ng-submit="moverAccesorio()" name="accesorio">
                     <div class="form-group row">
                         <div class="form-group col-md-6">
-                            <label for="estacionId" class="col-sm-4">Accesorio:</label>
-                            <select id="accesorioId" required ng-model="accesorioId" class="col-sm-3"/>
-                    <option ng-repeat="accesorio in accesoriosDisponiblesRecords" value="{{accesorio.id}}">{{accesorio.id}} - {{accesorio.tipo}}</option>
+                                <label for="accesorioEstacion" class="col-sm-4">Estacion nueva:</label>
+                                <select id="estacionId" required ng-model="estacionId" class="col-sm-3"/>
+                                <option ng-repeat="estacion in estacionesDisponiblesRecords" value="{{estacion.id}}">{{estacion.nombre}}</option>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -17,15 +17,15 @@
 
                             <div class="alert alert-warning" >
                                 <strong>Warning!</strong><p>All inputs are required*</p>
-                            </div>
+                            </div> 
                         </div> 
-                        <div class="form-group row">
+                    </div> 
+                    <div class="form-group row">
                         <div class="form-group col-sm-12">
                             <input ng-show="accesorio.$valid" type="submit" value="Save" class="btn btn-success"/>
-                            <a class="btn btn-info" ui-sref="reservaDetail">Cancelar</a>
+                            <a class="btn btn-info" ui-sref="accesoriosEstacionList({id: currentEstacion.id})">Cancelar</a>
                         </div>
                     </div>
-                    </div> 
                 </form>
 
             </div>

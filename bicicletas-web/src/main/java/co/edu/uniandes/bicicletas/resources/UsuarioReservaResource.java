@@ -86,7 +86,6 @@ public class UsuarioReservaResource
             throw new WebApplicationException("El Usuario con id: "+idUsuario+" no tiene reservas", 404); 
         }
         ReservaEntity reserva = reservaLogic.getReserva(id);
-        System.out.println("Documento de la reserva "+reserva.getUsuarioReserva().getDocumentoUsuario());
         if(reserva.getUsuarioReserva().getDocumentoUsuario().compareTo(idUsuario)==0){
            ReservaDetailDTO reser = new ReservaDetailDTO(reserva);
            if(reserva.getEstacionLlegada() != null)

@@ -1,9 +1,8 @@
 (function (ng) {
 var mod = ng.module("accesorioModule");
-    mod.constant("accesoriosEstacionContext", "accesorios");
     mod.constant("estacionesAccesoriosContext", "api/accesorios");
-    mod.controller('accesoriosEstacionNewCtrl', ['$scope', '$http', 'estacionesAccesoriosContext', '$state', 'accesoriosEstacionContext',
-        function ($scope, $http, estacionesAccesoriosContext, $state, accesoriosEstacionContext) {
+    mod.controller('accesoriosEstacionNewCtrl', ['$scope', '$http', 'estacionesAccesoriosContext', '$state',
+        function ($scope, $http, estacionesAccesoriosContext, $state) {
             $scope.createAccesorio = function () {
 	                $http.post(estacionesAccesoriosContext + '/', {
                         tipo: $scope.accesorioTipo,

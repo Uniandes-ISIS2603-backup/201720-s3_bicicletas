@@ -106,7 +106,7 @@ public class ReservaEntity extends BaseEntity implements Serializable {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PAGO_ID")
     @PodamExclude
-    private PagoEntity pago;
+    private PagoEntity pagoReserva;
 
     /**
      * Transaccion de la reserva
@@ -303,14 +303,14 @@ public class ReservaEntity extends BaseEntity implements Serializable {
      * @return the pago
      */
     public PagoEntity getPago() {
-        return pago;
+        return pagoReserva;
     }
 
     /**
      * @param pago the pago to set
      */
     public void setPago(PagoEntity pago) {
-        this.pago = pago;
+        this.pagoReserva = pago;
     }
 
     /**

@@ -10,6 +10,7 @@ import co.edu.uniandes.bicicletas.dtos.AccesorioDTO;
 import co.edu.uniandes.bicicletas.ejb.AccesorioLogic;
 import co.edu.uniandes.bicicletas.ejb.EstacionLogic;
 import co.edu.uniandes.bicicletas.entities.AccesorioEntity;
+import co.edu.uniandes.bicicletas.entities.EstacionEntity;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -81,12 +82,10 @@ public class AccesorioResource {
      */
     @POST
     public AccesorioDTO crearAccesorio(AccesorioDTO dto) throws BusinessLogicException {
-            if(dto.getTipo()==2||dto.getTipo()==1)
+            if((dto.getTipo()==2||dto.getTipo()==1) && (estacionLogica.getEstacion(dto.getEstacion().getId())!=null))
             {
-                if(estacionLogica.getEstacion(dto.getEstacion().getId())!=null){
                    dto.setReservado(0);
                    return new AccesorioDTO(logica.crearAccesorio(dto.toEntity())); 
-               }
         }
         throw new WebApplicationException("No esta dentro del tipo o estado correspondiente", 301);
     }
@@ -104,6 +103,24 @@ public class AccesorioResource {
         entity.setId(id);
         return new AccesorioDTO(logica.actualizarAccesorio(entity));
     }
+    
+    @PUT
+    @Path("{id: \\d+}/mover")
+    public AccesorioDTO actualizarEstacionAccesorio(@PathParam("id") Long id, AccesorioDTO dto) {
+        AccesorioEntity entity = dto.toEntity();
+        EstacionEntity estacion = dto.getEstacion();
+        EstacionEntity finalEstacion = estacionLogica.getEstacion(estacion.getId());
+        AccesorioEntity buscada = logica.getAccesorio(id);
+        entity.setId(buscada.getId());
+        entity.setName(buscada.getName());
+        entity.setReserva(buscada.getReserva());
+        entity.setReservado(buscada.getReservado());
+        entity.setTipo(buscada.getTipo());
+        entity.setEstacion(finalEstacion);
+        entity.setId(id);
+        return new AccesorioDTO(logica.actualizarAccesorio(entity));
+    }
+    
     
     /**
      * Metodo que elimina un accesorio a traves de HTTP DELETE

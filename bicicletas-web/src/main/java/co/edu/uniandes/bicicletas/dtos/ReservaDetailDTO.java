@@ -28,15 +28,5 @@ public class ReservaDetailDTO extends ReservaDTO {
     public ReservaDetailDTO() {
         //No necesita cuerpo
     }
-
-    /**
-     * Transformar un DTO a un Entity
-     *
-     * @return
-     */
-    @Override
-    public ReservaEntity toEntity() {
-        return super.toEntity();
-    }
-
+    
 }

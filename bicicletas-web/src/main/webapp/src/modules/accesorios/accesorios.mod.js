@@ -67,6 +67,20 @@
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('moverAccesorio', {
+                url: '/{idAccesorio:int}/mover',
+                parent: 'accesoriosEstacion',
+                params:{
+                    idAccesorio: null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + 'estacion/accesorios.estacion.mover.html',
+                        controller: 'moverAccesoriosctrl',
+                        controllerAs: 'ctrl'
+                    }
+                    
+                }
             }).state('accesoriosEstacionCreate', {
                 url: '/{id:int}/createAccesorio',
                 parent: 'accesoriosEstacion',
@@ -110,27 +124,19 @@
                     }
                     
                 }
-            }).state('actualizarAccesorio', {
-                url: '/{id:int}/mover',
-                parent: 'accesoriosReserva',
-                views: {
-                    'detailView': {
-                        templateUrl: basePath + 'reservaAccesorios.html',
-                        controller: 'accesoriosReservaCtrl',
-                        controllerAs: 'ctrl'
-                    }
-                    
-                }
             }).state('asociarAccesorio', {
                     url: '/asociar',
                     parent: 'accesoriosReserva',
+                    params:{
+                        idEstacion: null
+                    },
                     views: {
                         'detailView': {
                             templateUrl: basePath + '/asociar/accesorios.asociar.html',
                             controller: 'asoAccesorioReservaCtrl'
                         }
                     }
-        }).state('quitarAccesorio', {
+            }).state('quitarAccesorio', {
                     url: '/quitar/{id:int}',
                     parent: 'accesoriosReserva',
                     param: {

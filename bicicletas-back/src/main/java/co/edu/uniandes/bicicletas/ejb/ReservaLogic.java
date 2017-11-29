@@ -445,13 +445,12 @@ public class ReservaLogic
      /**
       * 
       * @param idReserva
-      * @param idAccesorio
       * @return
       * @throws BusinessLogicException 
       */
-     public AccesorioEntity getAccesorio(Long idReserva, Long  idAccesorio) throws BusinessLogicException{
+     public AccesorioEntity getAccesorio(Long idReserva, Long idAccesorio) throws BusinessLogicException{
          ReservaEntity reserva = getReserva(idReserva);
-         AccesorioEntity accesorio = persistenceAccesorio.find(idReserva);
+         AccesorioEntity accesorio = persistenceAccesorio.find(idAccesorio);
          if(accesorio.getReservado()!=1){
              throw new BusinessLogicException(NO_ACCESORIO);
          }

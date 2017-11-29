@@ -12,7 +12,6 @@ import co.edu.uniandes.bicicletas.ejb.ReservaLogic;
 import co.edu.uniandes.bicicletas.entities.AccesorioEntity;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -33,7 +32,6 @@ public class ReservaAccesorioResource {
     
     @Inject
     ReservaLogic reservaLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
-    private static final Logger LOGGER = Logger.getLogger(EstacionBicicletaResource.class.getName()); //Atributo para el LOGGER
     
     /**
      * Metodo que retorna un accesorio de una reserva a traves de HTTP GET

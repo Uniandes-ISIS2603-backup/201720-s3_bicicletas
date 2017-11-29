@@ -16,6 +16,8 @@ import co.edu.uniandes.bicicletas.ejb.UsuarioLogic;
 import co.edu.uniandes.bicicletas.entities.ReservaEntity;
 import co.edu.uniandes.bicicletas.entities.TransaccionEntity;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -254,10 +256,27 @@ public class ReservaResource {
         if(reserva==null){
           throw new WebApplicationException("La reserva con id "+ id +NO_EXISTE, 404);
         }
+        Date inicio = reserva.getFechaInicio();
+	Date actual = new Date();
+	Calendar calendar = Calendar.getInstance();
+	calendar.setTime(inicio);// Configuramos la fecha que se recibe
+	calendar.add(Calendar.MINUTE,30);
+	Date despues = calendar.getTime();
+	calendar.add(Calendar.MINUTE,-60);
+	Date antes = calendar.getTime();
+        ReservaEntity nueva;
+        if(actual.after(antes) && actual.before(despues)){
+		nueva =logica.iniciarReserva(reserva);  
+                return new ReservaDTO(nueva);
+        }else if (antes.after(actual) ){
+            System.out.println("todavia es muy temprano");
+            //Es temprano
+            throw new WebApplicationException("Todavia es muy temparno para iniciar la reserva ", 404);
+        }else{
+            //tarde
+            throw new WebApplicationException("Ya es muy tarde para iniciar la reserva", 404);
+	}
         
-         ReservaEntity nueva=logica.iniciarReserva(reserva);
-        
-        return new ReservaDTO(nueva);
     }
     
     

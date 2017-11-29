@@ -48,6 +48,17 @@
                         return false;
                     }
                 };
+                
+                $rootScope.isAdministrador = function() {
+                    
+                    var respuesta = false;
+                    if(sessionStorage.getItem("administrador") !== null){
+                        respuesta = true;
+                    }
+                    
+                    return respuesta;
+                  
+                };
 
 
                 if (requireLogin && (sessionStorage.getItem("username") === null)) {
