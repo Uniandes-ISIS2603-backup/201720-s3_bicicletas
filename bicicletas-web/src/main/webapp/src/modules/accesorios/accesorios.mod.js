@@ -67,6 +67,20 @@
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('moverAccesorio', {
+                url: '/{idAccesorio:int}/mover',
+                parent: 'accesoriosEstacion',
+                params:{
+                    idAccesorio: null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + 'estacion/accesorios.estacion.mover.html',
+                        controller: 'moverAccesoriosctrl',
+                        controllerAs: 'ctrl'
+                    }
+                    
+                }
             }).state('accesoriosEstacionCreate', {
                 url: '/{id:int}/createAccesorio',
                 parent: 'accesoriosEstacion',
@@ -101,17 +115,6 @@
                 }
             }).state('accesoriosReservaList', {
                 url: '/{idReserva:int}/list',
-                parent: 'accesoriosReserva',
-                views: {
-                    'detailView': {
-                        templateUrl: basePath + 'reservaAccesorios.html',
-                        controller: 'accesoriosReservaCtrl',
-                        controllerAs: 'ctrl'
-                    }
-                    
-                }
-            }).state('actualizarAccesorio', {
-                url: '/{id:int}/mover',
                 parent: 'accesoriosReserva',
                 views: {
                     'detailView': {
