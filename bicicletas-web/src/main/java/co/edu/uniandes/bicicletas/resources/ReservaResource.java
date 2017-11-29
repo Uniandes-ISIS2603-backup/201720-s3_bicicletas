@@ -16,6 +16,7 @@ import co.edu.uniandes.bicicletas.ejb.UsuarioLogic;
 import co.edu.uniandes.bicicletas.entities.ReservaEntity;
 import co.edu.uniandes.bicicletas.entities.TransaccionEntity;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
@@ -255,24 +256,27 @@ public class ReservaResource {
         if(reserva==null){
           throw new WebApplicationException("La reserva con id "+ id +NO_EXISTE, 404);
         }
-//        Date actual = new Date();
-//        if(reserva.getFechaInicio().getDay()== actual.getDay() &&
-//           reserva.getFechaInicio().getMonth()== actual.getMonth() && 
-//           reserva.getFechaInicio().getYear()== actual.getYear() &&
-//           reserva.getFechaInicio().getHours()== actual.getHours() )
-//        {
-//         if( (reserva.getFechaInicio().getMinutes()- actual.getMinutes())<=30  ){
-//             ReservaEntity nueva=logica.iniciarReserva(reserva);
-//         }else if((reserva.getFechaInicio().getMinutes()- actual.getMinutes())){
-//             
-//         }  
-//            
-//        }else{
-//            throw new WebApplicationException("La reserva no se puede inciar antes o despues de la hora acordada ", 404);
-//        }
-        ReservaEntity nueva=logica.iniciarReserva(reserva);
+        Date inicio = reserva.getFechaInicio();
+	Date actual = new Date();
+	Calendar calendar = Calendar.getInstance();
+	calendar.setTime(inicio);// Configuramos la fecha que se recibe
+	calendar.add(Calendar.MINUTE,30);
+	Date despues = calendar.getTime();
+	calendar.add(Calendar.MINUTE,-60);
+	Date antes = calendar.getTime();
+        ReservaEntity nueva;
+        if(actual.after(antes) && actual.before(despues)){
+		nueva =logica.iniciarReserva(reserva);  
+                return new ReservaDTO(nueva);
+        }else if (antes.after(actual) ){
+            System.out.println("todavia es muy temprano");
+            //Es temprano
+            throw new WebApplicationException("Todavia es muy temparno para iniciar la reserva ", 404);
+        }else{
+            //tarde
+            throw new WebApplicationException("Ya es muy tarde para iniciar la reserva", 404);
+	}
         
-        return new ReservaDTO(nueva);
     }
     
     
