@@ -127,13 +127,16 @@
             }).state('asociarAccesorio', {
                     url: '/asociar',
                     parent: 'accesoriosReserva',
+                    params:{
+                        idEstacion: null
+                    },
                     views: {
                         'detailView': {
                             templateUrl: basePath + '/asociar/accesorios.asociar.html',
                             controller: 'asoAccesorioReservaCtrl'
                         }
                     }
-        }).state('quitarAccesorio', {
+            }).state('quitarAccesorio', {
                     url: '/quitar/{id:int}',
                     parent: 'accesoriosReserva',
                     param: {

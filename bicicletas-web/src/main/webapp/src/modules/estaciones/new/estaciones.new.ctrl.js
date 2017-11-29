@@ -11,7 +11,7 @@
                             ciudad: $scope.estacionCiudad
 	                }).then(function (response) {
 	                    //Usuario created successfully
-	                    $state.go('estacionesList', {nombre: response.data.nombre}, {reload: true});
+	                    $state.go('estacionDetail', {id: response.data.id}, {reload: true});
 	                });
 	            };
 	        }
