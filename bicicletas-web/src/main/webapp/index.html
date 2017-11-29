@@ -113,7 +113,7 @@
                             <li><a ui-sref="accesoriosList">Accesorios</a></li>
                             <li><a ui-sref="bicicletasList">Bicicletas</a></li>
                             <li><a ui-sref="estacionesList">Estaciones</a></li>
-                            <li><a ui-sref="pagosList">Pagos</a></li>
+                           <li><a ng-if="isAuthenticated() && isAdministrador()" ui-sref="pagosList">Pagos</a></li>
                             <li><a ui-sref="usuariosList">Usuarios</a></li>                           
                         </ul>
                         <ul class="nav navbar-nav navbar-right">

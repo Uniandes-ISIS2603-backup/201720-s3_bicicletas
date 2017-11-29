@@ -12,7 +12,7 @@ import co.edu.uniandes.bicicletas.ejb.EstacionLogic;
 import co.edu.uniandes.bicicletas.entities.EstacionEntity;
 import java.util.ArrayList;
 import java.util.List;
-import javax.enterprise.context.RequestScoped;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -31,7 +31,7 @@ import javax.ws.rs.WebApplicationException;
 @Path("/estaciones")
 @Produces("application/json")
 @Consumes("application/json")
-@RequestScoped
+@Stateless
 public class EstacionResource {
 
     @Inject

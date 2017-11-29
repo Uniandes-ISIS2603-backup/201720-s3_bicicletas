@@ -16,6 +16,11 @@
                         controller: 'pagosCtrl',
                         controllerAs: 'ctrl'
                     }
+                },
+                
+                data: {
+                    requireLogin: true,
+                    roles: ["administrador"]
                 }
             }).state('pagosList', {
                 url: '/list',

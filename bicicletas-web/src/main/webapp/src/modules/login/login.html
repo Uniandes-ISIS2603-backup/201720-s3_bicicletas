@@ -20,10 +20,10 @@ body {
         <h1 class="form-signin-heading text-muted">Ingresar</h1>
         <input type="text" class="form-control" placeholder="Usuario" required="" autofocus="" ng-model="data.username">
         <input type="password" class="form-control" placeholder="Contraseña" required="" ng-model="data.password">
-        <select class="form-control" name="singleSelect" id="singleSelect" ng-model="data.rol" required="true">
+        <select class="form-control" name="singleSelect" id="singleSelect" ng-model="data.role" required="true">
             <option value="">--- Seleccione su rol ---</option> <!-- not selected / blank option -->
-            <option value="admin">Administrador</option>
-           <option value="assistant">Cliente</option>
+            <option value="administrador">Administrador</option>
+           <option value="cliente">Cliente</option>
         </select>
         <br>
         <button type="button" class="btn btn-lg btn-primary btn-block" ng-click="autenticar(data.username)">
