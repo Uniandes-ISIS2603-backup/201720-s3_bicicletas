@@ -334,7 +334,7 @@ public class ReservaDTO {
         String mes = darMes(pfecha.substring(4,7));
         String dia = pfecha.substring(7,10);
         String anio = pfecha.substring(10,15);
-        String hora = pfecha.substring(15,24);
+        String hora = pfecha.substring(81,90);
         
         String newFecha = dia+"/"+mes+"/"+anio+" "+hora;
         

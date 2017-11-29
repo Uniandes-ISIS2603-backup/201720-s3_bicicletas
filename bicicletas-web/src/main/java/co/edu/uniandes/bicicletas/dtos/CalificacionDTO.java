@@ -88,9 +88,9 @@ public class CalificacionDTO
         caliEntity.setNota(this.getNota());
         caliEntity.setDescripcion(this.getDescripcion());
         caliEntity.setEstacion(this.getEstacion());
-        ReservaEntity reserva = new ReservaEntity();
-        reserva.setId(this.getIdReserva());
-        caliEntity.setReserva(reserva);
+        ReservaEntity reserv = new ReservaEntity();
+        reserv.setId(this.getIdReserva());
+        caliEntity.setReserva(reserv);
         
         return caliEntity;
     }

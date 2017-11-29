@@ -21,7 +21,8 @@
                 <button ng-hide="currentReserva.calificacionSalida" class="btn btn-secondary" ui-sref="calificacionesCreate({cali: 0, idUsuario: currentReserva.usuarioReserva.documentoUsuario, idReserva: currentReserva.idReserva})"><span class="glyphicon glyphicon-star"></span>&nbsp;Calificar estación de salida</button>              
                 <button ng-show="currentReserva.calificacionSalida && !currentReserva.calificacionLlegada" class="btn btn-secondary" ui-sref="calificacionesCreate({cali: 1, idUsuario: currentReserva.usuarioReserva.documentoUsuario, idReserva: currentReserva.idReserva})"><span class="glyphicon glyphicon-star"></span>&nbsp;Calificar estación de llegada</button>              
                 <button class="btn btn-secondary" ng-click="irAPagar()"><span class="glyphicon glyphicon-usd"></span>&nbsp;Pagar</button>
-                <button class="btn btn-secondary" ng-click="verTransaccion()"><span class="glyphicon glyphicon-eye-open"></span>&nbsp;Ver transaccion</button> 
+                <button class="btn btn-secondary" ng-click="verTransaccion()"><span class="glyphicon glyphicon-eye-open"></span>&nbsp;Ver transaccion</button>
+                <button class="btn btn-secondary" ng-click="iniciarReserva()"><span></span>&nbsp;Iniciar Reserva</button> 
                 <br>
                 <button class="btn btn-back" onclick="history.back()"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;Regresar</button> 
                 <br>
@@ -51,6 +52,15 @@
             <a class="list-group-item">
                 <h4 class="list-group-item-heading">Fecha de entrega:</h4>
                 <p class="list-group-item-text">{{currentReserva.fechaEntrega}}</p>
+            </a> 
+            <a class="list-group-item">
+                <h4 class="list-group-item-heading">Estado de la reserva:</h4>
+                <p class="list-group-item-text" ng-if="currentReserva.estado==1">{{ "Necesita Pago" }}</p>
+                <p class="list-group-item-text" ng-if="currentReserva.estado==0">{{ "Pagada" }}</p>
+                <p class="list-group-item-text" ng-if="currentReserva.estado==2">{{ "Cancelada" }}</p>
+                <p class="list-group-item-text" ng-if="currentReserva.estado==3">{{ "En uso" }}</p>
+                <p class="list-group-item-text" ng-if="currentReserva.estado==4">{{ "Reembolsada" }}</p>
+                <p class="list-group-item-text" ng-if="currentReserva.estado==5">{{ "Finalizada" }}</p>
             </a>  
         </div>
         <div class="col-sm-3"></div>

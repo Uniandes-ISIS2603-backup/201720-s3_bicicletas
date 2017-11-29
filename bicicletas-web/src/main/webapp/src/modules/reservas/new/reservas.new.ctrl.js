@@ -11,13 +11,13 @@
                     $scope.createReserva = function () {
                         $http.post(usuariosContext + '/' + $state.params.idUsuario + '/' + 'reservas', {
                             idUsuario: $scope.documentoUsuario,
-                            fechaInicio: $scope.fechaSalida + ':00',
-                            fechaEntrega: $scope.fechaLlegada + ':00',
+                            fechaInicio: $scope.fechaSalida + $scope.hora ,
+                            fechaEntrega: $scope.fechaLlegada + $scope.hora2,
                             estacionSalida: {
                                 id: $scope.estacionId
                             }
                         }).then(function (response) {
-                            //Usuario created successfully
+                            //Reserva created successfully
                             $state.go('reservaDetail', {idUsuario: $state.params.idUsuario, idReserva: response.data.idReserva}, {reload: true});
                         });
                     };

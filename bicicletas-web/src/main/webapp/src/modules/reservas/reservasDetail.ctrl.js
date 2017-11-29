@@ -10,7 +10,9 @@
             $http.get(usuariosContext + '/' + $state.params.idUsuario + '/' + reservasContext + '/' + $state.params.idReserva).then(function (response) {
                 $scope.currentReserva = response.data;
             });
-
+            
+            
+            
             //Solicitud de bicicletas
             $http.get('api/' + reservasContext + '/' + $state.params.idReserva + '/bicicletas').then(function (response) {
                 $scope.bicicletas = response.data;
@@ -56,6 +58,18 @@
                         texto = "Se debe pagar un excedente de: " + $scope.currenttransaccion.valor+"$";
                     }
 
+                    confirm(texto);
+
+                });
+            };
+            
+           $scope.iniciarReserva = function () {
+                //Hace la solicitud de la traansaccion
+                $http.get('api/' + reservasContext + '/' + $state.params.idReserva + '/iniciar').then(function (response) {
+                    $scope.currentReserva = response.data;
+
+                    var texto = "La reserva fue iniciada";
+                   
                     confirm(texto);
 
                 });

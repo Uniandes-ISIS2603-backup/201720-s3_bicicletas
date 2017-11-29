@@ -8,6 +8,8 @@ var mod = ng.module("reservaModule");
             $http.get(usuariosContext + '/' +  $state.params.documentoUsuario  + '/' + reservasContext).then(function (response) {
             $scope.reservasRecords = response.data;
             });
+            
+            
         }
     ]);
     }
