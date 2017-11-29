@@ -11,12 +11,12 @@ var mod = ng.module("accesorioModule");
                     var objetoA = {};
                     objetoA.tipo=" ";
                     objetoA.id= 0;
-                    if(response.data[i].reservado==0){
-                        if(response.data[i].tipo==1){
+                    if(response.data[i].reservado===0){
+                        if(response.data[i].tipo===1){
                         objetoA.tipo="Casco";
                         objetoA.id=response.data[i].id
                     }
-                        else if(response.data[i].tipo==2){
+                        else if(response.data[i].tipo===2){
                         objetoA.tipo="Chaleco";
                         objetoA.id=response.data[i].id
                       }

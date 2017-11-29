@@ -33,7 +33,6 @@ public class ReservaAccesorioResource {
     
     @Inject
     ReservaLogic reservaLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
-    private static final Logger LOGGER = Logger.getLogger(EstacionBicicletaResource.class.getName()); //Atributo para el LOGGER
     
     /**
      * Metodo que retorna un accesorio de una reserva a traves de HTTP GET

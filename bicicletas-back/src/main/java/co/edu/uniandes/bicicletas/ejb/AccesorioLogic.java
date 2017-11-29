@@ -104,7 +104,7 @@ public class AccesorioLogic {
      * @return
      *
      */
-    public EstacionEntity getEstacion(Long direccionId, Long estacionesId) {
+    public EstacionEntity getEstacion(Long direccionId) {
         return getDireccion(direccionId).getEstacion();
     }
     
@@ -134,6 +134,6 @@ public class AccesorioLogic {
         EstacionEntity estacionesEntity = new EstacionEntity();
         estacionesEntity.setId(estacionesId);
         direccionEntity.setEstacion(estacionesEntity);
-        return getEstacion(direccionId, estacionesId);
+        return getEstacion(direccionId);
     }
 }

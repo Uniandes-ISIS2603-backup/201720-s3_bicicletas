@@ -102,4 +102,22 @@ public class AccesorioEntity extends BaseEntity implements Serializable {
     public void setReserva(ReservaEntity reserva) {
         this.reserva = reserva;
     }
+    
+     public boolean equals(Object obj) {
+        if (! super.equals(obj)) {
+          return false;
+        }
+        AccesorioEntity fobj = (AccesorioEntity) obj;
+        if (estacion.equals(fobj.getEstacion())) {  // added fields are tested
+            if(reserva.equals(fobj.getReserva()))
+            {
+                if(tipo==fobj.getTipo()){
+                    if(reservado==fobj.getReservado()){
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+     }
 }

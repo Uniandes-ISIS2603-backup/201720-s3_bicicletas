@@ -23,7 +23,7 @@ public class EstacionEntity extends BaseEntity implements Serializable {
     
     @PodamExclude
     @OneToMany(mappedBy = "estacion", cascade = CascadeType.ALL)
-    private List<AccesorioEntity> accesorios = new ArrayList<AccesorioEntity>(); //Atributo que contiene una lista de accesorios.
+    private List<AccesorioEntity> accesorios = new ArrayList<>(); //Atributo que contiene una lista de accesorios.
     
     @PodamExclude
     @OneToMany(mappedBy = "estacion", cascade = CascadeType.REFRESH)

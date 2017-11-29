@@ -82,12 +82,10 @@ public class AccesorioResource {
      */
     @POST
     public AccesorioDTO crearAccesorio(AccesorioDTO dto) throws BusinessLogicException {
-            if(dto.getTipo()==2||dto.getTipo()==1)
+            if((dto.getTipo()==2||dto.getTipo()==1) && (estacionLogica.getEstacion(dto.getEstacion().getId())!=null))
             {
-                if(estacionLogica.getEstacion(dto.getEstacion().getId())!=null){
                    dto.setReservado(0);
                    return new AccesorioDTO(logica.crearAccesorio(dto.toEntity())); 
-               }
         }
         throw new WebApplicationException("No esta dentro del tipo o estado correspondiente", 301);
     }

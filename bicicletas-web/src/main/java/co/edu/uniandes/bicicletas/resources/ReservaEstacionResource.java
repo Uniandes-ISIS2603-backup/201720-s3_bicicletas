@@ -67,9 +67,9 @@ public class ReservaEstacionResource {
     @Path("/llegada")
     public EstacionDetailDTO  darEstacionLlegada (@PathParam("idReserva") Long idReserva)throws BusinessLogicException{
         
-        EstacionDetailDTO estacion = null;
+        EstacionDetailDTO estacion;
         ReservaEntity reserva = logic.getReserva(idReserva);
-        EstacionEntity una = null;
+        EstacionEntity una;
         if(reserva!=null){
             una = estacionlogic.getEstacion(reserva.getEstacionLlegada());
             estacion = new EstacionDetailDTO(una);
