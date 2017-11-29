@@ -79,14 +79,14 @@ public class BicicletaResource {
      * @throws BusinessLogicException
      */
     @POST
-    public BicicletaDTO createBicicleta(BicicletaDTO bicicleta) throws BusinessLogicException {
+    public BicicletaDetailDTO createBicicleta(BicicletaDTO bicicleta) throws BusinessLogicException {
         // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
-        bicicleta.setEstado(2);
-        BicicletaEntity bicicletaEntity = bicicleta.toEntity();
+        
+        
         // Invoca la lógica para crear la Bicicleta nueva
-        BicicletaEntity nuevoBicicleta = bicicletasLogic.createBicicleta(bicicletaEntity);
+        BicicletaEntity nuevaBicicleta = bicicletasLogic.createBicicleta(bicicleta.toEntity());
         // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
-        return new BicicletaDTO(nuevoBicicleta);
+        return new BicicletaDetailDTO(nuevaBicicleta);
     }
 
     /**

@@ -272,7 +272,7 @@ public class EstacionLogic
         }
         List<BicicletaEntity> lista = new ArrayList<>();
         for (BicicletaEntity bicicleta : estacion.getBicicletas()) {
-            if(bicicleta.darEstado()==BicicletaEntity.DISPONIBLE){
+            if(bicicleta.darEstado()==BicicletaEntity.DISPONIBLE && bicicleta.getReserva() == null){
                 lista.add(bicicleta);
             }
         }

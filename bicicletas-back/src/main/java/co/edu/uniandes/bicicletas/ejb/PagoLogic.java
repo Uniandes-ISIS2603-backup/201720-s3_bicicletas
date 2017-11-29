@@ -209,7 +209,7 @@ public class PagoLogic {
         if (pago.getBicicletasPendientes() == 0) {
            // sumarPunto(reserva.getUsuarioReserva().getDocumentoUsuario());
             pago.setEstado(PagoEntity.PAGADO);
-            reserva.setEstado(ReservaEntity.PAGO);
+            reserva.setEstado(ReservaEntity.PAGADA);
         }
 
         //Actualizar pago y reserva

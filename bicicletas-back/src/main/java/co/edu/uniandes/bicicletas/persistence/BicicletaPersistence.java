@@ -55,6 +55,7 @@ public class BicicletaPersistence {
         Es similar a "INSERT INTO table_codigo (column1, column2, column3, ...) VALUES (value1, value2, value3, ...);" en SQL.
          */
         em.persist(entity);
+        em.flush();
         LOGGER.info("Creando un bicicletas nueva");
         return entity;
     }
