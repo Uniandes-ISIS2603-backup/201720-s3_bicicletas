@@ -39,12 +39,12 @@
                     $rootScope.alerts.push({type: "danger", msg: "El usuario o la contraseña son incorrectos."});
                 } else {
                     sessionStorage.token = $scope.user.token;
-                    sessionStorage.setItem("username", $scope.user.user);
-                    sessionStorage.setItem("name", $scope.user.name);
-                    sessionStorage.setItem("rol", $scope.user.rol);
+                    sessionStorage.setItem("username", $scope.user.documentoUsuario);
+                    sessionStorage.setItem("name", $scope.user.nombre);
+                    sessionStorage.setItem("rol", $scope.data.role);
                     
                     if($scope.data.role === 'administrador'){
-                    sessionStorage.setItem("administrador",  $scope.user.rol);
+                    sessionStorage.setItem("administrador",  $scope.data.rol);
                 }
                     $rootScope.currentUser = $scope.user.name;
                 }

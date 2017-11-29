@@ -1,28 +1,28 @@
 <div class="panel container-fluid">    
 
-     <div class="container" style="text-align: center; justify-content: center">
+    <div class="container" style="text-align: center; justify-content: center">
 
-         
-           <div class="alert alert-success" role="alert">
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  <strong>¡Bienvenido!</strong><p>Acceso exitoso.</p>
-</div>
-  
+
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>¡Bienvenido!</strong><p>Acceso exitoso.</p>
+        </div>
+
     </div>
-               
+
     <div class="row">
-   
+
         <h2 style="text-align: center">{{currentUsuario.nombre}}</h2>
-        
+
         <div class="col-sm-12"><br></div>
         <div class="col-sm-2">
             <div class="btn-group-vertical">
                 <button class="btn btn-secondary" ui-sref="direccionesCreate"><span class="glyphicon glyphicon-plus"></span>&nbsp;Añadir dirección</button>
                 <button class="btn btn-secondary" ui-sref="reservaCreate({idUsuario:currentUsuario.documentoUsuario})"><span class="glyphicon glyphicon-plus"></span>&nbsp;Crear reserva</button>
                 <button class="btn btn-secondary" ui-sref="usuarioConsulta({documentoUsuario: currentUsuario.documentoUsuario})"><span class="glyphicon glyphicon-search"></span>&nbsp;Consultar reservas</button>    
-                
+
             </div>
-            
+
         </div>
         <div class="col-sm-1"></div>
         <div class="col-sm-3">
