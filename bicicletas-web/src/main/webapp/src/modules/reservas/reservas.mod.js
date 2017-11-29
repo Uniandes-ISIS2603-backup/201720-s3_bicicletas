@@ -40,7 +40,7 @@ var mod = ng.module("reservaModule", ['usuarioModule', 'ui.router', 'pagosModule
 	                        controllerAs: 'ctrl'
 	                    }
 	                }
-	            }).state('reservaCreate', {
+	    }).state('reservaCreate', {
 	                url: '{idUsuario:int}/create',
 	                parent: 'reservas',
                         param:{
@@ -53,7 +53,7 @@ var mod = ng.module("reservaModule", ['usuarioModule', 'ui.router', 'pagosModule
                                 controllerAs: 'ctrl'
 	                    }
 	                }
-	            }).state('reservaDelete', {
+	    }).state('reservaDelete', {
 	                url: '/delete/{idReserva:int}',
 	                parent: 'reservas',
 	                param: {

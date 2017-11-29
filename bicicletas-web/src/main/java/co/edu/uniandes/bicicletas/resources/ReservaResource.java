@@ -16,6 +16,7 @@ import co.edu.uniandes.bicicletas.ejb.UsuarioLogic;
 import co.edu.uniandes.bicicletas.entities.ReservaEntity;
 import co.edu.uniandes.bicicletas.entities.TransaccionEntity;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -254,8 +255,22 @@ public class ReservaResource {
         if(reserva==null){
           throw new WebApplicationException("La reserva con id "+ id +NO_EXISTE, 404);
         }
-        
-         ReservaEntity nueva=logica.iniciarReserva(reserva);
+//        Date actual = new Date();
+//        if(reserva.getFechaInicio().getDay()== actual.getDay() &&
+//           reserva.getFechaInicio().getMonth()== actual.getMonth() && 
+//           reserva.getFechaInicio().getYear()== actual.getYear() &&
+//           reserva.getFechaInicio().getHours()== actual.getHours() )
+//        {
+//         if( (reserva.getFechaInicio().getMinutes()- actual.getMinutes())<=30  ){
+//             ReservaEntity nueva=logica.iniciarReserva(reserva);
+//         }else if((reserva.getFechaInicio().getMinutes()- actual.getMinutes())){
+//             
+//         }  
+//            
+//        }else{
+//            throw new WebApplicationException("La reserva no se puede inciar antes o despues de la hora acordada ", 404);
+//        }
+        ReservaEntity nueva=logica.iniciarReserva(reserva);
         
         return new ReservaDTO(nueva);
     }
