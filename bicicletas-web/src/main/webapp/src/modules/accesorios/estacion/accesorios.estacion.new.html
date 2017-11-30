@@ -1,34 +1,55 @@
 <div class="container-fluid">
-    <div class="panel-group">
+    <div class="col-sm-12" style="text-align: center">
+        <div>
+            <h4 id="createAccesorioBicicleta"><b>Añadir un accesorio a la bicicleta</b></h4>
+                         
+        </div>
+        
+    </div>
+    <div class="col-sm-12"><br></div>
+
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4">
         <div class="panel panel-primary">
-            <div class="panel-heading" style="background-color: #222"><label ng-if="!edit" id="createAccesorio">Crear nuevo accesorio</label>
-                <label ng-if="edit" id="editUsuario">Edit Usuario</label></div>
             <div class="panel-body">
                 <form ng-submit="createAccesorio()" name="accesorio">
-                    <div class="form-group row">
-                        <div class="form-group col-md-6">
-                                <label for="accesorioTipo" class="col-sm-4">Tipo:</label>
-                                <select id="accesorioTipo" required ng-model="accesorioTipo">
+                    <div class="col-sm-6">
+                        <div class="form-group row">   
+                            <div class="form-group col-sm-12">
+                                <label for="accesorioTipo">Tipo</label>
+                                <select id="accesorioTipo" required ng-model="accesorioTipo" class="form-control">                           
                                     <option value="1">Casco</option>
                                     <option value="2">Chaleco</option>
-                                </select>
+                                </select>                                
+                            </div>  
+
+                        </div>
+
+                 
+                        <div class="form-group row">
+                            <div class="form-group col-sm-12">                          
+                                <button ng-show="accesorio.$valid" type="submit" class="btn btn-success">
+                                    
+                                        <i class="glyphicon glyphicon-plus"></i> Crear
+                                                             
+                                </button>
+                                <a class="btn btn-danger btn-sm" onclick="history.back()"><span class="glyphicon glyphicon-remove"></span>&nbsp;Cancelar</a>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <div class="form-group col-sm-4" ng-if="!accesorio.$valid">
 
-                            <div class="alert alert-warning" >
-                                <strong>Warning!</strong><p>All inputs are required*</p>
+                    <div class="col-sm-6">
+                        <div class="form-group row">
+                            <div class="form-group" ng-if="!accesorio.$valid">
+
+                                <div class="alert alert-warning" >
+                                    <strong>Advertencia:</strong><p>Se debe escoger un tipo para poder continuar</p>
+                                </div> 
                             </div> 
                         </div> 
-                    </div> 
-                    <div class="form-group row">
-                        <div class="form-group col-sm-12">
-                            <input ng-show="accesorio.$valid" type="submit" value="Save" class="btn btn-success"/>
-                            <a class="btn btn-info" ui-sref="accesoriosEstacionList({id: currentEstacion.id})">Cancelar</a>
-                        </div>
                     </div>
                 </form>
+
 
             </div>
         </div>

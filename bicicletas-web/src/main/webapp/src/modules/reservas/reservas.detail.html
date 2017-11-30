@@ -9,7 +9,7 @@
                 Empieza <a ui-sref="asociarBicicleta({idReserva: currentReserva.idReserva, idEstacion: currentReserva.estacionSalida.id})" class="alert-link">añadiendo bicicletas</a> a tu reserva
             </div>
             <div ng-show="currentReserva.estado === 1 && currentReserva.bicicletas && !currentReserva.accesorios" class="alert alert-info" style="text-align: center"  >
-                Procede a <a ui-sref="asociarAccesorio({idReserva: currentReserva.idReserva idEstacion: currentReserva.estacionSalida.id})" class="alert-link">añadir los accesorios</a> que consideres necesarios. Estos no poseen ningún costo adicional
+                Procede a <a ui-sref="asociarAccesorio({idReserva: currentReserva.idReserva, idEstacion: currentReserva.estacionSalida.id})" class="alert-link">añadir los accesorios</a> que consideres necesarios. Estos no poseen ningún costo adicional
             </div>
         </div>
        

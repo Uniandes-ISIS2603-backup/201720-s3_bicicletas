@@ -1,34 +1,57 @@
 <div class="container-fluid">
-    <div class="panel-group">
+    <div class="col-sm-12" style="text-align: center">
+        <div>
+            <h4 id="createAccesorioBicicleta"><b>Añadir un accesorio a la reserva</b></h4>
+                         
+        </div>
+        
+    </div>
+    <div class="col-sm-12"><br></div>
+
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4">
         <div class="panel panel-primary">
-            <div class="panel-heading" style="background-color: #222"><label ng-if="!edit" id="createAccesorio">Asignar accesorio</label>
-                <label ng-if="edit" id="editBicicleta">Edit accesorio</label></div>
             <div class="panel-body">
                 <form ng-submit="asociarAccesorio()" name="accesorio">
-                    <div class="form-group row">
-                        <div class="form-group col-md-6">
-                            <label for="estacionId" class="col-sm-4">Accesorio:</label>
-                            <select id="accesorioId" required ng-model="accesorioId" class="col-sm-3"/>
+                    <div class="col-sm-6">
+                        <div class="form-group row">   
+                            <div class="form-group col-sm-12">
+                                <label for="estacionId">Accesorio:</label>
+                            <select id="accesorioId" required ng-model="accesorioId" class="form-control"/>
                     <option ng-repeat="accesorio in accesoriosDisponiblesRecords" value="{{accesorio.id}}">{{accesorio.id}} - {{accesorio.tipo}}</option>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="form-group col-sm-4" ng-if="!accesorio.$valid">
+                                </select>                                
+                            </div>  
 
-                            <div class="alert alert-warning" >
-                                <strong>Warning!</strong><p>All inputs are required*</p>
-                            </div>
-                        </div> 
+                        </div>
+
+                 
                         <div class="form-group row">
-                        <div class="form-group col-sm-12">
-                            <input ng-show="accesorio.$valid" type="submit" value="Save" class="btn btn-success"/>
-                            <a class="btn btn-info" ui-sref="reservaDetail">Cancelar</a>
+                            <div class="form-group col-sm-12">                          
+                                <button ng-show="accesorio.$valid" type="submit" class="btn btn-success">
+                                    
+                                        <i class="glyphicon glyphicon-plus"></i> Añadir
+                                                             
+                                </button>
+                                <a class="btn btn-danger btn-sm" onclick="history.back()"><span class="glyphicon glyphicon-remove"></span>&nbsp;Cancelar</a>
+                            </div>
                         </div>
                     </div>
-                    </div> 
+
+                    <div class="col-sm-6">
+                        <div class="form-group row">
+                            <div class="form-group" ng-if="!accesorio.$valid">
+
+                                <div class="alert alert-warning" >
+                                    <strong>Advertencia:</strong><p>Se debe escoger un accesorio para continuar</p>
+                                </div> 
+                            </div> 
+                        </div> 
+                    </div>
                 </form>
+
 
             </div>
         </div>
     </div>
 </div>
+

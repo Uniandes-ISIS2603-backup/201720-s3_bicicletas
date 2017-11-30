@@ -1,12 +1,12 @@
-<div class="container-fluid">   
-    <div class="col-sm-12">
+<div class="container-fluid">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
         <table ng-if="!messageDirecciones" class="table table-striped">
             <thead class="thead-inverse">
                 
                
                 <hr>
                 <tr> 
-                <th>ID</th>
                 <th>Dirección</th>
                 <th>Codigo postal</th>
                 <th>Ciudad</th>
@@ -17,7 +17,6 @@
             
             <tbody>
                 <tr ng-repeat="direccion in direccionesRecords">
-                    <td id="{{$index}}-id">{{direccion.id}}</td>
                     <td id="{{$index}}-name">{{direccion.name}}</td>
                     <td id="{{$index}}-codigoPostal">{{direccion.codigoPostal}}</td>
                     <td id="{{$index}}-ciudad">{{direccion.ciudad}}</td>

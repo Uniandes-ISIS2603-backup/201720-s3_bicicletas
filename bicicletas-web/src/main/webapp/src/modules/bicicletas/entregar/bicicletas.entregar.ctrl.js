@@ -9,9 +9,9 @@ var mod = ng.module("bicicletaModule");
             }),$scope.moverBicicleta = function () {
 	                $http.put(biciEstContext + '/' + $scope.estacionId + '/' + bicicletasEstacionContext, {
 	                    id: $state.params.id
-	                }).then(function (response) {
+	                }).then(function () {
 	                    //Usuario created successfully
-	                    $state.go('bicicletasEstacionList', {id: response.data.id}, {reload: true});
+	                    $state.go(history.back(), {reload: true});
 	                });
 	            };
         }

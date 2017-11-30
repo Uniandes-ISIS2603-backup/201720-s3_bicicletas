@@ -1,41 +1,62 @@
-<div class="container-fluid">  
-    <div class="panel-group">
+<div class="container-fluid">
+    <div class="col-sm-12" style="text-align: center">
+        <div>
+            <h4 id="createAccesorioBicicleta"><b>Añadir un accesorio a la bicicleta</b></h4>
+                         
+        </div>
+        
+    </div>
+    <div class="col-sm-12"><br></div>
+
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
         <div class="panel panel-primary">
-            <div class="panel-heading" style="background-color: #222"><label ng-if="!edit" id="createAccesorioBicicleta">Añadir un nuevo accesorio a la bicicleta</label>
-                <label ng-if="edit" id="editAccesorioBicicleta">Edit accesorioBicicleta</label></div>
             <div class="panel-body">
                 <form ng-submit="createAccesorioBicicleta()" name="accesorioBicicleta">
-                    <div class="form-group row">
-                        <div class="form-group col-md-6">                         
-                            <label for="accesorioBicicletaNombre" class="col-sm-4">Tipo:</label>
-                                <select id="accesorioBicicletaNombre" required ng-model="accesorioBicicletaNombre">
+                    <div class="col-sm-8">
+                        <div class="form-group row">   
+                            <div class="form-group col-sm-4">
+                                <label for="tipo">Tipo</label>
+                                <select id="tipo" required ng-model="tipo" class="form-control">                           
                                     <option value="0">Luces</option>
                                     <option value="1">Candado</option>
                                     <option value="2">Canastilla</option>
-                                </select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="form-group col-md-6">
-                            <label for="accesorioBicicletaDescripcion" class="col-sm-4">Descripcion :</label>
-                                <input id="accesorioBicicletaDescripcion" required ng-model="accesorioBicicletaDescripcion" class="col-sm-6"/>
-                        </div>
-                    </div> 
-                    <div class="form-group row">
-                        <div class="form-group col-sm-4" ng-if="!accesorioBicicleta.$valid">
+                                </select>                                
+                            </div>  
 
-                            <div class="alert alert-warning" >
-                                <strong>Advertencia:</strong><p>Todos los campos son requeridos*</p>
-                            </div>
-                        </div> 
+                        </div>
+
                         <div class="form-group row">
-                            <div class="form-group col-sm-12">&nbsp;&nbsp;&nbsp;
-                            <input ng-show="accesorioBicicleta.$valid" type="submit" value="Crear" class="btn btn-success"/>
-                            <a class="btn btn-info" ui-sref="accesoriosBicicletaBicicleta">Volver</a>
+                            <div class="form-group col-sm-12">
+                                <label for="accesorioBicicletaDescripcion">Descripción:</label>
+                                <textarea id="accesorioBicicletaDescripcion" required ng-model="accesorioBicicletaDescripcion" class="form-control" rows="3" style="resize: none"></textarea>
+                            </div>
+
+                        </div>                 
+                        <div class="form-group row">
+                            <div class="form-group col-sm-12">                          
+                                <button ng-show="accesorioBicicleta.$valid" type="submit" class="btn btn-success">
+                                    
+                                        <i class="glyphicon glyphicon-plus"></i> Crear
+                                                             
+                                </button>
+                                <a class="btn btn-danger btn-sm" onclick="history.back()"><span class="glyphicon glyphicon-remove"></span>&nbsp;Cancelar</a>
+                            </div>
                         </div>
                     </div>
-                    </div> 
+
+                    <div class="col-sm-4">
+                        <div class="form-group row">
+                            <div class="form-group" ng-if="!accesorioBicicleta.$valid">
+
+                                <div class="alert alert-warning" >
+                                    <strong>Advertencia:</strong><p>Todos los campos son necesarios</p>
+                                </div> 
+                            </div> 
+                        </div> 
+                    </div>
                 </form>
+
 
             </div>
         </div>

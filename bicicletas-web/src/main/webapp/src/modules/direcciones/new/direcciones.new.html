@@ -1,77 +1,82 @@
 <div class="container-fluid">
-    <div class="panel-group">
+    <div class="col-sm-12" style="text-align: center">
+        <div>
+            <h4 id="createBicicleta"><b>Crear una dirección</b></h4>
+        </div>
+
+    </div>
+    <div class="col-sm-12"><br></div>
+
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4">
         <div class="panel panel-primary">
-            <div class="panel-heading" style="background-color: #222"><label ng-if="!edit" id="createDireccion">Crear nueva direccion</label>
-                <label ng-if="edit" id="editDireccion">Edit Direccion</label></div>
             <div class="panel-body">
                 <form ng-submit="createDireccion()" name="direccion">
-                    <div class="form-group row">
-                        <div class="form-group col-md-8">
-                            <label for="direccionName" class="col-sm-3">Direccion:</label>
-                            <input id="direccionName" required ng-model="direccionName" class="col-sm-6"/>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="form-group col-md-8">
-                            <label for="direccionCodigoPostal" class="col-sm-3">Codigo postal:</label>
-                            <input id="direccionCodigoPostal" required ng-model="direccionCodigoPostal" class="col-sm-3"/>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="form-group col-md-8">
-                            <label for="direccionDescripcion" class="col-sm-3">Descripcion:</label>
-                            <input id="direccionDescripcion" required ng-model="direccionDescripcion" class="col-sm-6"/>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="form-group col-md-8">
-                            <label for="direccionCiudad " class="col-sm-3">Ciudad:</label>
-                            <input id="direccionCiudad " required ng-model="direccionCiudad " class="col-sm-3"/>
-                        </div>
-                    </div>
-                    <div ng-if="edit" class="panel-group" id="theDirecciones">
-                        <div class="panel panel-info">
-                            <div class="panel-heading" style="background-color: #222">Direcciones asociadas</div>
-                            <div class="panel-body">
-                                <div id="div2" ondrop="angular.element(document.getElementById('theDirecciones')).scope().dropAdd(event)" ondragover="angular.element(document.getElementById('theDirecciones')).scope().allowDrop(event)">
-                                    <label></label>
-                                    <div ng-show="edit" ng-repeat="direccion in allDireccionesUsuario">
-                                        <p draggable="true" ondragstart="angular.element(document.getElementById('theDirecciones')).scope().drag(event)" id="{{direccion.id}}">{{direccion.name}}</p>                                 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel panel-success">
-                            <div class="panel-heading" style="background-color: #222">Todas las direcciones</div>
-                            <div class="panel-body">
-                                <div id="div1" ondrop="angular.element(document.getElementById('theDirecciones')).scope().dropDelete(event)" ondragover="angular.element(document.getElementById('theDirecciones')).scope().allowDrop(event)">
-                                    <label></label>
-                                    <div ng-repeat="direccion in allDireccionesShow">
-                                        <p draggable="true" ondragstart="angular.element(document.getElementById('theDirecciones')).scope().drag(event)" id="{{direccion.id}}">{{direccion.name}}</p>                
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
+                    <div class="col-sm-12">
+                        <div class="form-group row">   
+                            <div class="form-group col-sm-12">
+                                <label for="direccionName">Direccion:</label>
+                                <input id="direccionName" required ng-model="direccionName" class="form-control"/>
+                            </div>  
 
-                    <div class="form-group row">
-                        <div class="form-group col-sm-4" ng-if="!direccion.$valid">
+                        </div>
+                        <div class="form-group row">   
+                            <div class="form-group col-sm-12">
+                                <label for="direccionDescripcion">Descripcion:</label>
+                            <input id="direccionDescripcion" required ng-model="direccionDescripcion" class="form-control"/>
+                            </div>  
 
-                            <div class="alert alert-warning" >
-                                <strong>Advertencia!</strong><p>Todos los campos son requeridos*</p>
+                        </div>
+                        
+                        <div class="form-group row">   
+                            <div class="form-group col-sm-12">
+                                 <label for="direccionCodigoPostal">Codigo postal:</label>
+                            <input id="direccionCodigoPostal" required ng-model="direccionCodigoPostal" class="form-control"/>
+                                
+                            </div>  
+
+                        </div>
+                        
+                        <div class="form-group row">   
+                            <div class="form-group col-sm-12">
+                                 <label for="direccionCiudad">Ciudad:</label>
+                            <input id="direccionCiudad " required ng-model="direccionCiudad" class="form-control"/>
+                            </div>  
+
+                        </div>
+                        
+                        <div class="form-group row">
+                            <div class="form-group" ng-if="!direccion.$valid">
+
+                                <div class="alert alert-warning" >
+                                    <strong>Advertencia:</strong><p>Todos los campos son necesarios</p>
+                                </div> 
                             </div> 
-                        </div> 
-                    </div> 
-                    <div class="form-group row">
-                        <div class="form-group col-sm-12">
-                            <input ng-show="direccion.$valid" type="submit" value="Guardar" class="btn btn-success"/>
-                            <a class="btn btn-info" ui-sref="direccionesList">Cancelar</a>
                         </div>
+
+
+                        <div class="form-group row">
+                            <div class="form-group col-sm-12">                          
+                                <button ng-show="direccion.$valid" type="submit" class="btn btn-success">
+
+                                    <i class="glyphicon glyphicon-plus"></i> Crear
+
+                                </button>
+                                <a class="btn btn-danger btn-sm" onclick="history.back()"><span class="glyphicon glyphicon-remove"></span>&nbsp;Cancelar</a>
+                            </div>
+                        </div>                       
                     </div>
+
+                    
                 </form>
+
 
             </div>
         </div>
     </div>
 </div>
+
+
+
+
+

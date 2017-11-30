@@ -12,7 +12,7 @@
                         $http.post(usuariosContext + '/' + $state.params.idUsuario + '/' + 'reservas', {
                             idUsuario:$scope.documentoUsuario,
                             fechaInicio:$scope.fechaSalida+$scope.hora ,
-                            fechaEntrega:$scope.fechaLlegada+$scope.hora2,
+                            fechaEntrega:$scope.fechaSalida+$scope.hora2,
                             estacionSalida: {
                                 id: $scope.estacionId
                             }

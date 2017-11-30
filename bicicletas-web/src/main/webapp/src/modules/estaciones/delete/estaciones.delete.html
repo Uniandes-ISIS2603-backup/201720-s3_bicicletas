@@ -1,5 +1,5 @@
 <div class="center-block well text-center">
-    <h1>Confimar eliminación de la estación.</h1>
-    <button id="confirm-delete" ng-click="deleteEstacion()" class="btn btn-danger">Eliminar</button>
-    <a id="cancel-delete" ui-sref="estacionesList" class="btn btn-info">Cancelar</a>
+    <h1>¿Está seguro que desea eliminar la estación {{currentEstacion.id}}?</h1>
+    <button id="confirm-delete" ng-click="deleteEstacion()" class="btn btn-danger">Si</button>
+    <a id="cancel-delete" onclick="history.back()" class="btn btn-primary">No</a>
 </div>

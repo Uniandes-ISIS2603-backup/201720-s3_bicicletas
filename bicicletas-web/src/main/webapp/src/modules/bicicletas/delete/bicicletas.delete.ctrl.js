@@ -6,7 +6,7 @@
             var id = $state.params.id;
             $scope.deleteBicicleta = function () {
                 $http.delete(bicicletasContext + '/' + id, {}).then(function (response) {
-                    $state.go('bicicletasList', {id: response.data.id}, {reload: true});
+                    $state.go(history.back(), {reload: true});
                 });
             };
         }

@@ -13,7 +13,7 @@ var mod = ng.module("accesorioModule");
 	                    estacion:{
                             id: $scope.estacionId
                         }
-	                }).then(function (response) {
+	                }).then(function () {
 	                    //Usuario created successfully
 	                    $state.go('accesoriosEstacionList', {id: $state.params.id}, {reload: true});
 	                });
