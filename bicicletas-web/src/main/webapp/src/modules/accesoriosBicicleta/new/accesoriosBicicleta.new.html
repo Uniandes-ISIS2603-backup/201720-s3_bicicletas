@@ -12,12 +12,11 @@
     <div class="col-sm-6">
         <div class="panel panel-primary">
             <div class="panel-body">
-                <form ng-submit="createAccesorioBicicleta()" name="accesorioBicicleta">
-                    <div class="col-sm-8">
-                        <div class="form-group row">   
-                            <div class="form-group col-sm-4">
-                                <label for="tipo">Tipo</label>
-                                <select id="tipo" required ng-model="tipo" class="form-control">                           
+                <form  ng-submit="createAccesorioBicicleta()" name="accesorioBicicleta">
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">                         
+                            <label for="accesorioBicicletaNombre" class="col-sm-4">Tipo:</label>
+                                <select id="accesorioBicicletaNombre" required ng-model="accesorioBicicletaNombre">
                                     <option value="0">Luces</option>
                                     <option value="1">Candado</option>
                                     <option value="2">Canastilla</option>
