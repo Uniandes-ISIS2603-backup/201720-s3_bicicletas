@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -37,6 +38,7 @@ import javax.ws.rs.WebApplicationException;
 @Path("/reservas")
 @Produces("application/json")
 @Consumes("application/json")
+@Stateless
 public class ReservaResource {
     @Inject
     private ReservaLogic logica;
