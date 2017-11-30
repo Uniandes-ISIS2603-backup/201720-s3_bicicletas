@@ -90,13 +90,22 @@
 	                        controller: 'biciEstacionCtrl'
 	                    }
 	                }
-	    }).state('entregarBicicleta', {
-	                url: '/entregarBicicleta',
+	    }).state('moverBicicleta', {
+	                url: '/entregarBicicleta/{idBicicleta:int}',
 	                parent: 'bicicletasEstacion',
 	                views: {
 	                    'detailView': {
 	                        templateUrl: basePath + '/entregar/bicicletas.entregar.html',
 	                        controller: 'entregarCtrl'
+	                    }
+	                }
+	    }).state('desAsociarBicicleta', {
+	                url: '/entregarBicicleta/{idBicicleta:int}/{idReserva:int}',
+	                parent: 'bicicletasReserva',
+	                views: {
+	                    'detailView': {
+	                        templateUrl: basePath + '/RemoverBicicletaReserva/bicicletas.removerBicicletaReserva.html',
+	                        controller: 'desAsoCtrl'
 	                    }
 	                }
 	    }).state('bicicletasReserva', {

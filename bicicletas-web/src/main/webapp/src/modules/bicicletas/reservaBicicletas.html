@@ -9,7 +9,7 @@
                         <table class="table">
                             <thead class="thead-inverse">
                                 <tr>
-                                    <th>Modelo</th>
+                                    <th>Modelo{{currentReserva.idReserva}}</th>
                                     <th>Marca</th>
                                     <th>Remover</th>
                                 </tr>
@@ -19,7 +19,7 @@
                                     <td id="{{$index}}-modelo">{{bicicleta.modelo}}</td>
                                     <td id="{{$index}}-marca">{{bicicleta.marca}}</td>                                  
                                     <td id="{{$index}}-actions">
-                                        <a class="btn btn-danger btn-sm" ui-sref="#"><span class="glyphicon glyphicon-remove"></span></a>
+                                        <a class="btn btn-danger btn-sm" ui-sref="desAsociarBicicleta({idReserva: currentReserva.idReserva,idBicicleta: bicicleta.id})"><span class="glyphicon glyphicon-remove"></span></a>
                                     </td>
                                 </tr>
                             </tbody>

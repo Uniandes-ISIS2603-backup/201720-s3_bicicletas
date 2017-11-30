@@ -4,12 +4,14 @@ var mod = ng.module("bicicletaModule");
     mod.constant("biciEstContext", "api/estaciones");
     mod.controller('entregarCtrl', ['$scope', '$http', 'bicicletasEstacionContext', '$state', 'biciEstContext',
         function ($scope, $http, bicicletasEstacionContext, $state, biciEstContext) {
-            $scope.agregarBicicletaEstacion = function () {
-	                $http.put(biciEstContext + '/' + $state.params.id + '/' + bicicletasEstacionContext, {
-	                    id: $scope.bicicletaId
+            $http.get('api/estaciones').then(function (response) {
+                $scope.estacionesDisponiblesRecords = response.data;
+            }),$scope.moverBicicleta = function () {
+	                $http.put(biciEstContext + '/' + $scope.estacionId + '/' + bicicletasEstacionContext, {
+	                    id: $state.params.id
 	                }).then(function (response) {
 	                    //Usuario created successfully
-	                    $state.go('estacionDetail', {nombre: response.data.nombre}, {reload: true});
+	                    $state.go('bicicletasEstacionList', {id: response.data.id}, {reload: true});
 	                });
 	            };
         }
