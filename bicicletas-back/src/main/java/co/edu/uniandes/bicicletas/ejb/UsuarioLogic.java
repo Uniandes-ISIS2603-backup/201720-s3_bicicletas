@@ -7,6 +7,7 @@ package co.edu.uniandes.bicicletas.ejb;
 
 import co.edu.uniandes.baco.bicicletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.bicicletas.entities.DireccionEntity;
+import co.edu.uniandes.bicicletas.entities.TarjetaDeCreditoEntity;
 import co.edu.uniandes.bicicletas.entities.UsuarioEntity;
 import co.edu.uniandes.bicicletas.persistence.UsuarioPersistence;
 import java.util.Calendar;
@@ -32,6 +33,9 @@ public class UsuarioLogic {
     
     @Inject
     private DireccionLogic direccionLogic;
+    
+    @Inject
+    private TarjetaDeCreditoLogic tarjetaDeCreditoLogic;
     /**
      * Esta es la documentación 
      * del metodo createusuario.
@@ -70,6 +74,14 @@ public class UsuarioLogic {
         return entity;
     }
     
+    public List<TarjetaDeCreditoEntity> getTarjetas(Long idUsuario){
+        UsuarioEntity usuario = persistence.find(idUsuario);
+        
+        return usuario.getTarjetas();
+  
+ 
+        
+    }
     
     /**
      * Esta es la documentación 

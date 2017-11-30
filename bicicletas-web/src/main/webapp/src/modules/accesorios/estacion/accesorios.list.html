@@ -6,7 +6,7 @@
     <div class="col-sm-12"><br></div>
     <div class="col-sm-1" style="text-align: center">  
         <div class="btn-group mr-1" role="group" aria-label="First group">
-            <a class="btn btn-secondary" ui-sref="accesoriosEstacionCreate"><span class="glyphicon glyphicon-plus"></span>&nbsp;Añadir accesorio</a>
+            <a ng-if="hasPermissions()" class="btn btn-secondary" ui-sref="accesoriosEstacionCreate"><span class="glyphicon glyphicon-plus"></span>&nbsp;Añadir accesorio</a>
         </div>
     </div>
     <div class="col-sm-10">
@@ -17,7 +17,7 @@
                         <th>Accesorio</th>
                         <th>Tipo</th>
                         <th>Estado</th>
-                        <th>Opciones</th>
+                        <th ng-if="hasPermissions()">Opciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -40,7 +40,7 @@
                                 Libre
                             </div> 
                         </td>
-                        <td id="{{$index}}-actions">
+                        <td ng-if="hasPermissions()" id="{{$index}}-actions">
                             <a class="btn btn-danger btn-sm" ui-sref="accesorioDelete({id: accesorio.id})"><span class="glyphicon glyphicon-trash"></span></a>
                         </td>
 

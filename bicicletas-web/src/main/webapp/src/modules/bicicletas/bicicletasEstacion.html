@@ -13,7 +13,7 @@
                         <th>Modelo</th>
                         <th>Marca</th>
                         <th>Estado</th>
-                        <th>Mover</th>
+                        <th ng-if="hasPermissions()">Mover</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,7 +38,7 @@
                             </div>
 
                         </td>
-                        <td id="{{$index}}-actions">
+                        <td ng-if="hasPermissions()" id="{{$index}}-actions">
                             <a class="btn btn-primary btn-sm" ui-sref="moverBicicleta({idBicicleta: bicicleta.id})"><span class="glyphicon glyphicon-move"></span></a>
                             <a class="btn btn-danger btn-sm" ui-sref="bicicletaDelete({id: bicicleta.id})"><span class="glyphicon glyphicon-trash"></span></a>
 

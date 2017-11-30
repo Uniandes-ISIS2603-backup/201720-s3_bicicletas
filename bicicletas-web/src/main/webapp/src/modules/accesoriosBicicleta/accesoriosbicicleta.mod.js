@@ -23,6 +23,11 @@
                         controller: 'accesorioBicicletaCtrl',
                         controllerAs: 'ctrl'
                     }
+                    ,
+                    data: {
+                    requireLogin: true,
+                    roles: ["administrador"]
+                }
                     
                 }
             }).state('createAccesorioBicicleta', {

@@ -12,7 +12,7 @@
                         <th>Accesorio</th>
                         <th>Tipo</th>
                         <th>Estado</th>
-                        <th>Acciones</th>
+                        <th ng-if="hasPermissions()">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,7 +35,7 @@
                                 Libre
                             </div> 
                         </td>
-                        <td id="{{$index}}-actions">
+                        <td ng-if="hasPermissions()" id="{{$index}}-actions">
                             <a class="btn btn-primary btn-sm" ui-sref="moverAccesorio({idAccesorio: accesorio.id})"><span class="glyphicon glyphicon-move"></span></a> 
                             <a class="btn btn-danger btn-sm" ui-sref="accesorioDelete({id: accesorio.id, idEstacion: currentEstacion.id})"><span class="glyphicon glyphicon-trash"></span></a> 
                         </td>

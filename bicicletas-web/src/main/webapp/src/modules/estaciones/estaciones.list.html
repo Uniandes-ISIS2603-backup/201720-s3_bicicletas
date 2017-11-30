@@ -4,7 +4,7 @@
     </div>
     <div class="col-sm-12"><br></div>
     <div class="col-sm-2" style="text-align: center">  
-        <div class="btn-group mr-1" role="group" aria-label="First group">
+        <div ng-if="hasPermissions()" class="btn-group mr-1" role="group" aria-label="First group">
             <a class="btn btn-secondary" ui-sref="estacionesCreate"><span class="glyphicon glyphicon-plus"></span>&nbsp;Añadir estación</a>
         </div>
     </div>
@@ -15,15 +15,15 @@
                     <tr> 
                         <th>ID</th>
                         <th style="width: 70%">Nombre</th>
-                        <th>Opciones</th>
+                        <th ng-if="hasPermissions()">Opciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="estacion in estacionesRecords">
                         <td id="{{$index}}-id"><a ui-sref="estacionDetail({id: estacion.id})">{{estacion.id}}</a></td>
                         <td id="{{$index}}-nombre">{{estacion.nombre}}</td>
-                        <td id="{{$index}}-actions">
-                            <a class="btn btn-danger btn-sm" ui-sref="estacionDelete({id: estacion.id})"><span class="glyphicon glyphicon-trash"></span></a>
+                        <td ng-if="hasPermissions()" id="{{$index}}-actions">
+                            <a  class="btn btn-danger btn-sm" ui-sref="estacionDelete({id: estacion.id})"><span class="glyphicon glyphicon-trash"></span></a>
                         </td>
                     </tr>
                 </tbody>
