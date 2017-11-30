@@ -46,6 +46,11 @@ public class UsuarioResource {
      * Constante que representa que no existe un usuario
      */
     private static final String NOEXISTE = "El usuario no existe";
+    
+    /**
+     * Constante que representa que el recurso usuario
+     */
+    private static final String EL_RECURSO = "El recurso /usuarios/";
 
     /**
      * Esta es la documentación del metodo listentitytodto. Este metodo ha sido
@@ -202,7 +207,7 @@ public class UsuarioResource {
     public Class<UsuarioPuntoResource> getUsuarioPuntoResource(@PathParam("idUsuario") Long idUsuario) {
         UsuarioEntity entity = usuarioLogic.getUsuario(idUsuario);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /usuarios/" + idUsuario + "/puntos/ no existe.", 404);
+            throw new WebApplicationException(EL_RECURSO + idUsuario + "/puntos/ no existe.", 404);
         }
         return UsuarioPuntoResource.class;
     }
@@ -218,7 +223,7 @@ public class UsuarioResource {
     public Class<UsuarioReservaResource> getUsuarioReservaResource(@PathParam("idUsuario") Long idUsuario) {
         UsuarioEntity entity = usuarioLogic.getUsuario(idUsuario);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /usuarios/" + idUsuario + "/reservas/ no existe.", 404);
+            throw new WebApplicationException(EL_RECURSO + idUsuario + "/reservas/ no existe.", 404);
         }
         return UsuarioReservaResource.class;
     }
@@ -234,7 +239,7 @@ public class UsuarioResource {
     public Class<TarjetaDeCreditoUsuarioResource> getTarjetaDeCreditoResource(@PathParam("idUsuario") Long idUsuario) {
         UsuarioEntity entity = usuarioLogic.getUsuario(idUsuario);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /usuarios/" + idUsuario + "/tarjetas/ no existe.", 404);
+            throw new WebApplicationException(EL_RECURSO + idUsuario + "/tarjetas/ no existe.", 404);
         }
         return TarjetaDeCreditoUsuarioResource.class;
     }

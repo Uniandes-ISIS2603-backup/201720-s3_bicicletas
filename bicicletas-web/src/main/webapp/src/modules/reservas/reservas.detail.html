@@ -17,8 +17,8 @@
             <div ng-show="currentReserva.estado ===  0 && !currentReserva.calificacionSalida" class="alert alert-info" style="text-align: center"  >
                 Aceptamos tu pago, mientras esperas que llegué la fecha de inicio de tu reserva, <a ui-sref="calificacionesCreate({cali: 0, idUsuario: currentReserva.usuarioReserva.documentoUsuario, idReserva: currentReserva.idReserva})" class="alert-link">califica la estación de salida</a>
             </div>
-            <div ng-show="currentReserva.estado ===  5" class="alert alert-info" style="text-align: center"  >
-               Tu reserva ha sido finalizada, por favor verifica tu <a ng-click="verTransaccion()" class="alert-link">estado de cuenta</a>
+            <div ng-show="currentReserva.estado ===  5 && !currentReserva.calificacionLlegada" class="alert alert-info" style="text-align: center"  >
+               Tu reserva ha sido finalizada, por favor verifica tu <a ng-click="verTransaccion()" class="alert-link">estado de cuenta</a> y no olvides <a ui-sref="calificacionesCreate({cali: 1, idUsuario: currentReserva.usuarioReserva.documentoUsuario, idReserva: currentReserva.idReserva})" class="alert-link">calificar la estación de llegada</a>
             </div>
             
         </div>

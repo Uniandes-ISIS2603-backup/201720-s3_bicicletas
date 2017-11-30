@@ -39,7 +39,7 @@ public class BicicletaDetailDTO extends BicicletaDTO {
     /**
      * Constructor por defecto
      */
-    public List<AccesorioBicicletaDTO> accesorios=new ArrayList<>();
+    private List<AccesorioBicicletaDTO> accesorios=new ArrayList<>();
     
     
     

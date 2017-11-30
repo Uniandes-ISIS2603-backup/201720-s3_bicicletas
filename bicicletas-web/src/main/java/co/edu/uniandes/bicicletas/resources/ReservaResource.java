@@ -58,6 +58,11 @@ public class ReservaResource {
     private static final String NO_EXISTE = " no existe";
     
     /**
+     * Constante para representar la reserva
+    */
+    private static final String LA_RESERVA = "La reserva con id ";
+    
+    /**
      * Metodo que transfoma una lista de entitys en DTOS
      * @param entityList
      * @return reservaDTO 
@@ -109,7 +114,7 @@ public class ReservaResource {
     public ReservaDTO getReserva(@PathParam("id") Long id) {
         ReservaEntity reservas = logica.getReserva(id);
         if(reservas==null){
-          throw new WebApplicationException("La reserva con id "+ id +NO_EXISTE, 404);
+          throw new WebApplicationException(LA_RESERVA+ id +NO_EXISTE, 404);
         }
         return new ReservaDetailDTO(reservas);
     }
@@ -164,7 +169,7 @@ public class ReservaResource {
     public TransaccionDTO darTransaccion(@PathParam("id") Long id) throws BusinessLogicException{
         ReservaEntity reserva = logica.getReserva(id);
         if(reserva==null){
-          throw new WebApplicationException("La reserva con id "+ id +NO_EXISTE, 404);
+          throw new WebApplicationException(LA_RESERVA+ id +NO_EXISTE, 404);
         }
         
         TransaccionEntity transaccion = logicaTransaccion.obtenerTransaccion(reserva);
@@ -256,7 +261,7 @@ public class ReservaResource {
     public ReservaDTO iniciarReserva(@PathParam("id") Long id) throws BusinessLogicException{
         ReservaEntity reserva = logica.getReserva(id);
         if(reserva==null){
-          throw new WebApplicationException("La reserva con id "+ id +NO_EXISTE, 404);
+          throw new WebApplicationException(LA_RESERVA+ id +NO_EXISTE, 404);
         }
         Date inicio = reserva.getFechaInicio();
 	Date actual = new Date();

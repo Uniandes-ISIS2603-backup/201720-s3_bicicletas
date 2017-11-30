@@ -6,7 +6,7 @@
             function ($scope, $http, accesorioBicicletasContext,accBicicletaContext, $state) {
 	            $scope.deleteAccesorioBicicleta = function () {
 	                $http.delete(accesorioBicicletasContext + '/' +$state.params.id + '/' + accBicicletaContext + '/' + $state.params.idAccesorioBicicleta, {                           
-                        }).then(function (response) {
+                        }).then(function () {
 	                    $state.go('accesoriosBicicletaBicicleta', {id: $state.params.id}, {reload: true});
 	                });
 	            };
