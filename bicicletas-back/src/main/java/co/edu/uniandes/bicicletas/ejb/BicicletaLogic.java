@@ -61,6 +61,7 @@ public class BicicletaLogic {
     public BicicletaEntity createBicicleta(BicicletaEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de Bicicleta");
         // Invoca la persistencia para crear la BicicletaLogic
+        entity.setEstado(BicicletaEntity.DISPONIBLE);
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación de Bicicleta");
         return entity;

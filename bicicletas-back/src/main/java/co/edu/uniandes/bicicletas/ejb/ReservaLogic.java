@@ -352,8 +352,14 @@ public class ReservaLogic
          if(reserva.getPago()!=null){
              throw new BusinessLogicException("Hay un pago no se puede añadir la bicicleta");
          }
-         entity.setReserva(reserva);
+        
+         
+        entity.setReserva(reserva);
         reserva.getBicicletas().add(entity);
+        
+        Double nuevoCosto = reserva.calcularCostoFinal(reserva.getFechaInicio(), reserva.getFechaEntrega(), reserva.getBicicletas().size());
+        reserva.setPrecioFinal(nuevoCosto);
+        
         biciLogic.update(entity);
         persistence.update(reserva);
          return reserva;
@@ -411,7 +417,7 @@ public class ReservaLogic
          }
          Date fechaActual = new Date(System.currentTimeMillis());
          reserva.setFechaFinal(fechaActual);
-         if(reserva.getFechaInicio().getHours()-fechaActual.getHours()<1){
+         if(fechaActual.getHours()-reserva.getFechaInicio().getHours()<1){
              throw new BusinessLogicException("No se ha cumplido minimo de uso");
          }
          List<BicicletaEntity> bicisViejas = new ArrayList<BicicletaEntity>();
@@ -424,6 +430,7 @@ public class ReservaLogic
              entityNueva.setReserva(reserva);
              bicisViejas.add(entityNueva);
              bicicleta.setReserva(null);
+             bicicleta.setEstado(BicicletaEntity.DISPONIBLE);
              bicicleta.setEstacion(estacion);
              estacion.getBicicletas().add(bicicleta);
              biciLogic.update(bicicleta);
