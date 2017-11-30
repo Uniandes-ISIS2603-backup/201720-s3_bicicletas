@@ -11,19 +11,29 @@
             <div ng-show="currentReserva.estado === 1 && currentReserva.bicicletas && !currentReserva.accesorios" class="alert alert-info" style="text-align: center"  >
                 Procede a <a ui-sref="asociarAccesorio({idReserva: currentReserva.idReserva, idEstacion: currentReserva.estacionSalida.id})" class="alert-link">añadir los accesorios</a> que consideres necesarios. Estos no poseen ningún costo adicional
             </div>
+            <div ng-show="currentReserva.estado === 1 && currentReserva.bicicletas && currentReserva.accesorios" class="alert alert-info" style="text-align: center"  >
+                Ahora que tu reserva está completa, es hora de <a ng-click="irAPagar()" class="alert-link">realizar el pago</a>
+            </div>
+            <div ng-show="currentReserva.estado ===  0 && !currentReserva.calificacionSalida" class="alert alert-info" style="text-align: center"  >
+                Aceptamos tu pago, mientras esperas que llegué la fecha de inicio de tu reserva, <a ui-sref="calificacionesCreate({cali: 0, idUsuario: currentReserva.usuarioReserva.documentoUsuario, idReserva: currentReserva.idReserva})" class="alert-link">califica la estación de salida</a>
+            </div>
+            <div ng-show="currentReserva.estado ===  5" class="alert alert-info" style="text-align: center"  >
+               Tu reserva ha sido finalizada, por favor verifica tu <a ng-click="verTransaccion()" class="alert-link">estado de cuenta</a>
+            </div>
+            
         </div>
        
 
         <div class="col-sm-3">
             <div class="btn-group-vertical">
-                <button class="btn btn-secondary" ui-sref="asociarAccesorio({idReserva: currentReserva.idReserva, idEstacion: currentReserva.estacionSalida.id})"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Añadir accesorios</button>
-                <button class="btn btn-secondary" ui-sref="asociarBicicleta({idReserva: currentReserva.idReserva, idEstacion: currentReserva.estacionSalida.id})"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Añadir bicicletas</button>                
+                <button ng-show="currentReserva.estado === 1" class="btn btn-secondary" ui-sref="asociarAccesorio({idReserva: currentReserva.idReserva, idEstacion: currentReserva.estacionSalida.id})"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Añadir accesorios</button>
+                <button ng-show="currentReserva.estado === 1" class="btn btn-secondary" ui-sref="asociarBicicleta({idReserva: currentReserva.idReserva, idEstacion: currentReserva.estacionSalida.id})"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Añadir bicicletas</button>                
                 <button ng-hide="currentReserva.calificacionSalida" class="btn btn-secondary" ui-sref="calificacionesCreate({cali: 0, idUsuario: currentReserva.usuarioReserva.documentoUsuario, idReserva: currentReserva.idReserva})"><span class="glyphicon glyphicon-star"></span>&nbsp;Calificar estación de salida</button>              
-                <button ng-show="currentReserva.calificacionSalida && !currentReserva.calificacionLlegada" class="btn btn-secondary" ui-sref="calificacionesCreate({cali: 1, idUsuario: currentReserva.usuarioReserva.documentoUsuario, idReserva: currentReserva.idReserva})"><span class="glyphicon glyphicon-star"></span>&nbsp;Calificar estación de llegada</button>              
-                <button class="btn btn-secondary" ng-click="irAPagar()"><span class="glyphicon glyphicon-usd"></span>&nbsp;Pagar</button>
-                <button class="btn btn-secondary" ng-click="verTransaccion()"><span class="glyphicon glyphicon-eye-open"></span>&nbsp;Ver transaccion</button>
-                <button class="btn btn-secondary" ng-click="iniciarReserva()"><span></span>&nbsp;Iniciar Reserva</button>
-                <button class="btn btn-secondary" ui-sref="finalizarReserva({idReserva: currentReserva.idReserva})"><span></span>&nbsp;Finalizar Reserva {{currentReserva.idReserva}}</button>
+                <button ng-show="currentReserva.calificacionSalida && !currentReserva.calificacionLlegada && currentReserva.mostrarLlegada" class="btn btn-secondary" ui-sref="calificacionesCreate({cali: 1, idUsuario: currentReserva.usuarioReserva.documentoUsuario, idReserva: currentReserva.idReserva})"><span class="glyphicon glyphicon-star"></span>&nbsp;Calificar estación de llegada</button>              
+                <button ng-show="currentReserva.estado === 1 && currentReserva.bicicletas && currentReserva.accesorios" class="btn btn-secondary" ng-click="irAPagar()"><span class="glyphicon glyphicon-usd"></span>&nbsp;Pagar</button>
+                <button ng-show="currentReserva.estado === 5" class="btn btn-secondary" ng-click="verTransaccion()"><span class="glyphicon glyphicon-eye-open"></span>&nbsp;Ver transaccion</button>
+                <button ng-show="currentReserva.estado === 0" class="btn btn-secondary" ng-click="iniciarReserva()"><span class="glyphicon glyphicon-play"></span>&nbsp;Iniciar Reserva</button>
+                <button ng-show="currentReserva.estado === 3" class="btn btn-secondary" ui-sref="finalizarReserva({idReserva: currentReserva.idReserva})"><span class="glyphicon glyphicon-stop"></span>&nbsp;Finalizar Reserva {{currentReserva.idReserva}}</button>
                 <br>
                 <button class="btn btn-back" onclick="history.back()"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;Regresar</button> 
                 <br>
