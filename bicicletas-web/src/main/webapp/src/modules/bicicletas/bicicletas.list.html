@@ -1,4 +1,4 @@
-<div class="row">
+<div class="container" class="row">
     <div class="col-sm-12" style="text-align: center">
         <h2>Bicicletas</h2>
     </div>
@@ -17,7 +17,7 @@
                         <th>Estado</th>
                         <th>Modelo</th>
                         <th>Marca</th>          
-                        <th>Eliminar</th>
+                        <th ng-if="hasPermissions()">Eliminar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -40,7 +40,7 @@
                         <td id="{{$index}}-modelo">{{bicicleta.modelo}}</td>
                         <td id="{{$index}}-modelo">{{bicicleta.marca}}</td>
 
-                        <td id="{{$index}}-actions">
+                        <td ng-if="hasPermissions()" id="{{$index}}-actions">
                             <a class="btn btn-danger btn-sm" ui-sref="bicicletaDelete({id: bicicleta.id})"><span class="glyphicon glyphicon-trash"></span></a>
                         </td>
                     </tr>

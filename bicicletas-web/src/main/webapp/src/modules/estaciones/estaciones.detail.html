@@ -7,8 +7,8 @@
         </div>
         <div class="col-sm-2">
             <div class="btn-group-vertical">
-                <a class="btn btn-secondary" ui-sref="accesoriosEstacionCreate({id: currentEstacion.id})"><span class="glyphicon glyphicon-plus"></span>&nbsp;Añadir accesorio</a>
-                <a class="btn btn-secondary" ui-sref="bicicletasCreate({id: currentEstacion.id})"><span class="glyphicon glyphicon-plus"></span>&nbsp;Asociar bicicleta</a>
+                <a ng-if="hasPermissions()" class="btn btn-secondary" ui-sref="accesoriosEstacionCreate({id: currentEstacion.id})"><span class="glyphicon glyphicon-plus"></span>&nbsp;Añadir accesorio</a>
+                <a ng-if="hasPermissions()" class="btn btn-secondary" ui-sref="bicicletasCreate({id: currentEstacion.id})"><span class="glyphicon glyphicon-plus"></span>&nbsp;Asociar bicicleta</a>
                 <br>
                 <button class="btn btn-back" onclick="history.back()"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;Regresar</button> 
                 <br>

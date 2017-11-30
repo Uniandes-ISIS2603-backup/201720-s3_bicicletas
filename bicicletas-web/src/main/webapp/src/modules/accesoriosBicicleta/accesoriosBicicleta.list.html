@@ -9,7 +9,7 @@
                         <th>Id</th>
                         <th>Tipo</th>
                         <th>Descripción</th>
-                        <th>Remover</th>
+                        <th ng-if="hasPermissions()">Remover</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,7 +27,7 @@
                             </div>
                         </td>
                         <td id="{{$index}}-descripcion">{{accesorioBicicleta.descripcion}}</td>
-                        <td id="{{$index}}-actions">
+                        <td ng-if="hasPermissions()" id="{{$index}}-actions">
                             <a class="btn btn-danger btn-sm" ui-sref="deleteAccesorioBicicleta({id: currentBicicleta.id, idAccesorioBicicleta: accesorioBicicleta.id})"><span class="glyphicon glyphicon-trash"></span></a>
                         </td>
 

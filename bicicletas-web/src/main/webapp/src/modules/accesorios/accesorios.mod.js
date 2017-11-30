@@ -23,6 +23,11 @@
                     'listView': {
                         templateUrl: basePath + 'accesorios.list.html'
                     }
+                    ,
+                    data: {
+                    requireLogin: true,
+                    roles: ["administrador"]
+                }
                 }
             }).state('accesorioDetail', {
                 url: '/{id:int}/detail',

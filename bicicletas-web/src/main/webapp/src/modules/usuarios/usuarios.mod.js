@@ -22,7 +22,10 @@
 	                    'listView': {
 	                        templateUrl: basePath + 'usuarios.list.html'
 	                    }
-	                }
+	                }, data: {
+                    requireLogin: true,
+                    roles: ["administrador"]}
+                        
 	            }).state('usuarioDetail', {
 	                url: '/{documentoUsuario:int}/detail',
 	                parent: 'usuarios',

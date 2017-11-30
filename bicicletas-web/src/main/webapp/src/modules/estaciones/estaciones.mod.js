@@ -14,7 +14,9 @@
                         controller: 'estacionCtrl',
                         controllerAs: 'ctrl'
                     }
+                    
                 }
+                
             }).state('estacionesList', {
                 url: '/list',
                 parent: 'estaciones',
@@ -22,7 +24,9 @@
                     'listView': {
                         templateUrl: basePath + 'estaciones.list.html'
                     }
-                }
+                }, data: {
+                    requireLogin: true,
+                    roles: ["administrador"]}
             }).state('estacionDetail', {
                 url: '/{id:int}/detail',
                 parent: 'estaciones',
@@ -36,6 +40,9 @@
                         controllerAs: 'ctrl'
                     }
                 }
+                , data: {
+                    requireLogin: true,
+                    roles: ["administrador"]}
             }).state('estacionesCreate',{
                 url: '/create',
                     parent: 'estaciones',
