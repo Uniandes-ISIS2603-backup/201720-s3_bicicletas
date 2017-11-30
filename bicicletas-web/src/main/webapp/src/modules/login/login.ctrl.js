@@ -6,6 +6,7 @@
 
             $scope.user = {};
             $scope.data = {};
+            $scope.data.password = null;
 
             $scope.autenticar = function (id) {
                 var flag = false;

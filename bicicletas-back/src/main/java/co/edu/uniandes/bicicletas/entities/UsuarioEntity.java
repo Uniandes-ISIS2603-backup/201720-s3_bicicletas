@@ -60,6 +60,12 @@ public class UsuarioEntity implements Serializable {
    @OneToMany(mappedBy = "usuarioPunto", cascade=CascadeType.ALL)
    private List<PuntoEntity> puntos = new  ArrayList<>();
 
+   /**
+    * 
+    */
+   @PodamExclude
+   @OneToMany(mappedBy = "usuarioTarjeta", cascade=CascadeType.ALL)
+   private List<TarjetaDeCreditoEntity> tarjetas = new ArrayList();
    
 
     /**
@@ -297,5 +303,23 @@ public class UsuarioEntity implements Serializable {
     public void setReservas(List<ReservaEntity> reservas) {
         this.reservas = reservas;
     }
+
+    /**
+     * 
+     * @return 
+     */
+    public List<TarjetaDeCreditoEntity> getTarjetas() {
+        return tarjetas;
+    }
+
+    /**
+     * 
+     * @param tarjetas 
+     */
+    public void setTarjetas(List<TarjetaDeCreditoEntity> tarjetas) {
+        this.tarjetas = tarjetas;
+    }
+    
+    
  
 }
