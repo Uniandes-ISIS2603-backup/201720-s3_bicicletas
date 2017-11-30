@@ -66,7 +66,7 @@ public class EstacionBicicletaResource {
      * @return Lista de las bicicletas de la estacion.
      */
     @GET
-    @Path("disponibles")
+    @Path("/disponibles")
     public List<BicicletaDetailDTO> getBicicsEstacionDisp(@PathParam("idEstacion") Long idEstacion) {
         List<BicicletaEntity> listEntity = estacionLogic.getBicisEstacionDisponibles(idEstacion);
         return listEntity2DetailDTO(listEntity);

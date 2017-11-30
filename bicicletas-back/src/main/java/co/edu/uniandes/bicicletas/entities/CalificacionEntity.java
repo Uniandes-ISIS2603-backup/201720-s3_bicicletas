@@ -74,6 +74,7 @@ public class CalificacionEntity extends BaseEntity implements Serializable
     private Integer nota;
 
     /**
+     * Retorna la descripción de la calificación
      * @return the descripciones
      */
     public String getDescripcion() {
@@ -81,6 +82,7 @@ public class CalificacionEntity extends BaseEntity implements Serializable
     }
 
     /**
+     * Define la descripción de la calificación
      * @param descripcion the descripcion to set
      */
     public void setDescripcion(String descripcion) {
@@ -88,6 +90,7 @@ public class CalificacionEntity extends BaseEntity implements Serializable
     }
 
     /**
+     * Retorna la fecha en la que se realizó la calificación
      * @return the fechaCali
      */
     public Date getFechaCali() {
@@ -95,6 +98,7 @@ public class CalificacionEntity extends BaseEntity implements Serializable
     }
 
     /**
+     * Define la fecha en la que se creó la calificación
      * @param fechaCali the fechaCali to set
      */
     public void setFechaCali(Date fechaCali) {
@@ -102,6 +106,7 @@ public class CalificacionEntity extends BaseEntity implements Serializable
     }
 
     /**
+     * Retorna la nota de la calificación
      * @return the nota
      */
     public Integer getNota() {

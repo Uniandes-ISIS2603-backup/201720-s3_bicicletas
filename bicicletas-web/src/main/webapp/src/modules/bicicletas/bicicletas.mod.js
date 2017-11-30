@@ -41,16 +41,7 @@
 
                 }
 
-            }).state('bicicletasCreate', {
-	                url: '/create',
-	                parent: 'bicicletas',
-	                views: {
-	                    'detailView': {
-	                        templateUrl: basePath + '/new/bicicletas.new.html',
-	                        controller: 'bicicletaNewCtrl'
-	                    }
-	                }
-	    }).state('bicicletaDelete', {
+            }).state('bicicletaDelete', {
 	                url: '/delete/{id:int}',
 	                parent: 'bicicletas',
 	                param: {
@@ -71,7 +62,16 @@
                         templateUrl: basePath + 'bicicletas.html'
                     }
                 }
-            }).state('bicicletasEstacionList', {
+            }).state('bicicletasCreate', {
+	                url: '/{id:int}/create/',
+	                parent: 'bicicletasEstacion',
+	                views: {
+	                    'detailView': {
+	                        templateUrl: basePath + '/new/bicicletas.new.html',
+	                        controller: 'bicicletaNewCtrl'
+	                    }
+	                }
+	    }).state('bicicletasEstacionList', {
                 url: '/{id:int}/list',
                 parent: 'bicicletasEstacion',
                 views: {
@@ -122,6 +122,9 @@
             }).state('asociarBicicleta', {
 	                url: '/asociar',
 	                parent: 'bicicletasReserva',
+                        params:{
+                            idEstacion: null
+                        },
 	                views: {
 	                    'detailView': {
 	                        templateUrl: basePath + '/asociar/bicicletas.asociar.html',

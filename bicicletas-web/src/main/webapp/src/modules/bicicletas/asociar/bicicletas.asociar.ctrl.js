@@ -4,6 +4,9 @@ var mod = ng.module("bicicletaModule");
     mod.constant("reservasBicisContext", "api/reservas");
     mod.controller('asoBiciCtrl', ['$scope', '$http', 'reservasBicisContext', '$state', 'bicicletasReservaContext',
         function ($scope, $http, reservasBicisContext, $state, bicicletasReservaContext) {
+            $http.get('api/estaciones/'+$state.params.idEstacion+'/bicicletas/disponibles').then(function (response) {
+                $scope.estacionBicicletasDisponiblesRecords = response.data;
+            }),
             $scope.asociarBicicleta = function () {
 	                $http.put(reservasBicisContext + '/' + $state.params.idReserva + '/' + bicicletasReservaContext, {
 	                    id: $scope.bicicletaId
